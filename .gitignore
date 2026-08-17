@@ -2,9 +2,6 @@
 Backup/
 tmp/
 
-# Vendored MCP bridge maintained in its own upstream project
-touchdesigner-mcp-td/
-
 # Local caches and generated files
 __pycache__/
 *.py[cod]
@@ -16,4 +13,3 @@ Thumbs.db
 *.toe
 !PixelblazeMapper_WORKING_PHASE2_EFFECTS_CORE.41.toe
 !PixelblazeMapper_WORKING_PHASE2_EFFECTS_CORE.toe
-

@@ -31,5 +31,6 @@ The retained `/project1/esp_artnet_test_pattern` branch can be reconnected for h
 - `tests/`: mapping and integration tests
 - `docs/`: implementation notes, user guide, and visual evidence
 - `assets/`: installation reference images
+- `touchdesigner-mcp-td/`: embedded TouchDesigner MCP bridge used to inspect and update the live project (API version `1.5.0`)
 
-Backups, temporary files, obsolete `.toe` versions, and the separately maintained TouchDesigner MCP bridge are intentionally excluded from Git.
+Backups, temporary files, and obsolete `.toe` versions are intentionally excluded from Git. The embedded MCP bridge is included so the repository contains the complete runnable integration state.
