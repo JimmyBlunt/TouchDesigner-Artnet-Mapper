@@ -12,38 +12,15 @@ from pathlib import Path
 ROOT = "/project1"
 ASSET_DIR = Path("C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/effects")
 SHADER_FILE = ASSET_DIR / "core_effects.frag"
+MANIFEST_FILE = ASSET_DIR / "effects_manifest.json"
 
-EFFECT_NAMES = [
-    "fill",
-    "gradient",
-    "diagonals",
-    "fluid_noise",
-    "cellular",
-    "blobby",
-    "spatial_pulse",
-    "comet_tails",
-    "arcs",
-    "noisy_barcode",
-    "particles",
-    "bad_tv",
-    "noise_dissolve_transition",
-]
-
-EFFECT_LABELS = [
-    "Fill",
-    "Gradient",
-    "Diagonals",
-    "Fluid Noise",
-    "Cellular",
-    "Blobby",
-    "Spatial Pulse / Line Anim",
-    "Comet Tails",
-    "Arcs",
-    "Noisy Barcode",
-    "Particles",
-    "Bad TV",
-    "Noise Dissolve Transition",
-]
+MANIFEST = json.loads(MANIFEST_FILE.read_text(encoding="utf-8"))
+EFFECT_DEFINITIONS = MANIFEST["effectDefinitions"]
+EFFECT_NAMES = [effect["id"] for effect in EFFECT_DEFINITIONS]
+EFFECT_LABELS = [effect["label"] for effect in EFFECT_DEFINITIONS]
+EFFECT_PRESETS = [effect["preset"] for effect in EFFECT_DEFINITIONS]
+BROWSER_COLUMNS = int(MANIFEST.get("browser", {}).get("columns", 5))
+BROWSER_ROWS = (len(EFFECT_DEFINITIONS) + BROWSER_COLUMNS - 1) // BROWSER_COLUMNS
 
 
 def _page(owner, name):
@@ -142,14 +119,15 @@ def _configure_uniforms(player, preview_mode=None):
         player.par.color0alpha = 1.0
         _set_expr(player.par.color1alpha, f"{controls}.Color2a")
     else:
+        preset = EFFECT_PRESETS[preview_mode]
         player.par.vec0valuex = preview_mode
         _set_expr(player.par.vec0valuey, "absTime.seconds * 0.45")
-        player.par.vec0valuez = 4.0
-        player.par.vec0valuew = 0.34
+        player.par.vec0valuez = preset["scale"]
+        player.par.vec0valuew = preset["width"]
         player.par.vec1valuex = 0
         player.par.vec1valuey = 1.0
         player.par.vec1valuez = 1.35
-        player.par.vec1valuew = 0.55
+        player.par.vec1valuew = preset["trail"]
         player.par.vec2valuex = 0.125
         player.par.vec2valuey = 0.0
         player.par.vec2valuez = preview_mode * 0.173
@@ -160,7 +138,7 @@ def _configure_uniforms(player, preview_mode=None):
         player.par.vec3valuex = 2.0
         player.par.vec3valuey = 5.0
         player.par.vec3valuez = 0.5
-        player.par.vec3valuew = 1.0
+        player.par.vec3valuew = preset["density"]
         player.par.color0rgbr = 0.92
         player.par.color0rgbg = 0.08
         player.par.color0rgbb = 1.0
@@ -214,7 +192,8 @@ def _configure_browser(shader_dat):
     preview_source.nodeY = source_preview.nodeY
 
     cards = []
-    for index, label in enumerate(EFFECT_LABELS):
+    for index, definition in enumerate(EFFECT_DEFINITIONS):
+        label = definition["label"]
         preview = browser.op(f"preview_{index}") or browser.copy(source_preview, name=f"preview_{index}", includeDocked=False)
         preview.par.glslversion = "glsl430"
         preview.par.mode = "vertexpixel"
@@ -234,28 +213,62 @@ def _configure_browser(shader_dat):
 
         button = browser.op(f"material_card_{index}") or browser.copy(source_button, name=f"material_card_{index}", includeDocked=False)
         button.par.label = label
-        column = index % 4
-        row = index // 4
+        button.store("effect_id", definition["id"])
+        button.store("effect_category", definition["category"])
+        button.store("effect_preset", definition["preset"])
+        column = index % BROWSER_COLUMNS
+        row = index // BROWSER_COLUMNS
         button.par.x = column * 240
-        button.par.y = (3 - row) * 180
+        button.par.y = (BROWSER_ROWS - 1 - row) * 180
         button.par.w = 240
         button.par.h = 180
 
         execute = browser.op(f"select_material_{index}") or browser.copy(source_execute, name=f"select_material_{index}", includeDocked=False)
+        execute.par.active = True
         execute.par.fromop = button.path
-        execute.text = "def onOffToOn(panelValue):\n    op('/project1/madmapper_player_controls').par['Material'] = %d\n    return\n" % index
+        execute.par.panels = button.path
+        execute.par.panelvalue = "state"
+        execute.par.offtoon = True
+        execute.par.valuechange = False
+        execute.text = "def onOffToOn(panelValue):\n    controls = op('/project1/madmapper_player_controls')\n    controls.par.Source = 'materials'\n    controls.par.Material = %d\n    return\n" % index
+
+    # The browser background also supports direct coordinate clicks.  This is
+    # the path used when the cards are shown as one composite panel.
+    mouse = browser.op("material_browser_mouse")
+    if mouse is not None:
+        mouse.par.active = True
+        mouse.par.fromop = browser.path
+        mouse.par.panels = browser.path
+        mouse.par.panelvalue = "select"
+        mouse.par.offtoon = True
+        mouse.par.valuechange = False
+        mouse.text = """MATERIALS = %r
+COLUMNS = %d
+ROWS = %d
+
+def onOffToOn(panelValue):
+    panel = panelValue.owner.panel
+    column = max(0, min(COLUMNS - 1, int(float(panel.u) * COLUMNS)))
+    row = max(0, min(ROWS - 1, int((1.0 - float(panel.v)) * ROWS)))
+    index = row * COLUMNS + column
+    if index < len(MATERIALS):
+        controls = op('/project1/madmapper_player_controls')
+        controls.par.Source = 'materials'
+        controls.par.Material = MATERIALS[index]
+    return
+""" % (EFFECT_NAMES, BROWSER_COLUMNS, BROWSER_ROWS)
 
     layout = browser.op("thumbnail_layout")
     layout.par.tops = cards
     layout.par.align = "gridrows"
     layout.par.rowlayout = "exact"
-    layout.par.numrows = 4
+    layout.par.numrows = BROWSER_ROWS
     layout.par.fit = "fill"
     layout.par.outputresolution = "custom"
-    layout.par.resolutionw = 960
-    layout.par.resolutionh = 720
-    browser.par.w = 960
-    browser.par.h = 720
+    layout.par.resolutionw = BROWSER_COLUMNS * 240
+    layout.par.resolutionh = BROWSER_ROWS * 180
+    browser.par.w = BROWSER_COLUMNS * 240
+    browser.par.h = BROWSER_ROWS * 180
     return browser
 
 
@@ -275,7 +288,7 @@ def install():
     source_switch.par.index.expr = f"op('{ROOT}/madmapper_player_controls').par.Source.menuIndex"
     _configure_browser(shader_dat)
 
-    controls.store("core_effects_version", 1)
+    controls.store("core_effects_version", MANIFEST["version"])
     controls.store("core_effects_shader", str(SHADER_FILE))
 
     return {

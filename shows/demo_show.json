@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "name": "Core Effects Demo",
+  "loop": true,
+  "cues": [
+    {
+      "id": "intro-fluid",
+      "name": "Fluid Opening",
+      "effect": "Fluid Noise",
+      "preset": "Ocean Blue",
+      "coordinate_mode": "global",
+      "duration": 20.0,
+      "transition": "crossfade",
+      "transition_duration": 3.0,
+      "brightness": 0.2,
+      "target_groups": ["all"]
+    },
+    {
+      "id": "particles-room",
+      "name": "Particles Across Room",
+      "effect": "Particles",
+      "preset": "Cyan Magenta",
+      "coordinate_mode": "hybrid",
+      "duration": 15.0,
+      "transition": "dissolve",
+      "transition_duration": 2.0,
+      "brightness": 0.2,
+      "target_groups": ["backwall", "sidewalls"]
+    },
+    {
+      "id": "barcode-outro",
+      "name": "Barcode Finale",
+      "effect": "Noisy Barcode",
+      "preset": "Neon",
+      "coordinate_mode": "panel_local",
+      "duration": 12.0,
+      "transition": "radial",
+      "transition_duration": 2.5,
+      "brightness": 0.15,
+      "target_groups": ["all"]
+    }
+  ]
+}
