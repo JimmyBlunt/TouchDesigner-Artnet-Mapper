@@ -11,5 +11,5 @@ Thumbs.db
 
 # Keep only the verified current TouchDesigner project and stable alias.
 *.toe
-!PixelblazeMapper_WORKING_PHASE2_EFFECTS_CORE.41.toe
+!PixelblazeMapper_WORKING_PHASE2_EFFECTS_CORE.43.toe
 !PixelblazeMapper_WORKING_PHASE2_EFFECTS_CORE.toe
