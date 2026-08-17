@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900">
+  <defs><style>.bg{fill:#0d1117}.bar{fill:#f4f4f4}.panel{fill:#151b23;stroke:#546274;stroke-width:2}.field{fill:#30353b;stroke:#758399}.btn{fill:#2d8d55}.btn2{fill:#355071}.apply{fill:#c85b2d}.t{fill:#edf3fb;font:20px Arial}.d{fill:#19202a;font:20px Arial}.small{fill:#aebed1;font:16px Arial}.head{fill:#fff;font:bold 36px Arial}.axisx{stroke:#ff4d4d}.axisy{stroke:#4de173}.axisz{stroke:#4d76ff}</style></defs>
+  <rect class="bg" width="1500" height="900"/>
+  <rect class="bar" x="0" y="0" width="1500" height="72"/>
+  <text class="d" x="35" y="45">Pixelblaze Mapper for TouchDesigner</text>
+  <rect class="field" x="35" y="95" rx="8" width="230" height="48"/><text class="t" x="65" y="127">Ring ▾</text>
+  <rect class="btn" x="280" y="95" rx="8" width="170" height="48"/><text class="t" x="307" y="127">Load Example</text>
+  <rect class="btn2" x="465" y="95" rx="8" width="150" height="48"/><text class="t" x="500" y="127">Open File</text>
+  <rect class="btn2" x="630" y="95" rx="8" width="120" height="48"/><text class="t" x="658" y="127">Reload</text>
+  <text class="head" x="35" y="205">Pixel Mapper</text>
+  <rect class="panel" x="35" y="230" width="820" height="485"/>
+  <rect fill="#353a40" x="55" y="250" width="780" height="420"/>
+  <text class="small" x="72" y="280">1  [[-2.138721, 16.06512, 2.644617], ...]</text>
+  <text fill="#54d69a" font-family="Arial" font-size="17" x="55" y="702">✓ Looks ok — 3714 pixels, 3D, map is live in preview</text>
+  <rect class="panel" x="885" y="230" width="580" height="485"/>
+  <circle fill="#919ba8" cx="1010" cy="380" r="8"/><circle fill="#59d8ff" cx="1080" cy="410" r="8"/><circle fill="#ed65ff" cx="1150" cy="450" r="8"/><circle fill="#ffe55d" cx="1240" cy="360" r="8"/><circle fill="#777" cx="1330" cy="520" r="8"/>
+  <line class="axisx" stroke-width="5" x1="980" y1="610" x2="1120" y2="650"/><line class="axisy" stroke-width="5" x1="980" y1="610" x2="1035" y2="490"/><line class="axisz" stroke-width="5" x1="980" y1="610" x2="945" y2="500"/>
+  <text fill="#ff4d4d" font-size="24" x="1128" y="661">X</text><text fill="#4de173" font-size="24" x="1038" y="486">Y</text><text fill="#4d76ff" font-size="24" x="925" y="496">Z</text>
+  <rect class="field" x="885" y="730" rx="8" width="280" height="48"/><text class="t" x="915" y="762">Fill ▾</text>
+  <rect class="field" x="1185" y="730" rx="8" width="280" height="48"/><text class="t" x="1210" y="762">Point size  ●━━</text>
+  <text class="small" x="35" y="760">Source: schrankwand.pbmap.json · Bounds: 0..1 · Draft modified</text>
+  <rect class="btn2" x="35" y="810" rx="8" width="130" height="50"/><text class="t" x="69" y="843">Revert</text>
+  <rect class="btn2" x="180" y="810" rx="8" width="235" height="50"/><text class="t" x="205" y="843">Export Pixelblaze</text>
+  <rect class="btn" x="430" y="810" rx="8" width="275" height="50"/><text class="t" x="458" y="843">Export MariMapper CSV</text>
+  <rect class="apply" x="1195" y="805" rx="8" width="270" height="58"/><text class="t" x="1255" y="842">Apply to LEDs</text>
+</svg>

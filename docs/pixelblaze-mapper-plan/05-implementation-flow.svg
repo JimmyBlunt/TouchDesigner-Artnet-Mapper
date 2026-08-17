@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="850" viewBox="0 0 1500 850">
+  <defs>
+    <style>
+      .bg{fill:#0b1018}.box{fill:#172131;stroke:#5a779e;stroke-width:2}.safe{fill:#123529;stroke:#48d597;stroke-width:3}.danger{fill:#3d2525;stroke:#ff7c78;stroke-width:2}.text{fill:#eef5ff;font:22px Arial}.small{fill:#b9c8dc;font:17px Arial}.title{fill:#fff;font:bold 34px Arial}.arrow{stroke:#79aef2;stroke-width:4;fill:none;marker-end:url(#m)}
+    </style>
+    <marker id="m" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6 Z" fill="#79aef2"/></marker>
+  </defs>
+  <rect class="bg" width="1500" height="850"/>
+  <text class="title" x="55" y="60">Pixelblaze-kompatibler Mapper – geplanter Datenfluss</text>
+  <rect class="box" x="55" y="115" rx="14" width="235" height="105"/>
+  <text class="text" x="90" y="158">Open File</text><text class="small" x="67" y="190">PB JSON/JS · Mari CSV</text>
+  <rect class="box" x="355" y="115" rx="14" width="260" height="105"/>
+  <text class="text" x="402" y="158">Source Archive</text><text class="small" x="392" y="190">Text + Hash + Backup</text>
+  <rect class="box" x="680" y="115" rx="14" width="260" height="105"/>
+  <text class="text" x="730" y="158">Sandbox Parser</text><text class="small" x="715" y="190">JSON5 / JS Worker</text>
+  <rect class="box" x="1005" y="115" rx="14" width="250" height="105"/>
+  <text class="text" x="1050" y="158">Validation</text><text class="small" x="1038" y="190">2D/3D, finite, count</text>
+  <path class="arrow" d="M290 168 H350"/><path class="arrow" d="M615 168 H675"/><path class="arrow" d="M940 168 H1000"/>
+  <rect class="danger" x="1260" y="270" rx="14" width="190" height="105"/>
+  <text class="text" x="1303" y="315">INVALID</text><text class="small" x="1286" y="347">Last-good bleibt</text>
+  <path class="arrow" d="M1130 220 V270 H1255"/>
+  <rect class="box" x="885" y="300" rx="14" width="270" height="115"/>
+  <text class="text" x="925" y="344">Fill / Contain</text><text class="small" x="918" y="377">Raw bleibt unverändert</text>
+  <path class="arrow" d="M1105 220 V295"/>
+  <rect class="safe" x="530" y="300" rx="14" width="270" height="115"/>
+  <text class="text" x="585" y="344">Last-good Map</text><text class="small" x="568" y="377">atomarer Staging-Stand</text>
+  <path class="arrow" d="M885 358 H805"/>
+  <rect class="box" x="120" y="300" rx="14" width="310" height="115"/>
+  <text class="text" x="175" y="344">Animierte 3D Preview</text><text class="small" x="155" y="377">Position + aktuelle LED-Farbe</text>
+  <path class="arrow" d="M530 358 H435"/>
+  <rect class="box" x="530" y="500" rx="14" width="270" height="115"/>
+  <text class="text" x="572" y="544">Portable Export</text><text class="small" x="550" y="577">PB JSON · Mari CSV</text>
+  <path class="arrow" d="M665 415 V495"/>
+  <rect class="safe" x="885" y="500" rx="14" width="270" height="115"/>
+  <text class="text" x="930" y="544">Apply to LEDs</text><text class="small" x="918" y="577">explizite Freigabe</text>
+  <path class="arrow" d="M800 358 H835 V557 H880"/>
+  <rect class="box" x="885" y="690" rx="14" width="270" height="105"/>
+  <text class="text" x="936" y="733">map_active DAT</text><text class="small" x="923" y="766">stabile Schnittstelle</text>
+  <path class="arrow" d="M1020 615 V685"/>
+  <rect class="box" x="1215" y="690" rx="14" width="230" height="105"/>
+  <text class="text" x="1250" y="733">Bestehende Kette</text><text class="small" x="1244" y="766">Preview + 22 DMX</text>
+  <path class="arrow" d="M1155 742 H1210"/>
+</svg>

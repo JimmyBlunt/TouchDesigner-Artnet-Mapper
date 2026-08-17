@@ -1,0 +1,34 @@
+{
+  "name": "PixelblazeMapper Core Effects",
+  "version": 1,
+  "host": "TouchDesigner GLSL TOP",
+  "portableTarget": "MadMapper / ISF wrapper",
+  "effects": [
+    "Fill",
+    "Gradient",
+    "Diagonals",
+    "Fluid Noise",
+    "Cellular",
+    "Blobby",
+    "Spatial Pulse",
+    "Comet Tails",
+    "Arcs",
+    "Noisy Barcode",
+    "Particles",
+    "Bad TV",
+    "Noise Dissolve Transition"
+  ],
+  "coordinateModes": {
+    "global": "One continuous 0..1 canvas across the mapped installation",
+    "panel": "Repeated local 0..1 coordinates using the 2 x 5 rear-panel grid",
+    "hybrid": "Blend of global and panel-local coordinates"
+  },
+  "uniforms": {
+    "uParams0": ["effect", "time", "scale", "width"],
+    "uParams1": ["coordinateMode", "intensity", "contrast", "trail"],
+    "uParams2": ["direction", "rotationDegrees", "seed", "transition"],
+    "uParams3": ["panelColumns", "panelRows", "hybridMix", "density"],
+    "uColorA": "primary RGBA",
+    "uColorB": "secondary RGBA"
+  }
+}

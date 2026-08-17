@@ -1,0 +1,25 @@
+{
+  "verifiedAt": "2026-08-17",
+  "touchDesigner": "2025.33070",
+  "renderResolution": [512, 512],
+  "effectsTested": 13,
+  "effectCompileErrors": 0,
+  "effectWarnings": 0,
+  "browserPreviewsTested": 13,
+  "browserPreviewErrors": 0,
+  "coordinateModes": ["global", "panel", "hybrid"],
+  "mappingInvariants": {
+    "ledMapSamples": 3740,
+    "null4Samples": 3740,
+    "null5Samples": 3740,
+    "dmxUniverseTableRows": 23,
+    "routingTableRows": 23,
+    "dmxInput": "/project1/merge1",
+    "selectDatInput": "/project1/pixelblaze_mapper/map_active_out"
+  },
+  "selectedFinalPreset": {
+    "source": "materials",
+    "material": "fluid_noise",
+    "coordinateMode": "global"
+  }
+}

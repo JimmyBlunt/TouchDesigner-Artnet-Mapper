@@ -1,0 +1,292 @@
+"""Install the Core Effects suite into the existing live PixelblazeMapper project.
+
+This script deliberately modifies only the already present material player,
+its controls, its source switch, and its browser. The LED map, GRB packing,
+universe allocation, routing table, and DMX Out CHOP are not touched.
+"""
+
+import json
+from pathlib import Path
+
+
+ROOT = "/project1"
+ASSET_DIR = Path("C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/effects")
+SHADER_FILE = ASSET_DIR / "core_effects.frag"
+
+EFFECT_NAMES = [
+    "fill",
+    "gradient",
+    "diagonals",
+    "fluid_noise",
+    "cellular",
+    "blobby",
+    "spatial_pulse",
+    "comet_tails",
+    "arcs",
+    "noisy_barcode",
+    "particles",
+    "bad_tv",
+    "noise_dissolve_transition",
+]
+
+EFFECT_LABELS = [
+    "Fill",
+    "Gradient",
+    "Diagonals",
+    "Fluid Noise",
+    "Cellular",
+    "Blobby",
+    "Spatial Pulse / Line Anim",
+    "Comet Tails",
+    "Arcs",
+    "Noisy Barcode",
+    "Particles",
+    "Bad TV",
+    "Noise Dissolve Transition",
+]
+
+
+def _page(owner, name):
+    return next((page for page in owner.customPages if page.name == name), None) or owner.appendCustomPage(name)
+
+
+def _set_range(par, minimum, maximum, default):
+    par.min = minimum
+    par.max = maximum
+    par.normMin = minimum
+    par.normMax = maximum
+    par.clampMin = True
+    par.clampMax = True
+    par.default = default
+
+
+def _ensure_float(owner, page, name, label, default, minimum, maximum):
+    par = owner.par[name]
+    if par is None:
+        par = page.appendFloat(name, label=label)[0]
+        par.val = default
+    _set_range(par, minimum, maximum, default)
+    return par
+
+
+def _ensure_int(owner, page, name, label, default, minimum, maximum):
+    par = owner.par[name]
+    if par is None:
+        par = page.appendInt(name, label=label)[0]
+        par.val = default
+    _set_range(par, minimum, maximum, default)
+    return par
+
+
+def _ensure_menu(owner, page, name, label, names, labels, default):
+    par = owner.par[name]
+    if par is None:
+        par = page.appendMenu(name, label=label)[0]
+        par.menuNames = names
+        par.menuLabels = labels
+        par.val = default
+    else:
+        old_value = str(par.eval())
+        par.menuNames = names
+        par.menuLabels = labels
+        par.val = old_value if old_value in names else default
+    return par
+
+
+def _ensure_rgba(owner, page, name, label, default):
+    first = owner.par[name + "r"]
+    if first is None:
+        pars = page.appendRGBA(name, label=label)
+        for par, value in zip(pars, default):
+            par.default = value
+            par.val = value
+        return pars
+    return tuple(owner.par[name + suffix] for suffix in "rgba")
+
+
+def _set_expr(par, expression):
+    par.expr = expression
+
+
+def _configure_uniforms(player, preview_mode=None):
+    player.par.vec.sequence.numBlocks = 4
+    player.par.color.sequence.numBlocks = 2
+    player.par.nval = 1
+
+    for index, uniform_name in enumerate(("uParams0", "uParams1", "uParams2", "uParams3")):
+        player.par[f"vec{index}name"] = uniform_name
+    player.par.color0name = "uColorA"
+    player.par.color1name = "uColorB"
+
+    if preview_mode is None:
+        controls = f"op('{ROOT}/madmapper_player_controls').par"
+        _set_expr(player.par.vec0valuex, f"{controls}.Material.menuIndex")
+        _set_expr(player.par.vec0valuey, f"absTime.seconds * {controls}.Speed")
+        _set_expr(player.par.vec0valuez, f"{controls}.Scale")
+        _set_expr(player.par.vec0valuew, f"{controls}.Width")
+        _set_expr(player.par.vec1valuex, f"{controls}.Coordinatemode.menuIndex")
+        _set_expr(player.par.vec1valuey, f"{controls}.Intensity")
+        _set_expr(player.par.vec1valuez, f"{controls}.Contrast")
+        _set_expr(player.par.vec1valuew, f"{controls}.Trail")
+        _set_expr(player.par.vec2valuex, f"{controls}.Direction")
+        _set_expr(player.par.vec2valuey, f"{controls}.Rotation")
+        _set_expr(player.par.vec2valuez, f"{controls}.Seed")
+        _set_expr(player.par.vec2valuew, f"{controls}.Transition")
+        _set_expr(player.par.vec3valuex, f"{controls}.Panelcolumns")
+        _set_expr(player.par.vec3valuey, f"{controls}.Panelrows")
+        _set_expr(player.par.vec3valuez, f"{controls}.Hybridmix")
+        _set_expr(player.par.vec3valuew, f"{controls}.Density")
+        for suffix in "rgb":
+            _set_expr(player.par[f"color0rgb{suffix}"], f"{controls}.Color{suffix}")
+            _set_expr(player.par[f"color1rgb{suffix}"], f"{controls}.Color2{suffix}")
+        player.par.color0alpha = 1.0
+        _set_expr(player.par.color1alpha, f"{controls}.Color2a")
+    else:
+        player.par.vec0valuex = preview_mode
+        _set_expr(player.par.vec0valuey, "absTime.seconds * 0.45")
+        player.par.vec0valuez = 4.0
+        player.par.vec0valuew = 0.34
+        player.par.vec1valuex = 0
+        player.par.vec1valuey = 1.0
+        player.par.vec1valuez = 1.35
+        player.par.vec1valuew = 0.55
+        player.par.vec2valuex = 0.125
+        player.par.vec2valuey = 0.0
+        player.par.vec2valuez = preview_mode * 0.173
+        if preview_mode == 12:
+            _set_expr(player.par.vec2valuew, "(absTime.seconds * 0.15) % 1.0")
+        else:
+            player.par.vec2valuew = 0.5
+        player.par.vec3valuex = 2.0
+        player.par.vec3valuey = 5.0
+        player.par.vec3valuez = 0.5
+        player.par.vec3valuew = 1.0
+        player.par.color0rgbr = 0.92
+        player.par.color0rgbg = 0.08
+        player.par.color0rgbb = 1.0
+        player.par.color0alpha = 1.0
+        player.par.color1rgbr = 0.0
+        player.par.color1rgbg = 0.72
+        player.par.color1rgbb = 0.86
+        player.par.color1alpha = 1.0
+
+
+def _configure_controls():
+    controls = op(f"{ROOT}/madmapper_player_controls")
+    page = _page(controls, "Core Effects")
+
+    _ensure_menu(controls, page, "Coordinatemode", "Coordinate Mode", ["global", "panel", "hybrid"], ["Global Canvas", "Panel Local", "Hybrid"], "global")
+    _ensure_float(controls, page, "Intensity", "Intensity", 1.0, 0.0, 2.0)
+    _ensure_float(controls, page, "Contrast", "Contrast", 1.25, 0.1, 4.0)
+    _ensure_float(controls, page, "Trail", "Trail", 0.55, 0.0, 1.0)
+    _ensure_float(controls, page, "Direction", "Direction", 0.125, 0.0, 1.0)
+    _ensure_float(controls, page, "Rotation", "Rotation", 0.0, -180.0, 180.0)
+    _ensure_float(controls, page, "Seed", "Seed", 0.0, 0.0, 100.0)
+    _ensure_float(controls, page, "Transition", "Transition", 0.5, 0.0, 1.0)
+    _ensure_float(controls, page, "Hybridmix", "Hybrid Mix", 0.5, 0.0, 1.0)
+    _ensure_float(controls, page, "Density", "Particle Density", 1.0, 0.25, 2.0)
+    _ensure_int(controls, page, "Panelcolumns", "Panel Columns", 2, 1, 16)
+    _ensure_int(controls, page, "Panelrows", "Panel Rows", 5, 1, 16)
+    _ensure_rgba(controls, page, "Color2", "Color B", (0.0, 0.72, 0.86, 1.0))
+
+    material = controls.par.Material
+    old_material = str(material.eval())
+    material.menuNames = EFFECT_NAMES
+    material.menuLabels = EFFECT_LABELS
+    material.val = old_material if old_material in EFFECT_NAMES else "fluid_noise"
+    controls.par.Source.menuNames = ["movie", "materials"]
+    controls.par.Source.menuLabels = ["Movie / Existing Source", "Core Materials"]
+
+    if controls.par.Colorr is not None:
+        controls.par.Colorr.label = "Color A"
+    return controls
+
+
+def _configure_browser(shader_dat):
+    browser = op(f"{ROOT}/material_browser")
+    source_preview = browser.op("preview_0")
+    source_card = browser.op("card_top_0")
+    source_button = browser.op("material_card_0")
+    source_execute = browser.op("select_material_0")
+    preview_source = browser.op("preview_source") or browser.create("selectTOP", "preview_source")
+    preview_source.par.top = f"{ROOT}/moviefilein1"
+    preview_source.nodeX = source_preview.nodeX - 180
+    preview_source.nodeY = source_preview.nodeY
+
+    cards = []
+    for index, label in enumerate(EFFECT_LABELS):
+        preview = browser.op(f"preview_{index}") or browser.copy(source_preview, name=f"preview_{index}", includeDocked=False)
+        preview.par.glslversion = "glsl430"
+        preview.par.mode = "vertexpixel"
+        preview.par.pixeldat = shader_dat.path
+        preview.par.outputresolution = "custom"
+        preview.par.resolutionw = 256
+        preview.par.resolutionh = 256
+        _configure_uniforms(preview, preview_mode=index)
+        preview_source.outputConnectors[0].connect(preview)
+
+        card = browser.op(f"card_top_{index}") or browser.copy(source_card, name=f"card_top_{index}", includeDocked=False)
+        card.par.text = label
+        card.par.fontsizex = 16
+        card.par.fontsizey = 20
+        preview.outputConnectors[0].connect(card)
+        cards.append(card)
+
+        button = browser.op(f"material_card_{index}") or browser.copy(source_button, name=f"material_card_{index}", includeDocked=False)
+        button.par.label = label
+        column = index % 4
+        row = index // 4
+        button.par.x = column * 240
+        button.par.y = (3 - row) * 180
+        button.par.w = 240
+        button.par.h = 180
+
+        execute = browser.op(f"select_material_{index}") or browser.copy(source_execute, name=f"select_material_{index}", includeDocked=False)
+        execute.par.fromop = button.path
+        execute.text = "def onOffToOn(panelValue):\n    op('/project1/madmapper_player_controls').par['Material'] = %d\n    return\n" % index
+
+    layout = browser.op("thumbnail_layout")
+    layout.par.tops = cards
+    layout.par.align = "gridrows"
+    layout.par.rowlayout = "exact"
+    layout.par.numrows = 4
+    layout.par.fit = "fill"
+    layout.par.outputresolution = "custom"
+    layout.par.resolutionw = 960
+    layout.par.resolutionh = 720
+    browser.par.w = 960
+    browser.par.h = 720
+    return browser
+
+
+def install():
+    shader_source = SHADER_FILE.read_text(encoding="utf-8")
+    shader_dat = op(f"{ROOT}/madmapper_material_fs")
+    shader_dat.text = shader_source
+
+    controls = _configure_controls()
+    player = op(f"{ROOT}/madmapper_material_player")
+    player.par.glslversion = "glsl430"
+    player.par.mode = "vertexpixel"
+    player.par.pixeldat = shader_dat.path
+    _configure_uniforms(player)
+
+    source_switch = op(f"{ROOT}/visual_source_switch")
+    source_switch.par.index.expr = f"op('{ROOT}/madmapper_player_controls').par.Source.menuIndex"
+    _configure_browser(shader_dat)
+
+    controls.store("core_effects_version", 1)
+    controls.store("core_effects_shader", str(SHADER_FILE))
+
+    return {
+        "effects": EFFECT_LABELS,
+        "effectCount": len(EFFECT_LABELS),
+        "shaderDat": shader_dat.path,
+        "player": player.path,
+        "controls": controls.path,
+        "sourceSwitch": source_switch.path,
+        "browser": f"{ROOT}/material_browser",
+    }
+
+
+result = install()
