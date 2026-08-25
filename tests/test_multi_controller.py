@@ -16,7 +16,7 @@ from pixelblaze_mapper.multi_controller import (
 )
 
 
-def source(count=3740):
+def source(count=3744):
     return tuple(((index % 256) / 255, ((index + 1) % 256) / 255, ((index + 2) % 256) / 255) for index in range(count))
 
 
@@ -37,9 +37,13 @@ class DefaultTopologyTests(unittest.TestCase):
     def test_default_spans_and_universe_counts(self):
         ws = self.plan.controller("WS2812_NODE")
         esp = self.plan.controller("APA102_ESP")
-        self.assertEqual((ws.destination_pixel_count, ws.universe_count), (512, 4))
+        # The physical controller reserves four complete 510-channel universe
+        # blocks per side-panel port.  The upper and lower panels therefore
+        # start at destination pixels 680 and 1360 rather than being packed
+        # directly after the preceding panel.
+        self.assertEqual((ws.destination_pixel_count, ws.universe_count), (1758, 11))
         self.assertEqual((esp.destination_pixel_count, esp.universe_count), (1679, 10))
-        self.assertEqual(ws.routes[-1].active_pixel_count, 2)
+        self.assertEqual(ws.routes[-1].active_pixel_count, 58)
         self.assertEqual(esp.routes[-1].active_pixel_count, 149)
 
     def test_same_universe_numbers_are_valid_on_different_ips(self):
@@ -51,14 +55,18 @@ class DefaultTopologyTests(unittest.TestCase):
         warnings = [issue for issue in self.plan.issues if issue.severity == "warning"]
         self.assertEqual(len(warnings), 1)
         self.assertEqual(warnings[0].code, "unassigned_source")
-        self.assertIn("1679-3739", warnings[0].message)
+        self.assertIn("1184-1186", warnings[0].message)
+        self.assertIn("2354-3743", warnings[0].message)
 
     def test_config_table_contracts(self):
         controllers = controller_rows(self.config)
         segments = segment_rows(self.config)
         self.assertEqual(controllers[0][0:4], ("enabled", "name", "target_ip", "local_interface"))
         self.assertEqual(controllers[1][0:3], (0, "WS2812_NODE", "10.0.0.244"))
-        self.assertEqual(segments[2][0:5], ("APA102", 512, 1167, "APA102_ESP", 512))
+        self.assertEqual(segments[1][0:5], ("WS_SIDE_MIDDLE", 0, 517, "WS2812_NODE", 0))
+        self.assertEqual(segments[2][0:5], ("WS_SIDE_UPPER", 517, 269, "WS2812_NODE", 680))
+        self.assertEqual(segments[3][0:5], ("WS_SIDE_LOWER", 786, 398, "WS2812_NODE", 1360))
+        self.assertEqual(segments[4][0:5], ("APA102", 1187, 1167, "APA102_ESP", 512))
 
 
 class PackingTests(unittest.TestCase):
@@ -66,7 +74,8 @@ class PackingTests(unittest.TestCase):
         plan = build_router_plan(default_router_config("10.0.0.178"))
         packed = plan.pack_pixels(source())
         self.assertTrue(all(len(frame) == 510 for frames in packed.values() for frame in frames))
-        self.assertEqual(packed["WS2812_NODE"][-1][6:], (0,) * 504)
+        self.assertNotEqual(packed["WS2812_NODE"][-1][:-3], (0,) * 507)
+        self.assertEqual(packed["WS2812_NODE"][-1][-3:], (0,) * 3)
         self.assertEqual(packed["APA102_ESP"][-1][447:], (0,) * 63)
 
     def test_esp_firmware_prefix_is_black(self):
@@ -76,7 +85,7 @@ class PackingTests(unittest.TestCase):
         self.assertEqual(flattened[: 512 * 3], (0,) * (512 * 3))
         expected = tuple(
             round(value * 255 * 0.02)
-            for pixel in source()[512:515]
+            for pixel in source()[1187:1190]
             for value in pixel
         )
         self.assertEqual(flattened[512 * 3 : 515 * 3], expected)
@@ -109,7 +118,7 @@ class PackingTests(unittest.TestCase):
         plan = build_router_plan(default_router_config())
         with self.assertRaises(MultiControllerValidationError):
             plan.pack_pixels(((0, 0, 0),))
-        malformed = [(0, 0, 0)] * 3740
+        malformed = [(0, 0, 0)] * 3744
         malformed[7] = (0, 0)
         with self.assertRaises(MultiControllerValidationError):
             plan.pack_pixels(malformed)
@@ -134,7 +143,7 @@ class ValidationTests(unittest.TestCase):
             (controller, controller),
             (
                 SegmentConfig("bad", -1, 0, "missing", -2, reverse=1, color_override="RGBW"),
-                SegmentConfig("bad", 3739, 2, "A"),
+                SegmentConfig("bad", 3743, 2, "A"),
             ),
         )
         codes = self.codes(config)
@@ -192,6 +201,32 @@ class ValidationTests(unittest.TestCase):
 
 
 class BuilderContractTests(unittest.TestCase):
+    def test_embedded_packer_restores_project_import_path_after_reopen(self):
+        text = (Path(__file__).parents[1] / "pixelblaze_mapper" / "build_multi_controller_output.py").read_text(encoding="utf-8")
+        self.assertIn('LOCAL_ROOT = r"C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper"', text)
+        self.assertIn("if LOCAL_ROOT not in sys.path:", text)
+        self.assertIn("sys.path.insert(0, LOCAL_ROOT)", text)
+
+    def test_gico_sender_preserves_exact_510_byte_payloads(self):
+        text = (Path(__file__).parents[1] / "pixelblaze_mapper" / "build_multi_controller_output.py").read_text(encoding="utf-8")
+        self.assertIn("artnet_510_sender_callbacks", text)
+        self.assertIn("payload = bytes(payload)", text)
+        self.assertIn("pack.numSamples != 510", text)
+        self.assertIn("for index in range(510)", text)
+        self.assertIn("_socket.bind((locals_used[0], 6454))", text)
+        self.assertIn("configs = _controllers(True)", text)
+        self.assertIn("for config in configs:", text)
+        self.assertIn("importlib.reload(effect_surface_uv)", text)
+        self.assertIn("importlib.reload(spatial_map)", text)
+        self.assertIn("importlib.reload(router_calibration)", text)
+
+    def test_gico_sender_disables_sequence_filtering(self):
+        text = (Path(__file__).parents[1] / "pixelblaze_mapper" / "build_multi_controller_output.py").read_text(encoding="utf-8")
+        self.assertIn("b'\\x00\\x00'", text)
+        self.assertIn("_packet(config['universe'] + offset, payload)", text)
+        self.assertNotIn("_sequence = 1", text)
+        self.assertNotIn("_packet(config['universe'] + offset, _sequence, payload)", text)
+
     def test_builder_is_isolated_and_never_activates_or_saves(self):
         text = (Path(__file__).parents[1] / "pixelblaze_mapper" / "build_multi_controller_output.py").read_text(encoding="utf-8")
         self.assertIn('OWNER = "/project1/multi_controller_output"', text)
@@ -221,14 +256,21 @@ class BuilderContractTests(unittest.TestCase):
         self.assertIn("APPLY SAFE DRAFT", text)
         self.assertIn("START ENABLED", text)
         self.assertIn("ALL OUTPUTS OFF", text)
+        self.assertIn("START CALIBRATION", text)
+        self.assertIn("NEXT PANEL", text)
+        self.assertIn("NEXT PATTERN", text)
+        self.assertIn("RETURN TO LIVE", text)
 
     def test_editor_validates_before_activation_and_defaults_to_off(self):
         text = (Path(__file__).parents[1] / "pixelblaze_mapper" / "build_multi_controller_output.py").read_text(encoding="utf-8")
         self.assertIn("ipaddress.ip_address(address)", text)
         self.assertIn("if not apply_safe():", text)
         self.assertIn("node.par.active = False", text)
-        self.assertLess(text.index("all_off()", text.index("def start_enabled")),
-                        text.index("node.par.active = True", text.index("def start_enabled")))
+        start = text[text.index("def start_enabled"):text.index("def start_calibration")]
+        self.assertIn("all_off()", start)
+        self.assertIn("sender.module.set_live()", start)
+        self.assertIn("sender.module.set_enabled(True)", start)
+        self.assertNotIn("node.par.active = True", start)
 
 
 if __name__ == "__main__":

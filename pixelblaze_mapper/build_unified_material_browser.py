@@ -112,7 +112,7 @@ def _execute(parent, name, source, callback):
 
 def _viewer_execute(parent, name, source, callback):
     """Apply a material when its visual preview, not just its label, is clicked."""
-    node = _get_or_create(parent, panelExecuteDAT, name)
+    node = _get_or_create(parent, 'panelexecuteDAT', name)
     node.par.active = True
     node.par.panels = source.path
     node.par.panelvalue = "select"
@@ -123,6 +123,71 @@ def _viewer_execute(parent, name, source, callback):
     node.par.valuechange = False
     node.text = "def onOffToOn(panelValue):\n    op(%r).module.%s\n    return\n" % (OWNER + "/unified_runtime", callback)
     return node
+
+
+def _value_execute(parent, name, source, parameter):
+    """Bind a visible slider to one central material-control parameter."""
+    node = _get_or_create(parent, 'panelexecuteDAT', name)
+    node.par.active = True
+    node.par.fromop = source.path
+    node.par.panels = source.path
+    node.par.panelvalue = "value"
+    node.par.offtoon = False
+    node.par.valuechange = True
+    node.text = (
+        "def onValueChange(panelValue):\n"
+        "    op('/project1/madmapper_player_controls').par.%s = float(panelValue)\n"
+        "    return\n" % parameter
+    )
+    return node
+
+
+def _slider(parent, name, label, x, y, width, low, high, value, parameter):
+    node = _panel(_get_or_create(parent, sliderCOMP, name), x, y, width, 28, 50)
+    _set(node, "label", label)
+    _set(node, "valuerange0l", low)
+    _set(node, "valuerange0h", high)
+    _set(node, "value0", value)
+    _value_execute(parent, name + "_change", node, parameter)
+    return node
+
+
+def _material_control_runtime_source():
+    return r'''SOURCE = r'C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/pixelblaze_mapper/material_control_surface.py'
+def _module():
+    namespace = {'op': op}
+    exec(compile(open(SOURCE, encoding='utf-8').read(), SOURCE, 'exec'), namespace)
+    return namespace
+def apply_gradient(key):
+    return _module()['apply_gradient'](key)
+def reset_frame():
+    return _module()['reset_frame']()
+'''
+
+
+def _material_controls(browser):
+    """Create the central speed, framing, and gradient strip below the browser."""
+    controls = op('/project1/madmapper_player_controls')
+    runtime = _get_or_create(browser, textDAT, 'mb_control_runtime')
+    runtime.text = _material_control_runtime_source()
+    _slider(browser, 'mb_control_speed', 'SPEED', 20, 754, 250, 0.0, 2.0, controls.par.Speed.eval(), 'Speed')
+    _slider(browser, 'mb_control_focusx', 'FOCUS X', 285, 754, 190, 0.0, 1.0, controls.par.Focusx.eval(), 'Focusx')
+    _slider(browser, 'mb_control_focusy', 'FOCUS Y', 490, 754, 190, 0.0, 1.0, controls.par.Focusy.eval(), 'Focusy')
+    _slider(browser, 'mb_control_zoom', 'FRAME ZOOM', 695, 754, 220, 0.25, 4.0, controls.par.Framezoom.eval(), 'Framezoom')
+    for index, (label, value) in enumerate((('STOP', 0.0), ('0.5x', 0.5), ('1x', 1.0), ('2x', 2.0))):
+        button = _button(browser, 'mb_control_speed_%d' % index, label, 20 + index * 76, 790, 70, 28)
+        handler = _get_or_create(browser, 'panelexecuteDAT', 'mb_control_speed_%d_click' % index)
+        handler.par.fromop = button.path; handler.par.panels = button.path; handler.par.panelvalue = 'state'; handler.par.offtoon = True
+        handler.text = "def onOffToOn(panelValue):\n    op('/project1/madmapper_player_controls').par.Speed = %s\n    return\n" % value
+    reset = _button(browser, 'mb_control_view_reset', 'RESET VIEW', 340, 790, 110, 28)
+    reset_handler = _get_or_create(browser, 'panelexecuteDAT', 'mb_control_view_reset_click')
+    reset_handler.par.fromop = reset.path; reset_handler.par.panels = reset.path; reset_handler.par.panelvalue = 'state'; reset_handler.par.offtoon = True
+    reset_handler.text = "def onOffToOn(panelValue):\n    op('/project1/material_browser/mb_control_runtime').module.reset_frame()\n    return\n"
+    for index, (label, key) in enumerate((('NEON', 'neon_cyan_magenta'), ('AMBER', 'amber_violet'), ('ACID', 'acid_lime_blue'), ('FIRE/ICE', 'fire_ice'), ('MONO', 'mono_white'))):
+        button = _button(browser, 'mb_control_gradient_%d' % index, label, 470 + index * 88, 790, 82, 28)
+        handler = _get_or_create(browser, 'panelexecuteDAT', 'mb_control_gradient_%d_click' % index)
+        handler.par.fromop = button.path; handler.par.panels = button.path; handler.par.panelvalue = 'state'; handler.par.offtoon = True
+        handler.text = "def onOffToOn(panelValue):\n    op('/project1/material_browser/mb_control_runtime').module.apply_gradient('%s')\n    return\n" % key
 
 
 def _runtime_source():
@@ -387,7 +452,7 @@ def build():
         raise RuntimeError("Build the existing Core Effects browser first")
 
     browser.par.w = 1280
-    browser.par.h = 800
+    browser.par.h = 900
     _set(browser, "top", "")
     for suffix, value in zip("rgb", (0.006, 0.012, 0.020)):
         _set(browser, "bgcolor" + suffix, value)
@@ -409,7 +474,7 @@ def build():
                     ("group", "All"), ("layout", "4x2")):
             state.appendRow(row)
 
-    _text(browser, "unified_title", "MATERIAL BROWSER | CORE + IMPORTED MADMAPPER", 20, 754, 1240, 38, 21, (0.92, 0.96, 1.0))
+    _text(browser, "unified_title", "MATERIAL BROWSER | CORE + IMPORTED MADMAPPER", 20, 850, 1240, 38, 21, (0.92, 0.96, 1.0))
     search = _field(browser, "unified_search", 20, 704, 315, 38)
     apply_button = _button(browser, "unified_apply", "SEARCH / APPLY", 345, 704, 130)
     source = _button(browser, "unified_source", "SOURCE: ALL", 485, 704, 155)
@@ -419,6 +484,7 @@ def build():
     page = _text(browser, "unified_page", "PAGE 1 / 1", 1045, 704, 155, 38, 11)
     next_button = _button(browser, "unified_next", ">", 1210, 704, 50)
     _text(browser, "unified_status", "READY | DMX OFF", 20, 12, 1240, 38, 12, (0.35, 0.90, 0.67))
+    _material_controls(browser)
 
     _execute(browser, "unified_apply_click", apply_button, "apply_filters()")
     _execute(browser, "unified_source_click", source, "cycle_source()")
