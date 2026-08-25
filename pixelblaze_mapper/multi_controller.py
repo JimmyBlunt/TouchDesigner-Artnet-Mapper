@@ -15,7 +15,7 @@ from numbers import Real
 from typing import Iterable, Sequence
 
 
-SOURCE_PIXEL_COUNT = 3740
+SOURCE_PIXEL_COUNT = 3744
 SLOTS_PER_UNIVERSE = 510
 PIXELS_PER_UNIVERSE = 170
 ARTNET_MAX_LINEAR_UNIVERSE = 32767
@@ -372,7 +372,7 @@ def build_router_plan(config: RouterConfig) -> RouterPlan:
     return RouterPlan(config, tuple(plans), issues)
 
 
-def default_router_config(local_interface: str = "10.0.0.178") -> RouterConfig:
+def default_router_config(local_interface: str = "10.0.0.125") -> RouterConfig:
     """Safe two-controller draft matching the currently discussed hardware."""
 
     return RouterConfig(
@@ -382,7 +382,10 @@ def default_router_config(local_interface: str = "10.0.0.178") -> RouterConfig:
                 target_address="10.0.0.244",
                 local_interface=local_interface,
                 enabled=False,
-                color_order="RGB",
+                # GICO UI labels its first universe as 1, while Art-Net carries
+                # that universe as the zero-based wire address 0.
+                start_universe=0,
+                color_order="GRB",
             ),
             ControllerConfig(
                 name="APA102_ESP",
@@ -393,8 +396,16 @@ def default_router_config(local_interface: str = "10.0.0.178") -> RouterConfig:
             ),
         ),
         segments=(
-            SegmentConfig("WS2812", 0, 512, "WS2812_NODE", 0),
-            SegmentConfig("APA102", 512, 1167, "APA102_ESP", 512),
+            # Controller hardware is configured for four universes per port.
+            # Each Art-Net universe carries 170 RGB pixels (510 channels):
+            # port 1 / middle = U1..U4, port 2 / upper = U5..U8,
+            # port 3 / lower = U9..U12.  U7..U8 are intentionally black,
+            # because the upper side has only 269 pixels.
+            SegmentConfig("WS_SIDE_MIDDLE", 0, 517, "WS2812_NODE", 0),
+            SegmentConfig("WS_SIDE_UPPER", 517, 269, "WS2812_NODE", 680),
+            SegmentConfig("WS_SIDE_LOWER", 786, 398, "WS2812_NODE", 1360),
+            # ESP firmware reserves target pixels 0..511 for its WS output.
+            SegmentConfig("APA102", 1187, 1167, "APA102_ESP", 512),
         ),
         source_pixel_count=SOURCE_PIXEL_COUNT,
         warn_unassigned=True,
