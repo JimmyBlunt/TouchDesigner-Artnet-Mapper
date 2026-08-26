@@ -218,6 +218,15 @@ class BuilderContractTests(unittest.TestCase):
         compile(sender_source, "sender_callbacks", "exec")
         compile(execute_source, "sender_execute", "exec")
 
+    def test_generated_dat_sources_are_replaced_not_appended(self):
+        text = (Path(__file__).parents[1] / "pixelblaze_mapper" / "build_multi_controller_output.py").read_text(encoding="utf-8")
+        self.assertIn("def _replace_dat_text(node, source):", text)
+        self.assertIn("node.write(source)", text)
+        self.assertIn("_replace_dat_text(sender_callbacks, _artnet_510_sender_source())", text)
+        self.assertIn("_replace_dat_text(sender_execute, _artnet_510_execute_source())", text)
+        self.assertNotIn("sender_callbacks.text =", text)
+        self.assertNotIn("sender_execute.text =", text)
+
     def test_embedded_packer_restores_project_import_path_after_reopen(self):
         text = (Path(__file__).parents[1] / "pixelblaze_mapper" / "build_multi_controller_output.py").read_text(encoding="utf-8")
         self.assertIn('LOCAL_ROOT = r"C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper"', text)

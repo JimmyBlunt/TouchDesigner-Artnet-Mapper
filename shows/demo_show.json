@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "name": "Core Effects Demo",
   "loop": true,
   "cues": [
@@ -8,6 +8,16 @@
       "name": "Fluid Opening",
       "effect": "Fluid Noise",
       "preset": "Ocean Blue",
+      "parameters": {
+        "speed": 0.7, "scale": 4.0, "width": 0.45,
+        "focus_x": 0.5, "focus_y": 0.5, "zoom": 1.0,
+        "gradient": "ocean_blue",
+        "color_a": [0.02, 0.18, 0.72, 1.0], "color_b": [0.0, 0.78, 0.92, 1.0],
+        "intensity": 1.0, "contrast": 1.25, "trail": 0.55,
+        "direction": 0.125, "rotation_degrees": 0.0, "seed": 0.0,
+        "effect_transition": 0.5, "panel_columns": 2.0, "panel_rows": 5.0,
+        "hybrid_mix": 0.5, "density": 1.0
+      },
       "coordinate_mode": "global",
       "duration": 20.0,
       "transition": "crossfade",
@@ -20,18 +30,38 @@
       "name": "Particles Across Room",
       "effect": "Particles",
       "preset": "Cyan Magenta",
+      "parameters": {
+        "speed": 1.15, "scale": 4.0, "width": 0.3,
+        "focus_x": 0.5, "focus_y": 0.5, "zoom": 1.0,
+        "gradient": "neon_cyan_magenta",
+        "color_a": [0.91, 0.0, 1.0, 1.0], "color_b": [0.0, 0.72, 0.86, 1.0],
+        "intensity": 1.0, "contrast": 1.25, "trail": 0.55,
+        "direction": 0.125, "rotation_degrees": 0.0, "seed": 11.0,
+        "effect_transition": 0.5, "panel_columns": 2.0, "panel_rows": 5.0,
+        "hybrid_mix": 0.5, "density": 1.25
+      },
       "coordinate_mode": "hybrid",
       "duration": 15.0,
       "transition": "dissolve",
       "transition_duration": 2.0,
       "brightness": 0.2,
-      "target_groups": ["backwall", "sidewalls"]
+      "target_groups": ["middle", "upper", "lower", "rear"]
     },
     {
       "id": "barcode-outro",
       "name": "Barcode Finale",
       "effect": "Noisy Barcode",
       "preset": "Neon",
+      "parameters": {
+        "speed": 1.35, "scale": 4.0, "width": 0.46,
+        "focus_x": 0.5, "focus_y": 0.5, "zoom": 1.0,
+        "gradient": "neon_cyan_magenta",
+        "color_a": [0.91, 0.0, 1.0, 1.0], "color_b": [0.0, 0.72, 0.86, 1.0],
+        "intensity": 1.0, "contrast": 1.4, "trail": 0.2,
+        "direction": 0.125, "rotation_degrees": 0.0, "seed": 23.0,
+        "effect_transition": 0.5, "panel_columns": 2.0, "panel_rows": 5.0,
+        "hybrid_mix": 0.5, "density": 1.0
+      },
       "coordinate_mode": "panel_local",
       "duration": 12.0,
       "transition": "radial",

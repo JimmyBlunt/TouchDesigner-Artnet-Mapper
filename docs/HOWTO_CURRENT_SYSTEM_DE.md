@@ -1,11 +1,11 @@
 # How-to: TouchDesigner Art-Net Mapper
 
-Stand: 18. August 2026 · Projektdatei: `PixelblazeMapper_WORKING_PHASE2_EFFECTS_CORE.43.toe`
+Stand: 22. August 2026 · Arbeitsstand: `PixelblazeMapper_WORKING_PHASE2_EFFECTS_CORE.53.toe`
 
 ## 1. Sicher starten
 
 1. TouchDesigner öffnen.
-2. `PixelblazeMapper_WORKING_PHASE2_EFFECTS_CORE.43.toe` laden.
+2. `PixelblazeMapper_WORKING_PHASE2_EFFECTS_CORE.53.toe` laden.
 3. Im Network Editor `/project1` öffnen.
 4. Prüfen, dass diese vier Ausgänge `Active = Off` zeigen:
    - `/project1/dmxout1`
@@ -37,16 +37,27 @@ verschiedenen IP-Adressen wieder bei 0 beginnen. Innerhalb derselben IP werden
 
 ## 3. UC-01 · Effekt mit der Maus wählen
 
-1. `/project1/madmapper_material_browser` öffnen.
+1. `/project1/material_browser` öffnen.
 2. Den Viewer aktivieren (**Viewer Active**).
-3. Eine der 25 Karten direkt anklicken.
-4. Kontrollieren, dass die cyanfarbene Auswahlumrandung zur angeklickten Karte
-   springt und die 3D-Vorschau denselben Effekt auf Rückwand und Seiten zeigt.
+3. Optional mit `SOURCE`, `GROUP` oder dem Suchfeld filtern.
+4. Mit `VIEW: 4 x 2` bzw. `VIEW: 8 x 4` zwischen großen und kompakten Karten wechseln.
+5. Eine Core- oder importierte MadMapper-Karte direkt anklicken.
+6. Kontrollieren, dass die Statuszeile `ACTIVE CORE MATERIAL` beziehungsweise
+   `ACTIVE IMPORTED MATERIAL` anzeigt und die 3D-Vorschau denselben Effekt auf
+   Rückwand und Seiten zeigt.
 
-![Material-Browser mit 25 anklickbaren Karten](screenshots/07-material-browser-25-effects.png)
+![Gemeinsamer Material-Browser in der 8×4-Ansicht](images/unified_material_browser_8x4.png)
 
-Erwartung: `Source = materials`, der Materialindex entspricht der Kartenposition
-von links oben nach rechts unten. Getestet wurden alle Indizes `0..24`.
+Erwartung: Core-Karten setzen `Source = materials`. Eine automatisch vorbereitete
+Importkarte setzt `Source = imported`; der zusätzliche Eingang liegt auf Index 3.
+Die bisherigen Indizes Movie 0, Core 1 und Show 2 bleiben unverändert.
+
+Die verbindliche Fotoansicht wird mit `Strg+Umschalt+1` geöffnet. Das Hintergrundbild
+läuft unter der Non-Commercial-Lizenz proportional mit 648×1280 Pixeln und ohne
+Hardware-Decoding. Dadurch bleibt die 810×1600-Quelldatei sichtbar, ohne das
+1280-Pixel-TOP-Limit zu überschreiten.
+
+![LED-Vorschau mit wiederhergestelltem Hintergrundfoto](images/led_preview_background_fixed.png)
 
 ## 4. UC-02 · Koordinatenmodus wählen
 
@@ -61,6 +72,28 @@ Im Control COMP `/project1/madmapper_player_controls` den Parameter
 
 Erwartung: Die drei Modi erzeugen unterschiedliche Renderbilder, verändern aber
 weder Pixelanzahl noch Art-Net-Routing.
+
+### Laufrichtung auf Rückwand und Seitenwand
+
+Die beiden Flächen liegen auf unterschiedlichen räumlichen Ebenen. Deshalb
+verwendet die gemeinsame Effekt-Abtastung folgende feste Projektion:
+
+| Fläche | Effekt-U | Effekt-V / vertikale Laufrichtung |
+|---|---|---|
+| Rückwand | räumliches Z über zwei Spalten | räumliches X über fünf Reihen |
+| Seitenwand | ursprüngliches Y = vorne/hinten | ursprüngliches X = Höhe |
+
+Das ursprüngliche Z der Seitenwand beschreibt nur die geringe Tiefe bzw. das
+Relief zur Wand. Weil die Seiten-Geometrie vor dem Rendern um −90° gedreht wird,
+müssen X und Y für die 2D-Textur vertauscht werden. Werden die ungedrehten Achsen
+verwendet, läuft eine fallende Animation nach vorne oder hinten. Die aktive Korrektur liegt in
+`/project1/effect_sample_uv`; ihr reproduzierbarer Builder ist
+`pixelblaze_mapper/build_effect_surface_uv.py`.
+
+Abnahme mit **Matrix Rain**: Im Material Player und auf der Rückwand fällt das
+Muster von oben nach unten. Auf allen drei Seitenpanels muss dieselbe vertikale
+Richtung sichtbar sein. Pixelanzahl, Indexreihenfolge, Universen und Art-Net-
+Routing dürfen sich beim Umschalten nicht ändern.
 
 ## 5. UC-03 · Zwei Art-Net-Empfänger konfigurieren
 
@@ -112,6 +145,25 @@ Für neue Stränge oder weitere Empfänger:
 2. In `segment_config` eine oder mehrere Segmentzeilen anlegen.
 3. `source_start` und `count` beziehen sich auf den 3740-Pixel-Quellstrom.
 4. `destination_start` ist der logische Pixelindex im Zielgerät.
+
+Aktuell bestätigte GICO-Hardwarezuordnung der drei Seitenpanels (Art-Net-Anzeige
+des Controllers, 170 RGB-Pixel je Universe):
+
+| Panel | LED-Anzahl | Universe | `destination_start` |
+|---|---:|---:|---:|
+| oben, großer Teil | 170 | 3 | 340 |
+| oben, kleiner Rest | 102 | 4 | 510 |
+| unten | 399 | 6–8 | 850 |
+| Mitte | 509 | 9–11 | 1360 |
+
+Die mittlere Leitung liegt physisch/firmwareseitig nicht auf Universe 1–3.
+Dies wurde mit echten Rot/Blau-Universe-Tests am Controller `10.0.0.244`
+ermittelt. Universe 9 erzeugte ungefähr ein Drittel Rot und Universe 10–11
+zwei Drittel Blau auf dem mittleren Panel.
+
+Der obere Aufbau ist ebenfalls physisch geteilt. Universe-Einzeltests ergaben:
+Universe 1, 2 und 5 steuern keinen sichtbaren Teil; der große 170-Pixel-Block
+liegt auf Universe 3, die übrigen 102 Pixel auf Universe 4.
 5. Optional `reverse=1` oder `color_override=GRB` setzen.
 6. Builder ausführen:
 
@@ -162,17 +214,31 @@ Der Renderer nutzt zwei Shader-Slots A/B. Unterstützte Übergänge: `cut`,
   "name": "Particles Across Room",
   "effect": "Particles",
   "preset": "Cyan Magenta",
+  "parameters": {
+    "speed": 1.15, "scale": 4.0, "width": 0.3,
+    "focus_x": 0.5, "focus_y": 0.5, "zoom": 1.0,
+    "gradient": "neon_cyan_magenta",
+    "color_a": [0.91, 0.0, 1.0, 1.0],
+    "color_b": [0.0, 0.72, 0.86, 1.0],
+    "intensity": 1.0, "contrast": 1.25, "trail": 0.55,
+    "direction": 0.125, "rotation_degrees": 0.0, "seed": 11.0,
+    "effect_transition": 0.5,
+    "panel_columns": 2.0, "panel_rows": 5.0,
+    "hybrid_mix": 0.5, "density": 1.25
+  },
   "coordinate_mode": "hybrid",
   "duration": 15.0,
   "transition": "dissolve",
   "transition_duration": 2.0,
   "brightness": 0.2,
-  "target_groups": ["backwall", "sidewalls"]
+  "target_groups": ["middle", "upper", "lower", "rear"]
 }
 ```
 
 Regeln: IDs eindeutig; `duration > 0`; Helligkeit `0..1`; animierte
 Transitiondauer `> 0` und nicht länger als die Cue-Dauer; Cut-Dauer exakt 0.
+`parameters` ist vollständig erforderlich. Zielgruppen sind ausschließlich
+`all`, `middle`, `upper`, `lower` und `rear`; `all` wird nicht kombiniert.
 
 Builder und Live-Verknüpfung:
 

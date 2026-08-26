@@ -62,9 +62,9 @@
     "categories": ["Utility", "Organic", "Geometry", "Particles", "Glitch", "Transition", "Abstract", "Digital"]
   },
   "coordinateModes": {
-    "global": "One continuous 0..1 canvas across the mapped installation",
-    "panel": "Repeated local 0..1 coordinates using the configured panel grid",
-    "hybrid": "Blend of global and panel-local coordinates"
+    "global": "One continuous room-coordinate canvas across the mapped installation",
+    "panel": "True per-index 0..1 local UVs for middle, upper, lower and rear",
+    "hybrid": "Per-index blend of room and true panel-local coordinates"
   },
   "uniforms": {
     "uParams0": ["effect", "time", "scale", "width"],

@@ -59,6 +59,13 @@ def _write_table(node, rows):
         node.appendRow(row)
 
 
+def _replace_dat_text(node, source):
+    """Replace generated DAT contents even when TouchDesigner retained text."""
+
+    node.clear()
+    node.write(source)
+
+
 def _bool(value):
     return str(value).strip().lower() in ("1", "true", "yes", "on")
 
@@ -797,7 +804,7 @@ def build():
         pack = _get_or_create(owner, scriptCHOP, "pack_" + safe)
         callback_path = str(pack.par.callbacks.eval()) if pack.par.callbacks is not None else ""
         callbacks = op(callback_path) or _get_or_create(owner, textDAT, "pack_" + safe + "_callbacks")
-        callbacks.text = _pack_callbacks(controller.name)
+        _replace_dat_text(callbacks, _pack_callbacks(controller.name))
         _set_if_present(pack, "callbacks", callbacks.path)
         _connect_first_input(pack, source)
         for candidate in owner.findChildren(name="pack_" + safe + "_callbacks*", depth=1):
@@ -837,9 +844,9 @@ def build():
         sender_callbacks.module.stop()
     except Exception:
         pass
-    sender_callbacks.text = _artnet_510_sender_source()
+    _replace_dat_text(sender_callbacks, _artnet_510_sender_source())
     sender_execute = _get_or_create(owner, executeDAT, "artnet_510_execute")
-    sender_execute.text = _artnet_510_execute_source()
+    _replace_dat_text(sender_execute, _artnet_510_execute_source())
     _set_if_present(sender_execute, "active", True)
     _set_if_present(sender_execute, "framestart", True)
     _set_if_present(sender_execute, "exit", True)
@@ -899,7 +906,7 @@ def build():
                 ("start", "START ENABLED", 224, (0.48, 0.31, 0.08)),
                 ("off", "ALL OUTPUTS OFF", 424, (0.48, 0.08, 0.08)))
     callbacks = _get_or_create(owner, textDAT, "ui_callbacks")
-    callbacks.text = _ui_callbacks_source()
+    _replace_dat_text(callbacks, _ui_callbacks_source())
     for command, label, x, color in controls:
         button = _button(canvas, "btn_" + command, label, x, 292, 180, color)
         click = _get_or_create(owner, panelexecuteDAT, "click_" + command)
@@ -910,7 +917,7 @@ def build():
         click.par.offtoon = True
         click.par.valuechange = False
         action = {"apply": "apply_safe", "start": "start_enabled", "off": "all_off"}[command]
-        click.text = "def onOffToOn(panelValue):\n    op('ui_callbacks').module.%s()\n    return\n" % action
+        _replace_dat_text(click, "def onOffToOn(panelValue):\n    op('ui_callbacks').module.%s()\n    return\n" % action)
         _set_if_present(click, "active", True)
     _label(canvas, "action_status", "READY - edit fields, then APPLY SAFE DRAFT", 624, 292, 532, 38, (0.35, 0.90, 0.67), 12)
     _label(canvas, "warning", "START ENABLED sends live Art-Net. ALL OUTPUTS OFF stops immediately.", 24, 258, 1132, 26, (0.97, 0.72, 0.26), 12)
@@ -939,7 +946,7 @@ def build():
         click.par.panelvalue = "state"
         click.par.offtoon = True
         click.par.valuechange = False
-        click.text = "def onOffToOn(panelValue):\n    op('ui_callbacks').module.%s()\n    return\n" % action
+        _replace_dat_text(click, "def onOffToOn(panelValue):\n    op('ui_callbacks').module.%s()\n    return\n" % action)
         _set_if_present(click, "active", True)
     _label(canvas, "cal_note", "Panel ID: middle=red, upper=green, lower=blue. Rows/columns use every measured coordinate. Chase: selected LED green, neighbours white.", 24, 24, 1132, 32, (0.72, 0.79, 0.86), 11)
     _set_if_present(preview, "resolutionw", 1180)

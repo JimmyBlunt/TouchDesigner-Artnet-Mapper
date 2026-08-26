@@ -57,6 +57,13 @@ def test_selection_preserves_existing_indices_and_appends_imported_source():
     assert "switch.inputConnectors[duplicate_index].disconnect()" in text
 
 
+def test_selection_activates_the_matching_per_material_state():
+    runtime = module()._runtime_source()
+    assert "state_runtime = op('/project1/material_state_runtime')" in runtime
+    assert "state_runtime.module.activate(item['key'], item.get('preset', {}))" in runtime
+    assert "'preset': dict(definition.get('preset', {}))" in runtime
+
+
 def test_builder_never_enables_network_or_saves_project():
     text = source()
     assert "dmxoutCHOP" not in text

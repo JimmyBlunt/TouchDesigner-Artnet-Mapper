@@ -47,6 +47,37 @@ PIN_PARAMETERS = (
     "pinp11", "pinp12", "pinp21", "pinp22",
     "pinp31", "pinp32", "pinp41", "pinp42",
 )
+SIDE_RESET_PARAMETERS = (
+    "Sidetlx", "Sidetly", "Sidetrx", "Sidetry",
+    "Sideblx", "Sidebly", "Sidebrx", "Sidebry",
+)
+LEGACY_REAR_PARAMETERS = (
+    "Reartlx", "Reartly", "Reartrx", "Reartry",
+    "Rearblx", "Rearbly", "Rearbrx", "Rearbry",
+    "Rearmidtopx", "Rearmidtopy", "Rearmidbottomx", "Rearmidbottomy",
+)
+
+CALIBRATION_CALLBACKS = r'''def onPulse(par):
+    if par.name != 'Resetcalibration':
+        return
+    owner = parent()
+    side_names = (
+        'Sidetlx', 'Sidetly', 'Sidetrx', 'Sidetry',
+        'Sideblx', 'Sidebly', 'Sidebrx', 'Sidebry',
+    )
+    for name in side_names:
+        parameter = getattr(owner.par, name, None)
+        if parameter is not None:
+            parameter.val = parameter.default
+    suffixes = ('tlx', 'tly', 'trx', 'try', 'blx', 'bly', 'brx', 'bry')
+    for panel in range(10):
+        for suffix in suffixes:
+            parameter = getattr(owner.par, 'F%02d%s' % (panel, suffix), None)
+            if parameter is not None:
+                parameter.val = parameter.default
+    owner.par.Status = 'active side + 10 rear panels reset (88 values)'
+    return
+'''
 
 
 def _flat_corners(corners):
@@ -88,6 +119,34 @@ def _bind_panel_pins(owner):
             getattr(pin.par, target).expr = "parent().par.F%02d%s" % (panel, suffix)
 
 
+def _install_complete_reset(owner):
+    callback = owner.op("calibration_callbacks")
+    if callback is None:
+        raise RuntimeError("Missing photo-calibration reset callback DAT")
+    callback.text = CALIBRATION_CALLBACKS
+    callback.par.op = owner.path
+    callback.par.pars = "Resetcalibration"
+    callback.par.onpulse = True
+    callback.par.active = True
+    reset = getattr(owner.par, "Resetcalibration", None)
+    if reset is None:
+        raise RuntimeError("Missing Resetcalibration pulse parameter")
+    reset.label = "Reset active side + rear panels"
+
+
+def _deactivate_legacy_rear_parameters(owner):
+    """Keep old project compatibility values visible only as read-only legacy data."""
+    disabled = []
+    for name in LEGACY_REAR_PARAMETERS:
+        parameter = getattr(owner.par, name, None)
+        if parameter is None:
+            continue
+        parameter.readOnly = True
+        parameter.label = "LEGACY INACTIVE - " + parameter.label.replace("LEGACY INACTIVE - ", "")
+        disabled.append(name)
+    return tuple(disabled)
+
+
 def _validate_current_map(owner):
     source = owner.op("cal_source_instances")
     if source is None or source.numSamples != TOTAL_PIXELS:
@@ -99,14 +158,32 @@ def _validate_current_map(owner):
         raise RuntimeError("Rear preview must start at sample %d" % REAR_START)
 
 
+def _apply_canonical_preview_ranges(owner):
+    """Move the legacy 3,740 preview trims onto the approved 3,744 contract."""
+    source = owner.op("cal_source_instances")
+    side = owner.op("cal_side_instances")
+    rear = owner.op("cal_rear_instances")
+    if None in (source, side, rear) or source.numSamples != TOTAL_PIXELS:
+        raise RuntimeError("Expected the current %d-pixel preview map" % TOTAL_PIXELS)
+    side.par.start = 0
+    side.par.end = REAR_START - 1
+    rear.par.start = REAR_START
+    rear.par.end = TOTAL_PIXELS - 1
+    side.cook(force=True)
+    rear.cook(force=True)
+
+
 def restore():
     owner = op(PROTOTYPE)
     if owner is None:
         raise RuntimeError("Missing photo-preview component: " + PROTOTYPE)
 
+    _apply_canonical_preview_ranges(owner)
     _validate_current_map(owner)
     _ensure_panel_parameters(owner)
     _bind_panel_pins(owner)
+    _install_complete_reset(owner)
+    disabled_legacy_parameters = _deactivate_legacy_rear_parameters(owner)
 
     # Restore presentation values from the same calibrated snapshot. Geometry
     # values for the side wall were already unchanged.
@@ -156,6 +233,8 @@ def restore():
         "rearStart": REAR_START,
         "panels": PANEL_COUNT,
         "cornerValues": PANEL_COUNT * 8,
+        "resetValues": len(SIDE_RESET_PARAMETERS) + PANEL_COUNT * 8,
+        "legacyParametersReadOnly": disabled_legacy_parameters,
         "output": output.path,
         "previewAlias": preview_alias.path,
         "projectSaved": False,

@@ -6,6 +6,7 @@ import unittest
 from pixelblaze_mapper.show_sequencer import (
     ABSlotPlan,
     Cue,
+    MaterialParameters,
     Show,
     ShowSequencer,
     ShowValidationError,
@@ -15,18 +16,32 @@ from pixelblaze_mapper.show_sequencer import (
 )
 
 
+def parameters(**changes):
+    values = dict(
+        speed=1.0, scale=4.0, width=0.3, focus_x=0.5, focus_y=0.5,
+        zoom=1.0, gradient="neon_cyan_magenta",
+        color_a=(0.91, 0.0, 1.0, 1.0), color_b=(0.0, 0.72, 0.86, 1.0),
+        intensity=1.0, contrast=1.25, trail=0.55, direction=0.125,
+        rotation_degrees=0.0, seed=0.0, effect_transition=0.5,
+        panel_columns=2.0, panel_rows=5.0, hybrid_mix=0.5, density=1.25,
+    )
+    values.update(changes)
+    return MaterialParameters(**values)
+
+
 def cue(cue_id, duration=10.0, transition="crossfade", transition_duration=2.0):
     return Cue(
         id=cue_id,
         name="Cue " + cue_id,
         effect="Particles",
         preset="Cyan",
+        parameters=parameters(),
         coordinate_mode="hybrid",
         duration=duration,
         transition=transition,
         transition_duration=transition_duration,
         brightness=0.2,
-        target_groups=("backwall", "sidewalls"),
+        target_groups=("middle", "rear"),
     )
 
 
@@ -42,6 +57,7 @@ class ValidationTests(unittest.TestCase):
             for mode in modes:
                 item = Cue(
                     id=f"c{index}-{mode}", name="Valid", effect="Fluid Noise", preset="Default",
+                    parameters=parameters(),
                     coordinate_mode=mode, duration=1.0, transition=transition,
                     transition_duration=0.0 if transition == "cut" else 0.5,
                     brightness=1.0, target_groups=("all",),
@@ -55,6 +71,7 @@ class ValidationTests(unittest.TestCase):
             {"duration": float("inf")}, {"transition": "morph"},
             {"transition_duration": 11}, {"brightness": -0.1}, {"brightness": 1.1},
             {"target_groups": []}, {"target_groups": ["all", "all"]},
+            {"target_groups": ["backwall"]}, {"target_groups": ["all", "rear"]},
         )
         for mutation in mutations:
             raw = dict(valid)
@@ -67,6 +84,18 @@ class ValidationTests(unittest.TestCase):
             cue("bad-cut", transition="cut", transition_duration=1)
         with self.assertRaisesRegex(ShowValidationError, "greater than 0"):
             cue("bad-fade", transition="wipe", transition_duration=0)
+
+    def test_complete_material_parameters_round_trip_and_validate(self):
+        item = parameters(speed=1.5, focus_x=0.25, zoom=2.0)
+        self.assertEqual(MaterialParameters.from_dict(item.to_dict()), item)
+        incomplete = item.to_dict()
+        del incomplete["gradient"]
+        with self.assertRaisesRegex(ShowValidationError, "missing"):
+            MaterialParameters.from_dict(incomplete)
+        invalid = item.to_dict()
+        invalid["color_a"] = [1.0, 0.0, 0.0]
+        with self.assertRaisesRegex(ShowValidationError, "RGBA"):
+            MaterialParameters.from_dict(invalid)
 
     def test_strict_json_fields_and_unique_ids(self):
         raw = cue("one").to_dict()
@@ -165,7 +194,7 @@ class TransportTests(unittest.TestCase):
         self.assertEqual((plan.slot_a.id, plan.slot_b.id), ("one", "two"))
         self.assertEqual((plan.outgoing_slot, plan.incoming_slot), ("A", "B"))
         self.assertEqual((plan.transition, plan.output_b_mix), ("crossfade", 0.0))
-        self.assertEqual(plan.target_groups, ("backwall", "sidewalls"))
+        self.assertEqual(plan.target_groups, ("middle", "rear"))
         sequencer.seek(0, 9.0)
         self.assertEqual(sequencer.plan().output_b_mix, 0.5)
 
@@ -193,7 +222,7 @@ class PersistenceAndBuilderTests(unittest.TestCase):
             with self.assertRaises(ShowValidationError):
                 load_show(path)
             wrong = two_cue_show().to_dict()
-            wrong["schema_version"] = 2
+            wrong["schema_version"] = 3
             path.write_text(json.dumps(wrong), encoding="utf-8")
             with self.assertRaisesRegex(ShowValidationError, "schema_version"):
                 load_show(path)

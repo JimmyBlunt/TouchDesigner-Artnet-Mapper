@@ -103,12 +103,13 @@ def build():
     data = _load_demo()
     cues = _get_or_create(owner, tableDAT, "cue_table")
     cue_rows = [[
-        "id", "name", "effect", "preset", "coordinate_mode", "duration",
+        "id", "name", "effect", "preset", "parameters_json", "coordinate_mode", "duration",
         "transition", "transition_duration", "brightness", "target_groups",
     ]]
     for cue in data["cues"]:
         cue_rows.append([
             cue["id"], cue["name"], cue["effect"], cue["preset"],
+            json.dumps(cue["parameters"], separators=(",", ":")),
             cue["coordinate_mode"], cue["duration"], cue["transition"],
             cue["transition_duration"], cue["brightness"],
             ",".join(cue["target_groups"]),
@@ -152,6 +153,7 @@ def build():
         request = _get_or_create(adapter, tableDAT, "material_request")
         _table(request, [["key", "value"], ["status", "UNCONNECTED"],
                          ["effect", ""], ["preset", ""],
+                         ["parameters_json", "{}"], ["target_groups", "all"],
                          ["coordinate_mode", "global"],
                          ["production_connected", 0]])
         endpoint = _get_or_create(adapter, nullTOP, "material_top_in")
@@ -232,12 +234,17 @@ def sync():
         _put(path, 'status', 'READY' if slot else 'EMPTY')
         _put(path, 'effect', slot.effect if slot else '')
         _put(path, 'preset', slot.preset if slot else '')
+        _put(path, 'parameters_json', json.dumps(slot.parameters.to_dict(), separators=(',', ':')) if slot else '{}')
+        _put(path, 'target_groups', ','.join(slot.target_groups) if slot else 'all')
         _put(path, 'coordinate_mode', slot.coordinate_mode if slot else '')
     _put('transition_adapter/mixer_request', 'mode', plan.transition)
     _put('transition_adapter/mixer_request', 'progress', plan.progress)
     _put('transition_adapter/mixer_request', 'output_b_mix', plan.output_b_mix)
     _put('transition_adapter/mixer_request', 'brightness', plan.brightness)
     _put('transition_adapter/mixer_request', 'blackout', int(plan.blackout))
+    _put('transition_adapter/mixer_request', 'outgoing_slot', plan.outgoing_slot)
+    _put('transition_adapter/mixer_request', 'incoming_slot', plan.incoming_slot or '')
+    _put('transition_adapter/mixer_request', 'loop', int(sequence.show.loop))
     _put('transition_adapter/mixer_request', 'status', 'READY')
     render = op('render_sync')
     if render is not None:

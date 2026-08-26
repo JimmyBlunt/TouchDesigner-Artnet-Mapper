@@ -298,6 +298,7 @@ def _core_items():
             'label': definition['label'], 'source': 'core',
             'groups': ['core', category.lower()], 'tags': tags,
             'category': category, 'effect_index': int(definition['index']),
+            'preset': dict(definition.get('preset', {})),
             'preview_path': '', 'prepared_path': '', 'compatibility': 'ready',
         })
     return result
@@ -324,6 +325,7 @@ def _imported_items():
             'groups': groups, 'tags': tags,
             'category': groups[1] if len(groups) > 1 else 'imported',
             'effect_index': -1, 'preview_path': preview,
+            'preset': {},
             'prepared_path': str(prepared) if prepared.is_file() else '',
             'compatibility': str(raw.get('compatibility', 'unknown')),
         })
@@ -464,6 +466,9 @@ def select_slot(slot):
         return False
     item = FILTERED[index]
     controls = op('/project1/madmapper_player_controls')
+    state_runtime = op('/project1/material_state_runtime')
+    if state_runtime is not None:
+        state_runtime.module.activate(item['key'], item.get('preset', {}))
     if item['source'] == 'core':
         controls.par.Source = 'materials'
         controls.par.Material = item['id']

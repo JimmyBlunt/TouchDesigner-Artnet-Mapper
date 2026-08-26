@@ -65,11 +65,10 @@ class MaterialBrowserPlayerRegressionTests(unittest.TestCase):
 
 
     def test_core_player_uses_one_global_speed_source(self):
-        """Records the current architecture; per-material state is not implemented."""
+        """The installed P1 runtime owns phase; absolute time is fallback only."""
         text = source(CORE)
-        expression = 'absTime.seconds * {controls}.Speed'
-        self.assertIn(expression, text)
-        self.assertEqual(text.count(expression), 1)
+        self.assertIn("material_state_runtime').module.phase()", text)
+        self.assertIn('absTime.seconds * {controls}.Speed', text)
 
 
     def test_all_shader_parameters_are_bound_to_the_central_control_component(self):
@@ -113,8 +112,9 @@ class MaterialBrowserPlayerRegressionTests(unittest.TestCase):
 
     def test_router_sender_builds_all_universes_from_one_packer_snapshot(self):
         text = source(ROUTER)
-        self.assertIn("pack.cook(force=True)", text)
-        self.assertIn("frames = (_calibration_frames or {}).get(config['name']) if _mode == 'calibration' else _live_frames(config)", text)
+        self.assertIn("source.cook(force=False)", text)
+        self.assertIn("live_frames = _live_frames(configs) if _mode == 'live' else None", text)
+        self.assertIn("frames = (_calibration_frames or {}).get(config['name']) if _mode == 'calibration' else live_frames.get(config['name'])", text)
         self.assertIn("for offset, payload in enumerate(frames):", text)
 
 

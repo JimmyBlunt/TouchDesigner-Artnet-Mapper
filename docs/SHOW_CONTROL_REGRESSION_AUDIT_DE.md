@@ -5,6 +5,14 @@ Projekt: `PixelblazeMapper_WORKING_PHASE2_EFFECTS_CORE.68.toe`
 Scope: Analyse und Dokumentation; keine funktionale Änderung, kein `.toe`-Save,
 kein Commit, kein unbeaufsichtigter Blackout oder Hardware-Eingriff.
 
+> **P1-Nachtrag 26.08.2026:** Die unten dokumentierten Befunde SC-01 bis SC-06
+> beschreiben den geprüften Core-68-Ausgangszustand. Im Builderstand für Core 70
+> sind A/B-Richtung (`output_b_mix`), dynamischer Slotstatus, vollständige
+> Show-Presets, kanonische Zielmasken sowie sichtbare LOOP-/BLACKOUT-Zustände
+> umgesetzt. Offline sind 271 Tests grün. Die beaufsichtigte TouchDesigner- und
+> Hardwareabnahme steht weiterhin aus; Details siehe
+> `docs/P1_SHOW_CONTROL_RENDERER_DE.md`.
+
 ## Kurzurteil
 
 Der TouchDesigner-unabhängige Sequencer ist klar aufgebaut, streng validiert

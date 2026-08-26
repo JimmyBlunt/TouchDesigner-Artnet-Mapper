@@ -1,0 +1,1196 @@
+"""Build an isolated MadMapper material-library browser in TouchDesigner.
+
+Run this file from a Text DAT in the open project.  Repeated execution updates
+only ``/project1/madmapper_library`` and preserves its editable paths.  The
+browser reads a local JSON catalog, offers search/facets/paging, and makes
+preview/import available as explicit user actions.  It never connects to a
+production source, enables Art-Net/DMX, accesses the network, or saves the TOE.
+"""
+
+from __future__ import annotations
+
+import re
+import sys
+from pathlib import Path
+
+
+OWNER = "/project1/madmapper_library"
+LOCAL_ROOT = Path(r"C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper")
+DEFAULT_CATALOG = LOCAL_ROOT / "material_library" / "catalogs" / "madmapper-official-d7ff211.json"
+DEFAULT_IMPORT_ROOT = LOCAL_ROOT / "material_library" / "imported"
+DEFAULT_PAGE_SIZE = 8
+CARD_COUNT = 32
+
+if str(LOCAL_ROOT) not in sys.path:
+    sys.path.insert(0, str(LOCAL_ROOT))
+
+
+def _get_or_create(parent, op_type, name):
+    node = op(parent.path + "/" + name)
+    if node is not None:
+        return node
+    numbered = [
+        child for child in parent.children
+        if re.fullmatch(re.escape(name) + r"\d+", child.name)
+    ]
+    if numbered:
+        node = numbered[0]
+        node.name = name
+        for duplicate in numbered[1:]:
+            duplicate.destroy()
+        return node
+    node = parent.create(op_type, name)
+    node.name = name
+    return node
+
+
+def _set_if_present(node, name, value):
+    parameter = getattr(node.par, name, None)
+    if parameter is not None:
+        parameter.val = value
+
+
+def _page(owner, name):
+    return next(
+        (page for page in owner.customPages if page.name == name), None
+    ) or owner.appendCustomPage(name)
+
+
+def _ensure_string(owner, page, name, label, default):
+    parameter = owner.par[name]
+    if parameter is None:
+        parameter = page.appendStr(name, label=label)[0]
+        parameter.default = str(default)
+        parameter.val = str(default)
+    return parameter
+
+
+def _ensure_int(owner, page, name, label, default, minimum, maximum):
+    parameter = owner.par[name]
+    if parameter is None:
+        parameter = page.appendInt(name, label=label)[0]
+        parameter.default = int(default)
+        parameter.val = int(default)
+    parameter.min = minimum
+    parameter.max = maximum
+    parameter.normMin = minimum
+    parameter.normMax = maximum
+    parameter.clampMin = True
+    parameter.clampMax = True
+    return parameter
+
+
+def _ensure_float(owner, page, name, label, default, minimum, maximum):
+    parameter = owner.par[name]
+    if parameter is None:
+        parameter = page.appendFloat(name, label=label)[0]
+        parameter.default = float(default)
+        parameter.val = float(default)
+    parameter.min = minimum
+    parameter.max = maximum
+    parameter.normMin = minimum
+    parameter.normMax = maximum
+    parameter.clampMin = True
+    parameter.clampMax = True
+    return parameter
+
+
+def _ensure_menu(owner, page, name, label, names, labels, default):
+    parameter = owner.par[name]
+    if parameter is None:
+        parameter = page.appendMenu(name, label=label)[0]
+        parameter.menuNames = list(names)
+        parameter.menuLabels = list(labels)
+        parameter.default = default
+        parameter.val = default
+    return parameter
+
+
+def _write_table(node, rows):
+    node.clear()
+    for row in rows:
+        node.appendRow(row)
+
+
+def _panel_style(node, x, y, width, height):
+    for name, value in (
+        ("hmode", "fixed"), ("vmode", "fixed"), ("x", x), ("y", y),
+        ("w", width), ("h", height), ("display", True),
+    ):
+        _set_if_present(node, name, value)
+
+
+def _text(parent, name, value, x, y, width, height, size=13,
+          color=(0.75, 0.84, 0.91), bg=(0.018, 0.027, 0.040), align="left"):
+    node = _get_or_create(parent, textCOMP, name)
+    _panel_style(node, x, y, width, height)
+    for parameter, item in (
+        ("text", value), ("type", "multiline"), ("wordwrap", True),
+        ("fontsize", size), ("font", "Verdana"), ("bgalpha", 1),
+        ("alignx", align), ("aligny", "center"), ("textpaddingl", 10),
+        ("textpaddingr", 10), ("textpaddingt", 5), ("textpaddingb", 5),
+        ("clickthrough", True), ("fontalpha", 1), ("layer", 30),
+    ):
+        _set_if_present(node, parameter, item)
+    for suffix, item in zip("rgb", color):
+        _set_if_present(node, "fontcolor" + suffix, item)
+    for suffix, item in zip("rgb", bg):
+        _set_if_present(node, "bgcolor" + suffix, item)
+    return node
+
+
+def _button(parent, name, label, x, y, width, height=40,
+            color=(0.075, 0.19, 0.28)):
+    node = _get_or_create(parent, buttonCOMP, name)
+    _panel_style(node, x, y, width, height)
+    for parameter, value in (
+        ("buttontype", "momentary"), ("label", label), ("fontsize", 12),
+        ("fontcolorr", 0.88), ("fontcolorg", 0.93), ("fontcolorb", 0.98),
+        ("fontalpha", 1), ("bgalpha", 1), ("cursor", "pointer"), ("layer", 40),
+    ):
+        _set_if_present(node, parameter, value)
+    for suffix, item in zip("rgb", color):
+        _set_if_present(node, "bgcolor" + suffix, item)
+    return node
+
+
+def _field(parent, name, value, x, y, width, height=38):
+    node = _get_or_create(parent, fieldCOMP, name)
+    _panel_style(node, x, y, width, height)
+    _set_if_present(node, "fieldtype", "string")
+    _set_if_present(node, "bgalpha", 1)
+    _set_if_present(node, "fontalpha", 1)
+    _set_if_present(node, "layer", 40)
+    string_dat = node.op("string")
+    if string_dat is not None:
+        current = str(string_dat[0, 0]) if string_dat.numRows and string_dat.numCols else ""
+        if current.strip().casefold() in {"", "field"}:
+            string_dat.text = str(value)
+    return node
+
+
+def _viewer(parent, name, target, x, y, width, height):
+    node = _get_or_create(parent, opviewerCOMP, name)
+    _panel_style(node, x, y, width, height)
+    _set_if_present(node, "opviewer", target.path)
+    _set_if_present(node, "allowpanel", False)
+    _set_if_present(node, "layer", 20)
+    return node
+
+
+def _card_hit_area(parent, name, x, y, width, height):
+    """Transparent panel that owns mouse hover and clicks for a whole card.
+
+    OP Viewer COMPs are reliable image displays, but their rollover panel value
+    is not updated consistently when the parent UI is opened directly in TD
+    2025.  A regular Container COMP provides a stable interaction surface while
+    leaving the viewer and label visible below it.
+    """
+
+    node = _get_or_create(parent, containerCOMP, name)
+    _panel_style(node, x, y, width, height)
+    for parameter, value in (
+        ("bgalpha", 0.001), ("clickthrough", False), ("cursor", "pointer"),
+        ("layer", 80),
+    ):
+        _set_if_present(node, parameter, value)
+    return node
+
+
+def _execute(parent, name, source, callback, panel_value="state"):
+    existing = parent.op(name)
+    if existing is not None and existing.type != "panelexec":
+        existing.destroy()
+    node = _get_or_create(parent, panelexecuteDAT, name)
+    node.par.active = True
+    node.par.fromop = source.path
+    node.par.panels = source.path
+    node.par.panelvalue = panel_value
+    node.par.offtoon = True
+    node.par.valuechange = False
+    node.text = (
+        "def onOffToOn(panelValue):\n"
+        "    op(%r).module.%s\n"
+        "    return\n"
+    ) % (OWNER + "/runtime", callback)
+    return node
+
+
+def _hover_execute(parent, name, source, slot):
+    """Call the runtime when the pointer enters or leaves a material card."""
+
+    existing = parent.op(name)
+    if existing is not None and existing.type != "panelexec":
+        existing.destroy()
+    node = _get_or_create(parent, panelexecuteDAT, name)
+    node.par.active = True
+    node.par.fromop = source.path
+    node.par.panels = source.path
+    node.par.panelvalue = "rollover"
+    node.par.offtoon = True
+    node.par.ontooff = True
+    node.par.valuechange = False
+    node.text = (
+        "def onOffToOn(panelValue):\n"
+        "    op(%r).module.hover_slot(%d, True)\n"
+        "    return\n\n"
+        "def onOnToOff(panelValue):\n"
+        "    op(%r).module.hover_slot(%d, False)\n"
+        "    return\n"
+    ) % (OWNER + "/runtime", slot, OWNER + "/runtime", slot)
+    return node
+
+
+def _runtime_source():
+    """Return the self-contained runtime installed into the library COMP."""
+
+    return r'''import json
+import re
+from dataclasses import asdict, is_dataclass
+from difflib import SequenceMatcher
+from pathlib import Path
+
+OWNER = op('/project1/madmapper_library')
+VIEW_HEADERS = ('slot', 'id', 'label', 'category', 'tags', 'compatibility', 'source_path', 'preview_path')
+READY_COMPATIBILITY = {'native', 'touchdesigner', 'ready', 'compatible', 'adapted', 'glsl'}
+
+_items = []
+_filtered = []
+
+def _parameter(name, default=''):
+    par = getattr(OWNER.par, name, None)
+    return str(par.eval()) if par is not None else str(default)
+
+def _field(name):
+    node = OWNER.op('ui_panel/' + name + '/string')
+    return str(node[0, 0]).strip() if node is not None and node.numRows else ''
+
+def _set_text(name, value, color=None):
+    node = OWNER.op('ui_panel/' + name)
+    if node is None:
+        return
+    node.par.text = str(value)
+    if color is not None:
+        node.par.fontcolorr, node.par.fontcolorg, node.par.fontcolorb = color
+
+def _set_button(name, value):
+    node = OWNER.op('ui_panel/' + name)
+    if node is not None:
+        node.par.label = str(value)
+
+def _state(name, default=''):
+    table = OWNER.op('browser_state')
+    for row in range(1, table.numRows):
+        if str(table[row, 0]) == name:
+            return str(table[row, 1])
+    return str(default)
+
+def _set_state(name, value):
+    table = OWNER.op('browser_state')
+    for row in range(1, table.numRows):
+        if str(table[row, 0]) == name:
+            table[row, 1] = value
+            return
+    table.appendRow((name, value))
+
+def _record_dict(record):
+    if isinstance(record, dict):
+        return dict(record)
+    if is_dataclass(record):
+        return asdict(record)
+    if hasattr(record, 'to_dict'):
+        return dict(record.to_dict())
+    result = {}
+    for name in ('id', 'name', 'label', 'relative_path', 'source_path', 'kind',
+                 'groups', 'category', 'tags', 'compatibility',
+                 'compatibility_reasons', 'compatibility_reason', 'metadata',
+                 'preview_path', 'prepared_shader_path', 'touchdesigner_shader_path'):
+        if hasattr(record, name):
+            result[name] = getattr(record, name)
+    return result
+
+def _list(value):
+    if value is None:
+        return []
+    if isinstance(value, str):
+        return [part.strip() for part in re.split(r'[,;|]', value) if part.strip()]
+    if isinstance(value, (list, tuple, set)):
+        return [str(part).strip() for part in value if str(part).strip()]
+    return [str(value).strip()]
+
+def _compatibility(value):
+    if hasattr(value, 'value'):
+        value = value.value
+    return str(value or 'unknown').strip().lower()
+
+def _managed_import_status(material_id):
+    """Resolve a persisted managed import without trusting catalogue paths."""
+    if not re.fullmatch(r'mat_[0-9a-f]{20}', str(material_id or '')):
+        return False, ''
+    try:
+        import_root = _validated_import_root(_parameter('Importroot'))
+        package = (import_root / material_id).resolve(strict=True)
+        if package.parent != import_root or not package.is_dir():
+            return False, ''
+        manifest = _validated_file(package / 'material-import.json', {'.json'})
+        manifest_data = json.loads(manifest.read_text(encoding='utf-8'))
+        if manifest_data.get('material_id') != material_id:
+            return False, ''
+        prepared = package / 'prepared.frag'
+        if not prepared.is_file():
+            return True, ''
+        return True, str(_validated_file(prepared, {'.frag'}))
+    except Exception:
+        return False, ''
+
+def _normalize(raw, catalog_path):
+    item = _record_dict(raw)
+    groups = _list(item.get('groups') or item.get('category'))
+    tags = _list(item.get('tags'))
+    reasons = _list(item.get('compatibility_reasons') or item.get('compatibility_reason'))
+    source = str(item.get('source_path') or item.get('relative_path') or '').strip()
+    if source and not Path(source).is_absolute():
+        source = str((catalog_path.parent / source).resolve())
+    preview = str(item.get('preview_path') or '').strip()
+    if preview and not Path(preview).is_absolute():
+        preview = str((catalog_path.parent / preview).resolve())
+    material_id = str(item.get('id') or item.get('slug') or source).strip()
+    label = str(item.get('name') or item.get('label') or Path(source).stem or material_id).strip()
+    imported, managed_prepared = _managed_import_status(material_id)
+    if imported:
+        if 'imported' not in [value.lower() for value in groups]:
+            groups.append('imported')
+        if 'imported' not in [value.lower() for value in tags]:
+            tags.append('imported')
+    return {
+        'id': material_id,
+        'label': label,
+        'source_path': source,
+        'relative_path': str(item.get('relative_path') or ''),
+        'kind': str(item.get('kind') or 'material'),
+        'groups': groups,
+        'category': groups[0] if groups else 'Other',
+        'tags': tags,
+        'compatibility': _compatibility(item.get('compatibility')),
+        'compatibility_reason': '; '.join(reasons),
+        'metadata': item.get('metadata') or {},
+        'preview_path': preview,
+        # A validated managed package is authoritative after restart.  This
+        # avoids a stale catalogue alias shadowing its local prepared shader.
+        'prepared_shader_path': str(managed_prepared or item.get('prepared_shader_path') or item.get('touchdesigner_shader_path') or ''),
+        'imported': imported,
+    }
+
+def _load_direct(catalog_path):
+    data = json.loads(catalog_path.read_text(encoding='utf-8'))
+    if isinstance(data, list):
+        return data
+    for key in ('materials', 'items', 'entries'):
+        if isinstance(data.get(key), list):
+            return data[key]
+    return []
+
+def _load(catalog_path):
+    try:
+        from pixelblaze_mapper.material_library import load_catalog
+        catalog = load_catalog(catalog_path)
+        records = getattr(catalog, 'materials', getattr(catalog, 'items', catalog))
+        return list(records)
+    except Exception:
+        return _load_direct(catalog_path)
+
+def _approved_roots():
+    roots = []
+    for value in _parameter('Approvedroots').split(';'):
+        value = value.strip()
+        if value:
+            try:
+                roots.append(Path(value).expanduser().resolve())
+            except Exception:
+                pass
+    try:
+        roots.append(Path(_parameter('Catalogfile')).expanduser().resolve().parent)
+    except Exception:
+        pass
+    return roots
+
+def _validated_file(value, extensions=None):
+    if not value:
+        return None
+    candidate = Path(value).expanduser().resolve(strict=True)
+    if not candidate.is_file():
+        raise ValueError('Not a file: ' + str(candidate))
+    if not any(candidate == root or root in candidate.parents for root in _approved_roots()):
+        raise ValueError('Path is outside Approved Roots: ' + str(candidate))
+    if extensions and candidate.suffix.lower() not in extensions:
+        raise ValueError('Unsupported file type: ' + candidate.suffix)
+    return candidate
+
+def _validated_import_root(value):
+    candidate = Path(value).expanduser().resolve()
+    if not any(candidate == root or root in candidate.parents for root in _approved_roots()):
+        raise ValueError('Import Folder is outside Approved Roots: ' + str(candidate))
+    return candidate
+
+def _write_table(name, rows):
+    table = OWNER.op(name)
+    table.clear()
+    for row in rows:
+        table.appendRow(row)
+
+def _categories():
+    return ['All'] + sorted({group for item in _items for group in item['groups']}, key=str.lower)
+
+def _compatibilities():
+    return ['All'] + sorted({item['compatibility'] for item in _items}, key=str.lower)
+
+def _layout_mode():
+    return '8x4' if _state('layout', '4x2') == '8x4' else '4x2'
+
+def _page_size():
+    return 32 if _layout_mode() == '8x4' else 8
+
+def _compatibility_label(value):
+    labels = {
+        'all': 'ALL',
+        'adaptable': 'AUTO-PREPARE',
+        'unsupported': 'MANUAL / BLOCKED',
+    }
+    return labels.get(str(value or 'unknown').lower(), str(value or 'unknown').upper())
+
+def _group_label(value):
+    labels = {
+        'all': 'ALL', 'factory': 'FACTORY', 'demos': 'DEMOS / TEMPLATES',
+        'online_library': 'ONLINE LIBRARY', 'audio_reactive': 'AUDIO REACTIVE',
+        'color_generators': 'COLOR GENERATORS', 'fluid_organic': 'FLUID / ORGANIC',
+        'image_filters': 'IMAGE FILTERS', 'lines_geometry': 'LINES / GEOMETRY',
+        'noise_texture': 'NOISE / TEXTURE', 'particles': 'PARTICLES',
+        'transitions': 'TRANSITIONS', 'utility_testing': 'UTILITY / TESTING',
+    }
+    return labels.get(str(value or 'Other').lower(), str(value or 'Other').replace('_', ' ').upper())
+
+def _close_dropdowns():
+    for name in ('group_dropdown', 'compat_dropdown'):
+        node = OWNER.op('ui_panel/' + name)
+        if node is not None:
+            node.par.display = False
+
+def toggle_dropdown(kind):
+    names = {'group': 'group_dropdown', 'compat': 'compat_dropdown'}
+    target_name = names.get(str(kind))
+    if target_name is None:
+        return
+    target = OWNER.op('ui_panel/' + target_name)
+    if target is None:
+        return
+    opening = not bool(target.par.display.eval())
+    _close_dropdowns()
+    target.par.display = opening
+
+def toggle_layout():
+    _set_state('layout', '8x4' if _layout_mode() == '4x2' else '4x2')
+    _set_state('page', 0)
+    _close_dropdowns()
+    render()
+
+def select_category(value):
+    allowed = _categories()
+    match = next((entry for entry in allowed if entry.lower() == str(value).lower()), 'All')
+    _set_state('category', match)
+    _close_dropdowns()
+    apply_filters()
+
+def select_compatibility(value):
+    allowed = _compatibilities()
+    match = next((entry for entry in allowed if entry.lower() == str(value).lower()), 'All')
+    _set_state('compatibility', match)
+    _close_dropdowns()
+    apply_filters()
+
+def _query_token_matches(token, searchable):
+    if token in searchable:
+        return True
+    words = re.findall(r'[a-z0-9]+', searchable)
+    return any(SequenceMatcher(None, token, word).ratio() >= 0.78 for word in words)
+
+def refresh():
+    global _items
+    try:
+        catalog_path = Path(_parameter('Catalogfile')).expanduser().resolve(strict=True)
+        _items = [_normalize(item, catalog_path) for item in _load(catalog_path)]
+        _items = [item for item in _items if item['id']]
+        _items.sort(key=lambda item: (item['category'].lower(), item['label'].lower()))
+        _set_state('page', 0)
+        apply_filters(reset_page=False)
+        _set_text('action_status', 'CATALOG READY - %d materials loaded' % len(_items), (0.35, 0.90, 0.67))
+        return True
+    except Exception as error:
+        _items = []
+        apply_filters(reset_page=False)
+        _set_text('action_status', 'CATALOG BLOCKED - ' + str(error), (0.98, 0.38, 0.32))
+        return False
+
+def apply_filters(reset_page=True):
+    global _filtered
+    query = _field('search_field').lower()
+    category = _state('category', 'All')
+    compatibility = _state('compatibility', 'All')
+    tokens = [part for part in query.split() if part]
+    _filtered = []
+    for item in _items:
+        searchable = ' '.join((item['label'], item['id'], item['category'], item['kind'],
+                               ' '.join(item['groups']), ' '.join(item['tags']),
+                               item['compatibility'], item['compatibility_reason'])).lower()
+        if tokens and not all(_query_token_matches(token, searchable) for token in tokens):
+            continue
+        if category.lower() != 'all' and category.lower() not in [group.lower() for group in item['groups']]:
+            continue
+        if compatibility.lower() != 'all' and item['compatibility'].lower() != compatibility.lower():
+            continue
+        _filtered.append(item)
+    if reset_page:
+        _set_state('page', 0)
+    _set_state('search', query)
+    render()
+
+def change_page(delta):
+    size = _page_size()
+    page_count = max(1, (len(_filtered) + size - 1) // size)
+    page = max(0, min(page_count - 1, int(_state('page', 0)) + int(delta)))
+    _set_state('page', page)
+    render()
+
+def _safe_preview_path(item):
+    try:
+        return _validated_file(item.get('preview_path'), {'.png', '.jpg', '.jpeg', '.bmp', '.tif', '.tiff', '.exr', '.webp'})
+    except Exception:
+        return None
+
+def render():
+    size = _page_size()
+    page_count = max(1, (len(_filtered) + size - 1) // size)
+    page = max(0, min(page_count - 1, int(_state('page', 0))))
+    _set_state('page', page)
+    _set_state('page_count', page_count)
+    _set_state('result_count', len(_filtered))
+    _set_button('group_filter', 'GROUP: ' + _group_label(_state('category', 'All')))
+    _set_button('compat_filter', 'COMPAT: ' + _compatibility_label(_state('compatibility', 'All')))
+    _set_button('layout_toggle', 'VIEW: ' + _layout_mode().replace('x', ' x '))
+    _set_text('page_status', 'PAGE %d / %d  |  %d RESULTS' % (page + 1, page_count, len(_filtered)))
+    start = page * size
+    visible = _filtered[start:start + size]
+    rows = [VIEW_HEADERS]
+    compact = _layout_mode() == '8x4'
+    for slot in range(32):
+        button = OWNER.op('ui_panel/material_card_%d' % slot)
+        viewer = OWNER.op('ui_panel/card_viewer_%d' % slot)
+        hit = OWNER.op('ui_panel/material_hit_%d' % slot)
+        fallback = OWNER.op('card_fallback_%d' % slot)
+        image = OWNER.op('card_image_%d' % slot)
+        if slot < len(visible):
+            item = visible[slot]
+            button.par.display = True
+            viewer.par.display = True
+            imported_badge = '  |  IMPORTED' if item.get('imported') else ''
+            if compact:
+                button.par.label = item['label'] + imported_badge
+                column, row = slot % 8, slot // 8
+                x, y, width, image_height, button_height = 26 + column * 117, 499 - row * 148, 112, 110, 34
+                button.par.fontsize = 9
+            else:
+                button.par.label = '%s\n%s  |  %s%s' % (item['label'], item['category'], _compatibility_label(item['compatibility']), imported_badge)
+                column, row = slot % 4, slot // 4
+                x, y, width, image_height, button_height = 26 + column * 238, 436 - row * 276, 218, 168, 54
+                button.par.fontsize = 12
+            button.par.x, button.par.y, button.par.w, button.par.h = x, y, width, button_height
+            viewer.par.x, viewer.par.y, viewer.par.w, viewer.par.h = x, y + button_height + 4, width, image_height
+            if hit is not None:
+                hit.par.display = True
+                hit.par.x, hit.par.y, hit.par.w, hit.par.h = x, y, width, button_height + 4 + image_height
+            button.store('material_id', item['id'])
+            fallback.par.text = item['label'] + '\n\n' + '  '.join(item['tags'][:4])
+            preview = _safe_preview_path(item)
+            if preview is not None:
+                image.par.file = str(preview)
+                viewer.par.opviewer = image.path
+                viewer.store('stored_preview', image.path)
+            else:
+                viewer.par.opviewer = fallback.path
+                viewer.store('stored_preview', fallback.path)
+            rows.append((slot, item['id'], item['label'], item['category'], ', '.join(item['tags']),
+                         item['compatibility'], item['source_path'], item['preview_path']))
+        else:
+            button.par.display = False
+            viewer.par.display = False
+            if hit is not None:
+                hit.par.display = False
+            button.unstore('material_id')
+    _write_table('catalog_view', rows)
+
+def _selected():
+    material_id = _state('selected_id')
+    return next((item for item in _items if item['id'] == material_id), None)
+
+def _item_for_slot(slot):
+    index = int(_state('page', 0)) * _page_size() + int(slot)
+    return _filtered[index] if 0 <= index < len(_filtered) else None
+
+def select_slot(slot):
+    size = _page_size()
+    index = int(_state('page', 0)) * size + int(slot)
+    if not 0 <= index < len(_filtered):
+        return
+    item = _filtered[index]
+    _set_state('selected_id', item['id'])
+    _set_state('import_confirm_id', '')
+    _set_button('import_selected', 'IMPORT SELECTED')
+    metadata = item['metadata'] if isinstance(item['metadata'], dict) else {'value': item['metadata']}
+    _write_table('selected_detail', (
+        ('field', 'value'), ('id', item['id']), ('name', item['label']),
+        ('group', ', '.join(item['groups'])), ('tags', ', '.join(item['tags'])),
+        ('kind', item['kind']), ('compatibility', item['compatibility']),
+        ('reason', item['compatibility_reason']), ('source', item['source_path']),
+        ('metadata', json.dumps(metadata, ensure_ascii=False, sort_keys=True)),
+    ))
+    _set_text('selection_title', item['label'])
+    if item['compatibility'] == 'adaptable':
+        explanation = ('AUTO-PREPARE: the converter can create a TouchDesigner wrapper. '
+                       'The GPU compile is verified when OPEN LIVE PREVIEW is used.')
+    elif item['compatibility'] == 'unsupported':
+        explanation = ('MANUAL / BLOCKED: this material uses a feature that the automatic '
+                       'converter cannot safely translate. Stored preview and source import remain available.')
+    else:
+        explanation = item['compatibility_reason'] or 'No compatibility warning.'
+    reason = item['compatibility_reason']
+    if reason and reason not in explanation:
+        explanation += '\nReason: ' + reason
+    _set_text('selection_meta', '%s\n%s\n\n%s\n\nTags: %s' % (
+        item['category'], _compatibility_label(item['compatibility']), explanation,
+        ', '.join(item['tags']) or '-'))
+    _set_text('action_status', 'SELECTED - choose Preview, Import, or Open Live Preview')
+
+def preview_selected():
+    item = _selected()
+    if item is None:
+        _set_text('action_status', 'PREVIEW BLOCKED - select a material first', (0.98, 0.38, 0.32))
+        return False
+    preview = _safe_preview_path(item)
+    viewer = OWNER.op('ui_panel/detail_viewer')
+    if preview is not None:
+        image = OWNER.op('preview_image')
+        image.par.file = str(preview)
+        viewer.par.opviewer = image.path
+        _set_text('action_status', 'PREVIEW - local catalog image for ' + item['label'], (0.38, 0.76, 0.96))
+    else:
+        fallback = OWNER.op('preview_fallback')
+        fallback.par.text = item['label'] + '\n\nNo stored image preview\nUse OPEN LIVE PREVIEW for TouchDesigner-ready GLSL.'
+        viewer.par.opviewer = fallback.path
+        _set_text('action_status', 'PREVIEW - metadata fallback; no image was supplied', (0.97, 0.72, 0.26))
+    return True
+
+def _result_path(result):
+    if isinstance(result, (str, Path)):
+        return str(result)
+    for name in ('source_path', 'destination', 'path', 'imported_path', 'shader_path'):
+        value = getattr(result, name, None)
+        if value:
+            return str(value)
+    if is_dataclass(result):
+        data = asdict(result)
+        for name in ('source_path', 'destination', 'path', 'imported_path', 'shader_path'):
+            if data.get(name):
+                return str(data[name])
+    return ''
+
+def import_selected():
+    item = _selected()
+    if item is None:
+        _set_text('action_status', 'IMPORT BLOCKED - select a material first', (0.98, 0.38, 0.32))
+        return False
+    if _state('import_confirm_id') != item['id']:
+        _set_state('import_confirm_id', item['id'])
+        _set_button('import_selected', 'CONFIRM IMPORT')
+        _set_text('action_status', 'CONFIRM - click CONFIRM IMPORT to copy only this material', (0.97, 0.72, 0.26))
+        return False
+    try:
+        catalog_path = Path(_parameter('Catalogfile')).expanduser().resolve(strict=True)
+        import_root = _validated_import_root(_parameter('Importroot'))
+        from pixelblaze_mapper.material_library import import_material, load_catalog
+        from pixelblaze_mapper.madmapper_td_adapter import adapt_material, write_prepared_shader
+        catalog = load_catalog(catalog_path)
+        result = import_material(catalog, item['id'], import_root)
+        destination = _result_path(result)
+        adaptation = adapt_material(
+            result.source_path,
+            library_roots=(
+                Path(catalog.source_root), Path(catalog.source_root).parent,
+                result.directory, result.source_path.parent,
+            ),
+        )
+        adaptation_status = adaptation.status
+        if adaptation.adaptable:
+            prepared = write_prepared_shader(adaptation, result.directory / 'prepared.frag')
+            item['prepared_shader_path'] = str(prepared)
+            destination = str(prepared)
+            adaptation_status = 'prepared for TouchDesigner'
+        elif adaptation.reasons:
+            item['compatibility_reason'] = '; '.join(adaptation.reasons)
+        table = OWNER.op('import_history')
+        item['imported'] = True
+        if 'imported' not in [value.lower() for value in item['groups']]:
+            item['groups'].append('imported')
+        if 'imported' not in [value.lower() for value in item['tags']]:
+            item['tags'].append('imported')
+        table.appendRow((item['id'], item['label'], destination, 'imported / ' + adaptation_status))
+        _set_state('last_import_path', destination)
+        _set_state('last_import_id', item['id'])
+        _set_state('import_confirm_id', '')
+        _set_button('import_selected', 'IMPORT SELECTED')
+        unified = op('/project1/material_browser/unified_runtime')
+        if unified is not None:
+            unified.module.refresh()
+        if adaptation.adaptable:
+            message = 'IMPORTED + PREPARED - now use OPEN LIVE PREVIEW'
+            color = (0.35, 0.90, 0.67)
+        else:
+            message = 'IMPORTED - adaptation unavailable: ' + (item['compatibility_reason'] or adaptation.status)
+            color = (0.97, 0.72, 0.26)
+        _set_text('action_status', message, color)
+        return True
+    except Exception as error:
+        _set_state('import_confirm_id', '')
+        _set_button('import_selected', 'IMPORT SELECTED')
+        _set_text('action_status', 'IMPORT BLOCKED - ' + str(error), (0.98, 0.38, 0.32))
+        return False
+
+def _live_shader_candidate(item):
+    last_import = _state('last_import_path') if _state('last_import_id') == item['id'] else ''
+    candidates = [item.get('prepared_shader_path'), last_import, item.get('source_path')]
+    for value in candidates:
+        try:
+            candidate = _validated_file(value, {'.frag', '.glsl', '.fs', '.txt'})
+            if candidate is not None:
+                return candidate
+        except Exception:
+            pass
+    raise ValueError('No approved shader file exists for this material')
+
+def _diagnostic_messages(value):
+    if not value:
+        return []
+    if isinstance(value, str):
+        return [value]
+    try:
+        return [str(entry) for entry in value if str(entry)]
+    except TypeError:
+        return [str(value)]
+
+def _shader_for_hover(item):
+    """Return a TouchDesigner GLSL shader without importing the material."""
+    try:
+        candidate = _live_shader_candidate(item)
+        source = candidate.read_text(encoding='utf-8')
+        if 'TDOutputSwizzle' in source and 'vUV' in source:
+            return source
+    except Exception:
+        pass
+    source_path = _validated_file(item.get('source_path'), {'.fs'})
+    from pixelblaze_mapper.madmapper_td_adapter import adapt_material
+    from pixelblaze_mapper.material_library import load_catalog
+    catalog_path = Path(_parameter('Catalogfile')).expanduser().resolve(strict=True)
+    catalog = load_catalog(catalog_path)
+    source_root = Path(catalog.source_root).resolve()
+    adaptation = adapt_material(
+        source_path,
+        library_roots=(source_root, source_root.parent,
+                       source_path.parent, source_path.parent.parent),
+    )
+    if not adaptation.adaptable or not adaptation.shader:
+        raise ValueError('; '.join(adaptation.reasons) or 'material is not adaptable')
+    return adaptation.shader
+
+def _compile_hover_item(item):
+    source = _shader_for_hover(item)
+    if 'void main' not in source:
+        raise ValueError('Shader has no void main() entry point')
+    OWNER.op('preview_shader').text = source
+    preview = OWNER.op('live_preview')
+    preview.cook(force=True)
+    errors = _diagnostic_messages(preview.errors())
+    info = OWNER.op('live_preview_info')
+    info_text = str(info.text) if info is not None else ''
+    compile_lines = [line.strip() for line in info_text.splitlines()
+                     if 'error:' in line.lower() or 'failed' in line.lower()]
+    if errors or compile_lines:
+        raise ValueError('; '.join(errors + compile_lines)[:900] or 'TouchDesigner rejected the shader')
+    return preview
+
+def hover_slot(slot, entered):
+    slot = int(slot)
+    viewer = OWNER.op('ui_panel/card_viewer_%d' % slot)
+    if viewer is None:
+        return False
+    if not entered:
+        stored = viewer.fetch('stored_preview', '')
+        if stored and op(stored) is not None:
+            viewer.par.opviewer = stored
+        if _state('hover_slot') == str(slot):
+            _set_state('hover_slot', '')
+            _set_state('hover_material_id', '')
+        _set_text('action_status', 'HOVER READY - stored preview restored',
+                  (0.35, 0.90, 0.67))
+        return True
+    item = _item_for_slot(slot)
+    if item is None:
+        return False
+    try:
+        preview = _compile_hover_item(item)
+        viewer.par.opviewer = preview.path
+        OWNER.op('ui_panel/detail_viewer').par.opviewer = preview.path
+        _set_state('hover_slot', slot)
+        _set_state('hover_material_id', item['id'])
+        _set_text('action_status', 'HOVER LIVE - %s | %.1f s loop' % (
+            item['label'], float(OWNER.par.Hoverloopseconds.eval())), (0.38, 0.76, 0.96))
+        return True
+    except Exception as error:
+        _set_text('action_status', 'HOVER STORED PREVIEW - %s | %s' % (
+            item['label'], str(error)[:180]), (0.97, 0.72, 0.26))
+        return False
+
+def open_live_preview():
+    item = _selected()
+    if item is None:
+        _set_text('action_status', 'LIVE PREVIEW BLOCKED - select a material first', (0.98, 0.38, 0.32))
+        return False
+    last_import = _state('last_import_path') if _state('last_import_id') == item['id'] else ''
+    has_prepared = bool(item.get('prepared_shader_path')) or (
+        bool(last_import) and Path(last_import).suffix.lower() in {'.frag', '.glsl'}
+    )
+    if item['compatibility'] not in READY_COMPATIBILITY and not has_prepared:
+        reason = item['compatibility_reason'] or 'material is not marked TouchDesigner-ready'
+        if item['compatibility'] == 'adaptable':
+            reason = 'import and confirm this material first so its TouchDesigner wrapper can be created'
+        _set_text('action_status', 'LIVE PREVIEW BLOCKED - ' + reason, (0.98, 0.38, 0.32))
+        return False
+    try:
+        shader_path = _live_shader_candidate(item)
+        source = shader_path.read_text(encoding='utf-8')
+        if 'void main' not in source:
+            raise ValueError('Shader has no void main() entry point')
+        if 'TDOutputSwizzle' not in source or 'vUV' not in source:
+            raise ValueError('Shader is imported but still needs TouchDesigner GLSL adaptation')
+        OWNER.op('preview_shader').text = source
+        preview = OWNER.op('live_preview')
+        preview.cook(force=True)
+        errors = _diagnostic_messages(preview.errors())
+        warnings = _diagnostic_messages(preview.warnings())
+        info = OWNER.op('live_preview_info')
+        info_text = str(info.text) if info is not None else ''
+        compile_lines = [line.strip() for line in info_text.splitlines()
+                         if 'error:' in line.lower() or 'failed' in line.lower()]
+        if errors or compile_lines:
+            details = '; '.join(errors + compile_lines)
+            details = details[:900] or 'TouchDesigner rejected the shader'
+            item['compatibility'] = 'unsupported'
+            item['compatibility_reason'] = 'Live GLSL compile failed: ' + details
+            fallback = OWNER.op('compile_error_preview')
+            fallback.par.text = ('LIVE PREVIEW COULD NOT COMPILE\n\n%s\n\n'
+                                 'The stored preview and imported source are still available.' % details[:520])
+            OWNER.op('ui_panel/detail_viewer').par.opviewer = fallback.path
+            _set_text('selection_meta', '%s\n%s\n\n%s' % (
+                item['category'], _compatibility_label(item['compatibility']), item['compatibility_reason']))
+            _set_text('action_status', 'LIVE PREVIEW FAILED - material now marked MANUAL / BLOCKED', (0.98, 0.38, 0.32))
+            render()
+            return False
+        viewer = OWNER.op('ui_panel/detail_viewer')
+        viewer.par.opviewer = preview.path
+        _set_state('live_preview_id', item['id'])
+        note = 'LIVE PREVIEW - compiled successfully; isolated local TOP'
+        if warnings:
+            note += ' (with warning)'
+        _set_text('action_status', note + '; production source unchanged', (0.38, 0.76, 0.96))
+        return True
+    except Exception as error:
+        _set_text('action_status', 'LIVE PREVIEW BLOCKED - ' + str(error), (0.98, 0.38, 0.32))
+        return False
+'''
+
+
+FALLBACK_SHADER = r'''#version 430
+out vec4 fragColor;
+in vec3 vUV;
+void main()
+{
+    vec2 uv = vUV.xy;
+    float cell = mod(floor(uv.x * 12.0) + floor(uv.y * 12.0), 2.0);
+    vec3 a = vec3(0.015, 0.035, 0.055);
+    vec3 b = vec3(0.03, 0.18, 0.25);
+    fragColor = TDOutputSwizzle(vec4(mix(a, b, cell), 1.0));
+}
+'''
+
+
+def build():
+    project = op("/project1")
+    if project is None:
+        raise RuntimeError("/project1 is missing")
+
+    owner = _get_or_create(project, baseCOMP, "madmapper_library")
+    owner.nodeX, owner.nodeY = 1180, -360
+    page = _page(owner, "Material Library")
+    _ensure_string(owner, page, "Catalogfile", "Catalog File", DEFAULT_CATALOG)
+    _ensure_string(owner, page, "Importroot", "Import Folder", DEFAULT_IMPORT_ROOT)
+    _ensure_string(owner, page, "Approvedroots", "Approved Roots", LOCAL_ROOT)
+    _ensure_int(owner, page, "Pagesize", "Cards Per Page", DEFAULT_PAGE_SIZE, 1, CARD_COUNT)
+    _ensure_menu(owner, page, "Coordinatemode", "Coordinate Mode",
+                 ("global", "panel", "hybrid"),
+                 ("Global Canvas", "Panel Local", "Hybrid"), "global")
+    _ensure_int(owner, page, "Panelcolumns", "Panel Columns", 2, 1, 32)
+    _ensure_int(owner, page, "Panelrows", "Panel Rows", 5, 1, 32)
+    _ensure_float(owner, page, "Hybridmix", "Hybrid Mix", 0.5, 0.0, 1.0)
+    _ensure_float(owner, page, "Hoverloopseconds", "Hover Loop Seconds", 6.0, 1.0, 15.0)
+
+    state = _get_or_create(owner, tableDAT, "browser_state")
+    if state.numRows < 2:
+        _write_table(state, (
+            ("key", "value"), ("page", 0), ("page_count", 1),
+            ("result_count", 0), ("search", ""), ("category", "All"),
+            ("compatibility", "All"), ("selected_id", ""),
+            ("import_confirm_id", ""), ("last_import_path", ""),
+            ("last_import_id", ""),
+            ("live_preview_id", ""),
+            ("hover_slot", ""), ("hover_material_id", ""),
+            ("layout", "4x2"),
+        ))
+    existing_state = {str(state[row, 0]) for row in range(1, state.numRows)}
+    for key, value in (("layout", "4x2"), ("hover_slot", ""), ("hover_material_id", "")):
+        if key not in existing_state:
+            state.appendRow((key, value))
+    catalog_view = _get_or_create(owner, tableDAT, "catalog_view")
+    if catalog_view.numRows == 0:
+        _write_table(catalog_view, (("slot", "id", "label", "category", "tags", "compatibility", "source_path", "preview_path"),))
+    selected = _get_or_create(owner, tableDAT, "selected_detail")
+    if selected.numRows == 0:
+        _write_table(selected, (("field", "value"), ("status", "Select a material card")))
+    history = _get_or_create(owner, tableDAT, "import_history")
+    if history.numRows == 0:
+        _write_table(history, (("id", "name", "destination", "status"),))
+
+    runtime = _get_or_create(owner, textDAT, "runtime")
+    runtime.text = _runtime_source()
+
+    preview_shader = _get_or_create(owner, textDAT, "preview_shader")
+    if not str(preview_shader.text).strip():
+        preview_shader.text = FALLBACK_SHADER
+    live_preview = _get_or_create(owner, glslTOP, "live_preview")
+    _set_if_present(live_preview, "glslversion", "glsl430")
+    _set_if_present(live_preview, "mode", "vertexpixel")
+    _set_if_present(live_preview, "pixeldat", preview_shader.path)
+    _set_if_present(live_preview, "outputresolution", "custom")
+    _set_if_present(live_preview, "resolutionw", 512)
+    _set_if_present(live_preview, "resolutionh", 512)
+    # The MadMapper adapter maps TIME/time_base generators to this isolated
+    # scalar GLSL uniform.  TouchDesigner's Constants sequence is the stable
+    # way to publish a single float uniform in current builds.
+    live_preview.par.const.sequence.numBlocks = 1
+    live_preview.par.const0name = "uTDTime"
+    live_preview.par.const0value.expr = (
+        "op('/project1/material_state_runtime').module.phase() if "
+        "op('/project1/material_state_runtime') is not None else "
+        "absTime.seconds % max(1.0, parent().par.Hoverloopseconds)"
+    )
+    live_preview.par.vec.sequence.numBlocks = 1
+    live_preview.par.vec0name = "uTDCoordinate"
+    live_preview.par.vec0valuex.expr = "parent().par.Coordinatemode.menuIndex"
+    live_preview.par.vec0valuey.expr = "parent().par.Panelcolumns"
+    live_preview.par.vec0valuez.expr = "parent().par.Panelrows"
+    live_preview.par.vec0valuew.expr = "parent().par.Hybridmix"
+    live_preview.nodeX, live_preview.nodeY = 420, 50
+
+    # Publish the currently compiled imported material through the Base COMP
+    # boundary.  It remains unconnected until the unified browser explicitly
+    # appends it as visual-source index 3.
+    imported_output = _get_or_create(owner, outTOP, "imported_material_out")
+    live_preview.outputConnectors[0].connect(imported_output)
+    imported_output.nodeX, imported_output.nodeY = 600, 160
+
+    live_preview_info = _get_or_create(owner, infoDAT, "live_preview_info")
+    _set_if_present(live_preview_info, "op", live_preview.path)
+    live_preview_info.nodeX, live_preview_info.nodeY = 600, 50
+
+    compile_error_preview = _get_or_create(owner, textTOP, "compile_error_preview")
+    _set_if_present(compile_error_preview, "text", "LIVE PREVIEW COULD NOT COMPILE")
+    _set_if_present(compile_error_preview, "outputresolution", "custom")
+    _set_if_present(compile_error_preview, "resolutionw", 512)
+    _set_if_present(compile_error_preview, "resolutionh", 512)
+    _set_if_present(compile_error_preview, "fontsize", 15)
+    _set_if_present(compile_error_preview, "wordwrap", True)
+    _set_if_present(compile_error_preview, "bgcolorr", 0.09)
+    _set_if_present(compile_error_preview, "bgcolorg", 0.015)
+    _set_if_present(compile_error_preview, "bgcolorb", 0.02)
+    compile_error_preview.nodeX, compile_error_preview.nodeY = 600, -80
+
+    preview_image = _get_or_create(owner, moviefileinTOP, "preview_image")
+    preview_image.nodeX, preview_image.nodeY = 220, -80
+    preview_fallback = _get_or_create(owner, textTOP, "preview_fallback")
+    _set_if_present(preview_fallback, "text", "SELECT A MATERIAL\n\nPreview stays local\nOutputs stay off")
+    _set_if_present(preview_fallback, "outputresolution", "custom")
+    _set_if_present(preview_fallback, "resolutionw", 512)
+    _set_if_present(preview_fallback, "resolutionh", 512)
+    _set_if_present(preview_fallback, "fontsize", 18)
+    preview_fallback.nodeX, preview_fallback.nodeY = 220, -200
+
+    canvas = _get_or_create(owner, containerCOMP, "ui_panel")
+    for name, value in (
+        ("hmode", "fixed"), ("vmode", "fixed"), ("w", 1440), ("h", 900),
+        ("bgcolorr", 0.008), ("bgcolorg", 0.014), ("bgcolorb", 0.023),
+        ("bgalpha", 1),
+    ):
+        _set_if_present(canvas, name, value)
+
+    _text(canvas, "title", "MADMAPPER MATERIAL LIBRARY", 26, 842, 1388, 44, 23, (0.91, 0.96, 1))
+    _text(canvas, "subtitle", "Browse local materials safely - nothing is imported until you confirm it", 26, 804, 1388, 30, 13, (0.35, 0.90, 0.67))
+    _text(canvas, "search_label", "SEARCH", 26, 753, 100, 38, 12)
+    _field(canvas, "search_field", "", 126, 753, 390, 38)
+    search = _button(canvas, "apply_search", "SEARCH / APPLY", 528, 753, 150, 38, (0.07, 0.34, 0.45))
+    group = _button(canvas, "group_filter", "GROUP: ALL", 690, 753, 190, 38)
+    compat = _button(canvas, "compat_filter", "COMPAT: ALL", 892, 753, 190, 38)
+    refresh = _button(canvas, "refresh_catalog", "REFRESH CATALOG", 1094, 753, 180, 38)
+    layout_toggle = _button(canvas, "layout_toggle", "VIEW: 4 x 2", 1286, 753, 128, 38, (0.12, 0.24, 0.34))
+
+    _execute(owner, "apply_search_click", search, "apply_filters()")
+    _execute(owner, "group_filter_click", group, "toggle_dropdown('group')")
+    _execute(owner, "compat_filter_click", compat, "toggle_dropdown('compat')")
+    _execute(owner, "refresh_catalog_click", refresh, "refresh()")
+    _execute(owner, "layout_toggle_click", layout_toggle, "toggle_layout()")
+
+    # Real direct-select menus replace the former click-to-cycle facets.  The
+    # containers are overlays, so cards underneath stay unchanged.
+    group_options = (
+        ("All", "ALL"),
+        ("factory", "FACTORY"),
+        ("demos", "DEMOS / TEMPLATES"),
+        ("online_library", "ONLINE LIBRARY"),
+        ("audio_reactive", "AUDIO REACTIVE"),
+        ("color_generators", "COLOR GENERATORS"),
+        ("fluid_organic", "FLUID / ORGANIC"),
+        ("image_filters", "IMAGE FILTERS"),
+        ("lines_geometry", "LINES / GEOMETRY"),
+        ("noise_texture", "NOISE / TEXTURE"),
+        ("particles", "PARTICLES"),
+        ("transitions", "TRANSITIONS"),
+        ("utility_testing", "UTILITY / TESTING"),
+        ("imported", "IMPORTED"),
+    )
+    group_height = len(group_options) * 30
+    group_menu = _get_or_create(canvas, containerCOMP, "group_dropdown")
+    _panel_style(group_menu, 690, 753 - group_height, 190, group_height)
+    _set_if_present(group_menu, "bgcolorr", 0.018)
+    _set_if_present(group_menu, "bgcolorg", 0.026)
+    _set_if_present(group_menu, "bgcolorb", 0.038)
+    _set_if_present(group_menu, "bgalpha", 1)
+    _set_if_present(group_menu, "layer", 100)
+    group_menu.par.display = False
+    for index, (value, label) in enumerate(group_options):
+        option = _button(group_menu, "group_option_%d" % index, label,
+                         0, group_height - (index + 1) * 30, 190, 30,
+                         (0.06, 0.10, 0.14))
+        _execute(owner, "group_option_click_%d" % index, option,
+                 "select_category(%r)" % value)
+
+    compat_options = (
+        ("All", "ALL"),
+        ("adaptable", "AUTO-PREPARE"),
+        ("unsupported", "MANUAL / BLOCKED"),
+    )
+    compat_height = len(compat_options) * 34
+    compat_menu = _get_or_create(canvas, containerCOMP, "compat_dropdown")
+    _panel_style(compat_menu, 892, 753 - compat_height, 190, compat_height)
+    _set_if_present(compat_menu, "bgcolorr", 0.018)
+    _set_if_present(compat_menu, "bgcolorg", 0.026)
+    _set_if_present(compat_menu, "bgcolorb", 0.038)
+    _set_if_present(compat_menu, "bgalpha", 1)
+    _set_if_present(compat_menu, "layer", 100)
+    compat_menu.par.display = False
+    for index, (value, label) in enumerate(compat_options):
+        option = _button(compat_menu, "compat_option_%d" % index, label,
+                         0, compat_height - (index + 1) * 34, 190, 34,
+                         (0.06, 0.10, 0.14))
+        _execute(owner, "compat_option_click_%d" % index, option,
+                 "select_compatibility(%r)" % value)
+
+    for slot in range(CARD_COUNT):
+        column, row = slot % 8, slot // 8
+        x, y = 26 + column * 117, 499 - row * 148
+        fallback = _get_or_create(owner, textTOP, "card_fallback_%d" % slot)
+        _set_if_present(fallback, "text", "MATERIAL")
+        _set_if_present(fallback, "outputresolution", "custom")
+        _set_if_present(fallback, "resolutionw", 448)
+        _set_if_present(fallback, "resolutionh", 300)
+        _set_if_present(fallback, "fontsize", 28)
+        fallback.nodeX, fallback.nodeY = -500 + slot * 90, -250
+        image = _get_or_create(owner, moviefileinTOP, "card_image_%d" % slot)
+        image.nodeX, image.nodeY = -500 + slot * 90, -380
+        _viewer(canvas, "card_viewer_%d" % slot, fallback, x, y + 38, 112, 110)
+        hit = _card_hit_area(canvas, "material_hit_%d" % slot, x, y, 112, 148)
+        _hover_execute(owner, "material_card_hover_%d" % slot,
+                       hit, slot)
+        _execute(owner, "material_hit_click_%d" % slot, hit,
+                 "select_slot(%d)" % slot, panel_value="lselect")
+        button = _button(canvas, "material_card_%d" % slot, "MATERIAL", x, y, 112, 34)
+        _execute(owner, "material_card_click_%d" % slot, button, "select_slot(%d)" % slot)
+
+    _text(canvas, "detail_header", "SELECTED MATERIAL", 982, 695, 432, 40, 16, (0.91, 0.96, 1))
+    _text(canvas, "selection_title", "No material selected", 982, 650, 432, 40, 16, (0.38, 0.76, 0.96))
+    _viewer(canvas, "detail_viewer", preview_fallback, 982, 390, 432, 250)
+    _text(canvas, "selection_meta", "Choose a card to see group, tags and compatibility.", 982, 194, 432, 184, 13)
+    preview_button = _button(canvas, "preview_selected", "SHOW STORED PREVIEW", 982, 142, 210, 42, (0.07, 0.34, 0.45))
+    live_button = _button(canvas, "open_live_preview", "OPEN LIVE PREVIEW", 1204, 142, 210, 42, (0.15, 0.23, 0.38))
+    import_button = _button(canvas, "import_selected", "IMPORT SELECTED", 982, 90, 432, 42, (0.12, 0.38, 0.25))
+    _execute(owner, "preview_selected_click", preview_button, "preview_selected()")
+    _execute(owner, "open_live_preview_click", live_button, "open_live_preview()")
+    _execute(owner, "import_selected_click", import_button, "import_selected()")
+
+    previous = _button(canvas, "previous_page", "< PREVIOUS", 26, 24, 140, 40)
+    next_button = _button(canvas, "next_page", "NEXT >", 820, 24, 140, 40)
+    _text(canvas, "page_status", "PAGE 1 / 1 | 0 RESULTS", 178, 24, 630, 40, 13, (0.72, 0.79, 0.86), align="center")
+    _text(canvas, "action_status", "READY - set Catalog File and choose REFRESH CATALOG", 982, 24, 432, 54, 12, (0.35, 0.90, 0.67))
+    _execute(owner, "previous_page_click", previous, "change_page(-1)")
+    _execute(owner, "next_page_click", next_button, "change_page(1)")
+
+    # Interactive browsing belongs on an OP Viewer Component in TD 2025.
+    # The TOP remains a capture-only surface for screenshots and monitoring.
+    browser_ui = _get_or_create(owner, opviewerCOMP, "browser_ui")
+    _panel_style(browser_ui, 0, 0, 1280, 800)
+    _set_if_present(browser_ui, "opviewer", canvas.path)
+    browser_ui.viewer = True
+    browser_ui.nodeX, browser_ui.nodeY = 650, 180
+
+    ui_preview = _get_or_create(owner, opviewerTOP, "ui_preview")
+    _set_if_present(ui_preview, "opviewer", canvas.path)
+    _set_if_present(ui_preview, "allowpanel", False)
+    _set_if_present(ui_preview, "outputresolution", "custom")
+    _set_if_present(ui_preview, "resolutionw", 1280)
+    _set_if_present(ui_preview, "resolutionh", 800)
+    _set_if_present(ui_preview, "preservealpha", False)
+    ui_preview.viewer = True
+    ui_preview.nodeX, ui_preview.nodeY = 850, 50
+
+    owner.store("material_library_contract", 1)
+    owner.store("isolated", True)
+    # Local-only refresh: a reopened project is immediately browsable while
+    # keeping the user-selected search/facet state and all output isolation.
+    runtime.module.refresh()
+    print({
+        "owner": owner.path,
+        "catalog": str(owner.par.Catalogfile.eval()),
+        "cards": CARD_COUNT,
+        "outputsActive": False,
+        "productionTouched": False,
+        "projectSaved": False,
+    })
+    return owner
+
+
+if "op" in globals():
+    result = build()

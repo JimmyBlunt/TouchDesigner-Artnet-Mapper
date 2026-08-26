@@ -108,8 +108,8 @@ def test_uniform_contract_and_all_coordinate_modes_remain_compatible():
     source = shader_source()
     assert "vec2 coordinateSpace(vec2 uv)" in source
     assert "return uv;" in source
-    assert "return localUV;" in source
-    assert "return mix(uv, localUV, clamp(uParams3.z" in source
+    assert "vec2 localUV = fract(uv * panelCount);" not in source
+    assert "downstream per-index sampler owns coordinate selection" in source
     for uniform in ("uParams0", "uParams1", "uParams2", "uParams3", "uColorA", "uColorB"):
         assert re.search(rf"uniform\s+vec4\s+{uniform}\s*;", source)
 

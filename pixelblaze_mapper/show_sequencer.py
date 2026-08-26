@@ -15,8 +15,9 @@ from pathlib import Path
 from typing import Any, Mapping
 
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 COORDINATE_MODES = frozenset({"global", "panel_local", "hybrid"})
+TARGET_GROUPS = frozenset({"all", "middle", "upper", "lower", "rear"})
 TRANSITION_TYPES = frozenset(
     {"cut", "crossfade", "dissolve", "wipe", "radial", "glitch"}
 )
@@ -30,6 +31,81 @@ class TransportState(str, Enum):
     STOPPED = "stopped"
     PLAYING = "playing"
     PAUSED = "paused"
+
+
+def _color(value: object, field: str) -> tuple[float, float, float, float]:
+    if not isinstance(value, (list, tuple)) or len(value) != 4:
+        raise ShowValidationError(f"{field} must contain four RGBA numbers")
+    return tuple(_number(item, field, minimum=0.0, maximum=1.0) for item in value)  # type: ignore[return-value]
+
+
+@dataclass(frozen=True)
+class MaterialParameters:
+    """Complete renderer state saved by a Show material preset."""
+
+    speed: float
+    scale: float
+    width: float
+    focus_x: float
+    focus_y: float
+    zoom: float
+    gradient: str
+    color_a: tuple[float, float, float, float]
+    color_b: tuple[float, float, float, float]
+    intensity: float = 1.0
+    contrast: float = 1.25
+    trail: float = 0.0
+    direction: float = 0.125
+    rotation_degrees: float = 0.0
+    seed: float = 0.0
+    effect_transition: float = 0.5
+    panel_columns: float = 2.0
+    panel_rows: float = 5.0
+    hybrid_mix: float = 0.5
+    density: float = 1.0
+
+    def __post_init__(self) -> None:
+        _number(self.speed, "cue.parameters.speed", minimum=0.0, maximum=8.0)
+        _number(self.scale, "cue.parameters.scale", minimum=0.01, maximum=100.0)
+        _number(self.width, "cue.parameters.width", minimum=0.0, maximum=1.0)
+        _number(self.focus_x, "cue.parameters.focus_x", minimum=0.0, maximum=1.0)
+        _number(self.focus_y, "cue.parameters.focus_y", minimum=0.0, maximum=1.0)
+        _number(self.zoom, "cue.parameters.zoom", minimum=0.25, maximum=8.0)
+        _text(self.gradient, "cue.parameters.gradient")
+        object.__setattr__(self, "color_a", _color(self.color_a, "cue.parameters.color_a"))
+        object.__setattr__(self, "color_b", _color(self.color_b, "cue.parameters.color_b"))
+        _number(self.intensity, "cue.parameters.intensity", minimum=0.0, maximum=2.0)
+        _number(self.contrast, "cue.parameters.contrast", minimum=0.0, maximum=4.0)
+        _number(self.trail, "cue.parameters.trail", minimum=0.0, maximum=1.0)
+        _number(self.direction, "cue.parameters.direction", minimum=-8.0, maximum=8.0)
+        _number(self.rotation_degrees, "cue.parameters.rotation_degrees", minimum=-3600.0, maximum=3600.0)
+        _number(self.seed, "cue.parameters.seed", minimum=-1000000.0, maximum=1000000.0)
+        _number(self.effect_transition, "cue.parameters.effect_transition", minimum=0.0, maximum=1.0)
+        _number(self.panel_columns, "cue.parameters.panel_columns", minimum=1.0, maximum=64.0)
+        _number(self.panel_rows, "cue.parameters.panel_rows", minimum=1.0, maximum=64.0)
+        _number(self.hybrid_mix, "cue.parameters.hybrid_mix", minimum=0.0, maximum=1.0)
+        _number(self.density, "cue.parameters.density", minimum=0.01, maximum=8.0)
+
+    @classmethod
+    def from_dict(cls, data: Mapping[str, Any]) -> "MaterialParameters":
+        if not isinstance(data, Mapping):
+            raise ShowValidationError("cue.parameters must be an object")
+        expected = set(cls.__dataclass_fields__)
+        missing, extra = expected - set(data), set(data) - expected
+        if missing or extra:
+            raise ShowValidationError(
+                f"cue.parameters fields invalid; missing={sorted(missing)}, extra={sorted(extra)}"
+            )
+        values = dict(data)
+        values["color_a"] = _color(values["color_a"], "cue.parameters.color_a")
+        values["color_b"] = _color(values["color_b"], "cue.parameters.color_b")
+        return cls(**values)
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            field: list(value) if field in {"color_a", "color_b"} else value
+            for field, value in ((name, getattr(self, name)) for name in self.__dataclass_fields__)
+        }
 
 
 def _number(value: object, field: str, *, minimum: float, maximum: float | None = None) -> float:
@@ -56,6 +132,7 @@ class Cue:
     name: str
     effect: str
     preset: str
+    parameters: MaterialParameters
     coordinate_mode: str
     duration: float
     transition: str
@@ -68,6 +145,8 @@ class Cue:
         _text(self.name, "cue.name")
         _text(self.effect, "cue.effect")
         _text(self.preset, "cue.preset", allow_empty=True)
+        if not isinstance(self.parameters, MaterialParameters):
+            raise ShowValidationError("cue.parameters must be validated MaterialParameters")
         if self.coordinate_mode not in COORDINATE_MODES:
             raise ShowValidationError(
                 "cue.coordinate_mode must be global, panel_local, or hybrid"
@@ -91,15 +170,21 @@ class Cue:
             raise ShowValidationError("cue.target_groups must be a non-empty tuple")
         for group in self.target_groups:
             _text(group, "cue.target_groups item")
+            if group not in TARGET_GROUPS:
+                raise ShowValidationError(
+                    "cue.target_groups must use all, middle, upper, lower, or rear"
+                )
         if len(set(self.target_groups)) != len(self.target_groups):
             raise ShowValidationError("cue.target_groups must not contain duplicates")
+        if "all" in self.target_groups and len(self.target_groups) != 1:
+            raise ShowValidationError("cue.target_groups all cannot be combined")
 
     @classmethod
     def from_dict(cls, data: Mapping[str, Any]) -> "Cue":
         if not isinstance(data, Mapping):
             raise ShowValidationError("cue must be an object")
         expected = {
-            "id", "name", "effect", "preset", "coordinate_mode", "duration",
+            "id", "name", "effect", "preset", "parameters", "coordinate_mode", "duration",
             "transition", "transition_duration", "brightness", "target_groups",
         }
         missing, extra = expected - set(data), set(data) - expected
@@ -112,7 +197,8 @@ class Cue:
             raise ShowValidationError("cue.target_groups must be a JSON array")
         return cls(
             id=data["id"], name=data["name"], effect=data["effect"],
-            preset=data["preset"], coordinate_mode=data["coordinate_mode"],
+            preset=data["preset"], parameters=MaterialParameters.from_dict(data["parameters"]),
+            coordinate_mode=data["coordinate_mode"],
             duration=data["duration"], transition=data["transition"],
             transition_duration=data["transition_duration"],
             brightness=data["brightness"], target_groups=tuple(groups),
@@ -123,6 +209,7 @@ class Cue:
             "name": self.name,
             "effect": self.effect,
             "preset": self.preset,
+            "parameters": self.parameters.to_dict(),
             "coordinate_mode": self.coordinate_mode,
             "duration": self.duration,
             "transition": self.transition,

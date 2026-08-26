@@ -98,7 +98,12 @@ def _configure_uniforms(player, preview_mode=None):
     if preview_mode is None:
         controls = f"op('{ROOT}/madmapper_player_controls').par"
         _set_expr(player.par.vec0valuex, f"{controls}.Material.menuIndex")
-        _set_expr(player.par.vec0valuey, f"absTime.seconds * {controls}.Speed")
+        _set_expr(
+            player.par.vec0valuey,
+            f"op('{ROOT}/material_state_runtime').module.phase() if "
+            f"op('{ROOT}/material_state_runtime') is not None else "
+            f"absTime.seconds * {controls}.Speed",
+        )
         _set_expr(player.par.vec0valuez, f"{controls}.Scale")
         _set_expr(player.par.vec0valuew, f"{controls}.Width")
         _set_expr(player.par.vec1valuex, f"{controls}.Coordinatemode.menuIndex")
@@ -172,8 +177,16 @@ def _configure_controls():
     material.menuNames = EFFECT_NAMES
     material.menuLabels = EFFECT_LABELS
     material.val = old_material if old_material in EFFECT_NAMES else "fluid_noise"
-    controls.par.Source.menuNames = ["movie", "materials"]
-    controls.par.Source.menuLabels = ["Movie / Existing Source", "Core Materials"]
+    source_names = ["movie", "materials"]
+    source_labels = ["Movie / Existing Source", "Core Materials"]
+    if op(f"{ROOT}/show_control_out") is not None:
+        source_names.append("show")
+        source_labels.append("Show Sequencer")
+    if op(f"{ROOT}/madmapper_library/imported_material_out") is not None:
+        source_names.append("imported")
+        source_labels.append("Imported MadMapper Material")
+    controls.par.Source.menuNames = source_names
+    controls.par.Source.menuLabels = source_labels
 
     if controls.par.Colorr is not None:
         controls.par.Colorr.label = "Color A"
@@ -231,6 +244,20 @@ def _configure_browser(shader_dat):
         execute.par.offtoon = True
         execute.par.valuechange = False
         execute.text = "def onOffToOn(panelValue):\n    controls = op('/project1/madmapper_player_controls')\n    controls.par.Source = 'materials'\n    controls.par.Material = %d\n    return\n" % index
+
+    # Once the combined browser is installed it owns the visible layout,
+    # search, groups and card callbacks.  Core preview TOPs above are still
+    # refreshed, but a later Core Effects rebuild must not replace that UI.
+    if browser.fetch("unified_material_browser_version", 0):
+        for index in range(len(EFFECT_DEFINITIONS)):
+            browser.op("material_card_%d" % index).par.display = False
+        mouse = browser.op("material_browser_mouse")
+        if mouse is not None:
+            mouse.par.active = False
+        runtime = browser.op("unified_runtime")
+        if runtime is not None:
+            runtime.module.refresh()
+        return browser
 
     # The browser background also supports direct coordinate clicks.  This is
     # the path used when the cards are shown as one composite panel.

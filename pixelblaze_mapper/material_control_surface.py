@@ -148,7 +148,9 @@ def install():
     player.par.vec4valuey.expr = "op(%r).par.Focusy" % CONTROLS_PATH
     player.par.vec4valuez.expr = "op(%r).par.Framezoom" % CONTROLS_PATH
     player.par.vec4valuew = 0.0
-    apply_gradient(controls.par.Gradientpreset.eval())
+    # Do not re-apply the named gradient here.  On an existing project that
+    # would overwrite the active material's stored custom colours every time
+    # this idempotent builder is run.
     return {"installed": True, "networkOutputEnabled": False, "projectSaved": False}
 
 

@@ -15,6 +15,9 @@ class PhotoCalibrationRestoreTests(unittest.TestCase):
 
     def test_keeps_current_clean_panel_split(self):
         self.assertIn("REAR_START = REAR.start", self.text)
+        self.assertIn("side.par.end = REAR_START - 1", self.text)
+        self.assertIn("rear.par.start = REAR_START", self.text)
+        self.assertIn("rear.par.end = TOTAL_PIXELS - 1", self.text)
         self.assertIn("source.numSamples != TOTAL_PIXELS", self.text)
         self.assertIn("PANEL_COUNT * PANEL_SIZE", self.text)
 
@@ -33,6 +36,29 @@ class PhotoCalibrationRestoreTests(unittest.TestCase):
         self.assertIn('page.appendFloat(name, label=name)', self.text)
         self.assertIn('getattr(pin.par, target).expr', self.text)
         self.assertIn('"Einzelfaecher"', self.text)
+
+    def test_reset_covers_active_side_and_all_ten_rear_panels(self):
+        self.assertIn("CALIBRATION_CALLBACKS = r'''def onPulse(par):", self.text)
+        self.assertIn("for panel in range(10):", self.text)
+        self.assertIn("parameter.val = parameter.default", self.text)
+        self.assertIn("active side + 10 rear panels reset (88 values)", self.text)
+        self.assertIn('reset.label = "Reset active side + rear panels"', self.text)
+        self.assertIn('callback.par.pars = "Resetcalibration"', self.text)
+        self.assertIn("callback.par.onpulse = True", self.text)
+        self.assertIn('"resetValues": len(SIDE_RESET_PARAMETERS) + PANEL_COUNT * 8', self.text)
+
+    def test_ineffective_rear_compatibility_parameters_are_clearly_disabled(self):
+        assignment = next(
+            node for node in self.tree.body
+            if isinstance(node, ast.Assign)
+            and any(isinstance(target, ast.Name) and target.id == "LEGACY_REAR_PARAMETERS" for target in node.targets)
+        )
+        names = ast.literal_eval(assignment.value)
+        self.assertEqual(len(names), 12)
+        self.assertIn("Reartlx", names)
+        self.assertIn("Rearmidbottomy", names)
+        self.assertIn("parameter.readOnly = True", self.text)
+        self.assertIn('parameter.label = "LEGACY INACTIVE - "', self.text)
 
     def test_canonical_preview_is_bound_to_photo_composite(self):
         self.assertIn('CANONICAL_PREVIEW = "/project1/LED_PREVIEW_OUT"', self.text)

@@ -70,16 +70,10 @@ vec2 rotateAroundCenter(vec2 uv, float angle)
 
 vec2 coordinateSpace(vec2 uv)
 {
-    float coordinateMode = floor(uParams1.x + 0.5);
-    vec2 panelCount = max(uParams3.xy, vec2(1.0));
-    vec2 localUV = fract(uv * panelCount);
-    if (coordinateMode < 0.5) {
-        return uv;
-    }
-    if (coordinateMode < 1.5) {
-        return localUV;
-    }
-    return mix(uv, localUV, clamp(uParams3.z, 0.0, 1.0));
+    // The downstream per-index sampler owns coordinate selection because it
+    // knows the real middle/upper/lower/rear panel ID.  A 2D material shader
+    // cannot infer those physical boundaries from its render-canvas UV.
+    return uv;
 }
 
 float wrappedDistance(float a, float b)
