@@ -30,8 +30,8 @@ class LedPreviewRegressionTests(unittest.TestCase):
 
     def test_ten_independent_rear_panels_are_declared(self):
         source = RESTORE.read_text(encoding="utf-8")
-        self.assertIn("PANEL_COUNT = 10", source)
-        self.assertIn("PANEL_SIZE = 256", source)
+        self.assertIn("PANEL_COUNT = REAR_PANEL_COUNT", source)
+        self.assertIn("PANEL_SIZE = REAR_PANEL_PIXELS", source)
         self.assertIn("PANEL_COUNT * 8", source)
 
     def test_keyboard_in_declares_the_runtime_proven_keyevent_contract(self):
@@ -40,15 +40,13 @@ class LedPreviewRegressionTests(unittest.TestCase):
         self.assertIn("target.openViewer()", source)
         self.assertIn("ui.status = label + ' | ' + path", source)
 
-    @unittest.expectedFailure
     def test_preview_contract_covers_all_3744_current_leds(self):
         source = RESTORE.read_text(encoding="utf-8")
-        self.assertIn("source.numSamples != 3744", source)
+        self.assertIn("source.numSamples != TOTAL_PIXELS", source)
 
-    @unittest.expectedFailure
     def test_rear_start_follows_the_current_1184_side_leds(self):
         source = RESTORE.read_text(encoding="utf-8")
-        self.assertIn("REAR_START = 1184", source)
+        self.assertIn("REAR_START = REAR.start", source)
 
 
 if __name__ == "__main__":

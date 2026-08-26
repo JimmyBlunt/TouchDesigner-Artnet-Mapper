@@ -68,8 +68,8 @@ def main() -> None:
     source = row_test_source(coordinates, args.bands)
     plan = build_router_plan(default_router_config(args.local_address))
     frames = plan.pack_pixels(source)["WS2812_NODE"]
-    if len(frames) != 11 or any(len(frame) != 510 for frame in frames):
-        raise RuntimeError("Expected eleven 510-channel WS universes, including reserved black gaps")
+    if len(frames) != 12 or any(len(frame) != 510 for frame in frames):
+        raise RuntimeError("Expected twelve 510-channel WS universes, including reserved black gaps")
 
     destination = (args.target, 6454)
     sent = 0
@@ -83,10 +83,10 @@ def main() -> None:
                 sent += 1
             time.sleep(max(0.0, 1.0 / args.fps - (time.monotonic() - started)))
     print(
-        f"sent={sent} target={args.target} wire_universes=0-10 "
+        f"sent={sent} target={args.target} wire_universes=0-11 "
         f"coordinate_bands=logical-lattice sampling=per-led-xyz-lookup "
         f"colors=red/white/blue "
-        "hardware_starts=0/680/1360 reserved_universes=6-7 exact_channels=510 sequence=0"
+        "hardware_starts=0/680/1360 reserved_universes=6-7,11 exact_channels=510 sequence=0"
     )
 
 

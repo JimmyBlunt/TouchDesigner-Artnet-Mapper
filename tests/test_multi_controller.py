@@ -1,3 +1,4 @@
+import ast
 import unittest
 from dataclasses import replace
 from pathlib import Path
@@ -41,9 +42,9 @@ class DefaultTopologyTests(unittest.TestCase):
         # blocks per side-panel port.  The upper and lower panels therefore
         # start at destination pixels 680 and 1360 rather than being packed
         # directly after the preceding panel.
-        self.assertEqual((ws.destination_pixel_count, ws.universe_count), (1758, 11))
+        self.assertEqual((ws.destination_pixel_count, ws.universe_count), (2040, 12))
         self.assertEqual((esp.destination_pixel_count, esp.universe_count), (1679, 10))
-        self.assertEqual(ws.routes[-1].active_pixel_count, 58)
+        self.assertEqual(ws.routes[-1].active_pixel_count, 170)
         self.assertEqual(esp.routes[-1].active_pixel_count, 149)
 
     def test_same_universe_numbers_are_valid_on_different_ips(self):
@@ -74,8 +75,7 @@ class PackingTests(unittest.TestCase):
         plan = build_router_plan(default_router_config("10.0.0.178"))
         packed = plan.pack_pixels(source())
         self.assertTrue(all(len(frame) == 510 for frames in packed.values() for frame in frames))
-        self.assertNotEqual(packed["WS2812_NODE"][-1][:-3], (0,) * 507)
-        self.assertEqual(packed["WS2812_NODE"][-1][-3:], (0,) * 3)
+        self.assertEqual(packed["WS2812_NODE"][-1], (0,) * 510)
         self.assertEqual(packed["APA102_ESP"][-1][447:], (0,) * 63)
 
     def test_esp_firmware_prefix_is_black(self):
@@ -132,10 +132,10 @@ class ValidationTests(unittest.TestCase):
         bad = ControllerConfig(
             "A", "not-ip", "10.0.0.999", enabled=1, port=0,
             start_universe=-1, color_order="RGG", brightness=1.1, rate=0,
-            art_sync=1,
+            art_sync=1, reserved_universes=-1,
         )
         codes = self.codes(RouterConfig((bad,), (), warn_unassigned=False))
-        self.assertTrue({"target_address", "local_interface", "enabled", "port", "start_universe", "color_order", "brightness", "rate", "art_sync"}.issubset(codes))
+        self.assertTrue({"target_address", "local_interface", "enabled", "port", "start_universe", "color_order", "brightness", "rate", "art_sync", "reserved_universes"}.issubset(codes))
 
     def test_rejects_duplicates_unknowns_and_bad_segment_fields(self):
         controller = ControllerConfig("A", "10.0.0.2", "10.0.0.1")
@@ -201,6 +201,23 @@ class ValidationTests(unittest.TestCase):
 
 
 class BuilderContractTests(unittest.TestCase):
+    @staticmethod
+    def _builder_source_function(name):
+        path = Path(__file__).parents[1] / "pixelblaze_mapper" / "build_multi_controller_output.py"
+        tree = ast.parse(path.read_text(encoding="utf-8"))
+        function = next(node for node in tree.body if isinstance(node, ast.FunctionDef) and node.name == name)
+        scope = {}
+        exec(compile(ast.Module(body=[function], type_ignores=[]), str(path), "exec"), scope, scope)
+        return scope[name]
+
+    def test_embedded_realtime_callbacks_are_valid_python(self):
+        pack_source = self._builder_source_function("_pack_callbacks")("WS2812_NODE")
+        sender_source = self._builder_source_function("_artnet_510_sender_source")()
+        execute_source = self._builder_source_function("_artnet_510_execute_source")()
+        compile(pack_source, "pack_callbacks", "exec")
+        compile(sender_source, "sender_callbacks", "exec")
+        compile(execute_source, "sender_execute", "exec")
+
     def test_embedded_packer_restores_project_import_path_after_reopen(self):
         text = (Path(__file__).parents[1] / "pixelblaze_mapper" / "build_multi_controller_output.py").read_text(encoding="utf-8")
         self.assertIn('LOCAL_ROOT = r"C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper"', text)
@@ -211,14 +228,32 @@ class BuilderContractTests(unittest.TestCase):
         text = (Path(__file__).parents[1] / "pixelblaze_mapper" / "build_multi_controller_output.py").read_text(encoding="utf-8")
         self.assertIn("artnet_510_sender_callbacks", text)
         self.assertIn("payload = bytes(payload)", text)
-        self.assertIn("pack.numSamples != 510", text)
-        self.assertIn("for index in range(510)", text)
+        self.assertIn("len(payload) != 510", text)
+        self.assertIn("source.numSamples < 3744", text)
         self.assertIn("_socket.bind((locals_used[0], 6454))", text)
         self.assertIn("configs = _controllers(True)", text)
         self.assertIn("for config in configs:", text)
         self.assertIn("importlib.reload(effect_surface_uv)", text)
         self.assertIn("importlib.reload(spatial_map)", text)
         self.assertIn("importlib.reload(router_calibration)", text)
+
+    def test_realtime_packer_is_compiled_and_exposes_read_only_telemetry(self):
+        text = (Path(__file__).parents[1] / "pixelblaze_mapper" / "build_multi_controller_output.py").read_text(encoding="utf-8")
+        self.assertIn("from pixelblaze_mapper.realtime_packer import compile_router_packer", text)
+        self.assertIn("_cache_signature", text)
+        self.assertIn("_compiled = compile_router_packer(plan).controller(CONTROLLER)", text)
+        self.assertIn("pack_channels(source[0], source[1], source[2])", text)
+        self.assertNotIn("pixels = tuple((float(source[0][i])", text)
+        self.assertIn("def telemetry():", text)
+        self.assertIn("'actual_send_fps'", text)
+        self.assertIn("'plan_rebuilds': _plan_rebuilds", text)
+
+    def test_sender_avoids_forced_recook_after_bootstrap(self):
+        text = (Path(__file__).parents[1] / "pixelblaze_mapper" / "build_multi_controller_output.py").read_text(encoding="utf-8")
+        live = text[text.index("def _live_frames(configs):"):text.index("def tick():")]
+        self.assertIn("source.cook(force=False)", live)
+        self.assertNotIn("force=True", live)
+        self.assertIn("packer.controller(config['name']).pack_channels", live)
 
     def test_gico_sender_disables_sequence_filtering(self):
         text = (Path(__file__).parents[1] / "pixelblaze_mapper" / "build_multi_controller_output.py").read_text(encoding="utf-8")
@@ -271,6 +306,14 @@ class BuilderContractTests(unittest.TestCase):
         self.assertIn("sender.module.set_live()", start)
         self.assertIn("sender.module.set_enabled(True)", start)
         self.assertNotIn("node.par.active = True", start)
+
+
+    def test_builder_cannot_retrigger_saved_momentary_button_state(self):
+        text = (Path(__file__).parents[1] / "pixelblaze_mapper" / "build_multi_controller_output.py").read_text(encoding="utf-8")
+        self.assertIn('(\"value0\", False)', text)
+        self.assertIn('previous_sender.module.set_enabled(False)', text)
+        self.assertGreaterEqual(text.count('_set_if_present(click, "active", False)'), 2)
+        self.assertGreaterEqual(text.count('_set_if_present(click, "active", True)'), 2)
 
 
 if __name__ == "__main__":

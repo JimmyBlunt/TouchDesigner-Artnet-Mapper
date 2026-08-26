@@ -32,9 +32,15 @@ class DialogContractTests(unittest.TestCase):
 
     def test_all_hardware_or_persistent_actions_are_explicitly_guarded(self):
         guarded = {action for item in DIALOGS for action in item.guarded_actions}
-        for action in ("Output off", "Safe apply", "Start", "Kalibrierung", "Draft anwenden",
-                       "Export", "GO", "PLAY", "STOP", "BLACKOUT", "Import selected"):
+        for action in ("Output off", "Safe apply", "Start", "Kalibrierung",
+                       "GO", "PLAY", "STOP", "BLACKOUT", "Import selected"):
             self.assertIn(action, guarded)
+
+    def test_output_config_is_read_only_and_routes_edits_to_artnet_router(self):
+        output = next(item for item in DIALOGS if item.key == "7")
+        self.assertEqual(output.guarded_actions, ())
+        self.assertIn("Live-Status lesen", output.safe_actions)
+        self.assertIn("Art-Net Router öffnen", output.safe_actions)
 
     def test_shortcut_builder_is_navigation_only(self):
         source = (ROOT / "pixelblaze_mapper" / "build_shortcut_hub.py").read_text(encoding="utf-8").lower()

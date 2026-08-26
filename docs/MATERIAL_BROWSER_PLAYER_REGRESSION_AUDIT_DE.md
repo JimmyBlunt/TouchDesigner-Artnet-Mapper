@@ -286,10 +286,10 @@ werden kann:
 2. Einen Diagnoseeffekt verwenden, der in jedem gesendeten Frame dieselbe
    fortlaufende Frame-ID farblich codiert und zugleich eine senkrechte
    Markierung über Mitte, Oben und Unten bewegt. Die Frame-ID muss vor dem
-   Aufteilen auf U1–U11 entstehen, nicht je Panel separat.
+   Aufteilen auf U1–U12 entstehen, nicht je Panel separat.
 3. Gleichzeitig für 60 Sekunden protokollieren: `absFrame`, Cook-Frame des
    gemeinsamen Material-TOP, Pack-Frame, Art-Net-Sequenznummer und Sendezeit
-   jedes Universums. Pro Ausgabeframe müssen U1–U11 dieselbe Frame-ID tragen.
+   jedes Universums. Pro Ausgabeframe müssen U1–U12 dieselbe Frame-ID tragen.
 4. Das Video frameweise prüfen: dieselbe Markierungsphase muss auf allen drei
    Panels erscheinen; kein Panel darf einem anderen um mehr als einen
    Ausgabeframe vor- oder nachlaufen.
@@ -297,7 +297,7 @@ werden kann:
 Abnahmekriterien:
 
 - 60 Sekunden ohne sichtbares Flackern, Aufblitzen oder Rücksprung;
-- keine gemischten Frame-IDs innerhalb eines U1–U11-Paketsatzes;
+- keine gemischten Frame-IDs innerhalb eines U1–U12-Paketsatzes;
 - kein fehlendes oder rückwärts laufendes Art-Net-Sequenzpaket;
 - mindestens 59 vollständige Paketsätze pro Sekunde im Mittel bei 60-FPS-Ziel;
 - keine Sendepause über 50 ms und keine Panelabweichung über einen Frame.

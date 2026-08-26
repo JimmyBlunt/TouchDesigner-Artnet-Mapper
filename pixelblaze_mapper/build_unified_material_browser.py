@@ -21,6 +21,16 @@ IMPORT_ROOT = PROJECT_ROOT / "material_library" / "imported"
 SLOT_COUNT = 32
 GROUP_OPTION_COUNT = 20
 
+# Exact public names created by this builder. TouchDesigner suffixes a name
+# when an older builder left a same-name sibling behind; these prefixes let us
+# remove only such generated duplicates without touching material sources.
+GENERATED_SINGLETON_PREFIXES = (
+    "mb_control_speed", "mb_control_focusx", "mb_control_focusy",
+    "mb_control_zoom", "mb_control_view_reset",
+    "unified_apply", "unified_source", "unified_group", "unified_layout",
+    "unified_previous", "unified_next",
+)
+
 
 def _get_or_create(parent, op_type, name):
     node = parent.op(name)
@@ -29,6 +39,28 @@ def _get_or_create(parent, op_type, name):
     node = parent.create(op_type, name)
     node.name = name
     return node
+
+
+def _is_generated_duplicate_name(name):
+    suffix = r"(?:\d+(?:_change|_click)?|(?:_change|_click)\d+)"
+    return re.match(
+        r"^(?:%s)%s$" % (
+            "|".join(re.escape(value) for value in GENERATED_SINGLETON_PREFIXES),
+            suffix,
+        ),
+        str(name),
+    ) is not None
+
+
+def _remove_generated_duplicates(parent):
+    """Remove numeric-suffixed duplicate controls from older builder runs.
+
+    Only generated singleton families are considered. The canonical unsuffixed
+    OP, material cards, preview sources, and imported material state survive.
+    """
+    for child in tuple(parent.children):
+        if _is_generated_duplicate_name(child.name):
+            child.destroy()
 
 
 def _set(node, name, value):
@@ -142,6 +174,24 @@ def _value_execute(parent, name, source, parameter):
     return node
 
 
+def _momentary_execute(parent, name, source, body):
+    """Create one canonical momentary handler, replacing a wrong OP type."""
+    node = parent.op(name)
+    if node is not None and node.type != "panelexec":
+        node.destroy()
+        node = None
+    node = node or parent.create(panelexecuteDAT, name)
+    node.name = name
+    node.par.active = True
+    node.par.fromop = source.path
+    node.par.panels = source.path
+    node.par.panelvalue = "state"
+    node.par.offtoon = True
+    node.par.valuechange = False
+    node.text = "def onOffToOn(panelValue):\n    %s\n    return\n" % body
+    return node
+
+
 def _slider(parent, name, label, x, y, width, low, high, value, parameter):
     node = _panel(_get_or_create(parent, sliderCOMP, name), x, y, width, 28, 50)
     _set(node, "label", label)
@@ -176,18 +226,21 @@ def _material_controls(browser):
     _slider(browser, 'mb_control_zoom', 'FRAME ZOOM', 695, 754, 220, 0.25, 4.0, controls.par.Framezoom.eval(), 'Framezoom')
     for index, (label, value) in enumerate((('STOP', 0.0), ('0.5x', 0.5), ('1x', 1.0), ('2x', 2.0))):
         button = _button(browser, 'mb_control_speed_%d' % index, label, 20 + index * 76, 790, 70, 28)
-        handler = _get_or_create(browser, 'panelexecuteDAT', 'mb_control_speed_%d_click' % index)
-        handler.par.fromop = button.path; handler.par.panels = button.path; handler.par.panelvalue = 'state'; handler.par.offtoon = True
-        handler.text = "def onOffToOn(panelValue):\n    op('/project1/madmapper_player_controls').par.Speed = %s\n    return\n" % value
+        _momentary_execute(
+            browser, 'mb_control_speed_%d_click' % index, button,
+            "op('/project1/madmapper_player_controls').par.Speed = %s" % value,
+        )
     reset = _button(browser, 'mb_control_view_reset', 'RESET VIEW', 340, 790, 110, 28)
-    reset_handler = _get_or_create(browser, 'panelexecuteDAT', 'mb_control_view_reset_click')
-    reset_handler.par.fromop = reset.path; reset_handler.par.panels = reset.path; reset_handler.par.panelvalue = 'state'; reset_handler.par.offtoon = True
-    reset_handler.text = "def onOffToOn(panelValue):\n    op('/project1/material_browser/mb_control_runtime').module.reset_frame()\n    return\n"
+    _momentary_execute(
+        browser, 'mb_control_view_reset_click', reset,
+        "op('/project1/material_browser/mb_control_runtime').module.reset_frame()",
+    )
     for index, (label, key) in enumerate((('NEON', 'neon_cyan_magenta'), ('AMBER', 'amber_violet'), ('ACID', 'acid_lime_blue'), ('FIRE/ICE', 'fire_ice'), ('MONO', 'mono_white'))):
         button = _button(browser, 'mb_control_gradient_%d' % index, label, 470 + index * 88, 790, 82, 28)
-        handler = _get_or_create(browser, 'panelexecuteDAT', 'mb_control_gradient_%d_click' % index)
-        handler.par.fromop = button.path; handler.par.panels = button.path; handler.par.panelvalue = 'state'; handler.par.offtoon = True
-        handler.text = "def onOffToOn(panelValue):\n    op('/project1/material_browser/mb_control_runtime').module.apply_gradient('%s')\n    return\n" % key
+        _momentary_execute(
+            browser, 'mb_control_gradient_%d_click' % index, button,
+            "op('/project1/material_browser/mb_control_runtime').module.apply_gradient('%s')" % key,
+        )
 
 
 def _runtime_source():
@@ -450,6 +503,8 @@ def build():
     browser = op(OWNER)
     if project is None or browser is None:
         raise RuntimeError("Build the existing Core Effects browser first")
+
+    _remove_generated_duplicates(browser)
 
     browser.par.w = 1280
     browser.par.h = 900

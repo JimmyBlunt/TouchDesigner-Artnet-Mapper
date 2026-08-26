@@ -14,10 +14,15 @@ from math import ceil
 from numbers import Real
 from typing import Iterable, Sequence
 
+from pixelblaze_mapper.installation_contract import (
+    CHANNELS_PER_UNIVERSE,
+    PIXELS_PER_UNIVERSE,
+    TOTAL_PIXELS,
+)
 
-SOURCE_PIXEL_COUNT = 3744
-SLOTS_PER_UNIVERSE = 510
-PIXELS_PER_UNIVERSE = 170
+
+SOURCE_PIXEL_COUNT = TOTAL_PIXELS
+SLOTS_PER_UNIVERSE = CHANNELS_PER_UNIVERSE
 ARTNET_MAX_LINEAR_UNIVERSE = 32767
 COLOR_ORDERS = frozenset(("RGB", "RBG", "GRB", "GBR", "BRG", "BGR"))
 
@@ -50,6 +55,10 @@ class ControllerConfig:
     brightness: float = 0.02
     rate: int = 30
     art_sync: bool = False
+    # Optional fixed output capacity.  A value of zero derives the frame count
+    # from the routed segments.  Hardware with fixed universe blocks can use a
+    # larger value so every unused tail universe is transmitted as black.
+    reserved_universes: int = 0
 
 
 @dataclass(frozen=True)
@@ -261,6 +270,8 @@ def validate_router(config: RouterConfig) -> tuple[ValidationIssue, ...]:
             issues.append(ValidationIssue("error", "rate", "Rate must be 1..120 fps", field + ".rate"))
         if not isinstance(controller.art_sync, bool):
             issues.append(ValidationIssue("error", "art_sync", "art_sync must be boolean", field + ".art_sync"))
+        if not _valid_integer(controller.reserved_universes, 0):
+            issues.append(ValidationIssue("error", "reserved_universes", "reserved_universes must be a non-negative integer", field + ".reserved_universes"))
 
     valid_segments: list[SegmentConfig] = []
     segment_names: set[str] = set()
@@ -303,7 +314,9 @@ def validate_router(config: RouterConfig) -> tuple[ValidationIssue, ...]:
     for segment in valid_segments:
         by_controller[segment.controller] = max(by_controller[segment.controller], segment.destination_start + segment.count)
     for index, controller in enumerate(config.controllers):
-        universe_count = ceil(by_controller.get(controller.name, 0) / PIXELS_PER_UNIVERSE)
+        derived_count = ceil(by_controller.get(controller.name, 0) / PIXELS_PER_UNIVERSE)
+        reserved_count = controller.reserved_universes if _valid_integer(controller.reserved_universes, 0) else 0
+        universe_count = max(derived_count, reserved_count)
         if (
             _valid_integer(controller.start_universe, 0, ARTNET_MAX_LINEAR_UNIVERSE)
             and universe_count
@@ -315,12 +328,12 @@ def validate_router(config: RouterConfig) -> tuple[ValidationIssue, ...]:
     # destinations.  On the same target endpoint it would be ambiguous and is
     # therefore rejected even when the controller rows have different names.
     for left_index, left in enumerate(config.controllers):
-        left_count = ceil(by_controller.get(left.name, 0) / PIXELS_PER_UNIVERSE)
+        left_count = max(ceil(by_controller.get(left.name, 0) / PIXELS_PER_UNIVERSE), left.reserved_universes)
         if not left_count or not _valid_integer(left.start_universe, 0, ARTNET_MAX_LINEAR_UNIVERSE):
             continue
         for right_index in range(left_index + 1, len(config.controllers)):
             right = config.controllers[right_index]
-            right_count = ceil(by_controller.get(right.name, 0) / PIXELS_PER_UNIVERSE)
+            right_count = max(ceil(by_controller.get(right.name, 0) / PIXELS_PER_UNIVERSE), right.reserved_universes)
             if not right_count or not _valid_integer(right.start_universe, 0, ARTNET_MAX_LINEAR_UNIVERSE):
                 continue
             same_endpoint = left.target_address == right.target_address and left.port == right.port
@@ -351,7 +364,11 @@ def build_router_plan(config: RouterConfig) -> RouterPlan:
     plans: list[ControllerPlan] = []
     for controller in config.controllers:
         segments = [item for item in config.segments if item.controller == controller.name]
-        destination_count = max((item.destination_start + item.count for item in segments), default=0)
+        routed_destination_count = max((item.destination_start + item.count for item in segments), default=0)
+        destination_count = max(
+            routed_destination_count,
+            controller.reserved_universes * PIXELS_PER_UNIVERSE,
+        )
         routes: list[UniverseRoute] = []
         for sequence in range(ceil(destination_count / PIXELS_PER_UNIVERSE)):
             linear = controller.start_universe + sequence
@@ -386,6 +403,7 @@ def default_router_config(local_interface: str = "10.0.0.125") -> RouterConfig:
                 # that universe as the zero-based wire address 0.
                 start_universe=0,
                 color_order="GRB",
+                reserved_universes=12,
             ),
             ControllerConfig(
                 name="APA102_ESP",
@@ -399,8 +417,9 @@ def default_router_config(local_interface: str = "10.0.0.125") -> RouterConfig:
             # Controller hardware is configured for four universes per port.
             # Each Art-Net universe carries 170 RGB pixels (510 channels):
             # port 1 / middle = U1..U4, port 2 / upper = U5..U8,
-            # port 3 / lower = U9..U12.  U7..U8 are intentionally black,
-            # because the upper side has only 269 pixels.
+            # port 3 / lower = U9..U12.  U7, U8 and U12 are intentionally
+            # transmitted as black because those fixed port blocks are not
+            # occupied by panel pixels.
             SegmentConfig("WS_SIDE_MIDDLE", 0, 517, "WS2812_NODE", 0),
             SegmentConfig("WS_SIDE_UPPER", 517, 269, "WS2812_NODE", 680),
             SegmentConfig("WS_SIDE_LOWER", 786, 398, "WS2812_NODE", 1360),
@@ -414,10 +433,10 @@ def default_router_config(local_interface: str = "10.0.0.125") -> RouterConfig:
 
 def controller_rows(config: RouterConfig) -> tuple[tuple[object, ...], ...]:
     rows: list[tuple[object, ...]] = [
-        ("enabled", "name", "target_ip", "local_interface", "port", "start_universe", "color_order", "brightness", "rate", "art_sync")
+        ("enabled", "name", "target_ip", "local_interface", "port", "start_universe", "color_order", "brightness", "rate", "art_sync", "reserved_universes")
     ]
     rows.extend(
-        (int(item.enabled), item.name, item.target_address, item.local_interface, item.port, item.start_universe, item.color_order, item.brightness, item.rate, int(item.art_sync))
+        (int(item.enabled), item.name, item.target_address, item.local_interface, item.port, item.start_universe, item.color_order, item.brightness, item.rate, int(item.art_sync), item.reserved_universes)
         for item in config.controllers
     )
     return tuple(rows)

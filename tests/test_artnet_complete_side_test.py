@@ -33,8 +33,10 @@ class CompleteSideArtNetTestTests(unittest.TestCase):
         frames = build_router_plan(default_router_config("127.0.0.1")).pack_pixels(source)["WS2812_NODE"]
         # Controller ports reserve four whole 510-channel universe blocks.
         # Middle occupies wire U0..U3 (the last one has seven LEDs), upper is
-        # U4..U5, U6..U7 are deliberately black, and lower is U8..U10.
-        active_counts = (170, 170, 170, 7, 170, 99, 0, 0, 170, 170, 58)
+        # U4..U5, U6..U7 are deliberately black, lower is U8..U10, and U11
+        # is the fixed fourth-port reserve.  Every reserved universe is sent
+        # as a complete black frame rather than omitted.
+        active_counts = (170, 170, 170, 7, 170, 99, 0, 0, 170, 170, 58, 0)
         self.assertEqual(len(frames), len(active_counts))
         for frame, active_count in zip(frames, active_counts):
             pixels = tuple(tuple(frame[index:index + 3]) for index in range(0, 510, 3))

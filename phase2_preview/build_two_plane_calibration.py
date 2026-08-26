@@ -5,15 +5,22 @@ isolated Phase-2 prototype and never calls project.save().
 """
 
 import json
+import sys
+
+LOCAL_ROOT = r"C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper"
+if LOCAL_ROOT not in sys.path:
+    sys.path.insert(0, LOCAL_ROOT)
+
+from pixelblaze_mapper.installation_contract import REAR, SIDE_PIXEL_COUNT, TOTAL_PIXELS
 
 
 PROTOTYPE = "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype"
 SOURCE_GEO = "/project1/pixelblaze_mapper/preview3d/led_points_geo"
 SOURCE_INSTANCES = "/project1/pixelblaze_mapper/preview3d/instance_data"
 SIDE_FIRST = 0
-SIDE_LAST = 1179
-REAR_FIRST = 1180
-REAR_LAST = 3739
+SIDE_LAST = SIDE_PIXEL_COUNT - 1
+REAR_FIRST = REAR.start
+REAR_LAST = TOTAL_PIXELS - 1
 RESOLUTION = 960
 
 
@@ -273,8 +280,8 @@ def build():
     readme = owner.create(textDAT, "README_two_plane_calibration")
     readme.text = """TWO-PLANE PHOTO CALIBRATION
 
-Index 0-1153: side-wall contour mapping.
-Index 1154-3713: ten rear-wall 16x16 panels.
+Index 0-1183: side-wall contour mapping.
+Index 1184-3743: ten rear-wall 16x16 panels.
 
 The interactive camera moves both groups together.  The Side* and Rear*
 corner parameters then align each wall plane independently over the photo.

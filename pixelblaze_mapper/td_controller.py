@@ -19,9 +19,10 @@ from .mapper_io import (
     import_pixelblaze,
     materialize_pixelblaze_generator,
 )
+from .installation_contract import TOTAL_PIXELS, validate_mapping
 
 
-EXPECTED_PIXELS = 3740
+EXPECTED_PIXELS = TOTAL_PIXELS
 _states: dict[str, dict[str, object]] = {}
 
 
@@ -153,6 +154,13 @@ def apply_to_leds(ui_owner) -> bool:
         )
         ui_owner.par.Applied = False
         _set_status(root, "apply_guard", f"blocked:{count}!={EXPECTED_PIXELS}")
+        return False
+    try:
+        validate_mapping(draft.coordinates, draft.missing_indices, active=True)
+    except ValueError as exc:
+        _set_error(ui_owner, f"APPLY BLOCKED - {exc}")
+        ui_owner.par.Applied = False
+        _set_status(root, "apply_guard", "blocked:missing-or-invalid")
         return False
 
     preserve_par = getattr(ui_owner.par, "Preservecoordinates", None)
