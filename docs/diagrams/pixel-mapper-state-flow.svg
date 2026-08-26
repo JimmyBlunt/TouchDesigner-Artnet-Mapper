@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="760" viewBox="0 0 1500 760">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#76c7ff"/></marker>
+    <style>
+      .bg{fill:#09111b}.box{fill:#101d2b;stroke:#4c7999;stroke-width:2}.warn{fill:#2a1d0d;stroke:#f2a33a;stroke-width:3}.good{fill:#10271f;stroke:#48d597;stroke-width:3}.bad{fill:#2d1414;stroke:#ff6b6b;stroke-width:3}.t{fill:#e7f2ff;font:22px sans-serif}.s{fill:#a9bfd2;font:17px sans-serif}.h{fill:#fff;font:bold 25px sans-serif}.a{stroke:#76c7ff;stroke-width:3;marker-end:url(#arrow);fill:none}.dash{stroke:#ffb454;stroke-width:3;stroke-dasharray:9 7;marker-end:url(#arrow);fill:none}
+    </style>
+  </defs>
+  <rect class="bg" width="1500" height="760"/>
+  <text class="h" x="45" y="50">Dialog 5 – aktueller Mapping-/Statusfluss (Core 68)</text>
+  <rect class="warn" x="45" y="100" width="360" height="170" rx="14"/>
+  <text class="h" x="70" y="140">UI-Entwurf</text><text class="t" x="70" y="178">map_raw: 3.740 Punkte</text><text class="s" x="70" y="210">Sourcepath: alte x90-Datei</text><text class="s" x="70" y="240">Datei selbst: nur 3.714 Punkte</text>
+  <rect class="warn" x="490" y="100" width="360" height="170" rx="14"/>
+  <text class="h" x="515" y="140">3D-Dialogvorschau</text><text class="t" x="515" y="178">instance_data: 3.740</text><text class="s" x="515" y="210">25 „missing“ / Cook-Loop-Warnung</text><text class="s" x="515" y="240">4 aktive LEDs fehlen in der Ansicht</text>
+  <rect class="good" x="935" y="100" width="500" height="170" rx="14"/>
+  <text class="h" x="960" y="140">Aktive Produktionsmap</text><text class="t" x="960" y="178">map_active: 3.744 Punkte</text><text class="s" x="960" y="210">identisch zur canonical complete_new map</text><text class="s" x="960" y="240">Abweichung &lt; 5×10⁻¹³ (Rundung)</text>
+  <path class="a" d="M405 185 H490"/><path class="dash" d="M850 185 H935"/>
+  <text class="s" x="855" y="166">nicht aktiv</text>
+  <rect class="bad" x="45" y="345" width="390" height="230" rx="14"/>
+  <text class="h" x="70" y="388">Sichtbarer Status</text><text class="t" x="70" y="430">PIXELS 3740</text><text class="t" x="70" y="465">DRAFT ON / SAVED ON</text><text class="s" x="70" y="505">Footer behauptet 3.714</text><text class="s" x="70" y="535">Status beschreibt nicht den Live-Pfad</text>
+  <rect class="good" x="555" y="345" width="390" height="230" rx="14"/>
+  <text class="h" x="580" y="388">Apply-Schutz</text><text class="t" x="580" y="430">3.740 ≠ 3.744</text><text class="t" x="580" y="465">APPLY BLOCKED</text><text class="s" x="580" y="505">Live-Map bleibt unverändert</text><text class="s" x="580" y="535">Schutz funktioniert korrekt</text>
+  <rect class="box" x="1065" y="345" width="370" height="230" rx="14"/>
+  <text class="h" x="1090" y="388">Hardware-/Panelvertrag</text><text class="s" x="1090" y="430">Mitte 0–516 (517)</text><text class="s" x="1090" y="462">Oben 517–785 (269)</text><text class="s" x="1090" y="494">Unten 786–1183 (398)</text><text class="s" x="1090" y="526">Rückwand 1184–3743 (2560)</text>
+  <path class="a" d="M435 460 H555"/><path class="a" d="M945 460 H1065"/>
+  <text class="t" x="45" y="660">Priorität 1: UI-Entwurf, Dateiquelle, Preview und aktive Map auf genau einen 3.744-Pixel-Stand synchronisieren.</text>
+  <text class="s" x="45" y="700">Bis dahin: Apply nicht automatisieren; Import/Reload/Revert/Export nur mit kontrollierter Datei- und Rücksetzstrategie testen.</text>
+</svg>
