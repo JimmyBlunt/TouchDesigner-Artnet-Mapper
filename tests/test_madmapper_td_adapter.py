@@ -2,7 +2,12 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from pixelblaze_mapper.madmapper_td_adapter import adapt_material, write_prepared_shader
+from pixelblaze_mapper.madmapper_td_adapter import (
+    ADAPTER_MARKER,
+    adapt_material,
+    prepared_shader_is_current,
+    write_prepared_shader,
+)
 
 
 SIMPLE = r'''/*{
@@ -27,7 +32,10 @@ class AdapterTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             result = adapt_material(self._material(Path(directory)))
         self.assertTrue(result.adaptable)
-        self.assertIn("uniform float uTDTime", result.shader)
+        self.assertIn(ADAPTER_MARKER, result.shader)
+        self.assertIn("uniform vec4 uTDMaterial0", result.shader)
+        self.assertIn("uniform vec4 uTDMaterial1", result.shader)
+        self.assertIn("#define uTDTime uTDMaterial0.x", result.shader)
         self.assertIn("uniform vec4 uTDCoordinate", result.shader)
         self.assertIn("True global/panel-local/hybrid selection", result.shader)
         self.assertNotIn("vec2 localUV = fract(uv * panelCount)", result.shader)
@@ -36,6 +44,13 @@ class AdapterTests(unittest.TestCase):
         self.assertIn("#define mode_IS_Soft_Glow", result.shader)
         self.assertIn("#define phase (uTDTime * (speed))", result.shader)
         self.assertIn("TDOutputSwizzle(materialColorForPixel(mapMadMapperUV(vUV.st)))", result.shader)
+        self.assertIn("float zoom = clamp(uTDMaterial0.w, 0.25, 8.0)", result.shader)
+        self.assertIn("float scale = max(uTDMaterial0.y, 0.01) / 4.0", result.shader)
+        self.assertIn("float width = clamp(uTDMaterial0.z, 0.01, 1.0)", result.shader)
+
+    def test_prepared_shader_version_detects_stale_imports(self):
+        self.assertFalse(prepared_shader_is_current("uniform float uTDTime;"))
+        self.assertTrue(prepared_shader_is_current(ADAPTER_MARKER + "\nvoid main(){}"))
 
     def test_relaxed_madmapper_numbers_and_trailing_commas_keep_generators(self):
         source = r'''/*{

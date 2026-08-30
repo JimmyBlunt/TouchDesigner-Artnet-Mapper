@@ -53,7 +53,12 @@ from pixelblaze_mapper.material_state import MaterialSettings, MaterialStateStor
 
 CONTROLS = op('/project1/madmapper_player_controls')
 TABLE = op('/project1/material_state_table')
-STORE = MaterialStateStore()
+STATE_OWNER = op('/project1')
+STORE_KEY = 'p1_material_state_store'
+INIT_KEY = 'p1_material_state_runtime_schema'
+RUNTIME_SCHEMA = 2
+_stored = STATE_OWNER.fetch(STORE_KEY, None)
+STORE = _stored if isinstance(_stored, MaterialStateStore) else MaterialStateStore()
 _applying = False
 
 
@@ -72,6 +77,8 @@ def _table_document():
 
 
 def _persist():
+    STATE_OWNER.store(STORE_KEY, STORE)
+    STATE_OWNER.store(INIT_KEY, RUNTIME_SCHEMA)
     document = json.dumps(STORE.to_dict(), sort_keys=True, separators=(',', ':'))
     TABLE.clear()
     TABLE.appendRow(('key', 'json'))
@@ -140,8 +147,13 @@ def _current_key():
     return source + ':default'
 
 
-def initialize():
+def initialize(force=False):
     global STORE
+    if not force and STATE_OWNER.fetch(INIT_KEY, None) == RUNTIME_SCHEMA:
+        existing = STATE_OWNER.fetch(STORE_KEY, None)
+        if isinstance(existing, MaterialStateStore):
+            STORE = existing
+            return STORE.active_key
     document = _table_document()
     if document:
         STORE = MaterialStateStore.from_dict(document)
@@ -199,7 +211,8 @@ def phase():
     return STORE.phase_at(_now())
 
 
-initialize()
+if STATE_OWNER.fetch(INIT_KEY, None) != RUNTIME_SCHEMA:
+    initialize()
 '''
 
 
@@ -208,7 +221,21 @@ def _parameter_callback_source():
 
 
 def _frame_callback_source():
-    return """def onFrameStart(frame):\n    op('/project1/material_state_runtime').module.tick()\n    return\n"""
+    return """def onFrameStart(frame):
+    runtime = op('/project1/material_state_runtime')
+    runtime.module.tick()
+    phase = runtime.module.phase()
+    player = op('/project1/madmapper_material_player')
+    if player is not None:
+        player.par.vec0valuey.val = phase
+    imported = op('/project1/madmapper_library/live_preview')
+    if imported is not None:
+        imported.par.vec0valuex.val = phase
+        controls = op('/project1/madmapper_player_controls')
+        if controls is not None and controls.par.Source.eval() == 'imported':
+            imported.cook(force=True)
+    return
+"""
 
 
 def build():
@@ -246,12 +273,19 @@ def build():
     frame.par.framestart = True
     frame.text = _frame_callback_source()
 
-    player.par.vec0valuey.expr = "op('/project1/material_state_runtime').module.phase()"
+    # A Python module call in a parameter expression does not establish a
+    # TouchDesigner cook dependency. Push phase explicitly from the per-frame
+    # Execute DAT so imported shaders actually render new frames.
+    player.par.vec0valuey.expr = ""
     imported = op(ROOT + "/madmapper_library/live_preview")
     if imported is not None:
-        imported.par.const0value.expr = "op('/project1/material_state_runtime').module.phase()"
+        imported.par.vec0valuex.expr = ""
 
-    runtime.module.initialize()
+    runtime.module.initialize(force=True)
+    initial_phase = runtime.module.phase()
+    player.par.vec0valuey.val = initial_phase
+    if imported is not None:
+        imported.par.vec0valuex.val = initial_phase
     return {
         "runtime": runtime.path,
         "stateTable": table.path,

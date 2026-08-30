@@ -787,15 +787,17 @@ def _diagnostic_messages(value):
 
 def _shader_for_hover(item):
     """Return a TouchDesigner GLSL shader without importing the material."""
+    from pixelblaze_mapper.madmapper_td_adapter import prepared_shader_is_current
     try:
         candidate = _live_shader_candidate(item)
         source = candidate.read_text(encoding='utf-8')
-        if 'TDOutputSwizzle' in source and 'vUV' in source:
+        if ('TDOutputSwizzle' in source and 'vUV' in source
+                and prepared_shader_is_current(source)):
             return source
     except Exception:
         pass
     source_path = _validated_file(item.get('source_path'), {'.fs'})
-    from pixelblaze_mapper.madmapper_td_adapter import adapt_material
+    from pixelblaze_mapper.madmapper_td_adapter import adapt_material, write_prepared_shader
     from pixelblaze_mapper.material_library import load_catalog
     catalog_path = Path(_parameter('Catalogfile')).expanduser().resolve(strict=True)
     catalog = load_catalog(catalog_path)
@@ -807,6 +809,13 @@ def _shader_for_hover(item):
     )
     if not adaptation.adaptable or not adaptation.shader:
         raise ValueError('; '.join(adaptation.reasons) or 'material is not adaptable')
+    if item.get('imported'):
+        import_root = _validated_import_root(_parameter('Importroot'))
+        package = (import_root / item['id']).resolve(strict=True)
+        if package.parent != import_root:
+            raise ValueError('Managed material package is outside Import Folder')
+        prepared = write_prepared_shader(adaptation, package / 'prepared.frag')
+        item['prepared_shader_path'] = str(prepared)
     return adaptation.shader
 
 def _compile_hover_item(item):
@@ -873,8 +882,7 @@ def open_live_preview():
         _set_text('action_status', 'LIVE PREVIEW BLOCKED - ' + reason, (0.98, 0.38, 0.32))
         return False
     try:
-        shader_path = _live_shader_candidate(item)
-        source = shader_path.read_text(encoding='utf-8')
+        source = _shader_for_hover(item)
         if 'void main' not in source:
             raise ValueError('Shader has no void main() entry point')
         if 'TDOutputSwizzle' not in source or 'vUV' not in source:
@@ -989,22 +997,37 @@ def build():
     _set_if_present(live_preview, "outputresolution", "custom")
     _set_if_present(live_preview, "resolutionw", 512)
     _set_if_present(live_preview, "resolutionh", 512)
-    # The MadMapper adapter maps TIME/time_base generators to this isolated
-    # scalar GLSL uniform.  TouchDesigner's Constants sequence is the stable
-    # way to publish a single float uniform in current builds.
+    # Use the same Vector Constants path as the proven Core renderer.  The
+    # first block carries continuous phase plus the generic material controls;
+    # the second applies framing and the third retains coordinate metadata.
+    # TD 2025 requires at least one Constant block. Keep the mandatory block
+    # neutral instead of attempting the invalid numBlocks=0 assignment.
     live_preview.par.const.sequence.numBlocks = 1
-    live_preview.par.const0name = "uTDTime"
-    live_preview.par.const0value.expr = (
+    live_preview.par.const0name.val = ""
+    live_preview.par.const0value.val = 0.0
+    live_preview.par.vec.sequence.numBlocks = 3
+    # Sequence parameters must be written through Par.val. Assigning through
+    # ParCollection.__setattr__ aliases later blocks back to block zero in
+    # TouchDesigner 2025 and silently overwrites the earlier uniform name.
+    live_preview.par.vec0name.val = "uTDMaterial0"
+    live_preview.par.vec0valuex.expr = (
         "op('/project1/material_state_runtime').module.phase() if "
         "op('/project1/material_state_runtime') is not None else "
-        "absTime.seconds % max(1.0, parent().par.Hoverloopseconds)"
+        "absTime.seconds"
     )
-    live_preview.par.vec.sequence.numBlocks = 1
-    live_preview.par.vec0name = "uTDCoordinate"
-    live_preview.par.vec0valuex.expr = "parent().par.Coordinatemode.menuIndex"
-    live_preview.par.vec0valuey.expr = "parent().par.Panelcolumns"
-    live_preview.par.vec0valuez.expr = "parent().par.Panelrows"
-    live_preview.par.vec0valuew.expr = "parent().par.Hybridmix"
+    live_preview.par.vec0valuey.expr = "op('/project1/madmapper_player_controls').par.Scale"
+    live_preview.par.vec0valuez.expr = "op('/project1/madmapper_player_controls').par.Width"
+    live_preview.par.vec0valuew.expr = "op('/project1/madmapper_player_controls').par.Framezoom"
+    live_preview.par.vec1name.val = "uTDMaterial1"
+    live_preview.par.vec1valuex.expr = "op('/project1/madmapper_player_controls').par.Focusx"
+    live_preview.par.vec1valuey.expr = "op('/project1/madmapper_player_controls').par.Focusy"
+    live_preview.par.vec1valuez.val = 0.0
+    live_preview.par.vec1valuew.val = 0.0
+    live_preview.par.vec2name.val = "uTDCoordinate"
+    live_preview.par.vec2valuex.expr = "parent().par.Coordinatemode.menuIndex"
+    live_preview.par.vec2valuey.expr = "parent().par.Panelcolumns"
+    live_preview.par.vec2valuez.expr = "parent().par.Panelrows"
+    live_preview.par.vec2valuew.expr = "parent().par.Hybridmix"
     live_preview.nodeX, live_preview.nodeY = 420, 50
 
     # Publish the currently compiled imported material through the Base COMP

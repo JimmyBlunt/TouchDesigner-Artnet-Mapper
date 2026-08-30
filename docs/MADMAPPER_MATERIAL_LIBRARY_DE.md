@@ -104,6 +104,27 @@ Wenn eine Karte statisch bleibt, zuerst die Statuszeile unten rechts lesen: `HOV
 7. Der Import erhält sofort die Gruppe und den Suchtag `IMPORTED` und erscheint automatisch unter `/project1/material_browser`.
 8. Eine dort angeklickte vorbereitete Importkarte wird über den neuen visuellen Eingang `Imported MadMapper Material` aktiviert. Nicht automatisch portierbare Importe bleiben sichtbar, werden aber nicht als Produktionsquelle eingeschaltet.
 
+Vorbereitete Shader tragen eine Adapter-Versionsmarke. Fehlt sie oder stammt
+`prepared.frag` noch von einer älteren Adapterversion, wird die Datei beim
+Öffnen der Live-Vorschau aus dem unveränderten Quellshader neu erzeugt. Dadurch
+bleiben bereits importierte Pakete nach einem Adapter-Update animierbar; ein
+erneuter manueller Import ist nicht erforderlich.
+
+Für automatisch portierbare Importe bindet TouchDesigner die laufende
+Materialphase und die sichtbaren Materialregler in drei Vektor-Uniforms:
+
+| Uniform | Komponenten | Wirkung |
+|---|---|---|
+| `uTDMaterial0` | Phase, Scale, Width, Frame Zoom | Animation und Bildausschnitt |
+| `uTDMaterial1` | Focus X, Focus Y | Mittelpunkt des Bildausschnitts |
+| `uTDCoordinate` | Modus, Panelspalten, Panelzeilen, Hybrid Mix | Koordinatenvertrag für die nachgelagerte LED-Abtastung |
+
+`Speed` wird nicht als einzelner Shaderwert gesetzt, sondern fließt
+kontinuierlich in die Materialphase ein. Deshalb startet die Animation bei einer
+Speed-Änderung nicht neu. `Speed = 0` pausiert das Material; positive Werte
+lassen es ohne Phasensprung weiterlaufen. Scale, Width, Focus X/Y und Frame Zoom
+verändern den UV-Ausschnitt des importierten Materials unmittelbar.
+
 Schlägt der GPU-Kompiliertest fehl, wird kein rot-blaues TouchDesigner-Fehlerschachbrett mehr angezeigt. Stattdessen erscheint eine lesbare Fehlerkarte; das Material wird für die aktuelle Browser-Sitzung als `MANUAL / BLOCKED` markiert und die konkrete Compilerursache wird eingeblendet.
 
 Ein Import überschreibt keine fremden oder nachträglich veränderten Dateien. Das Manifest `material-import.json` hält Quelle, Material-ID und Datei-Hashes fest.
@@ -137,6 +158,8 @@ Im Bibliotheks-Browser betrifft diese Einstellung zunächst die isolierte Vorsch
 | Kartenansicht | `VIEW` per Mausklick | direkt zwischen 4×2 und 8×4 wechseln | 8 beziehungsweise 32 sichtbare Karten; beide `ui_preview`-TOPs korrekt |
 | Hover-Vorschau | Maus über `Sdffuglycompositionexample` | Live-Shader nur lokal anzeigen und beim Verlassen Thumbnail wiederherstellen | 6,0-s-Loop kompiliert ohne Node-Fehler; inkompatible Karten fallen kontrolliert auf ihr Bild zurück |
 | Import-Aktivierung | `Liquid Tail` im gemeinsamen Browser anklicken | vorbereiteten Shader als Quelle verwenden | Source/Visual-Switch Index 3, 0 GLSL-Fehler |
+| Import-Animation | importiertes Material, Speed `0` → `1` → `2` | pausiert, läuft, läuft doppelt so schnell ohne Neustart | Adapter-v2-Phase über `uTDMaterial0.x`; Offline-Regression grün |
+| Import-Framing | Scale, Width, Focus X/Y und Frame Zoom einzeln ändern | sichtbarer UV-Ausschnitt reagiert auf jeden Regler | Adapter-v2-Uniformvertrag und UV-Transformation getestet |
 | Koordinaten | Global/Panel/Hybrid | unterschiedliche Frames | mittlere Deltas 0,375 / 0,249 / 0,126 |
 | Sperrfall | Factory `Arcs` | keine unsichere Live-Kompilierung | blockiert wegen `.vs`, Surface-Varyings und `audioFFT` |
 | Idempotenz | beide Builder zweimal | keine Nodes oder Quellverbindungen duplizieren | stabil; genau vier visuelle Eingänge |

@@ -24,6 +24,8 @@ _SAFE_IDENTIFIER_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 
 _TEXTURE_INPUTS = {"image", "audio", "audiofft", "2d", "3d", "cube"}
 _SUPPORTED_GENERATORS = {"time_base"}
+ADAPTER_VERSION = 2
+ADAPTER_MARKER = "// PIXELBLAZE_MADMAPPER_ADAPTER_VERSION %d" % ADAPTER_VERSION
 
 
 @dataclass(frozen=True)
@@ -231,10 +233,13 @@ def adapt_material(shader_path: str | Path, library_roots: Iterable[str | Path] 
     if reasons:
         return AdaptationResult("unsupported", tuple(dict.fromkeys(reasons)), tuple(dict.fromkeys(warnings)), None, metadata)
 
-    prelude = """// Prepared from a MadMapper material for TouchDesigner GLSL TOP.
+    prelude = """%s
+// Prepared from a MadMapper material for TouchDesigner GLSL TOP.
 out vec4 fragColor;
-uniform float uTDTime;
+uniform vec4 uTDMaterial0; // phase, scale, width, frame zoom
+uniform vec4 uTDMaterial1; // focus x, focus y, reserved, reserved
 uniform vec4 uTDCoordinate; // mode, panel columns, panel rows, hybrid mix
+#define uTDTime uTDMaterial0.x
 #define TIME uTDTime
 #define TIMEDELTA (1.0 / 60.0)
 #define FRAMEINDEX int(uTDTime * 60.0)
@@ -243,11 +248,17 @@ uniform vec4 uTDCoordinate; // mode, panel columns, panel rows, hybrid mix
 
 vec2 mapMadMapperUV(vec2 uv)
 {
+    vec2 focus = clamp(uTDMaterial1.xy, vec2(0.0), vec2(1.0));
+    float zoom = clamp(uTDMaterial0.w, 0.25, 8.0);
+    float scale = max(uTDMaterial0.y, 0.01) / 4.0;
+    float width = clamp(uTDMaterial0.z, 0.01, 1.0);
+    vec2 framed = focus + (uv - vec2(0.5)) / zoom;
+    framed = focus + (framed - focus) * vec2(scale * (0.5 / width), scale);
     // True global/panel-local/hybrid selection happens in the downstream
     // per-LED sampler, where the physical panel ID is available.
-    return uv;
+    return framed;
 }
-"""
+""" % ADAPTER_MARKER
     prepared = "\n".join([prelude, *input_defs, *generator_defs, body, """
 void main()
 {
@@ -255,6 +266,12 @@ void main()
 }
 """])
     return AdaptationResult("adaptable", (), tuple(dict.fromkeys(warnings)), prepared, metadata)
+
+
+def prepared_shader_is_current(source: str) -> bool:
+    """Return whether a prepared shader uses the current live-control contract."""
+
+    return ADAPTER_MARKER in str(source)
 
 
 def write_prepared_shader(result: AdaptationResult, destination: str | Path) -> Path:

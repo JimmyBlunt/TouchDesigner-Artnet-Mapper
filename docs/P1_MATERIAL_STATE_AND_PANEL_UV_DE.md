@@ -29,6 +29,23 @@ Der idempotente TouchDesigner-Adapter ist
 Parameter-/Frame-Callback. Der Builder speichert keine `.toe`-Datei und ändert
 keine Netzwerkausgabe.
 
+Importierte MadMapper-Materialien erhalten die integrierte Phase über
+`uTDMaterial0.x`. Derselbe Vektor transportiert Scale, Width und Frame Zoom;
+`uTDMaterial1.xy` transportiert Focus X/Y. Die Vektorbindung ersetzt die frühere
+einzelne `uTDTime`-Konstante, die in TouchDesigner nicht zuverlässig aktualisiert
+wurde und importierte Animationen dadurch stehen lassen konnte. Alte
+`prepared.frag`-Dateien werden anhand ihrer Adapter-Versionsmarke erkannt und
+vor der Verwendung automatisch aus dem Originalshader aktualisiert.
+
+Der aktive `MaterialStateStore` liegt zusätzlich im Laufzeitspeicher von
+`/project1`. Das ist erforderlich, weil TouchDesigner ein Text-DAT-Modul beim
+erneuten Zugriff neu ausführen kann. Ohne diesen Speicher würde das Modul seine
+Zeitbasis bei jedem Zugriff neu setzen und die Phase bliebe praktisch bei null.
+Die Tabelle bleibt die serialisierbare Projektkopie. Das Execute DAT überträgt
+die fortlaufende Phase pro Frame als Konstantwert und erzwingt nur bei einer
+aktiven importierten Quelle deren GPU-Cook; Art-Net/DMX wird dabei nicht
+verändert.
+
 ## Echte lokale UVs und Panel-IDs
 
 `pixelblaze_mapper/effect_surface_uv.py` leitet aus der bestehenden geprüften

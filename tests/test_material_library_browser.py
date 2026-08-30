@@ -137,12 +137,19 @@ def test_every_runtime_file_read_is_approved_and_live_preview_is_isolated():
     assert "TDOutputSwizzle" in runtime
     assert "material is not marked TouchDesigner-ready" in runtime
     assert 'glslTOP, "live_preview"' in text
-    assert 'live_preview.par.const0name = "uTDTime"' in text
+    assert 'live_preview.par.const.sequence.numBlocks = 1' in text
+    assert 'live_preview.par.const0name.val = ""' in text
+    assert 'live_preview.par.vec.sequence.numBlocks = 3' in text
     assert "material_state_runtime').module.phase()" in text
-    assert 'live_preview.par.const0value.expr = (' in text
+    assert 'live_preview.par.vec0name.val = "uTDMaterial0"' in text
+    assert 'live_preview.par.vec0valuex.expr = (' in text
     assert '"op(\'/project1/material_state_runtime\').module.phase() if "' in text
-    assert '"absTime.seconds % max(1.0, parent().par.Hoverloopseconds)"' in text
-    assert 'live_preview.par.vec0name = "uTDCoordinate"' in text
+    assert 'live_preview.par.vec0valuey.expr = "op(\'/project1/madmapper_player_controls\').par.Scale"' in text
+    assert 'live_preview.par.vec0valuez.expr = "op(\'/project1/madmapper_player_controls\').par.Width"' in text
+    assert 'live_preview.par.vec0valuew.expr = "op(\'/project1/madmapper_player_controls\').par.Framezoom"' in text
+    assert 'live_preview.par.vec1name.val = "uTDMaterial1"' in text
+    assert 'live_preview.par.vec2name.val = "uTDCoordinate"' in text
+    assert 'live_preview.par.vec1name = "uTDMaterial1"' not in text
     assert '"Coordinatemode", "Coordinate Mode"' in text
     assert 'infoDAT, "live_preview_info"' in text
     assert 'textTOP, "compile_error_preview"' in text
@@ -150,6 +157,8 @@ def test_every_runtime_file_read_is_approved_and_live_preview_is_isolated():
     assert "preview.cook(force=True)" in runtime
     assert "preview.errors()" in runtime
     assert "LIVE PREVIEW FAILED" in runtime
+    assert "prepared_shader_is_current(source)" in runtime
+    assert "write_prepared_shader(adaptation, package / 'prepared.frag')" in runtime
 
 
 def test_persisted_managed_import_restores_prepared_shader_after_runtime_restart():
