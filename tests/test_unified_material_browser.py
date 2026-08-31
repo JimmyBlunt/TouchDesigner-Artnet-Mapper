@@ -133,8 +133,18 @@ def test_dynamic_native_parameter_drawer_supports_types_groups_and_paging():
     assert "'floatrange': ('MIN', 'MAX')" in runtime
     assert "'color': ('R', 'G', 'B', 'A')" in runtime
     assert "kind in ('bool', 'event', 'long')" in runtime
-    assert "compile_note = ' | RECOMPILE'" in runtime
+    assert "compile_note = '  *'" in runtime
     assert "toggle_native_parameters(True)" in runtime
+
+
+def test_native_parameter_drawer_uses_compact_touchdesigner_style_rows():
+    text = source()
+    runtime = module()._runtime_source()
+    assert "20, 144, 1240, 500, 120" in text
+    assert "y = 396 - slot * 54" in text
+    assert "16, y, 306, 32" in text
+    assert "334 + component * 225, y, 215, 32" in text
+    assert "_set(label, 'alignx', 'right')" in text
     assert "toggle_native_parameters(False)" in runtime
     assert "ZURÜCK ZU MATERIALIEN" in text
     assert "def _clear_native_parameter_rows():" in runtime

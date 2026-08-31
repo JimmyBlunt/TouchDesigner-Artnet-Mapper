@@ -99,6 +99,19 @@ def test_search_facets_paging_cards_and_details_are_present():
     assert "runtime.module.refresh()" in text
 
 
+def test_pagination_uses_direct_mouse_clicks_and_stays_above_card_hit_areas():
+    text = source()
+    runtime = module()._runtime_source()
+    assert 'navigation, "layer", 120' in text
+    assert '"previous_page_click", previous, "change_page(-1)", panel_value="lselect"' in text
+    assert '"next_page_click", next_button, "change_page(1)", panel_value="lselect"' in text
+    assert "from pixelblaze_mapper.material_library_paging import clamped_page, page_count" in runtime
+    assert "previous.par.enable = page > 0" in runtime
+    assert "next_button.par.enable = page < count - 1" in runtime
+    assert "previous.par.opacity = 1.0 if page > 0 else 0.35" in runtime
+    assert "next_button.par.opacity = 1.0 if page < count - 1 else 0.35" in runtime
+
+
 def test_preview_and_import_are_explicit_separate_actions():
     text = source()
     runtime = module()._runtime_source()

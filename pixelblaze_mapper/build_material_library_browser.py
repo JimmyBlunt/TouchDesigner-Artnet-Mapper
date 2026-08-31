@@ -255,6 +255,7 @@ import pixelblaze_mapper.madmapper_parameters as _madmapper_parameters_module
 import pixelblaze_mapper.madmapper_td_adapter as _madmapper_adapter_module
 importlib.reload(_madmapper_parameters_module)
 importlib.reload(_madmapper_adapter_module)
+from pixelblaze_mapper.material_library_paging import clamped_page, page_count
 
 OWNER = op('/project1/madmapper_library')
 VIEW_HEADERS = ('slot', 'id', 'label', 'category', 'tags', 'compatibility', 'source_path', 'preview_path')
@@ -591,8 +592,7 @@ def apply_filters(reset_page=True):
 
 def change_page(delta):
     size = _page_size()
-    page_count = max(1, (len(_filtered) + size - 1) // size)
-    page = max(0, min(page_count - 1, int(_state('page', 0)) + int(delta)))
+    page, _ = clamped_page(_state('page', 0), delta, len(_filtered), size)
     _set_state('page', page)
     render()
 
@@ -604,15 +604,23 @@ def _safe_preview_path(item):
 
 def render():
     size = _page_size()
-    page_count = max(1, (len(_filtered) + size - 1) // size)
-    page = max(0, min(page_count - 1, int(_state('page', 0))))
+    count = page_count(len(_filtered), size)
+    page, _ = clamped_page(_state('page', 0), 0, len(_filtered), size)
     _set_state('page', page)
-    _set_state('page_count', page_count)
+    _set_state('page_count', count)
     _set_state('result_count', len(_filtered))
     _set_button('group_filter', 'GROUP: ' + _group_label(_state('category', 'All')))
     _set_button('compat_filter', 'COMPAT: ' + _compatibility_label(_state('compatibility', 'All')))
     _set_button('layout_toggle', 'VIEW: ' + _layout_mode().replace('x', ' x '))
-    _set_text('page_status', 'PAGE %d / %d  |  %d RESULTS' % (page + 1, page_count, len(_filtered)))
+    _set_text('page_status', 'PAGE %d / %d  |  %d RESULTS' % (page + 1, count, len(_filtered)))
+    previous = OWNER.op('ui_panel/previous_page')
+    next_button = OWNER.op('ui_panel/next_page')
+    if previous is not None:
+        previous.par.enable = page > 0
+        previous.par.opacity = 1.0 if page > 0 else 0.35
+    if next_button is not None:
+        next_button.par.enable = page < count - 1
+        next_button.par.opacity = 1.0 if page < count - 1 else 0.35
     start = page * size
     visible = _filtered[start:start + size]
     rows = [VIEW_HEADERS]
@@ -1416,10 +1424,16 @@ def build():
 
     previous = _button(canvas, "previous_page", "< PREVIOUS", 26, 24, 140, 40)
     next_button = _button(canvas, "next_page", "NEXT >", 820, 24, 140, 40)
+    # The compact 8x4 layout places the final card hit areas nine pixels over
+    # the navigation row.  Keep navigation above those layer-80 surfaces so a
+    # click on the lower edge can never be intercepted by a material card.
+    for navigation in (previous, next_button):
+        _set_if_present(navigation, "layer", 120)
+        _set_if_present(navigation, "clickthrough", False)
     _text(canvas, "page_status", "PAGE 1 / 1 | 0 RESULTS", 178, 24, 630, 40, 13, (0.72, 0.79, 0.86), align="center")
     _text(canvas, "action_status", "READY - set Catalog File and choose REFRESH CATALOG", 982, 24, 432, 54, 12, (0.35, 0.90, 0.67))
-    _execute(owner, "previous_page_click", previous, "change_page(-1)")
-    _execute(owner, "next_page_click", next_button, "change_page(1)")
+    _execute(owner, "previous_page_click", previous, "change_page(-1)", panel_value="lselect")
+    _execute(owner, "next_page_click", next_button, "change_page(1)", panel_value="lselect")
 
     # Interactive browsing belongs on an OP Viewer Component in TD 2025.
     # The TOP remains a capture-only surface for screenshots and monitoring.

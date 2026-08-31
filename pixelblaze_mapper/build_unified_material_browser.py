@@ -369,7 +369,7 @@ def _material_player_surface(controls):
 
 
 def _native_parameter_controls(browser):
-    """Build six reusable schema-driven rows for imported MadMapper inputs."""
+    """Build a compact TouchDesigner-style page for native MadMapper inputs."""
     open_button = _button(browser, 'native_params_open', 'NATIVE PARAMS', 1120, 790, 140, 28, (0.14, 0.24, 0.40))
     _momentary_execute(
         browser, 'native_params_open_click', open_button,
@@ -377,31 +377,48 @@ def _native_parameter_controls(browser):
     )
     drawer = _panel(
         _get_or_create(browser, containerCOMP, 'native_parameter_drawer'),
-        20, 54, 1240, 640, 120,
+        20, 144, 1240, 500, 120,
     )
     for name, value in (
-        ('bgcolorr', 0.012), ('bgcolorg', 0.022), ('bgcolorb', 0.038),
+        ('bgcolorr', 0.065), ('bgcolorg', 0.072), ('bgcolorb', 0.082),
         ('bgalpha', 1), ('display', False),
     ):
         _set(drawer, name, value)
-    _text(drawer, 'native_parameter_title', 'NATIVE MADMAPPER PARAMETERS', 16, 590, 970, 36, 16, (0.91, 0.96, 1.0))
+    title = _text(
+        drawer, 'native_parameter_title', 'NATIVE MADMAPPER PARAMETERS',
+        16, 450, 970, 34, 15, (0.91, 0.96, 1.0),
+    )
+    for suffix, value in zip('rgb', (0.035, 0.041, 0.050)):
+        _set(title, 'bgcolor' + suffix, value)
     message = _text(
-        drawer, 'native_parameter_message', '', 16, 500, 1208, 76, 13,
+        drawer, 'native_parameter_message', '', 16, 94, 1208, 340, 13,
         (0.98, 0.52, 0.30),
     )
     message.par.display = False
     back_top = _button(
         drawer, 'native_params_back_top', 'ZURÜCK ZU MATERIALIEN',
-        1000, 590, 224, 36, (0.35, 0.08, 0.10),
+        1000, 450, 224, 34, (0.20, 0.12, 0.13),
     )
     _momentary_execute(
         drawer, 'native_params_back_top_click', back_top,
         "op('/project1/material_browser/unified_runtime').module.toggle_native_parameters(False)",
     )
     for slot in range(6):
-        y = 500 - slot * 86
-        _text(drawer, 'native_param_label_%d' % slot, 'PARAMETER', 16, y + 34, 1208, 30, 12, (0.38, 0.76, 0.96))
-        action = _button(drawer, 'native_param_action_%d' % slot, 'ACTION', 360, y, 760, 28, (0.10, 0.30, 0.38))
+        y = 396 - slot * 54
+        label = _text(
+            drawer, 'native_param_label_%d' % slot, 'PARAMETER',
+            16, y, 306, 32, 11, (0.80, 0.84, 0.88),
+        )
+        _set(label, 'alignx', 'right')
+        _set(label, 'textpaddingr', 10)
+        _set(label, 'textpaddingl', 4)
+        shade = 0.105 if slot % 2 == 0 else 0.085
+        for suffix in 'rgb':
+            _set(label, 'bgcolor' + suffix, shade)
+        action = _button(
+            drawer, 'native_param_action_%d' % slot, 'ACTION',
+            334, y, 890, 32, (0.14, 0.16, 0.18),
+        )
         _momentary_execute(
             drawer, 'native_param_action_%d_click' % slot, action,
             "op('/project1/material_browser/unified_runtime').module.native_action(%d)" % slot,
@@ -410,7 +427,7 @@ def _native_parameter_controls(browser):
         for component in range(4):
             slider = _panel(
                 _get_or_create(drawer, sliderCOMP, 'native_param_%d_%d' % (slot, component)),
-                360 + component * 190, y, 180, 28, 150,
+                334 + component * 225, y, 215, 32, 150,
             )
             _set(slider, 'label', ('VALUE', 'Y', 'Z', 'W')[component])
             _set(slider, 'valuerange0l', 0.0)
@@ -421,10 +438,10 @@ def _native_parameter_controls(browser):
                 drawer, 'native_param_%d_%d_change' % (slot, component),
                 slider, slot, component,
             )
-    previous = _button(drawer, 'native_params_previous', '< PREVIOUS', 16, 18, 150, 30, (0.07, 0.18, 0.26))
-    next_button = _button(drawer, 'native_params_next', 'NEXT >', 176, 18, 150, 30, (0.07, 0.18, 0.26))
-    reset = _button(drawer, 'native_params_reset', 'RESET MATERIAL', 336, 18, 180, 30, (0.38, 0.20, 0.08))
-    close = _button(drawer, 'native_params_close', 'ZURÜCK', 1054, 18, 170, 30, (0.35, 0.08, 0.10))
+    previous = _button(drawer, 'native_params_previous', '< PREVIOUS', 16, 24, 150, 30, (0.11, 0.13, 0.15))
+    next_button = _button(drawer, 'native_params_next', 'NEXT >', 176, 24, 150, 30, (0.11, 0.13, 0.15))
+    reset = _button(drawer, 'native_params_reset', 'RESET MATERIAL', 336, 24, 180, 30, (0.24, 0.18, 0.10))
+    close = _button(drawer, 'native_params_close', 'ZURÜCK', 1054, 24, 170, 30, (0.20, 0.12, 0.13))
     for name, button, body in (
         ('native_params_previous_click', previous, "op('/project1/material_browser/unified_runtime').module.native_page(-1)"),
         ('native_params_next_click', next_button, "op('/project1/material_browser/unified_runtime').module.native_page(1)"),
@@ -595,12 +612,12 @@ def render_native_parameters():
         name = str(parameter['name'])
         kind = str(parameter['type']).lower()
         group = ' / '.join(parameter.get('groups') or [])
-        prefix = (group + ' / ') if group else ''
-        compile_note = ' | RECOMPILE' if parameter.get('compile_time') else ''
+        prefix = (group + '  ·  ') if group else ''
+        compile_note = '  *' if parameter.get('compile_time') else ''
         label.par.display = True
-        label.par.text = '%s%s  [%s]  <%s>%s' % (
+        label.par.text = '%s%s  ·  %s%s' % (
             prefix, parameter.get('display_label') or parameter.get('label') or name,
-            name, kind, compile_note)
+            kind.upper(), compile_note)
         label.store('parameter_name', name)
         label.store('parameter_type', kind)
         value = parameter.get('value')
