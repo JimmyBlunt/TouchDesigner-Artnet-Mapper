@@ -147,6 +147,7 @@ def build():
         ("bgcolorr", 0.009), ("bgcolorg", 0.015), ("bgcolorb", 0.024), ("bgalpha", 1),
     ):
         _set(canvas, name, value)
+    canvas.viewer = True
 
     _text(canvas, "title", "OUTPUT CONFIG | LIVE SUMMARY", 20, 590, 1060, 44,
           size=23, color=(0.94, 0.97, 1.0))
@@ -177,7 +178,13 @@ def build():
     execute = _create(owner, executeDAT, "live_summary_execute")
     execute.par.active = True
     execute.par.framestart = True
-    execute.text = "def onFrameStart(frame):\n    op('live_summary_runtime').module.update()\n    return\n"
+    execute.text = (
+        "def onFrameStart(frame):\n"
+        "    if int(frame) % 15:\n"
+        "        return\n"
+        "    op('live_summary_runtime').module.update()\n"
+        "    return\n"
+    )
     click = _create(owner, panelexecuteDAT, "open_router_click")
     click.par.active = True
     click.par.fromop = router_button.path

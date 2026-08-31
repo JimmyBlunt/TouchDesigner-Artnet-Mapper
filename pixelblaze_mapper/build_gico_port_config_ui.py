@@ -267,6 +267,7 @@ def build():
     runtime.text = _runtime_source()
 
     canvas = _panel(_node(owner, containerCOMP, "ui_panel"), 0, 0, 1180, 720, 10)
+    canvas.viewer = True
     for name, value in (("bgcolorr", 0.006), ("bgcolorg", 0.012),
                         ("bgcolorb", 0.020), ("bgalpha", 1)):
         _set(canvas, name, value)

@@ -102,6 +102,23 @@ def test_material_sliders_watch_the_real_value0_parameter():
     assert 'node.par.panelvalue = "value"' not in text
 
 
+def test_material_player_shortcut_surface_has_preview_and_live_controls():
+    text = source()
+    assert "def _material_player_surface(controls):" in text
+    assert "MATERIAL PLAYER | RAW MATERIAL + LIVE CONTROLS" in text
+    assert "controls, containerCOMP, 'ui_panel'" in text
+    assert "panel.viewer = True" in text
+    assert "'player_preview'" in text
+    for parameter in ("Speed", "Scale", "Width", "Focusx", "Focusy", "Framezoom", "Intensity", "Contrast"):
+        assert "'%s'" % parameter in text
+    assert "ART-NET ACTUAL" in text
+    assert "actual_send_fps" in text
+    assert "project.cookRate" in text
+    assert "if int(frame) % 15:" in text
+    assert "OPEN MATERIAL BROWSER" in text
+    assert "RESET VIEW" in text
+
+
 def test_dynamic_native_parameter_drawer_supports_types_groups_and_paging():
     text = source()
     runtime = module()._runtime_source()

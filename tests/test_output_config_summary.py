@@ -81,6 +81,8 @@ class OutputConfigSummaryTests(unittest.TestCase):
         self.assertIn("segment_config", source)
         self.assertIn("sender.module.status()", source)
         self.assertIn("target.openViewer()", source)
+        self.assertIn("canvas.viewer = True", source)
+        self.assertIn("if int(frame) % 15:", source)
         for forbidden in (
             "config_draft", "universe_draft", "Reviewapply", "Revertdraft",
             "REVIEW & APPLY", "REVERT DRAFT", "project.save(", "set_enabled(True)",

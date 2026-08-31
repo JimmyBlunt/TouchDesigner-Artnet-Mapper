@@ -265,6 +265,100 @@ def _material_controls(browser):
         )
 
 
+def _material_player_runtime_source():
+    return r'''OWNER = op('/project1/madmapper_player_controls/ui_panel')
+CONTROLS = op('/project1/madmapper_player_controls')
+
+def update():
+    source = str(CONTROLS.par.Source.eval())
+    material = str(CONTROLS.par.Material.eval())
+    imported = op('/project1/madmapper_library/material_parameter_state')
+    selected = ''
+    if imported is not None:
+        for row in range(1, imported.numRows):
+            if str(imported[row, 0]) == 'selected_id':
+                selected = str(imported[row, 1])
+                break
+    OWNER.op('player_status').par.text = (
+        'SOURCE: %s  |  MATERIAL: %s%s' % (
+            source.upper(), material,
+            ('  |  IMPORTED ID: ' + selected) if source == 'imported' and selected else '')
+    )
+    sender = op('/project1/multi_controller_output/artnet_510_sender_callbacks')
+    sender_state = sender.module.status() if sender is not None else {}
+    telemetry = sender_state.get('telemetry', {})
+    actual = float(telemetry.get('actual_send_fps', 0.0))
+    controller_table = op('/project1/multi_controller_output/controller_config')
+    configured = []
+    if controller_table is not None:
+        for row in range(1, controller_table.numRows):
+            if str(controller_table[row, 'enabled']).lower() in ('1', 'true', 'yes', 'on'):
+                configured.append('%s %s FPS' % (
+                    str(controller_table[row, 'name']), str(controller_table[row, 'rate'])))
+    OWNER.op('player_fps').par.text = (
+        'TOUCHDESIGNER TARGET: %.1f FPS  |  ART-NET ACTUAL: %.1f FPS  |  CONFIG: %s%s' % (
+            float(project.cookRate), actual, ', '.join(configured) or 'no enabled controller',
+            '' if sender_state.get('enabled') else '  |  OUTPUT OFF')
+    )
+    return True
+'''
+
+
+def _material_player_surface(controls):
+    """Build the actual control surface opened by Ctrl+Shift+4."""
+    panel = _panel(_get_or_create(controls, containerCOMP, 'ui_panel'), 0, 0, 1180, 720, 10)
+    for suffix, value in zip('rgb', (0.006, 0.012, 0.020)):
+        _set(panel, 'bgcolor' + suffix, value)
+    _set(panel, 'bgalpha', 1)
+    panel.viewer = True
+    _text(panel, 'player_title', 'MATERIAL PLAYER | RAW MATERIAL + LIVE CONTROLS', 20, 670, 1140, 36, 21, (0.92, 0.96, 1.0))
+    _text(panel, 'player_status', 'SOURCE / MATERIAL', 20, 632, 1140, 28, 12, (0.38, 0.76, 0.96))
+    _text(panel, 'player_fps', 'FPS', 20, 598, 1140, 26, 11, (0.35, 0.90, 0.67))
+    raw = controls.op('material_preview') or op('/project1/material_source')
+    if raw is not None:
+        _viewer(panel, 'player_preview', raw, 20, 82, 720, 506)
+    _text(panel, 'controls_title', 'LIVE PLAYER CONTROLS', 770, 580, 380, 32, 16, (0.91, 0.96, 1.0))
+    rows = (
+        ('player_speed', 'MASTER SPEED', 'Speed', 0.0, 2.0, 530),
+        ('player_scale', 'SCALE', 'Scale', 0.1, 4.0, 470),
+        ('player_width', 'WIDTH', 'Width', 0.0, 1.0, 410),
+        ('player_focusx', 'FOCUS X', 'Focusx', 0.0, 1.0, 350),
+        ('player_focusy', 'FOCUS Y', 'Focusy', 0.0, 1.0, 290),
+        ('player_zoom', 'FRAME ZOOM', 'Framezoom', 0.25, 8.0, 230),
+        ('player_intensity', 'INTENSITY', 'Intensity', 0.0, 2.0, 170),
+        ('player_contrast', 'CONTRAST', 'Contrast', 0.1, 4.0, 110),
+    )
+    for name, label, parameter, low, high, y in rows:
+        _slider(panel, name, label, 770, y, 380, low, high,
+                getattr(controls.par, parameter).eval(), parameter)
+    open_browser = _button(panel, 'player_open_browser', 'OPEN MATERIAL BROWSER', 770, 54, 250, 38, (0.14, 0.24, 0.40))
+    reset_view = _button(panel, 'player_reset_view', 'RESET VIEW', 1030, 54, 120, 38, (0.38, 0.20, 0.08))
+    _momentary_execute(
+        panel, 'player_open_browser_click', open_browser,
+        "op('/project1/material_browser').openViewer()",
+    )
+    _momentary_execute(
+        panel, 'player_reset_view_click', reset_view,
+        "op('/project1/material_browser/mb_control_runtime').module.reset_frame()",
+    )
+    runtime = _get_or_create(controls, textDAT, 'player_ui_runtime')
+    runtime.text = _material_player_runtime_source()
+    execute = _get_or_create(controls, executeDAT, 'player_ui_update')
+    execute.par.active = True
+    execute.par.framestart = True
+    # UI telemetry does not need to cook at render rate. Four updates per
+    # second at 60 FPS keep the label readable without burdening Art-Net.
+    execute.text = (
+        "def onFrameStart(frame):\n"
+        "    if int(frame) % 15:\n"
+        "        return\n"
+        "    op('player_ui_runtime').module.update()\n"
+        "    return\n"
+    )
+    runtime.module.update()
+    return panel
+
+
 def _native_parameter_controls(browser):
     """Build six reusable schema-driven rows for imported MadMapper inputs."""
     open_button = _button(browser, 'native_params_open', 'NATIVE PARAMS', 1120, 790, 140, 28, (0.14, 0.24, 0.40))
@@ -899,6 +993,7 @@ def build():
         labels.append("Imported MadMapper Material")
     controls.par.Source.menuNames = names
     controls.par.Source.menuLabels = labels
+    _material_player_surface(controls)
 
     switch = op(ROOT + "/visual_source_switch")
     imported_source = op(ROOT + "/madmapper_library")

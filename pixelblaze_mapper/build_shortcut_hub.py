@@ -6,6 +6,7 @@ or start/stop network output.
 
 from __future__ import annotations
 
+import importlib
 import sys
 
 
@@ -13,6 +14,8 @@ LOCAL_ROOT = r"C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper"
 if LOCAL_ROOT not in sys.path:
     sys.path.insert(0, LOCAL_ROOT)
 
+import pixelblaze_mapper.shortcut_hub as _shortcut_hub_module  # noqa: E402
+importlib.reload(_shortcut_hub_module)
 from pixelblaze_mapper.shortcut_hub import SHORTCUTS, shortcut_rows, validate_shortcuts  # noqa: E402
 
 

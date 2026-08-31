@@ -14,6 +14,7 @@ class ShortcutHubTests(unittest.TestCase):
         self.assertEqual(by_key["1"].target, "/project1/LED_PREVIEW_OUT")
         self.assertEqual(by_key["6"].target, "/project1/multi_controller_output/ui_panel")
         self.assertEqual(by_key["2"].target, "/project1/material_browser")
+        self.assertEqual(by_key["4"].target, "/project1/madmapper_player_controls/ui_panel")
         self.assertEqual(by_key["8"].target, "/project1/show_control/control_panel")
         self.assertEqual(by_key["0"].target, "/project1/multi_controller_output/gico_port_config/ui_panel")
 
@@ -30,6 +31,7 @@ class ShortcutHubTests(unittest.TestCase):
     def test_builder_has_no_output_or_save_actions(self):
         source = (Path(__file__).parents[1] / "pixelblaze_mapper" / "build_shortcut_hub.py").read_text(encoding="utf-8").lower()
         self.assertIn("phase2_interaction_background_prototype/prototype_out", source)
+        self.assertIn("importlib.reload(_shortcut_hub_module)", source)
         for token in ("dmxout", "netaddress", "project.save", "destroy("):
             self.assertNotIn(token, source)
 

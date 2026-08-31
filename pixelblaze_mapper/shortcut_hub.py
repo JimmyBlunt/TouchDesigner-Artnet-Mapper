@@ -21,7 +21,7 @@ SHORTCUTS = (
     ShortcutSpec("1", "LED PREVIEW", "/project1/LED_PREVIEW_OUT", "Verbindliche Foto-/Schrankansicht mit gemappten LEDs"),
     ShortcutSpec("2", "MATERIAL BROWSER", "/project1/material_browser", "Core- und importierte Materialien auswählen"),
     ShortcutSpec("3", "MADMAPPER LIBRARY", "/project1/madmapper_library/ui_panel", "MadMapper-Materialien suchen, prüfen und importieren"),
-    ShortcutSpec("4", "MATERIAL PLAYER", "/project1/madmapper_player_controls", "Aktuelles Rohmaterial und Player-Steuerung prüfen"),
+    ShortcutSpec("4", "MATERIAL PLAYER", "/project1/madmapper_player_controls/ui_panel", "Aktuelles Rohmaterial und Player-Steuerung prüfen"),
     ShortcutSpec("5", "PIXEL MAPPER", "/project1/pixelblaze_mapper/ui/canvas", "LED-Koordinaten und Mapping bearbeiten"),
     ShortcutSpec("6", "ART-NET ROUTER", "/project1/multi_controller_output/ui_panel", "Controller, IP, Universen und sichere Ausgabe bedienen"),
     ShortcutSpec("7", "OUTPUT CONFIG", "/project1/pixelblaze_mapper/output_config/ui_panel", "Schreibgeschützten Live-Status prüfen und Art-Net Router öffnen"),

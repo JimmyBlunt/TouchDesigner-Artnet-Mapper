@@ -35,6 +35,7 @@ class GicoPortConfigUIContracts(unittest.TestCase):
         self.assertIn("FIRST UI UNIVERSE", text)
         self.assertIn("destination_pixel_start", text)
         self.assertIn("GICO PORT CONFIG", text)
+        self.assertIn("canvas.viewer = True", text)
 
     def test_main_router_rebuild_always_restores_the_gico_entry(self):
         text = (ROOT / "pixelblaze_mapper" / "build_multi_controller_output.py").read_text(encoding="utf-8")
