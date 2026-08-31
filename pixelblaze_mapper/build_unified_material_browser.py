@@ -281,7 +281,20 @@ def _native_parameter_controls(browser):
         ('bgalpha', 1), ('display', False),
     ):
         _set(drawer, name, value)
-    _text(drawer, 'native_parameter_title', 'NATIVE MADMAPPER PARAMETERS', 16, 590, 1208, 36, 16, (0.91, 0.96, 1.0))
+    _text(drawer, 'native_parameter_title', 'NATIVE MADMAPPER PARAMETERS', 16, 590, 970, 36, 16, (0.91, 0.96, 1.0))
+    message = _text(
+        drawer, 'native_parameter_message', '', 16, 500, 1208, 76, 13,
+        (0.98, 0.52, 0.30),
+    )
+    message.par.display = False
+    back_top = _button(
+        drawer, 'native_params_back_top', 'ZURÜCK ZU MATERIALIEN',
+        1000, 590, 224, 36, (0.35, 0.08, 0.10),
+    )
+    _momentary_execute(
+        drawer, 'native_params_back_top_click', back_top,
+        "op('/project1/material_browser/unified_runtime').module.toggle_native_parameters(False)",
+    )
     for slot in range(6):
         y = 500 - slot * 86
         _text(drawer, 'native_param_label_%d' % slot, 'PARAMETER', 16, y + 34, 1208, 30, 12, (0.38, 0.76, 0.96))
@@ -308,7 +321,7 @@ def _native_parameter_controls(browser):
     previous = _button(drawer, 'native_params_previous', '< PREVIOUS', 16, 18, 150, 30, (0.07, 0.18, 0.26))
     next_button = _button(drawer, 'native_params_next', 'NEXT >', 176, 18, 150, 30, (0.07, 0.18, 0.26))
     reset = _button(drawer, 'native_params_reset', 'RESET MATERIAL', 336, 18, 180, 30, (0.38, 0.20, 0.08))
-    close = _button(drawer, 'native_params_close', 'CLOSE', 1054, 18, 170, 30, (0.35, 0.08, 0.10))
+    close = _button(drawer, 'native_params_close', 'ZURÜCK', 1054, 18, 170, 30, (0.35, 0.08, 0.10))
     for name, button, body in (
         ('native_params_previous_click', previous, "op('/project1/material_browser/unified_runtime').module.native_page(-1)"),
         ('native_params_next_click', next_button, "op('/project1/material_browser/unified_runtime').module.native_page(1)"),
@@ -411,16 +424,56 @@ def toggle_native_parameters(show=None):
 def _native_control(name):
     return OWNER.op('native_parameter_drawer/' + str(name))
 
+def _clear_native_parameter_rows():
+    """Hide and detach every reusable row before rendering new material data."""
+    for slot in range(6):
+        label = _native_control('native_param_label_%d' % slot)
+        action = _native_control('native_param_action_%d' % slot)
+        label.par.display = False
+        action.par.display = False
+        label.unstore('parameter_name')
+        label.unstore('parameter_type')
+        action.unstore('parameter_name')
+        action.unstore('parameter_type')
+        action.unstore('parameter_values')
+        for component in range(4):
+            slider = _native_control('native_param_%d_%d' % (slot, component))
+            handler = _native_control('native_param_%d_%d_change' % (slot, component))
+            slider.par.display = False
+            slider.unstore('parameter_name')
+            slider.unstore('parameter_type')
+            if handler is not None:
+                handler.par.active = False
+
+def _native_error(message):
+    _clear_native_parameter_rows()
+    _native_control('native_parameter_title').par.text = 'NATIVE PARAMETERS NICHT VERFÜGBAR'
+    detail = _native_control('native_parameter_message')
+    detail.par.text = (
+        'Dieses Material benötigt Funktionen, die der automatische TouchDesigner-Adapter '
+        'nicht sicher übersetzen kann. Wähle ZURÜCK ZU MATERIALIEN und ein kompatibles '
+        'importiertes Material.\n\nDetails: ' + str(message)
+    )
+    detail.par.display = True
+    for name in ('native_params_previous', 'native_params_next', 'native_params_reset'):
+        _native_control(name).par.display = False
+    return False
+
 def render_native_parameters():
     drawer = OWNER.op('native_parameter_drawer')
     if drawer is None or not bool(drawer.par.display.eval()):
         return False
+    _clear_native_parameter_rows()
+    _native_control('native_parameter_message').par.display = False
     try:
         snapshot = _native_library().parameter_snapshot()
     except Exception as error:
-        _native_control('native_parameter_title').par.text = 'NATIVE PARAMETERS BLOCKED - ' + str(error)
-        return False
+        return _native_error(error)
     parameters = snapshot.get('parameters', [])
+    if not parameters:
+        return _native_error('Für das ausgewählte Material wurden keine veränderbaren nativen Parameter gefunden.')
+    for name in ('native_params_previous', 'native_params_next', 'native_params_reset'):
+        _native_control(name).par.display = True
     page = int(snapshot.get('page', 0))
     visible = parameters[page * 6:page * 6 + 6]
     _native_control('native_parameter_title').par.text = (

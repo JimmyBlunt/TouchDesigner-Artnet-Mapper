@@ -117,6 +117,12 @@ def test_dynamic_native_parameter_drawer_supports_types_groups_and_paging():
     assert "compile_note = ' | RECOMPILE'" in runtime
     assert "toggle_native_parameters(True)" in runtime
     assert "toggle_native_parameters(False)" in runtime
+    assert "ZURÜCK ZU MATERIALIEN" in text
+    assert "def _clear_native_parameter_rows():" in runtime
+    assert "def _native_error(message):" in runtime
+    assert "NATIVE PARAMETERS NICHT VERFÜGBAR" in runtime
+    assert "if not parameters:" in runtime
+    assert "label.unstore('parameter_name')" in runtime
 
 
 def load_tests(loader, tests, pattern):
