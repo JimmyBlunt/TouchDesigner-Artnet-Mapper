@@ -20,10 +20,10 @@ CATALOG = PROJECT_ROOT / "material_library" / "catalogs" / "madmapper-official-d
 IMPORT_ROOT = PROJECT_ROOT / "material_library" / "imported"
 SLOT_COUNT = 32
 GROUP_OPTION_COUNT = 20
-NATIVE_PARAMETER_SLOT_COUNT = 32
+NATIVE_PARAMETER_SLOT_COUNT = 16
 NATIVE_PARAMETER_COMPONENT_COUNT = 4
 NATIVE_PARAMETER_COLUMN_COUNT = 2
-NATIVE_PARAMETER_ROWS_PER_COLUMN = 16
+NATIVE_PARAMETER_ROWS_PER_COLUMN = 8
 
 # Exact public names created by this builder. TouchDesigner suffixes a name
 # when an older builder left a same-name sibling behind; these prefixes let us
@@ -386,7 +386,7 @@ def _material_player_surface(controls):
 
 
 def _native_parameter_controls(browser):
-    """Build a 32-row master list with one shared four-component editor."""
+    """Build a dense 16-row page with one shared four-component editor."""
     open_button = _button(browser, 'native_params_open', 'NATIVE PARAMS', 1120, 790, 140, 28, (0.14, 0.24, 0.40))
     _momentary_execute(
         browser, 'native_params_open_click', open_button,
@@ -394,7 +394,7 @@ def _native_parameter_controls(browser):
     )
     drawer = _panel(
         _get_or_create(browser, containerCOMP, 'native_parameter_drawer'),
-        20, 40, 1240, 780, 120,
+        20, 364, 1240, 456, 120,
     )
     _remove_native_parameter_children(drawer)
     for name, value in (
@@ -404,27 +404,28 @@ def _native_parameter_controls(browser):
         _set(drawer, name, value)
     title = _text(
         drawer, 'native_parameter_title', 'NATIVE MADMAPPER PARAMETERS',
-        16, 734, 970, 30, 14, (0.91, 0.96, 1.0),
+        16, 410, 970, 30, 14, (0.91, 0.96, 1.0),
     )
     for suffix, value in zip('rgb', (0.035, 0.041, 0.050)):
         _set(title, 'bgcolor' + suffix, value)
     message = _text(
-        drawer, 'native_parameter_message', '', 16, 70, 1208, 648, 13,
+        drawer, 'native_parameter_message', '', 16, 70, 1208, 336, 13,
         (0.98, 0.52, 0.30),
     )
     message.par.display = False
     back_top = _button(
         drawer, 'native_params_back_top', 'ZURÜCK ZU MATERIALIEN',
-        1000, 734, 224, 30, (0.20, 0.12, 0.13),
+        1000, 410, 224, 30, (0.20, 0.12, 0.13),
     )
     _momentary_execute(
         drawer, 'native_params_back_top_click', back_top,
         "op('/project1/material_browser/unified_runtime').module.toggle_native_parameters(False)",
     )
     for slot in range(NATIVE_PARAMETER_SLOT_COUNT):
-        column, row = divmod(slot, NATIVE_PARAMETER_ROWS_PER_COLUMN)
+        column = slot % NATIVE_PARAMETER_COLUMN_COUNT
+        row = slot // NATIVE_PARAMETER_COLUMN_COUNT
         cell_x = 16 + column * 604
-        y = 698 - row * 32
+        y = 374 - row * 32
         shade = 0.105 if slot % 2 == 0 else 0.085
         row_button = _button(
             drawer, 'native_param_row_%d' % slot, 'PARAMETER | VALUE',
@@ -438,11 +439,11 @@ def _native_parameter_controls(browser):
         row_button.par.display = False
     editor_title = _text(
         drawer, 'native_param_editor_title', 'SELECT A PARAMETER',
-        16, 154, 300, 34, 10, (0.91, 0.96, 1.0),
+        16, 70, 300, 34, 10, (0.91, 0.96, 1.0),
     )
     editor_action = _button(
         drawer, 'native_param_editor_action', 'ACTION',
-        324, 154, 900, 34, (0.14, 0.22, 0.30),
+        324, 70, 900, 34, (0.14, 0.22, 0.30),
     )
     _momentary_execute(
         drawer, 'native_param_editor_action_click', editor_action,
@@ -452,7 +453,7 @@ def _native_parameter_controls(browser):
     for component in range(NATIVE_PARAMETER_COMPONENT_COUNT):
         slider = _panel(
             _get_or_create(drawer, sliderCOMP, 'native_param_editor_%d' % component),
-            324 + component * 226, 154, 222, 34, 150,
+            324 + component * 226, 70, 222, 34, 150,
         )
         _set(slider, 'fontsize', 10)
         _set(slider, 'label', ('VALUE', 'Y', 'Z', 'W')[component])
@@ -464,8 +465,8 @@ def _native_parameter_controls(browser):
             drawer, 'native_param_editor_%d_change' % component,
             slider, component,
         )
-    previous = _button(drawer, 'native_params_previous', '< PREVIOUS 32', 16, 20, 150, 28, (0.11, 0.13, 0.15))
-    next_button = _button(drawer, 'native_params_next', 'NEXT 32 >', 176, 20, 150, 28, (0.11, 0.13, 0.15))
+    previous = _button(drawer, 'native_params_previous', '< PREVIOUS 16', 16, 20, 150, 28, (0.11, 0.13, 0.15))
+    next_button = _button(drawer, 'native_params_next', 'NEXT 16 >', 176, 20, 150, 28, (0.11, 0.13, 0.15))
     reset = _button(drawer, 'native_params_reset', 'RESET MATERIAL', 336, 20, 180, 28, (0.24, 0.18, 0.10))
     close = _button(drawer, 'native_params_close', 'ZURÜCK', 1054, 20, 170, 28, (0.20, 0.12, 0.13))
     for name, button, body in (
@@ -490,9 +491,10 @@ CATALOG = Path(r'C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/material_lib
 IMPORT_ROOT = Path(r'C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/material_library/imported')
 ITEMS = []
 FILTERED = []
-NATIVE_PARAMETER_SLOT_COUNT = 32
+NATIVE_PARAMETER_SLOT_COUNT = 16
 NATIVE_PAGE = 0
-NATIVE_PARAMETER_ROWS_PER_COLUMN = 16
+NATIVE_PARAMETER_COLUMN_COUNT = 2
+NATIVE_PARAMETER_ROWS_PER_COLUMN = 8
 NATIVE_SELECTED_SLOT = 0
 NATIVE_PAGE_STORE_KEY = 'native_parameter_page'
 NATIVE_SLOT_STORE_KEY = 'native_parameter_selected_slot'
@@ -575,6 +577,29 @@ def toggle_native_parameters(show=None):
 
 def _native_control(name):
     return OWNER.op('native_parameter_drawer/' + str(name))
+
+def _layout_native_drawer(visible_count):
+    """Keep the drawer dense while preserving room for one shared editor."""
+    drawer = OWNER.op('native_parameter_drawer')
+    row_count = max(1, min(NATIVE_PARAMETER_ROWS_PER_COLUMN,
+                           (int(visible_count) + NATIVE_PARAMETER_COLUMN_COUNT - 1)
+                           // NATIVE_PARAMETER_COLUMN_COUNT))
+    height = 200 + row_count * 32
+    drawer.par.h = height
+    drawer.par.y = 820 - height
+    title_y = height - 46
+    _native_control('native_parameter_title').par.y = title_y
+    _native_control('native_params_back_top').par.y = title_y
+    message = _native_control('native_parameter_message')
+    message.par.y = 70
+    message.par.h = max(80, height - 120)
+    for slot in range(NATIVE_PARAMETER_SLOT_COUNT):
+        row = slot // NATIVE_PARAMETER_COLUMN_COUNT
+        _native_control('native_param_row_%d' % slot).par.y = height - 82 - row * 32
+    _native_control('native_param_editor_title').par.y = 70
+    _native_control('native_param_editor_action').par.y = 70
+    for component in range(4):
+        _native_control('native_param_editor_%d' % component).par.y = 70
 
 def _clear_native_parameter_rows():
     """Hide and detach the compact master rows and shared editor."""
@@ -672,6 +697,7 @@ def _render_native_editor(parameter):
             handler.par.active = True
 
 def _native_error(message):
+    _layout_native_drawer(2)
     _clear_native_parameter_rows()
     _native_control('native_parameter_title').par.text = 'NATIVE PARAMETERS NICHT VERFÜGBAR'
     detail = _native_control('native_parameter_message')
@@ -707,6 +733,7 @@ def render_native_parameters():
         NATIVE_PAGE * NATIVE_PARAMETER_SLOT_COUNT:
         NATIVE_PAGE * NATIVE_PARAMETER_SLOT_COUNT + NATIVE_PARAMETER_SLOT_COUNT
     ]
+    _layout_native_drawer(len(visible))
     NATIVE_SELECTED_SLOT = max(0, min(len(visible) - 1, int(NATIVE_SELECTED_SLOT)))
     OWNER.store(NATIVE_PAGE_STORE_KEY, NATIVE_PAGE)
     OWNER.store(NATIVE_SLOT_STORE_KEY, NATIVE_SELECTED_SLOT)

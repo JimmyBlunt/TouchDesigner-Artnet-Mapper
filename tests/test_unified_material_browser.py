@@ -125,7 +125,7 @@ def test_dynamic_native_parameter_drawer_supports_types_groups_and_overflow_pagi
     text = source()
     runtime = module()._runtime_source()
     assert "def _native_parameter_controls(browser):" in text
-    assert "NATIVE_PARAMETER_SLOT_COUNT = 32" in text
+    assert "NATIVE_PARAMETER_SLOT_COUNT = 16" in text
     assert "range(NATIVE_PARAMETER_SLOT_COUNT)" in text
     assert "parameterexecuteDAT" in text
     assert 'node.par.pars = "value0"' in text
@@ -141,12 +141,15 @@ def test_dynamic_native_parameter_drawer_supports_types_groups_and_overflow_pagi
 def test_native_parameter_drawer_uses_compact_touchdesigner_style_rows():
     text = source()
     runtime = module()._runtime_source()
-    assert "20, 40, 1240, 780, 120" in text
+    assert "20, 364, 1240, 456, 120" in text
     assert "NATIVE_PARAMETER_COLUMN_COUNT = 2" in text
-    assert "NATIVE_PARAMETER_ROWS_PER_COLUMN = 16" in text
-    assert "column, row = divmod(slot, NATIVE_PARAMETER_ROWS_PER_COLUMN)" in text
+    assert "NATIVE_PARAMETER_ROWS_PER_COLUMN = 8" in text
+    assert "NATIVE_PARAMETER_COLUMN_COUNT = 2" in runtime
+    assert "NATIVE_PARAMETER_ROWS_PER_COLUMN = 8" in runtime
+    assert "column = slot % NATIVE_PARAMETER_COLUMN_COUNT" in text
+    assert "row = slot // NATIVE_PARAMETER_COLUMN_COUNT" in text
     assert "cell_x = 16 + column * 604" in text
-    assert "y = 698 - row * 32" in text
+    assert "y = 374 - row * 32" in text
     assert "drawer, 'native_param_row_%d' % slot" in text
     assert "cell_x, y, 588, 26" in text
     assert "module.native_select(%d)" in text
@@ -159,9 +162,9 @@ def test_native_parameter_drawer_uses_compact_touchdesigner_style_rows():
     assert "row.unstore('parameter_name')" in runtime
 
 
-def test_normal_native_materials_render_all_parameters_on_one_page():
+def test_native_materials_use_dense_adaptive_pages():
     runtime = module()._runtime_source()
-    assert "NATIVE_PARAMETER_SLOT_COUNT = 32" in runtime
+    assert "NATIVE_PARAMETER_SLOT_COUNT = 16" in runtime
     assert "page_count = max(1, (len(parameters) + NATIVE_PARAMETER_SLOT_COUNT - 1) // NATIVE_PARAMETER_SLOT_COUNT)" in runtime
     assert "NATIVE_PAGE * NATIVE_PARAMETER_SLOT_COUNT:" in runtime
     assert "_native_control('native_params_previous').par.display = overflow" in runtime
@@ -169,6 +172,12 @@ def test_normal_native_materials_render_all_parameters_on_one_page():
     assert "set_parameter_page" not in runtime
     assert "NATIVE_PAGE = 0" in runtime
     assert "NATIVE_SELECTED_SLOT = 0" in runtime
+    assert "def _layout_native_drawer(visible_count):" in runtime
+    assert "height = 200 + row_count * 32" in runtime
+    assert "drawer.par.y = 820 - height" in runtime
+    assert "_layout_native_drawer(len(visible))" in runtime
+    assert "'< PREVIOUS 16'" in source()
+    assert "'NEXT 16 >'" in source()
 
 
 def test_native_rows_share_one_lightweight_typed_editor():
