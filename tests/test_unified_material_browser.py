@@ -109,6 +109,8 @@ def test_material_player_shortcut_surface_has_preview_and_live_controls():
     assert "controls, containerCOMP, 'ui_panel'" in text
     assert "panel.viewer = True" in text
     assert "'player_preview'" in text
+    assert "op('/project1/visual_source_switch')" in text
+    assert text.index("op('/project1/visual_source_switch')", text.index("def _material_player_surface")) < text.index("controls.op('material_preview')", text.index("def _material_player_surface"))
     for parameter in ("Speed", "Scale", "Width", "Focusx", "Focusy", "Framezoom", "Intensity", "Contrast"):
         assert "'%s'" % parameter in text
     assert "ART-NET ACTUAL" in text

@@ -314,7 +314,16 @@ def _material_player_surface(controls):
     _text(panel, 'player_title', 'MATERIAL PLAYER | RAW MATERIAL + LIVE CONTROLS', 20, 670, 1140, 36, 21, (0.92, 0.96, 1.0))
     _text(panel, 'player_status', 'SOURCE / MATERIAL', 20, 632, 1140, 28, 12, (0.38, 0.76, 0.96))
     _text(panel, 'player_fps', 'FPS', 20, 598, 1140, 26, 11, (0.35, 0.90, 0.67))
-    raw = controls.op('material_preview') or op('/project1/material_source')
+    # Show the same canonical source that feeds the live mapping pipeline.
+    # ``material_preview`` is a legacy Select TOP wired to
+    # ``/project1/madmapper_material_player``; imported materials bypass that
+    # player and therefore appeared as TouchDesigner's solid-magenta error
+    # image in this dialog even while the live source was valid.
+    raw = (
+        op('/project1/visual_source_switch')
+        or controls.op('material_preview')
+        or op('/project1/material_source')
+    )
     if raw is not None:
         _viewer(panel, 'player_preview', raw, 20, 82, 720, 506)
     _text(panel, 'controls_title', 'LIVE PLAYER CONTROLS', 770, 580, 380, 32, 16, (0.91, 0.96, 1.0))
