@@ -903,18 +903,18 @@ def _populate_group_menu():
         else:
             button.par.display = False
 
-def refresh():
+def refresh(reset_page=True):
     global ITEMS
     try:
         ITEMS = _core_items() + _imported_items()
         _populate_group_menu()
-        apply_filters()
+        apply_filters(reset_page=reset_page)
         imported = sum(item['source'] == 'imported' for item in ITEMS)
         _status('READY | %d CORE + %d IMPORTED | DMX OFF' % (len(ITEMS) - imported, imported))
         return True
     except Exception as error:
         ITEMS = []
-        apply_filters()
+        apply_filters(reset_page=reset_page)
         _status('BROWSER BLOCKED - ' + str(error), False)
         return False
 
@@ -923,7 +923,7 @@ def _matches(token, text):
         return True
     return any(SequenceMatcher(None, token, word).ratio() >= 0.78 for word in re.findall(r'[a-z0-9]+', text))
 
-def apply_filters():
+def apply_filters(reset_page=True):
     global FILTERED
     query = _field().lower()
     tokens = [value for value in query.split() if value]
@@ -939,7 +939,8 @@ def apply_filters():
         if group != 'all' and group not in item['groups']:
             continue
         FILTERED.append(item)
-    _set_state('page', 0)
+    if reset_page:
+        _set_state('page', 0)
     render()
 
 def cycle_source():
@@ -1063,7 +1064,7 @@ def select_slot(slot):
 # The Text DAT module is recreated when a .toe file is reopened.  Populate the
 # runtime catalog on import so visible material cards can always resolve their
 # selection, rather than relying on the one-time builder invocation.
-refresh()
+refresh(reset_page=False)
 '''
 
 

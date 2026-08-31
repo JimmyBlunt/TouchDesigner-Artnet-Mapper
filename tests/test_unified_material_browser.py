@@ -45,6 +45,16 @@ def test_search_group_source_paging_and_both_layouts_exist():
     assert 'opviewerTOP, "ui_preview"' in source()
 
 
+def test_runtime_reload_preserves_the_visible_page_before_card_selection():
+    runtime = module()._runtime_source()
+    assert "def refresh(reset_page=True):" in runtime
+    assert "def apply_filters(reset_page=True):" in runtime
+    assert "apply_filters(reset_page=reset_page)" in runtime
+    assert "if reset_page:\n        _set_state('page', 0)" in runtime
+    assert runtime.rstrip().endswith("refresh(reset_page=False)")
+    assert "index = int(_state('page', 0)) * size + int(slot)" in runtime
+
+
 def test_selection_preserves_existing_indices_and_appends_imported_source():
     text = source()
     runtime = module()._runtime_source()
