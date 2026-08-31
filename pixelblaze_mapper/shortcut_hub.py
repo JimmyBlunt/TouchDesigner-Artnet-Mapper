@@ -27,6 +27,7 @@ SHORTCUTS = (
     ShortcutSpec("7", "OUTPUT CONFIG", "/project1/pixelblaze_mapper/output_config/ui_panel", "Schreibgeschützten Live-Status prüfen und Art-Net Router öffnen"),
     ShortcutSpec("8", "SHOW CONTROL", "/project1/show_control/control_panel", "Cues, Übergänge und Show-Ablauf steuern"),
     ShortcutSpec("9", "SHORTCUT HELP", "/project1/shortcut_hub/help_panel", "Diese Shortcut-Übersicht öffnen"),
+    ShortcutSpec("0", "GICO PORT CONFIG", "/project1/multi_controller_output/gico_port_config/ui_panel", "Globale Universen pro Port und feste GICO-Portblöcke konfigurieren"),
 )
 
 

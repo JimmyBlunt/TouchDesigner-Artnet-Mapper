@@ -316,6 +316,14 @@ class BuilderContractTests(unittest.TestCase):
         self.assertIn("sender.module.set_enabled(True)", start)
         self.assertNotIn("node.par.active = True", start)
 
+    def test_safe_rebuild_keeps_touchdesigner_execution_context(self):
+        text = (Path(__file__).parents[1] / "pixelblaze_mapper" / "build_multi_controller_output.py").read_text(encoding="utf-8")
+        self.assertIn("from pathlib import Path", text)
+        callbacks = text[text.index("def apply_safe"):text.index("def all_off")]
+        self.assertIn("scope = dict(globals())", callbacks)
+        self.assertIn("scope['__name__'] = '__main__'", callbacks)
+        self.assertNotIn("scope = {'__name__': '__main__'}", callbacks)
+
 
     def test_builder_cannot_retrigger_saved_momentary_button_state(self):
         text = (Path(__file__).parents[1] / "pixelblaze_mapper" / "build_multi_controller_output.py").read_text(encoding="utf-8")

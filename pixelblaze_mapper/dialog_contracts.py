@@ -1,4 +1,4 @@
-"""Non-destructive contracts for the nine shortcut-reachable TouchDesigner dialogs.
+"""Non-destructive contracts for the shortcut-reachable TouchDesigner dialogs.
 
 This module intentionally describes *what can be checked without a running UI*.
 It is used by the automated regression suite so a future builder change cannot
@@ -59,6 +59,11 @@ DIALOGS: tuple[DialogContract, ...] = (
     DialogContract("9", "SHORTCUT HELP", "/project1/shortcut_hub/help_panel",
                    "pixelblaze_mapper/build_shortcut_hub.py",
                    "Shortcut-Übersicht; nur Navigation."),
+    DialogContract("0", "GICO PORT CONFIG",
+                   "/project1/multi_controller_output/gico_port_config/ui_panel",
+                   "pixelblaze_mapper/build_gico_port_config_ui.py",
+                   "Globale GICO-Universenzahl und feste Portblöcke konfigurieren.",
+                   ("Entwurf validieren",), ("Sicher anwenden",)),
 )
 
 
@@ -66,8 +71,8 @@ def validate_dialog_contracts(dialogs: tuple[DialogContract, ...] = DIALOGS) -> 
     issues: list[str] = []
     keys = [item.key for item in dialogs]
     targets = [item.target for item in dialogs]
-    if keys != [str(number) for number in range(1, 10)]:
-        issues.append("shortcut keys must be 1 through 9 in order")
+    if keys != list("1234567890"):
+        issues.append("shortcut keys must be 1 through 9 followed by 0")
     if len(set(targets)) != len(targets):
         issues.append("dialog targets must be unique")
     for item in dialogs:

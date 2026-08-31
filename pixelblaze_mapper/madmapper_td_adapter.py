@@ -9,11 +9,18 @@ and metadata in the browser.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import json
 from pathlib import Path
 import re
 from typing import Any, Iterable, Mapping
+
+from pixelblaze_mapper.madmapper_parameters import (
+    MaterialParameter,
+    SUPPORTED_TYPES,
+    coerce_value,
+    parameter_schema,
+)
 
 
 _HEADER_RE = re.compile(r"/\*\s*(\{.*?\})\s*\*/", re.DOTALL)
@@ -24,7 +31,7 @@ _SAFE_IDENTIFIER_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 
 _TEXTURE_INPUTS = {"image", "audio", "audiofft", "2d", "3d", "cube"}
 _SUPPORTED_GENERATORS = {"time_base"}
-ADAPTER_VERSION = 2
+ADAPTER_VERSION = 3
 ADAPTER_MARKER = "// PIXELBLAZE_MADMAPPER_ADAPTER_VERSION %d" % ADAPTER_VERSION
 
 
@@ -35,6 +42,8 @@ class AdaptationResult:
     warnings: tuple[str, ...]
     shader: str | None
     metadata: Mapping[str, Any]
+    schema: tuple[MaterialParameter, ...] = ()
+    bindings: Mapping[str, str] = field(default_factory=dict)
 
     @property
     def adaptable(self) -> bool:
@@ -97,9 +106,72 @@ def _symbol(value: Any) -> str:
     return text if not text[0].isdigit() else "_" + text
 
 
-def _input_definitions(metadata: Mapping[str, Any]) -> tuple[list[str], list[str]]:
+def _selected_input_value(parameter: MaterialParameter, input_values: Mapping[str, Any]) -> Any:
+    value = input_values.get(parameter.name, parameter.default)
+    if parameter.kind == "long" and isinstance(value, str):
+        value = parameter.values.index(value) if value in parameter.values else parameter.default
+    return coerce_value(parameter, value)
+
+
+def _compile_time_input_definitions(parameter: MaterialParameter, value: Any) -> list[str]:
+    name = parameter.name
+    kind = parameter.kind
+    if kind == "float":
+        return ["const float %s = %s;" % (name, _glsl_number(value))]
+    if kind in {"int", "event"}:
+        return ["const int %s = %s;" % (name, _glsl_number(value, integer=True))]
+    if kind == "bool":
+        truth = bool(value)
+        return [
+            "const bool %s = %s;" % (name, "true" if truth else "false"),
+            "#define %s_IS_%s" % (name, "true" if truth else "false"),
+        ]
+    if kind == "long":
+        index = int(value)
+        selected = parameter.values[index] if 0 <= index < len(parameter.values) else index
+        return [
+            "const int %s = %d;" % (name, index),
+            "#define %s_IS_%s" % (name, _symbol(selected)),
+        ]
+    if kind in {"point2d", "size2d", "floatrange"}:
+        return ["const vec2 %s = %s;" % (name, _glsl_vector(value, 2))]
+    if kind == "color":
+        return ["const vec4 %s = %s;" % (name, _glsl_vector(value, 4))]
+    return []
+
+
+def _runtime_input_definitions(parameter: MaterialParameter) -> list[str]:
+    name = parameter.name
+    uniform = parameter.uniform
+    kind = parameter.kind
+    definitions = ["uniform vec4 %s; // native input: %s" % (uniform, name)]
+    if kind == "float":
+        expression = "%s.x" % uniform
+    elif kind in {"int", "event", "long"}:
+        expression = "int(round(%s.x))" % uniform
+    elif kind == "bool":
+        expression = "%s.x > 0.5" % uniform
+    elif kind in {"point2d", "size2d", "floatrange"}:
+        expression = "%s.xy" % uniform
+    elif kind == "color":
+        expression = uniform
+    else:  # pragma: no cover - guarded by parameter_schema
+        return []
+    definitions.append("#define %s (%s)" % (name, expression))
+    return definitions
+
+
+def _input_definitions(
+    metadata: Mapping[str, Any], input_values: Mapping[str, Any] | None = None
+) -> tuple[list[str], list[str], tuple[MaterialParameter, ...], dict[str, str]]:
     definitions: list[str] = []
     reasons: list[str] = []
+    values = input_values if isinstance(input_values, Mapping) else {}
+    schema = parameter_schema(metadata)
+
+    # Retain the adapter safety gate for inputs which the pure schema parser
+    # deliberately omits.  This keeps texture/audio requirements visible as
+    # explicit unsupported reasons instead of silently dropping them.
     for item in _items(metadata, "INPUTS"):
         name = str(item.get("NAME", "")).strip()
         kind = str(item.get("TYPE", "float")).lower()
@@ -109,35 +181,21 @@ def _input_definitions(metadata: Mapping[str, Any]) -> tuple[list[str], list[str
         if kind in _TEXTURE_INPUTS:
             reasons.append("requires %s input: %s" % (kind, name))
             continue
-        default = item.get("DEFAULT", 0.0)
-        flags = str(item.get("FLAGS", "")).lower()
-        if kind == "float":
-            definitions.append("const float %s = %s;" % (name, _glsl_number(default)))
-        elif kind in {"int", "event"}:
-            definitions.append("const int %s = %s;" % (name, _glsl_number(default, integer=True)))
-        elif kind == "bool":
-            truth = bool(default) and str(default).lower() not in {"0", "false", "none"}
-            definitions.append("const bool %s = %s;" % (name, "true" if truth else "false"))
-            if "generate_as_define" in flags:
-                definitions.append("#define %s_IS_%s" % (name, "true" if truth else "false"))
-        elif kind == "long":
-            values = item.get("VALUES", [])
-            if isinstance(default, str) and isinstance(values, list) and default in values:
-                index = values.index(default)
-                selected = default
-            else:
-                index = int(default) if isinstance(default, (int, float)) else 0
-                selected = values[index] if isinstance(values, list) and 0 <= index < len(values) else index
-            definitions.append("const int %s = %d;" % (name, index))
-            if "generate_as_define" in flags:
-                definitions.append("#define %s_IS_%s" % (name, _symbol(selected)))
-        elif kind in {"point2d", "size2d", "floatrange"}:
-            definitions.append("const vec2 %s = %s;" % (name, _glsl_vector(default, 2)))
-        elif kind == "color":
-            definitions.append("const vec4 %s = %s;" % (name, _glsl_vector(default, 4)))
-        else:
+        if kind not in SUPPORTED_TYPES:
             reasons.append("unsupported input type %s: %s" % (kind, name))
-    return definitions, reasons
+
+    bindings: dict[str, str] = {}
+    for parameter in schema:
+        if parameter.compile_time:
+            definitions.extend(
+                _compile_time_input_definitions(
+                    parameter, _selected_input_value(parameter, values)
+                )
+            )
+        else:
+            definitions.extend(_runtime_input_definitions(parameter))
+            bindings[parameter.name] = parameter.uniform
+    return definitions, reasons, schema, bindings
 
 
 def _generator_definitions(metadata: Mapping[str, Any]) -> tuple[list[str], list[str], list[str]]:
@@ -193,7 +251,11 @@ def _inline_includes(source: str, parent: Path, library_roots: Iterable[Path], s
     return _INCLUDE_RE.sub(replace, source), reasons
 
 
-def adapt_material(shader_path: str | Path, library_roots: Iterable[str | Path] = ()) -> AdaptationResult:
+def adapt_material(
+    shader_path: str | Path,
+    library_roots: Iterable[str | Path] = (),
+    input_values: Mapping[str, Any] | None = None,
+) -> AdaptationResult:
     path = Path(shader_path).resolve()
     source = path.read_text(encoding="utf-8-sig")
     metadata = _metadata_from_source(source)
@@ -219,7 +281,7 @@ def adapt_material(shader_path: str | Path, library_roots: Iterable[str | Path] 
     if _items(metadata, "IMPORTED"):
         reasons.append("requires imported textures")
 
-    input_defs, input_reasons = _input_definitions(metadata)
+    input_defs, input_reasons, schema, bindings = _input_definitions(metadata, input_values)
     generator_defs, generator_reasons, generator_warnings = _generator_definitions(metadata)
     reasons.extend(input_reasons)
     reasons.extend(generator_reasons)
@@ -231,7 +293,10 @@ def adapt_material(shader_path: str | Path, library_roots: Iterable[str | Path] 
     reasons.extend(include_reasons)
 
     if reasons:
-        return AdaptationResult("unsupported", tuple(dict.fromkeys(reasons)), tuple(dict.fromkeys(warnings)), None, metadata)
+        return AdaptationResult(
+            "unsupported", tuple(dict.fromkeys(reasons)), tuple(dict.fromkeys(warnings)),
+            None, metadata, schema, bindings,
+        )
 
     prelude = """%s
 // Prepared from a MadMapper material for TouchDesigner GLSL TOP.
@@ -265,7 +330,10 @@ void main()
     fragColor = TDOutputSwizzle(materialColorForPixel(mapMadMapperUV(vUV.st)));
 }
 """])
-    return AdaptationResult("adaptable", (), tuple(dict.fromkeys(warnings)), prepared, metadata)
+    return AdaptationResult(
+        "adaptable", (), tuple(dict.fromkeys(warnings)), prepared, metadata,
+        schema, bindings,
+    )
 
 
 def prepared_shader_is_current(source: str) -> bool:

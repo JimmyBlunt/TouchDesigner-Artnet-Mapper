@@ -17,6 +17,7 @@ Während ein Textfeld aktiv ist, kann das Textfeld den Tastendruck abfangen.
 | `Strg+Umschalt+7` | OUTPUT CONFIG | Schreibgeschützten Live-Status kontrollieren und bei Bedarf den Art-Net Router öffnen. |
 | `Strg+Umschalt+8` | SHOW CONTROL | Cues, Übergänge, Wiedergabe und Blackout einer Show steuern. |
 | `Strg+Umschalt+9` | SHORTCUT HELP | Diese Übersicht direkt in TouchDesigner öffnen. |
+| `Strg+Umschalt+0` | GICO PORT CONFIG | Globale Universen pro Port sowie feste GICO-Portblöcke konfigurieren und vor dem sicheren Anwenden validieren. |
 
 ## Verbindlicher Signalweg
 

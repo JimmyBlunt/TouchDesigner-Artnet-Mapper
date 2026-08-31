@@ -39,7 +39,7 @@ class MaterialBrowserPlayerRegressionTests(unittest.TestCase):
     def test_material_browser_exposes_all_current_live_controls(self):
         text = source(BROWSER)
         for label in (
-        "SPEED",
+        "MASTER SPEED",
         "FOCUS X",
         "FOCUS Y",
         "FRAME ZOOM",
@@ -59,7 +59,8 @@ class MaterialBrowserPlayerRegressionTests(unittest.TestCase):
 
     def test_visible_material_control_callbacks_target_the_central_player(self):
         text = source(BROWSER)
-        self.assertIn("op('/project1/madmapper_player_controls').par.%s = float(panelValue)", text)
+        self.assertIn("op('/project1/madmapper_player_controls').par.%s = float(par.eval())", text)
+        self.assertIn('node.par.pars = "value0"', text)
         self.assertIn("controls.par.Source = 'materials'", text)
         self.assertIn("controls.par.Material = item['id']", text)
 

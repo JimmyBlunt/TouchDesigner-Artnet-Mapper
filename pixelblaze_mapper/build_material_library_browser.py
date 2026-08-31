@@ -245,10 +245,16 @@ def _runtime_source():
     """Return the self-contained runtime installed into the library COMP."""
 
     return r'''import json
+import importlib
 import re
 from dataclasses import asdict, is_dataclass
 from difflib import SequenceMatcher
 from pathlib import Path
+
+import pixelblaze_mapper.madmapper_parameters as _madmapper_parameters_module
+import pixelblaze_mapper.madmapper_td_adapter as _madmapper_adapter_module
+importlib.reload(_madmapper_parameters_module)
+importlib.reload(_madmapper_adapter_module)
 
 OWNER = op('/project1/madmapper_library')
 VIEW_HEADERS = ('slot', 'id', 'label', 'category', 'tags', 'compatibility', 'source_path', 'preview_path')
@@ -256,6 +262,14 @@ READY_COMPATIBILITY = {'native', 'touchdesigner', 'ready', 'compatible', 'adapte
 
 _items = []
 _filtered = []
+
+from pixelblaze_mapper.imported_material_state import ImportedMaterialStateStore
+
+_stored_parameter_store = (OWNER.fetch('madmapper_parameter_store', None)
+                           if hasattr(OWNER, 'fetch') else None)
+PARAMETER_STORE = (_stored_parameter_store
+                   if isinstance(_stored_parameter_store, ImportedMaterialStateStore)
+                   else ImportedMaterialStateStore())
 
 def _parameter(name, default=''):
     par = getattr(OWNER.par, name, None)
@@ -292,6 +306,28 @@ def _set_state(name, value):
             table[row, 1] = value
             return
     table.appendRow((name, value))
+
+def _persist_parameter_store():
+    OWNER.store('madmapper_parameter_store', PARAMETER_STORE)
+    document = json.dumps(PARAMETER_STORE.to_dict(), sort_keys=True, separators=(',', ':'))
+    table = OWNER.op('material_parameter_state')
+    table.clear()
+    table.appendRow(('key', 'json'))
+    table.appendRow(('document', document))
+
+def _restore_parameter_store():
+    global PARAMETER_STORE
+    if not hasattr(OWNER, 'op'):
+        return
+    table = OWNER.op('material_parameter_state')
+    if table is None or table.numRows < 2:
+        return
+    try:
+        document = json.loads(str(table[1, 1]))
+        PARAMETER_STORE = ImportedMaterialStateStore.from_dict(document)
+        OWNER.store('madmapper_parameter_store', PARAMETER_STORE)
+    except Exception:
+        pass
 
 def _record_dict(record):
     if isinstance(record, dict):
@@ -818,15 +854,166 @@ def _shader_for_hover(item):
         item['prepared_shader_path'] = str(prepared)
     return adaptation.shader
 
+def _adaptation_for_item(item, input_values=None):
+    """Adapt the approved original source and retain its native INPUT schema."""
+    source_path = _validated_file(item.get('source_path'), {'.fs'})
+    import importlib
+    import pixelblaze_mapper.madmapper_parameters as madmapper_parameters
+    import pixelblaze_mapper.madmapper_td_adapter as madmapper_td_adapter
+    importlib.reload(madmapper_parameters)
+    importlib.reload(madmapper_td_adapter)
+    from pixelblaze_mapper.material_library import load_catalog
+    catalog_path = Path(_parameter('Catalogfile')).expanduser().resolve(strict=True)
+    catalog = load_catalog(catalog_path)
+    source_root = Path(catalog.source_root).resolve()
+    return madmapper_td_adapter.adapt_material(
+        source_path,
+        library_roots=(source_root, source_root.parent,
+                       source_path.parent, source_path.parent.parent),
+        input_values=input_values,
+    )
+
+def _parameter_context(item):
+    initial = _adaptation_for_item(item)
+    values = PARAMETER_STORE.merge(item['id'], initial.schema)
+    adaptation = _adaptation_for_item(item, values)
+    if not adaptation.adaptable or not adaptation.shader:
+        raise ValueError('; '.join(adaptation.reasons) or 'material is not adaptable')
+    values = PARAMETER_STORE.merge(item['id'], adaptation.schema)
+    return adaptation, values
+
+def _configure_parameter_uniforms(preview, adaptation, values):
+    from pixelblaze_mapper.madmapper_parameters import uniform_vector
+    preview.par.vec.sequence.numBlocks = 3 + len(adaptation.schema)
+    rows = [('index', 'name', 'label', 'group', 'type', 'uniform', 'compile_time',
+             'components', 'min', 'max', 'values', 'value')]
+    for parameter in adaptation.schema:
+        block = 3 + parameter.index
+        getattr(preview.par, 'vec%dname' % block).val = (
+            '' if parameter.compile_time else parameter.uniform)
+        vector = uniform_vector(parameter, values[parameter.name])
+        for suffix, component in zip('xyzw', vector):
+            value_par = getattr(preview.par, 'vec%dvalue%s' % (block, suffix))
+            value_par.expr = ''
+            value_par.val = component
+        rows.append((
+            parameter.index, parameter.name, parameter.display_label,
+            ' / '.join(parameter.groups), parameter.kind, parameter.uniform,
+            int(parameter.compile_time), parameter.components,
+            json.dumps(parameter.minimum), json.dumps(parameter.maximum),
+            json.dumps(parameter.values), json.dumps(values[parameter.name]),
+        ))
+    _write_table('material_parameter_schema', rows)
+    _persist_parameter_store()
+
+def parameter_snapshot():
+    item = _selected()
+    if item is None:
+        return {'material_id': '', 'parameters': [], 'page': 0, 'page_count': 1}
+    adaptation, values = _parameter_context(item)
+    page_count = max(1, (len(adaptation.schema) + 5) // 6)
+    page = PARAMETER_STORE.page(item['id'], page_count)
+    return {
+        'material_id': item['id'], 'label': item['label'], 'page': page,
+        'page_count': page_count,
+        'parameters': [dict(parameter.to_dict(), value=values[parameter.name])
+                       for parameter in adaptation.schema],
+    }
+
+def set_parameter_page(delta):
+    snapshot = parameter_snapshot()
+    if not snapshot['material_id']:
+        return 0
+    page = PARAMETER_STORE.set_page(
+        snapshot['material_id'], snapshot['page'] + int(delta), snapshot['page_count'])
+    _persist_parameter_store()
+    return page
+
+def _compile_errors(preview, info_name='live_preview_info'):
+    errors = _diagnostic_messages(preview.errors())
+    info = OWNER.op(info_name)
+    info_text = str(info.text) if info is not None else ''
+    compile_lines = [line.strip() for line in info_text.splitlines()
+                     if 'error:' in line.lower() or 'failed' in line.lower()]
+    return errors + compile_lines
+
+def _activate_parameter_shader(item):
+    adaptation, values = _parameter_context(item)
+    preview = OWNER.op('live_preview')
+    previous_shader = str(OWNER.op('preview_shader').text)
+    OWNER.op('preview_shader').text = adaptation.shader
+    _configure_parameter_uniforms(preview, adaptation, values)
+    preview.cook(force=True)
+    errors = _compile_errors(preview)
+    if errors:
+        OWNER.op('preview_shader').text = previous_shader
+        preview.cook(force=True)
+        raise ValueError('; '.join(errors)[:900])
+    if item.get('imported'):
+        from pixelblaze_mapper.madmapper_td_adapter import write_prepared_shader
+        import_root = _validated_import_root(_parameter('Importroot'))
+        package = (import_root / item['id']).resolve(strict=True)
+        if package.parent != import_root:
+            raise ValueError('Managed material package is outside Import Folder')
+        prepared = write_prepared_shader(adaptation, package / 'prepared.frag')
+        item['prepared_shader_path'] = str(prepared)
+    _persist_parameter_store()
+    return True
+
+def reset_material_parameters():
+    global PARAMETER_STORE
+    item = _selected()
+    if item is None:
+        return False
+    document = PARAMETER_STORE.to_dict()
+    document.get('materials', {}).pop(item['id'], None)
+    PARAMETER_STORE = ImportedMaterialStateStore.from_dict(document)
+    OWNER.store('madmapper_parameter_store', PARAMETER_STORE)
+    return _activate_parameter_shader(item)
+
+def set_material_parameter(name, component, value):
+    global PARAMETER_STORE
+    item = _selected()
+    if item is None:
+        raise ValueError('select an imported material first')
+    adaptation, values = _parameter_context(item)
+    parameter = next((entry for entry in adaptation.schema if entry.name == str(name)), None)
+    if parameter is None:
+        raise KeyError(name)
+    previous_document = PARAMETER_STORE.to_dict()
+    try:
+        component = None if component is None or int(component) < 0 else int(component)
+        PARAMETER_STORE.set_value(item['id'], parameter, value, component=component)
+        if parameter.compile_time:
+            _activate_parameter_shader(item)
+        else:
+            current = PARAMETER_STORE.values(item['id'])
+            _configure_parameter_uniforms(OWNER.op('live_preview'), adaptation, current)
+            OWNER.op('live_preview').cook(force=True)
+        _persist_parameter_store()
+        return PARAMETER_STORE.values(item['id'])[parameter.name]
+    except Exception:
+        PARAMETER_STORE = ImportedMaterialStateStore.from_dict(previous_document)
+        OWNER.store('madmapper_parameter_store', PARAMETER_STORE)
+        raise
+
+def pulse_material_parameter(name):
+    set_material_parameter(name, -1, 1)
+    run("op('/project1/madmapper_library/runtime').module.set_material_parameter(%r, -1, 0)" % str(name), delayFrames=1)
+    return True
+
 def _compile_hover_item(item):
     source = _shader_for_hover(item)
     if 'void main' not in source:
         raise ValueError('Shader has no void main() entry point')
-    OWNER.op('preview_shader').text = source
-    preview = OWNER.op('live_preview')
+    # Hover is a diagnostic preview only.  Never write into ``preview_shader``
+    # or cook ``live_preview`` here: that TOP is published through
+    # ``imported_material_out`` and may currently drive the physical LEDs.
+    OWNER.op('hover_shader').text = source
+    preview = OWNER.op('hover_preview')
     preview.cook(force=True)
     errors = _diagnostic_messages(preview.errors())
-    info = OWNER.op('live_preview_info')
+    info = OWNER.op('hover_preview_info')
     info_text = str(info.text) if info is not None else ''
     compile_lines = [line.strip() for line in info_text.splitlines()
                      if 'error:' in line.lower() or 'failed' in line.lower()]
@@ -882,13 +1069,15 @@ def open_live_preview():
         _set_text('action_status', 'LIVE PREVIEW BLOCKED - ' + reason, (0.98, 0.38, 0.32))
         return False
     try:
-        source = _shader_for_hover(item)
+        adaptation, values = _parameter_context(item)
+        source = adaptation.shader
         if 'void main' not in source:
             raise ValueError('Shader has no void main() entry point')
         if 'TDOutputSwizzle' not in source or 'vUV' not in source:
             raise ValueError('Shader is imported but still needs TouchDesigner GLSL adaptation')
         OWNER.op('preview_shader').text = source
         preview = OWNER.op('live_preview')
+        _configure_parameter_uniforms(preview, adaptation, values)
         preview.cook(force=True)
         errors = _diagnostic_messages(preview.errors())
         warnings = _diagnostic_messages(preview.warnings())
@@ -921,6 +1110,14 @@ def open_live_preview():
     except Exception as error:
         _set_text('action_status', 'LIVE PREVIEW BLOCKED - ' + str(error), (0.98, 0.38, 0.32))
         return False
+
+_restore_parameter_store()
+# A Text DAT module can be recreated after a project reload or after its source
+# changes. The persistent selection lives in the state table, while the
+# catalogue lists above are intentionally in-memory. Repopulate them here so a
+# later button or parameter callback never sees a selected id with empty items.
+if hasattr(OWNER, 'op'):
+    refresh()
 '''
 
 
@@ -983,6 +1180,12 @@ def build():
     history = _get_or_create(owner, tableDAT, "import_history")
     if history.numRows == 0:
         _write_table(history, (("id", "name", "destination", "status"),))
+    parameter_state = _get_or_create(owner, tableDAT, "material_parameter_state")
+    if parameter_state.numRows == 0:
+        _write_table(parameter_state, (("key", "json"), ("document", '{"schema":1,"materials":{}}')))
+    parameter_schema_table = _get_or_create(owner, tableDAT, "material_parameter_schema")
+    if parameter_schema_table.numRows == 0:
+        _write_table(parameter_schema_table, (("index", "name", "label", "group", "type", "uniform", "compile_time", "components", "min", "max", "values", "value"),))
 
     runtime = _get_or_create(owner, textDAT, "runtime")
     runtime.text = _runtime_source()
@@ -1040,6 +1243,43 @@ def build():
     live_preview_info = _get_or_create(owner, infoDAT, "live_preview_info")
     _set_if_present(live_preview_info, "op", live_preview.path)
     live_preview_info.nodeX, live_preview_info.nodeY = 600, 50
+
+    # A completely separate shader/TOP pair is used for card hover.  It is
+    # intentionally not connected to imported_material_out, so moving the
+    # pointer across cards can never replace the active imported material.
+    hover_shader = _get_or_create(owner, textDAT, "hover_shader")
+    if not str(hover_shader.text).strip():
+        hover_shader.text = FALLBACK_SHADER
+    hover_preview = _get_or_create(owner, glslTOP, "hover_preview")
+    _set_if_present(hover_preview, "glslversion", "glsl430")
+    _set_if_present(hover_preview, "mode", "vertexpixel")
+    _set_if_present(hover_preview, "pixeldat", hover_shader.path)
+    _set_if_present(hover_preview, "outputresolution", "custom")
+    _set_if_present(hover_preview, "resolutionw", 512)
+    _set_if_present(hover_preview, "resolutionh", 512)
+    hover_preview.par.const.sequence.numBlocks = 1
+    hover_preview.par.const0name.val = ""
+    hover_preview.par.const0value.val = 0.0
+    hover_preview.par.vec.sequence.numBlocks = 3
+    hover_preview.par.vec0name.val = "uTDMaterial0"
+    hover_preview.par.vec0valuex.expr = "absTime.seconds"
+    hover_preview.par.vec0valuey.expr = "op('/project1/madmapper_player_controls').par.Scale"
+    hover_preview.par.vec0valuez.expr = "op('/project1/madmapper_player_controls').par.Width"
+    hover_preview.par.vec0valuew.expr = "op('/project1/madmapper_player_controls').par.Framezoom"
+    hover_preview.par.vec1name.val = "uTDMaterial1"
+    hover_preview.par.vec1valuex.expr = "op('/project1/madmapper_player_controls').par.Focusx"
+    hover_preview.par.vec1valuey.expr = "op('/project1/madmapper_player_controls').par.Focusy"
+    hover_preview.par.vec1valuez.val = 0.0
+    hover_preview.par.vec1valuew.val = 0.0
+    hover_preview.par.vec2name.val = "uTDCoordinate"
+    hover_preview.par.vec2valuex.expr = "parent().par.Coordinatemode.menuIndex"
+    hover_preview.par.vec2valuey.expr = "parent().par.Panelcolumns"
+    hover_preview.par.vec2valuez.expr = "parent().par.Panelrows"
+    hover_preview.par.vec2valuew.expr = "parent().par.Hybridmix"
+    hover_preview.nodeX, hover_preview.nodeY = 420, -200
+    hover_preview_info = _get_or_create(owner, infoDAT, "hover_preview_info")
+    _set_if_present(hover_preview_info, "op", hover_preview.path)
+    hover_preview_info.nodeX, hover_preview_info.nodeY = 600, -200
 
     compile_error_preview = _get_or_create(owner, textTOP, "compile_error_preview")
     _set_if_present(compile_error_preview, "text", "LIVE PREVIEW COULD NOT COMPILE")

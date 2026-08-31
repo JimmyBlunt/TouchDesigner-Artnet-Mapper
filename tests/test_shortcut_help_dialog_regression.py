@@ -19,10 +19,10 @@ USER_DOC = ROOT / "docs" / "TOUCHDESIGNER_SHORTCUTS_DE.md"
 
 
 class ShortcutHelpDialogRegressionTests(unittest.TestCase):
-    def test_exactly_nine_ordered_unique_shortcuts_exist(self):
+    def test_exactly_ten_ordered_unique_shortcuts_exist(self):
         self.assertEqual(validate_shortcuts(), ())
-        self.assertEqual([item.key for item in SHORTCUTS], list("123456789"))
-        self.assertEqual(len({item.target for item in SHORTCUTS}), 9)
+        self.assertEqual([item.key for item in SHORTCUTS], list("1234567890"))
+        self.assertEqual(len({item.target for item in SHORTCUTS}), 10)
 
     def test_help_rows_match_all_dialog_contracts_exactly(self):
         help_rows = shortcut_rows()[1:]

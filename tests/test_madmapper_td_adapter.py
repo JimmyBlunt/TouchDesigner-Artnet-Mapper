@@ -40,8 +40,13 @@ class AdapterTests(unittest.TestCase):
         self.assertIn("True global/panel-local/hybrid selection", result.shader)
         self.assertNotIn("vec2 localUV = fract(uv * panelCount)", result.shader)
         self.assertIn("mapMadMapperUV(vUV.st)", result.shader)
-        self.assertIn("const float speed = 0.5", result.shader)
+        self.assertIn("uniform vec4 uMMParam000; // native input: speed", result.shader)
+        self.assertIn("#define speed (uMMParam000.x)", result.shader)
+        self.assertIn("uniform vec4 uMMParam001; // native input: color", result.shader)
+        self.assertIn("#define color (uMMParam001)", result.shader)
         self.assertIn("#define mode_IS_Soft_Glow", result.shader)
+        self.assertEqual({"speed": "uMMParam000", "color": "uMMParam001"}, result.bindings)
+        self.assertEqual(("speed", "color", "mode"), tuple(item.name for item in result.schema))
         self.assertIn("#define phase (uTDTime * (speed))", result.shader)
         self.assertIn("TDOutputSwizzle(materialColorForPixel(mapMadMapperUV(vUV.st)))", result.shader)
         self.assertIn("float zoom = clamp(uTDMaterial0.w, 0.25, 8.0)", result.shader)
@@ -63,8 +68,71 @@ class AdapterTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             result = adapt_material(self._material(Path(directory), source))
         self.assertTrue(result.adaptable, result.reasons)
-        self.assertIn("const float speed = 1.0", result.shader)
+        self.assertIn("uniform vec4 uMMParam000; // native input: speed", result.shader)
+        self.assertIn("#define speed (uMMParam000.x)", result.shader)
         self.assertIn("#define mat_time_source (uTDTime * (speed))", result.shader)
+
+    def test_native_inputs_get_independent_type_correct_uniforms(self):
+        source = r'''/*{
+          "INPUTS": [
+            {"NAME":"speedA", "LABEL":"Layer A/Speed", "TYPE":"float", "DEFAULT":0.5},
+            {"NAME":"speedB", "LABEL":"Layer B/Speed", "TYPE":"float", "DEFAULT":2.0},
+            {"NAME":"steps", "TYPE":"int", "DEFAULT":7},
+            {"NAME":"pulse", "TYPE":"event", "DEFAULT":0},
+            {"NAME":"enabled", "TYPE":"bool", "DEFAULT":true},
+            {"NAME":"mode", "TYPE":"long", "VALUES":["A","B"], "DEFAULT":"A"},
+            {"NAME":"origin", "TYPE":"point2D", "DEFAULT":[0.25,0.75]},
+            {"NAME":"size", "TYPE":"size2D", "DEFAULT":[1,2]},
+            {"NAME":"range", "TYPE":"floatRange", "DEFAULT":[0.1,0.9]},
+            {"NAME":"tint", "TYPE":"color", "DEFAULT":[1,0,0,1]}
+          ]
+        }*/
+        vec4 materialColorForPixel(vec2 uv) { return tint; }
+        '''
+        with tempfile.TemporaryDirectory() as directory:
+            result = adapt_material(self._material(Path(directory), source))
+        self.assertTrue(result.adaptable, result.reasons)
+        self.assertIn("#define speedA (uMMParam000.x)", result.shader)
+        self.assertIn("#define speedB (uMMParam001.x)", result.shader)
+        self.assertIn("#define steps (int(round(uMMParam002.x)))", result.shader)
+        self.assertIn("#define pulse (int(round(uMMParam003.x)))", result.shader)
+        self.assertIn("#define enabled (uMMParam004.x > 0.5)", result.shader)
+        self.assertIn("#define mode (int(round(uMMParam005.x)))", result.shader)
+        self.assertIn("#define origin (uMMParam006.xy)", result.shader)
+        self.assertIn("#define size (uMMParam007.xy)", result.shader)
+        self.assertIn("#define range (uMMParam008.xy)", result.shader)
+        self.assertIn("#define tint (uMMParam009)", result.shader)
+        self.assertEqual("Speed", result.schema[0].display_label)
+        self.assertEqual("Speed", result.schema[1].display_label)
+        self.assertEqual(("Layer A",), result.schema[0].groups)
+        self.assertEqual(("Layer B",), result.schema[1].groups)
+
+    def test_generate_as_define_uses_selected_compile_time_value(self):
+        source = r'''/*{
+          "INPUTS": [
+            {"NAME":"mode", "TYPE":"long", "VALUES":["Soft Glow","Hard"],
+             "DEFAULT":"Soft Glow", "FLAGS":"generate_as_define"},
+            {"NAME":"quality", "TYPE":"int", "DEFAULT":2,
+             "FLAGS":["generate_as_define"]},
+            {"NAME":"enabled", "TYPE":"bool", "DEFAULT":false,
+             "FLAGS":"generate_as_define"}
+          ]
+        }*/
+        vec4 materialColorForPixel(vec2 uv) { return vec4(float(mode + quality)); }
+        '''
+        with tempfile.TemporaryDirectory() as directory:
+            result = adapt_material(
+                self._material(Path(directory), source),
+                input_values={"mode": "Hard", "quality": 9, "enabled": True},
+            )
+        self.assertTrue(result.adaptable, result.reasons)
+        self.assertIn("const int mode = 1;", result.shader)
+        self.assertIn("#define mode_IS_Hard", result.shader)
+        self.assertIn("const int quality = 9;", result.shader)
+        self.assertIn("const bool enabled = true;", result.shader)
+        self.assertIn("#define enabled_IS_true", result.shader)
+        self.assertNotIn("uMMParam", result.shader)
+        self.assertEqual({}, result.bindings)
 
     def test_known_include_is_inlined(self):
         with tempfile.TemporaryDirectory() as directory:

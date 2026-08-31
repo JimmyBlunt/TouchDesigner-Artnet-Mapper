@@ -29,6 +29,7 @@ GENERATED_SINGLETON_PREFIXES = (
     "mb_control_zoom", "mb_control_view_reset",
     "unified_apply", "unified_source", "unified_group", "unified_layout",
     "unified_previous", "unified_next",
+    "native_parameter_drawer", "native_params_open", "native_params_close",
 )
 
 
@@ -159,18 +160,39 @@ def _viewer_execute(parent, name, source, callback):
 
 def _value_execute(parent, name, source, parameter):
     """Bind a visible slider to one central material-control parameter."""
-    node = _get_or_create(parent, 'panelexecuteDAT', name)
+    node = parent.op(name)
+    if node is not None and node.type != "parameterexec":
+        node.destroy()
+        node = None
+    node = node or parent.create(parameterexecuteDAT, name)
     node.par.active = True
-    node.par.fromop = source.path
-    node.par.panels = source.path
-    node.par.panelvalue = "value"
-    node.par.offtoon = False
+    node.par.op = source.path
+    node.par.pars = "value0"
     node.par.valuechange = True
     node.text = (
-        "def onValueChange(panelValue):\n"
-        "    op('/project1/madmapper_player_controls').par.%s = float(panelValue)\n"
+        "def onValueChange(par, prev):\n"
+        "    op('/project1/madmapper_player_controls').par.%s = float(par.eval())\n"
         "    return\n" % parameter
     )
+    return node
+
+
+def _native_value_execute(parent, name, source, slot, component):
+    """Bind a reusable native-parameter slider to the active material schema."""
+    node = parent.op(name)
+    if node is not None and node.type != "parameterexec":
+        node.destroy()
+        node = None
+    node = node or parent.create(parameterexecuteDAT, name)
+    node.par.active = True
+    node.par.op = source.path
+    node.par.pars = "value0"
+    node.par.valuechange = True
+    node.text = (
+        "def onValueChange(par, prev):\n"
+        "    op(%r).module.native_value_changed(%d, %d, float(par.eval()))\n"
+        "    return\n"
+    ) % (OWNER + "/unified_runtime", slot, component)
     return node
 
 
@@ -220,7 +242,7 @@ def _material_controls(browser):
     controls = op('/project1/madmapper_player_controls')
     runtime = _get_or_create(browser, textDAT, 'mb_control_runtime')
     runtime.text = _material_control_runtime_source()
-    _slider(browser, 'mb_control_speed', 'SPEED', 20, 754, 250, 0.0, 2.0, controls.par.Speed.eval(), 'Speed')
+    _slider(browser, 'mb_control_speed', 'MASTER SPEED', 20, 754, 250, 0.0, 2.0, controls.par.Speed.eval(), 'Speed')
     _slider(browser, 'mb_control_focusx', 'FOCUS X', 285, 754, 190, 0.0, 1.0, controls.par.Focusx.eval(), 'Focusx')
     _slider(browser, 'mb_control_focusy', 'FOCUS Y', 490, 754, 190, 0.0, 1.0, controls.par.Focusy.eval(), 'Focusy')
     _slider(browser, 'mb_control_zoom', 'FRAME ZOOM', 695, 754, 220, 0.25, 4.0, controls.par.Framezoom.eval(), 'Framezoom')
@@ -241,6 +263,60 @@ def _material_controls(browser):
             browser, 'mb_control_gradient_%d_click' % index, button,
             "op('/project1/material_browser/mb_control_runtime').module.apply_gradient('%s')" % key,
         )
+
+
+def _native_parameter_controls(browser):
+    """Build six reusable schema-driven rows for imported MadMapper inputs."""
+    open_button = _button(browser, 'native_params_open', 'NATIVE PARAMS', 1120, 790, 140, 28, (0.14, 0.24, 0.40))
+    _momentary_execute(
+        browser, 'native_params_open_click', open_button,
+        "op('/project1/material_browser/unified_runtime').module.toggle_native_parameters(True)",
+    )
+    drawer = _panel(
+        _get_or_create(browser, containerCOMP, 'native_parameter_drawer'),
+        20, 54, 1240, 640, 120,
+    )
+    for name, value in (
+        ('bgcolorr', 0.012), ('bgcolorg', 0.022), ('bgcolorb', 0.038),
+        ('bgalpha', 1), ('display', False),
+    ):
+        _set(drawer, name, value)
+    _text(drawer, 'native_parameter_title', 'NATIVE MADMAPPER PARAMETERS', 16, 590, 1208, 36, 16, (0.91, 0.96, 1.0))
+    for slot in range(6):
+        y = 500 - slot * 86
+        _text(drawer, 'native_param_label_%d' % slot, 'PARAMETER', 16, y + 34, 1208, 30, 12, (0.38, 0.76, 0.96))
+        action = _button(drawer, 'native_param_action_%d' % slot, 'ACTION', 360, y, 760, 28, (0.10, 0.30, 0.38))
+        _momentary_execute(
+            drawer, 'native_param_action_%d_click' % slot, action,
+            "op('/project1/material_browser/unified_runtime').module.native_action(%d)" % slot,
+        )
+        action.par.display = False
+        for component in range(4):
+            slider = _panel(
+                _get_or_create(drawer, sliderCOMP, 'native_param_%d_%d' % (slot, component)),
+                360 + component * 190, y, 180, 28, 150,
+            )
+            _set(slider, 'label', ('VALUE', 'Y', 'Z', 'W')[component])
+            _set(slider, 'valuerange0l', 0.0)
+            _set(slider, 'valuerange0h', 1.0)
+            _set(slider, 'value0', 0.0)
+            slider.par.display = False
+            _native_value_execute(
+                drawer, 'native_param_%d_%d_change' % (slot, component),
+                slider, slot, component,
+            )
+    previous = _button(drawer, 'native_params_previous', '< PREVIOUS', 16, 18, 150, 30, (0.07, 0.18, 0.26))
+    next_button = _button(drawer, 'native_params_next', 'NEXT >', 176, 18, 150, 30, (0.07, 0.18, 0.26))
+    reset = _button(drawer, 'native_params_reset', 'RESET MATERIAL', 336, 18, 180, 30, (0.38, 0.20, 0.08))
+    close = _button(drawer, 'native_params_close', 'CLOSE', 1054, 18, 170, 30, (0.35, 0.08, 0.10))
+    for name, button, body in (
+        ('native_params_previous_click', previous, "op('/project1/material_browser/unified_runtime').module.native_page(-1)"),
+        ('native_params_next_click', next_button, "op('/project1/material_browser/unified_runtime').module.native_page(1)"),
+        ('native_params_reset_click', reset, "op('/project1/material_browser/unified_runtime').module.native_reset()"),
+        ('native_params_close_click', close, "op('/project1/material_browser/unified_runtime').module.toggle_native_parameters(False)"),
+    ):
+        _momentary_execute(drawer, name, button, body)
+    return drawer
 
 
 def _runtime_source():
@@ -286,6 +362,181 @@ def _status(value, good=True):
     node.par.fontcolorr = 0.35 if good else 0.98
     node.par.fontcolorg = 0.90 if good else 0.38
     node.par.fontcolorb = 0.67 if good else 0.32
+
+def _native_library():
+    runtime = op('/project1/madmapper_library/runtime')
+    if runtime is None:
+        raise RuntimeError('MadMapper library runtime is missing')
+    return runtime.module
+
+def _native_component_labels(kind):
+    return {
+        'point2d': ('X', 'Y'), 'size2d': ('WIDTH', 'HEIGHT'),
+        'floatrange': ('MIN', 'MAX'), 'color': ('R', 'G', 'B', 'A'),
+    }.get(str(kind).lower(), ('VALUE',))
+
+def _native_bounds(parameter, component):
+    kind = str(parameter.get('type', 'float')).lower()
+    if kind == 'color':
+        return 0.0, 1.0
+    values = parameter.get('values') or []
+    if kind == 'long' and values:
+        return 0.0, float(max(0, len(values) - 1))
+    minimum, maximum = parameter.get('min'), parameter.get('max')
+    if isinstance(minimum, (list, tuple)):
+        minimum = minimum[component] if component < len(minimum) else None
+    if isinstance(maximum, (list, tuple)):
+        maximum = maximum[component] if component < len(maximum) else None
+    current = parameter.get('value', 0.0)
+    if isinstance(current, (list, tuple)):
+        current = current[component] if component < len(current) else 0.0
+    current = float(current or 0.0)
+    low = float(minimum) if minimum is not None else min(0.0, current - max(1.0, abs(current)))
+    high = float(maximum) if maximum is not None else max(1.0, current + max(1.0, abs(current)))
+    if high <= low:
+        high = low + 1.0
+    return low, high
+
+def toggle_native_parameters(show=None):
+    drawer = OWNER.op('native_parameter_drawer')
+    if drawer is None:
+        return False
+    if show is None:
+        show = not bool(drawer.par.display.eval())
+    drawer.par.display = bool(show)
+    if show:
+        render_native_parameters()
+    return bool(show)
+
+def _native_control(name):
+    return OWNER.op('native_parameter_drawer/' + str(name))
+
+def render_native_parameters():
+    drawer = OWNER.op('native_parameter_drawer')
+    if drawer is None or not bool(drawer.par.display.eval()):
+        return False
+    try:
+        snapshot = _native_library().parameter_snapshot()
+    except Exception as error:
+        _native_control('native_parameter_title').par.text = 'NATIVE PARAMETERS BLOCKED - ' + str(error)
+        return False
+    parameters = snapshot.get('parameters', [])
+    page = int(snapshot.get('page', 0))
+    visible = parameters[page * 6:page * 6 + 6]
+    _native_control('native_parameter_title').par.text = (
+        'NATIVE MADMAPPER PARAMETERS | %s | PAGE %d / %d' % (
+            snapshot.get('label', '-'), page + 1, int(snapshot.get('page_count', 1))))
+    for slot in range(6):
+        label = _native_control('native_param_label_%d' % slot)
+        action = _native_control('native_param_action_%d' % slot)
+        if slot >= len(visible):
+            label.par.display = False
+            action.par.display = False
+            for component in range(4):
+                _native_control('native_param_%d_%d' % (slot, component)).par.display = False
+            continue
+        parameter = visible[slot]
+        name = str(parameter['name'])
+        kind = str(parameter['type']).lower()
+        group = ' / '.join(parameter.get('groups') or [])
+        prefix = (group + ' / ') if group else ''
+        compile_note = ' | RECOMPILE' if parameter.get('compile_time') else ''
+        label.par.display = True
+        label.par.text = '%s%s  [%s]  <%s>%s' % (
+            prefix, parameter.get('display_label') or parameter.get('label') or name,
+            name, kind, compile_note)
+        label.store('parameter_name', name)
+        label.store('parameter_type', kind)
+        value = parameter.get('value')
+        components = list(value) if isinstance(value, (list, tuple)) else [value]
+        component_labels = _native_component_labels(kind)
+        scalar_action = kind in ('bool', 'event', 'long')
+        action.par.display = scalar_action
+        action.store('parameter_name', name)
+        action.store('parameter_type', kind)
+        action.store('parameter_values', list(parameter.get('values') or []))
+        if kind == 'bool':
+            action.par.label = 'ON' if bool(value) else 'OFF'
+        elif kind == 'event':
+            action.par.label = 'TRIGGER'
+        elif kind == 'long':
+            options = list(parameter.get('values') or [])
+            index = int(value or 0)
+            action.par.label = options[index] if 0 <= index < len(options) else str(index)
+        for component in range(4):
+            slider = _native_control('native_param_%d_%d' % (slot, component))
+            handler = _native_control('native_param_%d_%d_change' % (slot, component))
+            visible_component = component < int(parameter.get('components', 1)) and not scalar_action
+            slider.par.display = visible_component
+            if not visible_component:
+                continue
+            low, high = _native_bounds(parameter, component)
+            if handler is not None:
+                handler.par.active = False
+            slider.par.valuerange0l = low
+            slider.par.valuerange0h = high
+            slider.par.value0 = float(components[component])
+            slider.par.label = component_labels[component]
+            slider.store('parameter_name', name)
+            slider.store('parameter_type', kind)
+            if handler is not None:
+                handler.par.active = True
+    return True
+
+def native_value_changed(slot, component, value):
+    label = _native_control('native_param_label_%d' % int(slot))
+    name = label.fetch('parameter_name', '')
+    if not name:
+        return False
+    try:
+        _native_library().set_material_parameter(name, int(component), float(value))
+        _status('NATIVE PARAMETER UPDATED - ' + name)
+        return True
+    except Exception as error:
+        _status('NATIVE PARAMETER BLOCKED - ' + str(error), False)
+        return False
+
+def native_action(slot):
+    action = _native_control('native_param_action_%d' % int(slot))
+    name = action.fetch('parameter_name', '')
+    kind = action.fetch('parameter_type', '')
+    if not name:
+        return False
+    try:
+        snapshot = _native_library().parameter_snapshot()
+        parameter = next(item for item in snapshot['parameters'] if item['name'] == name)
+        value = parameter.get('value')
+        if kind == 'event':
+            _native_library().pulse_material_parameter(name)
+        elif kind == 'bool':
+            _native_library().set_material_parameter(name, -1, not bool(value))
+        elif kind == 'long':
+            options = action.fetch('parameter_values', [])
+            _native_library().set_material_parameter(name, -1, (int(value or 0) + 1) % max(1, len(options)))
+        render_native_parameters()
+        _status('NATIVE PARAMETER UPDATED - ' + name)
+        return True
+    except Exception as error:
+        _status('NATIVE PARAMETER BLOCKED - ' + str(error), False)
+        return False
+
+def native_page(delta):
+    try:
+        _native_library().set_parameter_page(int(delta))
+        return render_native_parameters()
+    except Exception as error:
+        _status('NATIVE PARAMETER PAGE BLOCKED - ' + str(error), False)
+        return False
+
+def native_reset():
+    try:
+        _native_library().reset_material_parameters()
+        render_native_parameters()
+        _status('NATIVE PARAMETERS RESET TO MATERIAL DEFAULTS')
+        return True
+    except Exception as error:
+        _status('NATIVE PARAMETER RESET BLOCKED - ' + str(error), False)
+        return False
 
 def _core_items():
     data = json.loads(MANIFEST.read_text(encoding='utf-8'))
@@ -472,6 +723,7 @@ def select_slot(slot):
     if item['source'] == 'core':
         controls.par.Source = 'materials'
         controls.par.Material = item['id']
+        toggle_native_parameters(False)
         _status('ACTIVE CORE MATERIAL - ' + item['label'])
         return True
     library = op('/project1/madmapper_library/runtime')
@@ -493,6 +745,7 @@ def select_slot(slot):
         _status('IMPORTED MATERIAL NEEDS MANUAL ADAPTATION - ' + item['label'], False)
         return False
     controls.par.Source = 'imported'
+    toggle_native_parameters(True)
     _status('ACTIVE IMPORTED MATERIAL - ' + item['label'])
     return True
 
@@ -545,6 +798,7 @@ def build():
     next_button = _button(browser, "unified_next", ">", 1210, 704, 50)
     _text(browser, "unified_status", "READY | DMX OFF", 20, 12, 1240, 38, 12, (0.35, 0.90, 0.67))
     _material_controls(browser)
+    _native_parameter_controls(browser)
 
     _execute(browser, "unified_apply_click", apply_button, "apply_filters()")
     _execute(browser, "unified_source_click", source, "cycle_source()")

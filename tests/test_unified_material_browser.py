@@ -94,6 +94,31 @@ def test_material_handlers_are_canonical_and_builder_cleans_before_layout():
     assert text.index("_remove_generated_duplicates(browser)") < text.index("_material_controls(browser)", text.index("def build():"))
 
 
+def test_material_sliders_watch_the_real_value0_parameter():
+    text = source()
+    assert "parent.create(parameterexecuteDAT, name)" in text
+    assert 'node.par.pars = "value0"' in text
+    assert "float(par.eval())" in text
+    assert 'node.par.panelvalue = "value"' not in text
+
+
+def test_dynamic_native_parameter_drawer_supports_types_groups_and_paging():
+    text = source()
+    runtime = module()._runtime_source()
+    assert "def _native_parameter_controls(browser):" in text
+    assert "range(6)" in text
+    assert "parameterexecuteDAT" in text
+    assert 'node.par.pars = "value0"' in text
+    assert "def render_native_parameters():" in runtime
+    assert "'point2d': ('X', 'Y')" in runtime
+    assert "'floatrange': ('MIN', 'MAX')" in runtime
+    assert "'color': ('R', 'G', 'B', 'A')" in runtime
+    assert "kind in ('bool', 'event', 'long')" in runtime
+    assert "compile_note = ' | RECOMPILE'" in runtime
+    assert "toggle_native_parameters(True)" in runtime
+    assert "toggle_native_parameters(False)" in runtime
+
+
 def load_tests(loader, tests, pattern):
     suite = unittest.TestSuite()
     for name, value in sorted(globals().items()):

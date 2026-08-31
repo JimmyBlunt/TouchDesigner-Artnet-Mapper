@@ -137,6 +137,31 @@ def test_every_runtime_file_read_is_approved_and_live_preview_is_isolated():
     assert "TDOutputSwizzle" in runtime
     assert "material is not marked TouchDesigner-ready" in runtime
     assert 'glslTOP, "live_preview"' in text
+
+
+def test_hover_preview_cannot_replace_the_published_imported_material():
+    text = source()
+    runtime = module()._runtime_source()
+    assert "OWNER.op('hover_shader').text = source" in runtime
+    assert "preview = OWNER.op('hover_preview')" in runtime
+    assert "info = OWNER.op('hover_preview_info')" in runtime
+    assert "OWNER.op('preview_shader').text = source" not in runtime.split("def _compile_hover_item(item):", 1)[1].split("def hover_slot", 1)[0]
+    assert '_get_or_create(owner, glslTOP, "hover_preview")' in text
+    assert 'hover_preview.outputConnectors[0].connect(imported_output)' not in text
+
+
+def test_native_material_state_and_uniform_contract_is_persistent_and_dynamic():
+    text = source()
+    runtime = module()._runtime_source()
+    assert '"material_parameter_state"' in text
+    assert '"material_parameter_schema"' in text
+    assert "def parameter_snapshot():" in runtime
+    assert "def set_material_parameter(name, component, value):" in runtime
+    assert "def pulse_material_parameter(name):" in runtime
+    assert "preview.par.vec.sequence.numBlocks = 3 + len(adaptation.schema)" in runtime
+    assert "getattr(preview.par, 'vec%dname' % block).val" in runtime
+    assert "if parameter.compile_time" in runtime
+    assert "write_prepared_shader(adaptation" in runtime
     assert 'live_preview.par.const.sequence.numBlocks = 1' in text
     assert 'live_preview.par.const0name.val = ""' in text
     assert 'live_preview.par.vec.sequence.numBlocks = 3' in text
@@ -159,6 +184,9 @@ def test_every_runtime_file_read_is_approved_and_live_preview_is_isolated():
     assert "LIVE PREVIEW FAILED" in runtime
     assert "prepared_shader_is_current(source)" in runtime
     assert "write_prepared_shader(adaptation, package / 'prepared.frag')" in runtime
+    assert "_restore_parameter_store()" in runtime
+    assert "later button or parameter callback never sees" in runtime
+    assert runtime.rstrip().endswith("if hasattr(OWNER, 'op'):\n    refresh()")
 
 
 def test_persisted_managed_import_restores_prepared_shader_after_runtime_restart():

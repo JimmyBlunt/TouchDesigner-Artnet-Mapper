@@ -1,4 +1,4 @@
-"""Regression contracts for all nine shortcut-reachable dialogs.
+"""Regression contracts for all shortcut-reachable dialogs.
 
 The suite is deliberately non-destructive. It validates routing, builders and
 test coverage without opening a viewer, changing the selected material,
@@ -16,9 +16,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class DialogContractTests(unittest.TestCase):
-    def test_all_nine_dialogs_have_a_stable_contract(self):
+    def test_all_ten_dialogs_have_a_stable_contract(self):
         self.assertEqual(validate_dialog_contracts(), ())
-        self.assertEqual(len(DIALOGS), 9)
+        self.assertEqual(len(DIALOGS), 10)
 
     def test_shortcut_hub_and_dialog_contracts_match_exactly(self):
         expected = [(item.key, item.label, item.target) for item in DIALOGS]
@@ -35,6 +35,7 @@ class DialogContractTests(unittest.TestCase):
         for action in ("Output off", "Safe apply", "Start", "Kalibrierung",
                        "GO", "PLAY", "STOP", "BLACKOUT", "Import selected"):
             self.assertIn(action, guarded)
+        self.assertIn("Sicher anwenden", guarded)
 
     def test_output_config_is_read_only_and_routes_edits_to_artnet_router(self):
         output = next(item for item in DIALOGS if item.key == "7")

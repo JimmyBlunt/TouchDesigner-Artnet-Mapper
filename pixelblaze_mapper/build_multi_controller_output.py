@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import re
 import sys
+from pathlib import Path
 
 
 OWNER = "/project1/multi_controller_output"
@@ -349,7 +350,10 @@ def apply_safe():
         _write(1, 'ws')
         _write(2, 'apa')
         _write_calibration()
-        scope = {'__name__': '__main__'}
+        # Preserve TouchDesigner's injected globals (notably ``op`` and OP
+        # classes) while still executing the builder as its main entry point.
+        scope = dict(globals())
+        scope['__name__'] = '__main__'
         exec(compile(open(BUILDER, encoding='utf-8').read(), BUILDER, 'exec'), scope, scope)
         validation = op('validation')
         errors = [str(validation[r, 'message']) for r in range(1, validation.numRows)
@@ -965,6 +969,15 @@ directly from the measured Pixelblaze 3D coordinates. It does not assume a
 rectangular panel or estimate row lengths. ALL OUTPUTS OFF is the immediate
 network stop. The builder never saves the TOE automatically.
 """
+    # The GICO hardware exposes one global universe count for every physical
+    # port.  Build its dedicated safe editor after the main router surface so
+    # Ctrl+Shift+6 always contains the entry button.  The nested builder only
+    # validates/edits drafts and never starts Art-Net.
+    gico_builder = Path(r"C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/pixelblaze_mapper/build_gico_port_config_ui.py")
+    gico_scope = dict(globals())
+    gico_scope["__name__"] = "pixelblaze_mapper_embedded_gico_ui"
+    exec(compile(gico_builder.read_text(encoding="utf-8"), str(gico_builder), "exec"), gico_scope, gico_scope)
+    gico_scope["build"]()
     print({"owner": owner.path, "controllers": len(plan.controllers), "outputsActive": False, "productionTouched": False, "projectSaved": False})
     return owner
 

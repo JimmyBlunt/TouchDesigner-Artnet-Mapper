@@ -7,7 +7,7 @@ from pixelblaze_mapper.shortcut_hub import SHORTCUTS, shortcut_rows, validate_sh
 class ShortcutHubTests(unittest.TestCase):
     def test_shortcuts_are_unique_and_scoped(self):
         self.assertEqual(validate_shortcuts(), ())
-        self.assertEqual(len(SHORTCUTS), 9)
+        self.assertEqual(len(SHORTCUTS), 10)
 
     def test_required_workflows_exist(self):
         by_key = {item.key: item for item in SHORTCUTS}
@@ -15,6 +15,7 @@ class ShortcutHubTests(unittest.TestCase):
         self.assertEqual(by_key["6"].target, "/project1/multi_controller_output/ui_panel")
         self.assertEqual(by_key["2"].target, "/project1/material_browser")
         self.assertEqual(by_key["8"].target, "/project1/show_control/control_panel")
+        self.assertEqual(by_key["0"].target, "/project1/multi_controller_output/gico_port_config/ui_panel")
 
     def test_table_contract(self):
         rows = shortcut_rows()
