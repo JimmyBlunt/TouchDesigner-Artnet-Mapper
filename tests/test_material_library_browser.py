@@ -99,12 +99,22 @@ def test_search_facets_paging_cards_and_details_are_present():
     assert "runtime.module.refresh()" in text
 
 
-def test_pagination_uses_direct_mouse_clicks_and_stays_above_card_hit_areas():
+def test_pagination_uses_repeatable_button_output_edges():
     text = source()
     runtime = module()._runtime_source()
     assert 'navigation, "layer", 120' in text
-    assert '"previous_page_click", previous, "change_page(-1)", panel_value="lselect"' in text
-    assert '"next_page_click", next_button, "change_page(1)", panel_value="lselect"' in text
+    assert "def _button_chop_execute(" in text
+    assert 'existing.type != "chopexec"' in text
+    assert 'node.par.chop = source.op("out1").path' in text
+    assert 'node.par.offtoon = True' in text
+    assert '_button_chop_execute(owner, "previous_page_click", previous, "change_page(-1)")' in text
+    assert '_button_chop_execute(owner, "next_page_click", next_button, "change_page(1)")' in text
+    assert "_RUNTIME_PAGE_KEY = 'material_browser_runtime_page'" in runtime
+    assert "runtime_page = OWNER.fetch(_RUNTIME_PAGE_KEY, None)" in runtime
+    assert "OWNER.store(_RUNTIME_PAGE_KEY, int(value))" in runtime
+    assert "def refresh(reset_page=True):" in runtime
+    assert "if reset_page:\n            _set_state('page', 0)" in runtime
+    assert "refresh(reset_page=False)" in runtime
     assert "from pixelblaze_mapper.material_library_paging import clamped_page, page_count" in runtime
     assert "previous.par.enable = page > 0" in runtime
     assert "next_button.par.enable = page < count - 1" in runtime
@@ -155,12 +165,15 @@ def test_every_runtime_file_read_is_approved_and_live_preview_is_isolated():
 def test_hover_preview_cannot_replace_the_published_imported_material():
     text = source()
     runtime = module()._runtime_source()
-    assert "OWNER.op('hover_shader').text = source" in runtime
+    assert "shader = OWNER.op('hover_shader')" in runtime
+    assert "shader.text = source" in runtime
     assert "preview = OWNER.op('hover_preview')" in runtime
     assert "info = OWNER.op('hover_preview_info')" in runtime
     assert "OWNER.op('preview_shader').text = source" not in runtime.split("def _compile_hover_item(item):", 1)[1].split("def hover_slot", 1)[0]
     assert '_get_or_create(owner, glslTOP, "hover_preview")' in text
     assert 'hover_preview.outputConnectors[0].connect(imported_output)' not in text
+    assert "_configure_parameter_uniforms(preview, adaptation, values, publish_schema=False)" in runtime
+    assert "OWNER.store('hover_compiled_id', material_id)" in runtime
 
 
 def test_native_material_state_and_uniform_contract_is_persistent_and_dynamic():
@@ -199,7 +212,13 @@ def test_native_material_state_and_uniform_contract_is_persistent_and_dynamic():
     assert "write_prepared_shader(adaptation, package / 'prepared.frag')" in runtime
     assert "_restore_parameter_store()" in runtime
     assert "later button or parameter callback never sees" in runtime
-    assert runtime.rstrip().endswith("if hasattr(OWNER, 'op'):\n    refresh()")
+    assert runtime.rstrip().endswith(
+        "if hasattr(OWNER, 'op'):\n"
+        "    # ``DAT.module`` is evaluated for every callback access in TouchDesigner.\n"
+        "    # Populate the in-memory catalogue without resetting the user's page;\n"
+        "    # explicit REFRESH CATALOG still calls refresh() with the default reset.\n"
+        "    refresh(reset_page=False)"
+    )
 
 
 def test_persisted_managed_import_restores_prepared_shader_after_runtime_restart():
@@ -260,7 +279,7 @@ def test_persisted_import_manifest_must_match_the_catalog_material():
     assert "package.parent != import_root" in runtime
 
 
-def test_hover_preview_is_bounded_isolated_and_restores_the_card_image():
+def test_hover_is_animated_bound_cached_and_restores_both_viewers():
     text = source()
     runtime = module()._runtime_source()
     assert '"Hoverloopseconds", "Hover Loop Seconds", 6.0, 1.0, 15.0' in text
@@ -271,9 +290,31 @@ def test_hover_preview_is_bounded_isolated_and_restores_the_card_image():
     assert "def _shader_for_hover(item):" in runtime
     assert "adapt_material(" in runtime
     assert "viewer.store('stored_preview'" in runtime
-    assert "viewer.fetch('stored_preview'" in runtime
-    assert "HOVER READY - stored preview restored" in runtime
-    assert "production source unchanged" in runtime
+    hover_body = runtime.split("def hover_slot(slot, entered):", 1)[1].split("def open_live_preview():", 1)[0]
+    compile_body = runtime.split("def _compile_hover_item(item):", 1)[1].split("def _restore_active_hover():", 1)[0]
+    assert "_compile_hover_item(item)" in hover_body
+    assert "_restore_active_hover()" in hover_body
+    assert "viewer.par.opviewer = preview.path" in hover_body
+    assert "detail.par.opviewer = preview.path" in hover_body
+    assert hover_body.index("preview = _compile_hover_item(item)") < hover_body.index("viewer.par.opviewer = preview.path")
+    assert "_parameter_context(item)" in compile_body
+    assert "_hover_context_cache" in compile_body
+    assert "material_id in PARAMETER_STORE.material_ids" in compile_body
+    assert "source_stat.st_mtime_ns" in compile_body
+    assert "cached[2] == source_stamp" in compile_body
+    assert "publish_schema=False" in compile_body
+    assert "OWNER.store('hover_compiled_id', material_id)" in compile_body
+    assert "def _restore_active_hover():" in runtime
+    assert "card.par.opviewer = stored" in runtime
+    assert "detail.par.opviewer = target.path" in runtime
+    assert "project was saved mid-hover" in runtime
+    assert '"hover_detail_restore"' in text
+    assert "parent().fetch('hover_started_at', absTime.seconds)" in text
+    assert "parent().par.Hoverloopseconds" in text
+    stored_body = runtime.split("def preview_selected():", 1)[1].split("def _result_path", 1)[0]
+    live_body = runtime.split("def open_live_preview():", 1)[1].split("def import_selected", 1)[0]
+    assert "viewer.par.opviewer = image.path" in stored_body
+    assert "viewer.par.opviewer = preview.path" in live_body
     assert "def _card_hit_area(" in text
     assert 'containerCOMP, name' in text
     assert '("clickthrough", False)' in text

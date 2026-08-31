@@ -121,37 +121,88 @@ def test_material_player_shortcut_surface_has_preview_and_live_controls():
     assert "RESET VIEW" in text
 
 
-def test_dynamic_native_parameter_drawer_supports_types_groups_and_paging():
+def test_dynamic_native_parameter_drawer_supports_types_groups_and_overflow_paging():
     text = source()
     runtime = module()._runtime_source()
     assert "def _native_parameter_controls(browser):" in text
-    assert "range(6)" in text
+    assert "NATIVE_PARAMETER_SLOT_COUNT = 32" in text
+    assert "range(NATIVE_PARAMETER_SLOT_COUNT)" in text
     assert "parameterexecuteDAT" in text
     assert 'node.par.pars = "value0"' in text
     assert "def render_native_parameters():" in runtime
     assert "'point2d': ('X', 'Y')" in runtime
     assert "'floatrange': ('MIN', 'MAX')" in runtime
     assert "'color': ('R', 'G', 'B', 'A')" in runtime
-    assert "kind in ('bool', 'event', 'long')" in runtime
-    assert "compile_note = '  *'" in runtime
+    assert "kind in ('bool', 'event', 'long', 'enum')" in runtime
+    assert "compile_note = ' *'" in runtime
     assert "toggle_native_parameters(True)" in runtime
 
 
 def test_native_parameter_drawer_uses_compact_touchdesigner_style_rows():
     text = source()
     runtime = module()._runtime_source()
-    assert "20, 144, 1240, 500, 120" in text
-    assert "y = 396 - slot * 54" in text
-    assert "16, y, 306, 32" in text
-    assert "334 + component * 225, y, 215, 32" in text
-    assert "_set(label, 'alignx', 'right')" in text
+    assert "20, 40, 1240, 780, 120" in text
+    assert "NATIVE_PARAMETER_COLUMN_COUNT = 2" in text
+    assert "NATIVE_PARAMETER_ROWS_PER_COLUMN = 16" in text
+    assert "column, row = divmod(slot, NATIVE_PARAMETER_ROWS_PER_COLUMN)" in text
+    assert "cell_x = 16 + column * 604" in text
+    assert "y = 698 - row * 32" in text
+    assert "drawer, 'native_param_row_%d' % slot" in text
+    assert "cell_x, y, 588, 26" in text
+    assert "module.native_select(%d)" in text
     assert "toggle_native_parameters(False)" in runtime
     assert "ZURÜCK ZU MATERIALIEN" in text
     assert "def _clear_native_parameter_rows():" in runtime
     assert "def _native_error(message):" in runtime
     assert "NATIVE PARAMETERS NICHT VERFÜGBAR" in runtime
     assert "if not parameters:" in runtime
-    assert "label.unstore('parameter_name')" in runtime
+    assert "row.unstore('parameter_name')" in runtime
+
+
+def test_normal_native_materials_render_all_parameters_on_one_page():
+    runtime = module()._runtime_source()
+    assert "NATIVE_PARAMETER_SLOT_COUNT = 32" in runtime
+    assert "page_count = max(1, (len(parameters) + NATIVE_PARAMETER_SLOT_COUNT - 1) // NATIVE_PARAMETER_SLOT_COUNT)" in runtime
+    assert "NATIVE_PAGE * NATIVE_PARAMETER_SLOT_COUNT:" in runtime
+    assert "_native_control('native_params_previous').par.display = overflow" in runtime
+    assert "_native_control('native_params_next').par.display = overflow" in runtime
+    assert "set_parameter_page" not in runtime
+    assert "NATIVE_PAGE = 0" in runtime
+    assert "NATIVE_SELECTED_SLOT = 0" in runtime
+
+
+def test_native_rows_share_one_lightweight_typed_editor():
+    text = source()
+    runtime = module()._runtime_source()
+    assert "_remove_native_parameter_children(drawer)" in text
+    assert "def _remove_native_parameter_children(drawer):" in text
+    assert "'native_param_editor_%d' % component" in text
+    assert "native_editor_value_changed(%d, float(par.eval()))" in text
+    assert "native_param_editor_action" in text
+    assert "def native_select(slot):" in runtime
+    assert "def _render_native_editor(parameter):" in runtime
+    assert "def native_editor_value_changed(component, value):" in runtime
+    assert "def native_editor_action():" in runtime
+    assert "component_width = int((900 - max(0, component_count - 1) * 6) / component_count)" in runtime
+    assert "slider.par.w = component_width" in runtime
+    assert "elif kind in ('long', 'enum'):" in runtime
+    assert "component_value = values[component] if component < len(values) else 0.0" in runtime
+    assert "native_param_%d_%d_change" not in text
+
+
+def test_native_master_rows_show_current_values_and_selection():
+    runtime = module()._runtime_source()
+    assert "def _native_value_text(parameter):" in runtime
+    assert "def _native_row_text(parameter):" in runtime
+    assert "row.par.label = _native_row_text(parameter)" in runtime
+    assert "NATIVE_PAGE_STORE_KEY = 'native_parameter_page'" in runtime
+    assert "NATIVE_SLOT_STORE_KEY = 'native_parameter_selected_slot'" in runtime
+    assert "OWNER.fetch(NATIVE_SLOT_STORE_KEY, NATIVE_SELECTED_SLOT)" in runtime
+    assert "OWNER.store(NATIVE_SLOT_STORE_KEY, NATIVE_SELECTED_SLOT)" in runtime
+    assert "target_component = -1 if int(parameter.get('components') or 1) <= 1 else int(component)" in runtime
+    assert "library.set_material_parameter(name, target_component, float(value))" in runtime
+    assert "row.par.bgcolorg = 0.28 if selected else 0.095" in runtime
+    assert "row.par.label = _native_row_text(parameter)" in runtime
 
 
 def load_tests(loader, tests, pattern):

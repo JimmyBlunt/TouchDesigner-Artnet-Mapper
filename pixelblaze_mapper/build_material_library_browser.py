@@ -216,6 +216,30 @@ def _execute(parent, name, source, callback, panel_value="state"):
     return node
 
 
+def _button_chop_execute(parent, name, source, callback):
+    """Run a button action from its output CHOP on every off-to-on edge.
+
+    Unlike a Panel Execute DAT, this remains armed when render() updates the
+    button label, colour, or enabled state after a page change.
+    """
+
+    existing = parent.op(name)
+    if existing is not None and existing.type != "chopexec":
+        existing.destroy()
+    node = _get_or_create(parent, chopexecuteDAT, name)
+    node.par.active = True
+    node.par.chop = source.op("out1").path
+    node.par.channel = "*"
+    node.par.offtoon = True
+    node.par.valuechange = False
+    node.text = (
+        "def onOffToOn(channel, sampleIndex, val, prev):\n"
+        "    op(%r).module.%s\n"
+        "    return\n"
+    ) % (OWNER + "/runtime", callback)
+    return node
+
+
 def _hover_execute(parent, name, source, slot):
     """Call the runtime when the pointer enters or leaves a material card."""
 
@@ -263,6 +287,8 @@ READY_COMPATIBILITY = {'native', 'touchdesigner', 'ready', 'compatible', 'adapte
 
 _items = []
 _filtered = []
+_hover_context_cache = {}
+_RUNTIME_PAGE_KEY = 'material_browser_runtime_page'
 
 from pixelblaze_mapper.imported_material_state import ImportedMaterialStateStore
 
@@ -294,6 +320,10 @@ def _set_button(name, value):
         node.par.label = str(value)
 
 def _state(name, default=''):
+    if name == 'page':
+        runtime_page = OWNER.fetch(_RUNTIME_PAGE_KEY, None)
+        if runtime_page is not None:
+            return str(runtime_page)
     table = OWNER.op('browser_state')
     for row in range(1, table.numRows):
         if str(table[row, 0]) == name:
@@ -301,6 +331,8 @@ def _state(name, default=''):
     return str(default)
 
 def _set_state(name, value):
+    if name == 'page':
+        OWNER.store(_RUNTIME_PAGE_KEY, int(value))
     table = OWNER.op('browser_state')
     for row in range(1, table.numRows):
         if str(table[row, 0]) == name:
@@ -550,14 +582,15 @@ def _query_token_matches(token, searchable):
     words = re.findall(r'[a-z0-9]+', searchable)
     return any(SequenceMatcher(None, token, word).ratio() >= 0.78 for word in words)
 
-def refresh():
+def refresh(reset_page=True):
     global _items
     try:
         catalog_path = Path(_parameter('Catalogfile')).expanduser().resolve(strict=True)
         _items = [_normalize(item, catalog_path) for item in _load(catalog_path)]
         _items = [item for item in _items if item['id']]
         _items.sort(key=lambda item: (item['category'].lower(), item['label'].lower()))
-        _set_state('page', 0)
+        if reset_page:
+            _set_state('page', 0)
         apply_filters(reset_page=False)
         _set_text('action_status', 'CATALOG READY - %d materials loaded' % len(_items), (0.35, 0.90, 0.67))
         return True
@@ -655,7 +688,12 @@ def render():
             fallback.par.text = item['label'] + '\n\n' + '  '.join(item['tags'][:4])
             preview = _safe_preview_path(item)
             if preview is not None:
-                image.par.file = str(preview)
+                # Reassigning the same path asks Movie File In TOP to reopen
+                # the file on some TD builds.  Render may run for paging,
+                # filters, or layout changes, so leave an unchanged image
+                # alone to keep the card preview stable.
+                if str(image.par.file.eval()) != str(preview):
+                    image.par.file = str(preview)
                 viewer.par.opviewer = image.path
                 viewer.store('stored_preview', image.path)
             else:
@@ -890,7 +928,7 @@ def _parameter_context(item):
     values = PARAMETER_STORE.merge(item['id'], adaptation.schema)
     return adaptation, values
 
-def _configure_parameter_uniforms(preview, adaptation, values):
+def _configure_parameter_uniforms(preview, adaptation, values, publish_schema=True):
     from pixelblaze_mapper.madmapper_parameters import uniform_vector
     preview.par.vec.sequence.numBlocks = 3 + len(adaptation.schema)
     rows = [('index', 'name', 'label', 'group', 'type', 'uniform', 'compile_time',
@@ -911,8 +949,9 @@ def _configure_parameter_uniforms(preview, adaptation, values):
             json.dumps(parameter.minimum), json.dumps(parameter.maximum),
             json.dumps(parameter.values), json.dumps(values[parameter.name]),
         ))
-    _write_table('material_parameter_schema', rows)
-    _persist_parameter_store()
+    if publish_schema:
+        _write_table('material_parameter_schema', rows)
+        _persist_parameter_store()
 
 def parameter_snapshot():
     item = _selected()
@@ -1011,14 +1050,42 @@ def pulse_material_parameter(name):
     return True
 
 def _compile_hover_item(item):
-    source = _shader_for_hover(item)
+    """Compile a fully bound hover shader while no viewer points at it.
+
+    Adapter/schema work is cached per material and invalidated whenever its
+    persisted native values change.  The single GLSL TOP still has to compile
+    when a different material becomes active, but callers keep it detached
+    until this function has completed successfully.
+    """
+    global _hover_context_cache
+    material_id = str(item['id'])
+    source_path = _validated_file(item.get('source_path'), {'.fs'})
+    source_stat = source_path.stat()
+    source_stamp = (str(source_path), int(source_stat.st_mtime_ns), int(source_stat.st_size))
+    current_values = (PARAMETER_STORE.values(material_id)
+                      if material_id in PARAMETER_STORE.material_ids else None)
+    cached = _hover_context_cache.get(material_id)
+    if (current_values is not None and cached is not None
+            and cached[1] == current_values and cached[2] == source_stamp):
+        adaptation, values = cached[0], dict(cached[1])
+    else:
+        adaptation, values = _parameter_context(item)
+        if len(_hover_context_cache) >= 16 and material_id not in _hover_context_cache:
+            _hover_context_cache.pop(next(iter(_hover_context_cache)))
+        _hover_context_cache[material_id] = (adaptation, dict(values), source_stamp)
+    source = adaptation.shader
     if 'void main' not in source:
         raise ValueError('Shader has no void main() entry point')
     # Hover is a diagnostic preview only.  Never write into ``preview_shader``
     # or cook ``live_preview`` here: that TOP is published through
     # ``imported_material_out`` and may currently drive the physical LEDs.
-    OWNER.op('hover_shader').text = source
     preview = OWNER.op('hover_preview')
+    shader = OWNER.op('hover_shader')
+    compiled_id = str(OWNER.fetch('hover_compiled_id', ''))
+    source_changed = compiled_id != material_id or str(shader.text) != source
+    _configure_parameter_uniforms(preview, adaptation, values, publish_schema=False)
+    if source_changed:
+        shader.text = source
     preview.cook(force=True)
     errors = _diagnostic_messages(preview.errors())
     info = OWNER.op('hover_preview_info')
@@ -1026,8 +1093,37 @@ def _compile_hover_item(item):
     compile_lines = [line.strip() for line in info_text.splitlines()
                      if 'error:' in line.lower() or 'failed' in line.lower()]
     if errors or compile_lines:
+        OWNER.store('hover_compiled_id', '')
         raise ValueError('; '.join(errors + compile_lines)[:900] or 'TouchDesigner rejected the shader')
+    OWNER.store('hover_compiled_id', material_id)
     return preview
+
+def _restore_active_hover():
+    """Restore both viewers before the shared hover TOP is recompiled."""
+    active = str(_state('hover_slot'))
+    if active:
+        card = OWNER.op('ui_panel/card_viewer_%s' % active)
+        if card is not None:
+            stored = card.fetch('stored_preview', '')
+            if stored and op(stored) is not None:
+                card.par.opviewer = stored
+    detail = OWNER.op('ui_panel/detail_viewer')
+    restore = str(_state('hover_detail_restore'))
+    if detail is not None:
+        target = op(restore) if restore else None
+        hover = OWNER.op('hover_preview')
+        # Recover safely if a project was saved mid-hover or comes from the
+        # older implementation which did not persist a restore target.
+        if target is None and hover is not None and str(detail.par.opviewer.eval()) == hover.path:
+            selected_id = str(_state('selected_id'))
+            target = (OWNER.op('live_preview')
+                      if selected_id and _state('live_preview_id') == selected_id
+                      else OWNER.op('preview_fallback'))
+        if target is not None:
+            detail.par.opviewer = target.path
+    _set_state('hover_slot', '')
+    _set_state('hover_material_id', '')
+    _set_state('hover_detail_restore', '')
 
 def hover_slot(slot, entered):
     slot = int(slot)
@@ -1035,22 +1131,31 @@ def hover_slot(slot, entered):
     if viewer is None:
         return False
     if not entered:
-        stored = viewer.fetch('stored_preview', '')
-        if stored and op(stored) is not None:
-            viewer.par.opviewer = stored
         if _state('hover_slot') == str(slot):
-            _set_state('hover_slot', '')
-            _set_state('hover_material_id', '')
-        _set_text('action_status', 'HOVER READY - stored preview restored',
-                  (0.35, 0.90, 0.67))
+            _restore_active_hover()
+        _set_text('action_status', 'HOVER READY - stored/detail preview restored',
+                   (0.35, 0.90, 0.67))
         return True
     item = _item_for_slot(slot)
     if item is None:
         return False
+    if _state('hover_slot') == str(slot) and _state('hover_material_id') == item['id']:
+        return True
+    # Detach the shared TOP from every visible viewer before changing its
+    # shader. This prevents checkerboard/recompile frames from leaking into
+    # the UI while moving between cards.
+    _restore_active_hover()
+    detail = OWNER.op('ui_panel/detail_viewer')
+    detail_restore = str(detail.par.opviewer.eval()) if detail is not None else ''
     try:
         preview = _compile_hover_item(item)
+        # Compilation and native-uniform validation succeeded. Only now may
+        # the new animation become visible.
         viewer.par.opviewer = preview.path
-        OWNER.op('ui_panel/detail_viewer').par.opviewer = preview.path
+        if detail is not None:
+            detail.par.opviewer = preview.path
+        OWNER.store('hover_started_at', absTime.seconds)
+        _set_state('hover_detail_restore', detail_restore)
         _set_state('hover_slot', slot)
         _set_state('hover_material_id', item['id'])
         _set_text('action_status', 'HOVER LIVE - %s | %.1f s loop' % (
@@ -1125,7 +1230,10 @@ _restore_parameter_store()
 # catalogue lists above are intentionally in-memory. Repopulate them here so a
 # later button or parameter callback never sees a selected id with empty items.
 if hasattr(OWNER, 'op'):
-    refresh()
+    # ``DAT.module`` is evaluated for every callback access in TouchDesigner.
+    # Populate the in-memory catalogue without resetting the user's page;
+    # explicit REFRESH CATALOG still calls refresh() with the default reset.
+    refresh(reset_page=False)
 '''
 
 
@@ -1173,10 +1281,12 @@ def build():
             ("last_import_id", ""),
             ("live_preview_id", ""),
             ("hover_slot", ""), ("hover_material_id", ""),
+            ("hover_detail_restore", ""),
             ("layout", "4x2"),
         ))
     existing_state = {str(state[row, 0]) for row in range(1, state.numRows)}
-    for key, value in (("layout", "4x2"), ("hover_slot", ""), ("hover_material_id", "")):
+    for key, value in (("layout", "4x2"), ("hover_slot", ""),
+                       ("hover_material_id", ""), ("hover_detail_restore", "")):
         if key not in existing_state:
             state.appendRow((key, value))
     catalog_view = _get_or_create(owner, tableDAT, "catalog_view")
@@ -1270,7 +1380,10 @@ def build():
     hover_preview.par.const0value.val = 0.0
     hover_preview.par.vec.sequence.numBlocks = 3
     hover_preview.par.vec0name.val = "uTDMaterial0"
-    hover_preview.par.vec0valuex.expr = "absTime.seconds"
+    hover_preview.par.vec0valuex.expr = (
+        "(absTime.seconds - parent().fetch('hover_started_at', absTime.seconds)) % "
+        "max(1.0, parent().par.Hoverloopseconds)"
+    )
     hover_preview.par.vec0valuey.expr = "op('/project1/madmapper_player_controls').par.Scale"
     hover_preview.par.vec0valuez.expr = "op('/project1/madmapper_player_controls').par.Width"
     hover_preview.par.vec0valuew.expr = "op('/project1/madmapper_player_controls').par.Framezoom"
@@ -1432,8 +1545,8 @@ def build():
         _set_if_present(navigation, "clickthrough", False)
     _text(canvas, "page_status", "PAGE 1 / 1 | 0 RESULTS", 178, 24, 630, 40, 13, (0.72, 0.79, 0.86), align="center")
     _text(canvas, "action_status", "READY - set Catalog File and choose REFRESH CATALOG", 982, 24, 432, 54, 12, (0.35, 0.90, 0.67))
-    _execute(owner, "previous_page_click", previous, "change_page(-1)", panel_value="lselect")
-    _execute(owner, "next_page_click", next_button, "change_page(1)", panel_value="lselect")
+    _button_chop_execute(owner, "previous_page_click", previous, "change_page(-1)")
+    _button_chop_execute(owner, "next_page_click", next_button, "change_page(1)")
 
     # Interactive browsing belongs on an OP Viewer Component in TD 2025.
     # The TOP remains a capture-only surface for screenshots and monitoring.
