@@ -155,7 +155,7 @@ def install():
 
 
 def apply_gradient(key: str):
-    """Apply a named gradient to the existing A/B colour controls."""
+    """Apply a named gradient to the shared Core/imported colour pipeline."""
     if key not in GRADIENT_PRESETS:
         raise KeyError("Unknown gradient preset: %s" % key)
     controls = op(CONTROLS_PATH)
@@ -166,6 +166,9 @@ def apply_gradient(key: str):
     controls.par.Color2r, controls.par.Color2g, controls.par.Color2b = preset.color_b
     if hasattr(controls.par, "Gradientpreset"):
         controls.par.Gradientpreset.val = key
+    postprocess = op(ROOT + "/material_gradient_player")
+    if postprocess is not None:
+        postprocess.cook(force=True)
     return preset
 
 

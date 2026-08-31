@@ -60,6 +60,11 @@ class MaterialControlSurfaceTests(unittest.TestCase):
         self.assertIn("controls.par.Color2r", text)
         self.assertNotIn("Speed =", text)
 
+    def test_gradient_click_forces_the_shared_material_postprocess_to_refresh(self):
+        text = MODULE_FILE.read_text(encoding="utf-8")
+        self.assertIn('op(ROOT + "/material_gradient_player")', text)
+        self.assertIn("postprocess.cook(force=True)", text)
+
 
 if __name__ == "__main__":
     unittest.main()

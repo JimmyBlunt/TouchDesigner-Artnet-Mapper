@@ -337,7 +337,8 @@ def _material_player_surface(controls):
     # player and therefore appeared as TouchDesigner's solid-magenta error
     # image in this dialog even while the live source was valid.
     raw = (
-        op('/project1/visual_source_switch')
+        op('/project1/material_gradient_player')
+        or op('/project1/visual_source_switch')
         or controls.op('material_preview')
         or op('/project1/material_source')
     )
