@@ -1,0 +1,90 @@
+{
+  "changes": [
+    {
+      "action": "speed",
+      "changed": {
+        "Speed": {
+          "before": 0.253298,
+          "after": 0.9920844327176781
+        }
+      },
+      "sender_enabled": false
+    },
+    {
+      "action": "scale",
+      "changed": {
+        "Scale": {
+          "before": 3.91768,
+          "after": 2.0345646437994724
+        }
+      },
+      "sender_enabled": false
+    },
+    {
+      "action": "width",
+      "changed": {
+        "Width": {
+          "before": 0.42,
+          "after": 0.7493403693931399
+        }
+      },
+      "sender_enabled": false
+    },
+    {
+      "action": "focusx",
+      "changed": {
+        "Focusx": {
+          "before": 0.5,
+          "after": 0.7493403693931399
+        }
+      },
+      "sender_enabled": false
+    },
+    {
+      "action": "focusy",
+      "changed": {
+        "Focusy": {
+          "before": 0.5,
+          "after": 0.24802110817941952
+        }
+      },
+      "sender_enabled": false
+    },
+    {
+      "action": "zoom",
+      "changed": {
+        "Framezoom": {
+          "before": 0.658971,
+          "after": 2.172163588390501
+        }
+      },
+      "sender_enabled": false
+    },
+    {
+      "action": "intensity",
+      "changed": {
+        "Intensity": {
+          "before": 0.532982,
+          "after": 0.0
+        }
+      },
+      "sender_enabled": false
+    },
+    {
+      "action": "contrast",
+      "changed": {
+        "Contrast": {
+          "before": 3.33113,
+          "after": 2.055145118733509
+        }
+      },
+      "sender_enabled": false
+    }
+  ],
+  "controls_restored": true,
+  "native_state_restored": true,
+  "active_identity_restored": true,
+  "all_material_settings_restored": true,
+  "all_probe_senders_off": true,
+  "phase_note": "Animation phase advances during running application; not rewound."
+}

@@ -1,0 +1,1027 @@
+﻿dialog,title,node,type,label,value,display,enabled,test
+2,MATERIAL BROWSER,/project1/material_browser/card_top_0,text,Fill,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/card_top_1,text,Gradient,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/card_top_2,text,Diagonals,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/card_top_3,text,Fluid Noise,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/card_top_4,text,Cellular,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/card_top_5,text,Blobby,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/card_top_6,text,Spatial Pulse / Line Anim,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/card_top_7,text,Comet Tails,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/card_top_8,text,Arcs,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/card_top_9,text,Noisy Barcode,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/card_top_10,text,Particles,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/card_top_11,text,Bad TV,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/card_top_12,text,Noise Dissolve Transition,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/card_top_13,text,Plasma,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/card_top_14,text,Fire,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/card_top_15,text,Aurora,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/card_top_16,text,Ocean Waves,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/card_top_17,text,Ripple Rings,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/card_top_18,text,Kaleidoscope,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/card_top_19,text,Tunnel,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/card_top_20,text,Matrix Rain,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/card_top_21,text,Twinkle / Sparkle,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/card_top_22,text,Scanner,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/card_top_23,text,Reaction Diffusion,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/card_top_24,text,Geometric Grid Morph,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_next,button,>,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_next/text,text,>,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_page,text,PAGE 1 / 2 | 36 RESULTS,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_apply,button,SEARCH / APPLY,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_apply/text,text,SEARCH / APPLY,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group,button,GROUP: ALL,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group/text,text,GROUP: ALL,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_title,text,MATERIAL BROWSER | CORE + IMPORTED MADMAPPER,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_hit_0,container,,,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_hit_1,container,,,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_hit_2,container,,,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_hit_3,container,,,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_hit_4,container,,,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_hit_5,container,,,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_hit_6,container,,,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_hit_7,container,,,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_hit_8,container,,,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_hit_9,container,,,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_0,button,Fill,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_0/text,text,Fill,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_1,button,Gradient,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_1/text,text,Gradient,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_2,button,Diagonals,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_2/text,text,Diagonals,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_3,button,Fluid Noise,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_3/text,text,Fluid Noise,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_4,button,Cellular,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_4/text,text,Cellular,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_5,button,Blobby,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_5/text,text,Blobby,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_6,button,Spatial Pulse / Line Anim,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_6/text,text,Spatial Pulse / Line Anim,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_7,button,Comet Tails,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_7/text,text,Comet Tails,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_8,button,Arcs,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_8/text,text,Arcs,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_9,button,Noisy Barcode,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_9/text,text,Noisy Barcode,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_layout,button,VIEW: 8 x 4,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_layout/text,text,VIEW: 8 x 4,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_search,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_search/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_source,button,SOURCE: ALL,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_source/text,text,SOURCE: ALL,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_status,text,READY | 25 CORE + 11 IMPORTED | DMX OFF,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_0,button,Fill,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_0/text,text,Fill,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_1,button,Gradient,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_1/text,text,Gradient,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_2,button,Diagonals,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_2/text,text,Diagonals,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_3,button,Fluid Noise,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_3/text,text,Fluid Noise,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_4,button,Cellular,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_4/text,text,Cellular,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_5,button,Blobby,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_5/text,text,Blobby,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_6,button,Spatial Pulse / Line Anim,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_6/text,text,Spatial Pulse / Line Anim,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_7,button,Comet Tails,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_7/text,text,Comet Tails,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_8,button,Arcs,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_8/text,text,Arcs,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_9,button,Noisy Barcode,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_9/text,text,Noisy Barcode,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_hit_10,container,,,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_hit_11,container,,,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_hit_12,container,,,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_zoom,slider,FRAME ZOOM,0.658971,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_zoom/knob,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_zoom/text,text,FRAME ZOOM,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/preview_0_pixel,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/preview_1_pixel,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/preview_2_pixel,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_10,button,Particles,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_10/text,text,Particles,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_11,button,Bad TV,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_11/text,text,Bad TV,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_12,button,Noise Dissolve Transition,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_12/text,text,Noise Dissolve Transition,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_13,button,Plasma,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_13/text,text,Plasma,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_14,button,Fire,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_14/text,text,Fire,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_15,button,Aurora,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_15/text,text,Aurora,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_16,button,Ocean Waves,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_16/text,text,Ocean Waves,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_17,button,Ripple Rings,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_17/text,text,Ripple Rings,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_18,button,Kaleidoscope,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_18/text,text,Kaleidoscope,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_19,button,Tunnel,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_19/text,text,Tunnel,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_20,button,Matrix Rain,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_20/text,text,Matrix Rain,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_21,button,Twinkle / Sparkle,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_21/text,text,Twinkle / Sparkle,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_22,button,Scanner,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_22/text,text,Scanner,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_23,button,Reaction Diffusion,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_23/text,text,Reaction Diffusion,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_24,button,Geometric Grid Morph,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_24/text,text,Geometric Grid Morph,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_25,button,Abstract Flows | IMPORTED,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_25/text,text,Abstract Flows | IMPORTED,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_26,button,Arcs | IMPORTED,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_26/text,text,Arcs | IMPORTED,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_27,button,Bubble Rings | IMPORTED,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_27/text,text,Bubble Rings | IMPORTED,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_28,button,Fill | IMPORTED,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_28/text,text,Fill | IMPORTED,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_29,button,Funkadelic | IMPORTED,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_29/text,text,Funkadelic | IMPORTED,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_30,button,Lava Blobs | IMPORTED,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_30/text,text,Lava Blobs | IMPORTED,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_31,button,Liquid Tail | IMPORTED,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_card_31/text,text,Liquid Tail | IMPORTED,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_runtime,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_10,button,Particles,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_10/text,text,Particles,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_11,button,Bad TV,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_11/text,text,Bad TV,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_12,button,Noise Dissolve Transition,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_12/text,text,Noise Dissolve Transition,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_13,button,Plasma,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_13/text,text,Plasma,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_14,button,Fire,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_14/text,text,Fire,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_15,button,Aurora,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_15/text,text,Aurora,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_16,button,Ocean Waves,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_16/text,text,Ocean Waves,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_17,button,Ripple Rings,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_17/text,text,Ripple Rings,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_18,button,Kaleidoscope,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_18/text,text,Kaleidoscope,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_19,button,Tunnel,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_19/text,text,Tunnel,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_20,button,Matrix Rain,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_20/text,text,Matrix Rain,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_21,button,Twinkle / Sparkle,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_21/text,text,Twinkle / Sparkle,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_22,button,Scanner,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_22/text,text,Scanner,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_23,button,Reaction Diffusion,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_23/text,text,Reaction Diffusion,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_24,button,Geometric Grid Morph,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_card_24/text,text,Geometric Grid Morph,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_speed,slider,MASTER SPEED,0.253298,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_speed/knob,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_speed/text,text,MASTER SPEED,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_fallback,text,"IMPORTED MATERIAL
+NO STORED PREVIEW",,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_previous,button,<,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_previous/text,text,<,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_focusx,slider,FOCUS X,0.5,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_focusx/knob,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_focusx/text,text,FOCUS X,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_focusy,slider,FOCUS Y,0.5,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_focusy/knob,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_focusy/text,text,FOCUS Y,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/preview_0_compute,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/preview_1_compute,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/preview_2_compute,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_runtime,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_speed_0,button,STOP,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_speed_0/text,text,STOP,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_speed_1,button,0.5x,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_speed_1/text,text,0.5x,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_speed_2,button,1x,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_speed_2/text,text,1x,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_speed_3,button,2x,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_speed_3/text,text,2x,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_params_open,button,NATIVE PARAMS,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_params_open/text,text,NATIVE PARAMS,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_gradient_0,button,NEON,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_gradient_0/text,text,NEON,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_gradient_1,button,AMBER,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_gradient_1/text,text,AMBER,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_gradient_2,button,ACID,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_gradient_2/text,text,ACID,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_gradient_3,button,FIRE/ICE,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_gradient_3/text,text,FIRE/ICE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_gradient_4,button,MONO,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_gradient_4/text,text,MONO,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_view_reset,button,RESET VIEW,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/mb_control_view_reset/text,text,RESET VIEW,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown,container,,,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_0,button,ALL,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_0/text,text,ALL,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_1,button,ABSTRACT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_1/text,text,ABSTRACT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_2,button,AUDIO REACTIVE,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_2/text,text,AUDIO REACTIVE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_3,button,COLOR GENERATORS,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_3/text,text,COLOR GENERATORS,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_4,button,CORE,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_4/text,text,CORE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_5,button,DIGITAL,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_5/text,text,DIGITAL,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_6,button,FACTORY,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_6/text,text,FACTORY,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_7,button,FLUID ORGANIC,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_7/text,text,FLUID ORGANIC,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_8,button,GEOMETRY,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_8/text,text,GEOMETRY,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_9,button,GLITCH,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_9/text,text,GLITCH,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_10,button,IMPORTED,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_10/text,text,IMPORTED,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_11,button,LINES GEOMETRY,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_11/text,text,LINES GEOMETRY,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_12,button,NOISE TEXTURE,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_12/text,text,NOISE TEXTURE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_13,button,ONLINE LIBRARY,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_13/text,text,ONLINE LIBRARY,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_14,button,ORGANIC,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_14/text,text,ORGANIC,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_15,button,PARTICLES,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_15/text,text,PARTICLES,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_16,button,TRANSITION,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_16/text,text,TRANSITION,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_17,button,UTILITY,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_17/text,text,UTILITY,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_18,button,UTILITY TESTING,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_18/text,text,UTILITY TESTING,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_19,button,GROUP,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_group_dropdown/group_option_19/text,text,GROUP,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_page_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer,container,,,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_0,button,PARAMETER | VALUE,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_0/text,text,PARAMETER | VALUE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_1,button,PARAMETER | VALUE,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_1/text,text,PARAMETER | VALUE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_2,button,PARAMETER | VALUE,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_2/text,text,PARAMETER | VALUE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_3,button,PARAMETER | VALUE,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_3/text,text,PARAMETER | VALUE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_4,button,PARAMETER | VALUE,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_4/text,text,PARAMETER | VALUE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_5,button,PARAMETER | VALUE,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_5/text,text,PARAMETER | VALUE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_6,button,PARAMETER | VALUE,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_6/text,text,PARAMETER | VALUE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_7,button,PARAMETER | VALUE,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_7/text,text,PARAMETER | VALUE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_8,button,PARAMETER | VALUE,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_8/text,text,PARAMETER | VALUE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_9,button,PARAMETER | VALUE,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_9/text,text,PARAMETER | VALUE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_params_next,button,NEXT 16 >,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_params_next/text,text,NEXT 16 >,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_10,button,PARAMETER | VALUE,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_10/text,text,PARAMETER | VALUE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_11,button,PARAMETER | VALUE,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_11/text,text,PARAMETER | VALUE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_12,button,PARAMETER | VALUE,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_12/text,text,PARAMETER | VALUE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_13,button,PARAMETER | VALUE,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_13/text,text,PARAMETER | VALUE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_14,button,PARAMETER | VALUE,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_14/text,text,PARAMETER | VALUE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_15,button,PARAMETER | VALUE,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_row_15/text,text,PARAMETER | VALUE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_params_close,button,ZURÜCK,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_params_close/text,text,ZURÜCK,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_params_reset,button,RESET MATERIAL,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_params_reset/text,text,RESET MATERIAL,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_editor_0,slider,VALUE,0.0,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_editor_0/knob,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_editor_0/text,text,VALUE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_editor_1,slider,Y,0.0,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_editor_1/knob,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_editor_1/text,text,Y,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_editor_2,slider,Z,0.0,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_editor_2/knob,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_editor_2/text,text,Z,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_editor_3,slider,W,0.0,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_editor_3/knob,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_editor_3/text,text,W,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_parameter_title,text,NATIVE MADMAPPER PARAMETERS,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_params_back_top,button,ZURÜCK ZU MATERIALIEN,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_params_back_top/text,text,ZURÜCK ZU MATERIALIEN,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_params_previous,button,< PREVIOUS 16,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_params_previous/text,text,< PREVIOUS 16,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_parameter_message,text,,,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_editor_title,text,SELECT A PARAMETER,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_editor_action,button,ACTION,False,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_editor_action/text,text,ACTION,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_parameter_title_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_parameter_message_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/native_parameter_drawer/native_param_editor_title_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_title_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/unified_status_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+2,MATERIAL BROWSER,/project1/material_browser/material_browser_mouse_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/title,text,MADMAPPER MATERIAL LIBRARY,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/safety,text,LOCAL | DMX OFF,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/subtitle,text,Browse local materials safely - nothing is imported until you confirm it,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/next_page,button,NEXT >,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/next_page/text,text,NEXT >,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/page_status,text,PAGE 5 / 20  |  638 RESULTS,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/apply_search,button,SEARCH / APPLY,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/apply_search/text,text,SEARCH / APPLY,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_filter,button,GROUP: ALL,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_filter/text,text,GROUP: ALL,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/search_field,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/search_field/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/search_label,text,SEARCH,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/action_status,text,CATALOG READY - 638 materials loaded,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/compat_filter,button,COMPAT: ALL,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/compat_filter/text,text,COMPAT: ALL,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/detail_header,text,SELECTED MATERIAL,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/layout_toggle,button,VIEW: 8 x 4,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/layout_toggle/text,text,VIEW: 8 x 4,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/previous_page,button,< PREVIOUS,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/previous_page/text,text,< PREVIOUS,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown,container,,,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_0,button,ALL,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_0/text,text,ALL,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_1,button,FACTORY,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_1/text,text,FACTORY,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_2,button,DEMOS / TEMPLATES,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_2/text,text,DEMOS / TEMPLATES,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_3,button,ONLINE LIBRARY,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_3/text,text,ONLINE LIBRARY,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_4,button,AUDIO REACTIVE,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_4/text,text,AUDIO REACTIVE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_5,button,COLOR GENERATORS,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_5/text,text,COLOR GENERATORS,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_6,button,FLUID / ORGANIC,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_6/text,text,FLUID / ORGANIC,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_7,button,IMAGE FILTERS,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_7/text,text,IMAGE FILTERS,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_8,button,LINES / GEOMETRY,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_8/text,text,LINES / GEOMETRY,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_9,button,NOISE / TEXTURE,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_9/text,text,NOISE / TEXTURE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_10,button,PARTICLES,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_10/text,text,PARTICLES,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_11,button,TRANSITIONS,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_11/text,text,TRANSITIONS,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_12,button,UTILITY / TESTING,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_12/text,text,UTILITY / TESTING,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_13,button,IMPORTED,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/group_dropdown/group_option_13/text,text,IMPORTED,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_0,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_1,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_2,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_3,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_4,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_5,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_6,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_7,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_8,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_9,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/selection_meta,text,"online_library
+AUTO-PREPARE
+
+AUTO-PREPARE: the converter can create a TouchDesigner wrapper. The GPU compile is verified when OPEN LIVE PREVIEW is used.
+Reason: automatic TouchDesigner wrapper available; live compile is still required; mat_time_source uses simplified TouchDesigner time-base semantics
+
+Tags: animation, bpm, bubble, dist, factor, fudge, iterations, library, mat, max, mod, offset, online, precision, reverse, rings, scale, speed, strob, suction, surface, sync",,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/compat_dropdown,container,,,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/compat_dropdown/compat_option_0,button,ALL,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/compat_dropdown/compat_option_0/text,text,ALL,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/compat_dropdown/compat_option_1,button,AUTO-PREPARE,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/compat_dropdown/compat_option_1/text,text,AUTO-PREPARE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/compat_dropdown/compat_option_2,button,MANUAL / BLOCKED,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/compat_dropdown/compat_option_2/text,text,MANUAL / BLOCKED,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/import_selected,button,IMPORT SELECTED,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/import_selected/text,text,IMPORT SELECTED,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_0,button,Blurry Pixel,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_0/text,text,Blurry Pixel,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_1,button,Blurrycubes,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_1/text,text,Blurrycubes,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_2,button,Borders,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_2/text,text,Borders,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_3,button,Breathe,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_3/text,text,Breathe,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_4,button,Breizh Flag,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_4/text,text,Breizh Flag,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_5,button,Brokenbarcode,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_5/text,text,Brokenbarcode,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_6,button,Bubble Circuit,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_6/text,text,Bubble Circuit,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_7,button,Bubble Rings  |  IMPORTED,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_7/text,text,Bubble Rings  |  IMPORTED,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_8,button,Bubbleeyes,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_8/text,text,Bubbleeyes,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_9,button,Bump Noise,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_9/text,text,Bump Noise,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_10,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_11,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_12,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_13,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_14,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_15,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_16,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_17,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_18,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_19,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_20,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_21,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_22,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_23,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_24,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_25,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_26,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_27,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_28,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_29,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_30,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_hit_31,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/refresh_catalog,button,REFRESH CATALOG,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/refresh_catalog/text,text,REFRESH CATALOG,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/selection_title,text,Bubble Rings,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/title_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_10,button,Bumped Sinusoidal,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_10/text,text,Bumped Sinusoidal,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_11,button,Burst,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_11/text,text,Burst,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_12,button,Calico,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_12/text,text,Calico,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_13,button,Cameraobsession,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_13/text,text,Cameraobsession,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_14,button,Camo,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_14/text,text,Camo,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_15,button,Candy Core,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_15/text,text,Candy Core,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_16,button,Capsule,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_16/text,text,Capsule,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_17,button,Carnaval Mask,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_17/text,text,Carnaval Mask,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_18,button,Carnaval Sequencer,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_18/text,text,Carnaval Sequencer,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_19,button,Cartoon Fire,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_19/text,text,Cartoon Fire,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_20,button,Cascadingsquares,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_20/text,text,Cascadingsquares,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_21,button,Causticmutant,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_21/text,text,Causticmutant,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_22,button,Causticmutant,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_22/text,text,Causticmutant,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_23,button,Chakanaballoon,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_23/text,text,Chakanaballoon,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_24,button,Chanel,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_24/text,text,Chanel,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_25,button,Chaton'S Material,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_25/text,text,Chaton'S Material,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_26,button,Chocolate Swirl,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_26/text,text,Chocolate Swirl,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_27,button,Chocowave,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_27/text,text,Chocowave,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_28,button,Chromaticabberation,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_28/text,text,Chromaticabberation,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_29,button,Cinematic Shapes,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_29/text,text,Cinematic Shapes,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_30,button,Circle Control,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_30/text,text,Circle Control,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_31,button,Circle Scan,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/material_card_31/text,text,Circle Scan,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/preview_selected,button,SHOW STORED PREVIEW,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/preview_selected/text,text,SHOW STORED PREVIEW,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/safety_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/open_live_preview,button,OPEN LIVE PREVIEW,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/open_live_preview/text,text,OPEN LIVE PREVIEW,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/subtitle_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/page_status_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/search_label_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/action_status_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/detail_header_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/selection_meta_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+3,MADMAPPER LIBRARY,/project1/madmapper_library/ui_panel/selection_title_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_fps,text,TOUCHDESIGNER TARGET: 60.0 FPS  |  ART-NET ACTUAL: 0.0 FPS  |  CONFIG: WS2812_NODE 60 FPS  |  OUTPUT OFF,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_zoom,slider,FRAME ZOOM,0.658971,True,True,MOUSE_PARAMETER_PASS; effects/restore see UI_TESTS_DE.md
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_zoom/knob,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_zoom/text,text,FRAME ZOOM,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_scale,slider,SCALE,3.91768,True,True,MOUSE_PARAMETER_PASS; effects/restore see UI_TESTS_DE.md
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_scale/knob,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_scale/text,text,SCALE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_speed,slider,MASTER SPEED,0.253298,True,True,MOUSE_PARAMETER_PASS; effects/restore see UI_TESTS_DE.md
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_speed/knob,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_speed/text,text,MASTER SPEED,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_title,text,MATERIAL PLAYER | RAW MATERIAL + LIVE CONTROLS,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_width,slider,WIDTH,0.42,True,True,MOUSE_PARAMETER_PASS; effects/restore see UI_TESTS_DE.md
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_width/knob,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_width/text,text,WIDTH,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_focusx,slider,FOCUS X,0.5,True,True,MOUSE_PARAMETER_PASS; effects/restore see UI_TESTS_DE.md
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_focusx/knob,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_focusx/text,text,FOCUS X,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_focusy,slider,FOCUS Y,0.5,True,True,MOUSE_PARAMETER_PASS; effects/restore see UI_TESTS_DE.md
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_focusy/knob,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_focusy/text,text,FOCUS Y,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_status,text,SOURCE: IMPORTED  |  MATERIAL: arcs,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/controls_title,text,LIVE PLAYER CONTROLS,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_contrast,slider,CONTRAST,3.33113,True,True,MOUSE_PARAMETER_PASS; effects/restore see UI_TESTS_DE.md
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_contrast/knob,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_contrast/text,text,CONTRAST,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_intensity,slider,INTENSITY,0.532982,True,True,MOUSE_PARAMETER_PASS; effects/restore see UI_TESTS_DE.md
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_intensity/knob,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_intensity/text,text,INTENSITY,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_reset_view,button,RESET VIEW,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_reset_view/text,text,RESET VIEW,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_open_browser,button,OPEN MATERIAL BROWSER,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_open_browser/text,text,OPEN MATERIAL BROWSER,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_fps_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_title_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/player_status_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+4,MATERIAL PLAYER,/project1/madmapper_player_controls/ui_panel/controls_title_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/axes,text,"Z
+|
+|_____ X
+ /
+Y",,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/title,text,PIXELBLAZE PORTABLE MAPPER,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/fit_help,text,Fill stretches axes independently  |  Contain preserves proportions,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/subtitle,text,MariMapper CSV  <->  TouchDesigner  <->  Pixelblaze JSON / JS,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/btn_fill1,button,FILL,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/btn_fill1/text,text,FILL,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/editor_bg,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/fit_title,text,FIT MODE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/footer_bg,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/header_bg,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/status_bg,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/apply_zone,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/btn_apply1,button,APPLY TO LEDs,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/btn_apply1/text,text,APPLY TO LEDs,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/preview_bg,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/safe_badge,text,LIVE-CAPABLE  |  GUARDED APPLY,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/saved_chip,text,SAVED,,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/toolbar_bg,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/btn_reload1,button,RELOAD,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/btn_reload1/text,text,RELOAD,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/btn_revert1,button,REVERT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/btn_revert1/text,text,REVERT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/draft_badge,text,DRAFT  YES,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/editor_mock,text,"1   [[0.0000, 0.0000, 0.0000],
+2    [0.1250, 0.0000, 0.0000],
+3    [0.2500, 0.0000, 0.0000],
+4    ...
+5
+6    Import a Pixelblaze JSON / JS map
+7    or a MariMapper led_map_3d.csv.
+8
+9    Parser output interface:
+10   ../core/raw_map
+11   ../core/normalized_map
+12   ../core/status",,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/footer_note,text,Apply validates exactly 3714 pixels before live LED routing.,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/status_dims,text,"DIMENSION
+3D",,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/status_file,text,"FILE
+mapping_sidewall_upright_x90.json",,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/applied_chip,text,APPLIED,,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/btn_contain1,button,CONTAIN,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/btn_contain1/text,text,CONTAIN,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/btn_open_pb1,button,OPEN PIXELBLAZE,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/btn_open_pb1/text,text,OPEN PIXELBLAZE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/editor_title,text,MAP SOURCE / DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/preview_live,container,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/source_label,text,SOURCE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/source_value,text,  C:\Users\jbhtz\TouchDesignerLocal\PixelblazeMapper\mappings\mapping_sidewall_upright_x90.json,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/state_badges,text,DRAFT ON   SAVED ON   APPLIED OFF,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/btn_open_csv1,button,OPEN MARIMAPPER CSV,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/btn_open_csv1/text,text,OPEN MARIMAPPER CSV,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/preview_title,text,3D LED PREVIEW  |  LIVE RGB,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/status_bounds,text,"BOUNDS
+x[0.000..1.000]  y[0.000..1.000]  z[0.000..1.000]",,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/status_pixels,text,"PIXELS
+3714",,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/syntax_status,text,  EXPORTED - AllExported.json,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/axes_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/btn_export_pb1,button,EXPORT PIXELBLAZE,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/btn_export_pb1/text,text,EXPORT PIXELBLAZE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/preview_target,text,"LIVE PREVIEW TARGET
+
+../preview3d/out1
+
+Orbit  |  Zoom  |  Index Highlight
+Animation color stream ready",,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/btn_export_csv1,button,EXPORT MARIMAPPER CSV,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/btn_export_csv1/text,text,EXPORT MARIMAPPER CSV,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/title_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/fit_help_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/subtitle_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/fit_title_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/safe_badge_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/saved_chip_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/draft_badge_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/editor_mock_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/footer_note_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/status_dims_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/status_file_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/applied_chip_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/editor_title_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/source_label_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/source_value_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/state_badges_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/preview_title_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/status_bounds_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/status_pixels_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/syntax_status_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+5,PIXEL MAPPER,/project1/pixelblaze_mapper/ui/canvas/preview_target_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/ws,text,"WS2812_NODE   10.0.0.244   3 ports / 1,184 pixels   U1-U9   GRB   2%   DISABLED",,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/apa,text,"APA102_ESP    10.0.0.251   Source 1187-2353 -> Target 512-1678   U0-U9   RGB   2%   DISABLED
+Target 0-511 remains black for current ESP firmware compatibility.",,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/edit,text,"EDITABLE TABLES
+controller_config: IP · interface · universe · reserved universes · color · brightness · rate · ArtSync · enabled
+segment_config: source range · controller · target start · reverse · color override",,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/flow,text,COMMON EFFECT -> SEGMENT ROUTER -> RGB PACKER -> ONE SHARED 510-BYTE ART-NET SENDER,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/next,text,Activation remains a reviewed manual step after table validation and low-brightness hardware test.,,False,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/title,text,ART-NET MULTI-CONTROLLER ROUTER,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/ws_ip,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/ws_ip/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/apa_ip,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/apa_ip/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/safety,text,"SAFE START: outputs OFF | source /project1/math1 | 3,744 RGB pixels",,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/btn_off,button,ALL OUTPUTS OFF,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/btn_off/text,text,ALL OUTPUTS OFF,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/warning,text,START ENABLED sends live Art-Net. ALL OUTPUTS OFF stops immediately.,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/advanced,text,"Advanced mapping: controller_config + segment_config (ranges, targets, reverse, RGB order, NIC, rate, ArtSync).",,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/cal_note,text,"Panel ID: middle=red, upper=green, lower=blue. Rows/columns use every measured coordinate. Chase: selected LED green, neighbours white.",,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/ws_title,text,WS2812 NODE  |  3 physical ports  |  UI U1-U9 / wire U0-U8,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/apa_title,text,"APA102 ESP  |  1,167 pixels  |  10 universes",,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/btn_apply,button,APPLY SAFE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/btn_apply/text,text,APPLY SAFE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/btn_start,button,START ENABLED,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/btn_start/text,text,START ENABLED,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/cal_chase,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/cal_chase/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/cal_panel,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/cal_panel/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/cal_title,text,MEASURED 3D-MAP CALIBRATION,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/unassigned,text,Source pixels 2354-3743 remain free for rear-panel / 3D mapping.,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/ws_enabled,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/ws_enabled/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/apa_enabled,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/apa_enabled/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/cal_pattern,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/cal_pattern/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/ws_ip_label,text,IP address,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/ws_universe,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/ws_universe/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/apa_ip_label,text,IP address,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/apa_universe,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/apa_universe/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/btn_cal_live,button,RETURN TO LIVE,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/btn_cal_live/text,text,RETURN TO LIVE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/ws_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/action_status,text,LIVE - shared 510-byte sender: WS2812_NODE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/apa_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/btn_cal_panel,button,NEXT PANEL,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/btn_cal_panel/text,text,NEXT PANEL,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/btn_cal_start,button,START CALIBRATION,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/btn_cal_start/text,text,START CALIBRATION,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/firmware_note,text,GICO chain: middle target 0-509; scan 510-516 quarantined; upper target 510-778; lower target 1020. ESP APA102 starts at 512.,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/ws_brightness,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/ws_brightness/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/apa_brightness,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/apa_brightness/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/edit_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/flow_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/next_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/btn_cal_pattern,button,NEXT PATTERN,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/btn_cal_pattern/text,text,NEXT PATTERN,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/cal_chase_label,text,Chase index 0..3743,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/cal_panel_label,text,Panel: all | middle | upper | lower,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/title_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/safety_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/ws_enabled_label,text,Enabled 0/1,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/apa_enabled_label,text,Enabled 0/1,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/cal_pattern_label,text,Pattern: panel_id | rows | columns | chase,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config1,button,GICO PORT CONFIG,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config1/text,text,GICO PORT CONFIG,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config2,button,GICO PORT CONFIG,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config2/text,text,GICO PORT CONFIG,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config3,button,GICO PORT CONFIG,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config3/text,text,GICO PORT CONFIG,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config4,button,GICO PORT CONFIG,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config4/text,text,GICO PORT CONFIG,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config5,button,GICO PORT CONFIG,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config5/text,text,GICO PORT CONFIG,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config6,button,GICO PORT CONFIG,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config6/text,text,GICO PORT CONFIG,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config7,button,GICO PORT CONFIG,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config7/text,text,GICO PORT CONFIG,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config8,button,GICO PORT CONFIG,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config8/text,text,GICO PORT CONFIG,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config9,button,GICO PORT CONFIG,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config9/text,text,GICO PORT CONFIG,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/warning_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/ws_universe_label,text,Start universe,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/advanced_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/apa_universe_label,text,Start universe,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/cal_note_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config10,button,GICO PORT CONFIG,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config10/text,text,GICO PORT CONFIG,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config11,button,GICO PORT CONFIG,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config11/text,text,GICO PORT CONFIG,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config12,button,GICO PORT CONFIG,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config12/text,text,GICO PORT CONFIG,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config13,button,GICO PORT CONFIG,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config13/text,text,GICO PORT CONFIG,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config14,button,GICO PORT CONFIG,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config14/text,text,GICO PORT CONFIG,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config15,button,GICO PORT CONFIG,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config15/text,text,GICO PORT CONFIG,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config16,button,GICO PORT CONFIG,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config16/text,text,GICO PORT CONFIG,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config17,button,GICO PORT CONFIG,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/open_gico_config17/text,text,GICO PORT CONFIG,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/ws_title_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/apa_title_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/cal_title_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/ws_brightness_label,text,Brightness 0..1,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/apa_brightness_label,text,Brightness 0..1,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/unassigned_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/ws_ip_label_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/apa_ip_label_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/action_status_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/firmware_note_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/cal_chase_label_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/cal_panel_label_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/ws_enabled_label_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/apa_enabled_label_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/cal_pattern_label_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/ws_universe_label_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/apa_universe_label_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/ws_brightness_label_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+6,ART-NET ROUTER,/project1/multi_controller_output/ui_panel/apa_brightness_label_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/title,text,OUTPUT CONFIG | LIVE SUMMARY,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/notice,text,READ ONLY · Edit output settings only in the Art-Net Router,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/open_router,button,OPEN ART-NET ROUTER,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/open_router/text,text,OPEN ART-NET ROUTER,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/source_note,text,Values are derived from /project1/math1 and Router-owned live tables. No editable copies exist here.,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/state_label,text,OUTPUT STATE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/state_value,text,OUTPUT OFF,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/sender_label,text,SENDER,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/sender_value,text,OFF | LIVE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/source_label,text,LIVE SOURCE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/source_value,text,"3,744 RGB pixels",,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/title_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/notice_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/validation_label,text,VALIDATION,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/validation_value,text,2 warning(s),,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/controllers_label,text,CONTROLLERS · LIVE ROUTER TABLE + SENDER STATE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/controllers_value,text,"WS2812_NODE
+READY / SENDER OFF | 10.0.0.244:6454 via 10.0.0.125 | U0-U23 | 4080 px | GRB | 60 fps | 70.0% | ArtSync OFF
+
+APA102_ESP
+DISABLED | 10.0.0.251:6454 via 10.0.0.125 | U0-U9 | 1700 px | RGB | 30 fps | 2.0% | ArtSync OFF",,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/source_note_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/state_label_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/state_value_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/sender_label_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/sender_value_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/source_label_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/source_value_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/validation_label_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/validation_value_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/controllers_label_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+7,OUTPUT CONFIG,/project1/pixelblaze_mapper/output_config/ui_panel/controllers_value_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+8,SHOW CONTROL,/project1/show_control/control_panel/title,text,SHOW CONTROL  |  A/B LIVE PREVIEW  |  ART-NET SAFE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+8,SHOW CONTROL,/project1/show_control/control_panel/btn_go,button,GO,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+8,SHOW CONTROL,/project1/show_control/control_panel/btn_go/text,text,GO,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+8,SHOW CONTROL,/project1/show_control/control_panel/btn_loop,button,LOOP OFF,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+8,SHOW CONTROL,/project1/show_control/control_panel/btn_loop/text,text,LOOP OFF,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+8,SHOW CONTROL,/project1/show_control/control_panel/btn_next,button,NEXT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+8,SHOW CONTROL,/project1/show_control/control_panel/btn_next/text,text,NEXT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+8,SHOW CONTROL,/project1/show_control/control_panel/btn_play,button,PLAY,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+8,SHOW CONTROL,/project1/show_control/control_panel/btn_play/text,text,PLAY,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+8,SHOW CONTROL,/project1/show_control/control_panel/btn_stop,button,STOP,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+8,SHOW CONTROL,/project1/show_control/control_panel/btn_stop/text,text,STOP,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+8,SHOW CONTROL,/project1/show_control/control_panel/btn_pause,button,PAUSE,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+8,SHOW CONTROL,/project1/show_control/control_panel/btn_pause/text,text,PAUSE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+8,SHOW CONTROL,/project1/show_control/control_panel/cue_status,text,"CUE 03  |  Barcode Finale
+Slot A: Noisy Barcode / Neon  |  targets all  |  t=12.00 s  |  STOPPED",,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+8,SHOW CONTROL,/project1/show_control/control_panel/btn_blackout,button,BLACKOUT ON,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+8,SHOW CONTROL,/project1/show_control/control_panel/btn_blackout/text,text,BLACKOUT ON,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+8,SHOW CONTROL,/project1/show_control/control_panel/btn_previous,button,PREV,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+8,SHOW CONTROL,/project1/show_control/control_panel/btn_previous/text,text,PREV,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+8,SHOW CONTROL,/project1/show_control/control_panel/title_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+8,SHOW CONTROL,/project1/show_control/control_panel/transition_status,text,"A   radial   0%  |  B mix 0%
+Next: - / -  |  Loop OFF  |  Blackout ON",,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+8,SHOW CONTROL,/project1/show_control/control_panel/cue_status_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+8,SHOW CONTROL,/project1/show_control/control_panel/transition_status_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/title,text,TOUCHDESIGNER SHORTCUTS,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/footer,text,Tip: click an empty network area first. Text-entry fields can consume keyboard input.,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/name_0,text,GICO PORT CONFIG,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/name_1,text,LED PREVIEW,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/name_2,text,MATERIAL BROWSER,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/name_3,text,MADMAPPER LIBRARY,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/name_4,text,MATERIAL PLAYER,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/name_5,text,PIXEL MAPPER,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/name_6,text,ART-NET ROUTER,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/name_7,text,OUTPUT CONFIG,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/name_8,text,SHOW CONTROL,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/name_9,text,SHORTCUT HELP,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/safety,text,Navigation only - no shortcut starts DMX or changes the selected effect.,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/combo_0,text,Ctrl+Shift+0,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/combo_1,text,Ctrl+Shift+1,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/combo_2,text,Ctrl+Shift+2,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/combo_3,text,Ctrl+Shift+3,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/combo_4,text,Ctrl+Shift+4,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/combo_5,text,Ctrl+Shift+5,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/combo_6,text,Ctrl+Shift+6,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/combo_7,text,Ctrl+Shift+7,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/combo_8,text,Ctrl+Shift+8,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/combo_9,text,Ctrl+Shift+9,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/purpose_0,text,Globale Universen pro Port und feste GICO-Portblöcke konfigurieren,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/purpose_1,text,Verbindliche Foto-/Schrankansicht mit gemappten LEDs,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/purpose_2,text,Core- und importierte Materialien auswählen,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/purpose_3,text,"MadMapper-Materialien suchen, prüfen und importieren",,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/purpose_4,text,Aktuelles Rohmaterial und Player-Steuerung prüfen,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/purpose_5,text,LED-Koordinaten und Mapping bearbeiten,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/purpose_6,text,"Controller, IP, Universen und sichere Ausgabe bedienen",,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/purpose_7,text,Schreibgeschützten Live-Status prüfen und Art-Net Router öffnen,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/purpose_8,text,"Cues, Übergänge und Show-Ablauf steuern",,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/purpose_9,text,Diese Shortcut-Übersicht öffnen,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/title_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/footer_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/name_0_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/name_1_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/name_2_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/name_3_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/name_4_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/name_5_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/name_6_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/name_7_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/name_8_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/name_9_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/safety_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/combo_0_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/combo_1_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/combo_2_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/combo_3_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/combo_4_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/combo_5_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/combo_6_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/combo_7_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/combo_8_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/combo_9_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/purpose_0_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/purpose_1_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/purpose_2_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/purpose_3_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/purpose_4_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/purpose_5_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/purpose_6_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/purpose_7_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/purpose_8_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+9,SHORTCUT HELP,/project1/shortcut_hub/help_panel/purpose_9_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/help,text,The controller uses one global universe count for every physical port. Derived blocks cannot overlap. Blank Source Start means visible draft only - no Art-Net routing.,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/title,text,GICO FIXED PORT CONFIGURATION,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply1,button,APPLY SAFE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply1/text,text,APPLY SAFE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply2,button,APPLY SAFE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply2/text,text,APPLY SAFE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply3,button,APPLY SAFE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply3/text,text,APPLY SAFE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply4,button,APPLY SAFE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply4/text,text,APPLY SAFE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply5,button,APPLY SAFE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply5/text,text,APPLY SAFE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply6,button,APPLY SAFE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply6/text,text,APPLY SAFE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply7,button,APPLY SAFE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply7/text,text,APPLY SAFE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply8,button,APPLY SAFE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply8/text,text,APPLY SAFE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply9,button,APPLY SAFE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply9/text,text,APPLY SAFE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/status,text,VALID DRAFT | reserved U1-U24 (24 universes),,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply10,button,APPLY SAFE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply10/text,text,APPLY SAFE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply11,button,APPLY SAFE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply11/text,text,APPLY SAFE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply12,button,APPLY SAFE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply12/text,text,APPLY SAFE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply13,button,APPLY SAFE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply13/text,text,APPLY SAFE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply14,button,APPLY SAFE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply14/text,text,APPLY SAFE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply15,button,APPLY SAFE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply15/text,text,APPLY SAFE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply16,button,APPLY SAFE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply16/text,text,APPLY SAFE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply17,button,APPLY SAFE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/apply17/text,text,APPLY SAFE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/columns,text,PORT / LABEL | ENABLED | SOURCE START | PIXELS | REVERSE | ORDER | DERIVED BLOCK,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p1_count,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p1_count/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p1_label,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p1_label/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p1_order,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p1_order/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p2_count,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p2_count/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p2_label,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p2_label/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p2_order,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p2_order/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p3_count,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p3_count/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p3_label,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p3_label/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p3_order,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p3_order/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p4_count,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p4_count/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p4_label,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p4_label/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p4_order,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p4_order/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p1_number,text,P1,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p1_source,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p1_source/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p2_number,text,P2,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p2_source,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p2_source/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p3_number,text,P3,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p3_source,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p3_source/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p4_number,text,P4,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p4_source,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p4_source/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/upp_label,text,UNIVERSES PER PORT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate1,button,VALIDATE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate1/text,text,VALIDATE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate2,button,VALIDATE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate2/text,text,VALIDATE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate3,button,VALIDATE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate3/text,text,VALIDATE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate4,button,VALIDATE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate4/text,text,VALIDATE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate5,button,VALIDATE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate5/text,text,VALIDATE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate6,button,VALIDATE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate6/text,text,VALIDATE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate7,button,VALIDATE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate7/text,text,VALIDATE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate8,button,VALIDATE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate8/text,text,VALIDATE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate9,button,VALIDATE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate9/text,text,VALIDATE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p1_derived,text,U1-U6 | target 0 | capacity 1020 | source 0-516,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p1_enabled,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p1_enabled/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p1_reverse,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p1_reverse/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p2_derived,text,U7-U12 | target 1020 | capacity 1020 | source 517-785,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p2_enabled,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p2_enabled/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p2_reverse,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p2_reverse/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p3_derived,text,U13-U18 | target 2040 | capacity 1020 | source 786-1183,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p3_enabled,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p3_enabled/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p3_reverse,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p3_reverse/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p4_derived,text,U19-U24 | target 3060 | capacity 1020 | source 1284-2179,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p4_enabled,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p4_enabled/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p4_reverse,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p4_reverse/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate10,button,VALIDATE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate10/text,text,VALIDATE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate11,button,VALIDATE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate11/text,text,VALIDATE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate12,button,VALIDATE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate12/text,text,VALIDATE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate13,button,VALIDATE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate13/text,text,VALIDATE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate14,button,VALIDATE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate14/text,text,VALIDATE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate15,button,VALIDATE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate15/text,text,VALIDATE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate16,button,VALIDATE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate16/text,text,VALIDATE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate17,button,VALIDATE DRAFT,False,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/validate17/text,text,VALIDATE DRAFT,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/first_label,text,FIRST UI UNIVERSE,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/first_universe,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/first_universe/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/help_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/title_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/status_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/columns_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/universes_per_port,field,,,True,True,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/universes_per_port/text,text,derivative,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p1_number_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p2_number_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p3_number_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p4_number_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/upp_label_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p1_derived_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p2_derived_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p3_derived_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/p4_derived_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion
+0,GICO PORT CONFIG,/project1/multi_controller_output/gico_port_config/ui_panel/first_label_callbacks,text,,,,,READ_ONLY_INVENTORY; no individual interaction assertion

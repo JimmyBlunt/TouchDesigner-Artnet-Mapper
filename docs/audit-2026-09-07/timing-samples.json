@@ -1,0 +1,1026 @@
+[
+  {
+    "seconds": 2222.4333333333334,
+    "frame": 133346,
+    "nodes": [
+      {
+        "node": "/project1/material_gradient_player",
+        "cooks": 66376,
+        "cpu_ms": 0.13580000400543213
+      },
+      {
+        "node": "/project1/madmapper_library/live_preview",
+        "cooks": 66377,
+        "cpu_ms": 0.17759999632835388
+      },
+      {
+        "node": "/project1/madmapper_library/hover_preview",
+        "cooks": 0,
+        "cpu_ms": 0.0
+      },
+      {
+        "node": "/project1/res1",
+        "cooks": 66376,
+        "cpu_ms": 0.037299998104572296
+      },
+      {
+        "node": "/project1/effect_sample_uv",
+        "cooks": 1,
+        "cpu_ms": 12.100099563598633
+      },
+      {
+        "node": "/project1/math1",
+        "cooks": 70403,
+        "cpu_ms": 0.02879999950528145
+      }
+    ],
+    "sender": {
+      "enabled": false,
+      "error": "",
+      "mode": "live",
+      "calibration": [
+        "all",
+        "panel_id",
+        0
+      ],
+      "controllers": [],
+      "target_override": null,
+      "port_override": null,
+      "telemetry": {
+        "tick_count": 66377,
+        "rate_skips": 0,
+        "send_count": 0,
+        "packet_count": 0,
+        "send_ms_last": 0.0,
+        "send_ms_average": 0.0,
+        "send_ms_max": 0.0,
+        "actual_send_fps": 0.0,
+        "pack_count": 0,
+        "pack_ms_last": 0.0,
+        "pack_ms_average": 0.0,
+        "pack_ms_max": 0.0,
+        "plan_rebuilds": 0
+      }
+    }
+  },
+  {
+    "seconds": 2224.633333333333,
+    "frame": 133478,
+    "nodes": [
+      {
+        "node": "/project1/material_gradient_player",
+        "cooks": 66452,
+        "cpu_ms": 0.1233999952673912
+      },
+      {
+        "node": "/project1/madmapper_library/live_preview",
+        "cooks": 66453,
+        "cpu_ms": 0.14270000159740448
+      },
+      {
+        "node": "/project1/madmapper_library/hover_preview",
+        "cooks": 0,
+        "cpu_ms": 0.0
+      },
+      {
+        "node": "/project1/res1",
+        "cooks": 66452,
+        "cpu_ms": 0.040400002151727676
+      },
+      {
+        "node": "/project1/effect_sample_uv",
+        "cooks": 1,
+        "cpu_ms": 12.100099563598633
+      },
+      {
+        "node": "/project1/math1",
+        "cooks": 70485,
+        "cpu_ms": 0.023599999025464058
+      }
+    ],
+    "sender": {
+      "enabled": false,
+      "error": "",
+      "mode": "live",
+      "calibration": [
+        "all",
+        "panel_id",
+        0
+      ],
+      "controllers": [],
+      "target_override": null,
+      "port_override": null,
+      "telemetry": {
+        "tick_count": 66453,
+        "rate_skips": 0,
+        "send_count": 0,
+        "packet_count": 0,
+        "send_ms_last": 0.0,
+        "send_ms_average": 0.0,
+        "send_ms_max": 0.0,
+        "actual_send_fps": 0.0,
+        "pack_count": 0,
+        "pack_ms_last": 0.0,
+        "pack_ms_average": 0.0,
+        "pack_ms_max": 0.0,
+        "plan_rebuilds": 0
+      }
+    }
+  },
+  {
+    "seconds": 2226.7,
+    "frame": 133602,
+    "nodes": [
+      {
+        "node": "/project1/material_gradient_player",
+        "cooks": 66537,
+        "cpu_ms": 0.06030000001192093
+      },
+      {
+        "node": "/project1/madmapper_library/live_preview",
+        "cooks": 66538,
+        "cpu_ms": 0.13859999179840088
+      },
+      {
+        "node": "/project1/madmapper_library/hover_preview",
+        "cooks": 0,
+        "cpu_ms": 0.0
+      },
+      {
+        "node": "/project1/res1",
+        "cooks": 66537,
+        "cpu_ms": 0.02980000153183937
+      },
+      {
+        "node": "/project1/effect_sample_uv",
+        "cooks": 1,
+        "cpu_ms": 12.100099563598633
+      },
+      {
+        "node": "/project1/math1",
+        "cooks": 70574,
+        "cpu_ms": 0.02290000021457672
+      }
+    ],
+    "sender": {
+      "enabled": false,
+      "error": "",
+      "mode": "live",
+      "calibration": [
+        "all",
+        "panel_id",
+        0
+      ],
+      "controllers": [],
+      "target_override": null,
+      "port_override": null,
+      "telemetry": {
+        "tick_count": 66538,
+        "rate_skips": 0,
+        "send_count": 0,
+        "packet_count": 0,
+        "send_ms_last": 0.0,
+        "send_ms_average": 0.0,
+        "send_ms_max": 0.0,
+        "actual_send_fps": 0.0,
+        "pack_count": 0,
+        "pack_ms_last": 0.0,
+        "pack_ms_average": 0.0,
+        "pack_ms_max": 0.0,
+        "plan_rebuilds": 0
+      }
+    }
+  },
+  {
+    "seconds": 2228.75,
+    "frame": 133725,
+    "nodes": [
+      {
+        "node": "/project1/material_gradient_player",
+        "cooks": 66624,
+        "cpu_ms": 0.08269999921321869
+      },
+      {
+        "node": "/project1/madmapper_library/live_preview",
+        "cooks": 66625,
+        "cpu_ms": 0.18219999969005585
+      },
+      {
+        "node": "/project1/madmapper_library/hover_preview",
+        "cooks": 0,
+        "cpu_ms": 0.0
+      },
+      {
+        "node": "/project1/res1",
+        "cooks": 66624,
+        "cpu_ms": 0.030500002205371857
+      },
+      {
+        "node": "/project1/effect_sample_uv",
+        "cooks": 1,
+        "cpu_ms": 12.100099563598633
+      },
+      {
+        "node": "/project1/math1",
+        "cooks": 70666,
+        "cpu_ms": 0.048100002110004425
+      }
+    ],
+    "sender": {
+      "enabled": false,
+      "error": "",
+      "mode": "live",
+      "calibration": [
+        "all",
+        "panel_id",
+        0
+      ],
+      "controllers": [],
+      "target_override": null,
+      "port_override": null,
+      "telemetry": {
+        "tick_count": 66625,
+        "rate_skips": 0,
+        "send_count": 0,
+        "packet_count": 0,
+        "send_ms_last": 0.0,
+        "send_ms_average": 0.0,
+        "send_ms_max": 0.0,
+        "actual_send_fps": 0.0,
+        "pack_count": 0,
+        "pack_ms_last": 0.0,
+        "pack_ms_average": 0.0,
+        "pack_ms_max": 0.0,
+        "plan_rebuilds": 0
+      }
+    }
+  },
+  {
+    "seconds": 2230.8333333333335,
+    "frame": 133850,
+    "nodes": [
+      {
+        "node": "/project1/material_gradient_player",
+        "cooks": 66712,
+        "cpu_ms": 0.08100000023841858
+      },
+      {
+        "node": "/project1/madmapper_library/live_preview",
+        "cooks": 66713,
+        "cpu_ms": 0.13920000195503235
+      },
+      {
+        "node": "/project1/madmapper_library/hover_preview",
+        "cooks": 0,
+        "cpu_ms": 0.0
+      },
+      {
+        "node": "/project1/res1",
+        "cooks": 66712,
+        "cpu_ms": 0.03060000203549862
+      },
+      {
+        "node": "/project1/effect_sample_uv",
+        "cooks": 1,
+        "cpu_ms": 12.100099563598633
+      },
+      {
+        "node": "/project1/math1",
+        "cooks": 70759,
+        "cpu_ms": 0.025499999523162842
+      }
+    ],
+    "sender": {
+      "enabled": false,
+      "error": "",
+      "mode": "live",
+      "calibration": [
+        "all",
+        "panel_id",
+        0
+      ],
+      "controllers": [],
+      "target_override": null,
+      "port_override": null,
+      "telemetry": {
+        "tick_count": 66713,
+        "rate_skips": 0,
+        "send_count": 0,
+        "packet_count": 0,
+        "send_ms_last": 0.0,
+        "send_ms_average": 0.0,
+        "send_ms_max": 0.0,
+        "actual_send_fps": 0.0,
+        "pack_count": 0,
+        "pack_ms_last": 0.0,
+        "pack_ms_average": 0.0,
+        "pack_ms_max": 0.0,
+        "plan_rebuilds": 0
+      }
+    }
+  },
+  {
+    "seconds": 2232.9333333333334,
+    "frame": 133976,
+    "nodes": [
+      {
+        "node": "/project1/material_gradient_player",
+        "cooks": 66789,
+        "cpu_ms": 0.07609999924898148
+      },
+      {
+        "node": "/project1/madmapper_library/live_preview",
+        "cooks": 66790,
+        "cpu_ms": 0.1378999948501587
+      },
+      {
+        "node": "/project1/madmapper_library/hover_preview",
+        "cooks": 0,
+        "cpu_ms": 0.0
+      },
+      {
+        "node": "/project1/res1",
+        "cooks": 66789,
+        "cpu_ms": 0.030499998480081558
+      },
+      {
+        "node": "/project1/effect_sample_uv",
+        "cooks": 1,
+        "cpu_ms": 12.100099563598633
+      },
+      {
+        "node": "/project1/math1",
+        "cooks": 70841,
+        "cpu_ms": 0.026399997994303703
+      }
+    ],
+    "sender": {
+      "enabled": false,
+      "error": "",
+      "mode": "live",
+      "calibration": [
+        "all",
+        "panel_id",
+        0
+      ],
+      "controllers": [],
+      "target_override": null,
+      "port_override": null,
+      "telemetry": {
+        "tick_count": 66790,
+        "rate_skips": 0,
+        "send_count": 0,
+        "packet_count": 0,
+        "send_ms_last": 0.0,
+        "send_ms_average": 0.0,
+        "send_ms_max": 0.0,
+        "actual_send_fps": 0.0,
+        "pack_count": 0,
+        "pack_ms_last": 0.0,
+        "pack_ms_average": 0.0,
+        "pack_ms_max": 0.0,
+        "plan_rebuilds": 0
+      }
+    }
+  },
+  {
+    "seconds": 2235.0,
+    "frame": 134100,
+    "nodes": [
+      {
+        "node": "/project1/material_gradient_player",
+        "cooks": 66865,
+        "cpu_ms": 0.07440000027418137
+      },
+      {
+        "node": "/project1/madmapper_library/live_preview",
+        "cooks": 66866,
+        "cpu_ms": 0.14840000867843628
+      },
+      {
+        "node": "/project1/madmapper_library/hover_preview",
+        "cooks": 0,
+        "cpu_ms": 0.0
+      },
+      {
+        "node": "/project1/res1",
+        "cooks": 66865,
+        "cpu_ms": 0.03320000320672989
+      },
+      {
+        "node": "/project1/effect_sample_uv",
+        "cooks": 1,
+        "cpu_ms": 12.100099563598633
+      },
+      {
+        "node": "/project1/math1",
+        "cooks": 70921,
+        "cpu_ms": 0.03310000151395798
+      }
+    ],
+    "sender": {
+      "enabled": false,
+      "error": "",
+      "mode": "live",
+      "calibration": [
+        "all",
+        "panel_id",
+        0
+      ],
+      "controllers": [],
+      "target_override": null,
+      "port_override": null,
+      "telemetry": {
+        "tick_count": 66866,
+        "rate_skips": 0,
+        "send_count": 0,
+        "packet_count": 0,
+        "send_ms_last": 0.0,
+        "send_ms_average": 0.0,
+        "send_ms_max": 0.0,
+        "actual_send_fps": 0.0,
+        "pack_count": 0,
+        "pack_ms_last": 0.0,
+        "pack_ms_average": 0.0,
+        "pack_ms_max": 0.0,
+        "plan_rebuilds": 0
+      }
+    }
+  },
+  {
+    "seconds": 2237.133333333333,
+    "frame": 134228,
+    "nodes": [
+      {
+        "node": "/project1/material_gradient_player",
+        "cooks": 66950,
+        "cpu_ms": 0.11630000174045563
+      },
+      {
+        "node": "/project1/madmapper_library/live_preview",
+        "cooks": 66951,
+        "cpu_ms": 0.1858000010251999
+      },
+      {
+        "node": "/project1/madmapper_library/hover_preview",
+        "cooks": 0,
+        "cpu_ms": 0.0
+      },
+      {
+        "node": "/project1/res1",
+        "cooks": 66950,
+        "cpu_ms": 0.034599997103214264
+      },
+      {
+        "node": "/project1/effect_sample_uv",
+        "cooks": 1,
+        "cpu_ms": 12.100099563598633
+      },
+      {
+        "node": "/project1/math1",
+        "cooks": 71011,
+        "cpu_ms": 0.021800000220537186
+      }
+    ],
+    "sender": {
+      "enabled": false,
+      "error": "",
+      "mode": "live",
+      "calibration": [
+        "all",
+        "panel_id",
+        0
+      ],
+      "controllers": [],
+      "target_override": null,
+      "port_override": null,
+      "telemetry": {
+        "tick_count": 66951,
+        "rate_skips": 0,
+        "send_count": 0,
+        "packet_count": 0,
+        "send_ms_last": 0.0,
+        "send_ms_average": 0.0,
+        "send_ms_max": 0.0,
+        "actual_send_fps": 0.0,
+        "pack_count": 0,
+        "pack_ms_last": 0.0,
+        "pack_ms_average": 0.0,
+        "pack_ms_max": 0.0,
+        "plan_rebuilds": 0
+      }
+    }
+  },
+  {
+    "seconds": 2239.2166666666667,
+    "frame": 134353,
+    "nodes": [
+      {
+        "node": "/project1/material_gradient_player",
+        "cooks": 67034,
+        "cpu_ms": 0.0982000008225441
+      },
+      {
+        "node": "/project1/madmapper_library/live_preview",
+        "cooks": 67035,
+        "cpu_ms": 0.1378999948501587
+      },
+      {
+        "node": "/project1/madmapper_library/hover_preview",
+        "cooks": 0,
+        "cpu_ms": 0.0
+      },
+      {
+        "node": "/project1/res1",
+        "cooks": 67034,
+        "cpu_ms": 0.033900000154972076
+      },
+      {
+        "node": "/project1/effect_sample_uv",
+        "cooks": 1,
+        "cpu_ms": 12.100099563598633
+      },
+      {
+        "node": "/project1/math1",
+        "cooks": 71100,
+        "cpu_ms": 0.025699999183416367
+      }
+    ],
+    "sender": {
+      "enabled": false,
+      "error": "",
+      "mode": "live",
+      "calibration": [
+        "all",
+        "panel_id",
+        0
+      ],
+      "controllers": [],
+      "target_override": null,
+      "port_override": null,
+      "telemetry": {
+        "tick_count": 67035,
+        "rate_skips": 0,
+        "send_count": 0,
+        "packet_count": 0,
+        "send_ms_last": 0.0,
+        "send_ms_average": 0.0,
+        "send_ms_max": 0.0,
+        "actual_send_fps": 0.0,
+        "pack_count": 0,
+        "pack_ms_last": 0.0,
+        "pack_ms_average": 0.0,
+        "pack_ms_max": 0.0,
+        "plan_rebuilds": 0
+      }
+    }
+  },
+  {
+    "seconds": 2241.2833333333333,
+    "frame": 134477,
+    "nodes": [
+      {
+        "node": "/project1/material_gradient_player",
+        "cooks": 67116,
+        "cpu_ms": 0.09559999406337738
+      },
+      {
+        "node": "/project1/madmapper_library/live_preview",
+        "cooks": 67117,
+        "cpu_ms": 0.13499999046325684
+      },
+      {
+        "node": "/project1/madmapper_library/hover_preview",
+        "cooks": 0,
+        "cpu_ms": 0.0
+      },
+      {
+        "node": "/project1/res1",
+        "cooks": 67116,
+        "cpu_ms": 0.03360000252723694
+      },
+      {
+        "node": "/project1/effect_sample_uv",
+        "cooks": 1,
+        "cpu_ms": 12.100099563598633
+      },
+      {
+        "node": "/project1/math1",
+        "cooks": 71187,
+        "cpu_ms": 0.022199999541044235
+      }
+    ],
+    "sender": {
+      "enabled": false,
+      "error": "",
+      "mode": "live",
+      "calibration": [
+        "all",
+        "panel_id",
+        0
+      ],
+      "controllers": [],
+      "target_override": null,
+      "port_override": null,
+      "telemetry": {
+        "tick_count": 67117,
+        "rate_skips": 0,
+        "send_count": 0,
+        "packet_count": 0,
+        "send_ms_last": 0.0,
+        "send_ms_average": 0.0,
+        "send_ms_max": 0.0,
+        "actual_send_fps": 0.0,
+        "pack_count": 0,
+        "pack_ms_last": 0.0,
+        "pack_ms_average": 0.0,
+        "pack_ms_max": 0.0,
+        "plan_rebuilds": 0
+      }
+    }
+  },
+  {
+    "seconds": 2243.3333333333335,
+    "frame": 134600,
+    "nodes": [
+      {
+        "node": "/project1/material_gradient_player",
+        "cooks": 67201,
+        "cpu_ms": 0.06399999558925629
+      },
+      {
+        "node": "/project1/madmapper_library/live_preview",
+        "cooks": 67202,
+        "cpu_ms": 0.1428000032901764
+      },
+      {
+        "node": "/project1/madmapper_library/hover_preview",
+        "cooks": 0,
+        "cpu_ms": 0.0
+      },
+      {
+        "node": "/project1/res1",
+        "cooks": 67201,
+        "cpu_ms": 0.029200000688433647
+      },
+      {
+        "node": "/project1/effect_sample_uv",
+        "cooks": 1,
+        "cpu_ms": 12.100099563598633
+      },
+      {
+        "node": "/project1/math1",
+        "cooks": 71277,
+        "cpu_ms": 0.023400001227855682
+      }
+    ],
+    "sender": {
+      "enabled": false,
+      "error": "",
+      "mode": "live",
+      "calibration": [
+        "all",
+        "panel_id",
+        0
+      ],
+      "controllers": [],
+      "target_override": null,
+      "port_override": null,
+      "telemetry": {
+        "tick_count": 67202,
+        "rate_skips": 0,
+        "send_count": 0,
+        "packet_count": 0,
+        "send_ms_last": 0.0,
+        "send_ms_average": 0.0,
+        "send_ms_max": 0.0,
+        "actual_send_fps": 0.0,
+        "pack_count": 0,
+        "pack_ms_last": 0.0,
+        "pack_ms_average": 0.0,
+        "pack_ms_max": 0.0,
+        "plan_rebuilds": 0
+      }
+    }
+  },
+  {
+    "seconds": 2245.4333333333334,
+    "frame": 134726,
+    "nodes": [
+      {
+        "node": "/project1/material_gradient_player",
+        "cooks": 67284,
+        "cpu_ms": 0.19169999659061432
+      },
+      {
+        "node": "/project1/madmapper_library/live_preview",
+        "cooks": 67285,
+        "cpu_ms": 0.13979999721050262
+      },
+      {
+        "node": "/project1/madmapper_library/hover_preview",
+        "cooks": 0,
+        "cpu_ms": 0.0
+      },
+      {
+        "node": "/project1/res1",
+        "cooks": 67284,
+        "cpu_ms": 0.051500000059604645
+      },
+      {
+        "node": "/project1/effect_sample_uv",
+        "cooks": 1,
+        "cpu_ms": 12.100099563598633
+      },
+      {
+        "node": "/project1/math1",
+        "cooks": 71368,
+        "cpu_ms": 0.028200000524520874
+      }
+    ],
+    "sender": {
+      "enabled": false,
+      "error": "",
+      "mode": "live",
+      "calibration": [
+        "all",
+        "panel_id",
+        0
+      ],
+      "controllers": [],
+      "target_override": null,
+      "port_override": null,
+      "telemetry": {
+        "tick_count": 67285,
+        "rate_skips": 0,
+        "send_count": 0,
+        "packet_count": 0,
+        "send_ms_last": 0.0,
+        "send_ms_average": 0.0,
+        "send_ms_max": 0.0,
+        "actual_send_fps": 0.0,
+        "pack_count": 0,
+        "pack_ms_last": 0.0,
+        "pack_ms_average": 0.0,
+        "pack_ms_max": 0.0,
+        "plan_rebuilds": 0
+      }
+    }
+  },
+  {
+    "seconds": 2247.5,
+    "frame": 134850,
+    "nodes": [
+      {
+        "node": "/project1/material_gradient_player",
+        "cooks": 67366,
+        "cpu_ms": 0.0722000002861023
+      },
+      {
+        "node": "/project1/madmapper_library/live_preview",
+        "cooks": 67367,
+        "cpu_ms": 0.13690000772476196
+      },
+      {
+        "node": "/project1/madmapper_library/hover_preview",
+        "cooks": 0,
+        "cpu_ms": 0.0
+      },
+      {
+        "node": "/project1/res1",
+        "cooks": 67366,
+        "cpu_ms": 0.03189999982714653
+      },
+      {
+        "node": "/project1/effect_sample_uv",
+        "cooks": 1,
+        "cpu_ms": 12.100099563598633
+      },
+      {
+        "node": "/project1/math1",
+        "cooks": 71455,
+        "cpu_ms": 0.023600000888109207
+      }
+    ],
+    "sender": {
+      "enabled": false,
+      "error": "",
+      "mode": "live",
+      "calibration": [
+        "all",
+        "panel_id",
+        0
+      ],
+      "controllers": [],
+      "target_override": null,
+      "port_override": null,
+      "telemetry": {
+        "tick_count": 67367,
+        "rate_skips": 0,
+        "send_count": 0,
+        "packet_count": 0,
+        "send_ms_last": 0.0,
+        "send_ms_average": 0.0,
+        "send_ms_max": 0.0,
+        "actual_send_fps": 0.0,
+        "pack_count": 0,
+        "pack_ms_last": 0.0,
+        "pack_ms_average": 0.0,
+        "pack_ms_max": 0.0,
+        "plan_rebuilds": 0
+      }
+    }
+  },
+  {
+    "seconds": 2249.5833333333335,
+    "frame": 134975,
+    "nodes": [
+      {
+        "node": "/project1/material_gradient_player",
+        "cooks": 67451,
+        "cpu_ms": 0.23240000009536743
+      },
+      {
+        "node": "/project1/madmapper_library/live_preview",
+        "cooks": 67452,
+        "cpu_ms": 0.22759999334812164
+      },
+      {
+        "node": "/project1/madmapper_library/hover_preview",
+        "cooks": 0,
+        "cpu_ms": 0.0
+      },
+      {
+        "node": "/project1/res1",
+        "cooks": 67451,
+        "cpu_ms": 0.049800001084804535
+      },
+      {
+        "node": "/project1/effect_sample_uv",
+        "cooks": 1,
+        "cpu_ms": 12.100099563598633
+      },
+      {
+        "node": "/project1/math1",
+        "cooks": 71543,
+        "cpu_ms": 0.022600000724196434
+      }
+    ],
+    "sender": {
+      "enabled": false,
+      "error": "",
+      "mode": "live",
+      "calibration": [
+        "all",
+        "panel_id",
+        0
+      ],
+      "controllers": [],
+      "target_override": null,
+      "port_override": null,
+      "telemetry": {
+        "tick_count": 67452,
+        "rate_skips": 0,
+        "send_count": 0,
+        "packet_count": 0,
+        "send_ms_last": 0.0,
+        "send_ms_average": 0.0,
+        "send_ms_max": 0.0,
+        "actual_send_fps": 0.0,
+        "pack_count": 0,
+        "pack_ms_last": 0.0,
+        "pack_ms_average": 0.0,
+        "pack_ms_max": 0.0,
+        "plan_rebuilds": 0
+      }
+    }
+  },
+  {
+    "seconds": 2251.65,
+    "frame": 135099,
+    "nodes": [
+      {
+        "node": "/project1/material_gradient_player",
+        "cooks": 67533,
+        "cpu_ms": 0.18459999561309814
+      },
+      {
+        "node": "/project1/madmapper_library/live_preview",
+        "cooks": 67534,
+        "cpu_ms": 0.13809999823570251
+      },
+      {
+        "node": "/project1/madmapper_library/hover_preview",
+        "cooks": 0,
+        "cpu_ms": 0.0
+      },
+      {
+        "node": "/project1/res1",
+        "cooks": 67533,
+        "cpu_ms": 0.05299999937415123
+      },
+      {
+        "node": "/project1/effect_sample_uv",
+        "cooks": 1,
+        "cpu_ms": 12.100099563598633
+      },
+      {
+        "node": "/project1/math1",
+        "cooks": 71631,
+        "cpu_ms": 0.022199999541044235
+      }
+    ],
+    "sender": {
+      "enabled": false,
+      "error": "",
+      "mode": "live",
+      "calibration": [
+        "all",
+        "panel_id",
+        0
+      ],
+      "controllers": [],
+      "target_override": null,
+      "port_override": null,
+      "telemetry": {
+        "tick_count": 67534,
+        "rate_skips": 0,
+        "send_count": 0,
+        "packet_count": 0,
+        "send_ms_last": 0.0,
+        "send_ms_average": 0.0,
+        "send_ms_max": 0.0,
+        "actual_send_fps": 0.0,
+        "pack_count": 0,
+        "pack_ms_last": 0.0,
+        "pack_ms_average": 0.0,
+        "pack_ms_max": 0.0,
+        "plan_rebuilds": 0
+      }
+    }
+  },
+  {
+    "seconds": 2253.733333333333,
+    "frame": 135224,
+    "nodes": [
+      {
+        "node": "/project1/material_gradient_player",
+        "cooks": 67617,
+        "cpu_ms": 0.10009999573230743
+      },
+      {
+        "node": "/project1/madmapper_library/live_preview",
+        "cooks": 67618,
+        "cpu_ms": 0.3555000126361847
+      },
+      {
+        "node": "/project1/madmapper_library/hover_preview",
+        "cooks": 0,
+        "cpu_ms": 0.0
+      },
+      {
+        "node": "/project1/res1",
+        "cooks": 67617,
+        "cpu_ms": 0.031300000846385956
+      },
+      {
+        "node": "/project1/effect_sample_uv",
+        "cooks": 1,
+        "cpu_ms": 12.100099563598633
+      },
+      {
+        "node": "/project1/math1",
+        "cooks": 71722,
+        "cpu_ms": 0.02889999933540821
+      }
+    ],
+    "sender": {
+      "enabled": false,
+      "error": "",
+      "mode": "live",
+      "calibration": [
+        "all",
+        "panel_id",
+        0
+      ],
+      "controllers": [],
+      "target_override": null,
+      "port_override": null,
+      "telemetry": {
+        "tick_count": 67618,
+        "rate_skips": 0,
+        "send_count": 0,
+        "packet_count": 0,
+        "send_ms_last": 0.0,
+        "send_ms_average": 0.0,
+        "send_ms_max": 0.0,
+        "actual_send_fps": 0.0,
+        "pack_count": 0,
+        "pack_ms_last": 0.0,
+        "pack_ms_average": 0.0,
+        "pack_ms_max": 0.0,
+        "plan_rebuilds": 0
+      }
+    }
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "keyboard_exists": true,
+  "keyboard_parameters": {
+    "pageindex": "0",
+    "active": "True",
+    "perform": "False",
+    "keys": "1 2 3 4 5 6 7 8 9 0",
+    "shortcuts": "",
+    "panels": "None",
+    "lrmodifiers": "False",
+    "webcodes": "False",
+    "callbacks": "/project1/shortcut_hub/shortcut_callbacks",
+    "executeloc": "callbacks",
+    "fromop": "/project1/shortcut_hub",
+    "clamp": "True",
+    "maxlines": "10",
+    "clear": "False",
+    "language": "input",
+    "extension": "languageext",
+    "customext": "",
+    "wordwrap": "input"
+  },
+  "keyboard_text": "key\tcharacter\talt\tctrl\tshift\tstate\ttime\tcmd\r\n4\t$\t0\t1\t1\t0\t125672275\t0\r\n5\t%\t0\t1\t1\t1\t135672905\t0\r\n5\t%\t0\t1\t1\t0\t135673105\t0\r\n6\t^\t0\t1\t1\t1\t135674296\t0\r\n6\t^\t0\t1\t1\t0\t135674403\t0\r\n4\t\t0\t1\t1\t1\t135675585\t0\r\n4\t$\t0\t1\t1\t0\t135675721\t0\r\n2\t@\t0\t1\t1\t1\t135681134\t0\r\n2\t@\t0\t1\t1\t0\t135681401\t0\r\n",
+  "callback": "# Generated safe navigation callbacks. No DMX or project-save actions.\nTARGETS = {'1': ('LED PREVIEW', '/project1/LED_PREVIEW_OUT'), '2': ('MATERIAL BROWSER', '/project1/material_browser'), '3': ('MADMAPPER LIBRARY', '/project1/madmapper_library/ui_panel'), '4': ('MATERIAL PLAYER', '/project1/madmapper_player_controls/ui_panel'), '5': ('PIXEL MAPPER', '/project1/pixelblaze_mapper/ui/canvas'), '6': ('ART-NET ROUTER', '/project1/multi_controller_output/ui_panel'), '7': ('OUTPUT CONFIG', '/project1/pixelblaze_mapper/output_config/ui_panel'), '8': ('SHOW CONTROL', '/project1/show_control/control_panel'), '9': ('SHORTCUT HELP', '/project1/shortcut_hub/help_panel'), '0': ('GICO PORT CONFIG', '/project1/multi_controller_output/gico_port_config/ui_panel')}\n\ndef keyEvent(dat, key, character, alt, lalt, ralt, ctrl, lctrl, rctrl, shift, lshift, rshift, state, time):\n    key = str(key).lower()\n    if not state or not ctrl or not shift or alt or key not in TARGETS:\n        return\n    label, path = TARGETS[key]\n    target = op(path)\n    if target is None:\n        ui.status = 'Shortcut target missing: ' + path\n        return\n    target.openViewer()\n    ui.status = label + ' | ' + path\n    return\n\ndef shortcutEvent(dat, shortcutName, time):\n    return\n",
+  "callback_errors": [],
+  "status": "Load Project .toe: PixelblazeMapper_WORKING_PHASE2_EFFECTS_CORE.88.toe loaded successfully.",
+  "targets": {
+    "0": true,
+    "7": true
+  }
+}

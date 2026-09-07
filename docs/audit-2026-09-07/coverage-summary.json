@@ -1,0 +1,55 @@
+{
+  "total_inventory_nodes": 986,
+  "dialogs": {
+    "1": {
+      "label": "LED PREVIEW",
+      "inventory_nodes": 0,
+      "custom_parameters": 0
+    },
+    "2": {
+      "label": "MATERIAL BROWSER",
+      "inventory_nodes": 320,
+      "custom_parameters": 0
+    },
+    "3": {
+      "label": "MADMAPPER LIBRARY",
+      "inventory_nodes": 172,
+      "custom_parameters": 0
+    },
+    "4": {
+      "label": "MATERIAL PLAYER",
+      "inventory_nodes": 36,
+      "custom_parameters": 0
+    },
+    "5": {
+      "label": "PIXEL MAPPER",
+      "inventory_nodes": 70,
+      "custom_parameters": 0
+    },
+    "6": {
+      "label": "ART-NET ROUTER",
+      "inventory_nodes": 124,
+      "custom_parameters": 0
+    },
+    "7": {
+      "label": "OUTPUT CONFIG",
+      "inventory_nodes": 28,
+      "custom_parameters": 0
+    },
+    "8": {
+      "label": "SHOW CONTROL",
+      "inventory_nodes": 22,
+      "custom_parameters": 0
+    },
+    "9": {
+      "label": "SHORTCUT HELP",
+      "inventory_nodes": 66,
+      "custom_parameters": 0
+    },
+    "0": {
+      "label": "GICO PORT CONFIG",
+      "inventory_nodes": 148,
+      "custom_parameters": 0
+    }
+  }
+}

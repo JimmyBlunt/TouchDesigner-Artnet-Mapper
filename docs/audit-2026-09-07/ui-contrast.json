@@ -1,0 +1,538 @@
+{
+  "controls": {
+    "Speed": 0.9920844327176781,
+    "Scale": 2.0345646437994724,
+    "Width": 0.7493403693931399,
+    "Focusx": 0.7493403693931399,
+    "Focusy": 0.24802110817941952,
+    "Framezoom": 2.172163588390501,
+    "Intensity": 0.0,
+    "Contrast": 2.055145118733509
+  },
+  "states": {
+    "/project1/material_state_table": "key\tjson\r\ndocument\t{\"active_key\":\"madmapper:mat_ab0287bb394c824f13df\",\"global_master_speed\":1.0,\"materials\":{\"core:arcs\":{\"last_time\":5070.083333333333,\"phase\":48.420799780014036,\"settings\":{\"color_a\":[1.0,0.42,0.02,1.0],\"color_b\":[0.3,0.0,0.72,1.0],\"coordinate_mode\":\"global\",\"focus_x\":0.5,\"focus_y\":0.5,\"gradient\":\"amber_violet\",\"scale\":4.0,\"speed\":0.0263852,\"width\":0.42,\"zoom\":0.658971}},\"core:cellular\":{\"last_time\":361.3,\"phase\":0.03406666666666473,\"settings\":{\"color_a\":[0.91,0.0,1.0,1.0],\"color_b\":[0.0,0.72,0.86,1.0],\"coordinate_mode\":\"global\",\"focus_x\":0.5,\"focus_y\":0.5,\"gradient\":\"neon_cyan_magenta\",\"scale\":7.0,\"speed\":0.511,\"width\":0.38,\"zoom\":1.0}},\"core:fill\":{\"last_time\":22240.95,\"phase\":0.1434999999979118,\"settings\":{\"color_a\":[0.91,0.0,1.0,1.0],\"color_b\":[0.0,0.72,0.86,1.0],\"coordinate_mode\":\"global\",\"focus_x\":0.5,\"focus_y\":0.5,\"gradient\":\"neon_cyan_magenta\",\"scale\":1.0,\"speed\":1.23,\"width\":0.5,\"zoom\":1.0}},\"core:gradient\":{\"last_time\":22200.233333333334,\"phase\":0.44603333332707507,\"settings\":{\"color_a\":[0.91,0.0,1.0,1.0],\"color_b\":[0.0,0.72,0.86,1.0],\"coordinate_mode\":\"global\",\"focus_x\":0.5,\"focus_y\":0.5,\"gradient\":\"neon_cyan_magenta\",\"scale\":4.0,\"speed\":2.34,\"width\":0.5,\"zoom\":1.0}},\"core:matrix_rain\":{\"last_time\":22173.633333333335,\"phase\":0.05961666666818098,\"settings\":{\"color_a\":[0.91,0.0,1.0,1.0],\"color_b\":[0.0,0.72,0.86,1.0],\"coordinate_mode\":\"global\",\"focus_x\":0.5,\"focus_y\":0.5,\"gradient\":\"neon_cyan_magenta\",\"scale\":8.0,\"speed\":0.511,\"width\":0.32,\"zoom\":1.0}},\"core:tunnel\":{\"last_time\":658.9666666666667,\"phase\":0.18736666666661245,\"settings\":{\"color_a\":[0.91,0.0,1.0,1.0],\"color_b\":[0.0,0.72,0.86,1.0],\"coordinate_mode\":\"global\",\"focus_x\":0.5,\"focus_y\":0.5,\"gradient\":\"neon_cyan_magenta\",\"scale\":5.5,\"speed\":0.511,\"width\":0.34,\"zoom\":1.0}},\"madmapper:mat_0e3060e1885357ea93a9\":{\"last_time\":3234.9333333333334,\"phase\":153.46272365202378,\"settings\":{\"color_a\":[1.0,0.42,0.02,1.0],\"color_b\":[0.3,0.0,0.72,1.0],\"coordinate_mode\":\"global\",\"focus_x\":0.5,\"focus_y\":0.5,\"gradient\":\"amber_violet\",\"scale\":3.53694,\"speed\":0.0263852,\"width\":0.155673,\"zoom\":0.658971}},\"madmapper:mat_1bd9185382d1b005f7c7\":{\"last_time\":84759.31666666667,\"phase\":4.284500000004773,\"settings\":{\"color_a\":[0.91,0.0,1.0,1.0],\"color_b\":[0.0,0.72,0.86,1.0],\"coordinate_mode\":\"global\",\"focus_x\":0.5,\"focus_y\":0.5,\"gradient\":\"neon_cyan_magenta\",\"scale\":1.0,\"speed\":1.23,\"width\":0.5,\"zoom\":1.0}},\"madmapper:mat_1db94eda200d3f497710\":{\"last_time\":84924.15,\"phase\":74071.33100088612,\"settings\":{\"color_a\":[0.91,0.0,1.0,1.0],\"color_b\":[0.0,0.72,0.86,1.0],\"coordinate_mode\":\"global\",\"focus_x\":0.5,\"focus_y\":0.5,\"gradient\":\"neon_cyan_magenta\",\"scale\":1.0,\"speed\":1.23,\"width\":0.5,\"zoom\":1.0}},\"madmapper:mat_40a070ee5da985ccad90\":{\"last_time\":94904.93333333333,\"phase\":776.6339290496231,\"settings\":{\"color_a\":[0.91,0.0,1.0,1.0],\"color_b\":[0.0,0.72,0.86,1.0],\"coordinate_mode\":\"global\",\"focus_x\":0.5,\"focus_y\":0.5,\"gradient\":\"neon_cyan_magenta\",\"scale\":1.0,\"speed\":0.1285140562248996,\"width\":0.5,\"zoom\":1.0}},\"madmapper:mat_4652d9d371bce670175d\":{\"last_time\":94722.88333333333,\"phase\":985.4005500000032,\"settings\":{\"color_a\":[0.91,0.0,1.0,1.0],\"color_b\":[0.0,0.72,0.86,1.0],\"coordinate_mode\":\"global\",\"focus_x\":0.5,\"focus_y\":0.5,\"gradient\":\"neon_cyan_magenta\",\"scale\":8.0,\"speed\":2.0,\"width\":0.32,\"zoom\":1.0}},\"madmapper:mat_8beb57d9daa78045f374\":{\"last_time\":84929.2,\"phase\":7.544000000002101,\"settings\":{\"color_a\":[0.91,0.0,1.0,1.0],\"color_b\":[0.0,0.72,0.86,1.0],\"coordinate_mode\":\"global\",\"focus_x\":0.5,\"focus_y\":0.5,\"gradient\":\"neon_cyan_magenta\",\"scale\":1.0,\"speed\":1.23,\"width\":0.5,\"zoom\":1.0}},\"madmapper:mat_a2b68ab00142c5b97852\":{\"last_time\":95479.55,\"phase\":1939.0335000002367,\"settings\":{\"color_a\":[0.91,0.0,1.0,1.0],\"color_b\":[0.0,0.72,0.86,1.0],\"coordinate_mode\":\"global\",\"focus_x\":0.5,\"focus_y\":0.48677248677248675,\"gradient\":\"neon_cyan_magenta\",\"scale\":1.0,\"speed\":1.23,\"width\":0.5,\"zoom\":0.25}},\"madmapper:mat_ab0287bb394c824f13df\":{\"last_time\":3545.7,\"phase\":1072.840720502886,\"settings\":{\"color_a\":[0.76,1.0,0.0,1.0],\"color_b\":[0.0,0.18,1.0,1.0],\"coordinate_mode\":\"global\",\"focus_x\":0.7493403693931399,\"focus_y\":0.24802110817941952,\"gradient\":\"acid_lime_blue\",\"scale\":2.0345646437994724,\"speed\":0.9920844327176781,\"width\":0.7493403693931399,\"zoom\":2.172163588390501}},\"madmapper:mat_cca72fcfb1719cbf7880\":{\"last_time\":93129.38333333333,\"phase\":10772.914999999999,\"settings\":{\"color_a\":[0.91,0.0,1.0,1.0],\"color_b\":[0.0,0.72,0.86,1.0],\"coordinate_mode\":\"global\",\"focus_x\":0.5,\"focus_y\":0.5,\"gradient\":\"neon_cyan_magenta\",\"scale\":8.0,\"speed\":2.0,\"width\":0.32,\"zoom\":1.0}},\"madmapper:mat_d668a7041938ba21f532\":{\"last_time\":95490.6,\"phase\":153.32433333333745,\"settings\":{\"color_a\":[1.0,0.42,0.02,1.0],\"color_b\":[0.3,0.0,0.72,1.0],\"coordinate_mode\":\"global\",\"focus_x\":0.5,\"focus_y\":0.5,\"gradient\":\"amber_violet\",\"scale\":1.0,\"speed\":0.5,\"width\":0.5,\"zoom\":1.0}},\"madmapper:mat_eec0fbe45f71fa8e98d4\":{\"last_time\":84762.45,\"phase\":2.6855000000011926,\"settings\":{\"color_a\":[0.91,0.0,1.0,1.0],\"color_b\":[0.0,0.72,0.86,1.0],\"coordinate_mode\":\"global\",\"focus_x\":0.5,\"focus_y\":0.5,\"gradient\":\"neon_cyan_magenta\",\"scale\":1.0,\"speed\":1.23,\"width\":0.5,\"zoom\":1.0}},\"madmapper:mat_ffd3f7541b82483f53ce\":{\"last_time\":94997.41666666667,\"phase\":21.66479674193776,\"settings\":{\"color_a\":[0.91,0.0,1.0,1.0],\"color_b\":[0.0,0.72,0.86,1.0],\"coordinate_mode\":\"global\",\"focus_x\":0.6121372031662269,\"focus_y\":0.5,\"gradient\":\"neon_cyan_magenta\",\"scale\":1.653825857519789,\"speed\":0.2796833773087071,\"width\":0.5936675461741425,\"zoom\":0.2704485488126649}},\"show:default\":{\"last_time\":321.5,\"phase\":0.05961666666669959,\"settings\":{\"color_a\":[0.91,0.0,1.0,1.0],\"color_b\":[0.0,0.72,0.86,1.0],\"coordinate_mode\":\"global\",\"focus_x\":0.5,\"focus_y\":0.5,\"gradient\":\"neon_cyan_magenta\",\"scale\":4.0,\"speed\":0.511,\"width\":0.5,\"zoom\":1.0}}},\"schema\":1}\r\n",
+    "/project1/madmapper_library/material_parameter_state": "key\tjson\r\ndocument\t{\"materials\":{\"mat_0e3060e1885357ea93a9\":{\"page\":0,\"types\":{\"Eight\":\"float\",\"Eleven\":\"float\",\"Five\":\"float\",\"Four\":\"float\",\"Nine\":\"float\",\"One\":\"float\",\"Seven\":\"float\",\"Six\":\"float\",\"Ten\":\"float\",\"Three\":\"float\",\"Twelve\":\"float\",\"Two\":\"float\"},\"values\":{\"Eight\":0.0,\"Eleven\":2.5,\"Five\":1.0,\"Four\":50.0,\"Nine\":0.0,\"One\":1.0,\"Seven\":0.0,\"Six\":0.0,\"Ten\":0.0,\"Three\":1.0,\"Twelve\":0.0,\"Two\":0.5}},\"mat_40a070ee5da985ccad90\":{\"page\":3,\"types\":{\"mat_bpm_sync\":\"bool\",\"mat_brightness\":\"float\",\"mat_contrast\":\"float\",\"mat_depth\":\"float\",\"mat_distort\":\"float\",\"mat_hue_shift\":\"float\",\"mat_invert\":\"bool\",\"mat_lock_aspect\":\"bool\",\"mat_luma_mode\":\"long\",\"mat_luma_sensitivity\":\"float\",\"mat_luma_threshold\":\"float\",\"mat_luma_to_alpha\":\"bool\",\"mat_mirror_x\":\"bool\",\"mat_mirror_y\":\"bool\",\"mat_noise_level\":\"float\",\"mat_offset\":\"float\",\"mat_offset_scale\":\"float\",\"mat_restart\":\"event\",\"mat_reverse\":\"bool\",\"mat_rotate\":\"float\",\"mat_saturation\":\"float\",\"mat_scale\":\"float\",\"mat_shift_amount\":\"point2d\",\"mat_shift_scale\":\"float\",\"mat_shift_type\":\"long\",\"mat_speed\":\"float\",\"mat_strob\":\"float\",\"mat_xy\":\"float\",\"mat_xz\":\"float\"},\"values\":{\"mat_bpm_sync\":false,\"mat_brightness\":0.0,\"mat_contrast\":1.0,\"mat_depth\":1.0,\"mat_distort\":1.0,\"mat_hue_shift\":0.0,\"mat_invert\":false,\"mat_lock_aspect\":false,\"mat_luma_mode\":1,\"mat_luma_sensitivity\":2.0,\"mat_luma_threshold\":0.25,\"mat_luma_to_alpha\":false,\"mat_mirror_x\":false,\"mat_mirror_y\":false,\"mat_noise_level\":1.0,\"mat_offset\":0.0,\"mat_offset_scale\":1.0,\"mat_restart\":0,\"mat_reverse\":false,\"mat_rotate\":0.0,\"mat_saturation\":0.0,\"mat_scale\":1.0,\"mat_shift_amount\":[0.0,0.0],\"mat_shift_scale\":1.0,\"mat_shift_type\":1,\"mat_speed\":1.0,\"mat_strob\":0.0,\"mat_xy\":1.0,\"mat_xz\":1.0}},\"mat_4652d9d371bce670175d\":{\"page\":0,\"types\":{\"brightness\":\"float\",\"contrast\":\"float\",\"hue_shift\":\"float\",\"saturation\":\"float\",\"uScale\":\"float\",\"uSpeed\":\"float\"},\"values\":{\"brightness\":0.0,\"contrast\":1.0,\"hue_shift\":0.0,\"saturation\":0.0,\"uScale\":1.0,\"uSpeed\":1.0}},\"mat_a2b68ab00142c5b97852\":{\"page\":3,\"types\":{\"mat_blend\":\"float\",\"mat_bpm_sync\":\"bool\",\"mat_brightness\":\"float\",\"mat_carve\":\"float\",\"mat_contrast\":\"float\",\"mat_falloff\":\"float\",\"mat_hue_shift\":\"float\",\"mat_invert\":\"bool\",\"mat_lock_aspect\":\"bool\",\"mat_luma_mode\":\"long\",\"mat_luma_sensitivity\":\"float\",\"mat_luma_threshold\":\"float\",\"mat_luma_to_alpha\":\"bool\",\"mat_mirror_x\":\"bool\",\"mat_mirror_y\":\"bool\",\"mat_noise_scale\":\"float\",\"mat_offset\":\"float\",\"mat_offset_scale\":\"float\",\"mat_restart\":\"event\",\"mat_reverse\":\"bool\",\"mat_rotate\":\"float\",\"mat_saturation\":\"float\",\"mat_scale\":\"float\",\"mat_shell\":\"float\",\"mat_shift_amount\":\"point2d\",\"mat_shift_scale\":\"float\",\"mat_shift_type\":\"long\",\"mat_speed\":\"float\",\"mat_strob\":\"float\"},\"values\":{\"mat_blend\":1.0,\"mat_bpm_sync\":false,\"mat_brightness\":0.0,\"mat_carve\":1.0,\"mat_contrast\":1.0,\"mat_falloff\":1.0,\"mat_hue_shift\":0.0,\"mat_invert\":false,\"mat_lock_aspect\":false,\"mat_luma_mode\":1,\"mat_luma_sensitivity\":2.0,\"mat_luma_threshold\":0.25,\"mat_luma_to_alpha\":false,\"mat_mirror_x\":false,\"mat_mirror_y\":false,\"mat_noise_scale\":1.0,\"mat_offset\":0.0,\"mat_offset_scale\":1.0,\"mat_restart\":0,\"mat_reverse\":false,\"mat_rotate\":0.0,\"mat_saturation\":0.0,\"mat_scale\":1.0,\"mat_shell\":1.0,\"mat_shift_amount\":[0.0,0.0],\"mat_shift_scale\":1.0,\"mat_shift_type\":1,\"mat_speed\":1.0,\"mat_strob\":0.0}},\"mat_ab0287bb394c824f13df\":{\"page\":0,\"types\":{\"mat_bpm_sync\":\"bool\",\"mat_fudge_factor\":\"float\",\"mat_iterations\":\"float\",\"mat_max_dist\":\"float\",\"mat_mod_a\":\"float\",\"mat_mod_b\":\"float\",\"mat_mod_c\":\"float\",\"mat_offset\":\"float\",\"mat_precision\":\"float\",\"mat_reverse\":\"bool\",\"mat_scale\":\"float\",\"mat_speed\":\"float\",\"mat_strob\":\"float\",\"mat_suction\":\"float\",\"mat_surface\":\"float\"},\"values\":{\"mat_bpm_sync\":false,\"mat_fudge_factor\":0.8,\"mat_iterations\":82.0,\"mat_max_dist\":20.0,\"mat_mod_a\":0.0,\"mat_mod_b\":0.0,\"mat_mod_c\":0.0,\"mat_offset\":0.0,\"mat_precision\":0.001,\"mat_reverse\":false,\"mat_scale\":0.25806451612903225,\"mat_speed\":0.3470522803114572,\"mat_strob\":0.0,\"mat_suction\":1.0,\"mat_surface\":1.0}},\"mat_cca72fcfb1719cbf7880\":{\"page\":0,\"types\":{\"backgroundColor\":\"color\",\"bassStrokeWidth\":\"float\",\"brightness\":\"float\",\"colorA\":\"color\",\"colorB\":\"color\",\"contrast\":\"float\",\"render_link\":\"bool\",\"reverse\":\"bool\",\"scale\":\"float\",\"speed\":\"float\",\"strokeWidth\":\"float\"},\"values\":{\"backgroundColor\":[0.0,0.0,0.0,1.0],\"bassStrokeWidth\":0.0,\"brightness\":0.0,\"colorA\":[0.5,0.5,0.5,1.0],\"colorB\":[0.0,0.0,0.0,1.0],\"contrast\":1.0,\"render_link\":false,\"reverse\":false,\"scale\":1.0,\"speed\":1.0,\"strokeWidth\":0.05}},\"mat_d668a7041938ba21f532\":{\"page\":0,\"types\":{\"uScale\":\"float\",\"uSpeed\":\"float\"},\"values\":{\"uScale\":2.0,\"uSpeed\":0.6}}},\"schema\":1}\r\n"
+  },
+  "uniforms": {
+    "/project1/madmapper_material_player": {
+      "vec": {
+        "value": "0",
+        "expr": null
+      },
+      "vec0name": {
+        "value": "uParams0",
+        "expr": null
+      },
+      "vec0valuex": {
+        "value": "8.0",
+        "expr": "op('/project1/madmapper_player_controls').par.Material.menuIndex"
+      },
+      "vec0valuey": {
+        "value": "1157.9284953488866",
+        "expr": null
+      },
+      "vec0valuez": {
+        "value": "2.0345646437994724",
+        "expr": "op('/project1/madmapper_player_controls').par.Scale"
+      },
+      "vec0valuew": {
+        "value": "0.7493403693931399",
+        "expr": "op('/project1/madmapper_player_controls').par.Width"
+      },
+      "vec1name": {
+        "value": "uParams1",
+        "expr": null
+      },
+      "vec1valuex": {
+        "value": "0.0",
+        "expr": "op('/project1/madmapper_player_controls').par.Coordinatemode.menuIndex"
+      },
+      "vec1valuey": {
+        "value": "0.0",
+        "expr": "op('/project1/madmapper_player_controls').par.Intensity"
+      },
+      "vec1valuez": {
+        "value": "2.055145118733509",
+        "expr": "op('/project1/madmapper_player_controls').par.Contrast"
+      },
+      "vec1valuew": {
+        "value": "0.55",
+        "expr": "op('/project1/madmapper_player_controls').par.Trail"
+      },
+      "vec2name": {
+        "value": "uParams2",
+        "expr": null
+      },
+      "vec2valuex": {
+        "value": "0.125",
+        "expr": "op('/project1/madmapper_player_controls').par.Direction"
+      },
+      "vec2valuey": {
+        "value": "0.0",
+        "expr": "op('/project1/madmapper_player_controls').par.Rotation"
+      },
+      "vec2valuez": {
+        "value": "0.0",
+        "expr": "op('/project1/madmapper_player_controls').par.Seed"
+      },
+      "vec2valuew": {
+        "value": "0.5",
+        "expr": "op('/project1/madmapper_player_controls').par.Transition"
+      },
+      "vec3name": {
+        "value": "uParams3",
+        "expr": null
+      },
+      "vec3valuex": {
+        "value": "2.0",
+        "expr": "op('/project1/madmapper_player_controls').par.Panelcolumns"
+      },
+      "vec3valuey": {
+        "value": "5.0",
+        "expr": "op('/project1/madmapper_player_controls').par.Panelrows"
+      },
+      "vec3valuez": {
+        "value": "0.5",
+        "expr": "op('/project1/madmapper_player_controls').par.Hybridmix"
+      },
+      "vec3valuew": {
+        "value": "1.0",
+        "expr": "op('/project1/madmapper_player_controls').par.Density"
+      },
+      "vec4name": {
+        "value": "uParams4",
+        "expr": null
+      },
+      "vec4valuex": {
+        "value": "0.7493403693931399",
+        "expr": "op('/project1/madmapper_player_controls').par.Focusx"
+      },
+      "vec4valuey": {
+        "value": "0.24802110817941952",
+        "expr": "op('/project1/madmapper_player_controls').par.Focusy"
+      },
+      "vec4valuez": {
+        "value": "2.172163588390501",
+        "expr": "op('/project1/madmapper_player_controls').par.Framezoom"
+      },
+      "vec4valuew": {
+        "value": "0.0",
+        "expr": null
+      }
+    },
+    "/project1/madmapper_library/live_preview": {
+      "vec": {
+        "value": "0",
+        "expr": null
+      },
+      "vec0name": {
+        "value": "uTDMaterial0",
+        "expr": null
+      },
+      "vec0valuex": {
+        "value": "1157.9284953488866",
+        "expr": null
+      },
+      "vec0valuey": {
+        "value": "2.0345646437994724",
+        "expr": "op('/project1/madmapper_player_controls').par.Scale"
+      },
+      "vec0valuez": {
+        "value": "0.7493403693931399",
+        "expr": "op('/project1/madmapper_player_controls').par.Width"
+      },
+      "vec0valuew": {
+        "value": "2.172163588390501",
+        "expr": "op('/project1/madmapper_player_controls').par.Framezoom"
+      },
+      "vec1name": {
+        "value": "uTDMaterial1",
+        "expr": null
+      },
+      "vec1valuex": {
+        "value": "0.7493403693931399",
+        "expr": "op('/project1/madmapper_player_controls').par.Focusx"
+      },
+      "vec1valuey": {
+        "value": "0.24802110817941952",
+        "expr": "op('/project1/madmapper_player_controls').par.Focusy"
+      },
+      "vec1valuez": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec1valuew": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec2name": {
+        "value": "uTDCoordinate",
+        "expr": null
+      },
+      "vec2valuex": {
+        "value": "0.0",
+        "expr": "parent().par.Coordinatemode.menuIndex"
+      },
+      "vec2valuey": {
+        "value": "2.0",
+        "expr": "parent().par.Panelcolumns"
+      },
+      "vec2valuez": {
+        "value": "5.0",
+        "expr": "parent().par.Panelrows"
+      },
+      "vec2valuew": {
+        "value": "0.5",
+        "expr": "parent().par.Hybridmix"
+      },
+      "vec3name": {
+        "value": "uMMParam000",
+        "expr": null
+      },
+      "vec3valuex": {
+        "value": "0.25806451612903225",
+        "expr": null
+      },
+      "vec3valuey": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec3valuez": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec3valuew": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec4name": {
+        "value": "uMMParam001",
+        "expr": null
+      },
+      "vec4valuex": {
+        "value": "82.0",
+        "expr": null
+      },
+      "vec4valuey": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec4valuez": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec4valuew": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec5name": {
+        "value": "uMMParam002",
+        "expr": null
+      },
+      "vec5valuex": {
+        "value": "0.8",
+        "expr": null
+      },
+      "vec5valuey": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec5valuez": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec5valuew": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec6name": {
+        "value": "uMMParam003",
+        "expr": null
+      },
+      "vec6valuex": {
+        "value": "0.001",
+        "expr": null
+      },
+      "vec6valuey": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec6valuez": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec6valuew": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec7name": {
+        "value": "uMMParam004",
+        "expr": null
+      },
+      "vec7valuex": {
+        "value": "20.0",
+        "expr": null
+      },
+      "vec7valuey": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec7valuez": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec7valuew": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec8name": {
+        "value": "uMMParam005",
+        "expr": null
+      },
+      "vec8valuex": {
+        "value": "1.0",
+        "expr": null
+      },
+      "vec8valuey": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec8valuez": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec8valuew": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec9name": {
+        "value": "uMMParam006",
+        "expr": null
+      },
+      "vec9valuex": {
+        "value": "1.0",
+        "expr": null
+      },
+      "vec9valuey": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec9valuez": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec9valuew": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec10name": {
+        "value": "uMMParam007",
+        "expr": null
+      },
+      "vec10valuex": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec10valuey": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec10valuez": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec10valuew": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec11name": {
+        "value": "uMMParam008",
+        "expr": null
+      },
+      "vec11valuex": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec11valuey": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec11valuez": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec11valuew": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec12name": {
+        "value": "uMMParam009",
+        "expr": null
+      },
+      "vec12valuex": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec12valuey": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec12valuez": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec12valuew": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec13name": {
+        "value": "uMMParam010",
+        "expr": null
+      },
+      "vec13valuex": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec13valuey": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec13valuez": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec13valuew": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec14name": {
+        "value": "uMMParam011",
+        "expr": null
+      },
+      "vec14valuex": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec14valuey": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec14valuez": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec14valuew": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec15name": {
+        "value": "uMMParam012",
+        "expr": null
+      },
+      "vec15valuex": {
+        "value": "0.3470522803114572",
+        "expr": null
+      },
+      "vec15valuey": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec15valuez": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec15valuew": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec16name": {
+        "value": "uMMParam013",
+        "expr": null
+      },
+      "vec16valuex": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec16valuey": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec16valuez": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec16valuew": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec17name": {
+        "value": "uMMParam014",
+        "expr": null
+      },
+      "vec17valuex": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec17valuey": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec17valuez": {
+        "value": "0.0",
+        "expr": null
+      },
+      "vec17valuew": {
+        "value": "0.0",
+        "expr": null
+      }
+    },
+    "/project1/material_gradient_player": {
+      "vec": {
+        "value": "0",
+        "expr": null
+      },
+      "vec0name": {
+        "value": "uGradientA",
+        "expr": null
+      },
+      "vec0valuex": {
+        "value": "0.76",
+        "expr": "op('/project1/madmapper_player_controls').par.Colorr"
+      },
+      "vec0valuey": {
+        "value": "1.0",
+        "expr": "op('/project1/madmapper_player_controls').par.Colorg"
+      },
+      "vec0valuez": {
+        "value": "0.0",
+        "expr": "op('/project1/madmapper_player_controls').par.Colorb"
+      },
+      "vec0valuew": {
+        "value": "1.0",
+        "expr": "1.0 if op('/project1/madmapper_player_controls').par.Source.eval() in ('materials', 'imported') else 0.0"
+      },
+      "vec1name": {
+        "value": "uGradientB",
+        "expr": null
+      },
+      "vec1valuex": {
+        "value": "0.0",
+        "expr": "op('/project1/madmapper_player_controls').par.Color2r"
+      },
+      "vec1valuey": {
+        "value": "0.18",
+        "expr": "op('/project1/madmapper_player_controls').par.Color2g"
+      },
+      "vec1valuez": {
+        "value": "1.0",
+        "expr": "op('/project1/madmapper_player_controls').par.Color2b"
+      },
+      "vec1valuew": {
+        "value": "1.0",
+        "expr": null
+      }
+    },
+    "/project1/effect_sample_uv": {}
+  },
+  "sender_enabled": false
+}
