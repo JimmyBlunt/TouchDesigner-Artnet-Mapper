@@ -24,7 +24,9 @@ CANONICAL_PREVIEW = "/project1/LED_PREVIEW_OUT"
 
 
 def _get_or_create(parent, op_type, name):
-    return parent.op(name) or parent.create(op_type, name)
+    node = parent.op(name) or parent.create(op_type, name)
+    node.name = name
+    return node
 
 
 def _set(node, name, value):
@@ -39,6 +41,7 @@ def _label(parent, name, text, x, y, width, height, color=(0.82, 0.88, 0.94), si
                              ("text", text), ("fontsize", size), ("fontcolorr", color[0]),
                              ("fontcolorg", color[1]), ("fontcolorb", color[2]),
                              ("bgalpha", 0), ("display", True),
+                             ("clickthrough", True), ("wordwrap", True),
                              ("align", "centerleft"), ("valign", "center")):
         _set(node, parameter, value)
     return node
@@ -49,22 +52,57 @@ def _callback_source():
     return f'''# Generated safe navigation callbacks. No DMX or project-save actions.
 TARGETS = {targets!r}
 
+def open_target(key):
+    key = str(key).lower()
+    if key not in TARGETS:
+        ui.status = 'Unknown shortcut: ' + key
+        return False
+    label, path = TARGETS[key]
+    # Resolve at the time of every click/key press; targets may be rebuilt.
+    target = op(path)
+    if target is None:
+        ui.status = 'Shortcut target missing: ' + path
+        return False
+    try:
+        target.openViewer()
+    except Exception as error:
+        ui.status = 'Shortcut viewer failed: ' + path + ' | ' + str(error)
+        return False
+    ui.status = label + ' | ' + path
+    return True
+
 def keyEvent(dat, key, character, alt, lalt, ralt, ctrl, lctrl, rctrl, shift, lshift, rshift, state, time):
     key = str(key).lower()
     if not state or not ctrl or not shift or alt or key not in TARGETS:
         return
-    label, path = TARGETS[key]
-    target = op(path)
-    if target is None:
-        ui.status = 'Shortcut target missing: ' + path
-        return
-    target.openViewer()
-    ui.status = label + ' | ' + path
+    open_target(key)
     return
 
 def shortcutEvent(dat, shortcutName, time):
     return
 '''
+
+
+def _open_button(owner, panel, item, y):
+    button = _get_or_create(panel, buttonCOMP, "open_" + item.key)
+    for name, value in (("x", 994), ("y", y), ("w", 94), ("h", 38),
+                        ("hmode", "fixed"), ("vmode", "fixed"), ("label", "OPEN"),
+                        ("buttontype", "momentary"), ("value0", False),
+                        ("display", True), ("layer", 30), ("fontsize", 12)):
+        _set(button, name, value)
+    node = _get_or_create(owner, panelexecuteDAT, 'open_click_' + item.key)
+    node.par.active = False
+    node.par.fromop = button.path
+    node.par.panels = button.path
+    node.par.panelvalue = "lselect"
+    node.par.offtoon = True
+    node.par.ontooff = False
+    node.par.whileon = False
+    node.par.whileoff = False
+    node.par.valuechange = False
+    node.text = "def onOffToOn(panelValue):\n    op('shortcut_callbacks').module.open_target(%r)\n    return\n" % item.key
+    node.par.active = True
+    return button
 
 
 def build():
@@ -82,6 +120,9 @@ def build():
 
     owner = _get_or_create(project, baseCOMP, "shortcut_hub")
     owner.nodeX, owner.nodeY = 1600, 700
+    for child in owner.children:
+        if child.name.startswith('open_click_'):
+            _set(child, 'active', False)
 
     table = _get_or_create(owner, tableDAT, "shortcut_config")
     table.clear()
@@ -97,22 +138,24 @@ def build():
     _set(keyboard, "callbacks", callbacks.path)
 
     panel = _get_or_create(owner, containerCOMP, "help_panel")
-    for parameter, value in (("w", 1120), ("h", 700), ("hmode", "fixed"), ("vmode", "fixed"),
+    panel_height = 200 + len(SHORTCUTS) * 48
+    for parameter, value in (("w", 1120), ("h", panel_height), ("hmode", "fixed"), ("vmode", "fixed"),
                              ("bgcolorr", 0.008), ("bgcolorg", 0.014), ("bgcolorb", 0.023), ("bgalpha", 1)):
         _set(panel, parameter, value)
-    _label(panel, "title", "TOUCHDESIGNER SHORTCUTS", 28, 640, 1060, 42, (0.91, 0.96, 1), 23)
-    _label(panel, "safety", "Navigation only - no shortcut starts DMX or changes the selected effect.", 28, 600, 1060, 30, (0.35, 0.90, 0.67), 13)
+    _label(panel, "title", "TOUCHDESIGNER SHORTCUTS", 28, panel_height - 60, 1060, 42, (0.91, 0.96, 1), 23)
+    _label(panel, "safety", "Navigation only - no shortcut starts DMX or changes the selected effect.", 28, panel_height - 102, 1060, 30, (0.35, 0.90, 0.67), 13)
     active_row_names = {
-        prefix + item.key for item in SHORTCUTS for prefix in ("combo_", "name_", "purpose_")
+        prefix + item.key for item in SHORTCUTS for prefix in ("combo_", "name_", "purpose_", "open_")
     }
     for child in panel.children:
-        if child.name.startswith(("combo_", "name_", "purpose_")) and child.name not in active_row_names:
+        if child.name.startswith(("combo_", "name_", "purpose_", "open_")) and child.name not in active_row_names:
             _set(child, "display", False)
     for index, item in enumerate(SHORTCUTS):
-        y = 548 - index * 54
+        y = panel_height - 154 - index * 48
         _label(panel, "combo_" + item.key, item.combo, 28, y, 180, 38, (0.38, 0.76, 0.96), 15)
         _label(panel, "name_" + item.key, item.label, 220, y, 250, 38, (0.91, 0.96, 1), 14)
-        _label(panel, "purpose_" + item.key, item.purpose, 480, y, 608, 38, (0.72, 0.79, 0.86), 12)
+        _label(panel, "purpose_" + item.key, item.purpose, 480, y, 500, 38, (0.72, 0.79, 0.86), 12)
+        _open_button(owner, panel, item, y)
     _label(panel, "footer", "Tip: click an empty network area first. Text-entry fields can consume keyboard input.", 28, 22, 1060, 34, (0.97, 0.72, 0.26), 12)
 
     preview = _get_or_create(owner, opviewerTOP, "help_preview")
@@ -120,7 +163,7 @@ def build():
     _set(preview, "allowpanel", True)
     _set(preview, "outputresolution", "custom")
     _set(preview, "resolutionw", 1120)
-    _set(preview, "resolutionh", 700)
+    _set(preview, "resolutionh", panel_height)
 
     readme = _get_or_create(owner, textDAT, "README")
     readme.text = "Safe navigation-only shortcuts. Source: pixelblaze_mapper/build_shortcut_hub.py"

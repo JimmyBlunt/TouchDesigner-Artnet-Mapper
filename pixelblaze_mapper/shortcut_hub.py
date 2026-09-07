@@ -28,6 +28,9 @@ SHORTCUTS = (
     ShortcutSpec("8", "SHOW CONTROL", "/project1/show_control/control_panel", "Cues, Übergänge und Show-Ablauf steuern"),
     ShortcutSpec("9", "SHORTCUT HELP", "/project1/shortcut_hub/help_panel", "Diese Shortcut-Übersicht öffnen"),
     ShortcutSpec("0", "GICO PORT CONFIG", "/project1/multi_controller_output/gico_port_config/ui_panel", "Globale Universen pro Port und feste GICO-Portblöcke konfigurieren"),
+    ShortcutSpec("l", "LAYOUT + 2D EDITOR", "/project1/layout_scene_editor/ui_panel", "Layout, Objekte und 2D-Fixtures gemeinsam bearbeiten"),
+    ShortcutSpec("g", "GUIDED SCAN", "/project1/guided_scan/ui_panel", "Geführten Scan vorbereiten und Messfortschritt prüfen"),
+    ShortcutSpec("c", "CONTROLLER PORTS", "/project1/multi_controller_output/gico_port_config/controller_ports/ui_panel", "Controller und unabhängige Portkapazitäten als Entwurf bearbeiten"),
 )
 
 
@@ -36,7 +39,7 @@ def validate_shortcuts(shortcuts=SHORTCUTS) -> tuple[str, ...]:
     keys: set[str] = set()
     targets: set[str] = set()
     for item in shortcuts:
-        if len(item.key) != 1 or not item.key.isdigit():
+        if len(item.key) != 1 or item.key.lower() not in '0123456789abcdefghijklmnopqrstuvwxyz':
             issues.append(f"invalid key: {item.key!r}")
         if item.key.lower() in keys:
             issues.append(f"duplicate key: {item.key}")

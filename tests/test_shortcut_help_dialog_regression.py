@@ -19,13 +19,14 @@ USER_DOC = ROOT / "docs" / "TOUCHDESIGNER_SHORTCUTS_DE.md"
 
 
 class ShortcutHelpDialogRegressionTests(unittest.TestCase):
-    def test_exactly_ten_ordered_unique_shortcuts_exist(self):
+    def test_legacy_digits_preserved_and_three_unique_shortcuts_added(self):
         self.assertEqual(validate_shortcuts(), ())
-        self.assertEqual([item.key for item in SHORTCUTS], list("1234567890"))
-        self.assertEqual(len({item.target for item in SHORTCUTS}), 10)
+        self.assertEqual([item.key for item in SHORTCUTS], list("1234567890lgc"))
+        self.assertEqual(len({item.target for item in SHORTCUTS}), 13)
 
     def test_help_rows_match_all_dialog_contracts_exactly(self):
-        help_rows = shortcut_rows()[1:]
+        # The original audit contract remains the ten numbered dialogs.
+        help_rows = shortcut_rows()[1:11]
         expected = tuple(
             (f"Ctrl+Shift+{item.key}", item.label, item.target)
             for item in DIALOGS
@@ -75,7 +76,7 @@ class ShortcutHelpDialogRegressionTests(unittest.TestCase):
         text = USER_DOC.read_text(encoding="utf-8")
         for item in SHORTCUTS:
             with self.subTest(shortcut=item.combo):
-                self.assertIn(f"Strg+Umschalt+{item.key}", text)
+                self.assertIn(f"Strg+Umschalt+{item.key.upper()}", text)
                 self.assertIn(item.label, text)
 
 

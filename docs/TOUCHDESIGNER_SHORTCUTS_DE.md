@@ -18,6 +18,22 @@ Während ein Textfeld aktiv ist, kann das Textfeld den Tastendruck abfangen.
 | `Strg+Umschalt+8` | SHOW CONTROL | Cues, Übergänge, Wiedergabe und Blackout einer Show steuern. |
 | `Strg+Umschalt+9` | SHORTCUT HELP | Diese Übersicht direkt in TouchDesigner öffnen. |
 | `Strg+Umschalt+0` | GICO PORT CONFIG | Globale Universen pro Port sowie feste GICO-Portblöcke konfigurieren und vor dem sicheren Anwenden validieren. |
+| `Strg+Umschalt+L` | LAYOUT + 2D EDITOR | Gemeinsamen Layout- und 2D-Fixture-Editor öffnen. |
+| `Strg+Umschalt+G` | GUIDED SCAN | Geführten Scan vorbereiten und Messfortschritt prüfen. Das Öffnen startet keinen Scan. |
+| `Strg+Umschalt+C` | CONTROLLER PORTS | Generische Controller und individuelle Portkapazitäten als Entwurf bearbeiten. |
+
+Die Übersicht (`Strg+Umschalt+9`) bietet zusätzlich pro Zeile einen **OPEN**-Button.
+Jeder Tastendruck beziehungsweise Klick prüft den aktuellen Operatorpfad. Fehlt ein
+noch nicht installierter Dialog, meldet TouchDesigner `Shortcut target missing`
+mit dem Pfad; kein anderer Dialog und keine Ausgabe werden stattdessen gestartet.
+
+Die neuen Ziele sind `/project1/layout_scene_editor/ui_panel`,
+`/project1/guided_scan/ui_panel` und
+`/project1/multi_controller_output/gico_port_config/controller_ports/ui_panel`.
+Die bisherige Ziffernbelegung 0–9 bleibt unverändert. L/G/C waren in der geprüften
+projektinternen Shortcut-/Keyboard-Inventur frei; native Tastatur-/Fokuskonflikte
+müssen bei der Live-Abnahme geprüft werden. Installation durch
+`pixelblaze_mapper/build_shortcut_hub.py`; der Builder speichert das Projekt nicht.
 
 ## Verbindlicher Signalweg
 

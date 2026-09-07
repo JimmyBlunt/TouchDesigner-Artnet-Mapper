@@ -20,9 +20,9 @@ class DialogContractTests(unittest.TestCase):
         self.assertEqual(validate_dialog_contracts(), ())
         self.assertEqual(len(DIALOGS), 10)
 
-    def test_shortcut_hub_and_dialog_contracts_match_exactly(self):
+    def test_numbered_shortcut_hub_and_original_dialog_contracts_match_exactly(self):
         expected = [(item.key, item.label, item.target) for item in DIALOGS]
-        actual = [(item.key, item.label, item.target) for item in SHORTCUTS]
+        actual = [(item.key, item.label, item.target) for item in SHORTCUTS if item.key.isdigit()]
         self.assertEqual(actual, expected)
 
     def test_every_implemented_dialog_has_its_builder_in_version_control(self):
