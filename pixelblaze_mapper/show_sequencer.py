@@ -283,6 +283,8 @@ class ABSlotPlan:
     brightness: float
     target_groups: tuple[str, ...]
     blackout: bool
+    slot_a_time: float = 0.0
+    slot_b_time: float = 0.0
 
 
 def load_show(path: str | Path) -> Show:
@@ -321,6 +323,7 @@ class ShowSequencer:
         self.elapsed = 0.0
         self.blackout = False
         self._current_slot = "A"
+        self._current_time_offset = 0.0
 
     @property
     def cue(self) -> Cue:
@@ -329,6 +332,7 @@ class ShowSequencer:
     def play(self) -> None:
         if self.state is TransportState.STOPPED and self.elapsed >= self.cue.duration:
             self.cue_index, self.elapsed, self._current_slot = 0, 0.0, "A"
+            self._current_time_offset = 0.0
         self.state = TransportState.PLAYING
 
     def pause(self) -> None:
@@ -338,6 +342,7 @@ class ShowSequencer:
     def stop(self) -> None:
         self.state = TransportState.STOPPED
         self.cue_index, self.elapsed, self._current_slot = 0, 0.0, "A"
+        self._current_time_offset = 0.0
 
     def set_loop(self, enabled: bool) -> None:
         if not isinstance(enabled, bool):
@@ -367,6 +372,7 @@ class ShowSequencer:
             return False
         self.cue_index, self.elapsed = target, 0.0
         self._current_slot = "B" if self._current_slot == "A" else "A"
+        self._current_time_offset = 0.0  # Explicit manual jumps restart the cue.
         return True
 
     def go(self) -> bool:
@@ -381,6 +387,7 @@ class ShowSequencer:
             return False
         self.cue_index, self.elapsed = target, 0.0
         self._current_slot = "B" if self._current_slot == "A" else "A"
+        self._current_time_offset = 0.0
         return True
 
     def seek(self, cue: int | str, elapsed: float = 0.0) -> None:
@@ -400,6 +407,7 @@ class ShowSequencer:
             raise ShowValidationError("seek elapsed must be less than cue.duration")
         self.cue_index, self.elapsed = index, position
         self._current_slot = "A" if index % 2 == 0 else "B"
+        self._current_time_offset = 0.0
 
     def advance(self, seconds: float) -> None:
         delta = _number(seconds, "advance seconds", minimum=0.0)
@@ -417,7 +425,11 @@ class ShowSequencer:
                 self.elapsed = self.cue.duration
                 self.state = TransportState.STOPPED
                 return
+            # Incoming material started at the beginning of this transition.
+            # Retain that preroll when it becomes the outgoing/current slot.
+            preroll = self.cue.transition_duration if self.cue.transition != 'cut' else 0.0
             self.cue_index, self.elapsed = target, 0.0
+            self._current_time_offset = preroll
             self._current_slot = "B" if self._current_slot == "A" else "A"
 
     def plan(self) -> ABSlotPlan:
@@ -432,6 +444,8 @@ class ShowSequencer:
             progress = min(1.0, max(0.0, (self.elapsed - start) / current.transition_duration))
         slot_a = current if self._current_slot == "A" else incoming
         slot_b = current if self._current_slot == "B" else incoming
+        current_time = getattr(self, '_current_time_offset', 0.0) + self.elapsed
+        incoming_time = max(0.0, self.elapsed - (current.duration - current.transition_duration)) if incoming is not None and transition != 'cut' else 0.0
         output_b_mix = progress if self._current_slot == "A" else 1.0 - progress
         if incoming is None or current.transition == "cut":
             progress = 0.0
@@ -450,4 +464,6 @@ class ShowSequencer:
             brightness=0.0 if self.blackout else current.brightness,
             target_groups=current.target_groups,
             blackout=self.blackout,
+            slot_a_time=current_time if self._current_slot == 'A' else incoming_time,
+            slot_b_time=current_time if self._current_slot == 'B' else incoming_time,
         )

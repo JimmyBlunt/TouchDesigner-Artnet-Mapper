@@ -29,6 +29,7 @@ from pixelblaze_mapper.multi_controller import (  # noqa: E402
     segment_rows,
     validate_router,
 )
+from pixelblaze_mapper.installation_contract import TOTAL_PIXELS
 
 
 def _safe_name(value):
@@ -80,7 +81,7 @@ def _read_existing_config(owner):
 
     controllers = owner.op("controller_config")
     segments = owner.op("segment_config")
-    if controllers is None or segments is None or controllers.numRows < 2:
+    if controllers is None or segments is None or controllers.numRows < 1:
         return None
     controller_items = []
     for row in range(1, controllers.numRows):
@@ -111,7 +112,9 @@ def _read_existing_config(owner):
             reverse=_bool(segments[row, "reverse"]),
             color_override=override,
         ))
-    return RouterConfig(tuple(controller_items), tuple(segment_items), source_pixel_count=3744)
+    source = op(SOURCE)
+    source_count = int(source.numSamples) if source is not None else TOTAL_PIXELS
+    return RouterConfig(tuple(controller_items), tuple(segment_items), source_pixel_count=source_count)
 
 
 def _read_existing_calibration(owner):
@@ -153,6 +156,7 @@ if LOCAL_ROOT not in sys.path:
 
 from pixelblaze_mapper.multi_controller import ControllerConfig, RouterConfig, SegmentConfig, build_router_plan
 from pixelblaze_mapper.realtime_packer import compile_router_packer
+from pixelblaze_mapper.installation_contract import TOTAL_PIXELS
 
 CONTROLLER = %r
 _cache_signature = None
@@ -188,13 +192,17 @@ def _config():
             count=int(table[row, 'count']), controller=str(table[row, 'controller']),
             destination_start=int(table[row, 'destination_start']), reverse=_bool(table[row, 'reverse']),
             color_override=override))
-    return RouterConfig(tuple(controllers), tuple(segments), source_pixel_count=3744)
+    source = op('/project1/math1')
+    source_count = int(source.numSamples) if source is not None else TOTAL_PIXELS
+    return RouterConfig(tuple(controllers), tuple(segments), source_pixel_count=source_count)
 
 def _signature():
     owner = op('..')
     tables = (owner.op('controller_config'), owner.op('segment_config'))
-    return tuple(tuple(str(table[row, col]) for col in range(table.numCols))
-                 for table in tables for row in range(table.numRows))
+    source = op('/project1/math1')
+    count = int(source.numSamples) if source is not None else TOTAL_PIXELS
+    return (count,) + tuple(tuple(str(table[row, col]) for col in range(table.numCols))
+                            for table in tables for row in range(table.numRows))
 
 def _controller_packer():
     global _cache_signature, _compiled, _cache_rebuilds
@@ -223,7 +231,7 @@ def onCook(scriptOp):
     if not scriptOp.inputs:
         return
     source = scriptOp.inputs[0]
-    if source.numSamples < 3744 or source.numChans < 3:
+    if source.numSamples < 1 or source.numChans < 3:
         return
     started = time.perf_counter()
     frames = _controller_packer().pack_channels(source[0], source[1], source[2])
@@ -298,19 +306,64 @@ def _button(parent, name, label, x, y, width, color):
 
 def _ui_callbacks_source():
     return r'''import ipaddress
+import sys
+import time
+
+PROJECT_ROOT = r'C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper'
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+from pixelblaze_mapper.routing_transaction import table_rows, apply_router_transaction, stop_outputs
+from pixelblaze_mapper.installation_contract import TOTAL_PIXELS
+from pixelblaze_mapper.output_config_summary import build_output_summary
+from pixelblaze_mapper.routing_transaction import records
+
+_last_status_update = 0.0
 
 BUILDER = r'C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/pixelblaze_mapper/build_multi_controller_output.py'
 
 def _field(name):
     return str(op('ui_panel/' + name + '/string')[0, 0]).strip()
 
+def _source_pixels():
+    source = op('/project1/math1')
+    return int(source.numSamples) if source is not None else TOTAL_PIXELS
+
 def _set_status(text, color=(0.35, 0.90, 0.67)):
     node = op('ui_panel/action_status')
-    node.par.text = text
+    node.par.text = 'LAST ACTION: ' + text
     node.par.fontcolorr, node.par.fontcolorg, node.par.fontcolorb = color
 
-def _write(row, prefix):
-    table = op('controller_config')
+def refresh_status(force=False):
+    global _last_status_update
+    now = time.monotonic()
+    if not force and now - _last_status_update < 0.25:
+        return
+    _last_status_update = now
+    try:
+        sender = op('artnet_510_sender_callbacks')
+        state = sender.module.status() if sender is not None else {'enabled': False, 'error': 'Sender unavailable'}
+        summary = build_output_summary(records(table_rows(op('controller_config'))),
+            records(table_rows(op('segment_config'))), state, source_pixels=_source_pixels(),
+            validation_rows=records(table_rows(op('validation'))))
+        fps = state.get('telemetry', {}).get('actual_send_fps', 0.0)
+        op('ui_panel/safety').par.text = '%s | sender %s | %.1f actual fps | %d RGB source pixels' % (
+            summary.state, 'ON' if summary.sender_enabled else 'OFF', fps, _source_pixels())
+        for name, prefix in (('WS2812_NODE', 'ws'), ('APA102_ESP', 'apa')):
+            item = next((item for item in summary.controllers if item.name == name), None)
+            value = ('%s | %s | wire %s | %d reserved U' % (name, item.state, item.universe_label,
+                     item.universe_count)) if item else name + ' | NOT CONFIGURED'
+            op('ui_panel/' + prefix + '_title').par.text = value
+        warnings = [row.get('message', '') for row in records(table_rows(op('validation')))
+                    if row.get('code') == 'unassigned_source']
+        op('ui_panel/unassigned').par.text = '; '.join(warnings) or 'All source pixels have a routing assignment'
+    except Exception as error:
+        op('ui_panel/safety').par.text = 'STATUS UNAVAILABLE | ' + str(error)
+
+def _controller_draft(rows, name, prefix):
+    header = rows[0]
+    row = next((row for row in rows[1:] if row[header.index('name')] == name), None)
+    if row is None:
+        return
     address = _field(prefix + '_ip')
     ipaddress.ip_address(address)
     universe = int(_field(prefix + '_universe'))
@@ -322,10 +375,9 @@ def _write(row, prefix):
         raise ValueError('Brightness must be 0.0..1.0')
     if enabled not in (0, 1):
         raise ValueError('Enabled must be 0 or 1')
-    table[row, 'target_ip'] = address
-    table[row, 'start_universe'] = universe
-    table[row, 'brightness'] = brightness
-    table[row, 'enabled'] = enabled
+    for key, value in (('target_ip', address), ('start_universe', universe),
+                       ('brightness', brightness), ('enabled', enabled)):
+        row[header.index(key)] = str(value)
 
 def _write_calibration():
     panel = _field('cal_panel').lower()
@@ -335,31 +387,30 @@ def _write_calibration():
         raise ValueError('Calibration panel: all, middle, upper or lower')
     if pattern not in ('panel_id', 'rows', 'columns', 'chase'):
         raise ValueError('Calibration pattern: panel_id, rows, columns or chase')
-    if not 0 <= chase < 3744:
-        raise ValueError('Chase index must be 0..3743')
-    table = op('calibration_config')
-    values = {'panel': panel, 'pattern': pattern, 'chase_index': str(chase)}
-    for row in range(1, table.numRows):
-        key = str(table[row, 0]).strip()
-        if key in values:
-            table[row, 1] = values[key]
+    if not 0 <= chase < _source_pixels():
+        raise ValueError('Chase index must be 0..%d' % (_source_pixels() - 1))
     return panel, pattern, chase
+
+def _rebuild_router():
+    # Preserve TouchDesigner's injected op and OP types.
+    scope = dict(globals())
+    scope['__name__'] = '__main__'
+    exec(compile(open(BUILDER, encoding='utf-8').read(), BUILDER, 'exec'), scope, scope)
 
 def apply_safe():
     try:
-        _write(1, 'ws')
-        _write(2, 'apa')
-        _write_calibration()
-        # Preserve TouchDesigner's injected globals (notably ``op`` and OP
-        # classes) while still executing the builder as its main entry point.
-        scope = dict(globals())
-        scope['__name__'] = '__main__'
-        exec(compile(open(BUILDER, encoding='utf-8').read(), BUILDER, 'exec'), scope, scope)
-        validation = op('validation')
-        errors = [str(validation[r, 'message']) for r in range(1, validation.numRows)
-                  if str(validation[r, 'severity']).lower() == 'error']
-        if errors:
-            raise ValueError('; '.join(errors))
+        rows = table_rows(op('controller_config'))
+        _controller_draft(rows, 'WS2812_NODE', 'ws')
+        _controller_draft(rows, 'APA102_ESP', 'apa')
+        panel, pattern, chase = _write_calibration()
+        calibration = table_rows(op('calibration_config'))
+        values = {'panel': panel, 'pattern': pattern, 'chase_index': str(chase)}
+        for row in calibration[1:]:
+            if row[0] in values:
+                row[1] = values[row[0]]
+        apply_router_transaction(op('/project1/multi_controller_output'), rows,
+            table_rows(op('segment_config')), _rebuild_router,
+            extra_tables=((op('calibration_config'), calibration),), source_pixels=_source_pixels())
         _set_status('VALIDATED - draft applied; network outputs remain OFF')
         return True
     except Exception as error:
@@ -367,11 +418,7 @@ def apply_safe():
         return False
 
 def all_off():
-    for node in parent().findChildren(name='dmxout_*', depth=1):
-        node.par.active = False
-    sender = op('artnet_510_sender_callbacks')
-    if sender is not None:
-        sender.module.set_enabled(False)
+    stop_outputs(op('/project1/multi_controller_output'))
     _set_status('SAFE - all Art-Net outputs are OFF')
 
 def start_enabled():
@@ -492,9 +539,9 @@ def _controllers(enabled_only=True):
             continue
         name = str(table[row, 'name'])
         configured_universe = int(table[row, 'start_universe'])
-        # The GICO setup utility displays ports as U1..U9 while its ArtDMX
-        # packets are addressed as wire universes 0..8.
-        wire_universe = configured_universe - 1 if name == 'WS2812_NODE' and configured_universe >= 1 else configured_universe
+        # Router tables are canonical zero-based wire addresses. GICO's
+        # one-based UI conversion happens exactly once in its draft adapter.
+        wire_universe = configured_universe
         result.append({
                 'name': name,
                 'safe': _safe(name),
@@ -527,12 +574,16 @@ def _router_config():
             count=int(table[row, 'count']), controller=str(table[row, 'controller']),
             destination_start=int(table[row, 'destination_start']), reverse=_bool(table[row, 'reverse']),
             color_override=override))
-    return RouterConfig(tuple(controllers), tuple(segments), source_pixel_count=3744)
+    source = op('/project1/math1')
+    source_count = int(source.numSamples) if source is not None else 0
+    return RouterConfig(tuple(controllers), tuple(segments), source_pixel_count=source_count)
 
 def _config_signature():
     tables = (op('controller_config'), op('segment_config'))
-    return tuple(tuple(str(table[row, col]) for col in range(table.numCols))
-                 for table in tables for row in range(table.numRows))
+    source = op('/project1/math1')
+    count = int(source.numSamples) if source is not None else 0
+    return (count,) + tuple(tuple(str(table[row, col]) for col in range(table.numCols))
+                            for table in tables for row in range(table.numRows))
 
 def _compiled_router():
     global _runtime_signature, _runtime_packer, _plan_rebuilds
@@ -639,8 +690,8 @@ def _live_frames(configs):
     # A non-forced cook evaluates the current dependency graph only when dirty;
     # it does not recook an already evaluated render chain in onFrameStart.
     source.cook(force=False)
-    if source.numSamples < 3744 or source.numChans < 3:
-        raise RuntimeError('Expected common source with 3 channels x 3,744 pixels')
+    if source.numSamples < 1 or source.numChans < 3:
+        raise RuntimeError('Expected nonempty common source with 3 RGB channels')
     started = time.perf_counter()
     packer = _compiled_router()
     frames = {config['name']: packer.controller(config['name']).pack_channels(
@@ -890,20 +941,31 @@ def build():
         if canvas.op(obsolete) is not None:
             canvas.op(obsolete).par.display = False
     _label(canvas, "title", "ART-NET MULTI-CONTROLLER ROUTER", 24, 674, 1132, 34, (0.91, 0.96, 1), 21)
-    _label(canvas, "safety", "SAFE START: outputs OFF | source /project1/math1 | 3,744 RGB pixels", 24, 640, 1132, 26, (0.35, 0.90, 0.67), 13)
+    _label(canvas, "safety", "READING SENDER STATUS", 24, 640, 1132, 26, (0.35, 0.90, 0.67), 13)
     _label(canvas, "flow", "COMMON EFFECT -> SEGMENT ROUTER -> RGB PACKER -> ONE SHARED 510-BYTE ART-NET SENDER", 24, 604, 1132, 28, (0.38, 0.76, 0.96), 14)
-    _label(canvas, "ws_title", "WS2812 NODE  |  3 physical ports  |  UI U1-U9 / wire U0-U8", 24, 560, 544, 30, (0.91, 0.96, 1), 15)
-    _label(canvas, "apa_title", "APA102 ESP  |  1,167 pixels  |  10 universes", 594, 560, 562, 30, (0.91, 0.96, 1), 15)
-    field_rows = (("IP address", "ip", 522), ("Start universe", "universe", 484),
+    _label(canvas, "ws_title", "WS2812 NODE | reading live status", 24, 560, 544, 30, (0.91, 0.96, 1), 12)
+    _label(canvas, "apa_title", "APA102 ESP | reading live status", 594, 560, 562, 30, (0.91, 0.96, 1), 12)
+    field_rows = (("IP address", "ip", 522), ("First WIRE universe (0-based)", "universe", 484),
                   ("Brightness 0..1", "brightness", 446), ("Enabled 0/1", "enabled", 408))
-    controller_values = (("ws", config.controllers[0], 24, 292), ("apa", config.controllers[1], 594, 862))
+    controllers_by_name = {item.name: item for item in config.controllers}
+    for prefix, name in (("ws", "WS2812_NODE"), ("apa", "APA102_ESP")):
+        if name not in controllers_by_name:
+            for suffix in ('ip', 'universe', 'brightness', 'enabled'):
+                for node_name in (prefix + '_' + suffix, prefix + '_' + suffix + '_label'):
+                    missing_field = canvas.op(node_name)
+                    if missing_field is not None:
+                        _set_if_present(missing_field, 'display', False)
+    controller_values = tuple((prefix, controllers_by_name[name], label_x, field_x)
+        for prefix, name, label_x, field_x in (("ws", "WS2812_NODE", 24, 292),
+                                             ("apa", "APA102_ESP", 594, 862))
+        if name in controllers_by_name)
     for prefix, controller, label_x, field_x in controller_values:
         values = {"ip": controller.target_address, "universe": controller.start_universe,
                   "brightness": controller.brightness, "enabled": int(controller.enabled)}
         for label, suffix, y in field_rows:
             _label(canvas, prefix + "_" + suffix + "_label", label, label_x, y, 252, 34, (0.72, 0.79, 0.86), 13)
             _field(canvas, prefix + "_" + suffix, values[suffix], field_x, y, 276, 34)
-    _label(canvas, "firmware_note", "GICO chain: middle target 0-509; scan 510-516 quarantined; upper target 510-778; lower target 1020. ESP APA102 starts at 512.", 24, 370, 1132, 28, (0.97, 0.72, 0.26), 12)
+    _label(canvas, "firmware_note", "Router and sender use zero-based WIRE universes. GICO UI universe = wire + 1. Port reserve is hardware capacity, not LED count.", 24, 370, 1132, 28, (0.97, 0.72, 0.26), 12)
     _label(canvas, "advanced", "Advanced mapping: controller_config + segment_config (ranges, targets, reverse, RGB order, NIC, rate, ArtSync).", 24, 338, 1132, 26, (0.72, 0.79, 0.86), 11)
 
     controls = (("apply", "APPLY SAFE DRAFT", 24, (0.10, 0.38, 0.42)),
@@ -917,22 +979,26 @@ def build():
         _set_if_present(click, "active", False)
         click.par.fromop = button.path
         click.par.panels = button.path
-        click.par.panelvalue = "state"
+        # Direct left press: do not depend on a momentary button's cooked state.
+        click.par.panelvalue = "lselect"
         click.par.offtoon = True
+        click.par.ontooff = False
+        click.par.whileon = False
+        click.par.whileoff = False
         click.par.valuechange = False
         action = {"apply": "apply_safe", "start": "start_enabled", "off": "all_off"}[command]
         _replace_dat_text(click, "def onOffToOn(panelValue):\n    op('ui_callbacks').module.%s()\n    return\n" % action)
         _set_if_present(click, "active", True)
     _label(canvas, "action_status", "READY - edit fields, then APPLY SAFE DRAFT", 624, 292, 532, 38, (0.35, 0.90, 0.67), 12)
     _label(canvas, "warning", "START ENABLED sends live Art-Net. ALL OUTPUTS OFF stops immediately.", 24, 258, 1132, 26, (0.97, 0.72, 0.26), 12)
-    _label(canvas, "unassigned", "Source pixels 2354-3743 remain free for rear-panel / 3D mapping.", 24, 230, 1132, 24, (0.72, 0.79, 0.86), 11)
+    _label(canvas, "unassigned", "Reading source assignments", 24, 230, 1132, 24, (0.72, 0.79, 0.86), 11)
 
     _label(canvas, "cal_title", "MEASURED 3D-MAP CALIBRATION", 24, 194, 1132, 30, (0.38, 0.76, 0.96), 16)
     _label(canvas, "cal_panel_label", "Panel: all | middle | upper | lower", 24, 156, 260, 30, (0.72, 0.79, 0.86), 11)
     _field(canvas, "cal_panel", calibration["panel"], 284, 156, 190, 30)
     _label(canvas, "cal_pattern_label", "Pattern: panel_id | rows | columns | chase", 494, 156, 310, 30, (0.72, 0.79, 0.86), 11)
     _field(canvas, "cal_pattern", calibration["pattern"], 804, 156, 190, 30)
-    _label(canvas, "cal_chase_label", "Chase index 0..3743", 24, 122, 260, 28, (0.72, 0.79, 0.86), 11)
+    _label(canvas, "cal_chase_label", "Chase index 0..%d" % (config.source_pixel_count - 1), 24, 122, 260, 28, (0.72, 0.79, 0.86), 11)
     _field(canvas, "cal_chase", calibration["chase_index"], 284, 122, 190, 28)
 
     calibration_controls = (
@@ -947,8 +1013,11 @@ def build():
         _set_if_present(click, "active", False)
         click.par.fromop = button.path
         click.par.panels = button.path
-        click.par.panelvalue = "state"
+        click.par.panelvalue = "lselect"
         click.par.offtoon = True
+        click.par.ontooff = False
+        click.par.whileon = False
+        click.par.whileoff = False
         click.par.valuechange = False
         _replace_dat_text(click, "def onOffToOn(panelValue):\n    op('ui_callbacks').module.%s()\n    return\n" % action)
         _set_if_present(click, "active", True)
@@ -978,6 +1047,11 @@ network stop. The builder never saves the TOE automatically.
     gico_scope["__name__"] = "pixelblaze_mapper_embedded_gico_ui"
     exec(compile(gico_builder.read_text(encoding="utf-8"), str(gico_builder), "exec"), gico_scope, gico_scope)
     gico_scope["build"]()
+    status_execute = _get_or_create(owner, executeDAT, 'router_status_execute')
+    status_execute.par.active = True
+    status_execute.par.framestart = True
+    _replace_dat_text(status_execute, "def onFrameStart(frame):\n    op('ui_callbacks').module.refresh_status()\n    return\n")
+    callbacks.module.refresh_status(force=True)
     print({"owner": owner.path, "controllers": len(plan.controllers), "outputsActive": False, "productionTouched": False, "projectSaved": False})
     return owner
 

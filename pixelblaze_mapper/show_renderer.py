@@ -18,6 +18,27 @@ TARGET_GROUPS = frozenset({"all", "middle", "upper", "lower", "rear"})
 TRANSITIONS = frozenset({"cut", "crossfade", "dissolve", "wipe", "radial", "glitch"})
 
 
+def slot_uv_frame(global_u, global_v, local_u, local_v, *, mode='global', hybrid_mix=0.5):
+    """Choose a cue's own UVs without consulting the external material player."""
+    if mode not in ('global', 'panel', 'panel_local', 'hybrid'):
+        raise ValueError('Unknown slot coordinate mode')
+    if len({len(values) for values in (global_u, global_v, local_u, local_v)}) != 1:
+        raise ValueError('Slot UV columns must have identical lengths')
+    blend = float(hybrid_mix)
+    if not isfinite(blend) or not 0 <= blend <= 1:
+        raise ValueError('Slot hybrid mix must be finite and inside 0..1')
+    columns = tuple(tuple(float(value) for value in values) for values in (global_u, global_v, local_u, local_v))
+    if any(not isfinite(value) for values in columns for value in values):
+        raise ValueError('Slot UV values must be finite')
+    gu, gv, lu, lv = columns
+    if mode == 'global':
+        return gu, gv
+    if mode in ('panel', 'panel_local'):
+        return lu, lv
+    return (tuple(a + (b - a) * blend for a, b in zip(gu, lu)),
+            tuple(a + (b - a) * blend for a, b in zip(gv, lv)))
+
+
 @lru_cache(maxsize=32)
 def _target_mask_frame(selected: tuple[str, ...]) -> tuple[float, ...]:
     """Build a target mask once per group combination, not once per frame."""
@@ -79,6 +100,8 @@ def transition_b_weight(
     u, v = float(uv[0]), float(uv[1])
     if not isfinite(u) or not isfinite(v):
         raise ValueError("uv values must be finite")
+    if mix == 0.0 or mix == 1.0:
+        return mix
     if transition == "crossfade":
         return mix
     if transition == "cut":
@@ -167,7 +190,9 @@ def render_frame(
     if gain == 0.0:
         return tuple([0.0] * TOTAL_PIXELS for _ in slot_a)
 
-    if transition == "crossfade":
+    if mix == 0.0 or mix == 1.0:
+        weights_b: Sequence[float] = (mix,) * TOTAL_PIXELS
+    elif transition == "crossfade":
         weights_b: Sequence[float] = (mix,) * TOTAL_PIXELS
     elif transition == "cut":
         weights_b = (float(mix >= 0.5),) * TOTAL_PIXELS

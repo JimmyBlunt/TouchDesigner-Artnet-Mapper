@@ -9,6 +9,7 @@ controller's configuration utility.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from pixelblaze_mapper.installation_contract import TOTAL_PIXELS
 
 
 CHANNELS_PER_UNIVERSE = 510
@@ -57,6 +58,7 @@ class GicoConfig:
     universes_per_port: int
     ports: tuple[GicoPortConfig, ...]
     first_universe: int = 1
+    source_pixel_count: int = TOTAL_PIXELS
 
 
 @dataclass(frozen=True)
@@ -134,15 +136,18 @@ def validate_gico_config(config: GicoConfig) -> tuple[ValidationIssue, ...]:
                 "universes_per_port",
             )
         )
-    if not _is_integer(config.first_universe, minimum=1):
+    if not _is_integer(config.first_universe, minimum=1) or config.first_universe > 32768:
         issues.append(
             ValidationIssue(
                 "error",
                 "first_universe",
-                "first_universe must be a positive one-based universe number",
+                "first_universe must be a one-based universe number in 1..32768",
                 "first_universe",
             )
         )
+    if not _is_integer(config.source_pixel_count, minimum=1):
+        issues.append(ValidationIssue('error', 'source_pixel_count',
+                                      'source_pixel_count must be positive', 'source_pixel_count'))
 
     seen_ports: set[int] = set()
     assigned: list[GicoPortConfig] = []
@@ -166,6 +171,12 @@ def validate_gico_config(config: GicoConfig) -> tuple[ValidationIssue, ...]:
             )
         else:
             seen_ports.add(port.port)
+        if (port_number_valid and global_valid
+                and _is_integer(config.first_universe, minimum=1)
+                and config.first_universe + port.port * config.universes_per_port - 1 > 32768):
+            issues.append(ValidationIssue('error', 'universe_overflow',
+                'port block exceeds UI universe 32768 / wire universe 32767',
+                'first_universe', port.port))
 
         if not isinstance(port.label, str):
             issues.append(
@@ -253,6 +264,11 @@ def validate_gico_config(config: GicoConfig) -> tuple[ValidationIssue, ...]:
             and port.source_start >= 0
         ):
             assigned.append(port)
+            if (_is_integer(config.source_pixel_count, minimum=1)
+                    and port.source_start + port.pixel_count > config.source_pixel_count):
+                issues.append(ValidationIssue('error', 'source_range',
+                    f'port {port.port} exceeds the {config.source_pixel_count}-pixel source',
+                    'source_start', port.port))
 
     for index, left in enumerate(assigned):
         for right in assigned[index + 1 :]:

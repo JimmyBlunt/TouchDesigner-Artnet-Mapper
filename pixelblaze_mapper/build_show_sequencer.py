@@ -80,7 +80,9 @@ def _button(canvas, name, label, x, width, toggle=False):
     node = _get_or_create(canvas, buttonCOMP, name)
     _fixed(node, x, 25, width, 42)
     node.par.label = label
-    node.par.buttontype = "toggle" if toggle else "momentary"
+    # Semantic loop/blackout toggles use one momentary pulse on every click.
+    node.par.buttontype = "momentary"
+    node.par.value0 = False
     node.par.fontsize = 12
     node.par.cursor = "pointer"
     node.par.bgcolorr, node.par.bgcolorg, node.par.bgcolorb = (0.04, 0.11, 0.16)
@@ -99,8 +101,12 @@ def build():
         raise RuntimeError("/project1 was not found")
     owner = _get_or_create(project_root, baseCOMP, "show_control")
     owner.nodeX, owner.nodeY = 900, -300
+    for child in owner.children:
+        if child.type == 'panelexec':
+            child.par.active = False
 
-    data = _load_demo()
+    old_show = owner.op('show_json')
+    data = json.loads(old_show.text) if old_show is not None and old_show.text.strip() else _load_demo()
     cues = _get_or_create(owner, tableDAT, "cue_table")
     cue_rows = [[
         "id", "name", "effect", "preset", "parameters_json", "coordinate_mode", "duration",
@@ -125,6 +131,7 @@ def build():
         ["incoming_slot", "B"], ["transition", "cut"], ["progress", 0.0],
         ["output_b_mix", 0.0], ["production_connected", 0],
         ["network_output_enabled", 0],
+        ["slot_time_offset", 0.0],
     ]
     if state.numRows < 2:
         _table(state, [["key", "value"]] + state_defaults)
@@ -156,6 +163,9 @@ def build():
                          ["parameters_json", "{}"], ["target_groups", "all"],
                          ["coordinate_mode", "global"],
                          ["production_connected", 0]])
+        uv_request = _get_or_create(adapter, tableDAT, 'coordinate_request')
+        if uv_request.numRows < 2:
+            _table(uv_request, [['key', 'value'], ['mode', 'global'], ['hybrid_mix', 0.5]])
         endpoint = _get_or_create(adapter, nullTOP, "material_top_in")
         endpoint.nodeX, endpoint.nodeY = 0, 0
         readme = _get_or_create(adapter, textDAT, "README")
@@ -182,13 +192,14 @@ import sys
 LOCAL_ROOT = r'C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper'
 if LOCAL_ROOT not in sys.path:
     sys.path.insert(0, LOCAL_ROOT)
-from pixelblaze_mapper.show_sequencer import Show, ShowSequencer
+from pixelblaze_mapper.show_sequencer import Show, ShowSequencer, TransportState
 
 def _set(key, value):
     table = op('state_table')
     for row in range(1, table.numRows):
         if str(table[row, 0]) == key:
-            table[row, 1] = value
+            if str(table[row, 1]) != str(value):
+                table[row, 1] = value
             return
     table.appendRow([key, value])
 
@@ -203,7 +214,8 @@ def _put(table_path, key, value):
     table = op(table_path)
     for row in range(1, table.numRows):
         if str(table[row, 0]) == key:
-            table[row, 1] = value
+            if str(table[row, 1]) != str(value):
+                table[row, 1] = value
             return
     table.appendRow([key, value])
 
@@ -211,8 +223,19 @@ def runtime():
     owner = op('callbacks').parent()
     signature = op('show_json').text
     record = owner.fetch('show_runtime_record', None)
-    if not record or record[0] != signature:
-        record = (signature, ShowSequencer(Show.from_dict(json.loads(signature))))
+    if not record or record[0] != signature or not isinstance(record[1], ShowSequencer):
+        sequence = ShowSequencer(Show.from_dict(json.loads(signature)))
+        # Rebuild/module reload restores transport; it is not a PLAY/STOP command.
+        index = int(_get('cue_index', 0))
+        if 0 <= index < len(sequence.show.cues):
+            sequence.cue_index = index
+            sequence.elapsed = min(sequence.cue.duration, max(0.0, float(_get('elapsed', 0))))
+            sequence._current_slot = str(_get('outgoing_slot', 'A'))
+            sequence._current_time_offset = max(0.0, float(_get('slot_time_offset', 0)))
+        sequence.set_loop(bool(int(_get('loop', int(sequence.show.loop)))))
+        sequence.set_blackout(bool(int(_get('blackout', 0))))
+        sequence.state = TransportState(str(_get('transport', 'stopped')))
+        record = (signature, sequence)
         owner.store('show_runtime_record', record)
     return record[1]
 
@@ -222,6 +245,7 @@ def sync():
     _set('transport', sequence.state.value)
     _set('cue_index', sequence.cue_index)
     _set('elapsed', sequence.elapsed)
+    _set('slot_time_offset', getattr(sequence, '_current_time_offset', 0.0))
     _set('loop', int(sequence.show.loop))
     _set('blackout', int(sequence.blackout))
     _set('outgoing_slot', plan.outgoing_slot)
@@ -229,14 +253,18 @@ def sync():
     _set('transition', plan.transition)
     _set('progress', plan.progress)
     _set('output_b_mix', plan.output_b_mix)
-    for path, slot in (('slot_a_adapter/material_request', plan.slot_a),
-                       ('slot_b_adapter/material_request', plan.slot_b)):
+    for path, slot, slot_time in (('slot_a_adapter/material_request', plan.slot_a, plan.slot_a_time),
+                                 ('slot_b_adapter/material_request', plan.slot_b, plan.slot_b_time)):
         _put(path, 'status', 'READY' if slot else 'EMPTY')
         _put(path, 'effect', slot.effect if slot else '')
         _put(path, 'preset', slot.preset if slot else '')
         _put(path, 'parameters_json', json.dumps(slot.parameters.to_dict(), separators=(',', ':')) if slot else '{}')
         _put(path, 'target_groups', ','.join(slot.target_groups) if slot else 'all')
         _put(path, 'coordinate_mode', slot.coordinate_mode if slot else '')
+        _put(path, 'animation_time', slot_time)
+        uv_path = path.replace('material_request', 'coordinate_request')
+        _put(uv_path, 'mode', slot.coordinate_mode if slot else 'global')
+        _put(uv_path, 'hybrid_mix', slot.parameters.hybrid_mix if slot else 0.5)
     _put('transition_adapter/mixer_request', 'mode', plan.transition)
     _put('transition_adapter/mixer_request', 'progress', plan.progress)
     _put('transition_adapter/mixer_request', 'output_b_mix', plan.output_b_mix)
@@ -253,6 +281,9 @@ def sync():
 
 def command(name):
     sequence = runtime()
+    render = op('render_sync')
+    if name in ('play', 'go', 'next', 'previous') and render is not None and hasattr(render.module, 'preflight'):
+        render.module.preflight()
     if name == 'play': sequence.play()
     elif name == 'pause': sequence.pause()
     elif name == 'stop': sequence.stop()
@@ -270,14 +301,13 @@ def advance(seconds):
     runtime().advance(seconds)
     return sync()
 
-sync()
 '''
 
     canvas = _get_or_create(owner, containerCOMP, "control_panel")
     _fixed(canvas, 0, 0, 1000, 300)
     canvas.par.bgcolorr, canvas.par.bgcolorg, canvas.par.bgcolorb = (0.008, 0.015, 0.025)
     canvas.par.bgalpha = 1
-    _text(canvas, "title", "SHOW CONTROL  |  ISOLATED / OUTPUT SAFE", 20, 232, 960, 50, 20, (0.35, 0.86, 0.98))
+    _text(canvas, "title", "SHOW CONTROL | SENDER STATUS NOT YET READ", 20, 232, 960, 50, 18, (0.35, 0.86, 0.98))
     _text(canvas, "cue_status", "CUE 01 · Fluid Opening\nFluid Noise / Ocean Blue · global · 20.0 s", 20, 130, 470, 86, 15)
     _text(canvas, "transition_status", "A → B   crossfade   0%\nBrightness 20% · targets: all", 510, 130, 470, 86, 15)
     button_specs = [
@@ -289,13 +319,18 @@ sync()
     for name, label, x, width, toggle in button_specs:
         button = _button(canvas, name, label, x, width, toggle)
         click = _get_or_create(owner, panelexecuteDAT, "click_" + name[4:])
+        click.par.active = False
         click.par.fromop = button.path
         click.par.panels = button.path
-        click.par.panelvalue = "state"
+        click.par.panelvalue = "lselect"
         click.par.offtoon = True
+        click.par.ontooff = False
+        click.par.whileon = False
+        click.par.whileoff = False
         click.par.valuechange = False
         command = name[4:]
         click.text = "def onOffToOn(panelValue):\n    op('callbacks').module.command(%r)\n    return\n" % command
+        click.par.active = True
 
     preview = _get_or_create(owner, opviewerTOP, "control_panel_preview")
     preview.par.opviewer = canvas.path
@@ -322,6 +357,7 @@ sync()
         "pixelblaze_mapper.show_sequencer. No production nodes are inspected or "
         "rewired. No Art-Net output is enabled. The builder does not save the project."
     )
+    callbacks.module.sync()
     print({"owner": owner.path, "cues": len(data["cues"]),
            "productionTouched": False, "outputEnabled": False, "projectSaved": False})
     return owner

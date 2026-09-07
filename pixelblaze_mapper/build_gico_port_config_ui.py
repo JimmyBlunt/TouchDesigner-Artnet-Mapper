@@ -2,8 +2,9 @@
 
 The controller exposes one global universe count for every physical port.  The
 UI therefore edits that global value once and derives each port's universe
-block, destination offset and capacity.  APPLY SAFE DRAFT always stops output
-first.  A port without ``source_start`` remains visible but is not routed.
+block, destination offset and capacity. APPLY SAFE DRAFT validates without
+mutation, then stops output before committing. A port without ``source_start``
+remains visible but is not routed.
 """
 
 from __future__ import annotations
@@ -24,9 +25,17 @@ if str(PROJECT_ROOT) not in sys.path:
 
 def _node(parent, op_type, name):
     value = parent.op(name)
-    if value is not None:
-        return value
-    return parent.create(op_type, name)
+    duplicates = [child for child in parent.children
+                  if re.fullmatch(re.escape(name) + r'\d+', child.name)]
+    if value is None and duplicates:
+        value = duplicates.pop(0)
+        value.name = name
+    for duplicate in duplicates:
+        duplicate.destroy()
+    if value is None:
+        value = parent.create(op_type, name)
+        value.name = name
+    return value
 
 
 def _set(node, name, value):
@@ -64,6 +73,7 @@ def _field(parent, name, value, x, y, width, height=32):
 def _button(parent, name, label, x, y, width, color=(0.08, 0.25, 0.34)):
     node = _panel(_node(parent, buttonCOMP, name), x, y, width, 36, 60)
     for parameter, value in (("buttontype", "momentary"), ("label", label),
+                             ("value0", False),
                              ("fontsize", 12), ("bgalpha", 1),
                              ("bgcolorr", color[0]), ("bgcolorg", color[1]),
                              ("bgcolorb", color[2])):
@@ -76,14 +86,19 @@ def _click(parent, name, button, expression):
     if node is not None and node.type != "panelexec":
         node.destroy()
         node = None
-    node = node or parent.create(panelexecuteDAT, name)
-    node.par.active = True
+    node = _node(parent, panelexecuteDAT, name)
+    node.par.active = False
     node.par.fromop = button.path
     node.par.panels = button.path
-    node.par.panelvalue = "state"
+    # Used by GICO and the paged topology editor: fire at direct mouse press.
+    node.par.panelvalue = "lselect"
     node.par.offtoon = True
+    node.par.ontooff = False
+    node.par.whileon = False
+    node.par.whileoff = False
     node.par.valuechange = False
     node.text = "def onOffToOn(panelValue):\n    %s\n    return\n" % expression
+    node.par.active = True
     return node
 
 
@@ -108,6 +123,11 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from pixelblaze_mapper.gico_port_config import GicoConfig, GicoPortConfig, build_gico_plan
+from pixelblaze_mapper.routing_transaction import (
+    table_rows, write_rows, router_from_rows, apply_router_transaction, stop_outputs,
+)
+from pixelblaze_mapper.multi_controller import build_router_plan
+from pixelblaze_mapper.installation_contract import TOTAL_PIXELS
 
 OWNER = op('/project1/multi_controller_output/gico_port_config')
 ROUTER = op('/project1/multi_controller_output')
@@ -127,50 +147,82 @@ def _optional_int(value):
     value = str(value).strip()
     return None if value.lower() in ('', 'none', 'null') else int(value)
 
+def _flag(name):
+    value = _field(name)
+    if value not in ('0', '1'):
+        raise ValueError(name + ' must be 0 or 1')
+    return value == '1'
+
 def _draft():
     ports = []
     for number in range(1, 5):
         ports.append(GicoPortConfig(
             port=number,
             label=_field('p%d_label' % number),
-            enabled=bool(int(_field('p%d_enabled' % number))),
+            enabled=_flag('p%d_enabled' % number),
             source_start=_optional_int(_field('p%d_source' % number)),
             pixel_count=int(_field('p%d_count' % number)),
-            reverse=bool(int(_field('p%d_reverse' % number))),
+            reverse=_flag('p%d_reverse' % number),
             color_order=_field('p%d_order' % number).upper(),
         ))
+    source = op('/project1/math1')
     return GicoConfig(
         universes_per_port=int(_field('universes_per_port')),
         first_universe=int(_field('first_universe')),
         ports=tuple(ports),
+        source_pixel_count=int(source.numSamples) if source is not None else TOTAL_PIXELS,
     )
 
-def _write_draft_tables(config):
-    settings = OWNER.op('settings')
-    settings.clear()
-    settings.appendRow(('key', 'value'))
-    settings.appendRow(('universes_per_port', config.universes_per_port))
-    settings.appendRow(('first_universe', config.first_universe))
-    table = OWNER.op('ports')
-    table.clear()
-    table.appendRow(('port', 'label', 'enabled', 'source_start', 'pixel_count', 'reverse', 'color_order'))
+def _draft_tables(config):
+    settings = [('key', 'value'), ('universes_per_port', config.universes_per_port),
+                ('first_universe', config.first_universe)]
+    rows = [('port', 'label', 'enabled', 'source_start', 'pixel_count', 'reverse', 'color_order')]
     for item in config.ports:
-        table.appendRow((item.port, item.label, int(item.enabled),
+        rows.append((item.port, item.label, int(item.enabled),
                          '' if item.source_start is None else item.source_start,
                          item.pixel_count, int(item.reverse), item.color_order))
+    return ((OWNER.op('settings'), settings), (OWNER.op('ports'), rows))
+
+def _candidate_rows(plan):
+    controllers = table_rows(ROUTER.op('controller_config'))
+    header = controllers[0]
+    row = next((row for row in controllers[1:]
+                if row[header.index('name')] == 'WS2812_NODE'), None)
+    if row is None:
+        raise ValueError('Missing controller WS2812_NODE')
+    # This is the only conversion from GICO UI to canonical wire addresses.
+    row[header.index('start_universe')] = str(plan.config.first_universe - 1)
+    row[header.index('reserved_universes')] = str(plan.reserved_universes)
+    segments = table_rows(ROUTER.op('segment_config'))
+    names = segments[0]
+    candidate = [names] + [row for row in segments[1:]
+                           if row[names.index('controller')] != 'WS2812_NODE']
+    for item in plan.ports:
+        if not item.routable:
+            continue
+        values = dict(name='GICO_PORT_%d_%s' % (item.config.port, item.config.label.upper().replace(' ', '_')),
+                      source_start=item.config.source_start, count=item.config.pixel_count,
+                      controller='WS2812_NODE', destination_start=item.destination_pixel_start,
+                      reverse=int(item.config.reverse), color_override=item.config.color_order)
+        candidate.append([str(values.get(name, '')) for name in names])
+    build_router_plan(router_from_rows(controllers, candidate, plan.config.source_pixel_count))
+    return controllers, candidate
 
 def validate_draft():
     try:
         config = _draft()
         plan = build_gico_plan(config)
-        _write_draft_tables(config)
+        _candidate_rows(plan)
+        for table, rows in _draft_tables(config):
+            write_rows(table, rows)
         for item in plan.ports:
             label = OWNER.op('ui_panel/p%d_derived' % item.config.port)
             route = ('not routed: source missing' if not item.has_source_assignment
                      else 'source %d-%d' % (item.config.source_start, item.source_end_exclusive - 1))
-            label.par.text = 'U%d-U%d | target %d | capacity %d | %s' % (
+            needed = (item.config.pixel_count + 169) // 170 if item.config.pixel_count else 0
+            label.par.text = 'UI U%d-U%d | target %d | %d/%d U needed/reserved | %s' % (
                 item.start_universe, item.end_universe, item.destination_pixel_start,
-                item.capacity_pixels, route)
+                needed, config.universes_per_port, route)
         warnings = [issue.message for issue in plan.issues if not issue.blocking]
         _status('VALID DRAFT | reserved U%d-U%d (%d universes)%s' % (
             config.first_universe, config.first_universe + plan.reserved_universes - 1,
@@ -181,59 +233,24 @@ def validate_draft():
         return None
 
 def _stop_output():
-    sender = ROUTER.op('artnet_510_sender_callbacks')
-    if sender is not None:
-        try:
-            sender.module.set_enabled(False)
-        except Exception:
-            sender.module.stop()
-    for node in ROUTER.findChildren(name='dmxout_*', depth=1):
-        node.par.active = False
+    stop_outputs(ROUTER)
 
-def _header(table):
-    return {str(table[0, column]): column for column in range(table.numCols)}
+def _rebuild_router():
+    # Keep TouchDesigner's injected op and OP types in the builder context.
+    scope = dict(globals())
+    scope['__name__'] = '__main__'
+    exec(compile(MAIN_BUILDER.read_text(encoding='utf-8'), str(MAIN_BUILDER), 'exec'), scope, scope)
 
 def apply_safe_draft():
-    _stop_output()
-    plan = validate_draft()
-    if plan is None:
-        return False
     try:
-        controllers = ROUTER.op('controller_config')
-        header = _header(controllers)
-        ws_row = next(row for row in range(1, controllers.numRows)
-                      if str(controllers[row, header['name']]) == 'WS2812_NODE')
-        controllers[ws_row, header['start_universe']] = plan.config.first_universe - 1
-        controllers[ws_row, header['reserved_universes']] = plan.reserved_universes
-
-        segments = ROUTER.op('segment_config')
-        segment_header = [str(segments[0, col]) for col in range(segments.numCols)]
-        preserved = [segment_header]
-        for row in range(1, segments.numRows):
-            values = [str(segments[row, col]) for col in range(segments.numCols)]
-            if values[segment_header.index('controller')] != 'WS2812_NODE':
-                preserved.append(values)
-        for item in plan.ports:
-            if not item.routable:
-                continue
-            preserved.append((
-                'GICO_PORT_%d_%s' % (item.config.port, item.config.label.upper().replace(' ', '_')),
-                item.config.source_start, item.config.pixel_count, 'WS2812_NODE',
-                item.destination_pixel_start, int(item.config.reverse), item.config.color_order,
-            ))
-        segments.clear()
-        for row in preserved:
-            segments.appendRow(row)
-
-        # The router builder needs TouchDesigner's injected ``op`` and OP type
-        # globals.  Keep them when rebuilding from this runtime module.
-        scope = dict(globals())
-        scope['__name__'] = '__main__'
-        exec(compile(MAIN_BUILDER.read_text(encoding='utf-8'), str(MAIN_BUILDER), 'exec'), scope, scope)
+        plan = build_gico_plan(_draft())
+        controllers, segments = _candidate_rows(plan)
+        apply_router_transaction(ROUTER, controllers, segments, _rebuild_router,
+                                 extra_tables=_draft_tables(plan.config),
+                                 source_pixels=plan.config.source_pixel_count)
         _status('APPLIED SAFELY - router rebuilt; all outputs remain OFF')
         return True
     except Exception as error:
-        _stop_output()
         _status('APPLY BLOCKED - ' + str(error), False)
         return False
 '''
@@ -251,6 +268,12 @@ def build():
     if router is None:
         raise RuntimeError("Build /project1/multi_controller_output first")
     owner = _node(router, baseCOMP, "gico_port_config")
+    # Existing callbacks must not fire while their saved buttons are repaired.
+    for parent, name in ((owner, 'validate_click'), (owner, 'apply_click'),
+                         (owner, 'open_controller_ports_click'), (router, 'open_gico_config_click')):
+        handler = parent.op(name)
+        if handler is not None:
+            handler.par.active = False
     settings = _node(owner, tableDAT, "settings")
     if settings.numRows < 2 or settings.numCols < 2 or str(settings[0, 0]) != "key":
         _write(settings, (("key", "value"), ("universes_per_port", 6), ("first_universe", 1)))
@@ -292,7 +315,7 @@ def build():
         _field(canvas, "p%d_count" % index, values[4], 495, y + 30, 110)
         _field(canvas, "p%d_reverse" % index, values[5], 615, y + 30, 85)
         _field(canvas, "p%d_order" % index, values[6], 710, y + 30, 100)
-        _text(canvas, "p%d_derived" % index, "Press VALIDATE to calculate", 820, y + 30, 340, 32, 11, (0.97, 0.72, 0.26))
+        _text(canvas, "p%d_derived" % index, "Press VALIDATE to calculate", 820, y + 12, 340, 58, 11, (0.97, 0.72, 0.26))
 
     validate_button = _button(canvas, "validate", "VALIDATE DRAFT", 20, 54, 220, (0.08, 0.30, 0.40))
     apply_button = _button(canvas, "apply", "APPLY SAFE DRAFT", 250, 54, 240, (0.08, 0.38, 0.28))
@@ -313,6 +336,15 @@ def build():
     _set(preview, "resolutionw", 1180)
     _set(preview, "resolutionh", 720)
     runtime.module.validate_draft()
+    # Generic controller/port authoring shares the same safe router authority.
+    topology_builder = PROJECT_ROOT / 'pixelblaze_mapper' / 'build_port_topology_ui.py'
+    topology_scope = dict(globals())
+    topology_scope['__name__'] = 'embedded_port_topology_ui'
+    exec(compile(topology_builder.read_text(encoding='utf-8'), str(topology_builder), 'exec'), topology_scope, topology_scope)
+    topology_scope['build']()
+    open_topology = _button(canvas, 'open_controller_ports', 'CONTROLLERS & PORTS', 20, 100, 300)
+    _click(owner, 'open_controller_ports_click', open_topology,
+           "op('controller_ports/ui_panel').openViewer()")
     return owner
 
 

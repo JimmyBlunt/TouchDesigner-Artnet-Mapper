@@ -238,7 +238,8 @@ class BuilderContractTests(unittest.TestCase):
         self.assertIn("artnet_510_sender_callbacks", text)
         self.assertIn("payload = bytes(payload)", text)
         self.assertIn("len(payload) != 510", text)
-        self.assertIn("source.numSamples < 3744", text)
+        self.assertIn("source.numSamples < 1", text)
+        self.assertIn("return (count,) + tuple", text)
         self.assertIn("_socket.bind((locals_used[0], 6454))", text)
         self.assertIn("configs = _controllers(True)", text)
         self.assertIn("for config in configs:", text)
@@ -293,8 +294,9 @@ class BuilderContractTests(unittest.TestCase):
 
     def test_friendly_editor_exposes_both_receivers_and_safe_actions(self):
         text = (Path(__file__).parents[1] / "pixelblaze_mapper" / "build_multi_controller_output.py").read_text(encoding="utf-8")
-        self.assertIn('(("ws", config.controllers[0]', text)
-        self.assertIn('("apa", config.controllers[1]', text)
+        self.assertIn('controllers_by_name = {item.name: item for item in config.controllers}', text)
+        self.assertIn('("ws", "WS2812_NODE", 24, 292)', text)
+        self.assertIn('("apa", "APA102_ESP", 594, 862)', text)
         for suffix in ('"ip"', '"universe"', '"brightness"', '"enabled"'):
             self.assertIn(suffix, text)
         self.assertIn("APPLY SAFE DRAFT", text)
@@ -309,7 +311,7 @@ class BuilderContractTests(unittest.TestCase):
         text = (Path(__file__).parents[1] / "pixelblaze_mapper" / "build_multi_controller_output.py").read_text(encoding="utf-8")
         self.assertIn("ipaddress.ip_address(address)", text)
         self.assertIn("if not apply_safe():", text)
-        self.assertIn("node.par.active = False", text)
+        self.assertIn("stop_outputs(op('/project1/multi_controller_output'))", text)
         start = text[text.index("def start_enabled"):text.index("def start_calibration")]
         self.assertIn("all_off()", start)
         self.assertIn("sender.module.set_live()", start)
@@ -319,7 +321,7 @@ class BuilderContractTests(unittest.TestCase):
     def test_safe_rebuild_keeps_touchdesigner_execution_context(self):
         text = (Path(__file__).parents[1] / "pixelblaze_mapper" / "build_multi_controller_output.py").read_text(encoding="utf-8")
         self.assertIn("from pathlib import Path", text)
-        callbacks = text[text.index("def apply_safe"):text.index("def all_off")]
+        callbacks = text[text.index("def _rebuild_router"):text.index("def all_off")]
         self.assertIn("scope = dict(globals())", callbacks)
         self.assertIn("scope['__name__'] = '__main__'", callbacks)
         self.assertNotIn("scope = {'__name__': '__main__'}", callbacks)

@@ -42,6 +42,35 @@ class GicoPortConfigUIContracts(unittest.TestCase):
         self.assertIn("build_gico_port_config_ui.py", text)
         self.assertIn('gico_scope["build"]()', text)
 
+    def test_generated_singleton_cleans_numbered_duplicates_even_with_canonical(self):
+        import re
+        tree = ast.parse(BUILDER.read_text(encoding='utf-8'))
+        function = next(node for node in tree.body if isinstance(node, ast.FunctionDef) and node.name == '_node')
+        scope = {'re': re}
+        exec(compile(ast.Module(body=[function], type_ignores=[]), '<node-helper>', 'exec'), scope)
+        class Parent:
+            def __init__(self):
+                self.children = []
+            def op(self, name):
+                return next((node for node in self.children if node.name == name), None)
+            def create(self, kind, name):
+                node = Node(self, name + '1')
+                self.children.append(node)
+                return node
+        class Node:
+            def __init__(self, parent, name):
+                self.parent, self.name = parent, name
+            def destroy(self):
+                self.parent.children.remove(self)
+        parent = Parent()
+        parent.children = [Node(parent, name) for name in ('apply', 'apply1', 'apply17', 'other')]
+        for _ in range(3):
+            self.assertEqual(scope['_node'](parent, 'button', 'apply').name, 'apply')
+        self.assertEqual([node.name for node in parent.children], ['apply', 'other'])
+        self.assertEqual(scope['_node'](parent, 'button', 'validate').name, 'validate')
+        self.assertEqual(scope['_node'](parent, 'button', 'validate').name, 'validate')
+        self.assertEqual(len(parent.children), 3)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -7,7 +7,9 @@ SOURCE = (Path(__file__).parents[1] / "pixelblaze_mapper" / "integrate_live_show
 
 class LiveShowIntegrationContractTests(unittest.TestCase):
     def test_visual_only_and_network_safe(self):
-        self.assertIn('network_output_enabled", 0', SOURCE)
+        self.assertIn("status = sender.module.status()", SOURCE)
+        self.assertIn("controls.par.Source = selected_source", SOURCE)
+        self.assertNotIn("set_enabled(", SOURCE)
         self.assertNotIn("dmxout", SOURCE.lower())
         self.assertNotIn("project.save(", SOURCE)
 
