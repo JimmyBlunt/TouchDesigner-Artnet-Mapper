@@ -1,0 +1,10 @@
+{
+  "source_before_sha256": "a5301a6b07e1a17d6943fe57cff9b3d0922fb56fb0db0bbf710048d216c828e2",
+  "source_after_sha256": "d551ca8ad60c80a779952fd40f2c27fdc58e2ccfffd566a7e6ca130fcf827b85",
+  "state_identity_preserved": true,
+  "frame_count_preserved_at_handoff": true,
+  "rng_preserved_at_handoff": true,
+  "trigger_unchanged": "# me - this DAT\n# \n# channel - the Channel object which has changed\n# sampleIndex - the index of the changed sample\n# val - the numeric value of the changed sample\n# prev - the previous sample value\n# \n# Make sure the corresponding toggle is enabled in the CHOP Execute DAT.\n\ndef onOffToOn(channel, sampleIndex, val, prev):\n\treturn\n\ndef whileOn(channel, sampleIndex, val, prev):\n\treturn\n\ndef onOnToOff(channel, sampleIndex, val, prev):\n\treturn\n\ndef whileOff(channel, sampleIndex, val, prev):\n\treturn\n\ndef onValueChange(channel, sampleIndex, val, prev):\n\top('script4').cook(force=True)  # Ersetzt 'script4' durch den Namen deines Script CHOPs\n\treturn\t",
+  "no_hardware_activation": true,
+  "errors": ""
+}

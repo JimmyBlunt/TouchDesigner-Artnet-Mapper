@@ -1,0 +1,569 @@
+{
+  "samples": [
+    {
+      "wall": 49754.3509406,
+      "frame": 262578,
+      "file": "PixelblazeMapper_20260907_PERFORMANCE_VERIFIED.1.toe",
+      "nodes": {
+        "/project1/script4": {
+          "cooks": 262593,
+          "cpu_ms": 1.2590000629425049
+        },
+        "/project1/esp_artnet_live_pack": {
+          "cooks": 144891,
+          "cpu_ms": 5.694200038909912
+        },
+        "/project1/esp_artnet_out": {
+          "cooks": 144890,
+          "cpu_ms": 0.02719999849796295
+        },
+        "/project1/multi_controller_output/pack_ws2812_node": {
+          "cooks": 144891,
+          "cpu_ms": 7.053199768066406
+        },
+        "/project1/multi_controller_output/pack_apa102_esp": {
+          "cooks": 144891,
+          "cpu_ms": 3.913800001144409
+        },
+        "/project1/multi_controller_output/dmxout_ws2812_node": {
+          "cooks": 144890,
+          "cpu_ms": 0.03289999067783356
+        },
+        "/project1/multi_controller_output/dmxout_apa102_esp": {
+          "cooks": 144890,
+          "cpu_ms": 0.03299999237060547
+        },
+        "/project1/madmapper_library/live_preview": {
+          "cooks": 144895,
+          "cpu_ms": 0.1834000051021576
+        },
+        "/project1/res1": {
+          "cooks": 144895,
+          "cpu_ms": 0.05240000784397125
+        },
+        "/project1/math1": {
+          "cooks": 153116,
+          "cpu_ms": 0.057399995625019073
+        },
+        "/project1/pixelblaze_mapper/preview3d/instance_data": {
+          "cooks": 34990,
+          "cpu_ms": 6.006700038909912
+        },
+        "/project1/LED_PREVIEW_OUT": {
+          "cooks": 0,
+          "cpu_ms": 0.0
+        }
+      },
+      "native_active": {
+        "/project1/esp_artnet_out": false,
+        "/project1/multi_controller_output/dmxout_ws2812_node": false,
+        "/project1/multi_controller_output/dmxout_apa102_esp": false
+      },
+      "hashes": {
+        "/project1/pixelblaze_mapper/map_active": "dbcaf4e56561ae3bc68731d89e12e661502a42950274886b1f75645d17f1282f",
+        "/project1/pixelblaze_mapper/effect_panel_uv": "38ca87c9e38aa9dd3f4de0d0c7a3aa4310cadd4a975d8552557da2b157810968",
+        "/project1/multi_controller_output/controller_config": "5c95c56b3bfef39dcd39c78dbb014b596d98d500aaf6329a5b1caee28ae8b976",
+        "/project1/multi_controller_output/segment_config": "964d0ba403c5008d8d9d204781f468a5febd6a7b93115762a4a072c242b658cf"
+      },
+      "controls": {
+        "Source": "imported",
+        "Material": "arcs",
+        "Speed": "0.2532981530343008",
+        "Scale": "3.9176781002638523",
+        "Width": "0.42",
+        "Colorr": "0.76",
+        "Colorg": "1.0",
+        "Colorb": "0.0",
+        "Coordinatemode": "global",
+        "Intensity": "0.532982",
+        "Contrast": "3.33113",
+        "Trail": "0.55",
+        "Direction": "0.125",
+        "Rotation": "0.0",
+        "Seed": "0.0",
+        "Transition": "0.5",
+        "Hybridmix": "0.5",
+        "Density": "1.0",
+        "Panelcolumns": "2",
+        "Panelrows": "5",
+        "Color2r": "0.0",
+        "Color2g": "0.18",
+        "Color2b": "1.0",
+        "Color2a": "1.0",
+        "Focusx": "0.5",
+        "Focusy": "0.5",
+        "Framezoom": "0.658971",
+        "Gradientpreset": "acid_lime_blue",
+        "Gradientstrength": "1.0",
+        "Colormode": "legacy",
+        "Globalmasterspeed": "1.0"
+      },
+      "errors": "",
+      "sender": {
+        "enabled": false,
+        "error": "",
+        "mode": "live",
+        "calibration": [
+          "all",
+          "panel_id",
+          0
+        ],
+        "controllers": [],
+        "target_override": null,
+        "port_override": null,
+        "telemetry": {
+          "tick_count": 144895,
+          "rate_skips": 0,
+          "send_count": 0,
+          "packet_count": 0,
+          "send_ms_last": 0.0,
+          "send_ms_average": 0.0,
+          "send_ms_max": 0.0,
+          "actual_send_fps": 0.0,
+          "pack_count": 0,
+          "pack_ms_last": 0.0,
+          "pack_ms_average": 0.0,
+          "pack_ms_max": 0.0,
+          "plan_rebuilds": 0
+        }
+      }
+    },
+    {
+      "wall": 49764.4113669,
+      "frame": 263180,
+      "file": "PixelblazeMapper_20260907_PERFORMANCE_VERIFIED.1.toe",
+      "nodes": {
+        "/project1/script4": {
+          "cooks": 263195,
+          "cpu_ms": 0.8600000143051147
+        },
+        "/project1/esp_artnet_live_pack": {
+          "cooks": 145214,
+          "cpu_ms": 6.860599994659424
+        },
+        "/project1/esp_artnet_out": {
+          "cooks": 145213,
+          "cpu_ms": 0.03540000319480896
+        },
+        "/project1/multi_controller_output/pack_ws2812_node": {
+          "cooks": 145214,
+          "cpu_ms": 6.972799777984619
+        },
+        "/project1/multi_controller_output/pack_apa102_esp": {
+          "cooks": 145214,
+          "cpu_ms": 3.9047999382019043
+        },
+        "/project1/multi_controller_output/dmxout_ws2812_node": {
+          "cooks": 145213,
+          "cpu_ms": 0.0317000076174736
+        },
+        "/project1/multi_controller_output/dmxout_apa102_esp": {
+          "cooks": 145213,
+          "cpu_ms": 0.03660000115633011
+        },
+        "/project1/madmapper_library/live_preview": {
+          "cooks": 145218,
+          "cpu_ms": 0.22619999945163727
+        },
+        "/project1/res1": {
+          "cooks": 145218,
+          "cpu_ms": 0.049400001764297485
+        },
+        "/project1/math1": {
+          "cooks": 153458,
+          "cpu_ms": 0.024100005626678467
+        },
+        "/project1/pixelblaze_mapper/preview3d/instance_data": {
+          "cooks": 35072,
+          "cpu_ms": 4.407400131225586
+        },
+        "/project1/LED_PREVIEW_OUT": {
+          "cooks": 0,
+          "cpu_ms": 0.0
+        }
+      },
+      "native_active": {
+        "/project1/esp_artnet_out": false,
+        "/project1/multi_controller_output/dmxout_ws2812_node": false,
+        "/project1/multi_controller_output/dmxout_apa102_esp": false
+      },
+      "hashes": {
+        "/project1/pixelblaze_mapper/map_active": "dbcaf4e56561ae3bc68731d89e12e661502a42950274886b1f75645d17f1282f",
+        "/project1/pixelblaze_mapper/effect_panel_uv": "38ca87c9e38aa9dd3f4de0d0c7a3aa4310cadd4a975d8552557da2b157810968",
+        "/project1/multi_controller_output/controller_config": "5c95c56b3bfef39dcd39c78dbb014b596d98d500aaf6329a5b1caee28ae8b976",
+        "/project1/multi_controller_output/segment_config": "964d0ba403c5008d8d9d204781f468a5febd6a7b93115762a4a072c242b658cf"
+      },
+      "controls": {
+        "Source": "imported",
+        "Material": "arcs",
+        "Speed": "0.2532981530343008",
+        "Scale": "3.9176781002638523",
+        "Width": "0.42",
+        "Colorr": "0.76",
+        "Colorg": "1.0",
+        "Colorb": "0.0",
+        "Coordinatemode": "global",
+        "Intensity": "0.532982",
+        "Contrast": "3.33113",
+        "Trail": "0.55",
+        "Direction": "0.125",
+        "Rotation": "0.0",
+        "Seed": "0.0",
+        "Transition": "0.5",
+        "Hybridmix": "0.5",
+        "Density": "1.0",
+        "Panelcolumns": "2",
+        "Panelrows": "5",
+        "Color2r": "0.0",
+        "Color2g": "0.18",
+        "Color2b": "1.0",
+        "Color2a": "1.0",
+        "Focusx": "0.5",
+        "Focusy": "0.5",
+        "Framezoom": "0.658971",
+        "Gradientpreset": "acid_lime_blue",
+        "Gradientstrength": "1.0",
+        "Colormode": "legacy",
+        "Globalmasterspeed": "1.0"
+      },
+      "errors": "",
+      "sender": {
+        "enabled": false,
+        "error": "",
+        "mode": "live",
+        "calibration": [
+          "all",
+          "panel_id",
+          0
+        ],
+        "controllers": [],
+        "target_override": null,
+        "port_override": null,
+        "telemetry": {
+          "tick_count": 145218,
+          "rate_skips": 0,
+          "send_count": 0,
+          "packet_count": 0,
+          "send_ms_last": 0.0,
+          "send_ms_average": 0.0,
+          "send_ms_max": 0.0,
+          "actual_send_fps": 0.0,
+          "pack_count": 0,
+          "pack_ms_last": 0.0,
+          "pack_ms_average": 0.0,
+          "pack_ms_max": 0.0,
+          "plan_rebuilds": 0
+        }
+      }
+    },
+    {
+      "wall": 49774.4504787,
+      "frame": 263781,
+      "file": "PixelblazeMapper_20260907_PERFORMANCE_VERIFIED.1.toe",
+      "nodes": {
+        "/project1/script4": {
+          "cooks": 263796,
+          "cpu_ms": 0.9919999837875366
+        },
+        "/project1/esp_artnet_live_pack": {
+          "cooks": 145512,
+          "cpu_ms": 7.521100044250488
+        },
+        "/project1/esp_artnet_out": {
+          "cooks": 145511,
+          "cpu_ms": 0.033799998462200165
+        },
+        "/project1/multi_controller_output/pack_ws2812_node": {
+          "cooks": 145512,
+          "cpu_ms": 7.442299842834473
+        },
+        "/project1/multi_controller_output/pack_apa102_esp": {
+          "cooks": 145512,
+          "cpu_ms": 4.398900032043457
+        },
+        "/project1/multi_controller_output/dmxout_ws2812_node": {
+          "cooks": 145511,
+          "cpu_ms": 0.03460000455379486
+        },
+        "/project1/multi_controller_output/dmxout_apa102_esp": {
+          "cooks": 145511,
+          "cpu_ms": 0.03830000013113022
+        },
+        "/project1/madmapper_library/live_preview": {
+          "cooks": 145516,
+          "cpu_ms": 0.22709999978542328
+        },
+        "/project1/res1": {
+          "cooks": 145516,
+          "cpu_ms": 0.0528000071644783
+        },
+        "/project1/math1": {
+          "cooks": 153774,
+          "cpu_ms": 0.025499992072582245
+        },
+        "/project1/pixelblaze_mapper/preview3d/instance_data": {
+          "cooks": 35137,
+          "cpu_ms": 6.105000019073486
+        },
+        "/project1/LED_PREVIEW_OUT": {
+          "cooks": 0,
+          "cpu_ms": 0.0
+        }
+      },
+      "native_active": {
+        "/project1/esp_artnet_out": false,
+        "/project1/multi_controller_output/dmxout_ws2812_node": false,
+        "/project1/multi_controller_output/dmxout_apa102_esp": false
+      },
+      "hashes": {
+        "/project1/pixelblaze_mapper/map_active": "dbcaf4e56561ae3bc68731d89e12e661502a42950274886b1f75645d17f1282f",
+        "/project1/pixelblaze_mapper/effect_panel_uv": "38ca87c9e38aa9dd3f4de0d0c7a3aa4310cadd4a975d8552557da2b157810968",
+        "/project1/multi_controller_output/controller_config": "5c95c56b3bfef39dcd39c78dbb014b596d98d500aaf6329a5b1caee28ae8b976",
+        "/project1/multi_controller_output/segment_config": "964d0ba403c5008d8d9d204781f468a5febd6a7b93115762a4a072c242b658cf"
+      },
+      "controls": {
+        "Source": "imported",
+        "Material": "arcs",
+        "Speed": "0.2532981530343008",
+        "Scale": "3.9176781002638523",
+        "Width": "0.42",
+        "Colorr": "0.76",
+        "Colorg": "1.0",
+        "Colorb": "0.0",
+        "Coordinatemode": "global",
+        "Intensity": "0.532982",
+        "Contrast": "3.33113",
+        "Trail": "0.55",
+        "Direction": "0.125",
+        "Rotation": "0.0",
+        "Seed": "0.0",
+        "Transition": "0.5",
+        "Hybridmix": "0.5",
+        "Density": "1.0",
+        "Panelcolumns": "2",
+        "Panelrows": "5",
+        "Color2r": "0.0",
+        "Color2g": "0.18",
+        "Color2b": "1.0",
+        "Color2a": "1.0",
+        "Focusx": "0.5",
+        "Focusy": "0.5",
+        "Framezoom": "0.658971",
+        "Gradientpreset": "acid_lime_blue",
+        "Gradientstrength": "1.0",
+        "Colormode": "legacy",
+        "Globalmasterspeed": "1.0"
+      },
+      "errors": "",
+      "sender": {
+        "enabled": false,
+        "error": "",
+        "mode": "live",
+        "calibration": [
+          "all",
+          "panel_id",
+          0
+        ],
+        "controllers": [],
+        "target_override": null,
+        "port_override": null,
+        "telemetry": {
+          "tick_count": 145516,
+          "rate_skips": 0,
+          "send_count": 0,
+          "packet_count": 0,
+          "send_ms_last": 0.0,
+          "send_ms_average": 0.0,
+          "send_ms_max": 0.0,
+          "actual_send_fps": 0.0,
+          "pack_count": 0,
+          "pack_ms_last": 0.0,
+          "pack_ms_average": 0.0,
+          "pack_ms_max": 0.0,
+          "plan_rebuilds": 0
+        }
+      }
+    },
+    {
+      "wall": 49784.4759435,
+      "frame": 264383,
+      "file": "PixelblazeMapper_20260907_PERFORMANCE_VERIFIED.1.toe",
+      "nodes": {
+        "/project1/script4": {
+          "cooks": 264398,
+          "cpu_ms": 0.8366999626159668
+        },
+        "/project1/esp_artnet_live_pack": {
+          "cooks": 145811,
+          "cpu_ms": 7.4583001136779785
+        },
+        "/project1/esp_artnet_out": {
+          "cooks": 145810,
+          "cpu_ms": 0.046999990940093994
+        },
+        "/project1/multi_controller_output/pack_ws2812_node": {
+          "cooks": 145811,
+          "cpu_ms": 5.975500106811523
+        },
+        "/project1/multi_controller_output/pack_apa102_esp": {
+          "cooks": 145811,
+          "cpu_ms": 3.5297999382019043
+        },
+        "/project1/multi_controller_output/dmxout_ws2812_node": {
+          "cooks": 145810,
+          "cpu_ms": 0.01730000227689743
+        },
+        "/project1/multi_controller_output/dmxout_apa102_esp": {
+          "cooks": 145810,
+          "cpu_ms": 0.029399998486042023
+        },
+        "/project1/madmapper_library/live_preview": {
+          "cooks": 145815,
+          "cpu_ms": 0.17239999771118164
+        },
+        "/project1/res1": {
+          "cooks": 145815,
+          "cpu_ms": 0.04809999465942383
+        },
+        "/project1/math1": {
+          "cooks": 154091,
+          "cpu_ms": 0.05779999494552612
+        },
+        "/project1/pixelblaze_mapper/preview3d/instance_data": {
+          "cooks": 35215,
+          "cpu_ms": 4.718299865722656
+        },
+        "/project1/LED_PREVIEW_OUT": {
+          "cooks": 0,
+          "cpu_ms": 0.0
+        }
+      },
+      "native_active": {
+        "/project1/esp_artnet_out": false,
+        "/project1/multi_controller_output/dmxout_ws2812_node": false,
+        "/project1/multi_controller_output/dmxout_apa102_esp": false
+      },
+      "hashes": {
+        "/project1/pixelblaze_mapper/map_active": "dbcaf4e56561ae3bc68731d89e12e661502a42950274886b1f75645d17f1282f",
+        "/project1/pixelblaze_mapper/effect_panel_uv": "38ca87c9e38aa9dd3f4de0d0c7a3aa4310cadd4a975d8552557da2b157810968",
+        "/project1/multi_controller_output/controller_config": "5c95c56b3bfef39dcd39c78dbb014b596d98d500aaf6329a5b1caee28ae8b976",
+        "/project1/multi_controller_output/segment_config": "964d0ba403c5008d8d9d204781f468a5febd6a7b93115762a4a072c242b658cf"
+      },
+      "controls": {
+        "Source": "imported",
+        "Material": "arcs",
+        "Speed": "0.2532981530343008",
+        "Scale": "3.9176781002638523",
+        "Width": "0.42",
+        "Colorr": "0.76",
+        "Colorg": "1.0",
+        "Colorb": "0.0",
+        "Coordinatemode": "global",
+        "Intensity": "0.532982",
+        "Contrast": "3.33113",
+        "Trail": "0.55",
+        "Direction": "0.125",
+        "Rotation": "0.0",
+        "Seed": "0.0",
+        "Transition": "0.5",
+        "Hybridmix": "0.5",
+        "Density": "1.0",
+        "Panelcolumns": "2",
+        "Panelrows": "5",
+        "Color2r": "0.0",
+        "Color2g": "0.18",
+        "Color2b": "1.0",
+        "Color2a": "1.0",
+        "Focusx": "0.5",
+        "Focusy": "0.5",
+        "Framezoom": "0.658971",
+        "Gradientpreset": "acid_lime_blue",
+        "Gradientstrength": "1.0",
+        "Colormode": "legacy",
+        "Globalmasterspeed": "1.0"
+      },
+      "errors": "",
+      "sender": {
+        "enabled": false,
+        "error": "",
+        "mode": "live",
+        "calibration": [
+          "all",
+          "panel_id",
+          0
+        ],
+        "controllers": [],
+        "target_override": null,
+        "port_override": null,
+        "telemetry": {
+          "tick_count": 145815,
+          "rate_skips": 0,
+          "send_count": 0,
+          "packet_count": 0,
+          "send_ms_last": 0.0,
+          "send_ms_average": 0.0,
+          "send_ms_max": 0.0,
+          "actual_send_fps": 0.0,
+          "pack_count": 0,
+          "pack_ms_last": 0.0,
+          "pack_ms_average": 0.0,
+          "pack_ms_max": 0.0,
+          "plan_rebuilds": 0
+        }
+      }
+    }
+  ],
+  "intervals": [
+    {
+      "seconds": 10.060426299998653,
+      "rates": {
+        "/project1/script4": 59.83841857676355,
+        "/project1/esp_artnet_live_pack": 32.10599534932662,
+        "/project1/esp_artnet_out": 32.10599534932662,
+        "/project1/multi_controller_output/pack_ws2812_node": 32.10599534932662,
+        "/project1/multi_controller_output/pack_apa102_esp": 32.10599534932662,
+        "/project1/multi_controller_output/dmxout_ws2812_node": 32.10599534932662,
+        "/project1/multi_controller_output/dmxout_apa102_esp": 32.10599534932662,
+        "/project1/madmapper_library/live_preview": 32.10599534932662,
+        "/project1/res1": 32.10599534932662,
+        "/project1/math1": 33.99458331105172,
+        "/project1/pixelblaze_mapper/preview3d/instance_data": 8.150748045339885,
+        "/project1/LED_PREVIEW_OUT": 0.0
+      }
+    },
+    {
+      "seconds": 10.039111799997045,
+      "rates": {
+        "/project1/script4": 59.865853869679675,
+        "/project1/esp_artnet_live_pack": 29.683900920406895,
+        "/project1/esp_artnet_out": 29.683900920406895,
+        "/project1/multi_controller_output/pack_ws2812_node": 29.683900920406895,
+        "/project1/multi_controller_output/pack_apa102_esp": 29.683900920406895,
+        "/project1/multi_controller_output/dmxout_ws2812_node": 29.683900920406895,
+        "/project1/multi_controller_output/dmxout_apa102_esp": 29.683900920406895,
+        "/project1/madmapper_library/live_preview": 29.683900920406895,
+        "/project1/res1": 29.683900920406895,
+        "/project1/math1": 31.47688822432409,
+        "/project1/pixelblaze_mapper/preview3d/instance_data": 6.4746763752565375,
+        "/project1/LED_PREVIEW_OUT": 0.0
+      }
+    },
+    {
+      "seconds": 10.025464800004556,
+      "rates": {
+        "/project1/script4": 60.047091282962406,
+        "/project1/esp_artnet_live_pack": 29.824053643863387,
+        "/project1/esp_artnet_out": 29.824053643863387,
+        "/project1/multi_controller_output/pack_ws2812_node": 29.824053643863387,
+        "/project1/multi_controller_output/pack_apa102_esp": 29.824053643863387,
+        "/project1/multi_controller_output/dmxout_ws2812_node": 29.824053643863387,
+        "/project1/multi_controller_output/dmxout_apa102_esp": 29.824053643863387,
+        "/project1/madmapper_library/live_preview": 29.824053643863387,
+        "/project1/res1": 29.824053643863387,
+        "/project1/math1": 31.619481622423724,
+        "/project1/pixelblaze_mapper/preview3d/instance_data": 7.780187907094796,
+        "/project1/LED_PREVIEW_OUT": 0.0
+      }
+    }
+  ]
+}

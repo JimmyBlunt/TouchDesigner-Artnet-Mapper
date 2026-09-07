@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "native_chop_comparisons": 120,
+  "shape": [
+    3,
+    1152
+  ],
+  "float32_bytes_equal": true,
+  "simulation_states_equal": true,
+  "private_rng_equal": true,
+  "shared_rng_unchanged": true,
+  "state_identity_retained": true,
+  "callback_seconds": [
+    0.22024609996879008,
+    0.1948093000028166
+  ],
+  "callback_reduction_percent": 11.549262379482773,
+  "not_a_frame_rate_measurement": true
+}

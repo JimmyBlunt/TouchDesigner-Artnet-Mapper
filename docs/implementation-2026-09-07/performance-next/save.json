@@ -1,0 +1,28 @@
+{
+  "saved": true,
+  "file": "PixelblazeMapper_20260907_DEMAND_BULK_VERIFIED.1.toe",
+  "folder": "C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/Backup/Implementation",
+  "manifest": {
+    "schema": "pixelblaze-layout-save-manifest",
+    "version": 1,
+    "scene_id": "4e9891f6-d147-4ec3-9839-4630543e5aa5",
+    "layout_undo": 0,
+    "layout_redo": 0,
+    "fixture_undo": 7,
+    "fixture_redo": 0,
+    "selected_object_id": "33ef5c9a-877d-5d46-a359-13632f057db5",
+    "selected_fixture_id": "d6a75d7c-b33e-44bd-845b-182889566d66",
+    "transient_startup_none": [
+      "layout_editor_session",
+      "fixture_history",
+      "fixture_preview",
+      "layout_drag",
+      "fixture_drag",
+      "ui_prepared_context"
+    ],
+    "prepared_invalidated_on_reopen": true,
+    "preview_recovered_as_one_undo_step": false
+  },
+  "ui_status": "Save Project .toe: PixelblazeMapper_20260907_DEMAND_BULK_VERIFIED.1.toe saved successfully.",
+  "sender_off": true
+}

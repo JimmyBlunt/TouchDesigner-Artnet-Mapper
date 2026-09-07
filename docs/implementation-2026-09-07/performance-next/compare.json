@@ -1,0 +1,28 @@
+{
+  "checks": {
+    "controls": true,
+    "workspace_hash": true,
+    "material_id": true,
+    "library_parameter_store": true,
+    "layout_history_hash": true,
+    "fixture_history_hash": true,
+    "fixture_history_depth": true,
+    "native_active": true,
+    "p1_settings": true,
+    "/project1/pixelblaze_mapper/map_active": true,
+    "/project1/pixelblaze_mapper/effect_panel_uv": true,
+    "/project1/multi_controller_output/controller_config": true,
+    "/project1/multi_controller_output/segment_config": true,
+    "/project1/show_control/show_json": true,
+    "/project1/show_control/state_table": true,
+    "/project1/material_browser/unified_state": true,
+    "/project1/madmapper_library/browser_state": true,
+    "no_errors": true,
+    "no_pickle_errors": true,
+    "sender_off": true,
+    "no_packets_sent": true,
+    "bulk_source_persisted": true
+  },
+  "passed": true,
+  "file": "C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/Backup/Implementation/PixelblazeMapper_20260907_DEMAND_BULK_VERIFIED.1.toe"
+}
