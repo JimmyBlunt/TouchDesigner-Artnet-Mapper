@@ -1,0 +1,32 @@
+{
+  "stage": "shortcuts",
+  "errors": [],
+  "sender": {
+    "enabled": false,
+    "error": "",
+    "mode": "live",
+    "calibration": [
+      "all",
+      "panel_id",
+      0
+    ],
+    "controllers": [],
+    "target_override": null,
+    "port_override": null,
+    "telemetry": {
+      "tick_count": 21,
+      "rate_skips": 0,
+      "send_count": 0,
+      "packet_count": 0,
+      "send_ms_last": 0.0,
+      "send_ms_average": 0.0,
+      "send_ms_max": 0.0,
+      "actual_send_fps": 0.0,
+      "pack_count": 0,
+      "pack_ms_last": 0.0,
+      "pack_ms_average": 0.0,
+      "pack_ms_max": 0.0,
+      "plan_rebuilds": 0
+    }
+  }
+}

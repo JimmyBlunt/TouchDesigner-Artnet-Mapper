@@ -1,0 +1,43 @@
+{
+  "scene_hash": "7b6a40c79276df300cc3e0c7dcce701ebcfcc56524aa96285212ae90e34ee9e3",
+  "active_hash": "e601de684944a78b829ed0123efc8621aeec6002ee94ba7c8fc91ed8dcf33134",
+  "count": 3744,
+  "view": "2d",
+  "status": "2D UNDO | 3D unchanged",
+  "fixtures": [
+    {
+      "id": "d6a75d7c-b33e-44bd-845b-182889566d66",
+      "output": {
+        "translation": [
+          0.0,
+          0.0
+        ],
+        "rotation": 0.0,
+        "scale": [
+          1.0,
+          1.0
+        ],
+        "pivot": [
+          0.0,
+          0.0
+        ]
+      },
+      "uv": {
+        "translation": [
+          0.0,
+          0.0
+        ],
+        "rotation": 0.0,
+        "scale": [
+          1.0,
+          1.0
+        ],
+        "pivot": [
+          0.0,
+          0.0
+        ]
+      }
+    }
+  ],
+  "errors": []
+}

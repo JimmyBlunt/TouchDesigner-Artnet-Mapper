@@ -1,0 +1,18 @@
+{
+  "source_count": 3744,
+  "snapshot_warnings": [
+    "Routing grouping disabled: overlapping routing source ranges; all source LEDs retained ungrouped"
+  ],
+  "before_hash": "1732f23a71fbae2f36ae39c6c8aa916e12d02073f2719c29aa3e39c438ce9245",
+  "hardware_output": false,
+  "ui_draft_modified": false,
+  "apply": "passed",
+  "physical_map_unchanged": true,
+  "bindings_unchanged": true,
+  "uv_changed": true,
+  "position_verification": true,
+  "revert": "passed",
+  "after_hash": "1732f23a71fbae2f36ae39c6c8aa916e12d02073f2719c29aa3e39c438ce9245",
+  "exact_baseline_restored": true,
+  "errors": []
+}

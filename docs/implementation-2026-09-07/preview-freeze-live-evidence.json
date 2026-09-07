@@ -1,0 +1,1970 @@
+{
+  "description": "Read-only fixed-path two-sample observation after preview freeze. Parent set Browser page 2/2; Bubble Rings active; Layout2D open; output OFF reported by parent. No UI/write/cook/module access by observer.",
+  "elapsed_seconds": 5.16752552986145,
+  "before": {
+    "time": 1788758927.7746763,
+    "target_fps": 60,
+    "abs_frame": 665531,
+    "nodes": {
+      "/project1/madmapper_library/runtime": {
+        "exists": true,
+        "totalCooks": 299,
+        "cpuCookTime": 13.418999671936035,
+        "gpuCookTime": 0,
+        "cookFrame": 255,
+        "lock": false
+      },
+      "/project1/material_browser/unified_runtime": {
+        "exists": true,
+        "totalCooks": 14,
+        "cpuCookTime": 5.268099784851074,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": false
+      },
+      "/project1/material_state_runtime": {
+        "exists": true,
+        "totalCooks": 61,
+        "cpuCookTime": 1.8528000116348267,
+        "gpuCookTime": 0,
+        "cookFrame": 267,
+        "lock": false
+      },
+      "/project1/material_state_table": {
+        "exists": true,
+        "totalCooks": 19,
+        "cpuCookTime": 0.012000001966953278,
+        "gpuCookTime": 0,
+        "cookFrame": 267,
+        "lock": false
+      },
+      "/project1/madmapper_library/live_preview": {
+        "exists": true,
+        "totalCooks": 223930,
+        "cpuCookTime": 0.18219999969005585,
+        "gpuCookTime": 7.3695831298828125,
+        "cookFrame": 65,
+        "lock": false,
+        "width": 512,
+        "height": 512
+      },
+      "/project1/madmapper_library/hover_preview": {
+        "exists": true,
+        "totalCooks": 1552,
+        "cpuCookTime": 0.22669999301433563,
+        "gpuCookTime": 13.890521049499512,
+        "cookFrame": 255,
+        "lock": true,
+        "width": 512,
+        "height": 512
+      },
+      "/project1/madmapper_library/detail_preview": {
+        "exists": true,
+        "totalCooks": 140,
+        "cpuCookTime": 0.09960000216960907,
+        "gpuCookTime": 9.261613845825195,
+        "cookFrame": 255,
+        "lock": true,
+        "width": 512,
+        "height": 512
+      },
+      "/project1/madmapper_material_player": {
+        "exists": true,
+        "totalCooks": 132,
+        "cpuCookTime": 0.13760000467300415,
+        "gpuCookTime": 0.18614600598812103,
+        "cookFrame": 397,
+        "lock": false,
+        "width": 512,
+        "height": 512
+      },
+      "/project1/material_gradient_player": {
+        "exists": true,
+        "totalCooks": 223922,
+        "cpuCookTime": 0.16040000319480896,
+        "gpuCookTime": 3.5707290172576904,
+        "cookFrame": 65,
+        "lock": false,
+        "width": 512,
+        "height": 512
+      },
+      "/project1/res1": {
+        "exists": true,
+        "totalCooks": 223916,
+        "cpuCookTime": 0.06079999357461929,
+        "gpuCookTime": 0.04427099972963333,
+        "cookFrame": 65,
+        "lock": false,
+        "width": 512,
+        "height": 512
+      },
+      "/project1/math1": {
+        "exists": true,
+        "totalCooks": 237714,
+        "cpuCookTime": 0.031099997460842133,
+        "gpuCookTime": 0,
+        "cookFrame": 60,
+        "lock": false
+      },
+      "/project1/topto1": {
+        "exists": true,
+        "totalCooks": 292754,
+        "cpuCookTime": 2.344899892807007,
+        "gpuCookTime": 0.00005199999941396527,
+        "cookFrame": 65,
+        "lock": false
+      },
+      "/project1/LED_PREVIEW_OUT": {
+        "exists": true,
+        "totalCooks": 8693,
+        "cpuCookTime": 0.02500000223517418,
+        "gpuCookTime": 19.86911392211914,
+        "cookFrame": 397,
+        "lock": false,
+        "width": 960,
+        "height": 960
+      },
+      "/project1/material_browser/ui_preview": {
+        "exists": true,
+        "totalCooks": 4389,
+        "cpuCookTime": 2.093899965286255,
+        "gpuCookTime": 3.437290906906128,
+        "cookFrame": 39,
+        "lock": false,
+        "width": 1280,
+        "height": 800
+      },
+      "/project1/LedMap": {
+        "exists": true,
+        "totalCooks": 3,
+        "cpuCookTime": 23.38279914855957,
+        "gpuCookTime": 0,
+        "cookFrame": 294,
+        "lock": false
+      },
+      "/project1/effect_sample_uv": {
+        "exists": true,
+        "totalCooks": 9,
+        "cpuCookTime": 14.136500358581543,
+        "gpuCookTime": 0,
+        "cookFrame": 255,
+        "lock": false
+      },
+      "/project1/material_browser/preview_0": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.0479000024497509,
+        "gpuCookTime": 0.009322999976575375,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_1": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.05810000002384186,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_2": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.054999999701976776,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_3": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.0494999997317791,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_4": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.04389999806880951,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_5": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.05130000039935112,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_6": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.04319999739527702,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_7": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.042899999767541885,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_8": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.0421999990940094,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_9": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.04370000213384628,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_10": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.042899999767541885,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_11": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.04469999670982361,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_12": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.04540000110864639,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_13": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.0437999963760376,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_14": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.040800001472234726,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_15": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.042100001126527786,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_16": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.041200000792741776,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_17": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.060200002044439316,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_18": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.04839999973773956,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_19": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.0421999990940094,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_20": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.0414000004529953,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_21": {
+        "exists": true,
+        "totalCooks": 72052,
+        "cpuCookTime": 0.042500000447034836,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_22": {
+        "exists": true,
+        "totalCooks": 72052,
+        "cpuCookTime": 0.04480000212788582,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_23": {
+        "exists": true,
+        "totalCooks": 72052,
+        "cpuCookTime": 0.04079999774694443,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_24": {
+        "exists": true,
+        "totalCooks": 72052,
+        "cpuCookTime": 0.17919999361038208,
+        "gpuCookTime": 0.08057300001382828,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_0": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.1526000052690506,
+        "gpuCookTime": 0.04718799889087677,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_1": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.08540000021457672,
+        "gpuCookTime": 0.04390599951148033,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_2": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.07510000467300415,
+        "gpuCookTime": 0.04349000006914139,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_3": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.06710000336170197,
+        "gpuCookTime": 0.0434890016913414,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_4": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.06210000067949295,
+        "gpuCookTime": 0.04296899959445,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_5": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.06540000438690186,
+        "gpuCookTime": 0.04281200096011162,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_6": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.06530000269412994,
+        "gpuCookTime": 0.04328100010752678,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_7": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.0632999986410141,
+        "gpuCookTime": 0.042812999337911606,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_8": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.05910000205039978,
+        "gpuCookTime": 0.0438539981842041,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_9": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.06109999865293503,
+        "gpuCookTime": 0.0541669987142086,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_10": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.06440000236034393,
+        "gpuCookTime": 0.04354200139641762,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_11": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.062300004065036774,
+        "gpuCookTime": 0.04359399899840355,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_12": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.06989999115467072,
+        "gpuCookTime": 0.04411499947309494,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_13": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.058900002390146255,
+        "gpuCookTime": 0.04416700080037117,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_14": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.056199997663497925,
+        "gpuCookTime": 0.04374999925494194,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_15": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.05909999832510948,
+        "gpuCookTime": 0.04312499985098839,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_16": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.05810000002384186,
+        "gpuCookTime": 0.04312499985098839,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_17": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.06440000236034393,
+        "gpuCookTime": 0.04374999925494194,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_18": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.06080000102519989,
+        "gpuCookTime": 0.04333300143480301,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_19": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.05910000205039978,
+        "gpuCookTime": 0.04390599951148033,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_20": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.05859999731183052,
+        "gpuCookTime": 0.04317700117826462,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_21": {
+        "exists": true,
+        "totalCooks": 72052,
+        "cpuCookTime": 0.07520000636577606,
+        "gpuCookTime": 0.04343700036406517,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_22": {
+        "exists": true,
+        "totalCooks": 72052,
+        "cpuCookTime": 0.05959999933838844,
+        "gpuCookTime": 0.04312499985098839,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_23": {
+        "exists": true,
+        "totalCooks": 72052,
+        "cpuCookTime": 0.06509999930858612,
+        "gpuCookTime": 0.04359399899840355,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_24": {
+        "exists": true,
+        "totalCooks": 72052,
+        "cpuCookTime": 0.07129999995231628,
+        "gpuCookTime": 0.04411499947309494,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      }
+    },
+    "states": {
+      "/project1/material_browser/unified_state": "\t\r\nkey\tvalue\r\npage\t1\r\nsource\tAll\r\ngroup\tAll\r\nlayout\t8x4\r\nselected_key\tmadmapper:mat_ab0287bb394c824f13df\r\n",
+      "/project1/madmapper_library/browser_state": "key\tvalue\r\npage\t0\r\npage_count\t20\r\nresult_count\t638\r\nsearch\t\r\ncategory\tAll\r\ncompatibility\tAll\r\nselected_id\tmat_ab0287bb394c824f13df\r\nimport_confirm_id\t\r\nlast_import_path\tC:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\imported\\mat_ab0287bb394c824f13df\\prepared.frag\r\nlast_import_id\tmat_ab0287bb394c824f13df\r\nlive_preview_id\tmat_ab0287bb394c824f13df\r\nlayout\t8x4\r\nhover_slot\t\r\nhover_material_id\t\r\nhover_detail_restore\t\r\nactive_label\tBubble Rings\r\nactive_label_id\tmat_ab0287bb394c824f13df\r\nactive_id\tmat_ab0287bb394c824f13df\r\n"
+    },
+    "viewers": [
+      {
+        "slot": 0,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_0"
+      },
+      {
+        "slot": 1,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_1"
+      },
+      {
+        "slot": 2,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_2"
+      },
+      {
+        "slot": 3,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_3"
+      },
+      {
+        "slot": 4,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_4"
+      },
+      {
+        "slot": 5,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_5"
+      },
+      {
+        "slot": 6,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_6"
+      },
+      {
+        "slot": 7,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_7"
+      },
+      {
+        "slot": 8,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_8"
+      },
+      {
+        "slot": 9,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_9"
+      },
+      {
+        "slot": 10,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_10"
+      },
+      {
+        "slot": 11,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_11"
+      },
+      {
+        "slot": 12,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_12"
+      },
+      {
+        "slot": 13,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_13"
+      },
+      {
+        "slot": 14,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_14"
+      },
+      {
+        "slot": 15,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_15"
+      },
+      {
+        "slot": 16,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_16"
+      },
+      {
+        "slot": 17,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_17"
+      },
+      {
+        "slot": 18,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_18"
+      },
+      {
+        "slot": 19,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_19"
+      },
+      {
+        "slot": 20,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_20"
+      },
+      {
+        "slot": 21,
+        "display": false,
+        "target": "/project1/material_browser/card_top_21"
+      },
+      {
+        "slot": 22,
+        "display": false,
+        "target": "/project1/material_browser/card_top_22"
+      },
+      {
+        "slot": 23,
+        "display": false,
+        "target": "/project1/material_browser/card_top_23"
+      },
+      {
+        "slot": 24,
+        "display": false,
+        "target": "/project1/material_browser/card_top_24"
+      },
+      {
+        "slot": 25,
+        "display": false,
+        "target": "/project1/material_browser/unified_image_25"
+      },
+      {
+        "slot": 26,
+        "display": false,
+        "target": "/project1/material_browser/unified_image_26"
+      },
+      {
+        "slot": 27,
+        "display": false,
+        "target": "/project1/material_browser/unified_image_27"
+      },
+      {
+        "slot": 28,
+        "display": false,
+        "target": "/project1/material_browser/unified_image_28"
+      },
+      {
+        "slot": 29,
+        "display": false,
+        "target": "/project1/material_browser/unified_image_29"
+      },
+      {
+        "slot": 30,
+        "display": false,
+        "target": "/project1/material_browser/unified_image_30"
+      },
+      {
+        "slot": 31,
+        "display": false,
+        "target": "/project1/material_browser/unified_image_31"
+      }
+    ]
+  },
+  "after": {
+    "time": 1788758932.9422019,
+    "target_fps": 60,
+    "abs_frame": 665841,
+    "nodes": {
+      "/project1/madmapper_library/runtime": {
+        "exists": true,
+        "totalCooks": 299,
+        "cpuCookTime": 13.418999671936035,
+        "gpuCookTime": 0,
+        "cookFrame": 255,
+        "lock": false
+      },
+      "/project1/material_browser/unified_runtime": {
+        "exists": true,
+        "totalCooks": 14,
+        "cpuCookTime": 5.268099784851074,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": false
+      },
+      "/project1/material_state_runtime": {
+        "exists": true,
+        "totalCooks": 61,
+        "cpuCookTime": 1.8528000116348267,
+        "gpuCookTime": 0,
+        "cookFrame": 267,
+        "lock": false
+      },
+      "/project1/material_state_table": {
+        "exists": true,
+        "totalCooks": 19,
+        "cpuCookTime": 0.012000001966953278,
+        "gpuCookTime": 0,
+        "cookFrame": 267,
+        "lock": false
+      },
+      "/project1/madmapper_library/live_preview": {
+        "exists": true,
+        "totalCooks": 223989,
+        "cpuCookTime": 0.164000004529953,
+        "gpuCookTime": 7.3695831298828125,
+        "cookFrame": 375,
+        "lock": false,
+        "width": 512,
+        "height": 512
+      },
+      "/project1/madmapper_library/hover_preview": {
+        "exists": true,
+        "totalCooks": 1552,
+        "cpuCookTime": 0.22669999301433563,
+        "gpuCookTime": 13.890521049499512,
+        "cookFrame": 255,
+        "lock": true,
+        "width": 512,
+        "height": 512
+      },
+      "/project1/madmapper_library/detail_preview": {
+        "exists": true,
+        "totalCooks": 140,
+        "cpuCookTime": 0.09960000216960907,
+        "gpuCookTime": 9.261613845825195,
+        "cookFrame": 255,
+        "lock": true,
+        "width": 512,
+        "height": 512
+      },
+      "/project1/madmapper_material_player": {
+        "exists": true,
+        "totalCooks": 191,
+        "cpuCookTime": 0.49070000648498535,
+        "gpuCookTime": 0.13484400510787964,
+        "cookFrame": 369,
+        "lock": false,
+        "width": 512,
+        "height": 512
+      },
+      "/project1/material_gradient_player": {
+        "exists": true,
+        "totalCooks": 223981,
+        "cpuCookTime": 0.06059999763965607,
+        "gpuCookTime": 3.5707290172576904,
+        "cookFrame": 375,
+        "lock": false,
+        "width": 512,
+        "height": 512
+      },
+      "/project1/res1": {
+        "exists": true,
+        "totalCooks": 223975,
+        "cpuCookTime": 0.03689999878406525,
+        "gpuCookTime": 0.04427099972963333,
+        "cookFrame": 375,
+        "lock": false,
+        "width": 512,
+        "height": 512
+      },
+      "/project1/math1": {
+        "exists": true,
+        "totalCooks": 237778,
+        "cpuCookTime": 0.10400000214576721,
+        "gpuCookTime": 0,
+        "cookFrame": 375,
+        "lock": false
+      },
+      "/project1/topto1": {
+        "exists": true,
+        "totalCooks": 292830,
+        "cpuCookTime": 1.2301000356674194,
+        "gpuCookTime": 0.00005199999941396527,
+        "cookFrame": 375,
+        "lock": false
+      },
+      "/project1/LED_PREVIEW_OUT": {
+        "exists": true,
+        "totalCooks": 8752,
+        "cpuCookTime": 0.027399998158216476,
+        "gpuCookTime": 13.146614074707031,
+        "cookFrame": 369,
+        "lock": false,
+        "width": 960,
+        "height": 960
+      },
+      "/project1/material_browser/ui_preview": {
+        "exists": true,
+        "totalCooks": 4389,
+        "cpuCookTime": 2.093899965286255,
+        "gpuCookTime": 3.437290906906128,
+        "cookFrame": 39,
+        "lock": false,
+        "width": 1280,
+        "height": 800
+      },
+      "/project1/LedMap": {
+        "exists": true,
+        "totalCooks": 3,
+        "cpuCookTime": 23.38279914855957,
+        "gpuCookTime": 0,
+        "cookFrame": 294,
+        "lock": false
+      },
+      "/project1/effect_sample_uv": {
+        "exists": true,
+        "totalCooks": 9,
+        "cpuCookTime": 14.136500358581543,
+        "gpuCookTime": 0,
+        "cookFrame": 255,
+        "lock": false
+      },
+      "/project1/material_browser/preview_0": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.0479000024497509,
+        "gpuCookTime": 0.009322999976575375,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_1": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.05810000002384186,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_2": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.054999999701976776,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_3": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.0494999997317791,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_4": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.04389999806880951,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_5": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.05130000039935112,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_6": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.04319999739527702,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_7": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.042899999767541885,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_8": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.0421999990940094,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_9": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.04370000213384628,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_10": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.042899999767541885,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_11": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.04469999670982361,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_12": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.04540000110864639,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_13": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.0437999963760376,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_14": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.040800001472234726,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_15": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.042100001126527786,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_16": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.041200000792741776,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_17": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.060200002044439316,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_18": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.04839999973773956,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_19": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.0421999990940094,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_20": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.0414000004529953,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_21": {
+        "exists": true,
+        "totalCooks": 72052,
+        "cpuCookTime": 0.042500000447034836,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_22": {
+        "exists": true,
+        "totalCooks": 72052,
+        "cpuCookTime": 0.04480000212788582,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_23": {
+        "exists": true,
+        "totalCooks": 72052,
+        "cpuCookTime": 0.04079999774694443,
+        "gpuCookTime": 0,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/preview_24": {
+        "exists": true,
+        "totalCooks": 72052,
+        "cpuCookTime": 0.17919999361038208,
+        "gpuCookTime": 0.08057300001382828,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_0": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.1526000052690506,
+        "gpuCookTime": 0.04718799889087677,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_1": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.08540000021457672,
+        "gpuCookTime": 0.04390599951148033,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_2": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.07510000467300415,
+        "gpuCookTime": 0.04349000006914139,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_3": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.06710000336170197,
+        "gpuCookTime": 0.0434890016913414,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_4": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.06210000067949295,
+        "gpuCookTime": 0.04296899959445,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_5": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.06540000438690186,
+        "gpuCookTime": 0.04281200096011162,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_6": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.06530000269412994,
+        "gpuCookTime": 0.04328100010752678,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_7": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.0632999986410141,
+        "gpuCookTime": 0.042812999337911606,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_8": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.05910000205039978,
+        "gpuCookTime": 0.0438539981842041,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_9": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.06109999865293503,
+        "gpuCookTime": 0.0541669987142086,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_10": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.06440000236034393,
+        "gpuCookTime": 0.04354200139641762,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_11": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.062300004065036774,
+        "gpuCookTime": 0.04359399899840355,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_12": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.06989999115467072,
+        "gpuCookTime": 0.04411499947309494,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_13": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.058900002390146255,
+        "gpuCookTime": 0.04416700080037117,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_14": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.056199997663497925,
+        "gpuCookTime": 0.04374999925494194,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_15": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.05909999832510948,
+        "gpuCookTime": 0.04312499985098839,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_16": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.05810000002384186,
+        "gpuCookTime": 0.04312499985098839,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_17": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.06440000236034393,
+        "gpuCookTime": 0.04374999925494194,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_18": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.06080000102519989,
+        "gpuCookTime": 0.04333300143480301,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_19": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.05910000205039978,
+        "gpuCookTime": 0.04390599951148033,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_20": {
+        "exists": true,
+        "totalCooks": 14413,
+        "cpuCookTime": 0.05859999731183052,
+        "gpuCookTime": 0.04317700117826462,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_21": {
+        "exists": true,
+        "totalCooks": 72052,
+        "cpuCookTime": 0.07520000636577606,
+        "gpuCookTime": 0.04343700036406517,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_22": {
+        "exists": true,
+        "totalCooks": 72052,
+        "cpuCookTime": 0.05959999933838844,
+        "gpuCookTime": 0.04312499985098839,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_23": {
+        "exists": true,
+        "totalCooks": 72052,
+        "cpuCookTime": 0.06509999930858612,
+        "gpuCookTime": 0.04359399899840355,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      },
+      "/project1/material_browser/card_top_24": {
+        "exists": true,
+        "totalCooks": 72052,
+        "cpuCookTime": 0.07129999995231628,
+        "gpuCookTime": 0.04411499947309494,
+        "cookFrame": 148,
+        "lock": true,
+        "width": 256,
+        "height": 256
+      }
+    },
+    "states": {
+      "/project1/material_browser/unified_state": "\t\r\nkey\tvalue\r\npage\t1\r\nsource\tAll\r\ngroup\tAll\r\nlayout\t8x4\r\nselected_key\tmadmapper:mat_ab0287bb394c824f13df\r\n",
+      "/project1/madmapper_library/browser_state": "key\tvalue\r\npage\t0\r\npage_count\t20\r\nresult_count\t638\r\nsearch\t\r\ncategory\tAll\r\ncompatibility\tAll\r\nselected_id\tmat_ab0287bb394c824f13df\r\nimport_confirm_id\t\r\nlast_import_path\tC:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\imported\\mat_ab0287bb394c824f13df\\prepared.frag\r\nlast_import_id\tmat_ab0287bb394c824f13df\r\nlive_preview_id\tmat_ab0287bb394c824f13df\r\nlayout\t8x4\r\nhover_slot\t\r\nhover_material_id\t\r\nhover_detail_restore\t\r\nactive_label\tBubble Rings\r\nactive_label_id\tmat_ab0287bb394c824f13df\r\nactive_id\tmat_ab0287bb394c824f13df\r\n"
+    },
+    "viewers": [
+      {
+        "slot": 0,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_0"
+      },
+      {
+        "slot": 1,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_1"
+      },
+      {
+        "slot": 2,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_2"
+      },
+      {
+        "slot": 3,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_3"
+      },
+      {
+        "slot": 4,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_4"
+      },
+      {
+        "slot": 5,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_5"
+      },
+      {
+        "slot": 6,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_6"
+      },
+      {
+        "slot": 7,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_7"
+      },
+      {
+        "slot": 8,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_8"
+      },
+      {
+        "slot": 9,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_9"
+      },
+      {
+        "slot": 10,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_10"
+      },
+      {
+        "slot": 11,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_11"
+      },
+      {
+        "slot": 12,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_12"
+      },
+      {
+        "slot": 13,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_13"
+      },
+      {
+        "slot": 14,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_14"
+      },
+      {
+        "slot": 15,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_15"
+      },
+      {
+        "slot": 16,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_16"
+      },
+      {
+        "slot": 17,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_17"
+      },
+      {
+        "slot": 18,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_18"
+      },
+      {
+        "slot": 19,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_19"
+      },
+      {
+        "slot": 20,
+        "display": true,
+        "target": "/project1/material_browser/unified_image_20"
+      },
+      {
+        "slot": 21,
+        "display": false,
+        "target": "/project1/material_browser/card_top_21"
+      },
+      {
+        "slot": 22,
+        "display": false,
+        "target": "/project1/material_browser/card_top_22"
+      },
+      {
+        "slot": 23,
+        "display": false,
+        "target": "/project1/material_browser/card_top_23"
+      },
+      {
+        "slot": 24,
+        "display": false,
+        "target": "/project1/material_browser/card_top_24"
+      },
+      {
+        "slot": 25,
+        "display": false,
+        "target": "/project1/material_browser/unified_image_25"
+      },
+      {
+        "slot": 26,
+        "display": false,
+        "target": "/project1/material_browser/unified_image_26"
+      },
+      {
+        "slot": 27,
+        "display": false,
+        "target": "/project1/material_browser/unified_image_27"
+      },
+      {
+        "slot": 28,
+        "display": false,
+        "target": "/project1/material_browser/unified_image_28"
+      },
+      {
+        "slot": 29,
+        "display": false,
+        "target": "/project1/material_browser/unified_image_29"
+      },
+      {
+        "slot": 30,
+        "display": false,
+        "target": "/project1/material_browser/unified_image_30"
+      },
+      {
+        "slot": 31,
+        "display": false,
+        "target": "/project1/material_browser/unified_image_31"
+      }
+    ]
+  },
+  "deltas": {
+    "/project1/madmapper_library/runtime": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": false
+    },
+    "/project1/material_browser/unified_runtime": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": false
+    },
+    "/project1/material_state_runtime": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": false
+    },
+    "/project1/material_state_table": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": false
+    },
+    "/project1/madmapper_library/live_preview": {
+      "cooks": 59,
+      "cooks_per_second": 11.417456896740651,
+      "locked": false
+    },
+    "/project1/madmapper_library/hover_preview": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/madmapper_library/detail_preview": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/madmapper_material_player": {
+      "cooks": 59,
+      "cooks_per_second": 11.417456896740651,
+      "locked": false
+    },
+    "/project1/material_gradient_player": {
+      "cooks": 59,
+      "cooks_per_second": 11.417456896740651,
+      "locked": false
+    },
+    "/project1/res1": {
+      "cooks": 59,
+      "cooks_per_second": 11.417456896740651,
+      "locked": false
+    },
+    "/project1/math1": {
+      "cooks": 64,
+      "cooks_per_second": 12.385037989684774,
+      "locked": false
+    },
+    "/project1/topto1": {
+      "cooks": 76,
+      "cooks_per_second": 14.70723261275067,
+      "locked": false
+    },
+    "/project1/LED_PREVIEW_OUT": {
+      "cooks": 59,
+      "cooks_per_second": 11.417456896740651,
+      "locked": false
+    },
+    "/project1/material_browser/ui_preview": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": false
+    },
+    "/project1/LedMap": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": false
+    },
+    "/project1/effect_sample_uv": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": false
+    },
+    "/project1/material_browser/preview_0": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/preview_1": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/preview_2": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/preview_3": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/preview_4": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/preview_5": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/preview_6": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/preview_7": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/preview_8": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/preview_9": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/preview_10": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/preview_11": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/preview_12": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/preview_13": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/preview_14": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/preview_15": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/preview_16": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/preview_17": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/preview_18": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/preview_19": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/preview_20": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/preview_21": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/preview_22": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/preview_23": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/preview_24": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/card_top_0": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/card_top_1": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/card_top_2": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/card_top_3": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/card_top_4": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/card_top_5": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/card_top_6": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/card_top_7": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/card_top_8": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/card_top_9": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/card_top_10": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/card_top_11": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/card_top_12": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/card_top_13": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/card_top_14": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/card_top_15": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/card_top_16": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/card_top_17": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/card_top_18": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/card_top_19": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/card_top_20": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/card_top_21": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/card_top_22": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/card_top_23": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    },
+    "/project1/material_browser/card_top_24": {
+      "cooks": 0,
+      "cooks_per_second": 0,
+      "locked": true
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "measurements": {
+    "baseline": {
+      "max_rgb": 0.6274510025978088,
+      "mean_rgb": 0.28437039256095886,
+      "shape": [
+        512,
+        512,
+        4
+      ]
+    },
+    "intensity_zero": {
+      "max_rgb": 0.0,
+      "mean_rgb": 0.0,
+      "shape": [
+        512,
+        512,
+        4
+      ]
+    },
+    "original": {
+      "max_rgb": 0.5333333611488342,
+      "mean_rgb": 0.43454408645629883,
+      "shape": [
+        512,
+        512,
+        4
+      ]
+    }
+  },
+  "restored_controls": {
+    "Intensity": 0.532982,
+    "Contrast": 3.33113,
+    "Colormode": "legacy",
+    "Gradientstrength": 1.0
+  },
+  "expected_controls": {
+    "Intensity": 0.532982,
+    "Contrast": 3.33113,
+    "Colormode": "legacy",
+    "Gradientstrength": 1.0
+  },
+  "restored_frame": {
+    "max_rgb": 0.6274510025978088,
+    "mean_rgb": 0.28437039256095886,
+    "shape": [
+      512,
+      512,
+      4
+    ]
+  },
+  "errors": []
+}
