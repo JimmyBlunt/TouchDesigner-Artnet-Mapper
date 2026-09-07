@@ -1,0 +1,15 @@
+{
+  "date": "2026-09-07",
+  "targeted_command": "python -m unittest tests.test_camera_probe tests.test_scan_routing tests.test_marimapper_router_backend tests.test_scan_capture tests.test_guided_scan_live tests.test_scan_worker",
+  "targeted_tests": 106,
+  "targeted_passed": 106,
+  "working_tree_command": "python -m unittest discover -s tests",
+  "working_tree_tests": 696,
+  "working_tree_passed": 695,
+  "working_tree_skipped": 1,
+  "working_tree_scope_note": "Includes pre-existing untracked tests outside this implementation commit.",
+  "real_ui": ["Camera check and close", "Scan plan button", "Ctrl+Shift+G after saved project reopen"],
+  "hardware_scan_started": false,
+  "optical_led_scan_verified": false,
+  "reconstruction_end_to_end_verified": false
+}

@@ -101,6 +101,8 @@ def apply_router_transaction(router, controllers, segments, rebuild, *, extra_ta
     On rollback the previous builder is retried to restore derived operators.
     A failed recovery is explicitly reported and cannot masquerade as success.
     """
+    from .scan_output_guard import assert_no_scan
+    assert_no_scan()
     build_router_plan(router_from_rows(controllers, segments, source_pixels))
     updates = [(router.op('controller_config'), controllers),
                (router.op('segment_config'), segments), *extra_tables]

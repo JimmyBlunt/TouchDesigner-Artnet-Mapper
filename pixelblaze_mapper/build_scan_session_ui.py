@@ -1,7 +1,7 @@
-"""Additive guided scan UI. Planning and offline job preparation, never hardware.
+"""Guided scan surface: explicit camera probe, reviewed scan, offline review.
 
-The camera selection is a requested device ID, NOT a detected/connected camera.
-No builder invocation on ordinary import. Existing helper widgets are reused.
+Import/build never launches hardware. Camera and scan each require their own
+user action. Existing helper widgets are reused; fields survive a rebuild.
 """
 
 from dataclasses import asdict, replace
@@ -114,6 +114,7 @@ from pixelblaze_mapper.build_scan_session_ui import plan_scene, select_scope, at
 from pixelblaze_mapper.scan_session import ScanSession
 from pixelblaze_mapper.scan_worker import create_manifest, load_observations
 OWNER = op('/project1/guided_scan')
+from pixelblaze_mapper import guided_scan_live as live
 
 def _status(message):
     OWNER.store('message', message)
@@ -128,7 +129,8 @@ def _state():
     return ScanSession.from_dict(value)
 
 def _field(name):
-    return str(OWNER.op('ui_panel/' + name + '/string')[0, 0]).strip()
+    value = OWNER.op('ui_panel/' + name + '/string')[0, 0]
+    return '' if value is None else str(value).strip()
 
 def _show_scope(state):
     lookup = {target.led_id: target.source_index for target in state.targets}
@@ -164,27 +166,38 @@ def request_handoff(accepted_ids, current_scene_revision):
 
 def act(command):
     try:
+        if command == 'camera_start':
+            live.camera_start(op)
+            return True
+        if command == 'camera_stop':
+            live.camera_stop(op)
+            return True
+        if command == 'stop':
+            live.stop(op)
+            return True
+        if command == 'ports':
+            op('/project1/multi_controller_output/gico_port_config/ui_panel').openViewer()
+            return True
         if command == 'back':
             op('/project1/layout_scene_editor/ui_panel').openViewer()
             return True
         state = _state()
         if command == 'prepare':
-            camera = int(_field('camera'))
-            if camera < 0:
-                raise ValueError('Requested camera ID must be nonnegative')
-            state = select_scope(state, _field('source_ids'), _field('anchors'))
-            OWNER.store('session', state.to_dict())
-            OWNER.store('requested_camera', camera)
-            OWNER.op('dry_run').text = json.dumps([asdict(step) for step in state.dry_run_schedule()], indent=2)
-            _status('PREPARED DRY RUN: %d LEDs + %d anchors | camera %d NOT connected | output OFF' % (len(state.selected_ids), len(state.anchor_ids), camera))
+            live.prepare(op)
         elif command == 'arm':
-            raise ValueError('Cannot arm: exclusive router lease + camera adapter are not implemented. No LEDs or camera were touched.')
+            message = str(OWNER.op('ui_panel/routing_summary').par.text.eval())
+            answer = ui.messageBox('Start one MariMapper view?', message + '\n\nThis switches ALL reserved universes of the listed controllers to black, then scans selected LEDs at max 5%. Camera and object must stay fixed. No automatic Live resume. Continue?', buttons=['Cancel', 'Start Scan'])
+            if answer == 1:
+                live.start(op, confirmed=True)
         elif command == 'offline':
-            filenames = [value.strip() for value in _field('views').split('|') if value.strip()]
+            filenames = [value.strip() for value in _field('views').split('|') if value.strip() and value.strip() != 'None']
+            if len(filenames) < 2:
+                raise ValueError('Capture or select at least two distinct view CSV files before preparing a 3D job')
             candidate, views = attach_existing_views(state, filenames)
             workspace = Path(_field('workspace')).resolve(strict=True)
             manifest = create_manifest(candidate, views=views, source_roots=[Path(p).parent for p in filenames],
-                workspace_root=workspace, output_directory=workspace / ('result-' + candidate.session_id))
+                workspace_root=workspace, output_directory=workspace / ('result-' + candidate.session_id),
+                camera_model='camera_model_opencv')
             load_observations(manifest)
             manifest_path = workspace / ('scan-' + candidate.session_id + '.json')
             # Exclusive create: user-selected workspace only, never overwrite.
@@ -197,6 +210,7 @@ def act(command):
                 'runs_automatically': False}, indent=2)
             _status('OFFLINE MANIFEST SAVED | worker_plan contains dry-run and explicit reconstruction command | nothing launched')
         elif command == 'cancel':
+            live.stop(op)
             OWNER.store('session', state.cancel().to_dict())
             _status('SESSION CANCELLED | no automatic output resume; layout unchanged')
         else:
@@ -224,28 +238,47 @@ def build():
     canvas = panel(node(owner, containerCOMP, 'ui_panel'), 0, 0, 1160, 780, 10)
     canvas.viewer = True
     text(canvas, 'title', 'GUIDED SCAN | FULL OBJECT / SELECTED REGION', 20, 727, 1120, 36, 23)
-    text(canvas, 'notice', '1 Select scope + stable anchors. 2 Prepare a dry run. 3 Capture requires an adapter. Existing views can be reconstructed offline.', 20, 668, 1120, 48, 13)
-    fields = [('camera', '0', 'REQUESTED CAMERA ID (not connected)'),
+    text(canvas, 'notice', '1 Check camera. 2 Select LEDs and review routing. 3 START SCAN captures ONE view. Move camera between views; never during a scan.', 20, 679, 1120, 42, 13)
+    camera_fields = [('camera', '0', 'CAMERA DEVICE (OpenCV ID; try 0 / 1)', 20, 350),
+                     ('exposure', '-10', 'EXPOSURE (camera-dependent)', 400, 350),
+                     ('threshold', '160', 'DETECTION THRESHOLD (0-254)', 780, 360)]
+    for name, value, label, x, width in camera_fields:
+        text(canvas, name + '_label', label, x, 650, width, 24, 11)
+        existing = canvas.op(name + '/string')
+        field(canvas, name, str(existing[0, 0]) if existing is not None else value, x, 619, width)
+    fields = [
               ('source_ids', '', 'ZERO-BASED SOURCE INDICES: full object or explicit ranges, e.g. 0-49,78'),
               ('anchors', '', 'VERIFICATION ANCHOR SOURCE INDICES (never replaced)'),
               ('views', '', 'EXISTING 2D VIEW CSV PATHS, separated by | (at least two distinct views)'),
               ('workspace', '', 'EXISTING WORKSPACE FOLDER (new manifest/results only)'),
-              ('python', r'C:\Users\jbhtz\AppData\Roaming\uv\tools\marimapper\Scripts\python.exe', 'ISOLATED MARIMAPPER PYTHON (not launched automatically)')]
+              ('python', r'C:\Users\jbhtz\AppData\Roaming\uv\tools\marimapper\Scripts\python.exe', 'OFFLINE WORKER PYTHON (camera/scan uses the reviewed installed interpreter)')]
     for index, (name, value, label) in enumerate(fields):
-        y = 594 - index * 70
+        y = 466 - index * 58
         text(canvas, name + '_label', label, 20, y + 32, 1120, 28, 11)
         existing = canvas.op(name + '/string')
         if existing is not None:
-            value = str(existing[0, 0])
+            value = '' if existing[0, 0] is None else str(existing[0, 0])
+            if name in ('anchors', 'views') and value == 'None':
+                value = ''
         field(canvas, name, value, 20, y, 1120)
-    controls = [('prepare', 'PREPARE DRY RUN', 20, 165, 250), ('arm', 'ARM CAPTURE (UNAVAILABLE)', 285, 165, 350),
-                ('offline', 'PREPARE OFFLINE JOB', 650, 165, 290), ('cancel', 'CANCEL', 955, 165, 185),
-                ('back', 'BACK TO LAYOUT', 20, 108, 250)]
+    controls = [('camera_start', 'CHECK CAMERA', 20, 571, 220), ('camera_stop', 'CLOSE CAMERA', 250, 571, 220),
+                ('ports', 'CONTROLLER / PORTS', 910, 571, 230),
+                ('prepare', 'CHECK SCAN PLAN', 20, 146, 250), ('arm', 'START SCAN / NEXT VIEW', 285, 146, 350),
+                ('stop', 'STOP SCAN', 650, 146, 240), ('back', 'BACK TO LAYOUT', 905, 146, 235),
+                ('offline', 'PREPARE 3D OFFLINE JOB', 20, 98, 310), ('cancel', 'CANCEL SESSION', 345, 98, 240)]
     for name, label, x, y, width in controls:
         control = button(canvas, 'btn_' + name, label, x, y, width)
         click(owner, 'click_' + name, control, "op('runtime').module.act(%r)" % name)
-    text(canvas, 'capabilities', 'CAPTURE / OUTPUT: unavailable | Offline SfM: explicit separate worker | Registration + quality review: required before merge', 285, 98, 855, 52, 11)
+    text(canvas, 'camera_status', 'CAMERA NOT TESTED — device ID alone does not mean a connected camera', 20, 529, 1120, 32, 11)
+    text(canvas, 'routing_summary', 'Routing not checked. Controller / Ports opens the existing universe configuration.', 20, 188, 1120, 38, 11)
+    text(canvas, 'capabilities', 'One view -> index,u,v CSV. Multiple views -> separate 3D job. No automatic layout replacement.', 600, 90, 540, 48, 11)
     text(canvas, 'status', owner.fetch('message', 'Open Scan from Layout to stage an object. No camera or LED output is started.'), 20, 20, 1120, 64, 13)
+    poller = node(owner, executeDAT, 'capture_poll')
+    poller.text = "from pixelblaze_mapper import guided_scan_live as live\ndef onFrameStart(frame):\n    live.poll(op)\ndef onStart():\n    live.shutdown()\ndef onExit():\n    live.shutdown()\n"
+    poller.par.active = True
+    poller.par.framestart = True
+    poller.par.exit = True
+    poller.par.start = True
     return owner
 
 

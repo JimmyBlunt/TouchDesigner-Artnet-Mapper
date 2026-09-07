@@ -1,0 +1,86 @@
+{
+  "file": "PixelblazeMapper_20260907_DEMAND_BULK_VERIFIED.1.toe",
+  "native": [
+    {
+      "path": "/project1/dmxout1",
+      "type": "dmxout",
+      "active": false
+    },
+    {
+      "path": "/project1/esp_artnet_out",
+      "type": "dmxout",
+      "active": false
+    },
+    {
+      "path": "/project1/multi_controller_output/dmxout_apa102_esp",
+      "type": "dmxout",
+      "active": false
+    },
+    {
+      "path": "/project1/multi_controller_output/dmxout_ws2812_node",
+      "type": "dmxout",
+      "active": false
+    }
+  ],
+  "source_count": 3744,
+  "sender": {
+    "enabled": false,
+    "error": "",
+    "mode": "live",
+    "calibration": [
+      "all",
+      "panel_id",
+      0
+    ],
+    "controllers": [],
+    "target_override": null,
+    "port_override": null,
+    "telemetry": {
+      "tick_count": 48859,
+      "rate_skips": 0,
+      "send_count": 0,
+      "packet_count": 0,
+      "send_ms_last": 0.0,
+      "send_ms_average": 0.0,
+      "send_ms_max": 0.0,
+      "actual_send_fps": 0.0,
+      "pack_count": 0,
+      "pack_ms_last": 0.0,
+      "pack_ms_average": 0.0,
+      "pack_ms_max": 0.0,
+      "plan_rebuilds": 0
+    }
+  },
+  "camera": {
+    "state": "stopped",
+    "frames": 589,
+    "cleanup_confirmed": true,
+    "forced_stop": false,
+    "image_storage": false,
+    "hardware_output": false,
+    "settings_restored": null,
+    "startup_timed_out": false,
+    "phase": "preview",
+    "requested_exposure": -10,
+    "actual_exposure": -10,
+    "exposure_applied": true,
+    "height": 480,
+    "width": 640,
+    "detected": true,
+    "u": 0.18976671660107775,
+    "v": 0.37640926163346083,
+    "reason": "stop_requested",
+    "cleanup_errors": "",
+    "returncode": 0
+  },
+  "scan": null,
+  "config_paths": [
+    "/project1/multi_controller_output/segment_config",
+    "/project1/multi_controller_output/gico_port_config",
+    "/project1/multi_controller_output/controller_config",
+    "/project1/multi_controller_output/calibration_config",
+    "/project1/multi_controller_output/open_gico_config_click",
+    "/project1/multi_controller_output/segment_config_before_middle_517",
+    "/project1/multi_controller_output/segment_config_complete_new_3744"
+  ]
+}

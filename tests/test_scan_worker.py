@@ -9,7 +9,8 @@ from types import SimpleNamespace
 from unittest.mock import patch
 
 from pixelblaze_mapper.scan_session import ScanSession, ScanTarget, ScanSessionError
-from pixelblaze_mapper.scan_worker import create_manifest, load_observations, reconstruct, main
+from pixelblaze_mapper.scan_worker import (create_manifest, load_observations, reconstruct,
+                                          main, validate_manifest, CAMERA_MODELS)
 from pixelblaze_mapper.build_scan_session_ui import attach_existing_views, parse_indices, select_scope, _runtime_source, worker_command
 
 
@@ -94,7 +95,9 @@ class ScanWorkerTests(unittest.TestCase):
         point = SimpleNamespace(led_id=NativeIndex(), point=SimpleNamespace(position=(1., 2., 3.)))
         native = {
             'marimapper.led': SimpleNamespace(LED2D=lambda *args: args, Point2D=lambda *args: args),
-            'marimapper.sfm': SimpleNamespace(sfm=lambda rows: [point]),
+            'marimapper.sfm': SimpleNamespace(sfm=lambda rows, **kwargs: [point]),
+            'marimapper.database_populator': SimpleNamespace(camera_models=[
+                SimpleNamespace(__name__='camera_model_radial')]),
             'marimapper.file_tools': SimpleNamespace(write_3d_leds_to_file=lambda points, path:
                 path.write_text('index,x,y,z,xn,yn,zn,error\n10,1,2,3,0,0,0,0\n')),
         }
@@ -109,6 +112,55 @@ class ScanWorkerTests(unittest.TestCase):
         saved = json.loads((self.root / 'new-result/quality_pending.json').read_text())
         self.assertEqual(saved['reconstructed_ids'], [10])
         self.assertFalse(saved['hardware_output_used'])
+
+    def test_camera_model_manifest_and_legacy_default(self):
+        doc = self.manifest()
+        self.assertEqual(doc['reconstruction'], dict(camera_model='camera_model_radial', interpolation=False))
+        del doc['reconstruction']
+        self.assertEqual(validate_manifest(doc)['reconstruction']['camera_model'], 'camera_model_radial')
+        for name in CAMERA_MODELS:
+            selected = create_manifest(self.ready, views=self.views, source_roots=[self.root],
+                workspace_root=self.root, output_directory=self.root / 'result', camera_model=name)
+            self.assertEqual(validate_manifest(selected)['reconstruction']['camera_model'], name)
+            self.assertFalse((self.root / 'result').exists())
+
+    def test_unknown_model_and_interpolation_fail_closed(self):
+        for options in ({'camera_model': 'opencv'}, {'camera_model': None},
+                        {'interpolation': True}, {'interpolation': 0},
+                        {'interpolation_max_fill': 3, 'interpolation_max_error': .15}, []):
+            with self.subTest(options=options), self.assertRaises(ScanSessionError):
+                doc = self.manifest()
+                doc['reconstruction'] = options
+                validate_manifest(doc)
+
+    def test_selected_native_camera_model_is_forwarded_and_reported(self):
+        from unittest.mock import Mock
+        point = SimpleNamespace(led_id=10, point=SimpleNamespace(position=(-1., 2., -3.)))
+        # Distinct sentinels prove the selected function object reaches native sfm.
+        models = [SimpleNamespace(__name__=name) for name in CAMERA_MODELS]
+        native_sfm = Mock(return_value=[point])
+        native = {
+            'marimapper.led': SimpleNamespace(LED2D=lambda *args: args, Point2D=lambda *args: args),
+            'marimapper.sfm': SimpleNamespace(sfm=native_sfm),
+            'marimapper.database_populator': SimpleNamespace(camera_models=models),
+            'marimapper.file_tools': SimpleNamespace(write_3d_leds_to_file=Mock()),
+        }
+        for name in CAMERA_MODELS:
+            with self.subTest(name=name):
+                doc = create_manifest(self.ready, views=self.views, source_roots=[self.root],
+                    workspace_root=self.root, output_directory=self.root / name, camera_model=name)
+                origin = json.dumps({'vcs_info': {'commit_id': doc['upstream_revision']}})
+                with patch.dict('sys.modules', native), \
+                     patch('importlib.metadata.version', side_effect=lambda package: '3.4.2' if package == 'marimapper' else '3.11.1'), \
+                     patch('importlib.metadata.distribution', return_value=SimpleNamespace(read_text=lambda _: origin)):
+                    report = reconstruct(doc, confirmed=True)
+                self.assertIs(native_sfm.call_args.kwargs['camera_model'],
+                              next(model for model in models if model.__name__ == name))
+                self.assertEqual(report['camera_model'], name)
+                self.assertEqual(report['interpolated_ids'], [])
+                self.assertFalse(report['interpolation'])
+                self.assertEqual(point.point.position, (-1., 2., -3.))
+                self.assertEqual(json.loads((self.root / name / 'quality_pending.json').read_text())['camera_model'], name)
 
     def test_distinct_actual_views_required(self):
         with self.assertRaises(ScanSessionError):

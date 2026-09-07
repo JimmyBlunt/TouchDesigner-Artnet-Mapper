@@ -19,14 +19,25 @@ from .scan_session import ScanSession, ScanSessionError, Stage
 
 WORKER_SCHEMA = "pixelblaze-marimapper-offline-worker"
 UPSTREAM_REVISION = "7dc5f799a1b7c180573c2632f6d12a3be0cbf4fa"
+CAMERA_MODELS = ("camera_model_pinhole", "camera_model_radial",
+                 "camera_model_opencv", "camera_model_opencv_full")
+DEFAULT_CAMERA_MODEL = "camera_model_radial"  # Preserve original sfm() default.
 
 
 def _inside(path, roots):
     return any(path == root or root in path.parents for root in roots)
 
 
-def create_manifest(session, *, views, source_roots, workspace_root, output_directory):
-    """Create a plain-data plan without writing files or starting processes."""
+def create_manifest(session, *, views, source_roots, workspace_root, output_directory,
+                    camera_model=DEFAULT_CAMERA_MODEL):
+    """Create a plan without I/O writes or native imports.
+
+    camera_model is a reviewed MariMapper model NAME, not arbitrary Python code.
+    Interpolation remains disabled: native gap filling assumes rescaled LED
+    spacing, unlike this worker's raw SfM coordinates and explicit sparse scope.
+    """
+    if type(camera_model) is not str or camera_model not in CAMERA_MODELS:
+        raise ScanSessionError("unsupported MariMapper camera model")
     if not isinstance(session, ScanSession) or session.stage != Stage.RECONSTRUCTING:
         raise ScanSessionError("worker needs a reconstruction-requested session")
     roots = tuple(Path(root).resolve(strict=True) for root in source_roots)
@@ -54,6 +65,7 @@ def create_manifest(session, *, views, source_roots, workspace_root, output_dire
         "schema": WORKER_SCHEMA, "version": 1, "upstream_revision": UPSTREAM_REVISION,
         "session": session.to_dict(), "source_roots": [str(root) for root in roots],
         "workspace_root": str(workspace), "output_directory": str(output), "inputs": inputs,
+        "reconstruction": {"camera_model": camera_model, "interpolation": False},
         "capabilities": {"offline_reconstruction": True, "camera_capture": False,
                          "hardware_output": False, "registration": False, "layout_apply": False},
     }
@@ -64,6 +76,12 @@ def validate_manifest(document):
         raise ScanSessionError("unsupported worker manifest schema")
     if document.get("upstream_revision") != UPSTREAM_REVISION:
         raise ScanSessionError("worker manifest targets an unreviewed MariMapper revision")
+    # Old schema-1 manifests omitted this section and used sfm's radial default.
+    options = document.get("reconstruction", {})
+    if not isinstance(options, dict) or set(options) - {"camera_model", "interpolation"}:
+        raise ScanSessionError("unsupported reconstruction options; interpolation is not implemented")
+    if options.get("interpolation", False) is not False:
+        raise ScanSessionError("interpolation is not implemented for raw SfM candidates")
     session = ScanSession.from_dict(document["session"])
     inputs = document["inputs"]
     if len({item["view_id"] for item in inputs}) != len(inputs):
@@ -71,7 +89,8 @@ def validate_manifest(document):
     checked = create_manifest(session, views={item["view_id"]: item["path"] for item in inputs},
                               source_roots=document["source_roots"],
                               workspace_root=document["workspace_root"],
-                              output_directory=document["output_directory"])
+                              output_directory=document["output_directory"],
+                              camera_model=options.get("camera_model", DEFAULT_CAMERA_MODEL))
     stamps = {item["view_id"]: item["sha256"] for item in inputs}
     if any(stamps[item["view_id"]] != item["sha256"] for item in checked["inputs"]):
         raise ScanSessionError("input changed after manifest creation")
@@ -136,9 +155,14 @@ def reconstruct(document, *, confirmed=False):
         raise ScanSessionError("installed MariMapper commit is not the reviewed revision")
     from marimapper.led import LED2D, Point2D
     from marimapper.sfm import sfm
+    from marimapper.database_populator import camera_models
     from marimapper.file_tools import write_3d_leds_to_file
     detections = [LED2D(index, view, Point2D(u, v)) for index, view, u, v in rows]
-    points = sfm(detections)
+    model_name = checked["reconstruction"]["camera_model"]
+    model = next((model for model in camera_models if model.__name__ == model_name), None)
+    if model is None:
+        raise ScanSessionError("reviewed camera model is unavailable in native installation")
+    points = sfm(detections, camera_model=model)
     if not points:
         raise ScanSessionError("SfM returned no reconstruction; add valid overlapping views")
     allowed = {row[0] for row in rows}
@@ -157,6 +181,7 @@ def reconstruct(document, *, confirmed=False):
         "session_id": checked["session"]["session_id"], "upstream_revision": UPSTREAM_REVISION,
         # COLMAP returns NumPy integer scalars; JSON requires builtin integers.
         "input_observations": len(rows), "reconstructed_ids": sorted(int(point.led_id) for point in points),
+        "camera_model": model_name, "interpolated_ids": [],
         "interpolation": False, "normal_estimation": False, "registration": False,
         "coordinate_units": "arbitrary_sfm", "review_required": True,
         "camera_used": False, "hardware_output_used": False, "layout_applied": False,
@@ -176,7 +201,8 @@ def main(argv=None):
     else:
         checked, rows = load_observations(document)
         result = {"dry_run": True, "observations": len(rows),
-                  "output_directory": checked["output_directory"], "capabilities": checked["capabilities"]}
+                  "output_directory": checked["output_directory"], "capabilities": checked["capabilities"],
+                  "reconstruction": checked["reconstruction"]}
     print(json.dumps(result, indent=2))
 
 
