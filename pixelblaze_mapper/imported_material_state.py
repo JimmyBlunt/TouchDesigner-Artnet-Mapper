@@ -9,6 +9,7 @@ new material default.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from copy import deepcopy
 from typing import Any, Iterable, Mapping
 
 from pixelblaze_mapper.madmapper_parameters import (
@@ -57,10 +58,10 @@ class ImportedMaterialStateStore:
             values=values,
             page=previous.page if previous is not None else 0,
         )
-        return dict(values)
+        return deepcopy(values)
 
     def values(self, material_id: str) -> dict[str, Any]:
-        return dict(self._materials[str(material_id)].values)
+        return deepcopy(self._materials[str(material_id)].values)
 
     def set_value(
         self,
@@ -108,7 +109,7 @@ class ImportedMaterialStateStore:
         return {
             "schema": 1,
             "materials": {
-                key: {"types": entry.types, "values": entry.values, "page": entry.page}
+                key: {"types": dict(entry.types), "values": deepcopy(entry.values), "page": entry.page}
                 for key, entry in self._materials.items()
             },
         }
@@ -121,7 +122,7 @@ class ImportedMaterialStateStore:
                 continue
             store._materials[str(key)] = _Entry(
                 types={str(name): str(kind) for name, kind in dict(raw.get("types", {})).items()},
-                values=dict(raw.get("values", {})),
+                values=deepcopy(dict(raw.get("values", {}))),
                 page=max(0, int(raw.get("page", 0))),
             )
         return store

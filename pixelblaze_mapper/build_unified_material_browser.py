@@ -141,8 +141,11 @@ def _execute(parent, name, source, callback):
     node.par.active = True
     node.par.fromop = source.path
     node.par.panels = source.path
-    node.par.panelvalue = "state"
+    node.par.panelvalue = "lselect"
     node.par.offtoon = True
+    node.par.whileon = False
+    node.par.ontooff = False
+    node.par.whileoff = False
     node.par.valuechange = False
     node.text = "def onOffToOn(panelValue):\n    op(%r).module.%s\n    return\n" % (OWNER + "/unified_runtime", callback)
 
@@ -224,8 +227,11 @@ def _momentary_execute(parent, name, source, body):
     node.par.active = True
     node.par.fromop = source.path
     node.par.panels = source.path
-    node.par.panelvalue = "state"
+    node.par.panelvalue = "lselect"
     node.par.offtoon = True
+    node.par.whileon = False
+    node.par.ontooff = False
+    node.par.whileoff = False
     node.par.valuechange = False
     node.text = "def onOffToOn(panelValue):\n    %s\n    return\n" % body
     return node
@@ -249,6 +255,9 @@ def _module():
     return namespace
 def apply_gradient(key):
     return _module()['apply_gradient'](key)
+
+def use_original():
+    return _module()['use_original']()
 def reset_frame():
     return _module()['reset_frame']()
 '''
@@ -259,10 +268,14 @@ def _material_controls(browser):
     controls = op('/project1/madmapper_player_controls')
     runtime = _get_or_create(browser, textDAT, 'mb_control_runtime')
     runtime.text = _material_control_runtime_source()
-    _slider(browser, 'mb_control_speed', 'MASTER SPEED', 20, 754, 250, 0.0, 2.0, controls.par.Speed.eval(), 'Speed')
+    _slider(browser, 'mb_control_speed', 'MATERIAL SPEED', 20, 754, 250, 0.0, 2.0, controls.par.Speed.eval(), 'Speed')
     _slider(browser, 'mb_control_focusx', 'FOCUS X', 285, 754, 190, 0.0, 1.0, controls.par.Focusx.eval(), 'Focusx')
     _slider(browser, 'mb_control_focusy', 'FOCUS Y', 490, 754, 190, 0.0, 1.0, controls.par.Focusy.eval(), 'Focusy')
-    _slider(browser, 'mb_control_zoom', 'FRAME ZOOM', 695, 754, 220, 0.25, 4.0, controls.par.Framezoom.eval(), 'Framezoom')
+    _slider(browser, 'mb_control_zoom', 'FRAME ZOOM', 695, 754, 220, 0.25, 8.0, controls.par.Framezoom.eval(), 'Framezoom')
+    _slider(browser, 'mb_control_gradient_strength', 'GRADIENT MIX', 930, 754, 180, 0.0, 1.0, controls.par.Gradientstrength.eval(), 'Gradientstrength')
+    original = _button(browser, 'mb_control_original', 'ORIGINAL', 930, 790, 110, 28)
+    _momentary_execute(browser, 'mb_control_original_click', original,
+                       "op('/project1/material_browser/mb_control_runtime').module.use_original()")
     for index, (label, value) in enumerate((('STOP', 0.0), ('0.5x', 0.5), ('1x', 1.0), ('2x', 2.0))):
         button = _button(browser, 'mb_control_speed_%d' % index, label, 20 + index * 76, 790, 70, 28)
         _momentary_execute(
@@ -289,13 +302,21 @@ CONTROLS = op('/project1/madmapper_player_controls')
 def update():
     source = str(CONTROLS.par.Source.eval())
     material = str(CONTROLS.par.Material.eval())
-    imported = op('/project1/madmapper_library/material_parameter_state')
+    imported = op('/project1/madmapper_library/browser_state')
     selected = ''
+    active_values = {}
     if imported is not None:
         for row in range(1, imported.numRows):
-            if str(imported[row, 0]) == 'selected_id':
-                selected = str(imported[row, 1])
-                break
+            active_values[str(imported[row, 0])] = str(imported[row, 1])
+        selected = active_values.get('active_id') or active_values.get('live_preview_id', '')
+    if source == 'imported':
+        material = selected or '(no active import)'
+        library = op('/project1/madmapper_library')
+        if library is not None:
+            # Status never evaluates the expensive catalog Text DAT module.
+            material = library.fetch('material_labels_by_id', {}).get(selected, material)
+        if active_values.get('active_label_id') == selected:
+            material = active_values.get('active_label') or material
     OWNER.op('player_status').par.text = (
         'SOURCE: %s  |  MATERIAL: %s%s' % (
             source.upper(), material,
@@ -328,7 +349,7 @@ def _material_player_surface(controls):
         _set(panel, 'bgcolor' + suffix, value)
     _set(panel, 'bgalpha', 1)
     panel.viewer = True
-    _text(panel, 'player_title', 'MATERIAL PLAYER | RAW MATERIAL + LIVE CONTROLS', 20, 670, 1140, 36, 21, (0.92, 0.96, 1.0))
+    _text(panel, 'player_title', 'MATERIAL PLAYER | FINAL MATERIAL + LIVE CONTROLS', 20, 670, 1140, 36, 21, (0.92, 0.96, 1.0))
     _text(panel, 'player_status', 'SOURCE / MATERIAL', 20, 632, 1140, 28, 12, (0.38, 0.76, 0.96))
     _text(panel, 'player_fps', 'FPS', 20, 598, 1140, 26, 11, (0.35, 0.90, 0.67))
     # Show the same canonical source that feeds the live mapping pipeline.
@@ -492,6 +513,7 @@ CATALOG = Path(r'C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/material_lib
 IMPORT_ROOT = Path(r'C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/material_library/imported')
 ITEMS = []
 FILTERED = []
+CATALOG_CACHE_KEY = 'unified_catalog_cache_v1'
 NATIVE_PARAMETER_SLOT_COUNT = 16
 NATIVE_PAGE = 0
 NATIVE_PARAMETER_COLUMN_COUNT = 2
@@ -499,6 +521,27 @@ NATIVE_PARAMETER_ROWS_PER_COLUMN = 8
 NATIVE_SELECTED_SLOT = 0
 NATIVE_PAGE_STORE_KEY = 'native_parameter_page'
 NATIVE_SLOT_STORE_KEY = 'native_parameter_selected_slot'
+
+def _catalog_signature():
+    stamps = []
+    for path in (MANIFEST, CATALOG, IMPORT_ROOT):
+        try:
+            stat = path.stat()
+            stamps.append((str(path), stat.st_mtime_ns, stat.st_size))
+        except OSError:
+            stamps.append((str(path), None, None))
+    return tuple(stamps)
+
+def _cache_catalog():
+    OWNER.store(CATALOG_CACHE_KEY, {'signature': _catalog_signature(), 'items': ITEMS, 'filtered': FILTERED})
+
+def _restore_catalog_cache():
+    global ITEMS, FILTERED
+    cached = OWNER.fetch(CATALOG_CACHE_KEY, None)
+    if not isinstance(cached, dict) or cached.get('signature') != _catalog_signature():
+        return False
+    ITEMS, FILTERED = cached['items'], cached['filtered']
+    return True
 
 def _state(name, default=''):
     table = OWNER.op('unified_state')
@@ -675,6 +718,7 @@ def _render_native_editor(parameter):
     elif kind in ('long', 'enum'):
         action.par.label = _native_value_text(parameter)
     component_width = int((900 - max(0, component_count - 1) * 6) / component_count)
+    title.store('hydrating', True)
     for component in range(4):
         slider = _native_control('native_param_editor_%d' % component)
         handler = _native_control('native_param_editor_%d_change' % component)
@@ -696,6 +740,7 @@ def _render_native_editor(parameter):
         slider.store('parameter_type', kind)
         if handler is not None:
             handler.par.active = True
+    title.store('hydrating', False)
 
 def _native_error(message):
     _layout_native_drawer(2)
@@ -776,6 +821,8 @@ def native_select(slot):
 
 def native_editor_value_changed(component, value):
     title = _native_control('native_param_editor_title')
+    if title.fetch('hydrating', False):
+        return False
     name = title.fetch('parameter_name', '')
     if not name:
         return False
@@ -784,6 +831,9 @@ def native_editor_value_changed(component, value):
         snapshot = library.parameter_snapshot()
         parameter = next(item for item in snapshot['parameters'] if item['name'] == name)
         target_component = -1 if int(parameter.get('components') or 1) <= 1 else int(component)
+        old = parameter['value'] if target_component == -1 else parameter['value'][target_component]
+        if abs(float(old) - float(value)) <= 1e-7:
+            return False
         library.set_material_parameter(name, target_component, float(value))
         snapshot = library.parameter_snapshot()
         parameter = next(item for item in snapshot['parameters'] if item['name'] == name)
@@ -942,6 +992,7 @@ def apply_filters(reset_page=True):
         FILTERED.append(item)
     if reset_page:
         _set_state('page', 0)
+    _cache_catalog()
     render()
 
 def cycle_source():
@@ -975,6 +1026,20 @@ def change_page(delta):
     _set_state('page', page)
     render()
 
+def _sync_core_preview_activity(visible):
+    # A hidden panel alone does not release every legacy TOP consumer. Lock
+    # both the off-page shader and its text overlay at the last cached image.
+    # Returning to the page unlocks them; production TOPs are never touched.
+    active = {item['effect_index'] for item in visible if item['source'] == 'core'}
+    known = {item['effect_index'] for item in ITEMS if item['source'] == 'core'}
+    known.update(OWNER.fetch('core_preview_indices', ()))
+    OWNER.store('core_preview_indices', tuple(sorted(known)))
+    for index in known:
+        for prefix in ('preview_', 'card_top_'):
+            node = OWNER.op(prefix + str(index))
+            if node is not None and bool(node.lock) != (index not in active):
+                node.lock = index not in active
+
 def render():
     compact = _state('layout', '4x2') == '8x4'
     size = 32 if compact else 8
@@ -986,6 +1051,7 @@ def render():
     _button('unified_layout', 'VIEW: ' + ('8 x 4' if compact else '4 x 2'))
     OWNER.op('unified_page').par.text = 'PAGE %d / %d | %d RESULTS' % (page + 1, count, len(FILTERED))
     visible = FILTERED[page * size:page * size + size]
+    _sync_core_preview_activity(visible)
     for slot in range(32):
         viewer = OWNER.op('unified_viewer_%d' % slot)
         button = OWNER.op('unified_card_%d' % slot)
@@ -1018,24 +1084,37 @@ def render():
             viewer.par.opviewer = image.path if item['preview_path'] else OWNER.op('unified_fallback').path
 
 def select_slot(slot):
-    global NATIVE_PAGE, NATIVE_SELECTED_SLOT
     compact = _state('layout', '4x2') == '8x4'
     size = 32 if compact else 8
     index = int(_state('page', 0)) * size + int(slot)
     if not 0 <= index < len(FILTERED):
         return False
-    item = FILTERED[index]
+    button = OWNER.op('unified_card_%d' % int(slot))
+    key = button.fetch('item_key', '') if button is not None else ''
+    item = next((item for item in FILTERED if item['key'] == key), FILTERED[index])
+    _set_state('selected_key', item['key'])
+    _status('SELECTED - %s | APPLY SELECTED to change the active material' % item['label'])
+    return True
+
+def apply_selected():
+    global NATIVE_PAGE, NATIVE_SELECTED_SLOT
+    key = _state('selected_key')
+    item = next((item for item in ITEMS if item['key'] == key), None)
+    if item is None:
+        _status('Select a material first', False)
+        return False
     NATIVE_PAGE = 0
     NATIVE_SELECTED_SLOT = 0
     OWNER.store(NATIVE_PAGE_STORE_KEY, NATIVE_PAGE)
     OWNER.store(NATIVE_SLOT_STORE_KEY, NATIVE_SELECTED_SLOT)
     controls = op('/project1/madmapper_player_controls')
     state_runtime = op('/project1/material_state_runtime')
-    if state_runtime is not None:
-        state_runtime.module.activate(item['key'], item.get('preset', {}))
     if item['source'] == 'core':
-        controls.par.Source = 'materials'
-        controls.par.Material = item['id']
+        if state_runtime is not None:
+            state_runtime.module.activate(item['key'], item.get('preset', {}))
+        else:
+            controls.par.Source = 'materials'
+            controls.par.Material = item['id']
         toggle_native_parameters(False)
         _status('ACTIVE CORE MATERIAL - ' + item['label'])
         return True
@@ -1054,18 +1133,21 @@ def select_slot(slot):
     if item['prepared_path']:
         record['prepared_shader_path'] = item['prepared_path']
     module._set_state('selected_id', item['id'])
-    if not module.open_live_preview():
+    if not module.activate_selected():
         _status('IMPORTED MATERIAL NEEDS MANUAL ADAPTATION - ' + item['label'], False)
         return False
-    controls.par.Source = 'imported'
+    if state_runtime is not None:
+        state_runtime.module.activate(item['key'], item.get('preset', {}))
+    else:
+        controls.par.Source = 'imported'
     toggle_native_parameters(True)
     _status('ACTIVE IMPORTED MATERIAL - ' + item['label'])
     return True
 
-# The Text DAT module is recreated when a .toe file is reopened.  Populate the
-# runtime catalog on import so visible material cards can always resolve their
-# selection, rather than relying on the one-time builder invocation.
-refresh(reset_page=False)
+# Module recreation restores identity/filter data without thumbnail repaint.
+# Explicit refresh/import rebuilds the cache; changed file stamps invalidate.
+if not _restore_catalog_cache():
+    refresh(reset_page=False)
 '''
 
 
@@ -1100,7 +1182,10 @@ def build():
                     ("group", "All"), ("layout", "4x2")):
             state.appendRow(row)
 
-    _text(browser, "unified_title", "MATERIAL BROWSER | CORE + IMPORTED MADMAPPER", 20, 850, 1240, 38, 21, (0.92, 0.96, 1.0))
+    _text(browser, "unified_title", "MATERIAL BROWSER | CORE + IMPORTED MADMAPPER", 20, 850, 995, 38, 21, (0.92, 0.96, 1.0))
+    activate = _button(browser, 'unified_activate', 'APPLY SELECTED', 1040, 850, 220, 34)
+    _momentary_execute(browser, 'unified_activate_click', activate,
+                       "op('/project1/material_browser/unified_runtime').module.apply_selected()")
     search = _field(browser, "unified_search", 20, 704, 315, 38)
     apply_button = _button(browser, "unified_apply", "SEARCH / APPLY", 345, 704, 130)
     source = _button(browser, "unified_source", "SOURCE: ALL", 485, 704, 155)

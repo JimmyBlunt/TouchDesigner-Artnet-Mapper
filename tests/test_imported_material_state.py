@@ -1,4 +1,5 @@
 import unittest
+import json
 
 from pixelblaze_mapper.imported_material_state import ImportedMaterialStateStore
 from pixelblaze_mapper.madmapper_parameters import parameter_schema
@@ -54,6 +55,28 @@ class ImportedMaterialStateTests(unittest.TestCase):
         restored = ImportedMaterialStateStore.from_dict(store.to_dict())
         restored.merge("material", parameters)
         self.assertEqual(restored.page("material", 5), 4)
+
+    def test_rollback_snapshot_is_independent_of_later_edits(self):
+        parameters = schema({"NAME": "speed", "TYPE": "float", "DEFAULT": 1})
+        store = ImportedMaterialStateStore()
+        store.merge("a", parameters)
+        before = store.to_dict()
+        store.set_value("a", parameters[0], 3)
+        restored = ImportedMaterialStateStore.from_dict(before)
+        self.assertEqual(restored.values("a")["speed"], 1)
+        before["materials"]["a"]["values"]["speed"] = 8
+        self.assertEqual(restored.values("a")["speed"], 1)
+
+    def test_json_vector_values_are_not_shared_with_caller(self):
+        parameters = schema({"NAME": "position", "TYPE": "point2D", "DEFAULT": [0, 0]})
+        store = ImportedMaterialStateStore()
+        store.merge("a", parameters)
+        document = json.loads(json.dumps(store.to_dict()))
+        restored = ImportedMaterialStateStore.from_dict(document)
+        document["materials"]["a"]["values"]["position"][0] = 123
+        values = restored.values("a")
+        values["position"][1] = 234
+        self.assertEqual(restored.values("a")["position"], [0, 0])
 
 
 if __name__ == "__main__":

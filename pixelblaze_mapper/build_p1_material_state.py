@@ -18,16 +18,28 @@ STATE_TABLE = ROOT + "/material_state_table"
 
 GRADIENT_SHADER_SOURCE = r'''uniform vec4 uGradientA;
 uniform vec4 uGradientB;
+uniform vec4 uMaterialTone; // intensity, contrast, is import, colour mode
 out vec4 fragColor;
 
 void main()
 {
     vec4 source = texture(sTD2DInputs[0], vUV.st);
+    vec3 raw = source.rgb;
+    if (uMaterialTone.z > 0.5) {
+        // Imported shaders have no Core intensity/contrast stage. Keep black
+        // black; apply contrast here and intensity after any recolouring.
+        source.rgb = max(source.rgb, vec3(0.0));
+        source.rgb = mix(vec3(0.0), clamp((source.rgb - 0.5) * uMaterialTone.y + 0.5, 0.0, 1.0),
+                         step(vec3(0.000001), source.rgb));
+    }
     float luma = clamp(dot(source.rgb, vec3(0.2126, 0.7152, 0.0722)), 0.0, 1.0);
     float position = smoothstep(0.0, 1.0, luma);
     vec3 palette = mix(uGradientB.rgb, uGradientA.rgb, position);
-    vec3 recolored = palette * mix(0.38, 1.18, luma);
+    vec3 recolored = palette * (uMaterialTone.w > 1.5 ? mix(0.38, 1.18, luma) : luma);
     vec3 result = mix(source.rgb, recolored, clamp(uGradientA.a, 0.0, 1.0));
+    if (uMaterialTone.z > 0.5) result *= max(uMaterialTone.x, 0.0);
+    // Even legacy recolouring must respect an explicit blackout value.
+    if (uMaterialTone.x <= 0.0) result = vec3(0.0);
     fragColor = TDOutputSwizzle(vec4(result, source.a));
 }
 '''
@@ -76,7 +88,7 @@ def _install_gradient_postprocess(controls):
     player.par.pixeldat = shader.path
     if player.par.outputresolution is not None:
         player.par.outputresolution = "useinput"
-    player.par.vec.sequence.numBlocks = max(int(player.par.vec.sequence.numBlocks), 2)
+    player.par.vec.sequence.numBlocks = max(int(player.par.vec.sequence.numBlocks), 3)
     player.par.vec0name = "uGradientA"
     player.par.vec1name = "uGradientB"
     for suffix, component in zip("rgb", "xyz"):
@@ -91,9 +103,14 @@ def _install_gradient_postprocess(controls):
     # Recolour only material sources. Movie and show playback remain untouched.
     _set_expression(
         player.par.vec0valuew,
-        "1.0 if op(%r).par.Source.eval() in ('materials', 'imported') else 0.0" % CONTROLS,
+        "op(%r).par.Gradientstrength if op(%r).par.Source.eval() in ('materials', 'imported') and op(%r).par.Colormode.eval() != 'original' else 0.0" % (CONTROLS, CONTROLS, CONTROLS),
     )
     player.par.vec1valuew = 1.0
+    player.par.vec2name = 'uMaterialTone'
+    _set_expression(player.par.vec2valuex, "op(%r).par.Intensity if op(%r).par.Source.eval() in ('materials', 'imported') else 1.0" % (CONTROLS, CONTROLS))
+    _set_expression(player.par.vec2valuey, "op(%r).par.Contrast" % CONTROLS)
+    _set_expression(player.par.vec2valuez, "1.0 if op(%r).par.Source.eval() == 'imported' else 0.0" % CONTROLS)
+    _set_expression(player.par.vec2valuew, "op(%r).par.Colormode.menuIndex" % CONTROLS)
 
     if not player.inputs or player.inputs[0] != source:
         if player.inputs:
@@ -125,7 +142,7 @@ TABLE = op('/project1/material_state_table')
 STATE_OWNER = op('/project1')
 STORE_KEY = 'p1_material_state_store'
 INIT_KEY = 'p1_material_state_runtime_schema'
-RUNTIME_SCHEMA = 2
+RUNTIME_SCHEMA = 3
 _stored = STATE_OWNER.fetch(STORE_KEY, None)
 STORE = _stored if isinstance(_stored, MaterialStateStore) else MaterialStateStore()
 _applying = False
@@ -175,11 +192,16 @@ def _settings_from_controls():
         color_a=_rgba('Color'),
         color_b=_rgba('Color2'),
         coordinate_mode=str(CONTROLS.par.Coordinatemode.eval()),
+        intensity=float(CONTROLS.par.Intensity.eval()),
+        contrast=float(CONTROLS.par.Contrast.eval()),
+        color_mode=str(CONTROLS.par.Colormode.eval()),
+        gradient_strength=float(CONTROLS.par.Gradientstrength.eval()),
     )
 
 
 def _apply(settings):
     global _applying
+    previous_applying = _applying
     _applying = True
     try:
         CONTROLS.par.Speed = settings.speed
@@ -188,6 +210,10 @@ def _apply(settings):
         CONTROLS.par.Focusx = settings.focus_x
         CONTROLS.par.Focusy = settings.focus_y
         CONTROLS.par.Framezoom = settings.zoom
+        CONTROLS.par.Intensity = settings.intensity
+        CONTROLS.par.Contrast = settings.contrast
+        CONTROLS.par.Colormode = settings.color_mode
+        CONTROLS.par.Gradientstrength = settings.gradient_strength
         if CONTROLS.par.Gradientpreset is not None:
             CONTROLS.par.Gradientpreset = settings.gradient
         for suffix, value in zip('rgba', settings.color_a):
@@ -200,7 +226,7 @@ def _apply(settings):
                 parameter.val = value
         CONTROLS.par.Coordinatemode = settings.coordinate_mode
     finally:
-        _applying = False
+        _applying = previous_applying
 
 
 def _current_key():
@@ -208,8 +234,14 @@ def _current_key():
     if source == 'materials':
         return 'core:' + str(CONTROLS.par.Material.eval())
     if source == 'imported':
+        if STORE.active_key and STORE.active_key.startswith('madmapper:'):
+            return STORE.active_key
         state = op('/project1/madmapper_library/browser_state')
         if state is not None:
+            values = {str(state[row, 0]): str(state[row, 1]).strip() for row in range(1, state.numRows)}
+            material_id = values.get('active_id') or values.get('live_preview_id')
+            if material_id:
+                return 'madmapper:' + material_id
             for row in range(1, state.numRows):
                 if str(state[row, 0]) == 'selected_id' and str(state[row, 1]).strip():
                     return 'madmapper:' + str(state[row, 1]).strip()
@@ -241,10 +273,11 @@ def initialize(force=False):
 
 
 def activate(key, preset=None):
+    global _applying
     now = _now()
     if STORE.active_key is not None:
         STORE.set_active_settings(_settings_from_controls(), now)
-    initial = _settings_from_controls()
+    initial = MaterialSettings()
     if preset:
         initial = replace(
             initial,
@@ -252,7 +285,16 @@ def activate(key, preset=None):
             width=float(preset.get('width', initial.width)),
         )
     state = STORE.activate(str(key), now, initial=initial)
-    _apply(state.settings)
+    _applying = True
+    try:
+        if str(key).startswith('core:'):
+            CONTROLS.par.Source = 'materials'
+            CONTROLS.par.Material = str(key).split(':', 1)[1]
+        elif str(key).startswith('madmapper:'):
+            CONTROLS.par.Source = 'imported'
+        _apply(state.settings)
+    finally:
+        _applying = False
     _persist()
     return state.settings.to_dict()
 
@@ -335,7 +377,7 @@ def build():
 
     callback = project.op("material_state_callbacks") or project.create(parameterexecuteDAT, "material_state_callbacks")
     callback.par.op = controls.path
-    callback.par.pars = "Source Material Speed Scale Width Focusx Focusy Framezoom Gradientpreset Color* Coordinatemode Globalmasterspeed"
+    callback.par.pars = "Source Material Speed Scale Width Focusx Focusy Framezoom Intensity Contrast Gradientpreset Gradientstrength Color* Coordinatemode Globalmasterspeed"
     callback.par.valuechange = True
     callback.text = _parameter_callback_source()
 

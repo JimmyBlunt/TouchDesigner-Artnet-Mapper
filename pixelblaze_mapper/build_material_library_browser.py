@@ -217,27 +217,12 @@ def _execute(parent, name, source, callback, panel_value="state"):
 
 
 def _button_chop_execute(parent, name, source, callback):
-    """Run a button action from its output CHOP on every off-to-on edge.
+    """Legacy helper name: use the panel press, not a frame-sampled CHOP.
 
-    Unlike a Panel Execute DAT, this remains armed when render() updates the
-    button label, colour, or enabled state after a page change.
+    Short presses can disappear from a momentary output CHOP between cooks.
+    The direct panel selection is independent of that downstream sample.
     """
-
-    existing = parent.op(name)
-    if existing is not None and existing.type != "chopexec":
-        existing.destroy()
-    node = _get_or_create(parent, chopexecuteDAT, name)
-    node.par.active = True
-    node.par.chop = source.op("out1").path
-    node.par.channel = "*"
-    node.par.offtoon = True
-    node.par.valuechange = False
-    node.text = (
-        "def onOffToOn(channel, sampleIndex, val, prev):\n"
-        "    op(%r).module.%s\n"
-        "    return\n"
-    ) % (OWNER + "/runtime", callback)
-    return node
+    return _execute(parent, name, source, callback, panel_value='lselect')
 
 
 def _hover_execute(parent, name, source, slot):
@@ -277,8 +262,6 @@ from pathlib import Path
 
 import pixelblaze_mapper.madmapper_parameters as _madmapper_parameters_module
 import pixelblaze_mapper.madmapper_td_adapter as _madmapper_adapter_module
-importlib.reload(_madmapper_parameters_module)
-importlib.reload(_madmapper_adapter_module)
 from pixelblaze_mapper.material_library_paging import clamped_page, page_count
 
 OWNER = op('/project1/madmapper_library')
@@ -287,7 +270,11 @@ READY_COMPATIBILITY = {'native', 'touchdesigner', 'ready', 'compatible', 'adapte
 
 _items = []
 _filtered = []
-_hover_context_cache = {}
+_hover_context_cache = OWNER.fetch('material_hover_context_cache', {})
+_parameter_context_cache = OWNER.fetch('material_parameter_context_cache', {})
+OWNER.store('material_hover_context_cache', _hover_context_cache)
+OWNER.store('material_parameter_context_cache', _parameter_context_cache)
+_CATALOG_CACHE_KEY = 'material_library_catalog_cache_v1'
 _RUNTIME_PAGE_KEY = 'material_browser_runtime_page'
 
 from pixelblaze_mapper.imported_material_state import ImportedMaterialStateStore
@@ -301,6 +288,38 @@ PARAMETER_STORE = (_stored_parameter_store
 def _parameter(name, default=''):
     par = getattr(OWNER.par, name, None)
     return str(par.eval()) if par is not None else str(default)
+
+def _catalog_signature():
+    stamps = []
+    for value in (_parameter('Catalogfile'), _parameter('Importroot')):
+        path = Path(value).expanduser().resolve()
+        try:
+            stat = path.stat()
+            stamps.append((str(path), stat.st_mtime_ns, stat.st_size))
+        except OSError:
+            stamps.append((str(path), None, None))
+    return (tuple(stamps), _parameter('Approvedroots'))
+
+def _cache_catalog():
+    OWNER.store(_CATALOG_CACHE_KEY, {'signature': _catalog_signature(), 'items': _items, 'filtered': _filtered})
+    OWNER.store('material_labels_by_id', {item['id']: item['label'] for item in _items})
+
+def _restore_catalog_cache():
+    global _items, _filtered
+    cached = OWNER.fetch(_CATALOG_CACHE_KEY, None)
+    if not isinstance(cached, dict) or cached.get('signature') != _catalog_signature():
+        return False
+    _items, _filtered = cached['items'], cached['filtered']
+    return True
+
+def _restore_active_label():
+    active = _state('active_id') or _state('live_preview_id')
+    if not active:
+        return
+    label = OWNER.fetch('material_labels_by_id', {}).get(active)
+    if label and (_state('active_label_id') != active or _state('active_label') != label):
+        _set_state('active_label', label)
+        _set_state('active_label_id', active)
 
 def _field(name):
     node = OWNER.op('ui_panel/' + name + '/string')
@@ -583,6 +602,8 @@ def _query_token_matches(token, searchable):
     return any(SequenceMatcher(None, token, word).ratio() >= 0.78 for word in words)
 
 def refresh(reset_page=True):
+    if reset_page:
+        _parameter_context_cache.clear()
     global _items
     try:
         catalog_path = Path(_parameter('Catalogfile')).expanduser().resolve(strict=True)
@@ -621,6 +642,7 @@ def apply_filters(reset_page=True):
     if reset_page:
         _set_state('page', 0)
     _set_state('search', query)
+    _cache_catalog()
     render()
 
 def change_page(delta):
@@ -708,6 +730,7 @@ def render():
                 hit.par.display = False
             button.unstore('material_id')
     _write_table('catalog_view', rows)
+    _sync_preview_activity()
 
 def _selected():
     material_id = _state('selected_id')
@@ -716,6 +739,30 @@ def _selected():
 def _item_for_slot(slot):
     index = int(_state('page', 0)) * _page_size() + int(slot)
     return _filtered[index] if 0 <= index < len(_filtered) else None
+
+def _sync_preview_activity():
+    # Lock only diagnostic TOPs. This suppresses their absTime-driven cooks
+    # while retaining the last image; the production live_preview is excluded.
+    hover = OWNER.op('hover_preview')
+    detail = OWNER.op('detail_preview')
+    viewer = OWNER.op('ui_panel/detail_viewer')
+    target = str(viewer.par.opviewer.eval()) if viewer is not None else ''
+    hover_active = False
+    slot = str(_state('hover_slot'))
+    if hover is not None and slot and _state('hover_material_id'):
+        try:
+            item = _item_for_slot(int(slot))
+        except (TypeError, ValueError):
+            item = None
+        card = OWNER.op('ui_panel/card_viewer_' + slot)
+        visible = card is not None and bool(card.par.display.eval())
+        referenced = (target == hover.path or (card is not None and str(card.par.opviewer.eval()) == hover.path))
+        hover_active = bool(visible and referenced and item and item['id'] == _state('hover_material_id'))
+    detail_active = bool(detail is not None and target == detail.path and _state('selected_id')
+                         and _state('detail_preview_id') == _state('selected_id'))
+    for node, active in ((hover, hover_active), (detail, detail_active)):
+        if node is not None and bool(node.lock) != (not active):
+            node.lock = not active
 
 def select_slot(slot):
     size = _page_size()
@@ -750,6 +797,7 @@ def select_slot(slot):
         item['category'], _compatibility_label(item['compatibility']), explanation,
         ', '.join(item['tags']) or '-'))
     _set_text('action_status', 'SELECTED - choose Preview, Import, or Open Live Preview')
+    _sync_preview_activity()
 
 def preview_selected():
     item = _selected()
@@ -768,6 +816,7 @@ def preview_selected():
         fallback.par.text = item['label'] + '\n\nNo stored image preview\nUse OPEN LIVE PREVIEW for TouchDesigner-ready GLSL.'
         viewer.par.opviewer = fallback.path
         _set_text('action_status', 'PREVIEW - metadata fallback; no image was supplied', (0.97, 0.72, 0.26))
+    _sync_preview_activity()
     return True
 
 def _result_path(result):
@@ -827,6 +876,7 @@ def import_selected():
         _set_state('last_import_path', destination)
         _set_state('last_import_id', item['id'])
         _set_state('import_confirm_id', '')
+        _cache_catalog()
         _set_button('import_selected', 'IMPORT SELECTED')
         unified = op('/project1/material_browser/unified_runtime')
         if unified is not None:
@@ -920,13 +970,47 @@ def _adaptation_for_item(item, input_values=None):
     )
 
 def _parameter_context(item):
-    initial = _adaptation_for_item(item)
+    # Runtime uniforms must not re-read/re-adapt a complete shader on every drag.
+    # Check dependency stamps; Refresh also clears this cache for source edits.
+    source_path = _validated_file(item.get('source_path'), {'.fs'})
+    cached = _parameter_context_cache.get(item['id'])
+    def stamps(paths):
+        return tuple((str(path), path.stat().st_mtime_ns, path.stat().st_size) for path in paths)
+    valid = cached is not None and cached['stamp'] == stamps(cached['paths'])
+    if valid:
+        initial = cached['initial']
+    else:
+        initial = _adaptation_for_item(item)
+        from pixelblaze_mapper.material_library import load_catalog
+        from pixelblaze_mapper.madmapper_td_adapter import _INCLUDE_RE, _resolve_include
+        catalog_path = Path(_parameter('Catalogfile')).expanduser().resolve(strict=True)
+        source_root = Path(load_catalog(catalog_path).source_root).resolve()
+        roots = (source_root, source_root.parent, source_path.parent, source_path.parent.parent)
+        paths = {source_path, catalog_path}
+        def dependencies(path):
+            for match in _INCLUDE_RE.finditer(path.read_text(encoding='utf-8-sig')):
+                child = _resolve_include(match.group(1), path.parent, roots)
+                if child is not None and child not in paths:
+                    paths.add(child)
+                    dependencies(child)
+        dependencies(source_path)
+        cached = {'initial': initial, 'paths': tuple(sorted(paths)), 'signature': None}
+        cached['stamp'] = stamps(cached['paths'])
+        _parameter_context_cache[item['id']] = cached
     values = PARAMETER_STORE.merge(item['id'], initial.schema)
-    adaptation = _adaptation_for_item(item, values)
+    signature = json.dumps({p.name: values[p.name] for p in initial.schema if p.compile_time}, sort_keys=True)
+    if cached['signature'] != signature:
+        cached['adaptation'] = _adaptation_for_item(item, values)
+        cached['signature'] = signature
+    adaptation = cached['adaptation']
     if not adaptation.adaptable or not adaptation.shader:
         raise ValueError('; '.join(adaptation.reasons) or 'material is not adaptable')
     values = PARAMETER_STORE.merge(item['id'], adaptation.schema)
     return adaptation, values
+
+def _active_item():
+    material_id = _state('active_id') or _state('live_preview_id')
+    return next((item for item in _items if item['id'] == material_id), None)
 
 def _configure_parameter_uniforms(preview, adaptation, values, publish_schema=True):
     from pixelblaze_mapper.madmapper_parameters import uniform_vector
@@ -954,7 +1038,7 @@ def _configure_parameter_uniforms(preview, adaptation, values, publish_schema=Tr
         _persist_parameter_store()
 
 def parameter_snapshot():
-    item = _selected()
+    item = _active_item()
     if item is None:
         return {'material_id': '', 'parameters': [], 'page': 0, 'page_count': 1}
     adaptation, values = _parameter_context(item)
@@ -986,41 +1070,75 @@ def _compile_errors(preview, info_name='live_preview_info'):
 
 def _activate_parameter_shader(item):
     adaptation, values = _parameter_context(item)
+    # Compile in a detached candidate before replacing the published renderer.
+    candidate = OWNER.op('detail_preview')
+    previous_lock = bool(candidate.lock)
+    candidate.lock = False
+    try:
+        OWNER.op('detail_shader').text = adaptation.shader
+        _configure_parameter_uniforms(candidate, adaptation, values, publish_schema=False)
+        candidate.cook(force=True)
+        errors = _compile_errors(candidate, 'detail_preview_info')
+    finally:
+        candidate.lock = previous_lock
+    if errors:
+        raise ValueError('; '.join(errors)[:900])
     preview = OWNER.op('live_preview')
     previous_shader = str(OWNER.op('preview_shader').text)
-    OWNER.op('preview_shader').text = adaptation.shader
-    _configure_parameter_uniforms(preview, adaptation, values)
-    preview.cook(force=True)
-    errors = _compile_errors(preview)
-    if errors:
-        OWNER.op('preview_shader').text = previous_shader
+    previous_uniforms = _renderer_uniforms(preview)
+    try:
+        OWNER.op('preview_shader').text = adaptation.shader
+        _configure_parameter_uniforms(preview, adaptation, values)
         preview.cook(force=True)
-        raise ValueError('; '.join(errors)[:900])
-    if item.get('imported'):
-        from pixelblaze_mapper.madmapper_td_adapter import write_prepared_shader
-        import_root = _validated_import_root(_parameter('Importroot'))
-        package = (import_root / item['id']).resolve(strict=True)
-        if package.parent != import_root:
-            raise ValueError('Managed material package is outside Import Folder')
-        prepared = write_prepared_shader(adaptation, package / 'prepared.frag')
-        item['prepared_shader_path'] = str(prepared)
+        errors = _compile_errors(preview)
+        if errors:
+            raise ValueError('; '.join(errors)[:900])
+    except Exception:
+        OWNER.op('preview_shader').text = previous_shader
+        _restore_renderer_uniforms(preview, previous_uniforms)
+        preview.cook(force=True)
+        raise
+    # Compilation is not an export action: never rewrite managed source files
+    # as a side effect of dragging a parameter or selecting a material.
     _persist_parameter_store()
     return True
 
 def reset_material_parameters():
     global PARAMETER_STORE
-    item = _selected()
+    item = _active_item()
     if item is None:
         return False
+    before = PARAMETER_STORE.to_dict()
     document = PARAMETER_STORE.to_dict()
     document.get('materials', {}).pop(item['id'], None)
-    PARAMETER_STORE = ImportedMaterialStateStore.from_dict(document)
-    OWNER.store('madmapper_parameter_store', PARAMETER_STORE)
-    return _activate_parameter_shader(item)
+    try:
+        PARAMETER_STORE = ImportedMaterialStateStore.from_dict(document)
+        result = _activate_parameter_shader(item)
+        OWNER.store('madmapper_parameter_store', PARAMETER_STORE)
+        return result
+    except Exception:
+        PARAMETER_STORE = ImportedMaterialStateStore.from_dict(before)
+        _persist_parameter_store()
+        raise
+
+def _renderer_uniforms(preview):
+    return (int(preview.par.vec.sequence.numBlocks),
+            [(p.name, p.eval(), p.expr, str(p.mode)) for p in preview.pars('vec*')
+             if p.name != 'vec'])
+
+def _restore_renderer_uniforms(preview, snapshot):
+    preview.par.vec.sequence.numBlocks = snapshot[0]
+    for name, value, expression, mode in snapshot[1]:
+        parameter = preview.par[name]
+        if parameter is not None:
+            parameter.expr = ''
+            parameter.val = value
+            if expression and 'EXPRESSION' in mode.upper():
+                parameter.expr = expression
 
 def set_material_parameter(name, component, value):
     global PARAMETER_STORE
-    item = _selected()
+    item = _active_item()
     if item is None:
         raise ValueError('select an imported material first')
     adaptation, values = _parameter_context(item)
@@ -1028,9 +1146,12 @@ def set_material_parameter(name, component, value):
     if parameter is None:
         raise KeyError(name)
     previous_document = PARAMETER_STORE.to_dict()
+    previous_uniforms = _renderer_uniforms(OWNER.op('live_preview'))
     try:
         component = None if component is None or int(component) < 0 else int(component)
-        PARAMETER_STORE.set_value(item['id'], parameter, value, component=component)
+        updated = PARAMETER_STORE.set_value(item['id'], parameter, value, component=component)
+        if updated == values[parameter.name]:
+            return updated
         if parameter.compile_time:
             _activate_parameter_shader(item)
         else:
@@ -1042,6 +1163,8 @@ def set_material_parameter(name, component, value):
     except Exception:
         PARAMETER_STORE = ImportedMaterialStateStore.from_dict(previous_document)
         OWNER.store('madmapper_parameter_store', PARAMETER_STORE)
+        _restore_renderer_uniforms(OWNER.op('live_preview'), previous_uniforms)
+        _persist_parameter_store()
         raise
 
 def pulse_material_parameter(name):
@@ -1083,10 +1206,15 @@ def _compile_hover_item(item):
     shader = OWNER.op('hover_shader')
     compiled_id = str(OWNER.fetch('hover_compiled_id', ''))
     source_changed = compiled_id != material_id or str(shader.text) != source
-    _configure_parameter_uniforms(preview, adaptation, values, publish_schema=False)
-    if source_changed:
-        shader.text = source
-    preview.cook(force=True)
+    previous_lock = bool(preview.lock)
+    preview.lock = False
+    try:
+        _configure_parameter_uniforms(preview, adaptation, values, publish_schema=False)
+        if source_changed:
+            shader.text = source
+        preview.cook(force=True)
+    finally:
+        preview.lock = previous_lock
     errors = _diagnostic_messages(preview.errors())
     info = OWNER.op('hover_preview_info')
     info_text = str(info.text) if info is not None else ''
@@ -1116,14 +1244,15 @@ def _restore_active_hover():
         # older implementation which did not persist a restore target.
         if target is None and hover is not None and str(detail.par.opviewer.eval()) == hover.path:
             selected_id = str(_state('selected_id'))
-            target = (OWNER.op('live_preview')
-                      if selected_id and _state('live_preview_id') == selected_id
+            target = (OWNER.op('detail_preview')
+                      if selected_id and _state('detail_preview_id') == selected_id
                       else OWNER.op('preview_fallback'))
         if target is not None:
             detail.par.opviewer = target.path
     _set_state('hover_slot', '')
     _set_state('hover_material_id', '')
     _set_state('hover_detail_restore', '')
+    _sync_preview_activity()
 
 def hover_slot(slot, entered):
     slot = int(slot)
@@ -1158,12 +1287,14 @@ def hover_slot(slot, entered):
         _set_state('hover_detail_restore', detail_restore)
         _set_state('hover_slot', slot)
         _set_state('hover_material_id', item['id'])
+        _sync_preview_activity()
         _set_text('action_status', 'HOVER LIVE - %s | %.1f s loop' % (
             item['label'], float(OWNER.par.Hoverloopseconds.eval())), (0.38, 0.76, 0.96))
         return True
     except Exception as error:
         _set_text('action_status', 'HOVER STORED PREVIEW - %s | %s' % (
             item['label'], str(error)[:180]), (0.97, 0.72, 0.26))
+        _sync_preview_activity()
         return False
 
 def open_live_preview():
@@ -1188,13 +1319,14 @@ def open_live_preview():
             raise ValueError('Shader has no void main() entry point')
         if 'TDOutputSwizzle' not in source or 'vUV' not in source:
             raise ValueError('Shader is imported but still needs TouchDesigner GLSL adaptation')
-        OWNER.op('preview_shader').text = source
-        preview = OWNER.op('live_preview')
-        _configure_parameter_uniforms(preview, adaptation, values)
+        OWNER.op('detail_shader').text = source
+        preview = OWNER.op('detail_preview')
+        preview.lock = False
+        _configure_parameter_uniforms(preview, adaptation, values, publish_schema=False)
         preview.cook(force=True)
         errors = _diagnostic_messages(preview.errors())
         warnings = _diagnostic_messages(preview.warnings())
-        info = OWNER.op('live_preview_info')
+        info = OWNER.op('detail_preview_info')
         info_text = str(info.text) if info is not None else ''
         compile_lines = [line.strip() for line in info_text.splitlines()
                          if 'error:' in line.lower() or 'failed' in line.lower()]
@@ -1214,7 +1346,7 @@ def open_live_preview():
             return False
         viewer = OWNER.op('ui_panel/detail_viewer')
         viewer.par.opviewer = preview.path
-        _set_state('live_preview_id', item['id'])
+        _set_state('detail_preview_id', item['id'])
         note = 'LIVE PREVIEW - compiled successfully; isolated local TOP'
         if warnings:
             note += ' (with warning)'
@@ -1223,17 +1355,33 @@ def open_live_preview():
     except Exception as error:
         _set_text('action_status', 'LIVE PREVIEW BLOCKED - ' + str(error), (0.98, 0.38, 0.32))
         return False
+    finally:
+        _sync_preview_activity()
 
-_restore_parameter_store()
-# A Text DAT module can be recreated after a project reload or after its source
-# changes. The persistent selection lives in the state table, while the
-# catalogue lists above are intentionally in-memory. Repopulate them here so a
-# later button or parameter callback never sees a selected id with empty items.
+def activate_selected():
+    """The only catalog action allowed to publish a different import."""
+    item = _selected()
+    if item is None:
+        return False
+    try:
+        _activate_parameter_shader(item)
+        _set_state('active_id', item['id'])
+        _set_state('live_preview_id', item['id'])
+        _set_state('active_label', item['label'])
+        _set_state('active_label_id', item['id'])
+        return True
+    except Exception as error:
+        _set_text('action_status', 'APPLY BLOCKED - previous material retained: ' + str(error), (0.98, 0.38, 0.32))
+        return False
+
+# Recreating a DAT module must not re-read 638 packages or repaint 32 cards.
+# Source/include stamps remain checked separately by _parameter_context.
 if hasattr(OWNER, 'op'):
-    # ``DAT.module`` is evaluated for every callback access in TouchDesigner.
-    # Populate the in-memory catalogue without resetting the user's page;
-    # explicit REFRESH CATALOG still calls refresh() with the default reset.
-    refresh(reset_page=False)
+    if not isinstance(_stored_parameter_store, ImportedMaterialStateStore):
+        _restore_parameter_store()
+    if not _restore_catalog_cache():
+        refresh(reset_page=False)
+    _restore_active_label()
 '''
 
 
@@ -1401,6 +1549,29 @@ def build():
     hover_preview_info = _get_or_create(owner, infoDAT, "hover_preview_info")
     _set_if_present(hover_preview_info, "op", hover_preview.path)
     hover_preview_info.nodeX, hover_preview_info.nodeY = 600, -200
+
+    # Selected/detail preview has its own shader and uniforms, separate from
+    # both transient hover and the production imported_material_out renderer.
+    detail_shader = _get_or_create(owner, textDAT, "detail_shader")
+    if not str(detail_shader.text).strip():
+        detail_shader.text = FALLBACK_SHADER
+    detail_preview = _get_or_create(owner, glslTOP, "detail_preview")
+    for name in ('glslversion', 'mode', 'outputresolution', 'resolutionw', 'resolutionh'):
+        _set_if_present(detail_preview, name, hover_preview.par[name].eval())
+    detail_preview.par.pixeldat = detail_shader.path
+    detail_preview.par.vec.sequence.numBlocks = max(3, int(detail_preview.par.vec.sequence.numBlocks))
+    for block, uniform in enumerate(('uTDMaterial0', 'uTDMaterial1', 'uTDCoordinate')):
+        detail_preview.par['vec%dname' % block].val = uniform
+        for suffix in 'xyzw':
+            template = hover_preview.par['vec%dvalue%s' % (block, suffix)]
+            target = detail_preview.par['vec%dvalue%s' % (block, suffix)]
+            target.val = template.eval()
+            if template.expr:
+                target.expr = template.expr
+    detail_preview.par.vec0valuex.expr = 'absTime.seconds'
+    detail_preview.nodeX, detail_preview.nodeY = 420, -340
+    detail_info = _get_or_create(owner, infoDAT, 'detail_preview_info')
+    detail_info.par.op = detail_preview.path
 
     compile_error_preview = _get_or_create(owner, textTOP, "compile_error_preview")
     _set_if_present(compile_error_preview, "text", "LIVE PREVIEW COULD NOT COMPILE")

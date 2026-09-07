@@ -104,8 +104,7 @@ def test_pagination_uses_repeatable_button_output_edges():
     runtime = module()._runtime_source()
     assert 'navigation, "layer", 120' in text
     assert "def _button_chop_execute(" in text
-    assert 'existing.type != "chopexec"' in text
-    assert 'node.par.chop = source.op("out1").path' in text
+    assert "return _execute(parent, name, source, callback, panel_value='lselect')" in text
     assert 'node.par.offtoon = True' in text
     assert '_button_chop_execute(owner, "previous_page_click", previous, "change_page(-1)")' in text
     assert '_button_chop_execute(owner, "next_page_click", next_button, "change_page(1)")' in text
@@ -211,14 +210,8 @@ def test_native_material_state_and_uniform_contract_is_persistent_and_dynamic():
     assert "prepared_shader_is_current(source)" in runtime
     assert "write_prepared_shader(adaptation, package / 'prepared.frag')" in runtime
     assert "_restore_parameter_store()" in runtime
-    assert "later button or parameter callback never sees" in runtime
-    assert runtime.rstrip().endswith(
-        "if hasattr(OWNER, 'op'):\n"
-        "    # ``DAT.module`` is evaluated for every callback access in TouchDesigner.\n"
-        "    # Populate the in-memory catalogue without resetting the user's page;\n"
-        "    # explicit REFRESH CATALOG still calls refresh() with the default reset.\n"
-        "    refresh(reset_page=False)"
-    )
+    assert "if not _restore_catalog_cache():\n        refresh(reset_page=False)" in runtime
+    assert runtime.rstrip().endswith("_restore_active_label()")
 
 
 def test_persisted_managed_import_restores_prepared_shader_after_runtime_restart():
@@ -240,6 +233,13 @@ def test_persisted_managed_import_restores_prepared_shader_after_runtime_restart
             self.par.Approvedroots = Parameter(str(approved_root))
             self.par.Importroot = Parameter(str(import_root))
             self.par.Catalogfile = Parameter(str(approved_root / "catalog.json"))
+            self.storage = {}
+
+        def fetch(self, key, default=None):
+            return self.storage.get(key, default)
+
+        def store(self, key, value):
+            self.storage[key] = value
 
     with tempfile.TemporaryDirectory() as temp:
         approved_root = Path(temp).resolve()

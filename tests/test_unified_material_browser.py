@@ -60,7 +60,7 @@ def test_selection_preserves_existing_indices_and_appends_imported_source():
     runtime = module()._runtime_source()
     assert "controls.par.Source = 'materials'" in runtime
     assert "controls.par.Source = 'imported'" in runtime
-    assert "module.open_live_preview()" in runtime
+    assert "module.activate_selected()" in runtime
     assert 'if "imported" not in names:' in text
     assert 'names.append("imported")' in text
     assert "imported_source.outputConnectors[0].connect(switch)" in text
@@ -115,7 +115,7 @@ def test_material_sliders_watch_the_real_value0_parameter():
 def test_material_player_shortcut_surface_has_preview_and_live_controls():
     text = source()
     assert "def _material_player_surface(controls):" in text
-    assert "MATERIAL PLAYER | RAW MATERIAL + LIVE CONTROLS" in text
+    assert "MATERIAL PLAYER | FINAL MATERIAL + LIVE CONTROLS" in text
     assert "controls, containerCOMP, 'ui_panel'" in text
     assert "panel.viewer = True" in text
     assert "'player_preview'" in text

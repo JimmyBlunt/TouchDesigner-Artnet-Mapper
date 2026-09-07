@@ -119,6 +119,13 @@ def _install_parameters(controls):
     _add_float(page, "Focusx", "Focus X", 0.5, 0.0, 1.0)
     _add_float(page, "Focusy", "Focus Y", 0.5, 0.0, 1.0)
     _add_float(page, "Framezoom", "Frame Zoom", 1.0, 0.25, 8.0)
+    _add_float(page, "Gradientstrength", "Gradient Strength", 1.0, 0.0, 1.0)
+    mode = controls.par['Colormode']
+    if mode is None:
+        mode = page.appendMenu('Colormode', label='Colour Mode')[0]
+        mode.menuNames = ['original', 'gradient', 'legacy']
+        mode.menuLabels = ['Original', 'Gradient (preserve black)', 'Legacy look']
+        mode.val = 'legacy'
     _add_menu(
         page,
         "Gradientpreset",
@@ -162,6 +169,8 @@ def apply_gradient(key: str):
     if controls is None:
         raise RuntimeError("Material controls are missing")
     preset = GRADIENT_PRESETS[key]
+    if controls.par['Colormode'] is not None:
+        controls.par.Colormode = 'gradient'
     controls.par.Colorr, controls.par.Colorg, controls.par.Colorb = preset.color_a
     controls.par.Color2r, controls.par.Color2g, controls.par.Color2b = preset.color_b
     if hasattr(controls.par, "Gradientpreset"):
@@ -170,6 +179,15 @@ def apply_gradient(key: str):
     if postprocess is not None:
         postprocess.cook(force=True)
     return preset
+
+
+def use_original():
+    """Bypass recolouring without discarding the stored gradient colours."""
+    controls = op(CONTROLS_PATH)
+    if controls is None or controls.par['Colormode'] is None:
+        raise RuntimeError('Colour mode is not installed')
+    controls.par.Colormode = 'original'
+    return True
 
 
 def reset_frame():

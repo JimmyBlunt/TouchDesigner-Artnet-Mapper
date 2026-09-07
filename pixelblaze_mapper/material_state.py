@@ -50,6 +50,10 @@ class MaterialSettings:
     color_a: tuple[float, float, float, float] = DEFAULT_COLOR_A
     color_b: tuple[float, float, float, float] = DEFAULT_COLOR_B
     coordinate_mode: str = "global"
+    intensity: float = 1.0
+    contrast: float = 1.25
+    color_mode: str = "original"
+    gradient_strength: float = 1.0
 
     def __post_init__(self) -> None:
         object.__setattr__(self, "speed", _finite("speed", self.speed, 0.0, 16.0))
@@ -58,6 +62,11 @@ class MaterialSettings:
         object.__setattr__(self, "focus_x", _finite("focus_x", self.focus_x, 0.0, 1.0))
         object.__setattr__(self, "focus_y", _finite("focus_y", self.focus_y, 0.0, 1.0))
         object.__setattr__(self, "zoom", _finite("zoom", self.zoom, 0.25, 8.0))
+        object.__setattr__(self, "intensity", _finite("intensity", self.intensity, 0.0, 2.0))
+        object.__setattr__(self, "contrast", _finite("contrast", self.contrast, 0.1, 4.0))
+        object.__setattr__(self, "gradient_strength", _finite("gradient_strength", self.gradient_strength, 0.0, 1.0))
+        if self.color_mode not in ('original', 'gradient', 'legacy'):
+            raise ValueError('color_mode must be original, gradient, or legacy')
         if not str(self.gradient).strip():
             raise ValueError("gradient must not be empty")
         object.__setattr__(self, "gradient", str(self.gradient))
@@ -73,7 +82,11 @@ class MaterialSettings:
 
     @classmethod
     def from_dict(cls, values: Mapping[str, Any]) -> "MaterialSettings":
-        return cls(**dict(values))
+        values = dict(values)
+        # Old projects always had duotone applied. Preserve that look rather
+        # than silently switching existing shows to the new default.
+        values.setdefault('color_mode', 'legacy')
+        return cls(**values)
 
 
 @dataclass(frozen=True)

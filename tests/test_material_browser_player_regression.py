@@ -39,7 +39,7 @@ class MaterialBrowserPlayerRegressionTests(unittest.TestCase):
     def test_material_browser_exposes_all_current_live_controls(self):
         text = source(BROWSER)
         for label in (
-        "MASTER SPEED",
+        "MATERIAL SPEED",
         "FOCUS X",
         "FOCUS Y",
         "FRAME ZOOM",
