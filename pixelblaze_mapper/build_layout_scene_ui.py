@@ -31,6 +31,9 @@ def accept_scan_request(request, scan):
     adapter.refresh(owner())
     adapter.status(owner(), 'SCAN MERGED TO DRAFT | Active LEDs unchanged')
 def get_scene(): return adapter.editor(owner()).current.scene
+def prepare_save():
+    from pixelblaze_mapper.layout_session_storage import prepare_save as snapshot
+    return snapshot(owner())
 ''' % (ROOT, OWNER)
 
 
@@ -326,6 +329,7 @@ def build(initial_path=""):
     runtime.module.adapter.frame_view(owner, reset=True)
     runtime.module.fixtures.frame_output(owner)
     runtime.module.action("view2d" if owner.fetch("layout_view", "3d") == "2d" else "view3d")
+    runtime.module.prepare_save()
     panel.viewer = True
     return {"owner": owner.path, "target": panel.path, "activeModified": False,
             "routeModified": False, "applyInstalled": op("/project1/layout_apply/runtime") is not None, "projectSaved": False}

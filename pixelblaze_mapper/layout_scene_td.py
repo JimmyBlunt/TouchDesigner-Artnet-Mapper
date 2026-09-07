@@ -19,10 +19,20 @@ PALETTE_VERSION = 1
 
 
 def editor(owner):
+    from .layout_scene_adapter import LayoutEditor
+    from .layout_session_storage import LAYOUT_KEY, layout_snapshot, restore_layout, persist_layout
     value = owner.fetch("layout_editor_session", None)
-    if value is None:
+    if value is not None and type(value) is not LayoutEditor:
+        value = restore_layout(layout_snapshot(value))
+        owner.store("layout_drag", None)
+        owner.store("ui_prepared_context", None)
+        owner.store("layout_editor_session", value)
+        persist_layout(owner, value)
+    elif value is None:
         saved = owner.op("draft_document")
-        value = LayoutEditor(load_document_json(saved.text) if saved is not None and saved.text.strip() else None)
+        durable = owner.fetch(LAYOUT_KEY, None)
+        value = restore_layout(durable) if durable is not None else LayoutEditor(load_document_json(saved.text) if saved is not None and saved.text.strip() else None)
+        persist_layout(owner, value)
         owner.store("layout_editor_session", value)
     return value
 
@@ -61,6 +71,8 @@ def active_hash(owner):
 
 def refresh(owner, *, fields=True, save=True):
     session = editor(owner)
+    from .layout_session_storage import persist_layout
+    persist_layout(owner, session)
     scene = session.display_scene
     if save:
         owner.op("draft_document").text = document_json(session.current)

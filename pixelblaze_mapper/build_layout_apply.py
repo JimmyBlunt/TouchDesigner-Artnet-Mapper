@@ -302,6 +302,8 @@ class TouchDesignerLayoutAdapter:
 
 
 def prepare_current(owner, *, mode, projection='YX', preserve_routing=False):
+    from pixelblaze_mapper.layout_session_storage import prepare_apply_save
+    prepare_apply_save(owner)
     from pixelblaze_mapper.layout_scene_td import editor
     from pixelblaze_mapper.layout_fixture_td import history
     ui = owner.op('/project1/layout_scene_editor')
@@ -363,7 +365,12 @@ def apply():
     return apply_current(OWNER)
 def revert():
     return revert_last(OWNER)
+def prepare_save():
+    from pixelblaze_mapper.layout_session_storage import prepare_apply_save
+    return prepare_apply_save(OWNER)
 """
+    from pixelblaze_mapper.layout_session_storage import prepare_apply_save
+    prepare_apply_save(owner)
     return owner
 
 

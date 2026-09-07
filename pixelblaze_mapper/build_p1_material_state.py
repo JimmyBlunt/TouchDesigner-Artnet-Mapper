@@ -136,6 +136,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from pixelblaze_mapper.material_state import MaterialSettings, MaterialStateStore
+from pixelblaze_mapper.material_storage import runtime_cache, state_document
 
 CONTROLS = op('/project1/madmapper_player_controls')
 TABLE = op('/project1/material_state_table')
@@ -144,7 +145,22 @@ STORE_KEY = 'p1_material_state_store'
 INIT_KEY = 'p1_material_state_runtime_schema'
 RUNTIME_SCHEMA = 3
 _stored = STATE_OWNER.fetch(STORE_KEY, None)
-STORE = _stored if isinstance(_stored, MaterialStateStore) else MaterialStateStore()
+_runtime_cache = runtime_cache(STATE_OWNER, 'p1_material_runtime_cache')
+_runtime_store = _runtime_cache.get('store')
+if isinstance(_runtime_store, MaterialStateStore):
+    STORE = _runtime_store
+else:
+    # Convert stale pre-reload instances by their data, not class identity.
+    _document = state_document(_runtime_store if _runtime_store is not None else _stored)
+    STORE = MaterialStateStore.from_dict(_document) if _document is not None else MaterialStateStore()
+    _runtime_cache['store'] = STORE
+if _stored is not None and not isinstance(_stored, dict):
+    STATE_OWNER.store(STORE_KEY, state_document(STORE))
+_durable_document = STATE_OWNER.fetch(STORE_KEY, None)
+# The live marker skips expensive reinitialization after DAT reload. It must
+# not survive a file reopen, which needs to rebase the persisted phase clock.
+if hasattr(STATE_OWNER, 'storeStartupValue'):
+    STATE_OWNER.storeStartupValue(INIT_KEY, None)
 _applying = False
 
 
@@ -163,7 +179,10 @@ def _table_document():
 
 
 def _persist():
-    STATE_OWNER.store(STORE_KEY, STORE)
+    global _durable_document
+    _durable_document = STORE.to_dict()
+    STATE_OWNER.store(STORE_KEY, _durable_document)
+    _runtime_cache['store'] = STORE
     STATE_OWNER.store(INIT_KEY, RUNTIME_SCHEMA)
     document = json.dumps(STORE.to_dict(), sort_keys=True, separators=(',', ':'))
     TABLE.clear()
@@ -251,11 +270,15 @@ def _current_key():
 def initialize(force=False):
     global STORE
     if not force and STATE_OWNER.fetch(INIT_KEY, None) == RUNTIME_SCHEMA:
-        existing = STATE_OWNER.fetch(STORE_KEY, None)
+        existing = _runtime_cache.get('store')
         if isinstance(existing, MaterialStateStore):
             STORE = existing
             return STORE.active_key
-    document = _table_document()
+    # Storage includes the most recent phase tick; the DAT is a recovery copy
+    # updated only on settings/activation, not at frame rate.
+    document = STATE_OWNER.fetch(STORE_KEY, None)
+    if not isinstance(document, dict):
+        document = _table_document()
     if document:
         STORE = MaterialStateStore.from_dict(document)
     CONTROLS.par.Globalmasterspeed = STORE.global_master_speed
@@ -315,11 +338,20 @@ def controls_changed():
 
 
 def tick():
-    return STORE.tick(_now())
+    value = STORE.tick(_now())
+    # Keep just two primitive clock scalars current in the existing dictionary.
+    # No store(), DAT rewrite, JSON encoding, or all-material copy per frame.
+    if isinstance(_durable_document, dict) and STORE.active_key is not None:
+        saved = _durable_document.get('materials', {}).get(STORE.active_key)
+        if saved is not None:
+            state = STORE.state(STORE.active_key)
+            saved['phase'] = float(state.phase)
+            saved['last_time'] = state.last_time
+    return value
 
 
 def phase():
-    return STORE.phase_at(_now())
+    return tick()
 
 
 if STATE_OWNER.fetch(INIT_KEY, None) != RUNTIME_SCHEMA:

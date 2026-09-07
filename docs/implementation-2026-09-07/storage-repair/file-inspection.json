@@ -1,0 +1,12 @@
+{
+  "data_only_unpickle": "passed",
+  "verified_storage_nodes": [
+    "project1.n",
+    "project1/show_control.n",
+    "project1/madmapper_library.n",
+    "project1/layout_scene_editor.n",
+    "project1/layout_apply.n"
+  ],
+  "layout_fixture_histories_present": true,
+  "transient_classes_excluded": true
+}

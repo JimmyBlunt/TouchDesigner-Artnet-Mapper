@@ -2,6 +2,8 @@
 
 Stand: 07.09.2026, laufender Implementierungsschritt. **Kein vollständiger Abschlussbericht.** Die historischen Auditberichte beschreiben den Ausgangsstand, nicht diese Änderungen.
 
+**Speicher-Nachtrag:** Die erste `P0P1_2D_CANDIDATE.1.toe` meldete echte PicklingErrors und ist keine freigegebene Sicherung. Der Speicherfehler wurde danach korrigiert. Maßgeblich ist jetzt `Backup/Implementation/PixelblazeMapper_20260907_STORAGE_VERIFIED.1.toe`: native Meldung „saved successfully“, anschließend tatsächlich neu geladen und Werte verglichen. Details: `SAVE_REPAIR_DE.md` und `storage-repair/roundtrip-result.json`. Die übrigen Funktions-/Performanceabnahmen bleiben offen.
+
 ## Übersicht
 
 | Bereich | Implementiert | Nachgewiesen | Noch offen |
@@ -16,7 +18,7 @@ Stand: 07.09.2026, laufender Implementierungsschritt. **Kein vollständiger Absc
 
 ## Reproduzierbare Belege
 
-- Gesamtsuite einschließlich Vorschau-Sperrung und LED-only-Geometrie: `python -m unittest discover -s tests` → **540 Tests, OK**, 23,815 Sekunden.
+- Gesamtsuite nach Speicherreparatur: `python -m unittest discover -s tests` → **558 Tests, OK**, 32,464 Sekunden. Zuvor 540 Tests; diese hatten die Klassenidentitätsfehler beim Speichern nicht abgedeckt.
 - `install-p0.json`, `install-materials.json`, `install-show.json`, `install-layout.json`, `install-shortcuts.json`: Ergebnis der gezielten Live-Builds. Die Ausgabe war ausgeschaltet; diese Dateien sind kein Hardwaretest.
 - `gpu-material-probe.json`: tatsächliche Pixelwerte aus `res1`, 512 × 512 RGBA. Intensität 0: maximale und mittlere RGB-Komponente exakt 0. Der erste Versuch lief wegen eines offenen Windows-Systemmenüs in einen Antwort-Timeout; nach Schließen wurde der wiederhergestellte Zustand geprüft und der Test erfolgreich wiederholt.
 - `material-page2-click-test.json`: ausgewählte und aktive Material-ID sowie Wiederherstellung von Bubble Rings nach dem Test.
@@ -62,7 +64,9 @@ Der Ausgangszustand wurde vor der Installation separat als TOE-Checkpoint gesich
 
 ## Gesicherter Testkandidat und nächste Reihenfolge
 
-Gespeichert und in dieser Sitzung geöffnet: `Backup/Implementation/PixelblazeMapper_20260907_P0P1_2D_CANDIDATE.1.toe`. `saved-candidate.json` bestätigt erfolgreiche Speicherung, Sender OFF und keine gemeldeten Operatorfehler. Nicht als Produktionsfreigabe gekennzeichnet; die alte CORE-Datei bleibt unverändert durch diesen Sicherungsschritt.
+Historische Datei: `Backup/Implementation/PixelblazeMapper_20260907_P0P1_2D_CANDIDATE.1.toe`. `saved-candidate.json` erfasste nur den Rückgabewert der Speicherfunktion und Operatorfehler, NICHT die nativen Speicherwarnungen. Die frühere Erfolgsaussage war deshalb falsch. Dieser Beleg bleibt zur Nachvollziehbarkeit unverändert archiviert.
+
+Aktuell gespeichert und erneut geöffnet: `Backup/Implementation/PixelblazeMapper_20260907_STORAGE_VERIFIED.1.toe`. 15 Zustands-/Sicherheitsprüfungen im Roundtrip bestanden, alle 8 gespeicherten importierten Materialien mit 137 Parameterwerten erhalten, Sender OFF und keine Pakete gesendet. Keine allgemeine Produktionsfreigabe; ältere Dateien bleiben erhalten.
 
 1. Performance unter kontrollierter Fensterlast weiter messen; Rückkehr auf Core-Seite und echtes Hover-Ein/Aus nach Preview-Freeze separat abnehmen. Native Shortcut-Nebenwirkung bei C klären.
 2. Verbleibende Controller-/Show-/Layout-Eingabematrix durchgehen; kombinierte neue LED-Anzahl und Routenumstellung als gemeinsame Transaktion ergänzen, nicht still über die Entwurfsfelder ausgeben.

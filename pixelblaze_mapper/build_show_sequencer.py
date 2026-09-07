@@ -194,6 +194,11 @@ if LOCAL_ROOT not in sys.path:
     sys.path.insert(0, LOCAL_ROOT)
 from pixelblaze_mapper.show_sequencer import Show, ShowSequencer, TransportState
 
+# Module globals are transient; COMP storage must never hold a Python runtime.
+_runtime_record = None
+_STATE_DEFAULTS = {'cue_index': '0', 'elapsed': '0', 'outgoing_slot': 'A',
+                   'slot_time_offset': '0', 'loop': '0', 'blackout': '0', 'transport': 'stopped'}
+
 def _set(key, value):
     table = op('state_table')
     for row in range(1, table.numRows):
@@ -219,13 +224,26 @@ def _put(table_path, key, value):
             return
     table.appendRow([key, value])
 
-def runtime():
+def _persist_state():
     owner = op('callbacks').parent()
+    record = {'schema': 'pixelblaze-show-runtime-state', 'version': 1,
+              'show_json': str(op('show_json').text),
+              'state': {key: str(_get(key, default)) for key, default in _STATE_DEFAULTS.items()},
+              'resume_requires_play': True}
+    # Also replaces stale tuples containing a class from an earlier reload.
+    # Do this before parsing Show JSON, so even an invalid Show cannot retain
+    # an unpicklable legacy runtime object in the saved COMP.
+    if owner.fetch('show_runtime_record', None) != record:
+        owner.store('show_runtime_record', record)
+    return record
+
+def runtime():
+    global _runtime_record
     signature = op('show_json').text
-    record = owner.fetch('show_runtime_record', None)
-    if not record or record[0] != signature or not isinstance(record[1], ShowSequencer):
+    if not _runtime_record or _runtime_record[0] != signature or not isinstance(_runtime_record[1], ShowSequencer):
+        _persist_state()
         sequence = ShowSequencer(Show.from_dict(json.loads(signature)))
-        # Rebuild/module reload restores transport; it is not a PLAY/STOP command.
+        # Tables are the authoritative durable state; storage is plain backup.
         index = int(_get('cue_index', 0))
         if 0 <= index < len(sequence.show.cues):
             sequence.cue_index = index
@@ -235,9 +253,13 @@ def runtime():
         sequence.set_loop(bool(int(_get('loop', int(sequence.show.loop)))))
         sequence.set_blackout(bool(int(_get('blackout', 0))))
         sequence.state = TransportState(str(_get('transport', 'stopped')))
-        record = (signature, sequence)
-        owner.store('show_runtime_record', record)
-    return record[1]
+        # Reopen/reload is never permission to resume the Show automatically.
+        if sequence.state is TransportState.PLAYING:
+            sequence.pause()
+        _set('transport', sequence.state.value)
+        _persist_state()
+        _runtime_record = (signature, sequence)
+    return _runtime_record[1]
 
 def sync():
     sequence = runtime()
@@ -274,6 +296,7 @@ def sync():
     _put('transition_adapter/mixer_request', 'incoming_slot', plan.incoming_slot or '')
     _put('transition_adapter/mixer_request', 'loop', int(sequence.show.loop))
     _put('transition_adapter/mixer_request', 'status', 'READY')
+    _persist_state()
     render = op('render_sync')
     if render is not None:
         render.module.sync_render()

@@ -263,6 +263,7 @@ from pathlib import Path
 import pixelblaze_mapper.madmapper_parameters as _madmapper_parameters_module
 import pixelblaze_mapper.madmapper_td_adapter as _madmapper_adapter_module
 from pixelblaze_mapper.material_library_paging import clamped_page, page_count
+from pixelblaze_mapper.material_storage import runtime_cache, state_document
 
 OWNER = op('/project1/madmapper_library')
 VIEW_HEADERS = ('slot', 'id', 'label', 'category', 'tags', 'compatibility', 'source_path', 'preview_path')
@@ -270,10 +271,8 @@ READY_COMPATIBILITY = {'native', 'touchdesigner', 'ready', 'compatible', 'adapte
 
 _items = []
 _filtered = []
-_hover_context_cache = OWNER.fetch('material_hover_context_cache', {})
-_parameter_context_cache = OWNER.fetch('material_parameter_context_cache', {})
-OWNER.store('material_hover_context_cache', _hover_context_cache)
-OWNER.store('material_parameter_context_cache', _parameter_context_cache)
+_hover_context_cache = runtime_cache(OWNER, 'material_hover_context_cache')
+_parameter_context_cache = runtime_cache(OWNER, 'material_parameter_context_cache')
 _CATALOG_CACHE_KEY = 'material_library_catalog_cache_v1'
 _RUNTIME_PAGE_KEY = 'material_browser_runtime_page'
 
@@ -281,9 +280,17 @@ from pixelblaze_mapper.imported_material_state import ImportedMaterialStateStore
 
 _stored_parameter_store = (OWNER.fetch('madmapper_parameter_store', None)
                            if hasattr(OWNER, 'fetch') else None)
-PARAMETER_STORE = (_stored_parameter_store
-                   if isinstance(_stored_parameter_store, ImportedMaterialStateStore)
-                   else ImportedMaterialStateStore())
+try:
+    _stored_parameter_document = state_document(_stored_parameter_store)
+    PARAMETER_STORE = (ImportedMaterialStateStore.from_dict(_stored_parameter_document)
+                       if _stored_parameter_document is not None else ImportedMaterialStateStore())
+except (TypeError, ValueError, KeyError):
+    _stored_parameter_document = None
+    PARAMETER_STORE = ImportedMaterialStateStore()
+# Migrate stale class instances before the next native save; the DAT remains a
+# second durable copy and is restored below if no valid stored document exists.
+if _stored_parameter_document is not None and not isinstance(_stored_parameter_store, dict):
+    OWNER.store('madmapper_parameter_store', _stored_parameter_document)
 
 def _parameter(name, default=''):
     par = getattr(OWNER.par, name, None)
@@ -360,8 +367,8 @@ def _set_state(name, value):
     table.appendRow((name, value))
 
 def _persist_parameter_store():
-    OWNER.store('madmapper_parameter_store', PARAMETER_STORE)
     document = json.dumps(PARAMETER_STORE.to_dict(), sort_keys=True, separators=(',', ':'))
+    OWNER.store('madmapper_parameter_store', json.loads(document))
     table = OWNER.op('material_parameter_state')
     table.clear()
     table.appendRow(('key', 'json'))
@@ -377,7 +384,7 @@ def _restore_parameter_store():
     try:
         document = json.loads(str(table[1, 1]))
         PARAMETER_STORE = ImportedMaterialStateStore.from_dict(document)
-        OWNER.store('madmapper_parameter_store', PARAMETER_STORE)
+        OWNER.store('madmapper_parameter_store', PARAMETER_STORE.to_dict())
     except Exception:
         pass
 
@@ -1114,7 +1121,7 @@ def reset_material_parameters():
     try:
         PARAMETER_STORE = ImportedMaterialStateStore.from_dict(document)
         result = _activate_parameter_shader(item)
-        OWNER.store('madmapper_parameter_store', PARAMETER_STORE)
+        OWNER.store('madmapper_parameter_store', PARAMETER_STORE.to_dict())
         return result
     except Exception:
         PARAMETER_STORE = ImportedMaterialStateStore.from_dict(before)
@@ -1162,7 +1169,7 @@ def set_material_parameter(name, component, value):
         return PARAMETER_STORE.values(item['id'])[parameter.name]
     except Exception:
         PARAMETER_STORE = ImportedMaterialStateStore.from_dict(previous_document)
-        OWNER.store('madmapper_parameter_store', PARAMETER_STORE)
+        OWNER.store('madmapper_parameter_store', PARAMETER_STORE.to_dict())
         _restore_renderer_uniforms(OWNER.op('live_preview'), previous_uniforms)
         _persist_parameter_store()
         raise
@@ -1377,7 +1384,7 @@ def activate_selected():
 # Recreating a DAT module must not re-read 638 packages or repaint 32 cards.
 # Source/include stamps remain checked separately by _parameter_context.
 if hasattr(OWNER, 'op'):
-    if not isinstance(_stored_parameter_store, ImportedMaterialStateStore):
+    if _stored_parameter_document is None:
         _restore_parameter_store()
     if not _restore_catalog_cache():
         refresh(reset_page=False)

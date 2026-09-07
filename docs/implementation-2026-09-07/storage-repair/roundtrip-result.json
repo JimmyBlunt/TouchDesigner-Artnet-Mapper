@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "checks": {
+    "/project1/pixelblaze_mapper/map_active": true,
+    "/project1/pixelblaze_mapper/effect_panel_uv": true,
+    "/project1/multi_controller_output/controller_config": true,
+    "/project1/multi_controller_output/segment_config": true,
+    "/project1/show_control/show_json": true,
+    "/project1/show_control/state_table": true,
+    "/project1/material_browser/unified_state": true,
+    "/project1/madmapper_library/browser_state": true,
+    "controls": true,
+    "workspace": true,
+    "material_id": true,
+    "no_errors": true,
+    "no_pickle_errors": true,
+    "sender_off": true,
+    "no_packets_sent": true
+  },
+  "material_phase_comparison": "material-roundtrip-comparison.json",
+  "verified_file": "C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/Backup/Implementation/PixelblazeMapper_20260907_STORAGE_VERIFIED.1.toe",
+  "tests": {
+    "count": 558,
+    "result": "OK",
+    "seconds": 32.464
+  }
+}

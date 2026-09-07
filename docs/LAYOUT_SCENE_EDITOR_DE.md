@@ -150,6 +150,38 @@ erfolgreichen Live-Aktivierung.
 
 ## Prüfstatus und verbleibende Abnahme
 
+### Dauerhafter Workspace und Projektspeicherung
+
+`layout_session_storage.py` trennt dauerhaft gespeicherte primitive Daten von
+laufenden Python-Klassen. `layout_session_snapshot` und `fixture_session_snapshot`
+enthalten versionierte Daten für Originalscans, stabile Bindungen, Transformationen,
+Routing-Entwurf, aktuelle Auswahl sowie beide Undo-/Redo-Historien. Änderungen und
+Mausvorschauen aktualisieren diese Snapshots; ältere `draft_document` und
+`fixture_document` bleiben als Import-/Fallback-DATs erhalten. Ein Modul-Neuladen
+wandelt vorhandene alte Klasseninstanzen über ihre Daten statt über `pickle` um.
+
+Die auf dem laufenden System gelesenen `OP.store`-/`storeStartupValue`-Docstrings
+bestätigen alternative Speicher-/Startwerte. Nur laufende Klassenobjekte,
+Mauszustände und vorbereitete Pläne erhalten Startupwert `None`; die primitiven
+Snapshots bleiben gespeichert. Beim Wiederöffnen wird eine gespeicherte sichtbare
+Mausvorschau als genau ein rückgängig machbarer Entwurfsschritt übernommen, nicht
+als weiterhin gedrückte Maus. Aktive Ausgabe wird dabei nicht verändert.
+
+Explizite Preflight-Hooks für den Haupttask:
+`/project1/layout_scene_editor/runtime.module.prepare_save()` und
+`/project1/layout_apply/runtime.module.prepare_save()`. Alternativ direkt die
+Helper `prepare_save(editor_owner)` / `prepare_apply_save(apply_owner)` aufrufen.
+Sie speichern **kein** Projekt, sondern liefern primitive Prüfmanifeste und setzen
+die engen Startup-Regeln. Der Editor-Builder ruft seinen Hook beim Aufbau auf.
+Der Apply-Hook verwirft nur vorbereitete Klassenpläne beim nächsten Öffnen;
+`last_snapshot` und `last_applied_hash` für sinnvolles `REVERT LAST` bleiben exakt
+erhalten, einschließlich Tuple-/Listenstruktur. Nichtprimitive Rücknahmedaten
+blockieren den Preflight, anstatt still gelöscht zu werden.
+
+Diese Lösung sichert den Layout-Bereich. Der Haupttask muss vor einer echten
+TOE-Speicherung weiterhin das gesamte Projekt auf andere nicht speicherbare
+Runtime-Objekte prüfen und Speichern/Wiederöffnen real nachweisen.
+
 Offline-Prüfungen sind keine Live-UI-, GPU-, Hardware- oder End-to-End-Nachweise:
 
 - 38 Modelltests: stabile Identitäten, Import/Export, Transformationen, fehlende
@@ -170,6 +202,9 @@ Offline-Prüfungen sind keine Live-UI-, GPU-, Hardware- oder End-to-End-Nachweis
   Identitätsstabilität, ungültige Daten und konkurrierende Tabellenänderung.
 - 16 Tests des separaten Active-Apply-Moduls: Payload-/Zustandsprüfung, unveränderte
   physische XYZ bei 2D, Ausgabe-Sperre, Transaktion und Rücknahme.
+- 7 Storage-Tests: primitive Snapshot-/Pickle-Roundtrips, Historien/IDs/Auswahl,
+  Vorschau als Undo-Schritt, effektive Startup-Speicherung, echte isolierte
+  `importlib.reload`-Reproduktion des PicklingError und Erhalt des Revert-Snapshots.
 - Fixture-Modell wird zusätzlich durch eigene Tests des Fixture-Moduls geprüft.
 
 Live-Abnahme durch den Haupttask: beide Flächen sichtbar, orthografischer

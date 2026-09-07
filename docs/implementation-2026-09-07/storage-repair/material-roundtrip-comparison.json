@@ -1,0 +1,199 @@
+{
+  "schema": "pixelblaze-material-native-save-comparison-v1",
+  "sources": {
+    "after-migration": {
+      "path": "after-migration.json",
+      "sha256": "43b62da3c057486302d1f5b53ea8aa5aec8250760b8a9e201a4621eb8718374e"
+    },
+    "file-storage": {
+      "path": "file-storage.json",
+      "sha256": "39fed753ffd2cd3146fbe7ff9c33e39c5e5290076e017126f4f42ede3518ac82"
+    },
+    "before-repair": {
+      "path": "before-repair.json",
+      "sha256": "18c5105a1410ca97474e6f1ae743e47854d137dd49a1bb3728001daee4d38dc2"
+    },
+    "after-reopen": {
+      "path": "after-reopen.json",
+      "sha256": "407fee46ef90af037c6da8b68c5f48f045c8fc07f6726c2cf4384927697bff0e"
+    }
+  },
+  "method": "Offline recursive exact comparison of parsed JSON primitives; key order ignored. No live API/UI calls. All material IDs and all stored types/values/pages/settings checked, not only active. Only phase and last_time of the active P1 material may differ.",
+  "native": {
+    "material_ids": [
+      "mat_0e3060e1885357ea93a9",
+      "mat_40a070ee5da985ccad90",
+      "mat_4652d9d371bce670175d",
+      "mat_67a99c60e4c0797447fb",
+      "mat_a2b68ab00142c5b97852",
+      "mat_ab0287bb394c824f13df",
+      "mat_cca72fcfb1719cbf7880",
+      "mat_d668a7041938ba21f532"
+    ],
+    "schema_equal": true,
+    "exact_differences": [],
+    "migration_to_native_file_differences": [],
+    "records": [
+      {
+        "material_id": "mat_0e3060e1885357ea93a9",
+        "parameter_count": 12,
+        "type_count": 12,
+        "page": 0,
+        "exact_equal": true
+      },
+      {
+        "material_id": "mat_40a070ee5da985ccad90",
+        "parameter_count": 29,
+        "type_count": 29,
+        "page": 3,
+        "exact_equal": true
+      },
+      {
+        "material_id": "mat_4652d9d371bce670175d",
+        "parameter_count": 6,
+        "type_count": 6,
+        "page": 0,
+        "exact_equal": true
+      },
+      {
+        "material_id": "mat_67a99c60e4c0797447fb",
+        "parameter_count": 33,
+        "type_count": 33,
+        "page": 0,
+        "exact_equal": true
+      },
+      {
+        "material_id": "mat_a2b68ab00142c5b97852",
+        "parameter_count": 29,
+        "type_count": 29,
+        "page": 3,
+        "exact_equal": true
+      },
+      {
+        "material_id": "mat_ab0287bb394c824f13df",
+        "parameter_count": 15,
+        "type_count": 15,
+        "page": 0,
+        "exact_equal": true
+      },
+      {
+        "material_id": "mat_cca72fcfb1719cbf7880",
+        "parameter_count": 11,
+        "type_count": 11,
+        "page": 0,
+        "exact_equal": true
+      },
+      {
+        "material_id": "mat_d668a7041938ba21f532",
+        "parameter_count": 2,
+        "type_count": 2,
+        "page": 0,
+        "exact_equal": true
+      }
+    ],
+    "total_parameter_values": 137
+  },
+  "p1": {
+    "material_ids": [
+      "madmapper:mat_ab0287bb394c824f13df"
+    ],
+    "active_key": "madmapper:mat_ab0287bb394c824f13df",
+    "all_differences": [
+      {
+        "path": "/materials/madmapper:mat_ab0287bb394c824f13df/last_time",
+        "before": 16238.983333333334,
+        "after": 2.2666666666666666
+      },
+      {
+        "path": "/materials/madmapper:mat_ab0287bb394c824f13df/phase",
+        "before": 1490.3134564658585,
+        "after": 1490.887598946071
+      }
+    ],
+    "migration_to_native_file_differences": [
+      {
+        "path": "/materials/madmapper:mat_ab0287bb394c824f13df/last_time",
+        "before": 16177,
+        "after": 16238.983333333334
+      },
+      {
+        "path": "/materials/madmapper:mat_ab0287bb394c824f13df/phase",
+        "before": 1474.6131926135981,
+        "after": 1490.3134564658585
+      }
+    ],
+    "records": [
+      {
+        "material_id": "madmapper:mat_ab0287bb394c824f13df",
+        "setting_count": 14,
+        "settings_exact_equal": true,
+        "saved_phase": 1490.3134564658585,
+        "reopened_phase": 1490.887598946071,
+        "saved_last_time": 16238.983333333334,
+        "reopened_last_time": 2.2666666666666666
+      }
+    ],
+    "unexpected_differences": [],
+    "reopen_initialization_dat": {
+      "active_key": "madmapper:mat_ab0287bb394c824f13df",
+      "global_master_speed": 1,
+      "materials": {
+        "madmapper:mat_ab0287bb394c824f13df": {
+          "last_time": 0,
+          "phase": 1490.3134564658585,
+          "settings": {
+            "color_a": [
+              0.76,
+              1,
+              0,
+              1
+            ],
+            "color_b": [
+              0,
+              0.18,
+              1,
+              1
+            ],
+            "color_mode": "legacy",
+            "contrast": 3.33113,
+            "coordinate_mode": "global",
+            "focus_x": 0.5,
+            "focus_y": 0.5,
+            "gradient": "acid_lime_blue",
+            "gradient_strength": 1,
+            "intensity": 0.532982,
+            "scale": 3.9176781002638523,
+            "speed": 0.2532981530343008,
+            "width": 0.42,
+            "zoom": 0.658971
+          }
+        }
+      },
+      "schema": 1
+    },
+    "phase_verification": {
+      "initial_phase_exactly_saved": true,
+      "new_time_anchor": 0,
+      "elapsed_since_new_anchor": 2.2666666666666666,
+      "speed": 0.2532981530343008,
+      "global_master_speed": 1,
+      "expected_phase_increment": 0.5741424802110818,
+      "actual_phase_increment": 0.5741424802124584,
+      "absolute_error": 1.3765655282327316e-12,
+      "tolerance": 1e-9,
+      "pass": true
+    },
+    "migration_unexpected_differences": []
+  },
+  "persisted_transient_values": {
+    "p1": null,
+    "init": null,
+    "hover": null,
+    "parameter": null
+  },
+  "reopened_file": "PixelblazeMapper_20260907_STORAGE_REPAIRED.1.toe",
+  "reopened_errors": [],
+  "reopened_runtime_pickle_failures": [],
+  "initial_evidence_limit": "before-repair.json represents class-based stores only by type, not all contents; cannot claim complete before-repair parameter comparison from that snapshot.",
+  "pass": true
+}

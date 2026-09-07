@@ -28,6 +28,7 @@ class Node:
 class Owner:
     def __init__(self, document):
         self.values = {"layout_editor_session": LayoutEditor(document)}
+        self.startup = {}
         paths = ["fixture_document", "draft_document", "instances", "fixture_output_instances", "fixture_uv_instances",
                  "ui_panel/status", "ui_panel/objects", "ui_panel/draft_badge", "ui_panel/provenance", "ui_panel/axes",
                  "ui_panel/viewport", "ui_panel/btn_transform"]
@@ -47,6 +48,9 @@ class Owner:
 
     def fetch(self, key, default=None):
         return self.values.get(key, default)
+
+    def storeStartupValue(self, key, value):
+        self.startup[key] = value
 
 
 def document():

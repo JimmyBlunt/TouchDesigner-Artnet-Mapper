@@ -27,13 +27,22 @@ def project_selection(scene, object_id, *, projection="YX", local_indices=None, 
 
 def history(owner):
     from .fixture_scene import FixtureHistory, FixtureScene, import_fixture_json
+    from .layout_session_storage import FIXTURE_KEY, fixture_snapshot, restore_fixtures, persist_fixtures
     from .layout_scene_td import editor
     value = owner.fetch("fixture_history", None)
-    if value is None:
+    if value is not None and type(value) is not FixtureHistory:
+        value = restore_fixtures(fixture_snapshot(value, owner.fetch("fixture_preview", None)))
+        owner.store("fixture_drag", None)
+        owner.store("fixture_preview", None)
+        owner.store("fixture_history", value)
+        persist_fixtures(owner, value)
+    elif value is None:
         dat = owner.op("fixture_document")
         scene = editor(owner).current.scene
         source = import_fixture_json(dat.text) if dat is not None and dat.text.strip() else FixtureScene(scene.scene_id, scene_revision(scene), (), scene.expected_count if scene.expected_count is not None else sum(len(o.leds) for o in scene.objects))
-        value = FixtureHistory(source)
+        durable = owner.fetch(FIXTURE_KEY, None)
+        value = restore_fixtures(durable) if durable is not None else FixtureHistory(source)
+        persist_fixtures(owner, value)
         owner.store("fixture_history", value)
     return value
 
@@ -69,6 +78,8 @@ def refresh(owner, *, save=True):
     from .fixture_scene import export_fixture_json
     from .layout_scene_td import editor
     model = current(owner)
+    from .layout_session_storage import persist_fixtures
+    persist_fixtures(owner, history(owner), owner.fetch("fixture_preview", None))
     if save:
         owner.op("fixture_document").text = export_fixture_json(history(owner).current)
     for domain in ("output", "uv"):

@@ -1,0 +1,59 @@
+{
+  "layout": {
+    "schema": "pixelblaze-layout-save-manifest",
+    "version": 1,
+    "scene_id": "4e9891f6-d147-4ec3-9839-4630543e5aa5",
+    "layout_undo": 0,
+    "layout_redo": 0,
+    "fixture_undo": 1,
+    "fixture_redo": 3,
+    "selected_object_id": "33ef5c9a-877d-5d46-a359-13632f057db5",
+    "selected_fixture_id": "d6a75d7c-b33e-44bd-845b-182889566d66",
+    "transient_startup_none": [
+      "layout_editor_session",
+      "fixture_history",
+      "fixture_preview",
+      "layout_drag",
+      "fixture_drag",
+      "ui_prepared_context"
+    ],
+    "prepared_invalidated_on_reopen": true,
+    "preview_recovered_as_one_undo_step": false
+  },
+  "apply": {
+    "schema": "pixelblaze-layout-apply-save-manifest",
+    "version": 1,
+    "prepared_invalidated_on_reopen": true,
+    "revert_snapshot_preserved": false,
+    "last_applied_hash": "2c79a92e3e608ec5455dbb481ef3e5cceaf0d1c6b598af457b671518c464b8ce"
+  },
+  "errors": [],
+  "sender": {
+    "enabled": false,
+    "error": "",
+    "mode": "live",
+    "calibration": [
+      "all",
+      "panel_id",
+      0
+    ],
+    "controllers": [],
+    "target_override": null,
+    "port_override": null,
+    "telemetry": {
+      "tick_count": 86649,
+      "rate_skips": 0,
+      "send_count": 0,
+      "packet_count": 0,
+      "send_ms_last": 0.0,
+      "send_ms_average": 0.0,
+      "send_ms_max": 0.0,
+      "actual_send_fps": 0.0,
+      "pack_count": 0,
+      "pack_ms_last": 0.0,
+      "pack_ms_average": 0.0,
+      "pack_ms_max": 0.0,
+      "plan_rebuilds": 0
+    }
+  }
+}

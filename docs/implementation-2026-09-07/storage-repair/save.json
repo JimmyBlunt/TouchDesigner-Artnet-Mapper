@@ -1,0 +1,61 @@
+{
+  "saved": true,
+  "file": "PixelblazeMapper_20260907_STORAGE_REPAIRED.1.toe",
+  "folder": "C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/Backup/Implementation",
+  "layout": {
+    "schema": "pixelblaze-layout-save-manifest",
+    "version": 1,
+    "scene_id": "4e9891f6-d147-4ec3-9839-4630543e5aa5",
+    "layout_undo": 0,
+    "layout_redo": 0,
+    "fixture_undo": 1,
+    "fixture_redo": 3,
+    "selected_object_id": "33ef5c9a-877d-5d46-a359-13632f057db5",
+    "selected_fixture_id": "d6a75d7c-b33e-44bd-845b-182889566d66",
+    "transient_startup_none": [
+      "layout_editor_session",
+      "fixture_history",
+      "fixture_preview",
+      "layout_drag",
+      "fixture_drag",
+      "ui_prepared_context"
+    ],
+    "prepared_invalidated_on_reopen": true,
+    "preview_recovered_as_one_undo_step": false
+  },
+  "apply": {
+    "schema": "pixelblaze-layout-apply-save-manifest",
+    "version": 1,
+    "prepared_invalidated_on_reopen": true,
+    "revert_snapshot_preserved": false,
+    "last_applied_hash": "2c79a92e3e608ec5455dbb481ef3e5cceaf0d1c6b598af457b671518c464b8ce"
+  },
+  "preflight_unexpected_pickle_failures": [],
+  "declared_startup_overrides": {
+    "/project1": [
+      "p1_material_runtime_cache",
+      "p1_material_state_runtime_schema"
+    ],
+    "/project1/madmapper_library": [
+      "material_hover_context_cache",
+      "material_parameter_context_cache"
+    ],
+    "/project1/layout_scene_editor": [
+      "fixture_drag",
+      "fixture_history",
+      "fixture_preview",
+      "layout_drag",
+      "layout_editor_session",
+      "ui_prepared_context"
+    ],
+    "/project1/layout_apply": [
+      "applying",
+      "prepared_plan",
+      "prepared_workspace_hash",
+      "prepared_workspace_key"
+    ]
+  },
+  "ui_status": "Save Project .toe: PixelblazeMapper_20260907_STORAGE_REPAIRED.1.toe saved with errors:  Warning: Error saving storage for operator /project1/show_control:PicklingError: Can't pickle <class 'pixelblaze_mapper.show_sequencer.ShowSequencer'>: it's not the same object as pixelblaze_mapper.show_sequencer.ShowSequencer Warning: Error saving storage for operator /project1/madmapper_library:PicklingError: Can't pickle <class 'pixelblaze_mapper.madmapper_td_adapter.AdaptationResult'>: it's not the same object as pixelblaze_mapper.madmapper_td_adapter.AdaptationResult Warning: Error saving storage for operator /project1/layout_scene_editor:PicklingError: Can't pickle <class 'pixelblaze_mapper.layout_scene_adapter.LayoutEditor'>: it's not the same object as pixelblaze_mapper.layout_scene_adapter.LayoutEditor",
+  "note": "save True alone is NOT roundtrip success; inspect UI and reopen",
+  "sender_enabled": false
+}
