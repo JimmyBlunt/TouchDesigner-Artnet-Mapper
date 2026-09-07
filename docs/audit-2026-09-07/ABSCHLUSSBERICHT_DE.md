@@ -161,10 +161,14 @@ Vor Umsetzung dieses Hilfesystems sollte das Schema beschlossen werden. Andernfa
 
 ### Vorgeschlagene Reihenfolge nach Freigabe
 
-**Block A:** P0-Konfigurationstransaktion und Universegrenze, nur mit isolierten Tests beginnen.  
-**Block B:** Materialidentität/Previewisolation, Importparameterwirkung, Native-Rollback, Libraryklicks.  
-**Block C:** Mapping-/Show-UV/Phase, reproduzierbarer Builder und Statusbereinigung.  
-**Block D:** Einheitlicher Inspector, Schnellhilfe, numerische Controls und vollständige Dialogworkflows.  
+**Block A:** P0-Konfigurationstransaktion und Universegrenze, nur mit isolierten Tests beginnen.
+
+**Block B:** Materialidentität/Previewisolation, Importparameterwirkung, Native-Rollback, Libraryklicks.
+
+**Block C:** Mapping-/Show-UV/Phase, reproduzierbarer Builder und Statusbereinigung.
+
+**Block D:** Einheitlicher Inspector, Schnellhilfe, numerische Controls und vollständige Dialogworkflows.
+
 **Block E:** Saubere Rebuild-/Relaunch-Regression, Performanceprofil und beaufsichtigte Hardwareabnahme.
 
 Jeder Block endet mit: reproduzierbarer Fehlertest → begrenzter Fix → Offlineprüfung → echter UItest → Zustand/Restore prüfen → dokumentieren → getrennt committen. Die Hardware wird erst im ausdrücklich vereinbarten Testblock eingeschaltet. Grüne Tests werden nicht als100-%-Sicherheitsgarantie bezeichnet.
