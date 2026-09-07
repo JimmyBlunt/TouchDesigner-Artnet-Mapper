@@ -1080,7 +1080,10 @@ def render():
             viewer.par.opviewer = OWNER.op('card_top_%d' % item['effect_index']).path
         else:
             image = OWNER.op('unified_image_%d' % slot)
-            image.par.file = item['preview_path']
+            # Keep stable images open across layout/filter renders, matching
+            # the library browser's Movie File In change-only assignment.
+            if str(image.par.file.eval()) != str(item['preview_path']):
+                image.par.file = item['preview_path']
             viewer.par.opviewer = image.path if item['preview_path'] else OWNER.op('unified_fallback').path
 
 def select_slot(slot):

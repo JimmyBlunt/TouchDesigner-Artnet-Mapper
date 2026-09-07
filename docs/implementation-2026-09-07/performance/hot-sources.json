@@ -1,0 +1,103 @@
+{
+  "/project1/chopexec1": {
+    "text": "# me - this DAT\n# \n# channel - the Channel object which has changed\n# sampleIndex - the index of the changed sample\n# val - the numeric value of the changed sample\n# prev - the previous sample value\n# \n# Make sure the corresponding toggle is enabled in the CHOP Execute DAT.\n\ndef onOffToOn(channel, sampleIndex, val, prev):\n\treturn\n\ndef whileOn(channel, sampleIndex, val, prev):\n\treturn\n\ndef onOnToOff(channel, sampleIndex, val, prev):\n\treturn\n\ndef whileOff(channel, sampleIndex, val, prev):\n\treturn\n\ndef onValueChange(channel, sampleIndex, val, prev):\n\top('script4').cook(force=True)  # Ersetzt 'script4' durch den Namen deines Script CHOPs\n\treturn\t",
+    "parameters": {
+      "pageindex": "0",
+      "active": "True",
+      "executeloc": "here",
+      "fromop": "/project1",
+      "chop": "/project1/lfo1",
+      "channel": "*",
+      "offtoon": "False",
+      "whileon": "False",
+      "ontooff": "False",
+      "whileoff": "False",
+      "valuechange": "True",
+      "freq": "everysample",
+      "edit": "False",
+      "file": "",
+      "defaultreadencoding": "autodetect",
+      "syncfile": "False",
+      "loadonstart": "False",
+      "loadonstartpulse": "False",
+      "write": "False",
+      "writepulse": "False",
+      "language": "python",
+      "extension": "languageext",
+      "customext": "",
+      "wordwrap": "input"
+    }
+  },
+  "/project1/script4_callbacks": {
+    "text": "import random\n\n# Anzahl der LEDs in deinem LED-Mapping\nNUM_LEDS = 1152\n# 934\n\n# Frame-Z\u00e4hler, um die H\u00e4ufigkeit der Berechnung zu reduzieren\nframe_count = 0\n\n# Speicher f\u00fcr die individuelle Phase, Lebensdauer und den Status jeder LED\nled_states = [{'brightness': 0.0,\n               'fade_out_rate': 0.98,  # Fade out rate f\u00fcr langsameres Verblassen\n               'active': False,\n               'flicker_intensity': random.uniform(0.95, 1.05)} for _ in range(NUM_LEDS)]\n\n# Animation-Funktion, die den kombinierten Effekt erzeugt\ndef generate_combined_effect():\n    global frame_count\n    # Erh\u00f6he den Frame Count bei jedem Aufruf\n    frame_count += 1\n\n    # Setze alle LEDs auf Schwarz\n    led_values = [[0.0, 0.0, 0.0] for _ in range(NUM_LEDS)]\n\n    # Aktualisiere den Zustand jeder LED individuell\n    for i in range(NUM_LEDS):\n        state = led_states[i]\n\n        # Neue LED zuf\u00e4llig aktivieren\n        if not state['active'] and random.random() < 0.001:  # Noch geringere Wahrscheinlichkeit\n            state['active'] = True\n            state['brightness'] = 1.0  # Setze die Helligkeit auf voll\n            state['flicker_intensity'] = random.uniform(0.95, 1.05)  # Initiale Flacker-Intensit\u00e4t\n\n        # Wenn die LED aktiv ist\n        if state['active']:\n            # Zuf\u00e4lliges Flackern hinzuf\u00fcgen w\u00e4hrend des Verblassens\n            flicker = random.uniform(0.95, 1.05)  # Leichtes Flackern zwischen 95% und 105%\n            state['brightness'] *= state['fade_out_rate'] * flicker\n\n            # Das Flackern wird im Verlauf des Fade-Outs immer ruhiger\n            state['flicker_intensity'] = max(0.98, state['flicker_intensity'] - 0.001)\n\n            # Begrenze die Helligkeit zwischen 0 und 1\n            state['brightness'] = max(0.0, min(1.0, state['brightness']))\n\n            # Setze die RGB-Werte f\u00fcr einen wei\u00dfen Effekt\n            led_values[i][0] = state['brightness']  # Rot-Kanal\n            led_values[i][1] = state['brightness']  # Gr\u00fcn-Kanal\n            led_values[i][2] = state['brightness']  # Blau-Kanal\n\n            # Wenn die Helligkeit unter einen Schwellenwert f\u00e4llt, LED deaktivieren\n            if state['brightness'] < 0.01:\n                state['active'] = False\n                state['brightness'] = 0.0\n\n    return led_values\n\n# Verwende eine Funktion, um die Struktur zu initialisieren\ndef onSetupParameters(scriptOp):\n    scriptOp.clear()  # L\u00f6sche bestehende Daten, falls vorhanden\n    scriptOp.appendChan('r')  # Rot\n    scriptOp.appendChan('g')  # Gr\u00fcn\n    scriptOp.appendChan('b')  # Blau\n    scriptOp.numSamples = NUM_LEDS  # Setze die Anzahl der Samples entsprechend der Anzahl der LEDs\n\n# Verwende eine Funktion, um die Werte periodisch zu aktualisieren\ndef onCook(scriptOp):\n    # Sicherstellen, dass die Kan\u00e4le vorhanden sind, andernfalls neu initialisieren\n    if len(scriptOp.chans()) < 3 or scriptOp.numSamples != NUM_LEDS:\n        scriptOp.clear()\n        scriptOp.appendChan('r')  # Rot\n        scriptOp.appendChan('g')  # Gr\u00fcn\n        scriptOp.appendChan('b')  # Blau\n        scriptOp.numSamples = NUM_LEDS\n\n    # Werte f\u00fcr alle LEDs generieren\n    led_data = generate_combined_effect()\n\n    # Greife auf die RGB-Kan\u00e4le zu und weise die Werte zu\n    r_channel = scriptOp['r']\n    g_channel = scriptOp['g']\n    b_channel = scriptOp['b']\n\n    # Aktualisiere die Werte der Kan\u00e4le (Rot, Gr\u00fcn, Blau)\n    for i in range(NUM_LEDS):\n        r_channel[i] = led_data[i][0]  # Rot-Wert\n        g_channel[i] = led_data[i][1]  # Gr\u00fcn-Wert\n        b_channel[i] = led_data[i][2]  # Blau-Wert\n\n    return\n",
+    "parameters": {
+      "pageindex": "0",
+      "edit": "False",
+      "file": "",
+      "defaultreadencoding": "autodetect",
+      "syncfile": "False",
+      "loadonstart": "False",
+      "loadonstartpulse": "False",
+      "write": "False",
+      "writepulse": "False",
+      "language": "python",
+      "extension": "languageext",
+      "customext": "",
+      "wordwrap": "input"
+    }
+  },
+  "/project1/esp_artnet_live_pack_callbacks": {
+    "text": "CHANNELS_PER_UNIVERSE = 510\nPIXELS_PER_UNIVERSE = 170\nUNIVERSE_COUNT = 10\n\ndef _config(key, default):\n    table = op('/project1/esp_artnet_live_config')\n    for row in range(1, table.numRows):\n        if table[row, 0].val == key:\n            return table[row, 1].val\n    return default\n\ndef _clamp01(value):\n    return max(0.0, min(1.0, float(value)))\n\ndef onSetupParameters(scriptOp):\n    return\n\ndef onPulse(par):\n    return\n\ndef onCook(scriptOp):\n    source = scriptOp.inputs[0] if scriptOp.inputs else None\n    enabled = _config('enabled', '1') == '1'\n    master = max(0.0, min(1.0, float(_config('master_brightness', '0.02'))))\n    source_offset = max(0, int(_config('source_offset', '0')))\n    pixel_count = max(0, min(1679, int(_config('pixel_count', '1679'))))\n    order = _config('color_order', 'RGB').upper()\n    if sorted(order) != ['B', 'G', 'R']:\n        order = 'RGB'\n\n    scriptOp.clear()\n    scriptOp.numSamples = CHANNELS_PER_UNIVERSE\n    outputs = [scriptOp.appendChan('Universe%d' % u) for u in range(UNIVERSE_COUNT)]\n\n    if not enabled or source is None:\n        return\n\n    sources = {'R': source['r'], 'G': source['g'], 'B': source['b']}\n    for pixel in range(pixel_count):\n        source_index = source_offset + pixel\n        if source_index >= source.numSamples:\n            break\n        universe = pixel // PIXELS_PER_UNIVERSE\n        local_pixel = pixel % PIXELS_PER_UNIVERSE\n        channel_index = local_pixel * 3\n        output = outputs[universe]\n        for component, key in enumerate(order):\n            output[channel_index + component] = round(_clamp01(sources[key][source_index]) * 255.0 * master)\n\n    # Unwritten channels are zero. In Universe 9, channels 447..509\n    # therefore remain black after pixel 1678.\n    return\n",
+    "parameters": {
+      "pageindex": "0",
+      "edit": "False",
+      "file": "",
+      "defaultreadencoding": "autodetect",
+      "syncfile": "False",
+      "loadonstart": "False",
+      "loadonstartpulse": "False",
+      "write": "False",
+      "writepulse": "False",
+      "language": "python",
+      "extension": "languageext",
+      "customext": "",
+      "wordwrap": "input"
+    }
+  },
+  "/project1/multi_controller_output/pack_ws2812_node_callbacks": {
+    "text": "import sys\nimport time\n\nLOCAL_ROOT = r\"C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper\"\nif LOCAL_ROOT not in sys.path:\n    sys.path.insert(0, LOCAL_ROOT)\n\nfrom pixelblaze_mapper.multi_controller import ControllerConfig, RouterConfig, SegmentConfig, build_router_plan\nfrom pixelblaze_mapper.realtime_packer import compile_router_packer\nfrom pixelblaze_mapper.installation_contract import TOTAL_PIXELS\n\nCONTROLLER = 'WS2812_NODE'\n_cache_signature = None\n_compiled = None\n_latest_frames = ()\n_pack_count = 0\n_cache_rebuilds = 0\n_pack_ms_last = 0.0\n_pack_ms_total = 0.0\n_pack_ms_max = 0.0\n\ndef _bool(value):\n    return str(value).strip().lower() in ('1', 'true', 'yes', 'on')\n\ndef _config():\n    owner = op('..')\n    controllers = []\n    table = owner.op('controller_config')\n    for row in range(1, table.numRows):\n        controllers.append(ControllerConfig(\n            enabled=_bool(table[row, 'enabled']), name=str(table[row, 'name']),\n            target_address=str(table[row, 'target_ip']), local_interface=str(table[row, 'local_interface']),\n            port=int(table[row, 'port']), start_universe=int(table[row, 'start_universe']),\n            color_order=str(table[row, 'color_order']).upper(), brightness=float(table[row, 'brightness']),\n            rate=int(table[row, 'rate']), art_sync=_bool(table[row, 'art_sync']),\n            reserved_universes=int(table[row, 'reserved_universes'])))\n    segments = []\n    table = owner.op('segment_config')\n    for row in range(1, table.numRows):\n        override = str(table[row, 'color_override']).strip().upper() or None\n        segments.append(SegmentConfig(\n            name=str(table[row, 'name']), source_start=int(table[row, 'source_start']),\n            count=int(table[row, 'count']), controller=str(table[row, 'controller']),\n            destination_start=int(table[row, 'destination_start']), reverse=_bool(table[row, 'reverse']),\n            color_override=override))\n    source = op('/project1/math1')\n    source_count = int(source.numSamples) if source is not None else TOTAL_PIXELS\n    return RouterConfig(tuple(controllers), tuple(segments), source_pixel_count=source_count)\n\ndef _signature():\n    owner = op('..')\n    tables = (owner.op('controller_config'), owner.op('segment_config'))\n    source = op('/project1/math1')\n    count = int(source.numSamples) if source is not None else TOTAL_PIXELS\n    return (count,) + tuple(tuple(str(table[row, col]) for col in range(table.numCols))\n                            for table in tables for row in range(table.numRows))\n\ndef _controller_packer():\n    global _cache_signature, _compiled, _cache_rebuilds\n    signature = _signature()\n    if _compiled is None or signature != _cache_signature:\n        plan = build_router_plan(_config())\n        _compiled = compile_router_packer(plan).controller(CONTROLLER)\n        _cache_signature = signature\n        _cache_rebuilds += 1\n    return _compiled\n\ndef latest_frames():\n    return _latest_frames\n\ndef telemetry():\n    average = _pack_ms_total / _pack_count if _pack_count else 0.0\n    return {'controller': CONTROLLER, 'pack_count': _pack_count,\n            'cache_rebuilds': _cache_rebuilds, 'pack_ms_last': _pack_ms_last,\n            'pack_ms_average': average, 'pack_ms_max': _pack_ms_max,\n            'frame_count': len(_latest_frames)}\n\ndef onCook(scriptOp):\n    global _latest_frames, _pack_count, _pack_ms_last, _pack_ms_total, _pack_ms_max\n    scriptOp.clear()\n    scriptOp.numSamples = 510\n    if not scriptOp.inputs:\n        return\n    source = scriptOp.inputs[0]\n    if source.numSamples < 1 or source.numChans < 3:\n        return\n    started = time.perf_counter()\n    frames = _controller_packer().pack_channels(source[0], source[1], source[2])\n    _latest_frames = frames\n    for index, frame in enumerate(frames):\n        channel = scriptOp.appendChan('Universe' + str(index))\n        for sample, value in enumerate(frame):\n            channel[sample] = value\n    elapsed = (time.perf_counter() - started) * 1000.0\n    _pack_count += 1\n    _pack_ms_last = elapsed\n    _pack_ms_total += elapsed\n    _pack_ms_max = max(_pack_ms_max, elapsed)\n",
+    "parameters": {
+      "pageindex": "0",
+      "edit": "False",
+      "file": "",
+      "defaultreadencoding": "autodetect",
+      "syncfile": "False",
+      "loadonstart": "False",
+      "loadonstartpulse": "False",
+      "write": "False",
+      "writepulse": "False",
+      "language": "text",
+      "extension": "languageext",
+      "customext": "",
+      "wordwrap": "input"
+    }
+  },
+  "/project1/multi_controller_output/pack_apa102_esp_callbacks": {
+    "text": "import sys\nimport time\n\nLOCAL_ROOT = r\"C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper\"\nif LOCAL_ROOT not in sys.path:\n    sys.path.insert(0, LOCAL_ROOT)\n\nfrom pixelblaze_mapper.multi_controller import ControllerConfig, RouterConfig, SegmentConfig, build_router_plan\nfrom pixelblaze_mapper.realtime_packer import compile_router_packer\nfrom pixelblaze_mapper.installation_contract import TOTAL_PIXELS\n\nCONTROLLER = 'APA102_ESP'\n_cache_signature = None\n_compiled = None\n_latest_frames = ()\n_pack_count = 0\n_cache_rebuilds = 0\n_pack_ms_last = 0.0\n_pack_ms_total = 0.0\n_pack_ms_max = 0.0\n\ndef _bool(value):\n    return str(value).strip().lower() in ('1', 'true', 'yes', 'on')\n\ndef _config():\n    owner = op('..')\n    controllers = []\n    table = owner.op('controller_config')\n    for row in range(1, table.numRows):\n        controllers.append(ControllerConfig(\n            enabled=_bool(table[row, 'enabled']), name=str(table[row, 'name']),\n            target_address=str(table[row, 'target_ip']), local_interface=str(table[row, 'local_interface']),\n            port=int(table[row, 'port']), start_universe=int(table[row, 'start_universe']),\n            color_order=str(table[row, 'color_order']).upper(), brightness=float(table[row, 'brightness']),\n            rate=int(table[row, 'rate']), art_sync=_bool(table[row, 'art_sync']),\n            reserved_universes=int(table[row, 'reserved_universes'])))\n    segments = []\n    table = owner.op('segment_config')\n    for row in range(1, table.numRows):\n        override = str(table[row, 'color_override']).strip().upper() or None\n        segments.append(SegmentConfig(\n            name=str(table[row, 'name']), source_start=int(table[row, 'source_start']),\n            count=int(table[row, 'count']), controller=str(table[row, 'controller']),\n            destination_start=int(table[row, 'destination_start']), reverse=_bool(table[row, 'reverse']),\n            color_override=override))\n    source = op('/project1/math1')\n    source_count = int(source.numSamples) if source is not None else TOTAL_PIXELS\n    return RouterConfig(tuple(controllers), tuple(segments), source_pixel_count=source_count)\n\ndef _signature():\n    owner = op('..')\n    tables = (owner.op('controller_config'), owner.op('segment_config'))\n    source = op('/project1/math1')\n    count = int(source.numSamples) if source is not None else TOTAL_PIXELS\n    return (count,) + tuple(tuple(str(table[row, col]) for col in range(table.numCols))\n                            for table in tables for row in range(table.numRows))\n\ndef _controller_packer():\n    global _cache_signature, _compiled, _cache_rebuilds\n    signature = _signature()\n    if _compiled is None or signature != _cache_signature:\n        plan = build_router_plan(_config())\n        _compiled = compile_router_packer(plan).controller(CONTROLLER)\n        _cache_signature = signature\n        _cache_rebuilds += 1\n    return _compiled\n\ndef latest_frames():\n    return _latest_frames\n\ndef telemetry():\n    average = _pack_ms_total / _pack_count if _pack_count else 0.0\n    return {'controller': CONTROLLER, 'pack_count': _pack_count,\n            'cache_rebuilds': _cache_rebuilds, 'pack_ms_last': _pack_ms_last,\n            'pack_ms_average': average, 'pack_ms_max': _pack_ms_max,\n            'frame_count': len(_latest_frames)}\n\ndef onCook(scriptOp):\n    global _latest_frames, _pack_count, _pack_ms_last, _pack_ms_total, _pack_ms_max\n    scriptOp.clear()\n    scriptOp.numSamples = 510\n    if not scriptOp.inputs:\n        return\n    source = scriptOp.inputs[0]\n    if source.numSamples < 1 or source.numChans < 3:\n        return\n    started = time.perf_counter()\n    frames = _controller_packer().pack_channels(source[0], source[1], source[2])\n    _latest_frames = frames\n    for index, frame in enumerate(frames):\n        channel = scriptOp.appendChan('Universe' + str(index))\n        for sample, value in enumerate(frame):\n            channel[sample] = value\n    elapsed = (time.perf_counter() - started) * 1000.0\n    _pack_count += 1\n    _pack_ms_last = elapsed\n    _pack_ms_total += elapsed\n    _pack_ms_max = max(_pack_ms_max, elapsed)\n",
+    "parameters": {
+      "pageindex": "0",
+      "edit": "False",
+      "file": "",
+      "defaultreadencoding": "autodetect",
+      "syncfile": "False",
+      "loadonstart": "False",
+      "loadonstartpulse": "False",
+      "write": "False",
+      "writepulse": "False",
+      "language": "text",
+      "extension": "languageext",
+      "customext": "",
+      "wordwrap": "input"
+    }
+  }
+}

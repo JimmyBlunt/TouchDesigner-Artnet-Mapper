@@ -1,0 +1,16 @@
+{
+  "byte_identical": true,
+  "payloads": [
+    {
+      "frames": 24,
+      "bytes": 12240,
+      "sha256": "30ce34049142e6d9e4c97c4c6f178dc6aed1ff08991cda69c02e64e26b64175e"
+    },
+    {
+      "frames": 10,
+      "bytes": 5100,
+      "sha256": "eec5faf610986312e822319e1445855568874585c03b42d67c6c4b34cb6a3022"
+    }
+  ],
+  "errors": ""
+}

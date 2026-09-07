@@ -160,6 +160,22 @@ Mausvorschauen aktualisieren diese Snapshots; ältere `draft_document` und
 `fixture_document` bleiben als Import-/Fallback-DATs erhalten. Ein Modul-Neuladen
 wandelt vorhandene alte Klasseninstanzen über ihre Daten statt über `pickle` um.
 
+Interne Session-Snapshots Version 2 speichern ihre Dokument-/Vorschau-Einträge
+als unveränderliche JSON-Strings; Version 1 mit dekodierten Objekten bleibt lesbar.
+Das öffentliche Workspace-Exportformat ändert sich nicht. Ein rein transienter
+Weak-Reference-Cache verwendet nur geprüfte, tief unveränderliche Modellidentitäten.
+Mutable oder alte Reload-Klassen umgehen den Cache. Veränderte Entwürfe müssen
+weiterhin über die Frozen-Model-APIs entstehen; absichtliches Umgehen durch
+`object.__setattr__` wird nicht unterstützt. Der Cache teilt keine veränderlichen
+Dictionary-Aliase mit gespeicherten Snapshots und hält verworfene Modelle nicht fest.
+
+Unveränderte Refreshes serialisieren keine Historieneinträge und schreiben die
+Speicher-Dictionaries/DATs nicht erneut. Ziehen serialisiert nur neue Vorschauen,
+nicht die komplette Undo-Historie. Der explizite `prepare_save` erzwingt weiterhin
+eine vollständige Neuerzeugung beider Snapshots und publiziert beide erst nach
+erfolgreicher Serialisierung. Snapshot-Erhaltung wird also nicht gedrosselt oder
+auf den späteren Save-Klick verschoben.
+
 Die auf dem laufenden System gelesenen `OP.store`-/`storeStartupValue`-Docstrings
 bestätigen alternative Speicher-/Startwerte. Nur laufende Klassenobjekte,
 Mauszustände und vorbereitete Pläne erhalten Startupwert `None`; die primitiven
@@ -202,9 +218,18 @@ Offline-Prüfungen sind keine Live-UI-, GPU-, Hardware- oder End-to-End-Nachweis
   Identitätsstabilität, ungültige Daten und konkurrierende Tabellenänderung.
 - 16 Tests des separaten Active-Apply-Moduls: Payload-/Zustandsprüfung, unveränderte
   physische XYZ bei 2D, Ausgabe-Sperre, Transaktion und Rücknahme.
-- 7 Storage-Tests: primitive Snapshot-/Pickle-Roundtrips, Historien/IDs/Auswahl,
+- 14 Storage-Tests: primitive Snapshot-/Pickle-Roundtrips, Historien/IDs/Auswahl,
   Vorschau als Undo-Schritt, effektive Startup-Speicherung, echte isolierte
-  `importlib.reload`-Reproduktion des PicklingError und Erhalt des Revert-Snapshots.
+  `importlib.reload`-Reproduktion des PicklingError und Erhalt des Revert-Snapshots;
+  zusätzlich Version-1-Kompatibilität, Null-Neuserialisierung bei unverändertem
+  Zustand, Vorschau-only-Serialisierung, Mutable-Bypass, Weak-Cache-Lebensdauer
+  und vollständige/atomar vorbereitete Save-Snapshots.
+
+Synthetischer Offline-Benchmark mit 3744 LEDs, kein Live-FPS-Nachweis: bei zehn
+Undo-Schritten benötigten warme Layout-/Fixture-Snapshots zusammen rund 0,009 ms;
+zwei neue Drag-Vorschauen rund 187 ms; vollständige explizite Serialisierung rund
+2075 ms. Der Cache beseitigt das Wachstum der Drag-Kosten mit der ganzen Historie,
+nicht sämtliche Kosten der Vorschaugeometrie oder Render-/UV-Berechnung.
 - Fixture-Modell wird zusätzlich durch eigene Tests des Fixture-Moduls geprüft.
 
 Live-Abnahme durch den Haupttask: beide Flächen sichtbar, orthografischer

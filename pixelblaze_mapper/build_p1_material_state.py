@@ -366,16 +366,18 @@ def _parameter_callback_source():
 def _frame_callback_source():
     return """def onFrameStart(frame):
     runtime = op('/project1/material_state_runtime')
-    runtime.module.tick()
+    # phase() performs the one durable tick; do not advance twice per frame.
     phase = runtime.module.phase()
-    player = op('/project1/madmapper_material_player')
-    if player is not None:
-        player.par.vec0valuey.val = phase
-    imported = op('/project1/madmapper_library/live_preview')
-    if imported is not None:
-        imported.par.vec0valuex.val = phase
-        controls = op('/project1/madmapper_player_controls')
-        if controls is not None and controls.par.Source.eval() == 'imported':
+    controls = op('/project1/madmapper_player_controls')
+    source = str(controls.par.Source.eval()) if controls is not None else ''
+    if source == 'materials':
+        player = op('/project1/madmapper_material_player')
+        if player is not None:
+            player.par.vec0valuey.val = phase
+    elif source == 'imported':
+        imported = op('/project1/madmapper_library/live_preview')
+        if imported is not None:
+            imported.par.vec0valuex.val = phase
             imported.cook(force=True)
     return
 """

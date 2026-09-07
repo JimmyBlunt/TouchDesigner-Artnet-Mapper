@@ -1,0 +1,455 @@
+{
+  "elapsed": 10.143619199996465,
+  "first": {
+    "wall_seconds": 40770.2915642,
+    "seconds": 1073.8833333333334,
+    "frame": 64433,
+    "nodes": [
+      {
+        "path": "/project1/madmapper_material_player",
+        "type": "glsl",
+        "cooks": 223,
+        "cpu_ms": 0.36070001125335693,
+        "gpu_ms": 0.1479170024394989,
+        "lock": false
+      },
+      {
+        "path": "/project1/material_gradient_player",
+        "type": "glsl",
+        "cooks": 9050,
+        "cpu_ms": 0.1875,
+        "gpu_ms": 1.3797390460968018,
+        "lock": false
+      },
+      {
+        "path": "/project1/res1",
+        "type": "res",
+        "cooks": 9050,
+        "cpu_ms": 0.0982000008225441,
+        "gpu_ms": 0.05927100032567978,
+        "lock": false
+      },
+      {
+        "path": "/project1/noise_Simplex4D",
+        "type": "noise",
+        "cooks": 123,
+        "cpu_ms": 0.3841000199317932,
+        "gpu_ms": 7.950884819030762,
+        "lock": false
+      },
+      {
+        "path": "/project1/LED_PREVIEW_OUT",
+        "type": "select",
+        "cooks": 123,
+        "cpu_ms": 0.07129999250173569,
+        "gpu_ms": 18.9989070892334,
+        "lock": false
+      },
+      {
+        "path": "/project1/layout_scene_editor/scene_render",
+        "type": "render",
+        "cooks": 123,
+        "cpu_ms": 1.0822999477386475,
+        "gpu_ms": 0.6267709732055664,
+        "lock": false
+      },
+      {
+        "path": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/interactive_camera/renderView/render1",
+        "type": "render",
+        "cooks": 123,
+        "cpu_ms": 1.6152000427246094,
+        "gpu_ms": 3.3388540744781494,
+        "lock": false
+      },
+      {
+        "path": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/mesh_rear_left_data",
+        "type": "script",
+        "cooks": 424,
+        "cpu_ms": 53.36819839477539,
+        "gpu_ms": 0.0,
+        "lock": false
+      },
+      {
+        "path": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/mesh_rear_right_data",
+        "type": "script",
+        "cooks": 424,
+        "cpu_ms": 33.824501037597656,
+        "gpu_ms": 0.0,
+        "lock": false
+      },
+      {
+        "path": "/project1/multi_controller_output/pack_ws2812_node",
+        "type": "script",
+        "cooks": 9048,
+        "cpu_ms": 33.78499984741211,
+        "gpu_ms": 0.0,
+        "lock": false
+      },
+      {
+        "path": "/project1/material_browser/unified_image_24",
+        "type": "moviefilein",
+        "cooks": 1,
+        "cpu_ms": 473.0624084472656,
+        "gpu_ms": 14.989114761352539,
+        "lock": false
+      },
+      {
+        "path": "/project1/material_browser/unified_image_9",
+        "type": "moviefilein",
+        "cooks": 1,
+        "cpu_ms": 98.87989807128906,
+        "gpu_ms": 146.3967742919922,
+        "lock": false
+      },
+      {
+        "path": "/project1/material_browser/ui_preview",
+        "type": "opview",
+        "cooks": 3,
+        "cpu_ms": 6.905300140380859,
+        "gpu_ms": 2.5458860397338867,
+        "lock": false
+      },
+      {
+        "path": "/project1/madmapper_library/ui_preview",
+        "type": "opview",
+        "cooks": 3,
+        "cpu_ms": 11.579999923706055,
+        "gpu_ms": 2.8319270610809326,
+        "lock": false
+      },
+      {
+        "path": "/project1/topto1",
+        "type": "topto",
+        "cooks": 12523,
+        "cpu_ms": 7.243499755859375,
+        "gpu_ms": 0.00010399999882793054,
+        "lock": false
+      },
+      {
+        "path": "/project1/math1",
+        "type": "math",
+        "cooks": 9661,
+        "cpu_ms": 0.09179999679327011,
+        "gpu_ms": 0.0,
+        "lock": false
+      }
+    ],
+    "file": "PixelblazeMapper_20260907_STORAGE_VERIFIED.1.toe",
+    "sender": {
+      "enabled": false,
+      "error": "",
+      "mode": "live",
+      "calibration": [
+        "all",
+        "panel_id",
+        0
+      ],
+      "controllers": [],
+      "target_override": null,
+      "port_override": null,
+      "telemetry": {
+        "tick_count": 9050,
+        "rate_skips": 0,
+        "send_count": 0,
+        "packet_count": 0,
+        "send_ms_last": 0.0,
+        "send_ms_average": 0.0,
+        "send_ms_max": 0.0,
+        "actual_send_fps": 0.0,
+        "pack_count": 0,
+        "pack_ms_last": 0.0,
+        "pack_ms_average": 0.0,
+        "pack_ms_max": 0.0,
+        "plan_rebuilds": 0
+      }
+    },
+    "controls": {
+      "Source": "imported",
+      "Material": "arcs",
+      "Speed": 0.2532981530343008,
+      "Scale": 3.9176781002638523,
+      "Width": 0.42,
+      "Colorr": 0.76,
+      "Colorg": 1.0,
+      "Colorb": 0.0,
+      "Coordinatemode": "global",
+      "Intensity": 0.532982,
+      "Contrast": 3.33113,
+      "Trail": 0.55,
+      "Direction": 0.125,
+      "Rotation": 0.0,
+      "Seed": 0.0,
+      "Transition": 0.5,
+      "Hybridmix": 0.5,
+      "Density": 1.0,
+      "Panelcolumns": 2,
+      "Panelrows": 5,
+      "Color2r": 0.0,
+      "Color2g": 0.18,
+      "Color2b": 1.0,
+      "Color2a": 1.0,
+      "Focusx": 0.5,
+      "Focusy": 0.5,
+      "Framezoom": 0.658971,
+      "Gradientpreset": "acid_lime_blue",
+      "Gradientstrength": 1.0,
+      "Colormode": "legacy",
+      "Globalmasterspeed": 1.0
+    },
+    "browser_state": "\t\r\nkey\tvalue\r\npage\t1\r\nsource\tAll\r\ngroup\tAll\r\nlayout\t8x4\r\nselected_key\tmadmapper:mat_ab0287bb394c824f13df\r\n",
+    "library_state": "key\tvalue\r\npage\t0\r\npage_count\t20\r\nresult_count\t638\r\nsearch\t\r\ncategory\tAll\r\ncompatibility\tAll\r\nselected_id\tmat_ab0287bb394c824f13df\r\nimport_confirm_id\t\r\nlast_import_path\tC:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\imported\\mat_ab0287bb394c824f13df\\prepared.frag\r\nlast_import_id\tmat_ab0287bb394c824f13df\r\nlive_preview_id\tmat_ab0287bb394c824f13df\r\nlayout\t8x4\r\nhover_slot\t\r\nhover_material_id\t\r\nhover_detail_restore\t\r\nactive_label\tBubble Rings\r\nactive_label_id\tmat_ab0287bb394c824f13df\r\nactive_id\tmat_ab0287bb394c824f13df\r\n",
+    "errors": "/project1/show_control/slot_a_adapter/material_top_in:  Error: Not enough sources specified (/project1/show_control/slot_a_adapter/material_top_in)\n/project1/show_control/slot_b_adapter/material_top_in:  Error: Not enough sources specified (/project1/show_control/slot_b_adapter/material_top_in)\n/project1/show_control/transition_adapter/slot_a_in:  Error: Not enough sources specified (/project1/show_control/transition_adapter/slot_a_in)\n/project1/show_control/transition_adapter/slot_b_in:  Error: Not enough sources specified (/project1/show_control/transition_adapter/slot_b_in)\n/project1/show_control/transition_adapter/show_preview_out:  Error: Not enough sources specified (/project1/show_control/transition_adapter/show_preview_out)"
+  },
+  "last": {
+    "wall_seconds": 40780.4351834,
+    "seconds": 1084.05,
+    "frame": 65043,
+    "nodes": [
+      {
+        "path": "/project1/madmapper_material_player",
+        "type": "glsl",
+        "cooks": 223,
+        "cpu_ms": 0.36070001125335693,
+        "gpu_ms": 0.1479170024394989,
+        "lock": false
+      },
+      {
+        "path": "/project1/material_gradient_player",
+        "type": "glsl",
+        "cooks": 9161,
+        "cpu_ms": 0.1387999951839447,
+        "gpu_ms": 1.3364579677581787,
+        "lock": false
+      },
+      {
+        "path": "/project1/res1",
+        "type": "res",
+        "cooks": 9161,
+        "cpu_ms": 0.0471000000834465,
+        "gpu_ms": 0.0568230003118515,
+        "lock": false
+      },
+      {
+        "path": "/project1/noise_Simplex4D",
+        "type": "noise",
+        "cooks": 123,
+        "cpu_ms": 0.3841000199317932,
+        "gpu_ms": 7.950884819030762,
+        "lock": false
+      },
+      {
+        "path": "/project1/LED_PREVIEW_OUT",
+        "type": "select",
+        "cooks": 123,
+        "cpu_ms": 0.07129999250173569,
+        "gpu_ms": 18.9989070892334,
+        "lock": false
+      },
+      {
+        "path": "/project1/layout_scene_editor/scene_render",
+        "type": "render",
+        "cooks": 123,
+        "cpu_ms": 1.0822999477386475,
+        "gpu_ms": 0.6267709732055664,
+        "lock": false
+      },
+      {
+        "path": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/interactive_camera/renderView/render1",
+        "type": "render",
+        "cooks": 123,
+        "cpu_ms": 1.6152000427246094,
+        "gpu_ms": 3.3388540744781494,
+        "lock": false
+      },
+      {
+        "path": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/mesh_rear_left_data",
+        "type": "script",
+        "cooks": 424,
+        "cpu_ms": 53.36819839477539,
+        "gpu_ms": 0.0,
+        "lock": false
+      },
+      {
+        "path": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/mesh_rear_right_data",
+        "type": "script",
+        "cooks": 424,
+        "cpu_ms": 33.824501037597656,
+        "gpu_ms": 0.0,
+        "lock": false
+      },
+      {
+        "path": "/project1/multi_controller_output/pack_ws2812_node",
+        "type": "script",
+        "cooks": 9159,
+        "cpu_ms": 13.168800354003906,
+        "gpu_ms": 0.0,
+        "lock": false
+      },
+      {
+        "path": "/project1/material_browser/unified_image_24",
+        "type": "moviefilein",
+        "cooks": 1,
+        "cpu_ms": 473.0624084472656,
+        "gpu_ms": 14.989114761352539,
+        "lock": false
+      },
+      {
+        "path": "/project1/material_browser/unified_image_9",
+        "type": "moviefilein",
+        "cooks": 1,
+        "cpu_ms": 98.87989807128906,
+        "gpu_ms": 146.3967742919922,
+        "lock": false
+      },
+      {
+        "path": "/project1/material_browser/ui_preview",
+        "type": "opview",
+        "cooks": 3,
+        "cpu_ms": 6.905300140380859,
+        "gpu_ms": 2.5458860397338867,
+        "lock": false
+      },
+      {
+        "path": "/project1/madmapper_library/ui_preview",
+        "type": "opview",
+        "cooks": 3,
+        "cpu_ms": 11.579999923706055,
+        "gpu_ms": 2.8319270610809326,
+        "lock": false
+      },
+      {
+        "path": "/project1/topto1",
+        "type": "topto",
+        "cooks": 12665,
+        "cpu_ms": 1.965999960899353,
+        "gpu_ms": 0.00010399999882793054,
+        "lock": false
+      },
+      {
+        "path": "/project1/math1",
+        "type": "math",
+        "cooks": 9777,
+        "cpu_ms": 0.02359999716281891,
+        "gpu_ms": 0.0,
+        "lock": false
+      }
+    ],
+    "file": "PixelblazeMapper_20260907_STORAGE_VERIFIED.1.toe",
+    "sender": {
+      "enabled": false,
+      "error": "",
+      "mode": "live",
+      "calibration": [
+        "all",
+        "panel_id",
+        0
+      ],
+      "controllers": [],
+      "target_override": null,
+      "port_override": null,
+      "telemetry": {
+        "tick_count": 9161,
+        "rate_skips": 0,
+        "send_count": 0,
+        "packet_count": 0,
+        "send_ms_last": 0.0,
+        "send_ms_average": 0.0,
+        "send_ms_max": 0.0,
+        "actual_send_fps": 0.0,
+        "pack_count": 0,
+        "pack_ms_last": 0.0,
+        "pack_ms_average": 0.0,
+        "pack_ms_max": 0.0,
+        "plan_rebuilds": 0
+      }
+    },
+    "controls": {
+      "Source": "imported",
+      "Material": "arcs",
+      "Speed": 0.2532981530343008,
+      "Scale": 3.9176781002638523,
+      "Width": 0.42,
+      "Colorr": 0.76,
+      "Colorg": 1.0,
+      "Colorb": 0.0,
+      "Coordinatemode": "global",
+      "Intensity": 0.532982,
+      "Contrast": 3.33113,
+      "Trail": 0.55,
+      "Direction": 0.125,
+      "Rotation": 0.0,
+      "Seed": 0.0,
+      "Transition": 0.5,
+      "Hybridmix": 0.5,
+      "Density": 1.0,
+      "Panelcolumns": 2,
+      "Panelrows": 5,
+      "Color2r": 0.0,
+      "Color2g": 0.18,
+      "Color2b": 1.0,
+      "Color2a": 1.0,
+      "Focusx": 0.5,
+      "Focusy": 0.5,
+      "Framezoom": 0.658971,
+      "Gradientpreset": "acid_lime_blue",
+      "Gradientstrength": 1.0,
+      "Colormode": "legacy",
+      "Globalmasterspeed": 1.0
+    },
+    "browser_state": "\t\r\nkey\tvalue\r\npage\t1\r\nsource\tAll\r\ngroup\tAll\r\nlayout\t8x4\r\nselected_key\tmadmapper:mat_ab0287bb394c824f13df\r\n",
+    "library_state": "key\tvalue\r\npage\t0\r\npage_count\t20\r\nresult_count\t638\r\nsearch\t\r\ncategory\tAll\r\ncompatibility\tAll\r\nselected_id\tmat_ab0287bb394c824f13df\r\nimport_confirm_id\t\r\nlast_import_path\tC:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\imported\\mat_ab0287bb394c824f13df\\prepared.frag\r\nlast_import_id\tmat_ab0287bb394c824f13df\r\nlive_preview_id\tmat_ab0287bb394c824f13df\r\nlayout\t8x4\r\nhover_slot\t\r\nhover_material_id\t\r\nhover_detail_restore\t\r\nactive_label\tBubble Rings\r\nactive_label_id\tmat_ab0287bb394c824f13df\r\nactive_id\tmat_ab0287bb394c824f13df\r\n",
+    "errors": "/project1/show_control/slot_a_adapter/material_top_in:  Error: Not enough sources specified (/project1/show_control/slot_a_adapter/material_top_in)\n/project1/show_control/slot_b_adapter/material_top_in:  Error: Not enough sources specified (/project1/show_control/slot_b_adapter/material_top_in)\n/project1/show_control/transition_adapter/slot_a_in:  Error: Not enough sources specified (/project1/show_control/transition_adapter/slot_a_in)\n/project1/show_control/transition_adapter/slot_b_in:  Error: Not enough sources specified (/project1/show_control/transition_adapter/slot_b_in)\n/project1/show_control/transition_adapter/show_preview_out:  Error: Not enough sources specified (/project1/show_control/transition_adapter/show_preview_out)"
+  },
+  "active": [
+    {
+      "path": "/project1/multi_controller_output/pack_ws2812_node",
+      "type": "script",
+      "cooks": 9159,
+      "cpu_ms": 13.168800354003906,
+      "gpu_ms": 0.0,
+      "lock": false,
+      "delta": 111,
+      "cooks_per_second": 10.942839810078702
+    },
+    {
+      "path": "/project1/topto1",
+      "type": "topto",
+      "cooks": 12665,
+      "cpu_ms": 1.965999960899353,
+      "gpu_ms": 0.00010399999882793054,
+      "lock": false,
+      "delta": 142,
+      "cooks_per_second": 13.998948225506089
+    },
+    {
+      "path": "/project1/material_gradient_player",
+      "type": "glsl",
+      "cooks": 9161,
+      "cpu_ms": 0.1387999951839447,
+      "gpu_ms": 1.3364579677581787,
+      "lock": false,
+      "delta": 111,
+      "cooks_per_second": 10.942839810078702
+    },
+    {
+      "path": "/project1/res1",
+      "type": "res",
+      "cooks": 9161,
+      "cpu_ms": 0.0471000000834465,
+      "gpu_ms": 0.0568230003118515,
+      "lock": false,
+      "delta": 111,
+      "cooks_per_second": 10.942839810078702
+    },
+    {
+      "path": "/project1/math1",
+      "type": "math",
+      "cooks": 9777,
+      "cpu_ms": 0.02359999716281891,
+      "gpu_ms": 0.0,
+      "lock": false,
+      "delta": 116,
+      "cooks_per_second": 11.43576052224441
+    }
+  ]
+}

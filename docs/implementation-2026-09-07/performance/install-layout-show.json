@@ -1,0 +1,42 @@
+{
+  "layout": {
+    "schema": "pixelblaze-layout-save-manifest",
+    "version": 1,
+    "scene_id": "4e9891f6-d147-4ec3-9839-4630543e5aa5",
+    "layout_undo": 0,
+    "layout_redo": 0,
+    "fixture_undo": 1,
+    "fixture_redo": 3,
+    "selected_object_id": "33ef5c9a-877d-5d46-a359-13632f057db5",
+    "selected_fixture_id": "d6a75d7c-b33e-44bd-845b-182889566d66",
+    "transient_startup_none": [
+      "layout_editor_session",
+      "fixture_history",
+      "fixture_preview",
+      "layout_drag",
+      "fixture_drag",
+      "ui_prepared_context"
+    ],
+    "prepared_invalidated_on_reopen": true,
+    "preview_recovered_as_one_undo_step": false
+  },
+  "warm_snapshot_ms": [
+    0.1081000009435229,
+    0.03339999966556206,
+    0.026799993065651506
+  ],
+  "placeholder_repair": {
+    "repaired": [
+      "/project1/show_control/slot_a_adapter/material_top_in",
+      "/project1/show_control/slot_b_adapter/material_top_in",
+      "/project1/show_control/transition_adapter/slot_a_in",
+      "/project1/show_control/transition_adapter/slot_b_in",
+      "/project1/show_control/transition_adapter/show_preview_out"
+    ],
+    "preserved_wired": [],
+    "skipped": [],
+    "production_changed": false
+  },
+  "errors": "",
+  "sender_enabled": false
+}

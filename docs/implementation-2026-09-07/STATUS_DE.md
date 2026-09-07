@@ -2,7 +2,9 @@
 
 Stand: 07.09.2026, laufender Implementierungsschritt. **Kein vollständiger Abschlussbericht.** Die historischen Auditberichte beschreiben den Ausgangsstand, nicht diese Änderungen.
 
-**Speicher-Nachtrag:** Die erste `P0P1_2D_CANDIDATE.1.toe` meldete echte PicklingErrors und ist keine freigegebene Sicherung. Der Speicherfehler wurde danach korrigiert. Maßgeblich ist jetzt `Backup/Implementation/PixelblazeMapper_20260907_STORAGE_VERIFIED.1.toe`: native Meldung „saved successfully“, anschließend tatsächlich neu geladen und Werte verglichen. Details: `SAVE_REPAIR_DE.md` und `storage-repair/roundtrip-result.json`. Die übrigen Funktions-/Performanceabnahmen bleiben offen.
+**Aktueller geprüfter Stand:** `Backup/Implementation/PixelblazeMapper_20260907_PERFORMANCE_VERIFIED.1.toe`, erfolgreich gespeichert und tatsächlich neu geladen. Material-/Routingzustand und vollständige Layout-/Fixture-Historien erhalten; keine Speicher-/Operatorfehler. 583 Tests, OK (ein NumPy-Test übersprungen, separat im nativen Interpreter geprüft). Neue echte Maus-/Undo-Tests und byteidentischer optimierter Packer. Die letzte kurze Live-Messung liegt bei etwa 12,5 Bildern/s: **60 FPS sind nicht abgenommen**. Details und nächste Schritte: `PERFORMANCE_CHECKPOINT_DE.md` und `performance/roundtrip.json`.
+
+**Speicher-Historie:** Die erste `P0P1_2D_CANDIDATE.1.toe` meldete echte PicklingErrors und ist keine freigegebene Sicherung. Der reparierte Rückfallstand `Backup/Implementation/PixelblazeMapper_20260907_STORAGE_VERIFIED.1.toe` bleibt erhalten. Details zur ursprünglichen Reparatur: `SAVE_REPAIR_DE.md` und `storage-repair/roundtrip-result.json`. Die übrigen Funktions-/Performanceabnahmen bleiben offen.
 
 ## Übersicht
 

@@ -71,11 +71,13 @@ def active_hash(owner):
 
 def refresh(owner, *, fields=True, save=True):
     session = editor(owner)
-    from .layout_session_storage import persist_layout
+    from .layout_session_storage import persist_layout, serialized
     persist_layout(owner, session)
     scene = session.display_scene
     if save:
-        owner.op("draft_document").text = document_json(session.current)
+        text = serialized("document", session.current)
+        if owner.op("draft_document").text != text:
+            owner.op("draft_document").text = text
     menu_lines = []
     for index, obj in enumerate(scene.objects):
         sources = [v.source_index for v in obj.leds]

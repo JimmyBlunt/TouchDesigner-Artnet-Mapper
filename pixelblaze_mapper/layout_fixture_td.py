@@ -78,10 +78,12 @@ def refresh(owner, *, save=True):
     from .fixture_scene import export_fixture_json
     from .layout_scene_td import editor
     model = current(owner)
-    from .layout_session_storage import persist_fixtures
+    from .layout_session_storage import persist_fixtures, serialized
     persist_fixtures(owner, history(owner), owner.fetch("fixture_preview", None))
     if save:
-        owner.op("fixture_document").text = export_fixture_json(history(owner).current)
+        text = serialized("fixture", history(owner).current)
+        if owner.op("fixture_document").text != text:
+            owner.op("fixture_document").text = text
     for domain in ("output", "uv"):
         owner.op("fixture_" + domain + "_instances").cook(force=True)
     out_of_bounds = sum(not (0 <= p[0] <= 1 and 0 <= p[1] <= 1)

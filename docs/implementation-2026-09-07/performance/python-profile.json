@@ -1,0 +1,1793 @@
+[
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\realtime_packer.py",
+    "line": 43,
+    "function": "pack_channels",
+    "primitive_calls": 132,
+    "calls": 132,
+    "self_seconds": 0.3647361,
+    "cumulative_seconds": 2.5944966000000003
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\realtime_packer.py",
+    "line": 137,
+    "function": "_normalized_byte",
+    "primitive_calls": 642906,
+    "calls": 642906,
+    "self_seconds": 0.6910843000000001,
+    "cumulative_seconds": 2.2267497
+  },
+  {
+    "file": "/project1/multi_controller_output/pack_ws2812_node_callbacks",
+    "line": 78,
+    "function": "onCook",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.15387330000000002,
+    "cumulative_seconds": 1.8215507000000002
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.isinstance>",
+    "primitive_calls": 644151,
+    "calls": 644151,
+    "self_seconds": 0.3115704,
+    "cumulative_seconds": 1.1825545000000002
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'cook' of 'td.OP' objects>",
+    "primitive_calls": 557,
+    "calls": 557,
+    "self_seconds": 0.0431338,
+    "cumulative_seconds": 1.0474278000000001
+  },
+  {
+    "file": "/project1/multi_controller_output/pack_apa102_esp_callbacks",
+    "line": 78,
+    "function": "onCook",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0654178,
+    "cumulative_seconds": 1.0188774
+  },
+  {
+    "file": "/project1/chopexec1",
+    "line": 22,
+    "function": "onValueChange",
+    "primitive_calls": 478,
+    "calls": 478,
+    "self_seconds": 0.0045106,
+    "cumulative_seconds": 0.8980355000000001
+  },
+  {
+    "file": "<frozen abc>",
+    "line": 117,
+    "function": "__instancecheck__",
+    "primitive_calls": 642906,
+    "calls": 642906,
+    "self_seconds": 0.18105200000000002,
+    "cumulative_seconds": 0.8709841
+  },
+  {
+    "file": "/project1/script4_callbacks",
+    "line": 68,
+    "function": "onCook",
+    "primitive_calls": 478,
+    "calls": 478,
+    "self_seconds": 0.2866069,
+    "cumulative_seconds": 0.8689847
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/preview3d/instance_data_callbacks",
+    "line": 66,
+    "function": "onCook",
+    "primitive_calls": 79,
+    "calls": 79,
+    "self_seconds": 0.0535346,
+    "cumulative_seconds": 0.769433
+  },
+  {
+    "file": "/project1/esp_artnet_live_pack_callbacks",
+    "line": 21,
+    "function": "onCook",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.38782300000000003,
+    "cumulative_seconds": 0.7174711
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method _abc._abc_instancecheck>",
+    "primitive_calls": 642906,
+    "calls": 642906,
+    "self_seconds": 0.3207165,
+    "cumulative_seconds": 0.6899321
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/preview3d/instance_data_callbacks",
+    "line": 94,
+    "function": "<listcomp>",
+    "primitive_calls": 79,
+    "calls": 79,
+    "self_seconds": 0.012593,
+    "cumulative_seconds": 0.5975241
+  },
+  {
+    "file": "/project1/script4_callbacks",
+    "line": 17,
+    "function": "generate_combined_effect",
+    "primitive_calls": 478,
+    "calls": 478,
+    "self_seconds": 0.2913171,
+    "cumulative_seconds": 0.581639
+  },
+  {
+    "file": "<frozen abc>",
+    "line": 121,
+    "function": "__subclasscheck__",
+    "primitive_calls": 642906,
+    "calls": 642906,
+    "self_seconds": 0.1674795,
+    "cumulative_seconds": 0.36921560000000003
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.max>",
+    "primitive_calls": 2066193,
+    "calls": 2066430,
+    "self_seconds": 0.3373472,
+    "cumulative_seconds": 0.3625565
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.min>",
+    "primitive_calls": 1964389,
+    "calls": 1964389,
+    "self_seconds": 0.32135800000000003,
+    "cumulative_seconds": 0.32135800000000003
+  },
+  {
+    "file": "/project1/esp_artnet_live_pack_callbacks",
+    "line": 12,
+    "function": "_clamp01",
+    "primitive_calls": 332442,
+    "calls": 332442,
+    "self_seconds": 0.1531942,
+    "cumulative_seconds": 0.26740810000000004
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method _abc._abc_subclasscheck>",
+    "primitive_calls": 642906,
+    "calls": 642906,
+    "self_seconds": 0.2017361,
+    "cumulative_seconds": 0.2017361
+  },
+  {
+    "file": "/project1/script4_callbacks",
+    "line": 23,
+    "function": "<listcomp>",
+    "primitive_calls": 478,
+    "calls": 478,
+    "self_seconds": 0.1585987,
+    "cumulative_seconds": 0.1585987
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.round>",
+    "primitive_calls": 975404,
+    "calls": 975404,
+    "self_seconds": 0.1581287,
+    "cumulative_seconds": 0.1581287
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/preview3d/animation_driver",
+    "line": 10,
+    "function": "onFrameStart",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0004247,
+    "cumulative_seconds": 0.1388272
+  },
+  {
+    "file": "/project1/multi_controller_output/router_status_execute",
+    "line": 1,
+    "function": "onFrameStart",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0015334,
+    "cumulative_seconds": 0.07245470000000001
+  },
+  {
+    "file": "/project1/multi_controller_output/ui_callbacks",
+    "line": 29,
+    "function": "refresh_status",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0042709,
+    "cumulative_seconds": 0.0709213
+  },
+  {
+    "file": "/project1/show_control/transport_execute",
+    "line": 2,
+    "function": "onFrameEnd",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0017088000000000001,
+    "cumulative_seconds": 0.06311080000000001
+  },
+  {
+    "file": "/project1/show_control/callbacks",
+    "line": 135,
+    "function": "advance",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0005856,
+    "cumulative_seconds": 0.061340900000000004
+  },
+  {
+    "file": "/project1/show_control/callbacks",
+    "line": 76,
+    "function": "sync",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0030916000000000003,
+    "cumulative_seconds": 0.059067
+  },
+  {
+    "file": "/project1/multi_controller_output/ui_callbacks",
+    "line": 20,
+    "function": "_source_pixels",
+    "primitive_calls": 54,
+    "calls": 54,
+    "self_seconds": 0.0556682,
+    "cumulative_seconds": 0.0556682
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/preview3d/instance_data_callbacks",
+    "line": 86,
+    "function": "<listcomp>",
+    "primitive_calls": 237,
+    "calls": 237,
+    "self_seconds": 0.0489189,
+    "cumulative_seconds": 0.0489189
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'random' of '_random.Random' objects>",
+    "primitive_calls": 551560,
+    "calls": 551560,
+    "self_seconds": 0.0445762,
+    "cumulative_seconds": 0.0445762
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\random.py",
+    "line": 520,
+    "function": "uniform",
+    "primitive_calls": 101835,
+    "calls": 101835,
+    "self_seconds": 0.0344129,
+    "cumulative_seconds": 0.0425588
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/preview3d/instance_data_callbacks",
+    "line": 92,
+    "function": "<genexpr>",
+    "primitive_calls": 316,
+    "calls": 316,
+    "self_seconds": 0.0252093,
+    "cumulative_seconds": 0.0337546
+  },
+  {
+    "file": "/project1/material_phase_execute",
+    "line": 1,
+    "function": "onFrameStart",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0067517,
+    "cumulative_seconds": 0.027064500000000002
+  },
+  {
+    "file": "/project1/show_control/render_sync",
+    "line": 96,
+    "function": "sync_render",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0023726000000000003,
+    "cumulative_seconds": 0.021529000000000003
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.hasattr>",
+    "primitive_calls": 231,
+    "calls": 231,
+    "self_seconds": 0.0192877,
+    "cumulative_seconds": 0.0192877
+  },
+  {
+    "file": "/project1/show_control/callbacks",
+    "line": 30,
+    "function": "_put",
+    "primitive_calls": 1782,
+    "calls": 1782,
+    "self_seconds": 0.014190900000000001,
+    "cumulative_seconds": 0.014190900000000001
+  },
+  {
+    "file": "/project1/show_control/render_sync",
+    "line": 58,
+    "function": "_apply_slot",
+    "primitive_calls": 132,
+    "calls": 132,
+    "self_seconds": 0.0028252000000000004,
+    "cumulative_seconds": 0.0130255
+  },
+  {
+    "file": "/project1/multi_controller_output/pack_apa102_esp_callbacks",
+    "line": 58,
+    "function": "_controller_packer",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.00045450000000000004,
+    "cumulative_seconds": 0.0109688
+  },
+  {
+    "file": "/project1/multi_controller_output/pack_apa102_esp_callbacks",
+    "line": 50,
+    "function": "_signature",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0029025,
+    "cumulative_seconds": 0.0105143
+  },
+  {
+    "file": "/project1/multi_controller_output/pack_ws2812_node_callbacks",
+    "line": 58,
+    "function": "_controller_packer",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0004514,
+    "cumulative_seconds": 0.0099469
+  },
+  {
+    "file": "/project1/multi_controller_output/pack_ws2812_node_callbacks",
+    "line": 50,
+    "function": "_signature",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0024679000000000003,
+    "cumulative_seconds": 0.0094955
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'appendChan' of 'td.scriptCHOP' objects>",
+    "primitive_calls": 3378,
+    "calls": 3378,
+    "self_seconds": 0.0087071,
+    "cumulative_seconds": 0.0087071
+  },
+  {
+    "file": "/sys/TDResources/threadManager/ThreadManagerExecute",
+    "line": 29,
+    "function": "onFrameEnd",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0024706000000000003,
+    "cumulative_seconds": 0.0073245
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/preview3d/instance_data_callbacks",
+    "line": 10,
+    "function": "_coordinates",
+    "primitive_calls": 79,
+    "calls": 79,
+    "self_seconds": 0.0028919,
+    "cumulative_seconds": 0.0072618000000000005
+  },
+  {
+    "file": "/project1/show_control/callbacks",
+    "line": 14,
+    "function": "_set",
+    "primitive_calls": 726,
+    "calls": 726,
+    "self_seconds": 0.0070619,
+    "cumulative_seconds": 0.0070619
+  },
+  {
+    "file": "/project1/show_control/render_sync",
+    "line": 51,
+    "function": "_value",
+    "primitive_calls": 1026,
+    "calls": 1026,
+    "self_seconds": 0.006728700000000001,
+    "cumulative_seconds": 0.006728700000000001
+  },
+  {
+    "file": "/project1/esp_artnet_live_pack_callbacks",
+    "line": 5,
+    "function": "_config",
+    "primitive_calls": 330,
+    "calls": 330,
+    "self_seconds": 0.0062223,
+    "cumulative_seconds": 0.0062223
+  },
+  {
+    "file": "/project1/multi_controller_output/pack_apa102_esp_callbacks",
+    "line": 55,
+    "function": "<genexpr>",
+    "primitive_calls": 5544,
+    "calls": 5544,
+    "self_seconds": 0.0053958,
+    "cumulative_seconds": 0.0053958
+  },
+  {
+    "file": "/project1/show_control/render_sync",
+    "line": 8,
+    "function": "_set_parameter",
+    "primitive_calls": 2354,
+    "calls": 2354,
+    "self_seconds": 0.0041967,
+    "cumulative_seconds": 0.0049173
+  },
+  {
+    "file": "/project1/multi_controller_output/pack_ws2812_node_callbacks",
+    "line": 55,
+    "function": "<genexpr>",
+    "primitive_calls": 5544,
+    "calls": 5544,
+    "self_seconds": 0.0048955000000000005,
+    "cumulative_seconds": 0.0048955000000000005
+  },
+  {
+    "file": "/project1/show_control/callbacks",
+    "line": 39,
+    "function": "_persist_state",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0011528,
+    "cumulative_seconds": 0.0048514000000000005
+  },
+  {
+    "file": "/project1/material_state_runtime",
+    "line": 225,
+    "function": "phase",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.00015010000000000002,
+    "cumulative_seconds": 0.004622
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/output_config/live_summary_execute",
+    "line": 1,
+    "function": "onFrameStart",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0001889,
+    "cumulative_seconds": 0.0045231
+  },
+  {
+    "file": "/project1/material_state_runtime",
+    "line": 212,
+    "function": "tick",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0007266000000000001,
+    "cumulative_seconds": 0.0044719
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/output_config/live_summary_runtime",
+    "line": 32,
+    "function": "update",
+    "primitive_calls": 4,
+    "calls": 4,
+    "self_seconds": 0.003497,
+    "cumulative_seconds": 0.0043342
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\routing_transaction.py",
+    "line": 12,
+    "function": "table_rows",
+    "primitive_calls": 108,
+    "calls": 108,
+    "self_seconds": 0.0006319,
+    "cumulative_seconds": 0.0040644
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\json\\__init__.py",
+    "line": 183,
+    "function": "dumps",
+    "primitive_calls": 68,
+    "calls": 68,
+    "self_seconds": 0.0005340000000000001,
+    "cumulative_seconds": 0.0038900000000000002
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\output_config_summary.py",
+    "line": 90,
+    "function": "build_output_summary",
+    "primitive_calls": 30,
+    "calls": 30,
+    "self_seconds": 0.0020315000000000003,
+    "cumulative_seconds": 0.0036547000000000003
+  },
+  {
+    "file": "/project1/show_control/callbacks",
+    "line": 43,
+    "function": "<dictcomp>",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.00038780000000000005,
+    "cumulative_seconds": 0.0033749
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\material_state.py",
+    "line": 169,
+    "function": "tick",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.00041690000000000005,
+    "cumulative_seconds": 0.0033272
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\json\\encoder.py",
+    "line": 183,
+    "function": "encode",
+    "primitive_calls": 68,
+    "calls": 68,
+    "self_seconds": 0.0007445,
+    "cumulative_seconds": 0.0032170000000000002
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\routing_transaction.py",
+    "line": 29,
+    "function": "records",
+    "primitive_calls": 108,
+    "calls": 108,
+    "self_seconds": 0.0008841000000000001,
+    "cumulative_seconds": 0.0030519
+  },
+  {
+    "file": "/project1/show_control/callbacks",
+    "line": 23,
+    "function": "_get",
+    "primitive_calls": 462,
+    "calls": 462,
+    "self_seconds": 0.0029871000000000003,
+    "cumulative_seconds": 0.0029871000000000003
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\material_state.py",
+    "line": 104,
+    "function": "advanced",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.000665,
+    "cumulative_seconds": 0.0029103
+  },
+  {
+    "file": "/sys/TDResources/threadManager/ThreadManagerExt",
+    "line": 1111,
+    "function": "pollTasks",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0020329000000000002,
+    "cumulative_seconds": 0.0028237
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\routing_transaction.py",
+    "line": 13,
+    "function": "<listcomp>",
+    "primitive_calls": 405,
+    "calls": 405,
+    "self_seconds": 0.0027601,
+    "cumulative_seconds": 0.0027601
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'eval' of 'td.Par' objects>",
+    "primitive_calls": 2851,
+    "calls": 2851,
+    "self_seconds": 0.0027503000000000002,
+    "cumulative_seconds": 0.0027503000000000002
+  },
+  {
+    "file": "/project1/esp_artnet_live_pack_callbacks",
+    "line": 33,
+    "function": "<listcomp>",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0010174000000000001,
+    "cumulative_seconds": 0.0025724000000000003
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/preview3d/instance_data_callbacks",
+    "line": 3,
+    "function": "_resolve",
+    "primitive_calls": 158,
+    "calls": 158,
+    "self_seconds": 0.0024533000000000003,
+    "cumulative_seconds": 0.0025525
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\json\\encoder.py",
+    "line": 205,
+    "function": "iterencode",
+    "primitive_calls": 68,
+    "calls": 68,
+    "self_seconds": 0.0024033,
+    "cumulative_seconds": 0.0024033
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\show_sequencer.py",
+    "line": 104,
+    "function": "to_dict",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0002664,
+    "cumulative_seconds": 0.002334
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\json\\__init__.py",
+    "line": 299,
+    "function": "loads",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0003557,
+    "cumulative_seconds": 0.0023237
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/preview3d/instance_data_callbacks",
+    "line": 133,
+    "function": "<listcomp>",
+    "primitive_calls": 711,
+    "calls": 711,
+    "self_seconds": 0.0021487000000000003,
+    "cumulative_seconds": 0.0021487000000000003
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\show_sequencer.py",
+    "line": 105,
+    "function": "<dictcomp>",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.000862,
+    "cumulative_seconds": 0.0020676
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\logging\\handlers.py",
+    "line": 1515,
+    "function": "dequeue",
+    "primitive_calls": 198,
+    "calls": 198,
+    "self_seconds": 0.0003822,
+    "cumulative_seconds": 0.0020346
+  },
+  {
+    "file": "/project1/Preview/arcGeo/panelexec1",
+    "line": 22,
+    "function": "whileOn",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0018950000000000002,
+    "cumulative_seconds": 0.0018950000000000002
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\json\\decoder.py",
+    "line": 332,
+    "function": "decode",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.000398,
+    "cumulative_seconds": 0.0018895000000000001
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\dataclasses.py",
+    "line": 1455,
+    "function": "replace",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0011777,
+    "cumulative_seconds": 0.0018819000000000002
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\show_sequencer.py",
+    "line": 435,
+    "function": "plan",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.00115,
+    "cumulative_seconds": 0.0018641
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\realtime_packer.py",
+    "line": 66,
+    "function": "<genexpr>",
+    "primitive_calls": 2376,
+    "calls": 2376,
+    "self_seconds": 0.0018389,
+    "cumulative_seconds": 0.0018389
+  },
+  {
+    "file": "/sys/TDResources/TDAppLogger/execute1",
+    "line": 22,
+    "function": "onFrameEnd",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0006168,
+    "cumulative_seconds": 0.0018280000000000002
+  },
+  {
+    "file": "/project1/show_control/render_sync",
+    "line": 33,
+    "function": "_sender_badge",
+    "primitive_calls": 28,
+    "calls": 28,
+    "self_seconds": 0.0009054000000000001,
+    "cumulative_seconds": 0.0017711
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\queue.py",
+    "line": 154,
+    "function": "get",
+    "primitive_calls": 198,
+    "calls": 198,
+    "self_seconds": 0.0008652000000000001,
+    "cumulative_seconds": 0.0016524
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.any>",
+    "primitive_calls": 216,
+    "calls": 216,
+    "self_seconds": 0.0004353,
+    "cumulative_seconds": 0.0015564
+  },
+  {
+    "file": "",
+    "line": 1,
+    "function": "<module>",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0014347000000000001,
+    "cumulative_seconds": 0.0014347000000000001
+  },
+  {
+    "file": "/project1/show_control/callbacks",
+    "line": 52,
+    "function": "runtime",
+    "primitive_calls": 132,
+    "calls": 132,
+    "self_seconds": 0.0011996,
+    "cumulative_seconds": 0.0013051
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'fetch' of 'td.OP' objects>",
+    "primitive_calls": 386,
+    "calls": 386,
+    "self_seconds": 0.0012878000000000002,
+    "cumulative_seconds": 0.0012878000000000002
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\json\\decoder.py",
+    "line": 343,
+    "function": "raw_decode",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0012305,
+    "cumulative_seconds": 0.0012305
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\show_sequencer.py",
+    "line": 107,
+    "function": "<genexpr>",
+    "primitive_calls": 1386,
+    "calls": 1386,
+    "self_seconds": 0.0006955,
+    "cumulative_seconds": 0.0012056
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/preview3d/instance_data_callbacks",
+    "line": 15,
+    "function": "<dictcomp>",
+    "primitive_calls": 79,
+    "calls": 79,
+    "self_seconds": 0.0010085,
+    "cumulative_seconds": 0.0011581
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\threading.py",
+    "line": 1192,
+    "function": "is_alive",
+    "primitive_calls": 264,
+    "calls": 264,
+    "self_seconds": 0.0004946,
+    "cumulative_seconds": 0.0011047000000000001
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.all>",
+    "primitive_calls": 158,
+    "calls": 158,
+    "self_seconds": 0.0004106,
+    "cumulative_seconds": 0.0010990000000000002
+  },
+  {
+    "file": "/project1/multi_controller_output/artnet_510_execute",
+    "line": 1,
+    "function": "onFrameStart",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0009009,
+    "cumulative_seconds": 0.0010843
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.len>",
+    "primitive_calls": 2439,
+    "calls": 2439,
+    "self_seconds": 0.0009431000000000001,
+    "cumulative_seconds": 0.0009431000000000001
+  },
+  {
+    "file": "/project1/madmapper_player_controls/player_ui_update",
+    "line": 1,
+    "function": "onFrameStart",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0001683,
+    "cumulative_seconds": 0.0008866000000000001
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\threading.py",
+    "line": 271,
+    "function": "__enter__",
+    "primitive_calls": 264,
+    "calls": 264,
+    "self_seconds": 0.0005581000000000001,
+    "cumulative_seconds": 0.0008406
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\routing_transaction.py",
+    "line": 33,
+    "function": "<genexpr>",
+    "primitive_calls": 810,
+    "calls": 810,
+    "self_seconds": 0.0006208,
+    "cumulative_seconds": 0.0008288000000000001
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\realtime_packer.py",
+    "line": 56,
+    "function": "<listcomp>",
+    "primitive_calls": 132,
+    "calls": 132,
+    "self_seconds": 0.0008233,
+    "cumulative_seconds": 0.0008233
+  },
+  {
+    "file": "C:\\Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/touchdesigner-mcp-td\\modules\\utils\\logging.py",
+    "line": 33,
+    "function": "log_message",
+    "primitive_calls": 1,
+    "calls": 1,
+    "self_seconds": 3.09e-05,
+    "cumulative_seconds": 0.0008200000000000001
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'clear' of 'td.scriptCHOP' objects>",
+    "primitive_calls": 277,
+    "calls": 277,
+    "self_seconds": 0.0007660000000000001,
+    "cumulative_seconds": 0.0007660000000000001
+  },
+  {
+    "file": "/sys/TDResources/threadManager/logger/execute1",
+    "line": 22,
+    "function": "onFrameEnd",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0002746,
+    "cumulative_seconds": 0.0007191000000000001
+  },
+  {
+    "file": "/project1/madmapper_player_controls/player_ui_runtime",
+    "line": 4,
+    "function": "update",
+    "primitive_calls": 4,
+    "calls": 4,
+    "self_seconds": 0.0006354,
+    "cumulative_seconds": 0.0007183000000000001
+  },
+  {
+    "file": "/sys/TDResources/TDSysLogger/execute1",
+    "line": 22,
+    "function": "onFrameEnd",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0003263,
+    "cumulative_seconds": 0.0007052
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\show_sequencer.py",
+    "line": 412,
+    "function": "advance",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0003489,
+    "cumulative_seconds": 0.0006947
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'strftime' of 'datetime.date' objects>",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 0.0001021,
+    "cumulative_seconds": 0.0006635
+  },
+  {
+    "file": "/project1/show_control/render_sync",
+    "line": 13,
+    "function": "_text_if_changed",
+    "primitive_calls": 84,
+    "calls": 84,
+    "self_seconds": 0.00038960000000000004,
+    "cumulative_seconds": 0.0006509
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.getattr>",
+    "primitive_calls": 1584,
+    "calls": 1584,
+    "self_seconds": 0.0006101,
+    "cumulative_seconds": 0.0006101
+  },
+  {
+    "file": "C:/Program Files/Derivative/TouchDesigner/bin/TouchInit.py",
+    "line": 44,
+    "function": "tdcustomimport",
+    "primitive_calls": 5,
+    "calls": 5,
+    "self_seconds": 0.0004985,
+    "cumulative_seconds": 0.0005955
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'get' of 'dict' objects>",
+    "primitive_calls": 2057,
+    "calls": 2057,
+    "self_seconds": 0.0005792,
+    "cumulative_seconds": 0.0005792
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\routing_transaction.py",
+    "line": 39,
+    "function": "<listcomp>",
+    "primitive_calls": 108,
+    "calls": 108,
+    "self_seconds": 0.0005387,
+    "cumulative_seconds": 0.0005387
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'chans' of 'td.CHOP' objects>",
+    "primitive_calls": 478,
+    "calls": 478,
+    "self_seconds": 0.0005271000000000001,
+    "cumulative_seconds": 0.0005271000000000001
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\threading.py",
+    "line": 1125,
+    "function": "_wait_for_tstate_lock",
+    "primitive_calls": 264,
+    "calls": 264,
+    "self_seconds": 0.000238,
+    "cumulative_seconds": 0.0004928
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/preview3d/instance_data_callbacks",
+    "line": 90,
+    "function": "<genexpr>",
+    "primitive_calls": 316,
+    "calls": 316,
+    "self_seconds": 0.0004912,
+    "cumulative_seconds": 0.0004912
+  },
+  {
+    "file": "/sys/TDResources/threadManager/ThreadManagerExt",
+    "line": 1092,
+    "function": "pollWorkers",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.00045640000000000003,
+    "cumulative_seconds": 0.00047400000000000003
+  },
+  {
+    "file": "/sys/TDResources/threadManager/ThreadManagerExt",
+    "line": 212,
+    "function": "GetStateSafe",
+    "primitive_calls": 264,
+    "calls": 264,
+    "self_seconds": 0.00036710000000000003,
+    "cumulative_seconds": 0.00041610000000000003
+  },
+  {
+    "file": "<string>",
+    "line": 2,
+    "function": "__init__",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0003814,
+    "cumulative_seconds": 0.0003814
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\threading.py",
+    "line": 274,
+    "function": "__exit__",
+    "primitive_calls": 264,
+    "calls": 264,
+    "self_seconds": 0.00027830000000000004,
+    "cumulative_seconds": 0.00038050000000000003
+  },
+  {
+    "file": "/project1/multi_controller_output/artnet_510_sender_callbacks",
+    "line": 274,
+    "function": "status",
+    "primitive_calls": 62,
+    "calls": 62,
+    "self_seconds": 0.00037830000000000003,
+    "cumulative_seconds": 0.00037830000000000003
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.sorted>",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.00036530000000000004,
+    "cumulative_seconds": 0.00036530000000000004
+  },
+  {
+    "file": "/project1/show_control/render_sync",
+    "line": 18,
+    "function": "_network_state",
+    "primitive_calls": 28,
+    "calls": 28,
+    "self_seconds": 0.00035840000000000004,
+    "cumulative_seconds": 0.00035840000000000004
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\show_sequencer.py",
+    "line": 111,
+    "function": "_number",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0002616,
+    "cumulative_seconds": 0.0003458
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'format' of 'str' objects>",
+    "primitive_calls": 79,
+    "calls": 79,
+    "self_seconds": 0.0003254,
+    "cumulative_seconds": 0.0003254
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/output_config/live_summary_runtime",
+    "line": 14,
+    "function": "_rows",
+    "primitive_calls": 9,
+    "calls": 9,
+    "self_seconds": 5.95e-05,
+    "cumulative_seconds": 0.0003153
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'strip' of 'str' objects>",
+    "primitive_calls": 1476,
+    "calls": 1476,
+    "self_seconds": 0.0002989,
+    "cumulative_seconds": 0.0002989
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\routing_transaction.py",
+    "line": 37,
+    "function": "<genexpr>",
+    "primitive_calls": 405,
+    "calls": 405,
+    "self_seconds": 0.00023490000000000002,
+    "cumulative_seconds": 0.0002923
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\material_state.py",
+    "line": 23,
+    "function": "_finite",
+    "primitive_calls": 132,
+    "calls": 132,
+    "self_seconds": 0.00022630000000000003,
+    "cumulative_seconds": 0.0002813
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\output_config_summary.py",
+    "line": 33,
+    "function": "_boolean",
+    "primitive_calls": 150,
+    "calls": 150,
+    "self_seconds": 0.0001979,
+    "cumulative_seconds": 0.00026890000000000003
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'acquire' of '_thread.lock' objects>",
+    "primitive_calls": 264,
+    "calls": 264,
+    "self_seconds": 0.0002548,
+    "cumulative_seconds": 0.0002548
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\dataclasses.py",
+    "line": 1253,
+    "function": "_is_dataclass_instance",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.00014690000000000002,
+    "cumulative_seconds": 0.0002299
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\enum.py",
+    "line": 193,
+    "function": "__get__",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0001517,
+    "cumulative_seconds": 0.00021830000000000002
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\queue.py",
+    "line": 209,
+    "function": "_qsize",
+    "primitive_calls": 198,
+    "calls": 198,
+    "self_seconds": 0.00014800000000000002,
+    "cumulative_seconds": 0.0002164
+  },
+  {
+    "file": "/project1/material_state_runtime",
+    "line": 39,
+    "function": "_now",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.00021600000000000002,
+    "cumulative_seconds": 0.00021600000000000002
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\output_config_summary.py",
+    "line": 19,
+    "function": "_integer",
+    "primitive_calls": 570,
+    "calls": 570,
+    "self_seconds": 0.0002134,
+    "cumulative_seconds": 0.0002134
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'match' of 're.Pattern' objects>",
+    "primitive_calls": 132,
+    "calls": 132,
+    "self_seconds": 0.0002065,
+    "cumulative_seconds": 0.0002065
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/preview3d/instance_data_callbacks",
+    "line": 16,
+    "function": "<genexpr>",
+    "primitive_calls": 316,
+    "calls": 316,
+    "self_seconds": 0.00019720000000000002,
+    "cumulative_seconds": 0.00019720000000000002
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/output_config/live_summary_runtime",
+    "line": 18,
+    "function": "<listcomp>",
+    "primitive_calls": 9,
+    "calls": 9,
+    "self_seconds": 3.7000000000000005e-05,
+    "cumulative_seconds": 0.0001901
+  },
+  {
+    "file": "/project1/show_control/render_sync",
+    "line": 74,
+    "function": "<listcomp>",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.00018460000000000001,
+    "cumulative_seconds": 0.00018460000000000001
+  },
+  {
+    "file": "/project1/multi_controller_output/artnet_510_sender_callbacks",
+    "line": 230,
+    "function": "tick",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0001834,
+    "cumulative_seconds": 0.0001834
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method '__enter__' of '_thread.lock' objects>",
+    "primitive_calls": 198,
+    "calls": 198,
+    "self_seconds": 0.0001632,
+    "cumulative_seconds": 0.0001632
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method time.perf_counter>",
+    "primitive_calls": 264,
+    "calls": 264,
+    "self_seconds": 0.00015340000000000002,
+    "cumulative_seconds": 0.00015340000000000002
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/output_config/live_summary_runtime",
+    "line": 19,
+    "function": "<dictcomp>",
+    "primitive_calls": 27,
+    "calls": 27,
+    "self_seconds": 0.0001531,
+    "cumulative_seconds": 0.0001531
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\show_sequencer.py",
+    "line": 328,
+    "function": "cue",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.0001444,
+    "cumulative_seconds": 0.0001444
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\material_state.py",
+    "line": 98,
+    "function": "__post_init__",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.00011750000000000001,
+    "cumulative_seconds": 0.00014240000000000002
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\json\\encoder.py",
+    "line": 105,
+    "function": "__init__",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.00013900000000000002,
+    "cumulative_seconds": 0.00013900000000000002
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\show_sequencer.py",
+    "line": 364,
+    "function": "_next_index",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.00012200000000000001,
+    "cumulative_seconds": 0.0001384
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\output_config_summary.py",
+    "line": 26,
+    "function": "_floating",
+    "primitive_calls": 60,
+    "calls": 60,
+    "self_seconds": 0.00013120000000000002,
+    "cumulative_seconds": 0.00013120000000000002
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method '__exit__' of '_thread.lock' objects>",
+    "primitive_calls": 528,
+    "calls": 528,
+    "self_seconds": 0.00012890000000000002,
+    "cumulative_seconds": 0.00012890000000000002
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method math.isfinite>",
+    "primitive_calls": 330,
+    "calls": 330,
+    "self_seconds": 0.0001258,
+    "cumulative_seconds": 0.0001258
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method time.monotonic>",
+    "primitive_calls": 136,
+    "calls": 136,
+    "self_seconds": 0.00012560000000000002,
+    "cumulative_seconds": 0.00012560000000000002
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method '__enter__' of '_thread.RLock' objects>",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 0.00011930000000000001,
+    "cumulative_seconds": 0.00011930000000000001
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\threading.py",
+    "line": 575,
+    "function": "is_set",
+    "primitive_calls": 264,
+    "calls": 264,
+    "self_seconds": 0.0001173,
+    "cumulative_seconds": 0.0001173
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'replace' of 'str' objects>",
+    "primitive_calls": 132,
+    "calls": 132,
+    "self_seconds": 0.0001168,
+    "cumulative_seconds": 0.0001168
+  },
+  {
+    "file": "C:\\Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/touchdesigner-mcp-td\\modules\\utils\\logging.py",
+    "line": 14,
+    "function": "_safe_write",
+    "primitive_calls": 1,
+    "calls": 1,
+    "self_seconds": 1.9900000000000003e-05,
+    "cumulative_seconds": 0.00011080000000000001
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'lower' of 'str' objects>",
+    "primitive_calls": 324,
+    "calls": 324,
+    "self_seconds": 0.0001082,
+    "cumulative_seconds": 0.0001082
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\output_config_summary.py",
+    "line": 101,
+    "function": "<genexpr>",
+    "primitive_calls": 180,
+    "calls": 180,
+    "self_seconds": 9.7e-05,
+    "cumulative_seconds": 9.7e-05
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\output_config_summary.py",
+    "line": 62,
+    "function": "universe_label",
+    "primitive_calls": 60,
+    "calls": 60,
+    "self_seconds": 8.54e-05,
+    "cumulative_seconds": 8.54e-05
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\output_config_summary.py",
+    "line": 161,
+    "function": "display_rows",
+    "primitive_calls": 3,
+    "calls": 3,
+    "self_seconds": 6.65e-05,
+    "cumulative_seconds": 8.510000000000001e-05
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\material_state.py",
+    "line": 146,
+    "function": "state",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 8.340000000000001e-05,
+    "cumulative_seconds": 8.340000000000001e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.next>",
+    "primitive_calls": 54,
+    "calls": 54,
+    "self_seconds": 4.19e-05,
+    "cumulative_seconds": 8.09e-05
+  },
+  {
+    "file": "/project1/multi_controller_output/ui_callbacks",
+    "line": 49,
+    "function": "<listcomp>",
+    "primitive_calls": 27,
+    "calls": 27,
+    "self_seconds": 6.0200000000000006e-05,
+    "cumulative_seconds": 7.72e-05
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\output_config_summary.py",
+    "line": 100,
+    "function": "<genexpr>",
+    "primitive_calls": 90,
+    "calls": 90,
+    "self_seconds": 7.680000000000001e-05,
+    "cumulative_seconds": 7.680000000000001e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method td.importDAT>",
+    "primitive_calls": 5,
+    "calls": 5,
+    "self_seconds": 7.41e-05,
+    "cumulative_seconds": 7.41e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'upper' of 'str' objects>",
+    "primitive_calls": 101,
+    "calls": 101,
+    "self_seconds": 7.16e-05,
+    "cumulative_seconds": 7.16e-05
+  },
+  {
+    "file": "/project1/multi_controller_output/ui_callbacks",
+    "line": 45,
+    "function": "<genexpr>",
+    "primitive_calls": 108,
+    "calls": 108,
+    "self_seconds": 7.05e-05,
+    "cumulative_seconds": 7.05e-05
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\enum.py",
+    "line": 1257,
+    "function": "value",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 6.66e-05,
+    "cumulative_seconds": 6.66e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'startswith' of 'str' objects>",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 6.65e-05,
+    "cumulative_seconds": 6.65e-05
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/output_config/live_summary_runtime",
+    "line": 17,
+    "function": "<listcomp>",
+    "primitive_calls": 9,
+    "calls": 9,
+    "self_seconds": 6.57e-05,
+    "cumulative_seconds": 6.57e-05
+  },
+  {
+    "file": "C:\\Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/touchdesigner-mcp-td\\modules\\utils\\serialization.py",
+    "line": 9,
+    "function": "safe_serialize",
+    "primitive_calls": 1,
+    "calls": 7,
+    "self_seconds": 3.79e-05,
+    "cumulative_seconds": 6.340000000000001e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'casefold' of 'str' objects>",
+    "primitive_calls": 210,
+    "calls": 210,
+    "self_seconds": 6.18e-05,
+    "cumulative_seconds": 6.18e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method '__exit__' of '_thread.RLock' objects>",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 5.7700000000000007e-05,
+    "cumulative_seconds": 5.7700000000000007e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'join' of 'str' objects>",
+    "primitive_calls": 168,
+    "calls": 168,
+    "self_seconds": 5.6300000000000006e-05,
+    "cumulative_seconds": 5.6300000000000006e-05
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\tdutils\\outputcatcher.py",
+    "line": 22,
+    "function": "flush",
+    "primitive_calls": 1,
+    "calls": 1,
+    "self_seconds": 5.9e-06,
+    "cumulative_seconds": 5.25e-05
+  },
+  {
+    "file": "/sys/TDResources/threadManager/ThreadManagerExt",
+    "line": 1113,
+    "function": "<listcomp>",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 5.2000000000000004e-05,
+    "cumulative_seconds": 5.2000000000000004e-05
+  },
+  {
+    "file": "<string>",
+    "line": 1,
+    "function": "<module>",
+    "primitive_calls": 1,
+    "calls": 1,
+    "self_seconds": 1.5700000000000002e-05,
+    "cumulative_seconds": 5.14e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'items' of 'dict' objects>",
+    "primitive_calls": 134,
+    "calls": 134,
+    "self_seconds": 4.89e-05,
+    "cumulative_seconds": 4.89e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'flush' of '_io.TextIOWrapper' objects>",
+    "primitive_calls": 1,
+    "calls": 1,
+    "self_seconds": 4.66e-05,
+    "cumulative_seconds": 4.66e-05
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/output_config/live_summary_runtime",
+    "line": 23,
+    "function": "_sender_status",
+    "primitive_calls": 3,
+    "calls": 3,
+    "self_seconds": 2.54e-05,
+    "cumulative_seconds": 4.27e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method math.ceil>",
+    "primitive_calls": 60,
+    "calls": 60,
+    "self_seconds": 4.0100000000000006e-05,
+    "cumulative_seconds": 4.0100000000000006e-05
+  },
+  {
+    "file": "C:\\Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/touchdesigner-mcp-td\\modules\\utils\\serialization.py",
+    "line": 31,
+    "function": "<dictcomp>",
+    "primitive_calls": 1,
+    "calls": 2,
+    "self_seconds": 1.6000000000000003e-05,
+    "cumulative_seconds": 3.7800000000000004e-05
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\tdutils\\outputcatcher.py",
+    "line": 15,
+    "function": "write",
+    "primitive_calls": 1,
+    "calls": 1,
+    "self_seconds": 1.59e-05,
+    "cumulative_seconds": 3.68e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'values' of 'dict' objects>",
+    "primitive_calls": 66,
+    "calls": 66,
+    "self_seconds": 3.5900000000000005e-05,
+    "cumulative_seconds": 3.5900000000000005e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'append' of 'list' objects>",
+    "primitive_calls": 133,
+    "calls": 133,
+    "self_seconds": 3.3600000000000004e-05,
+    "cumulative_seconds": 3.3600000000000004e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'end' of 're.Match' objects>",
+    "primitive_calls": 132,
+    "calls": 132,
+    "self_seconds": 3.3100000000000005e-05,
+    "cumulative_seconds": 3.3100000000000005e-05
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\output_config_summary.py",
+    "line": 54,
+    "function": "state",
+    "primitive_calls": 60,
+    "calls": 60,
+    "self_seconds": 3.3e-05,
+    "cumulative_seconds": 3.3e-05
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\output_config_summary.py",
+    "line": 81,
+    "function": "state",
+    "primitive_calls": 30,
+    "calls": 30,
+    "self_seconds": 2.78e-05,
+    "cumulative_seconds": 2.78e-05
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\pixelblaze_mapper\\output_config_summary.py",
+    "line": 103,
+    "function": "<setcomp>",
+    "primitive_calls": 30,
+    "calls": 30,
+    "self_seconds": 2.6300000000000002e-05,
+    "cumulative_seconds": 2.6300000000000002e-05
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\contextlib.py",
+    "line": 403,
+    "function": "__exit__",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 1.86e-05,
+    "cumulative_seconds": 2.54e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.__import__>",
+    "primitive_calls": 5,
+    "calls": 5,
+    "self_seconds": 2.29e-05,
+    "cumulative_seconds": 2.29e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method now>",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 1.48e-05,
+    "cumulative_seconds": 1.48e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method td.stdout>",
+    "primitive_calls": 1,
+    "calls": 1,
+    "self_seconds": 1.2e-05,
+    "cumulative_seconds": 1.2e-05
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/output_config/live_summary_runtime",
+    "line": 51,
+    "function": "<listcomp>",
+    "primitive_calls": 3,
+    "calls": 3,
+    "self_seconds": 1e-05,
+    "cumulative_seconds": 1e-05
+  },
+  {
+    "file": "C:\\Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/touchdesigner-mcp-td\\modules\\mcp\\services\\api_service.py",
+    "line": 724,
+    "function": "_process_method_result",
+    "primitive_calls": 1,
+    "calls": 1,
+    "self_seconds": 5.600000000000001e-06,
+    "cumulative_seconds": 7.5e-06
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'write' of '_io.TextIOWrapper' objects>",
+    "primitive_calls": 1,
+    "calls": 1,
+    "self_seconds": 7.5e-06,
+    "cumulative_seconds": 7.5e-06
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.setattr>",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 4.000000000000001e-06,
+    "cumulative_seconds": 4.000000000000001e-06
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'getvalue' of '_io.StringIO' objects>",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 3.9e-06,
+    "cumulative_seconds": 3.9e-06
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'pop' of 'list' objects>",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 2.8000000000000003e-06,
+    "cumulative_seconds": 2.8000000000000003e-06
+  },
+  {
+    "file": "C:\\Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/touchdesigner-mcp-td\\modules\\utils\\result.py",
+    "line": 11,
+    "function": "success_result",
+    "primitive_calls": 1,
+    "calls": 1,
+    "self_seconds": 1.8000000000000001e-06,
+    "cumulative_seconds": 1.8000000000000001e-06
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'endswith' of 'str' objects>",
+    "primitive_calls": 1,
+    "calls": 1,
+    "self_seconds": 1.6000000000000001e-06,
+    "cumulative_seconds": 1.6000000000000001e-06
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'disable' of '_lsprof.Profiler' objects>",
+    "primitive_calls": 1,
+    "calls": 1,
+    "self_seconds": 1.6000000000000001e-06,
+    "cumulative_seconds": 1.6000000000000001e-06
+  }
+]

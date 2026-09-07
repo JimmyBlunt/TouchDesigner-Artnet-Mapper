@@ -135,6 +135,10 @@ def compile_router_packer(plan: RouterPlan) -> CompiledRouterPacker:
 
 
 def _normalized_byte(value: Real, scale: float) -> int:
-    if not isinstance(value, Real):
+    # TD channel snapshots normally contain builtin floats. Avoid Real's ABC
+    # lookup for those and exact ints, but retain the original fallback for
+    # NumPy scalars, numeric subclasses, Fraction, and bool (historically Real).
+    value_type = type(value)
+    if value_type is not float and value_type is not int and not isinstance(value, Real):
         raise MultiControllerValidationError("Source channel contains a non-numeric value")
     return max(0, min(255, int(round(float(value) * scale))))

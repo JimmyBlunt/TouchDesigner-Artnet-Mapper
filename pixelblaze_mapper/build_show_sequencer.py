@@ -95,6 +95,63 @@ def _load_demo():
     return json.loads(DEMO_SHOW.read_text(encoding="utf-8"))
 
 
+def repair_placeholder_inputs(owner, *, constant_type=None):
+    """Initialize only the five legacy empty TOP adapters, never production.
+
+    Safe as a narrow migration without rebuilding UI, replacing callbacks,
+    synchronizing transport or writing any state/production-connected flags.
+    """
+    if owner is None or owner.path != '/project1/show_control':
+        raise ValueError('Placeholder repair requires /project1/show_control')
+    specs = (('slot_a_adapter', ('material_top_in',)),
+             ('slot_b_adapter', ('material_top_in',)),
+             ('transition_adapter', ('slot_a_in', 'slot_b_in', 'show_preview_out')))
+    source_name = 'unconnected_placeholder_black'
+    label = 'UNCONNECTED PLACEHOLDER: transparent black; not a production preview.'
+    settings = (('outputresolution', 'custom'), ('resolutionw', 1), ('resolutionh', 1),
+                ('colorr', 0), ('colorg', 0), ('colorb', 0), ('alpha', 0))
+    report = {'repaired': [], 'preserved_wired': [], 'skipped': [], 'production_changed': False}
+    pending = []
+    # Validate reserved source names before making any graph changes.
+    for adapter_name, names in specs:
+        adapter = owner.op(adapter_name)
+        empty = []
+        for name in names:
+            node = adapter.op(name) if adapter is not None else None
+            if node is None or not node.isTOP or node.type != 'null':
+                report['skipped'].append(adapter_name + '/' + name)
+            elif node.inputs:
+                report['preserved_wired'].append(node.path)
+            else:
+                empty.append(node)
+        if not empty:
+            continue
+        source = adapter.op(source_name)
+        if source is not None:
+            if not source.isTOP or source.type != 'constant' or source.comment != label:
+                raise RuntimeError('Placeholder source name collision: ' + source.path)
+            for parameter, expected in settings:
+                actual = getattr(source.par, parameter)
+                actual = actual.eval() if hasattr(actual, 'eval') else actual
+                if actual != expected:
+                    raise RuntimeError('Existing placeholder source was modified: ' + source.path)
+        pending.append((adapter, source, empty))
+    for adapter, source, empty in pending:
+        if source is None:
+            source = adapter.create(constant_type if constant_type is not None else constantTOP, source_name)
+            source.name = source_name
+            for parameter, value in settings:
+                setattr(source.par, parameter, value)
+            source.comment = label
+            source.viewer = False
+            source.nodeX, source.nodeY = -220, 0
+        for node in empty:
+            source.outputConnectors[0].connect(node.inputConnectors[0])
+            node.comment = label
+            report['repaired'].append(node.path)
+    return report
+
+
 def build():
     project_root = op("/project1")
     if project_root is None:
@@ -170,8 +227,9 @@ def build():
         endpoint.nodeX, endpoint.nodeY = 0, 0
         readme = _get_or_create(adapter, textDAT, "README")
         readme.text = (
-            "Isolated A/B input adapter. Connect a future material resolver inside "
-            "show_control only. This builder never rewires production."
+            "UNCONNECTED A/B adapter: transparent-black placeholder, not the "
+            "production material preview. Integration uses sibling slot players "
+            "and LED samplers. This builder never rewires production."
         )
 
     mixer = _get_or_create(owner, baseCOMP, "transition_adapter")
@@ -184,6 +242,7 @@ def build():
     _get_or_create(mixer, nullTOP, "slot_a_in")
     _get_or_create(mixer, nullTOP, "slot_b_in")
     _get_or_create(mixer, nullTOP, "show_preview_out")
+    repair_placeholder_inputs(owner)
 
     callbacks = _get_or_create(owner, textDAT, "callbacks")
     callbacks.text = '''# Isolated transport UI callbacks; adapters only, no production writes.
@@ -370,7 +429,7 @@ def advance(seconds):
         ["slot_a_adapter/material_request", "host -> material", "UNCONNECTED", "A material request"],
         ["slot_b_adapter/material_request", "host -> material", "UNCONNECTED", "B material request"],
         ["transition_adapter/mixer_request", "host -> mixer", "UNCONNECTED", "transition plan"],
-        ["transition_adapter/show_preview_out", "mixer -> preview", "UNCONNECTED", "preview only"],
+        ["transition_adapter/show_preview_out", "mixer -> preview", "UNCONNECTED", "transparent-black placeholder; real integrated preview is show_control/show_preview_out"],
         ["production", "show_control -> output", "DISABLED", "must be integrated explicitly later"],
     ])
 

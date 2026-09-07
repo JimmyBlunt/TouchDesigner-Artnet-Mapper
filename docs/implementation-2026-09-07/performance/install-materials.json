@@ -1,0 +1,7 @@
+{
+  "installed": [
+    "material_phase_execute",
+    "material_browser/unified_runtime"
+  ],
+  "errors": "/project1/show_control/slot_a_adapter/material_top_in:  Error: Not enough sources specified (/project1/show_control/slot_a_adapter/material_top_in)\n/project1/show_control/slot_b_adapter/material_top_in:  Error: Not enough sources specified (/project1/show_control/slot_b_adapter/material_top_in)\n/project1/show_control/transition_adapter/slot_a_in:  Error: Not enough sources specified (/project1/show_control/transition_adapter/slot_a_in)\n/project1/show_control/transition_adapter/slot_b_in:  Error: Not enough sources specified (/project1/show_control/transition_adapter/slot_b_in)\n/project1/show_control/transition_adapter/show_preview_out:  Error: Not enough sources specified (/project1/show_control/transition_adapter/show_preview_out)"
+}
