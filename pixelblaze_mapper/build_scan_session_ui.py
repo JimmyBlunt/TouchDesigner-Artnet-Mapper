@@ -309,10 +309,11 @@ def build():
     node(owner, textDAT, 'dry_run')
     node(owner, textDAT, 'worker_plan')
     node(owner, textDAT, 'offline_result')
-    canvas = panel(node(owner, containerCOMP, 'ui_panel'), 0, 0, 1160, 780, 10)
+    canvas = panel(node(owner, containerCOMP, 'ui_panel'), 0, 0, 1160, 900, 10)
     canvas.viewer = True
-    text(canvas, 'title', 'GUIDED SCAN | FULL OBJECT / SELECTED REGION', 20, 727, 1120, 36, 23)
-    text(canvas, 'notice', '1 Check camera. 2 Select LEDs and review routing. 3 START SCAN captures ONE view. Move camera between views; never during a scan.', 20, 679, 1120, 42, 13)
+    text(canvas, 'title', 'GUIDED SCAN | FULL OBJECT / SELECTED REGION', 20, 847, 1120, 36, 23)
+    text(canvas, 'notice', '1 Check camera. 2 Select LEDs and review routing. 3 START SCAN captures ONE view. Move camera between views; never during a scan.', 20, 799, 1120, 42, 13)
+    text(canvas, 'coverage', 'Abdeckung wird geladen ...', 20, 680, 1120, 108, 13)
     camera_fields = [('camera', '0', 'CAMERA DEVICE (OpenCV ID; try 0 / 1)', 20, 350),
                      ('exposure', '-10', 'EXPOSURE (camera-dependent)', 400, 350),
                      ('threshold', '160', 'DETECTION THRESHOLD (0-254)', 780, 360)]
@@ -373,6 +374,7 @@ def build():
     poller = node(owner, executeDAT, 'capture_poll')
     poller.text = "from pixelblaze_mapper import guided_scan_live as live\nfrom pixelblaze_mapper import scan_offline_job as offline_job\ndef onFrameStart(frame):\n    live.poll(op)\n    if frame % 30 == 0: offline_job.poll(op)\ndef onStart():\n    live.shutdown()\n    offline_job.stop()\ndef onExit():\n    live.shutdown()\n    offline_job.stop()\n"
     poller.par.active = True
+    poller.text += "\n# Read-only coverage refresh; no camera or output calls.\n_base_frame = onFrameStart\ndef onFrameStart(frame):\n    _base_frame(frame)\n    if frame % 60 == 0:\n        from pixelblaze_mapper.scan_coverage import refresh\n        refresh(op)\n"
     poller.par.framestart = True
     poller.par.exit = True
     poller.par.start = True
