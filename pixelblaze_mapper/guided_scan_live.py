@@ -47,6 +47,7 @@ def _routing_signature(op):
     values = {p: op(p).text if op(p) is not None else None for p in paths}
     values['source_count'] = op('/project1/math1').numSamples
     values['session'] = op(OWNER).fetch('session', None)
+    values['standalone'] = op(OWNER).fetch('standalone_capture', None)
     values['requested_scope'] = [_field(op, 'source_ids'), _field(op, 'anchors')]
     layout = op('/project1/layout_scene_editor')
     values['layout_workspace'] = layout.fetch('workspace', None) if layout is not None else None
@@ -89,6 +90,23 @@ def install_sender_guard(op):
     return True
 
 
+def stage_standalone(op, settings):
+    from .standalone_scan import session
+    if _capture is not None and _capture.process.poll() is None:
+        raise RuntimeError('Stop the current scan before creating another acquisition')
+    state = session(settings)
+    owner = op(OWNER)
+    owner.store('standalone_capture', dict(settings))
+    owner.store('session', state.to_dict())
+    for key in ('capture_plan', 'capture_signature', 'manifest', 'candidate', 'merge_request'):
+        owner.store(key, None)
+    op(OWNER + '/ui_panel/source_ids/string').text = '0-%d' % (settings['count']-1)
+    for key in ('anchors', 'views'):
+        op(OWNER + '/ui_panel/' + key + '/string').text = ''
+    _status(op, 'NEW ACQUISITION — local LED IDs only; no layout or live router changed. CHECK SCAN PLAN next.')
+    return state
+
+
 def prepare(op):
     from .build_scan_session_ui import select_scope
     if _capture is not None and _capture.process.poll() is None:
@@ -97,15 +115,22 @@ def prepare(op):
                          _field(op, 'source_ids'), _field(op, 'anchors'))
     layout = op('/project1/layout_scene_editor')
     draft = layout.op('draft_document') if layout is not None else None
-    if draft is not None:
+    standalone = op(OWNER).fetch('standalone_capture', None)
+    if standalone is not None:
+        from .standalone_scan import routing, revision
+        if state.scene_revision != revision(standalone):
+            raise RuntimeError('Capture settings changed; create a new acquisition')
+        config = routing(standalone)
+    elif draft is not None:
         from .layout_scene_adapter import load_document_json, scene_revision
         if scene_revision(load_document_json(draft.text).scene) != state.scene_revision:
             raise RuntimeError('Layout changed: stage the object from Layout again before preparing a scan')
     op(OWNER).store('session', state.to_dict())
     lookup = {target.led_id: target.source_index for target in state.targets}
     source_ids = tuple(lookup[item] for item in state.capture_ids)
-    config = router_from_rows(table_rows(op(ROUTER + '/controller_config')),
-        table_rows(op(ROUTER + '/segment_config')), op('/project1/math1').numSamples)
+    if standalone is None:
+        config = router_from_rows(table_rows(op(ROUTER + '/controller_config')),
+            table_rows(op(ROUTER + '/segment_config')), op('/project1/math1').numSamples)
     snapshot = create_snapshot(config, source_ids, brightness_cap=0.05)
     plan = scan_capture.prepare_capture(snapshot, asdict(_camera(op)), _field(op, 'workspace'))
     plan['identity'] = {str(index): target.led_id for target in state.targets
@@ -121,7 +146,7 @@ def prepare(op):
         lines.append('%s %s | U%d-U%d (display), wire %d-%d' %
             (name, frames[0].target_address, frames[0].wire_universe + 1,
              frames[-1].wire_universe + 1, frames[0].wire_universe, frames[-1].wire_universe))
-    summary = '%d LEDs | 510 channels | max 5%% | %s' % (len(source_ids), '; '.join(lines))
+    summary = '%s%d LEDs | 510 channels | max 5%% | %s' % ('SEPARATE CAPTURE | ' if standalone else '', len(source_ids), '; '.join(lines))
     op(OWNER + '/ui_panel/routing_summary').par.text = summary
     _status(op, 'PLAN READY — no camera or output started. Scan blacks ALL reserved universes of listed controllers.')
     return summary

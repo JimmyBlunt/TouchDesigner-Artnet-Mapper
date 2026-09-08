@@ -141,6 +141,7 @@ def _show_scope(state):
 
 def stage_scene(scene, object_id, selected_ids=None, anchor_ids=()):
     state = plan_scene(scene, object_id, selected_ids, anchor_ids)
+    OWNER.store('standalone_capture', None)
     OWNER.store('session', state.to_dict())
     OWNER.store('manifest', None)
     OWNER.store('candidate', None)
@@ -158,6 +159,8 @@ def stage_registered_candidate(scan, candidates, registration_reference, quality
     _status('CANDIDATE READY FOR REVIEW | staged only; layout unchanged')
 
 def request_handoff(accepted_ids, current_scene_revision):
+    if OWNER.fetch('standalone_capture', None) is not None:
+        raise ValueError('Separate acquisition: import and assign reviewed results in Layout; not a replacement request')
     state, request = _state().request_merge(accepted_ids, current_scene_revision=current_scene_revision)
     OWNER.store('session', state.to_dict())
     OWNER.store('merge_request', request)
@@ -166,6 +169,19 @@ def request_handoff(accepted_ids, current_scene_revision):
 
 def act(command):
     try:
+        if command == 'new_capture':
+            OWNER.op('new_capture_panel').openViewer()
+            return True
+        if command == 'stage_capture':
+            def field(name):
+                value = OWNER.op('new_capture_panel/' + name + '/string')[0,0]
+                return '' if value is None else str(value).strip()
+            settings = {name:field(name) for name in ('name','target','interface','universe','count','rate','order')}
+            for name in ('universe','count','rate'):
+                settings[name] = int(settings[name])
+            state = live.stage_standalone(op, settings)
+            OWNER.op('ui_panel').openViewer()
+            return True
         if command == 'camera_start':
             live.camera_start(op)
             return True
@@ -218,6 +234,8 @@ def act(command):
         return True
     except Exception as error:
         _status('BLOCKED | ' + str(error))
+        if command == 'stage_capture' and OWNER.op('new_capture_panel/notice') is not None:
+            OWNER.op('new_capture_panel/notice').par.text = 'BLOCKED | ' + str(error)
         return False
 '''
 
@@ -261,7 +279,8 @@ def build():
             if name in ('anchors', 'views') and value == 'None':
                 value = ''
         field(canvas, name, value, 20, y, 1120)
-    controls = [('camera_start', 'CHECK CAMERA', 20, 571, 220), ('camera_stop', 'CLOSE CAMERA', 250, 571, 220),
+    controls = [('new_capture', 'NEW CAPTURE (NO LAYOUT)', 480, 571, 420),
+                ('camera_start', 'CHECK CAMERA', 20, 571, 220), ('camera_stop', 'CLOSE CAMERA', 250, 571, 220),
                 ('ports', 'CONTROLLER / PORTS', 910, 571, 230),
                 ('prepare', 'CHECK SCAN PLAN', 20, 146, 250), ('arm', 'START SCAN / NEXT VIEW', 285, 146, 350),
                 ('stop', 'STOP SCAN', 650, 146, 240), ('back', 'BACK TO LAYOUT', 905, 146, 235),
@@ -279,6 +298,23 @@ def build():
     poller.par.framestart = True
     poller.par.exit = True
     poller.par.start = True
+    fresh = panel(node(owner, containerCOMP, 'new_capture_panel'), 0, 0, 820, 530, 10)
+    fresh.viewer = True
+    text(fresh, 'title', 'NEW ACQUISITION | NO LAYOUT ASSIGNMENT', 20, 470, 780, 40, 20)
+    entries = [('name','CAPTURE','CAPTURE NAME'), ('target','','CONTROLLER IPv4'),
+               ('interface','','LOCAL IPv4 INTERFACE'), ('universe','0','START UNIVERSE (WIRE, ZERO-BASED)'),
+               ('count','256','LED COUNT (LOCAL 0..COUNT-1)'), ('rate','30','FPS LIMIT'),
+               ('order','RGB','NETWORK COLOR ORDER (not LED wiring)')]
+    for index,(name,value,label) in enumerate(entries):
+        x,y = 20+(index%2)*400, 395-(index//2)*82
+        existing = fresh.op(name+'/string')
+        if existing is not None:
+            value = '' if existing[0,0] is None else str(existing[0,0])
+        text(fresh,name+'_label',label,x,y+32,380,27,11)
+        field(fresh,name,value,x,y,380)
+    text(fresh,'notice','Creates acquisition IDs and routing only. No camera, LED output, geometry or live controller assignment. Existing scans remain on disk.',20,67,780,64,12)
+    control = button(fresh,'btn_stage','CREATE ACQUISITION (OUTPUT OFF)',20,20,780)
+    click(owner,'click_stage_capture',control,"op('runtime').module.act('stage_capture')")
     return owner
 
 

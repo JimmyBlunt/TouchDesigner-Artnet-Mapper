@@ -28,6 +28,10 @@ class TextTable(Table):
     def text(self):
         return '\n'.join('\t'.join(row) for row in self.rows)
 
+    @text.setter
+    def text(self, value):
+        self.rows = [line.split('\t') for line in str(value).split('\n')]
+
 
 class Owner:
     def __init__(self):
