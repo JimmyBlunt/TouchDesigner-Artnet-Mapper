@@ -3,7 +3,8 @@
 Transient handles live in this module only. All stored TD values are JSON data.
 Installing the bridge never opens cameras or activates output.
 """
-from dataclasses import asdict
+from dataclasses import asdict, replace
+import math
 from hashlib import sha256
 import json
 import threading
@@ -38,6 +39,23 @@ def _field(op, name):
 def _camera(op):
     return camera_probe.prepare_camera_probe(int(_field(op, 'camera')),
         int(_field(op, 'exposure')), int(_field(op, 'threshold')))
+
+
+def scan_brightness(op):
+    node = op(OWNER + '/ui_panel/brightness/string')
+    percent = float(_field(op, 'brightness')) if node is not None else 5.0
+    if not math.isfinite(percent) or not 1 <= percent <= 10:
+        raise ValueError('Scan brightness must be 1–10 percent')
+    return percent / 100.0
+
+
+def set_scan_brightness(op, fraction):
+    if _capture is not None and _capture.process.poll() is None:
+        _status(op, 'Brightness locked during capture; change it between views')
+        return
+    percent = round(1 + 9 * max(0.0, min(1.0, float(fraction))), 1)
+    op(OWNER + '/ui_panel/brightness/string').text = str(percent)
+    _status(op, 'Scan brightness %.1f%% — CHECK SCAN PLAN before the next view; Live unchanged' % percent)
 
 
 def _status(op, message):
@@ -136,7 +154,10 @@ def prepare(op):
     if standalone is None:
         config = router_from_rows(table_rows(op(ROUTER + '/controller_config')),
             table_rows(op(ROUTER + '/segment_config')), op('/project1/math1').numSamples)
-    snapshot = create_snapshot(config, source_ids, brightness_cap=0.05)
+    brightness = scan_brightness(op)
+    # Detached scan-only configuration: do not modify live controller brightness.
+    config = replace(config, controllers=tuple(replace(c, brightness=brightness) for c in config.controllers))
+    snapshot = create_snapshot(config, source_ids, brightness_cap=brightness)
     plan = scan_capture.prepare_capture(snapshot, asdict(_camera(op)), _field(op, 'workspace'))
     plan['identity'] = {str(index): target.led_id for target in state.targets
                         for index in [target.source_index] if index in source_ids}
@@ -151,7 +172,7 @@ def prepare(op):
         lines.append('%s %s | Art-Net U%d-U%d (ab 0)' %
             (name, frames[0].target_address, frames[0].wire_universe,
              frames[-1].wire_universe))
-    summary = '%s%d LEDs | 510 channels | max 5%% | %s' % ('SEPARATE CAPTURE | ' if standalone else '', len(source_ids), '; '.join(lines))
+    summary = '%s%d LEDs | 510 channels | scan %.1f%% | %s' % ('SEPARATE CAPTURE | ' if standalone else '', len(source_ids), brightness * 100, '; '.join(lines))
     op(OWNER + '/ui_panel/routing_summary').par.text = summary
     _status(op, 'PLAN READY — no camera or output started. Scan blacks ALL reserved universes of listed controllers.')
     return summary
@@ -185,6 +206,8 @@ def start(op, *, confirmed=False):
     plan = op(OWNER).fetch('capture_plan', None)
     if plan is None or op(OWNER).fetch('capture_signature', '') != _routing_signature(op):
         raise RuntimeError('Prepare the plan again: routing or scan scope changed')
+    if plan['routing']['brightness_cap'] != scan_brightness(op):
+        raise RuntimeError('Scan brightness changed; CHECK SCAN PLAN again')
     if plan['camera'] != asdict(_camera(op)) or plan['workspace'] != str(__import__('pathlib').Path(_field(op, 'workspace')).resolve()):
         raise RuntimeError('Camera/workspace changed; prepare the plan again')
     assert_outputs_off(op)

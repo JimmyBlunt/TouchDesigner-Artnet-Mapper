@@ -97,6 +97,26 @@ class GuidedScanLiveTests(unittest.TestCase):
     def change_field(self, name, value):
         self.nodes[bridge.OWNER+'/ui_panel/'+name+'/string'][0,0] = value
 
+    def test_scan_brightness_limits_and_default(self):
+        self.assertEqual(bridge.scan_brightness(self.op), .05)
+        path = bridge.OWNER+'/ui_panel/brightness/string'
+        for value in ('0', '11', 'nan', 'inf', 'bad'):
+            self.nodes[path] = TextTable([[value]])
+            with self.assertRaises(ValueError):
+                bridge.scan_brightness(self.op)
+        self.nodes[path] = TextTable([['8']])
+        self.assertEqual(bridge.scan_brightness(self.op), .08)
+
+    def test_brightness_drag_locked_while_capturing(self):
+        path = bridge.OWNER+'/ui_panel/brightness/string'
+        self.nodes[path] = TextTable([['5']])
+        bridge._capture = self.handle
+        bridge.set_scan_brightness(self.op, 1)
+        self.assertEqual(bridge.scan_brightness(self.op), .05)
+        bridge._capture = None
+        bridge.set_scan_brightness(self.op, 1)
+        self.assertEqual(bridge.scan_brightness(self.op), .1)
+
     def prepare(self):
         return bridge.prepare(self.op)
 

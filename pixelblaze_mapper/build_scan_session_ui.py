@@ -348,7 +348,15 @@ def build():
     for name, label, x, y, width in controls:
         control = button(canvas, 'btn_' + name, label, x, y, width)
         click(owner, 'click_' + name, control, "op('runtime').module.act(%r)" % name)
-    text(canvas, 'camera_status', 'CAMERA NOT TESTED — device ID alone does not mean a connected camera', 20, 529, 1120, 32, 11)
+    text(canvas, 'camera_status', 'CAMERA NOT TESTED', 20, 529, 480, 32, 11)
+    existing = canvas.op('brightness/string')
+    field(canvas, 'brightness', field_text(existing) if existing is not None else '5', 510, 529, 100)
+    slider = button(canvas, 'brightness_slider', 'SCAN BRIGHTNESS % | 1 — drag — 10', 625, 529, 515)
+    expression = "__import__('pixelblaze_mapper.guided_scan_live', fromlist=['set_scan_brightness']).set_scan_brightness(op, float(op(%r).panel.u))" % slider.path
+    callback = click(owner, 'click_brightness', slider, expression)
+    callback.par.panelvalue = 'lselect u'
+    callback.par.valuechange = True
+    callback.text = 'def onOffToOn(panelValue):\n    ' + expression + '\ndef onValueChange(panelValue):\n    if op(%r).panel.lselect:\n        ' % slider.path + expression + '\n'
     text(canvas, 'routing_summary', 'Routing not checked. Controller / Ports opens the existing universe configuration.', 20, 188, 1120, 38, 11)
     text(canvas, 'capabilities', '', 600, 90, 540, 1, 11)
     text(canvas, 'offline_status', '3D: not started | no automatic layout replacement', 20, 64, 1120, 26, 11)
