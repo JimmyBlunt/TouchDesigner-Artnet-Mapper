@@ -41,3 +41,57 @@ angelegt. Die bestehende Sitzung umfasste 256 Indizes (0–255); die historische
 3. Erst nach dieser Ausrichtung einen vollständigen PREPARE/APPLY/Rücknahme-Test durchführen. Eine erfolgreiche aktive Übernahme oder Hardwareprüfung wurde hier ausdrücklich nicht nachgewiesen.
 
 Dies ist ein gezielter Klicktest des beschriebenen Ablaufs, keine Vollabdeckung aller Dialogbuttons. Die Bildschirmbelege sind in den Computer-Use-Ausgaben dieser Unterhaltung sichtbar; separate Screenshotdateien wurden für diesen Test nicht archiviert.
+
+## Fortsetzung: aktive Übernahme, Scanplanung und 2D-Roundtrip
+
+Weitere echte Klicktests nach ausdrücklicher Aufforderung zum Fortsetzen:
+
+| Test | Ergebnis / Messung |
+| --- | --- |
+| Gültige 3D-Transformation | Translate Z = `0.01`, SET TRANSFORM: alle 3.744 Entwurfspunkte genau um 0,01 in Z verschoben, X/Y unverändert. |
+| PREPARE → APPLY, Modus 3D/YX, Keep live routes YES | Erfolgreich. Aktive Map entspricht dem Entwurf für alle 3.744 Punkte. Größte Abweichung der nachgelagerten Float-Geometrie in LedMap/null4: `2.97878630650672e-08`. Routingtabellen unverändert, Sender aus. |
+| REVERT LAST → UNDO | Aktive Übernahme und danach Entwurfstransformation zurückgenommen. Vollständiger vom Apply-Adapter erfasster Zustand entspricht wieder seinem Ausgangshash. |
+| Layout → GUIDED SCAN | **Fehler:** `BLOCKED — Cell does not exist.` Die Scan-Sitzung und Quellauswahl wurden vorher bereits verändert. Kein atomarer Abbruch. |
+| CHECK SCAN PLAN nach dieser Übergabe | Korrekte Sperre `unrouted source: 1184`; der gesamte ungruppierte Layout-Snapshot ist nicht vollständig im aktuellen Router zugeordnet. Dies ist von dem Navigationsfehler zu unterscheiden. |
+| NEW CAPTURE → CREATE ACQUISITION | Erfolgreich mit TEST_249, Ziel 10.0.0.249, Interface 10.0.0.125, Startuniversum 120, 256 LEDs, 30 FPS, RGB. Keine Kamera und keine Ausgabe gestartet. |
+| CHECK SCAN PLAN für separate Erfassung | Erfolgreich: U120–U121, 510 Kanäle, maximal 5 %. Alle 256 abgeleiteten Kanaladressen geprüft. |
+| PREPARE 3D OFFLINE JOB ohne Ansichten | Korrekt abgewiesen: mindestens zwei unterschiedliche CSV-Ansichten erforderlich. |
+| START SCAN / NEXT VIEW → Cancel | Bestätigungsdialog nennt den richtigen Controller und U120–121; Abbruch startet keinen Capture-Prozess. Keine Bestätigung von Start Scan. |
+| 2D: linke Fläche um 15 Bildpunkte nach rechts ziehen | Nur output_transform.translation.x geändert: von -0.09805013927576611 auf -0.05208913649025081. UV unverändert. Strg+Z stellt Ausgangszustand wieder her. |
+| 2D: rechte Materialfläche um 14 Bildpunkte nach rechts ziehen | Nur uv_transform.translation.x geändert: von 0 auf 0.03899721448467969. Ausgabe-Transformation und aktive 3D-Map unverändert. Anzeige meldet 2.573 außerhalb 0–1 liegende Samples. Strg+Z stellt Ausgangszustand wieder her. |
+| EXPORT WORKSPACE → OPEN SCENE | Echte Dateidialoge verwendet. Export und Wiederimport stimmen strukturell exakt mit LayoutDocument und FixtureScene überein, einschließlich LED-Identitäten und Transformationen. |
+
+Testexport (nur lokales Testartefakt, nicht produktive Map):
+`scan-realdata-20260908/click-workspace-roundtrip.json` (3.571.974 Bytes).
+SHA-256: `5e1a78ff5161d44093e61f349637db17043c57504b94ce3cd7f361ff2b6c7de3`.
+
+### Universengrenzen der separaten Erfassung
+
+| Lokale LED, ab 0 | Art-Net-Universum, ab 0 | Erstes RGB-Kanalbyte, ab 0 |
+| --- | --- | --- |
+| 0 | 120 | 0 |
+| 169 | 120 | 507 |
+| 170 | 121 | 0 |
+| 255 | 121 | 255 |
+
+Für alle LEDs gilt: Universum = `120 + index // 170`, Byteposition = `3 * (index % 170)`. Es wurden ausschließlich die geplanten Adressen geprüft, keine Pakete an Hardware gesendet.
+
+### Eingrenzung des neuen Navigationsfehlers
+
+`build_scan_session_ui.py::_show_scope` schreibt mittels `node[0,0] = ...` in das Ankerfeld. Die laufende leere Text-DAT dieses Feldes besitzt 0 Zeilen und 0 Spalten. `stage_scene` setzt zuvor bereits Sitzung und Auswahl zurück. Das erklärt den beobachteten Teilzustand und ist ein zu behebender Integrationsfehler; im Testlauf wurde er nicht durch direktes Befüllen oder Umgehen kaschiert.
+
+### Automatische Regression in dieser Fortsetzung
+
+- 202 Tests: scan_worker, scan_session, scan_routing, scan_capture, layout_scene, layout_scene_adapter, layout_apply, guided_scan_live, standalone_scan.
+- Weitere 83 Tests: mapper_io, fixture_scene, layout_fixture_td, layout_active_snapshot, layout_session_storage.
+- Insgesamt **285 bestanden**. Diese automatischen Tests decken den realen leeren Text-DAT-Integrationsfehler offensichtlich nicht ab. Erfolgreiche Unit-Tests sind deshalb keine vollständige UI-Freigabe.
+
+### Abschließende Integrität und verbleibende Testgrenzen
+
+Alle 3.744 Entwurfskoordinaten entsprechen wieder der aktiven Map. Vollständiger Apply-Adapter-Ausgangshash vor Übernahme und nach Rücknahme:
+`1732f23a71fbae2f36ae39c6c8aa916e12d02073f2719c29aa3e39c438ce9245`.
+Der oben dokumentierte map_active-Hash ist ebenfalls unverändert. Sender deaktiviert, kein Capture-Prozess, keine aktiven nativen DMX-Ausgänge. Die aktive Testübernahme wurde nicht in eine TOE gespeichert.
+
+Die UI verbleibt im wieder geöffneten Testworkspace (identische Daten), Ansicht 2D, Fenster maximiert. Die separate 256-LED-Erfassung ist vorbereitet, aber nicht gestartet; Ansichten sind dort leer. Vorherige CSV-Dateien und Manifestdateien bleiben auf Datenträger erhalten.
+
+Nicht als abgeschlossen/bestanden beansprucht: echter Kamera-/LED-Scan, Hardwareempfang, räumliche Registrierung eines Rohscans, vollständiger Scan→Rekonstruktion→Review→Merge-Ablauf, aktive 2D-Übernahme und sämtliche übrigen Feld-/Buttonkombinationen. Der durchgehende Scanablauf ist wegen der dokumentierten Implementierungslücken nicht freigabefähig. Weitere Testwiederholungen allein beheben diese Lücken nicht; zunächst Fehlerkorrektur und danach gezielter Nachtest nötig.
