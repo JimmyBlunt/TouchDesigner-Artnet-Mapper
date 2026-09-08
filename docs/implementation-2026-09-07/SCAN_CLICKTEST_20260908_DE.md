@@ -95,3 +95,38 @@ Der oben dokumentierte map_active-Hash ist ebenfalls unverändert. Sender deakti
 Die UI verbleibt im wieder geöffneten Testworkspace (identische Daten), Ansicht 2D, Fenster maximiert. Die separate 256-LED-Erfassung ist vorbereitet, aber nicht gestartet; Ansichten sind dort leer. Vorherige CSV-Dateien und Manifestdateien bleiben auf Datenträger erhalten.
 
 Nicht als abgeschlossen/bestanden beansprucht: echter Kamera-/LED-Scan, Hardwareempfang, räumliche Registrierung eines Rohscans, vollständiger Scan→Rekonstruktion→Review→Merge-Ablauf, aktive 2D-Übernahme und sämtliche übrigen Feld-/Buttonkombinationen. Der durchgehende Scanablauf ist wegen der dokumentierten Implementierungslücken nicht freigabefähig. Weitere Testwiederholungen allein beheben diese Lücken nicht; zunächst Fehlerkorrektur und danach gezielter Nachtest nötig.
+
+## Korrektur und echter Nachtest: Layout → Guided Scan
+
+Nach Freigabe wurden die Eingabefelder auf Text-DAT-Textzugriff umgestellt.
+Leere Text-DATs müssen keine Zelle `[0,0]` mehr besitzen. Der UI-Aufbau und
+die separate Erfassung benutzen ebenfalls den leeren-sicheren Leser.
+Beide Scope-Felder werden vorab geprüft; fehlende Felder verändern die Sitzung
+nicht. Ein fehlgeschlagener Feldschreibvorgang nimmt die Feldänderungen zurück.
+Ein laufender Capture-Prozess blockiert die Neuauswahl. Beim erfolgreichen
+Staging werden vorherige Capture-Freigabe, Worker-Plan und Dry-run verworfen.
+
+- **290 automatische Tests bestanden**, einschließlich fünf neuer Tests in
+  `tests/test_scan_ui_staging.py`. Diese führen den tatsächlich generierten
+  Runtime-Code mit Text-DAT-Doubles aus, deren Zellzugriff immer fehlschlägt.
+- Nur die Guided-Scan-Runtime wurde in der laufenden Anwendung neu geladen;
+  kein Router-/Ausgabe-Neuaufbau.
+- **Echter Mausklick** auf `GUIDED SCAN` im Layoutfenster öffnete den Dialog.
+  Anzeige: `STAGED: 3744 LEDs + 0 anchors`. Das Ankerfeld hatte vor dem Klick
+  tatsächlich null Zeilen. Kein `Cell does not exist` mehr.
+- Nachprüfung per Leseschnittstelle: Anker leer, `capture_plan = null`,
+  Worker-Plan leer, Sender aus, kein aktiver nativer DMX-Ausgang.
+- Aktive Map weiterhin SHA-256
+  `dbcaf4e56561ae3bc68731d89e12e661502a42950274886b1f75645d17f1282f`.
+
+Speicherung nach Plain-Storage-/Pickle-Vorprüfung erfolgreich:
+`Backup/Implementation/PixelblazeMapper_20260908_SCAN_STAGING_FIXED.1.toe`.
+TouchDesigner meldete ausdrücklich `saved successfully`; keine Projektfehler
+bei der Vorprüfung. Wiederöffnen dieser neuen TOE ist hier noch nicht getestet.
+Die Scanansicht enthält nun die Layoutauswahl, nicht mehr die separate
+256-LED-Erfassung; deren bisherige Dateien bleiben unverändert erhalten.
+
+Dieser Fix schließt den Navigationsfehler, nicht die oben dokumentierten
+Rekonstruktions-/Registrierungs-/Review-Lücken. Für diese bleibt ein eigener
+Implementierungs- und Abnahmeschritt erforderlich; Schutzprüfungen wurden
+nicht umgangen und keine Kamera-/LED-Aufnahme gestartet.

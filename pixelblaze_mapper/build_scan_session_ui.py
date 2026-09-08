@@ -20,6 +20,13 @@ ROOT = Path(r'C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper')
 OWNER = '/project1/guided_scan'
 
 
+def field_text(node):
+    """Text DATs can have zero cells; read their text rather than cell [0,0]."""
+    if node is None:
+        raise ValueError('Required scan input field is missing')
+    return '' if node.text is None else str(node.text).strip()
+
+
 def plan_scene(scene, object_id, selected_ids=None, anchor_ids=()):
     """Stage one object's full/partial replacement; preserve canonical IDs."""
     obj = scene.object(object_id)
@@ -110,7 +117,7 @@ import sys
 ROOT = Path(r'C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper')
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
-from pixelblaze_mapper.build_scan_session_ui import plan_scene, select_scope, attach_existing_views, worker_command
+from pixelblaze_mapper.build_scan_session_ui import plan_scene, select_scope, attach_existing_views, worker_command, field_text
 from pixelblaze_mapper.scan_session import ScanSession
 from pixelblaze_mapper.scan_worker import create_manifest, load_observations
 OWNER = op('/project1/guided_scan')
@@ -129,24 +136,44 @@ def _state():
     return ScanSession.from_dict(value)
 
 def _field(name):
-    value = OWNER.op('ui_panel/' + name + '/string')[0, 0]
-    return '' if value is None else str(value).strip()
+    return field_text(OWNER.op('ui_panel/' + name + '/string'))
 
 def _show_scope(state):
     lookup = {target.led_id: target.source_index for target in state.targets}
+    updates = []
     for name, ids in (('source_ids', state.selected_ids), ('anchors', state.anchor_ids)):
         node = OWNER.op('ui_panel/' + name + '/string')
-        if node is not None:
-            node[0, 0] = ','.join(str(lookup[item]) for item in ids)
+        if node is None:
+            raise ValueError('Required scan input field is missing: ' + name)
+        updates.append((node, ','.join(str(lookup[item]) for item in ids)))
+    previous = [(node, node.text) for node, value in updates]
+    try:
+        for node, value in updates:
+            node.text = value
+    except Exception:
+        for node, value in previous:
+            node.text = value
+        raise
 
 def stage_scene(scene, object_id, selected_ids=None, anchor_ids=()):
+    if live._capture is not None and live._capture.process.poll() is None:
+        raise ValueError('Stop the current scan before staging another object')
     state = plan_scene(scene, object_id, selected_ids, anchor_ids)
+    _show_scope(state)
     OWNER.store('standalone_capture', None)
     OWNER.store('session', state.to_dict())
     OWNER.store('manifest', None)
     OWNER.store('candidate', None)
     OWNER.store('merge_request', None)
-    _show_scope(state)
+    OWNER.store('capture_plan', None)
+    OWNER.store('capture_signature', None)
+    for name in ('worker_plan', 'dry_run'):
+        node = OWNER.op(name)
+        if node is not None:
+            node.text = ''
+    node = OWNER.op('ui_panel/routing_summary')
+    if node is not None:
+        node.par.text = 'Routing not checked for this selection. CHECK SCAN PLAN before starting.'
     _status('STAGED: %d LEDs + %d anchors | no camera or output | edit scope, then PREPARE' % (len(state.selected_ids), len(state.anchor_ids)))
     return state
 
@@ -174,8 +201,7 @@ def act(command):
             return True
         if command == 'stage_capture':
             def field(name):
-                value = OWNER.op('new_capture_panel/' + name + '/string')[0,0]
-                return '' if value is None else str(value).strip()
+                return field_text(OWNER.op('new_capture_panel/' + name + '/string'))
             settings = {name:field(name) for name in ('name','target','interface','universe','count','rate','order')}
             for name in ('universe','count','rate'):
                 settings[name] = int(settings[name])
@@ -263,7 +289,7 @@ def build():
     for name, value, label, x, width in camera_fields:
         text(canvas, name + '_label', label, x, 650, width, 24, 11)
         existing = canvas.op(name + '/string')
-        field(canvas, name, str(existing[0, 0]) if existing is not None else value, x, 619, width)
+        field(canvas, name, field_text(existing) if existing is not None else value, x, 619, width)
     fields = [
               ('source_ids', '', 'ZERO-BASED SOURCE INDICES: full object or explicit ranges, e.g. 0-49,78'),
               ('anchors', '', 'VERIFICATION ANCHOR SOURCE INDICES (never replaced)'),
@@ -275,7 +301,7 @@ def build():
         text(canvas, name + '_label', label, 20, y + 32, 1120, 28, 11)
         existing = canvas.op(name + '/string')
         if existing is not None:
-            value = '' if existing[0, 0] is None else str(existing[0, 0])
+            value = field_text(existing)
             if name in ('anchors', 'views') and value == 'None':
                 value = ''
         field(canvas, name, value, 20, y, 1120)
@@ -309,7 +335,7 @@ def build():
         x,y = 20+(index%2)*400, 395-(index//2)*82
         existing = fresh.op(name+'/string')
         if existing is not None:
-            value = '' if existing[0,0] is None else str(existing[0,0])
+            value = field_text(existing)
         text(fresh,name+'_label',label,x,y+32,380,27,11)
         field(fresh,name,value,x,y,380)
     text(fresh,'notice','Creates acquisition IDs and routing only. No camera, LED output, geometry or live controller assignment. Existing scans remain on disk.',20,67,780,64,12)
