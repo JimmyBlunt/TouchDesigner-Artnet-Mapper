@@ -122,6 +122,7 @@ from pixelblaze_mapper.scan_session import ScanSession
 from pixelblaze_mapper.scan_worker import create_manifest, load_observations
 OWNER = op('/project1/guided_scan')
 from pixelblaze_mapper import guided_scan_live as live
+from pixelblaze_mapper import scan_offline_job as offline_job
 
 def _status(message):
     OWNER.store('message', message)
@@ -196,6 +197,23 @@ def request_handoff(accepted_ids, current_scene_revision):
 
 def act(command):
     try:
+        if command == 'offline_start':
+            manifest = OWNER.fetch('manifest', None)
+            if not manifest:
+                raise ValueError('PREPARE 3D OFFLINE JOB first')
+            answer = ui.messageBox('Start offline 3D reconstruction?',
+                'Runs installed MariMapper in a separate process (maximum 5 minutes). No camera or LED output. Raw coordinates require alignment and review; no automatic layout replacement.',
+                buttons=['Cancel', 'Start 3D'])
+            if answer == 1:
+                offline_job.start(op, _field('python'), manifest, confirmed=True)
+            return True
+        if command == 'offline_stop':
+            offline_job.stop()
+            return True
+        if command == 'offline_result':
+            offline_job.poll(op)
+            OWNER.op('offline_result').openViewer()
+            return True
         if command == 'new_capture':
             OWNER.op('new_capture_panel').openViewer()
             return True
@@ -252,6 +270,7 @@ def act(command):
                 'runs_automatically': False}, indent=2)
             _status('OFFLINE MANIFEST SAVED | worker_plan contains dry-run and explicit reconstruction command | nothing launched')
         elif command == 'cancel':
+            offline_job.stop()
             live.stop(op)
             OWNER.store('session', state.cancel().to_dict())
             _status('SESSION CANCELLED | no automatic output resume; layout unchanged')
@@ -279,6 +298,7 @@ def build():
     node(owner, textDAT, 'runtime').text = _runtime_source()
     node(owner, textDAT, 'dry_run')
     node(owner, textDAT, 'worker_plan')
+    node(owner, textDAT, 'offline_result')
     canvas = panel(node(owner, containerCOMP, 'ui_panel'), 0, 0, 1160, 780, 10)
     canvas.viewer = True
     text(canvas, 'title', 'GUIDED SCAN | FULL OBJECT / SELECTED REGION', 20, 727, 1120, 36, 23)
@@ -310,16 +330,21 @@ def build():
                 ('ports', 'CONTROLLER / PORTS', 910, 571, 230),
                 ('prepare', 'CHECK SCAN PLAN', 20, 146, 250), ('arm', 'START SCAN / NEXT VIEW', 285, 146, 350),
                 ('stop', 'STOP SCAN', 650, 146, 240), ('back', 'BACK TO LAYOUT', 905, 146, 235),
-                ('offline', 'PREPARE 3D OFFLINE JOB', 20, 98, 310), ('cancel', 'CANCEL SESSION', 345, 98, 240)]
+                ('offline', 'PREPARE 3D OFFLINE JOB', 20, 98, 270),
+                ('offline_start', 'START 3D', 300, 98, 200),
+                ('offline_stop', 'STOP 3D', 510, 98, 190),
+                ('offline_result', '3D RESULT / PATH', 710, 98, 220),
+                ('cancel', 'CANCEL SESSION', 940, 98, 200)]
     for name, label, x, y, width in controls:
         control = button(canvas, 'btn_' + name, label, x, y, width)
         click(owner, 'click_' + name, control, "op('runtime').module.act(%r)" % name)
     text(canvas, 'camera_status', 'CAMERA NOT TESTED — device ID alone does not mean a connected camera', 20, 529, 1120, 32, 11)
     text(canvas, 'routing_summary', 'Routing not checked. Controller / Ports opens the existing universe configuration.', 20, 188, 1120, 38, 11)
-    text(canvas, 'capabilities', 'One view -> index,u,v CSV. Multiple views -> separate 3D job. No automatic layout replacement.', 600, 90, 540, 48, 11)
-    text(canvas, 'status', owner.fetch('message', 'Open Scan from Layout to stage an object. No camera or LED output is started.'), 20, 20, 1120, 64, 13)
+    text(canvas, 'capabilities', '', 600, 90, 540, 1, 11)
+    text(canvas, 'offline_status', '3D: not started | no automatic layout replacement', 20, 64, 1120, 26, 11)
+    text(canvas, 'status', owner.fetch('message', 'Open Scan from Layout to stage an object. No camera or LED output is started.'), 20, 12, 1120, 46, 12)
     poller = node(owner, executeDAT, 'capture_poll')
-    poller.text = "from pixelblaze_mapper import guided_scan_live as live\ndef onFrameStart(frame):\n    live.poll(op)\ndef onStart():\n    live.shutdown()\ndef onExit():\n    live.shutdown()\n"
+    poller.text = "from pixelblaze_mapper import guided_scan_live as live\nfrom pixelblaze_mapper import scan_offline_job as offline_job\ndef onFrameStart(frame):\n    live.poll(op)\n    if frame % 30 == 0: offline_job.poll(op)\ndef onStart():\n    live.shutdown()\n    offline_job.stop()\ndef onExit():\n    live.shutdown()\n    offline_job.stop()\n"
     poller.par.active = True
     poller.par.framestart = True
     poller.par.exit = True

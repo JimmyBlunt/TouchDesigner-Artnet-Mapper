@@ -26,7 +26,12 @@ _probe_stop_thread = None
 
 
 def _field(op, name):
-    value = op(OWNER + '/ui_panel/' + name + '/string')[0, 0]
+    node = op(OWNER + '/ui_panel/' + name + '/string')
+    if node is None:
+        raise ValueError('Required scan field is missing: ' + name)
+    if node.numRows == 0:
+        return ''
+    value = node[0, 0]
     return '' if value is None else str(value).strip()
 
 
@@ -232,7 +237,7 @@ def poll(op):
                 paths = [p.strip() for p in current.split('|') if p.strip() and p.strip() != 'None']
                 if status['view_csv'] not in paths:
                     paths.append(status['view_csv'])
-                    op(OWNER + '/ui_panel/views/string')[0, 0] = ' | '.join(paths)
+                    op(OWNER + '/ui_panel/views/string').text = ' | '.join(paths)
                 _status(op, 'VIEW SAVED — reposition camera, then START NEXT VIEW. 3D reconstruction/review remains a separate step.')
     elif _probe is not None:
         status = camera_probe.poll_camera_probe(_probe)

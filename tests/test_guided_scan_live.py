@@ -132,6 +132,13 @@ class GuidedScanLiveTests(unittest.TestCase):
         self.assertEqual(snapshot.source_indices,(785,517))
         self.assertEqual(self.owner.fetch('session')['anchor_ids'],())
 
+    def test_zero_cell_anchor_and_view_fields_are_readable(self):
+        self.nodes[bridge.OWNER+'/ui_panel/anchors/string'].rows = []
+        self.nodes[bridge.OWNER+'/ui_panel/views/string'].rows = []
+        self.assertEqual(bridge._field(self.op, 'anchors'), '')
+        self.assertEqual(bridge._field(self.op, 'views'), '')
+        self.prepare()
+
     def test_ui_selection_or_anchor_change_after_prepare_blocks_start(self):
         for name, value in (('source_ids','517'), ('anchors','')):
             with self.subTest(field=name):
