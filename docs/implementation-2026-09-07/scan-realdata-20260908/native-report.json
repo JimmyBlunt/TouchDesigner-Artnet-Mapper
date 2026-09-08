@@ -1,0 +1,92 @@
+[
+  {
+    "group": 3,
+    "observed_ids": 203,
+    "reconstructed": 196,
+    "not_reconstructed": [
+      59,
+      70,
+      72,
+      73,
+      74,
+      78,
+      80
+    ],
+    "candidate_coordinates_and_ids_exact": true,
+    "camera": false,
+    "hardware": false,
+    "layout_applied": false
+  },
+  {
+    "group": 9,
+    "observed_ids": 513,
+    "reconstructed": 506,
+    "not_reconstructed": [
+      16,
+      189,
+      203,
+      405,
+      421,
+      422,
+      436
+    ],
+    "candidate_coordinates_and_ids_exact": true,
+    "camera": false,
+    "hardware": false,
+    "layout_applied": false
+  },
+  {
+    "group": 10,
+    "observed_ids": 269,
+    "reconstructed": 251,
+    "not_reconstructed": [
+      522,
+      523,
+      524,
+      578,
+      579,
+      617,
+      625,
+      634,
+      709,
+      739,
+      743,
+      753,
+      766,
+      769,
+      772,
+      773,
+      776,
+      777
+    ],
+    "candidate_coordinates_and_ids_exact": true,
+    "camera": false,
+    "hardware": false,
+    "layout_applied": false
+  },
+  {
+    "group": 12,
+    "observed_ids": 382,
+    "reconstructed": 368,
+    "not_reconstructed": [
+      804,
+      901,
+      964,
+      965,
+      980,
+      981,
+      989,
+      1003,
+      1006,
+      1022,
+      1107,
+      1108,
+      1110,
+      1111
+    ],
+    "candidate_coordinates_and_ids_exact": true,
+    "camera": false,
+    "hardware": false,
+    "layout_applied": false
+  }
+]

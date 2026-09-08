@@ -1,0 +1,1165 @@
+{
+  "source": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\~Projects~\\Marrimapper-LED-Schrank",
+  "files": [
+    {
+      "path": "aLLEnEU1\\led_map_2d_20260824-064923.csv",
+      "sha256": "de179eaa9759e0d3c3be5418ea673e92526d4f96384d6651688a512032b3e0aa",
+      "kind": "2d",
+      "rows": 1084,
+      "first": 0,
+      "last": 1183,
+      "duplicates": 0
+    },
+    {
+      "path": "aLLEnEU1\\led_map_2d_20260824-065741.csv",
+      "sha256": "85ee0f8715bb825aeef1c84c7ef8343425304809665863d64404b8aa1d1b226a",
+      "kind": "2d",
+      "rows": 866,
+      "first": 0,
+      "last": 1098,
+      "duplicates": 0
+    },
+    {
+      "path": "aLLEnEU1\\led_map_2d_20260824-072139.csv",
+      "sha256": "c470b6b747cfa73a55feec4975080026143a80a84a0e896f68722499f8d88427",
+      "kind": "2d",
+      "rows": 897,
+      "first": 0,
+      "last": 1183,
+      "duplicates": 0
+    },
+    {
+      "path": "aLLEnEU1\\led_map_2d_20260824-073319.csv",
+      "sha256": "dc2f4dea8e2fa5ea24e1e53d5c0aa3e5c26ad0e7fca257225e873bbef3d76caa",
+      "kind": "2d",
+      "rows": 1172,
+      "first": 0,
+      "last": 1183,
+      "duplicates": 0
+    },
+    {
+      "path": "aLLEnEU1\\led_map_3d.csv",
+      "sha256": "c2b5cddb10fcfdfb6ab76865b1df256411658325e225bc9081dbd998274577cf",
+      "kind": "3d/import",
+      "slots": 1146,
+      "present": 785,
+      "missing": 361,
+      "warnings": [
+        "Inserted [0,0,0] for 361 missing indices: 515, 517-523, 525, 594-595, 597-644, 650-651, 658-659, 666-667, 674-675, 682-683, 690-692, 698-700, 714, 723-725, 728-729, 736-785, 796, 807, 822, 827, 844, 867, 871-874, 878-880, 883-894, 901-910, 913-914, 917-926, 929-930, 933-942, 944-1091, 1093, 1104-1105, 1107-1119, 1121, 1125-1126, 1133, 1135, 1139, 1143"
+      ],
+      "pixelblaze_export": "sparse IDs correctly blocked",
+      "result": "pass"
+    },
+    {
+      "path": "complete_new.txt",
+      "sha256": "5ad5e9c5c2b101aa62e5b0820e7026f7f65420aba5c913eaa8ea8e1c170de7b4",
+      "kind": "3d/import",
+      "slots": 1183,
+      "present": 1183,
+      "missing": 0,
+      "warnings": [],
+      "pixelblaze_export": "exact",
+      "result": "pass"
+    },
+    {
+      "path": "Exported\\AllExported.json",
+      "sha256": "47648422f11e00820d553a93df8fad1e8c4ce985a9bb26626d4da0e5bd1b9e42",
+      "kind": "3d/import",
+      "slots": 3714,
+      "present": 3714,
+      "missing": 0,
+      "warnings": [],
+      "pixelblaze_export": "exact",
+      "result": "pass"
+    },
+    {
+      "path": "hinten\\1\\Hinten 1.csv",
+      "sha256": "d431dec5b8a0bb1ad1c0132efcf35ddd6ad96a12f41c370ec88835eba8d0cb96",
+      "kind": "3d/import",
+      "slots": 203,
+      "present": 200,
+      "missing": 3,
+      "warnings": [
+        "Inserted [0,0,0] for 3 missing indices: 72-74"
+      ],
+      "pixelblaze_export": "sparse IDs correctly blocked",
+      "result": "pass"
+    },
+    {
+      "path": "hinten\\1\\led_map_2d_20260904-115932.csv",
+      "sha256": "00a8ba64c0605752bf0f641bcf7091e786362dd14b0743b1ecfed0e9dff30469",
+      "kind": "2d",
+      "rows": 150,
+      "first": 0,
+      "last": 202,
+      "duplicates": 0
+    },
+    {
+      "path": "hinten\\1\\led_map_2d_20260904-120233.csv",
+      "sha256": "765e91a29a8548f2baa61affc8a31892c8a23e26fb65f62ee85b5a78d5b65f6c",
+      "kind": "2d",
+      "rows": 156,
+      "first": 0,
+      "last": 202,
+      "duplicates": 0
+    },
+    {
+      "path": "hinten\\1\\led_map_2d_20260904-120431.csv",
+      "sha256": "1199ac762e7616450e26ba8252578ff5d3a09d3c4e0317eaa232188e9f4bfdfc",
+      "kind": "2d",
+      "rows": 162,
+      "first": 2,
+      "last": 201,
+      "duplicates": 0
+    },
+    {
+      "path": "hinten\\1\\led_map_2d_20260904-120947.csv",
+      "sha256": "b73367a014f3c98d9ad178b935247a25f901a99256a0b24694a7716e2a37fc06",
+      "kind": "2d",
+      "rows": 187,
+      "first": 14,
+      "last": 202,
+      "duplicates": 0
+    },
+    {
+      "path": "hinten\\1\\led_map_2d_20260904-121055.csv",
+      "sha256": "1a317e4d42ca2d3c2d78c262c9a236fce16303d9c8d713da8181c494c206b0d0",
+      "kind": "2d",
+      "rows": 137,
+      "first": 1,
+      "last": 202,
+      "duplicates": 0
+    },
+    {
+      "path": "hinten\\1\\led_map_2d_20260904-121428.csv",
+      "sha256": "b9d32c12990434bedd81ee3aa8d5d770c6acc55318cba64e2071cc89a4abafe8",
+      "kind": "2d",
+      "rows": 102,
+      "first": 0,
+      "last": 202,
+      "duplicates": 0
+    },
+    {
+      "path": "hinten\\1\\led_map_3d.csv",
+      "sha256": "d431dec5b8a0bb1ad1c0132efcf35ddd6ad96a12f41c370ec88835eba8d0cb96",
+      "kind": "3d/import",
+      "slots": 203,
+      "present": 200,
+      "missing": 3,
+      "warnings": [
+        "Inserted [0,0,0] for 3 missing indices: 72-74"
+      ],
+      "pixelblaze_export": "sparse IDs correctly blocked",
+      "result": "pass"
+    },
+    {
+      "path": "hinten\\3\\led_map_2d_20260830-030046.csv",
+      "sha256": "3a2c89bf6f7024b7d6dbd0edeb172be9307123a93c17b9da3d06fa7004a61546",
+      "kind": "2d",
+      "rows": 878,
+      "first": 0,
+      "last": 895,
+      "duplicates": 0
+    },
+    {
+      "path": "hinten\\3\\led_map_2d_20260830-031308.csv",
+      "sha256": "b64f2f5851df90d30ba61aebe8a5e18000a8cfe5b99e0a17034424e4f47a7efc",
+      "kind": "2d",
+      "rows": 888,
+      "first": 1,
+      "last": 895,
+      "duplicates": 0
+    },
+    {
+      "path": "hinten\\3\\led_map_2d_20260830-031851.csv",
+      "sha256": "11fad9c91d6cf6e1ca6fea7a988780695f70cba8cb97d6e6954f0d4bf21bf107",
+      "kind": "2d",
+      "rows": 764,
+      "first": 0,
+      "last": 895,
+      "duplicates": 0
+    },
+    {
+      "path": "hinten\\3\\led_map_2d_20260830-032503.csv",
+      "sha256": "1171ee45eff60808afd33e6ef2d4a2317ad833da1f9da4d4a155183d563c315d",
+      "kind": "2d",
+      "rows": 96,
+      "first": 800,
+      "last": 895,
+      "duplicates": 0
+    },
+    {
+      "path": "hinten\\3\\led_map_2d_20260830-032648.csv",
+      "sha256": "1af35c165fe72923a1b8c5b58e6bd501a00b0d2c7c78029dccc044243185f8f6",
+      "kind": "2d",
+      "rows": 96,
+      "first": 800,
+      "last": 895,
+      "duplicates": 0
+    },
+    {
+      "path": "hinten\\3\\led_map_3d.csv",
+      "sha256": "19204bb5c76ee9ad763f93dc9085719f7aa5fc2f51f187f4f5cbd3009b4b1c3e",
+      "kind": "3d/import",
+      "slots": 896,
+      "present": 894,
+      "missing": 2,
+      "warnings": [
+        "Inserted [0,0,0] for 2 missing indices: 0, 495"
+      ],
+      "pixelblaze_export": "sparse IDs correctly blocked",
+      "result": "pass"
+    },
+    {
+      "path": "hinten\\3\\Neuer Ordner\\led_map_2d_20260830-023206.csv",
+      "sha256": "6ce30bd36ee93e52f3d38deed95e44c98f6b964b987e98275b1efbef803cb332",
+      "kind": "2d",
+      "rows": 895,
+      "first": 0,
+      "last": 895,
+      "duplicates": 0
+    },
+    {
+      "path": "hinten\\3\\Neuer Ordner\\led_map_2d_20260830-024051.csv",
+      "sha256": "5b097288858b6d2278371eb85bbd11f297e3417439a3e04d3a6a48a482cef1f0",
+      "kind": "2d",
+      "rows": 896,
+      "first": 0,
+      "last": 895,
+      "duplicates": 0
+    },
+    {
+      "path": "hinten\\3\\Neuer Ordner\\led_map_2d_20260830-024931.csv",
+      "sha256": "c22bbf6efcdf61408525f29582b33a74163c14c1337488031190fb6ba07a805c",
+      "kind": "2d",
+      "rows": 889,
+      "first": 1,
+      "last": 895,
+      "duplicates": 0
+    },
+    {
+      "path": "hinten\\3\\Neuer Ordner\\led_map_3d.csv",
+      "sha256": "f20e5ad6edfe1c39ed1e0cd92fdb1b8ca197cb46a85e08ae31bba0ed74a28b7d",
+      "kind": "3d/import",
+      "slots": 896,
+      "present": 872,
+      "missing": 24,
+      "warnings": [
+        "Inserted [0,0,0] for 24 missing indices: 0, 15, 463-464, 495-497, 813, 819, 825, 831, 837, 844-845, 856-857, 862-863, 868-870, 874-876"
+      ],
+      "pixelblaze_export": "sparse IDs correctly blocked",
+      "result": "pass"
+    },
+    {
+      "path": "hinten\\4\\led_map_2d_20260831-225850.csv",
+      "sha256": "dea0bb4c632f76721af856d1f651740ce607af9768aad9811ae5013e43b3d0d9",
+      "kind": "2d",
+      "rows": 950,
+      "first": 0,
+      "last": 999,
+      "duplicates": 0
+    },
+    {
+      "path": "hinten\\4\\led_map_2d_20260831-230727.csv",
+      "sha256": "ad5536c1bafc5e5341bad0d650fc8eae33c4b4d1f1669d6144f5da281796b300",
+      "kind": "2d",
+      "rows": 976,
+      "first": 0,
+      "last": 999,
+      "duplicates": 0
+    },
+    {
+      "path": "hinten\\4\\led_map_2d_20260831-231224.csv",
+      "sha256": "24109bc03b98966a2f2e3a0a04e23a9864f506f3e9c46376a9d968d44005fa1e",
+      "kind": "2d",
+      "rows": 991,
+      "first": 0,
+      "last": 999,
+      "duplicates": 0
+    },
+    {
+      "path": "hinten\\4\\led_map_2d_20260831-232710.csv",
+      "sha256": "9c156cd5ae436e8fd2e134205e380c3c2d13d6c1047dca1f0ff5408058744849",
+      "kind": "2d",
+      "rows": 7,
+      "first": 1045,
+      "last": 1051,
+      "duplicates": 0
+    },
+    {
+      "path": "hinten\\4\\led_map_2d_20260831-232732.csv",
+      "sha256": "29be3414e7ccb9fd45a693277b36c96f90c65b426de20c060636db88a05e7d69",
+      "kind": "2d",
+      "rows": 7,
+      "first": 1045,
+      "last": 1051,
+      "duplicates": 0
+    },
+    {
+      "path": "hinten\\4\\led_map_2d_20260831-232809.csv",
+      "sha256": "5814bb84fa9e61e6a141cff31d665cc086dbc872f91a83cad9c2e23dd6789c4f",
+      "kind": "2d",
+      "rows": 102,
+      "first": 950,
+      "last": 1051,
+      "duplicates": 0
+    },
+    {
+      "path": "hinten\\4\\led_map_3d.csv",
+      "sha256": "9ee906d8421e721f854d8407e0666efc3a7778030df86b83d328269c38f73927",
+      "kind": "3d/import",
+      "slots": 1000,
+      "present": 994,
+      "missing": 6,
+      "warnings": [
+        "Inserted [0,0,0] for 6 missing indices: 14-17, 47-48"
+      ],
+      "pixelblaze_export": "sparse IDs correctly blocked",
+      "result": "pass"
+    },
+    {
+      "path": "hinten\\5\\led_map_2d_20260901-172337.csv",
+      "sha256": "286f4e7ddf8a402a72a1a37836fabb1b6aef1359e8cbb1b872047b54cadece9f",
+      "kind": "2d",
+      "rows": 808,
+      "first": 0,
+      "last": 809,
+      "duplicates": 0
+    },
+    {
+      "path": "hinten\\5\\led_map_2d_20260901-194047.csv",
+      "sha256": "9b055facfc0a15dad4d38d86a4ca263fb1b769ee61a720a1e53c3e82c6b53e61",
+      "kind": "2d",
+      "rows": 809,
+      "first": 0,
+      "last": 809,
+      "duplicates": 0
+    },
+    {
+      "path": "hinten\\5\\led_map_2d_20260901-203337.csv",
+      "sha256": "91e5f1e6e912f57a68c52dc79ac139d6454410aabee0ac08a8840bbd4703c118",
+      "kind": "2d",
+      "rows": 808,
+      "first": 1,
+      "last": 809,
+      "duplicates": 0
+    },
+    {
+      "path": "hinten\\5\\led_map_2d_20260901-203718.csv",
+      "sha256": "de2068e8b9f8954a3bb4395c6d1e3b430d06c8f0b4270d059abb2b034a552a58",
+      "kind": "2d",
+      "rows": 806,
+      "first": 3,
+      "last": 809,
+      "duplicates": 0
+    },
+    {
+      "path": "hinten\\5\\led_map_3d.csv",
+      "sha256": "afa531c71f84eecaaee0f028e2bf2515ad33874b5f1225ba11416d7c033103e0",
+      "kind": "3d/import",
+      "slots": 810,
+      "present": 810,
+      "missing": 0,
+      "warnings": [],
+      "pixelblaze_export": "exact",
+      "result": "pass"
+    },
+    {
+      "path": "hinten\\5\\Pannel Hinten 5 - 810.csv",
+      "sha256": "afa531c71f84eecaaee0f028e2bf2515ad33874b5f1225ba11416d7c033103e0",
+      "kind": "3d/import",
+      "slots": 810,
+      "present": 810,
+      "missing": 0,
+      "warnings": [],
+      "pixelblaze_export": "exact",
+      "result": "pass"
+    },
+    {
+      "path": "led_map_2d_20260824-075250.csv",
+      "sha256": "b09351eea5ea78c9190ad6a672d6ae1a100ad4e82f203cdc8633de104bf77af3",
+      "kind": "2d",
+      "rows": 1152,
+      "first": 0,
+      "last": 1183,
+      "duplicates": 0
+    },
+    {
+      "path": "led_map_2d_20260824-080134.csv",
+      "sha256": "9fef78c91b8b28a887535b582fa6f0bab571d770104cd546f1a8e253e9a40378",
+      "kind": "2d",
+      "rows": 941,
+      "first": 0,
+      "last": 1183,
+      "duplicates": 0
+    },
+    {
+      "path": "led_map_2d_20260824-080838.csv",
+      "sha256": "eaeb092397a9e58f371bb4d59172da91d7ba6922ac186a889e999680eed66e30",
+      "kind": "2d",
+      "rows": 1118,
+      "first": 0,
+      "last": 1183,
+      "duplicates": 0
+    },
+    {
+      "path": "led_map_2d_20260824-081638.csv",
+      "sha256": "6b3f433226b84bf7d5d5d0b6ceb4dcbd8becf0cf877b97c01dc7ac32e5435260",
+      "kind": "2d",
+      "rows": 503,
+      "first": 0,
+      "last": 516,
+      "duplicates": 0
+    },
+    {
+      "path": "led_map_2d_20260824-082549.csv",
+      "sha256": "9d0e06648cddffd28c69691b360896494d69b303925dda5db6f8f0952459bfae",
+      "kind": "2d",
+      "rows": 577,
+      "first": 0,
+      "last": 581,
+      "duplicates": 0
+    },
+    {
+      "path": "led_map_2d_20260824-083208.csv",
+      "sha256": "fc64d3ce662722b1749e33dfdd44e5a8ab79523557295a6607a013a123916d46",
+      "kind": "2d",
+      "rows": 769,
+      "first": 0,
+      "last": 785,
+      "duplicates": 0
+    },
+    {
+      "path": "led_map_2d_20260824-083804.csv",
+      "sha256": "615286f5dea8c9b7e8114a9fc3ca3f146b062d9ab7ae945f65c6cb84cbf34c7a",
+      "kind": "2d",
+      "rows": 403,
+      "first": 705,
+      "last": 1180,
+      "duplicates": 0
+    },
+    {
+      "path": "led_map_2d_20260824-084603.csv",
+      "sha256": "1d635eaa78c18fb1888e68a01e738437de1785106dbbbe3b944a547757423dc2",
+      "kind": "2d",
+      "rows": 455,
+      "first": 705,
+      "last": 1183,
+      "duplicates": 0
+    },
+    {
+      "path": "led_map_3d.csv",
+      "sha256": "5b0acccfd01725bbc2c446826aefc8c2794878a52586fd6e77316fce5d84a182",
+      "kind": "3d/import",
+      "slots": 1184,
+      "present": 1164,
+      "missing": 20,
+      "warnings": [
+        "Inserted [0,0,0] for 20 missing indices: 423-424, 634, 913-914, 929-930, 986, 1000-1003, 1016-1019, 1032-1035"
+      ],
+      "pixelblaze_export": "sparse IDs correctly blocked",
+      "result": "pass"
+    },
+    {
+      "path": "liegend\\led_map_2d_20260722-131431.csv",
+      "sha256": "0fb1778e856d8d48657535f76ead97d1fe68d40a90bf584d40d6700b1e4be4ae",
+      "kind": "2d",
+      "rows": 268,
+      "first": 911,
+      "last": 1179,
+      "duplicates": 0
+    },
+    {
+      "path": "liegend\\led_map_2d_20260722-131647.csv",
+      "sha256": "9e36e0d24e4fc398fb76c4d81420c42e52c6f64ae6b2219f0bfe19bf761741ca",
+      "kind": "2d",
+      "rows": 267,
+      "first": 911,
+      "last": 1179,
+      "duplicates": 0
+    },
+    {
+      "path": "liegend\\led_map_2d_20260722-131828.csv",
+      "sha256": "10130e0cf9446f88c57d4b96ea167295c4d390732b247bd2c29c871ccae519bb",
+      "kind": "2d",
+      "rows": 269,
+      "first": 911,
+      "last": 1179,
+      "duplicates": 0
+    },
+    {
+      "path": "liegend\\led_map_2d_20260722-133443.csv",
+      "sha256": "bb14165a74d10b78ec119f1a0f190a8fee96bf1eec23a6567cac4db7ad4a1ad6",
+      "kind": "2d",
+      "rows": 498,
+      "first": 0,
+      "last": 508,
+      "duplicates": 0
+    },
+    {
+      "path": "liegend\\led_map_2d_20260722-133945.csv",
+      "sha256": "ba723f6cae41caf2226b09c57c13c658ed3abfeda71f4e2c8a7022c6d112785a",
+      "kind": "2d",
+      "rows": 491,
+      "first": 0,
+      "last": 508,
+      "duplicates": 0
+    },
+    {
+      "path": "liegend\\led_map_2d_20260722-134425.csv",
+      "sha256": "e12d08cd5f01c712ab6ad79a1b744e8be75cf523ab0e2ca67e9e753d416eab6e",
+      "kind": "2d",
+      "rows": 498,
+      "first": 0,
+      "last": 508,
+      "duplicates": 0
+    },
+    {
+      "path": "liegend\\led_map_2d_20260722-134913.csv",
+      "sha256": "f3118e8fcd87623493e9ff9a5e891d503c9416d875592ea35239b0a49c1f7fbe",
+      "kind": "2d",
+      "rows": 356,
+      "first": 510,
+      "last": 888,
+      "duplicates": 0
+    },
+    {
+      "path": "liegend\\led_map_2d_20260722-135259.csv",
+      "sha256": "6ae714cc3b2e7c3826c759879b4a2653135ddfa3f05d28dc60a56a3c74a7c762",
+      "kind": "2d",
+      "rows": 366,
+      "first": 510,
+      "last": 909,
+      "duplicates": 0
+    },
+    {
+      "path": "liegend\\led_map_2d_20260722-135516.csv",
+      "sha256": "9b72f4529e8918b246e966228445ef25071486c95bb15c0d12e235cf406daabe",
+      "kind": "2d",
+      "rows": 372,
+      "first": 510,
+      "last": 909,
+      "duplicates": 0
+    },
+    {
+      "path": "liegend\\led_map_2d_20260722-135942.csv",
+      "sha256": "4279a10ef88f355789d69fafcfd212423b3178c75e503299d6507aadb3844750",
+      "kind": "2d",
+      "rows": 103,
+      "first": 400,
+      "last": 508,
+      "duplicates": 0
+    },
+    {
+      "path": "liegend\\led_map_2d_20260722-140105.csv",
+      "sha256": "05febb51eab9cd0f12ab3e71180166dc2c5a6aa282ef025945e6247df6e0d94a",
+      "kind": "2d",
+      "rows": 171,
+      "first": 400,
+      "last": 600,
+      "duplicates": 0
+    },
+    {
+      "path": "liegend\\led_map_2d_20260722-140446.csv",
+      "sha256": "86fab2230d800763e77bfc17042fb645402c7b6e08406af3d276c9d284655180",
+      "kind": "2d",
+      "rows": 193,
+      "first": 400,
+      "last": 600,
+      "duplicates": 0
+    },
+    {
+      "path": "liegend\\led_map_2d_20260722-140715.csv",
+      "sha256": "4d467a70b6ccf988bd1d4599ef124e13b3b1352ffb935e51ecc891294dd5d02a",
+      "kind": "2d",
+      "rows": 186,
+      "first": 400,
+      "last": 600,
+      "duplicates": 0
+    },
+    {
+      "path": "liegend\\led_map_2d_20260722-141444.csv",
+      "sha256": "9d7bdbbaadf9083bc453cbda7e9bd5a995eeb4ea01229df6cf0000d0a9356b61",
+      "kind": "2d",
+      "rows": 314,
+      "first": 700,
+      "last": 1050,
+      "duplicates": 0
+    },
+    {
+      "path": "liegend\\led_map_2d_20260722-141826.csv",
+      "sha256": "f33c6c7fc146c07e4c034dac72baed4e363e90342ed521d0fb3af9cfdf5d035c",
+      "kind": "2d",
+      "rows": 319,
+      "first": 700,
+      "last": 1050,
+      "duplicates": 0
+    },
+    {
+      "path": "liegend\\led_map_2d_20260722-142458.csv",
+      "sha256": "aaabff0481885b852e41f33979260f76ec4283d119597f2d78f5d8682d864c84",
+      "kind": "2d",
+      "rows": 1086,
+      "first": 0,
+      "last": 1179,
+      "duplicates": 0
+    },
+    {
+      "path": "liegend\\led_map_2d_20260722-143501.csv",
+      "sha256": "46991a70e45d3d98af90509295dc07d9983ca364f2fa2d894e0dd71458ed3285",
+      "kind": "2d",
+      "rows": 1142,
+      "first": 0,
+      "last": 1179,
+      "duplicates": 0
+    },
+    {
+      "path": "liegend\\led_map_3d.csv",
+      "sha256": "75ab27b3232a71a986c9c2365f60e94c5d20ae73d109ddb6e0cbb822f4d50bbd",
+      "kind": "3d/import",
+      "slots": 1180,
+      "present": 1155,
+      "missing": 25,
+      "warnings": [
+        "Inserted [0,0,0] for 25 missing indices: 190, 203, 405, 423-425, 731-732, 747-748, 779-780, 818-821, 834-837, 850-853, 910"
+      ],
+      "pixelblaze_export": "sparse IDs correctly blocked",
+      "result": "pass"
+    },
+    {
+      "path": "mitte_neu\\led_map_2d_20260827-223245.csv",
+      "sha256": "c8f9dc64f44f3f9b5f901a725650d54ddf5fd54c862635ce300b36ad6322fb2e",
+      "kind": "2d",
+      "rows": 506,
+      "first": 0,
+      "last": 516,
+      "duplicates": 0
+    },
+    {
+      "path": "mitte_neu\\led_map_2d_20260827-223635.csv",
+      "sha256": "578473691c34c825e81b8634beb66c1b910f156eda2f955831b2fd39182deb0f",
+      "kind": "2d",
+      "rows": 491,
+      "first": 17,
+      "last": 516,
+      "duplicates": 0
+    },
+    {
+      "path": "mitte_neu\\led_map_2d_20260827-223938.csv",
+      "sha256": "d43b3197b93c2b52a07199e2d3348133d3a107f8d81a6905e021d8e1315221af",
+      "kind": "2d",
+      "rows": 477,
+      "first": 0,
+      "last": 500,
+      "duplicates": 0
+    },
+    {
+      "path": "mitte_neu\\led_map_2d_20260827-224332.csv",
+      "sha256": "b0c5cb94115c5b290cfadbb56820e9bc3ad669bc47977c04cb3d40cfa9c0054c",
+      "kind": "2d",
+      "rows": 492,
+      "first": 0,
+      "last": 516,
+      "duplicates": 0
+    },
+    {
+      "path": "mitte_neu\\led_map_2d_20260827-224753.csv",
+      "sha256": "a9e71d21a3304cfab9cc810a54564a0bd96b2932e946b3d4853b08aa66f8e156",
+      "kind": "2d",
+      "rows": 503,
+      "first": 0,
+      "last": 516,
+      "duplicates": 0
+    },
+    {
+      "path": "mitte_neu\\led_map_3d.csv",
+      "sha256": "0a90c4c2d47249fd5985908768f21a36b62a9eb5f75249d380b9b80dc7ec4ab6",
+      "kind": "3d/import",
+      "slots": 517,
+      "present": 509,
+      "missing": 8,
+      "warnings": [
+        "Inserted [0,0,0] for 8 missing indices: 203, 405, 421-425, 436"
+      ],
+      "pixelblaze_export": "sparse IDs correctly blocked",
+      "result": "pass"
+    },
+    {
+      "path": "mitte_neu\\mitte_neu.csv",
+      "sha256": "0a90c4c2d47249fd5985908768f21a36b62a9eb5f75249d380b9b80dc7ec4ab6",
+      "kind": "3d/import",
+      "slots": 517,
+      "present": 509,
+      "missing": 8,
+      "warnings": [
+        "Inserted [0,0,0] for 8 missing indices: 203, 405, 421-425, 436"
+      ],
+      "pixelblaze_export": "sparse IDs correctly blocked",
+      "result": "pass"
+    },
+    {
+      "path": "oben_neu\\led_map_2d_20260827-220052.csv",
+      "sha256": "8114df5744ef39a3cef19772aed98a7656138b62e192dcdc614f95e28b72c537",
+      "kind": "2d",
+      "rows": 269,
+      "first": 517,
+      "last": 785,
+      "duplicates": 0
+    },
+    {
+      "path": "oben_neu\\led_map_2d_20260827-220245.csv",
+      "sha256": "d3df6225f9f695eb619586034adada21175620d1831ad944c00b2e1f3d0e3ce9",
+      "kind": "2d",
+      "rows": 269,
+      "first": 517,
+      "last": 785,
+      "duplicates": 0
+    },
+    {
+      "path": "oben_neu\\led_map_2d_20260827-220541.csv",
+      "sha256": "de7b433876d0d1f6dddc8c6c9f137b4f370916b39e9be6907c38f2ae4259cac3",
+      "kind": "2d",
+      "rows": 269,
+      "first": 517,
+      "last": 785,
+      "duplicates": 0
+    },
+    {
+      "path": "oben_neu\\led_map_3d.csv",
+      "sha256": "69f31968f98e8a59c94f68b28a91fe8b2f49d7f4488bd1125b0e7f293f34a159",
+      "kind": "3d/import",
+      "slots": 786,
+      "present": 269,
+      "missing": 517,
+      "warnings": [
+        "Inserted [0,0,0] for 517 missing indices: 0-516"
+      ],
+      "pixelblaze_export": "sparse IDs correctly blocked",
+      "result": "pass"
+    },
+    {
+      "path": "oben_neu\\oben_neu.csv",
+      "sha256": "69f31968f98e8a59c94f68b28a91fe8b2f49d7f4488bd1125b0e7f293f34a159",
+      "kind": "3d/import",
+      "slots": 786,
+      "present": 269,
+      "missing": 517,
+      "warnings": [
+        "Inserted [0,0,0] for 517 missing indices: 0-516"
+      ],
+      "pixelblaze_export": "sparse IDs correctly blocked",
+      "result": "pass"
+    },
+    {
+      "path": "stehend\\led_map_2d_20260722-093759.csv",
+      "sha256": "384012f3b23026000c6d71231d5268fce2d7229ade8e8f6aaaf61a8173c2b907",
+      "kind": "2d",
+      "rows": 272,
+      "first": 911,
+      "last": 1182,
+      "duplicates": 0
+    },
+    {
+      "path": "stehend\\led_map_2d_20260722-093949.csv",
+      "sha256": "4f381ab938231f827a13965f1b3b454328ee24751f6fc1c2c66e5ea8dada37ad",
+      "kind": "2d",
+      "rows": 272,
+      "first": 911,
+      "last": 1182,
+      "duplicates": 0
+    },
+    {
+      "path": "stehend\\led_map_2d_20260722-094237.csv",
+      "sha256": "99d1911eb2ca2c63a4eab5a2a1966ea35b253fba155e8a6757fa4aae84a7d18f",
+      "kind": "2d",
+      "rows": 272,
+      "first": 911,
+      "last": 1182,
+      "duplicates": 0
+    },
+    {
+      "path": "stehend\\led_map_3d.csv",
+      "sha256": "fd5637a3b3813dc2316abd9d303c2460fb1048ff9ead9a939bc7afa376731c7a",
+      "kind": "3d/import",
+      "slots": 1183,
+      "present": 272,
+      "missing": 911,
+      "warnings": [
+        "Inserted [0,0,0] for 911 missing indices: 0-910"
+      ],
+      "pixelblaze_export": "sparse IDs correctly blocked",
+      "result": "pass"
+    },
+    {
+      "path": "unten_neu\\led_map_2d_20260827-232302.csv",
+      "sha256": "03ad43e2ed8e0d1871b4e3a6c8bdf4d05e665fb1cbfe137deb8d36e727de038f",
+      "kind": "2d",
+      "rows": 350,
+      "first": 789,
+      "last": 1185,
+      "duplicates": 0
+    },
+    {
+      "path": "unten_neu\\led_map_2d_20260827-232606.csv",
+      "sha256": "4846fa7ef4a52f12f771bb85be2880a5f647ac695c93adc26bac258f0c5cc97e",
+      "kind": "2d",
+      "rows": 342,
+      "first": 789,
+      "last": 1179,
+      "duplicates": 0
+    },
+    {
+      "path": "unten_neu\\led_map_2d_20260827-234604.csv",
+      "sha256": "ee76592add9dc55e62317f65ec3191ab411c198307a84965ae068c526a10a086",
+      "kind": "2d",
+      "rows": 361,
+      "first": 789,
+      "last": 1185,
+      "duplicates": 0
+    },
+    {
+      "path": "unten_neu\\led_map_2d_20260827-235146.csv",
+      "sha256": "a342315c5d1ea24e6e6cb4130580b2ed6cb88d3e7c7c9816bee4e354b1fd4108",
+      "kind": "2d",
+      "rows": 169,
+      "first": 914,
+      "last": 1185,
+      "duplicates": 0
+    },
+    {
+      "path": "unten_neu\\led_map_2d_20260827-235629.csv",
+      "sha256": "284e4b771ea8561c41d3f6c249f5edf7129b23f616fca385e8b0d8e0dbe462eb",
+      "kind": "2d",
+      "rows": 202,
+      "first": 892,
+      "last": 1183,
+      "duplicates": 0
+    },
+    {
+      "path": "unten_neu\\led_map_2d_20260827-235917.csv",
+      "sha256": "106ae1e8b93a88a2307a010e89c8da496cf21bea1f69bec022bf3d02cb51f86e",
+      "kind": "2d",
+      "rows": 189,
+      "first": 790,
+      "last": 1178,
+      "duplicates": 0
+    },
+    {
+      "path": "unten_neu\\led_map_2d_20260828-000216.csv",
+      "sha256": "9fce165bc11fd0f5c1b61698a5b6b278d73a80ede943ece1df2e08ad0a34562f",
+      "kind": "2d",
+      "rows": 60,
+      "first": 789,
+      "last": 1145,
+      "duplicates": 0
+    },
+    {
+      "path": "unten_neu\\led_map_3d.csv",
+      "sha256": "dfad103087e184b134c188e78c70e5d18c6b63d64ff0b02bfec30a37b5bd9098",
+      "kind": "3d/import",
+      "slots": 1186,
+      "present": 367,
+      "missing": 819,
+      "warnings": [
+        "Inserted [0,0,0] for 819 missing indices: 0-788, 804, 901, 916-917, 932-933, 948-949, 964-965, 980-981, 989, 1003-1006, 1019-1022, 1035-1038, 1107-1110, 1114"
+      ],
+      "pixelblaze_export": "sparse IDs correctly blocked",
+      "result": "pass"
+    },
+    {
+      "path": "unten_neu\\unten_Alligned.csv",
+      "sha256": "dfad103087e184b134c188e78c70e5d18c6b63d64ff0b02bfec30a37b5bd9098",
+      "kind": "3d/import",
+      "slots": 1186,
+      "present": 367,
+      "missing": 819,
+      "warnings": [
+        "Inserted [0,0,0] for 819 missing indices: 0-788, 804, 901, 916-917, 932-933, 948-949, 964-965, 980-981, 989, 1003-1006, 1019-1022, 1035-1038, 1107-1110, 1114"
+      ],
+      "pixelblaze_export": "sparse IDs correctly blocked",
+      "result": "pass"
+    },
+    {
+      "path": "untersteSeite_neu\\398-1st\\398.txt",
+      "sha256": "50393172c82e3daa86606562d58aab9f5425bac024dba2999856fed49023097a",
+      "kind": "3d/import",
+      "slots": 397,
+      "present": 397,
+      "missing": 0,
+      "warnings": [],
+      "pixelblaze_export": "exact",
+      "result": "pass"
+    },
+    {
+      "path": "untersteSeite_neu\\398-1st\\led_map_2d_20260823-233958.csv",
+      "sha256": "fca828597afe833b8b8071bab36808829263e39941eaa653f9c9eb74d071b7c5",
+      "kind": "2d",
+      "rows": 346,
+      "first": 0,
+      "last": 397,
+      "duplicates": 0
+    },
+    {
+      "path": "untersteSeite_neu\\398-1st\\led_map_2d_20260823-234221.csv",
+      "sha256": "bfe56d8020b221a77a10f0b89eb63ae6e81b140d3d454e49f49cd32ab44a474b",
+      "kind": "2d",
+      "rows": 361,
+      "first": 0,
+      "last": 397,
+      "duplicates": 0
+    },
+    {
+      "path": "untersteSeite_neu\\398-1st\\led_map_2d_20260823-235124.csv",
+      "sha256": "172e27c8079b07544150ae95ccf5eb5c01bc19c9850bdc3e8c5fc00c14c23d41",
+      "kind": "2d",
+      "rows": 49,
+      "first": 1,
+      "last": 53,
+      "duplicates": 0
+    },
+    {
+      "path": "untersteSeite_neu\\398-1st\\led_map_2d_20260823-235649.csv",
+      "sha256": "b56ae0a645862efab666abe868f163b389f1282f36805c15444e3b1407aca4fb",
+      "kind": "2d",
+      "rows": 301,
+      "first": 0,
+      "last": 367,
+      "duplicates": 0
+    },
+    {
+      "path": "untersteSeite_neu\\398-1st\\led_map_2d_20260823-235849.csv",
+      "sha256": "93fe83fff7a438577b98abeda9f46b322626b52c4aab2d78d03721f07fd76b5a",
+      "kind": "2d",
+      "rows": 370,
+      "first": 0,
+      "last": 397,
+      "duplicates": 0
+    },
+    {
+      "path": "untersteSeite_neu\\398-1st\\led_map_3d.csv",
+      "sha256": "fcc43d5c7198071b8cc7a0eea0a840756e89deb1f7b3af23c58e53129dd81587",
+      "kind": "3d/import",
+      "slots": 398,
+      "present": 368,
+      "missing": 30,
+      "warnings": [
+        "Inserted [0,0,0] for 30 missing indices: 127-128, 144, 200-202, 213-217, 230-234, 246-250, 318, 321-322, 324-326, 333, 343, 350"
+      ],
+      "pixelblaze_export": "sparse IDs correctly blocked",
+      "result": "pass"
+    },
+    {
+      "path": "untersteSeite_neu\\old-402\\led_map_2d_20260823-110600.csv",
+      "sha256": "edbe65d71b6d15d4edd734c29303ccf3115d45b40d9231b53f1966d83370aa0f",
+      "kind": "2d",
+      "rows": 366,
+      "first": 0,
+      "last": 396,
+      "duplicates": 0
+    },
+    {
+      "path": "untersteSeite_neu\\old-402\\led_map_2d_20260823-110806.csv",
+      "sha256": "d596b01e04f0cd1d676a62e412efcd7b3e3cad4c0e258511f091ff609a4f285e",
+      "kind": "2d",
+      "rows": 371,
+      "first": 0,
+      "last": 396,
+      "duplicates": 0
+    },
+    {
+      "path": "untersteSeite_neu\\old-402\\led_map_2d_20260823-111041.csv",
+      "sha256": "1ac12be258fb2471fbb2f727e2b664975dc74c92ffabfaafd00b68676c01e3bc",
+      "kind": "2d",
+      "rows": 368,
+      "first": 0,
+      "last": 394,
+      "duplicates": 0
+    },
+    {
+      "path": "untersteSeite_neu\\old-402\\led_map_2d_20260823-111543.csv",
+      "sha256": "7d1cb9f2c1c2b0c08be579970a4d1741a4fd3cfc7adfc2856592115af3c38572",
+      "kind": "2d",
+      "rows": 374,
+      "first": 0,
+      "last": 396,
+      "duplicates": 0
+    },
+    {
+      "path": "untersteSeite_neu\\old-402\\led_map_2d_20260823-112119.csv",
+      "sha256": "a2bd556a8544253143c9f15e6371ff24271b54e5b6aa4be7a7c27341a05f2076",
+      "kind": "2d",
+      "rows": 377,
+      "first": 0,
+      "last": 396,
+      "duplicates": 0
+    },
+    {
+      "path": "untersteSeite_neu\\old-402\\led_map_3d.csv",
+      "sha256": "5ba01cfa865139de023e9179cf339ac013f90972e554b40aed3e87eaa816137a",
+      "kind": "3d/import",
+      "slots": 397,
+      "present": 381,
+      "missing": 16,
+      "warnings": [
+        "Inserted [0,0,0] for 16 missing indices: 127-128, 144, 213-217, 230-233, 246-249"
+      ],
+      "pixelblaze_export": "sparse IDs correctly blocked",
+      "result": "pass"
+    },
+    {
+      "path": "untersteSeite_neu\\old-402\\pixelblaze_export.txt",
+      "sha256": "b2415dcf1c273876a8cbc2b5c27f8aa9628d365803fd76f62b09ee2bffbedc87",
+      "kind": "3d/import",
+      "slots": 396,
+      "present": 396,
+      "missing": 0,
+      "warnings": [],
+      "pixelblaze_export": "exact",
+      "result": "pass"
+    }
+  ],
+  "groups": [
+    {
+      "folder": ".",
+      "views": 8,
+      "result": "pass",
+      "unique_ids": 1174,
+      "observations": 5918,
+      "first": 0,
+      "last": 1183,
+      "manifest": "docs\\implementation-2026-09-07\\scan-realdata-20260908\\manifest-1.json"
+    },
+    {
+      "folder": "aLLEnEU1",
+      "views": 4,
+      "result": "pass",
+      "unique_ids": 1174,
+      "observations": 4019,
+      "first": 0,
+      "last": 1183,
+      "manifest": "docs\\implementation-2026-09-07\\scan-realdata-20260908\\manifest-2.json"
+    },
+    {
+      "folder": "hinten\\1",
+      "views": 6,
+      "result": "pass",
+      "unique_ids": 203,
+      "observations": 894,
+      "first": 0,
+      "last": 202,
+      "manifest": "docs\\implementation-2026-09-07\\scan-realdata-20260908\\manifest-3.json"
+    },
+    {
+      "folder": "hinten\\3",
+      "views": 5,
+      "result": "pass",
+      "unique_ids": 896,
+      "observations": 2722,
+      "first": 0,
+      "last": 895,
+      "manifest": "docs\\implementation-2026-09-07\\scan-realdata-20260908\\manifest-4.json"
+    },
+    {
+      "folder": "hinten\\3\\Neuer Ordner",
+      "views": 3,
+      "result": "pass",
+      "unique_ids": 896,
+      "observations": 2680,
+      "first": 0,
+      "last": 895,
+      "manifest": "docs\\implementation-2026-09-07\\scan-realdata-20260908\\manifest-5.json"
+    },
+    {
+      "folder": "hinten\\4",
+      "views": 6,
+      "result": "pass",
+      "unique_ids": 1052,
+      "observations": 3033,
+      "first": 0,
+      "last": 1051,
+      "manifest": "docs\\implementation-2026-09-07\\scan-realdata-20260908\\manifest-6.json"
+    },
+    {
+      "folder": "hinten\\5",
+      "views": 4,
+      "result": "pass",
+      "unique_ids": 810,
+      "observations": 3231,
+      "first": 0,
+      "last": 809,
+      "manifest": "docs\\implementation-2026-09-07\\scan-realdata-20260908\\manifest-7.json"
+    },
+    {
+      "folder": "liegend",
+      "views": 17,
+      "result": "pass",
+      "unique_ids": 1158,
+      "observations": 6899,
+      "first": 0,
+      "last": 1179,
+      "manifest": "docs\\implementation-2026-09-07\\scan-realdata-20260908\\manifest-8.json"
+    },
+    {
+      "folder": "mitte_neu",
+      "views": 5,
+      "result": "pass",
+      "unique_ids": 513,
+      "observations": 2469,
+      "first": 0,
+      "last": 516,
+      "manifest": "docs\\implementation-2026-09-07\\scan-realdata-20260908\\manifest-9.json"
+    },
+    {
+      "folder": "oben_neu",
+      "views": 3,
+      "result": "pass",
+      "unique_ids": 269,
+      "observations": 807,
+      "first": 517,
+      "last": 785,
+      "manifest": "docs\\implementation-2026-09-07\\scan-realdata-20260908\\manifest-10.json"
+    },
+    {
+      "folder": "stehend",
+      "views": 3,
+      "result": "pass",
+      "unique_ids": 272,
+      "observations": 816,
+      "first": 911,
+      "last": 1182,
+      "manifest": "docs\\implementation-2026-09-07\\scan-realdata-20260908\\manifest-11.json"
+    },
+    {
+      "folder": "unten_neu",
+      "views": 7,
+      "result": "pass",
+      "unique_ids": 382,
+      "observations": 1673,
+      "first": 789,
+      "last": 1185,
+      "manifest": "docs\\implementation-2026-09-07\\scan-realdata-20260908\\manifest-12.json"
+    },
+    {
+      "folder": "untersteSeite_neu\\398-1st",
+      "views": 5,
+      "result": "pass",
+      "unique_ids": 384,
+      "observations": 1427,
+      "first": 0,
+      "last": 397,
+      "manifest": "docs\\implementation-2026-09-07\\scan-realdata-20260908\\manifest-13.json"
+    },
+    {
+      "folder": "untersteSeite_neu\\old-402",
+      "views": 5,
+      "result": "pass",
+      "unique_ids": 394,
+      "observations": 1856,
+      "first": 0,
+      "last": 396,
+      "manifest": "docs\\implementation-2026-09-07\\scan-realdata-20260908\\manifest-14.json"
+    }
+  ],
+  "checks": 49750,
+  "sources_unchanged": true
+}
