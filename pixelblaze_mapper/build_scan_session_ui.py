@@ -212,7 +212,15 @@ def act(command):
             return True
         if command == 'offline_result':
             offline_job.poll(op)
-            OWNER.op('offline_result').openViewer()
+            from pixelblaze_mapper.scan_result_review import open_review
+            open_review(op)
+            return True
+        if command == 'review_add':
+            from pixelblaze_mapper.scan_result_review import add_to_draft
+            add_to_draft(op, lambda message: ui.messageBox('Raw scan to draft', message, buttons=['Cancel','Add to draft']) == 1)
+            return True
+        if command == 'review_back':
+            OWNER.op('ui_panel').openViewer()
             return True
         if command == 'new_capture':
             OWNER.op('new_capture_panel').openViewer()
@@ -279,6 +287,8 @@ def act(command):
         return True
     except Exception as error:
         _status('BLOCKED | ' + str(error))
+        if command.startswith('review_') and OWNER.op('review_panel/notice') is not None:
+            OWNER.op('review_panel/notice').par.text = 'BLOCKED | ' + str(error)
         if command == 'stage_capture' and OWNER.op('new_capture_panel/notice') is not None:
             OWNER.op('new_capture_panel/notice').par.text = 'BLOCKED | ' + str(error)
         return False
@@ -366,6 +376,26 @@ def build():
     text(fresh,'notice','Creates acquisition IDs and routing only. No camera, LED output, geometry or live controller assignment. Existing scans remain on disk.',20,67,780,64,12)
     control = button(fresh,'btn_stage','CREATE ACQUISITION (OUTPUT OFF)',20,20,780)
     click(owner,'click_stage_capture',control,"op('runtime').module.act('stage_capture')")
+    review = panel(node(owner, containerCOMP, 'review_panel'), 0, 0, 1000, 710, 10)
+    review.viewer = True
+    text(review, 'title', '3D RESULT REVIEW | RAW SCAN TO DRAFT', 20, 660, 960, 35, 21)
+    text(review, 'summary', 'Open a completed 3D result first.', 20, 485, 960, 170, 12)
+    for name, label, value, x, width in (
+            ('name','NEW OBJECT NAME','Raw scan',20,460),
+            ('offset','GLOBAL SOURCE OFFSET (added to original scan ID)','',500,480)):
+        text(review,name+'_label',label,x,450,width,26,11)
+        existing=review.op(name+'/string')
+        field(review,name,field_text(existing) if existing is not None else value,x,420,width)
+    for row,(prefix,label,default) in enumerate((('t','TRANSLATION',0),('r','ROTATION DEGREES',0),('s','SCALE',1))):
+        for column,axis in enumerate('xyz'):
+            name=prefix+axis; x=20+column*320; y=345-row*72
+            text(review,name+'_label',label+' '+axis.upper(),x,y+31,300,26,11)
+            existing=review.op(name+'/string')
+            field(review,name,field_text(existing) if existing is not None else str(default),x,y,300)
+    text(review,'notice','No auto-fit. X=height, Y=right, Z=depth. Missing IDs keep gaps. Existing objects and live routing stay unchanged. Fine alignment in the Layout 3D tab; Undo removes the draft addition.',20,92,960,90,12)
+    for name,label,x,width in (('review_add','ADD AS NEW DRAFT OBJECT',20,600),('review_back','BACK TO GUIDED SCAN',640,340)):
+        control=button(review,'btn_'+name,label,x,30,width)
+        click(owner,'click_'+name,control,"op('runtime').module.act(%r)"%name)
     return owner
 
 
