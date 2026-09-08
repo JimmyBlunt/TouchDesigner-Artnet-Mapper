@@ -38,7 +38,44 @@ def _signature():
     return json.dumps([table_rows(ROUTER.op('controller_config')), table_rows(ROUTER.op('segment_config'))])
 
 def _field(name):
-    return str(OWNER.op('ui_panel/' + name + '/string')[0, 0]).strip()
+    value = OWNER.op('ui_panel/' + name + '/string')[0, 0]
+    return '' if value is None else str(value).strip()
+
+def interface_label():
+    address = _field('interface')
+    rows = OWNER.fetch('local_interfaces', [])
+    name = next((row['name'] for row in rows if row['address'] == address), 'nicht erkannt')
+    if address == '0.0.0.0': name = 'Automatische Schnittstelle'
+    return address + ' | ' + name + '  v'
+
+def choose_interface(address):
+    allowed = {'0.0.0.0'} | {row['address'] for row in OWNER.fetch('local_interfaces', [])}
+    if address not in allowed:
+        raise ValueError('Interface is no longer in the available list; refresh')
+    OWNER.op('ui_panel/interface/string').text = address
+    OWNER.op('ui_panel/btn_interface').par.label = interface_label()
+    OWNER.op('ui_panel/interface_menu').par.display = False
+    _status('Schnittstelle im Entwurf: ' + address + ' | Ausgabe unverändert')
+
+def toggle_interfaces():
+    from pixelblaze_mapper import local_interfaces
+    menu = OWNER.op('ui_panel/interface_menu')
+    menu.par.display = not bool(menu.par.display)
+    if bool(menu.par.display): local_interfaces.refresh()
+
+def poll_interfaces():
+    from pixelblaze_mapper import local_interfaces
+    value = local_interfaces.take_result()
+    if value is None: return
+    if value['error']:
+        _status('Schnittstellen konnten nicht aktualisiert werden: ' + value['error'])
+        return
+    OWNER.store('local_interfaces', value['interfaces'])
+    scope = dict(globals(), __name__='interface_menu_refresh')
+    path = ROOT/'pixelblaze_mapper/build_port_topology_ui.py'
+    exec(compile(path.read_text(encoding='utf-8'),str(path),'exec'),scope,scope)
+    scope['build_interface_menu'](OWNER)
+    OWNER.op('ui_panel/btn_interface').par.label = interface_label()
 
 def _flag(name):
     value = _field(name)
@@ -235,6 +272,26 @@ def back():
 '''
 
 
+def build_interface_menu(owner):
+    scope = dict(globals(), __name__='interface_widgets')
+    path = ROOT/'pixelblaze_mapper/build_gico_port_config_ui.py'
+    exec(compile(path.read_text(encoding='utf-8'),str(path),'exec'),scope,scope)
+    canvas = owner.op('ui_panel')
+    menu = scope['_node'](canvas,containerCOMP,'interface_menu')
+    visible = bool(menu.par.display)
+    rows = [{'address':'0.0.0.0','name':'Automatische Schnittstelle'}] + owner.fetch('local_interfaces',[])
+    # Scrollable list retains every interface, including VPN/virtual adapters.
+    height = min(360,38*len(rows))
+    scope['_panel'](menu,516,645-height,600,height,200)
+    scope['_set'](menu,'vscrollbar','on')
+    for child in menu.children:
+        child.par.display = False
+    for index,row in enumerate(rows):
+        button = scope['_button'](menu,'option_'+str(index),row['address']+' | '+row['name'],0,height-38*(index+1),600)
+        scope['_click'](owner,'interface_option_'+str(index),button,"op('runtime').module.choose_interface(%r)" % row['address'])
+    menu.par.display = visible
+
+
 def build():
     scope = dict(globals())
     scope['__name__'] = 'port_topology_helpers'
@@ -271,7 +328,26 @@ def build():
         y = 645 - (index // 5) * 78
         text(canvas, name + '_label', label, x, y + 31, 240, 28, 10)
         field(canvas, name, value, x, y, 232)
-    text(canvas, 'port_header', 'PORT | LABEL | ON | SOURCE | PIXELS | RESERVE U | REV | ORDER | TARGET (blank=auto) | NEEDED / RESERVED / WIRE', 20, 520, 1240, 30, 10)
+    canvas.op('interface').par.display = False
+    picker = button(canvas,'btn_interface',runtime.module.interface_label(),516,645,232)
+    click(owner,'interface_menu_click',picker,"op('runtime').module.toggle_interfaces()")
+    build_interface_menu(owner)
+    canvas.op('interface_menu').par.display = False
+    poller = node(owner,executeDAT,'interface_poll')
+    poller.text = "def onFrameStart(frame):\n    op('runtime').module.poll_interfaces()\n"
+    poller.par.active = True
+    poller.par.framestart = True
+    text(canvas, 'port_header', '', 20, 520, 1240, 30, 10)
+    columns = [('number','Port',20,45),('label','Bezeichnung',65,145),
+               ('enabled','Aktiv\n0/1',215,50),('source','Erste Quell-LED\nleer = unzugeordnet',270,90),
+               ('pixels','LED-Anzahl',365,80),('reserve','Reservierte\nUniversen',450,85),
+               ('reverse','Umkehr\n0/1',540,50),('order','Farbfolge',595,75),
+               ('target','Zielpixel-Offset\nleer = automatisch',675,100),
+               ('derived','Benötigte / reservierte Universen | Paketadressen | Zuordnung',785,475)]
+    for name,label,x,width in columns:
+        heading = text(canvas,'column_'+name,label,x,497,width,54,10)
+        scope['_set'](heading,'alignx','left')
+        scope['_set'](heading,'textpaddingl',2)
     try:
         plan = runtime.module.build_topology(draft, source_pixels=runtime.module._source_pixels())
         by_number = {item.port.number: item for item in plan.ports}

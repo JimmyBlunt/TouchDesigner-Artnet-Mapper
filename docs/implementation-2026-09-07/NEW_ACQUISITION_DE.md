@@ -36,6 +36,12 @@ Die CSVs enthalten lokale Indizes. Sie dürfen nicht als Ersatz für bestehende 
 
 **VALIDATE DRAFT** prüft den Entwurf. **SAFE APPLY** ist die getrennte Übernahme in die Live-Router-Konfiguration und wurde hier nicht ausgeführt. Für den isolierten Guided Scan ist diese Übernahme nicht erforderlich. Der im Webinterface mit Output 0 bezeichnete erste Ausgang entspricht hier organisatorisch der ersten Portzeile; die physische GPIO-Konfiguration wird dadurch nicht geändert.
 
+### Interface-Auswahl und Spalten
+
+LOCAL INTERFACE ist jetzt eine aufklappbare Liste mit IPv4-Adresse und Anschlussnamen. Beim Öffnen werden die verfügbaren Adressen im Hintergrund erneut abgefragt, ohne eine Verbindung zum Controller herzustellen. Für dieses Netzwerk: **10.0.0.125 | Ethernet 3**. `0.0.0.0` überlässt die Schnittstellenwahl Windows; `127.0.0.1` ist Loopback und nicht für den externen Controller geeignet. Virtuelle/VPN-Adressen bleiben anhand ihrer Anschlussnamen erkennbar. Eine nicht mehr vorhandene ausgewählte Adresse wird als „nicht erkannt“ bezeichnet, nicht automatisch ersetzt.
+
+Die Porttabelle hat einzeln ausgerichtete Spaltenüberschriften. „Reservierte Universen“ bezeichnet die Kapazität des Portblocks, „Erste Quell-LED“ die Animationszuordnung und „Zielpixel-Offset“ die Zielposition innerhalb des Controllers. Das Dropdown ändert nur den aktuellen Entwurf. Erst SAFE APPLY übernimmt ihn; die LED-Ausgabe bleibt auch dann zunächst aus.
+
 ## Prüfung dieser Erweiterung
 
 - Reale TouchDesigner-Callbacks zum Anlegen und Vorbereiten ausgeführt; keine Kamera und keine LED-Ausgabe gestartet. Keine Behauptung vollständiger Mausklicktests für das neue Dialogfenster.
