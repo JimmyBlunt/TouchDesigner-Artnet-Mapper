@@ -1,0 +1,11 @@
+# Teilaktivierung Rückwandpanel, 2026-09-09
+
+Benutzer bestätigt: .244 Port4 leer, nur drei Seitenpanels an Port1–3. Neues Rückwandpanel .249 Port1, Art-Net120/121 (nullbasiert), RGB, 203 LEDs. Controller BACK_PANEL_249:5%,30FPS. Alte GICO_PORT_4_PORT_4-Route entfernt, GICO-Port4 deaktiviert; drei Seitenrouten und Controllerparameter unverändert.
+
+Eine vollständige Layout-Übernahme bleibt gesperrt (3691 echte/Platzhalter-Punkte gegenüber3744 Ausgabeslots). Statt den Exportvalidator zu umgehen, wurde eine explizite Teilaktivierung implementiert: nur map_active1440–1642 und zugehörige rear_wall_uv verändert. Andere XYZ/UV und tatsächlich gekochte XYZ unverändert geprüft. Rohscan und Draft unverändert. Die 53 Slots1643–1695 bleiben als nichtphysische technische Plätze im festen Ausgabepuffer; explizite Maske setzt ihre RGB-Werte im gemeinsamen Live- und Kalibrierungssender schwarz. Kein aktives Segment nutzt sie. Andere Source-Indizes werden nicht verschoben. Veraltete Koordinaten dieser ungerouteten Slots sind kein wieder hinzugefügtes physisches Panel. Native DMX-Sender bleiben aus; die Maske gilt dem gemeinsamen 510-Byte-Sender.
+
+Snapshots: BEFORE_PANEL_LIVE (vor Änderung), BACK_PANEL_ACTIVE_DATA (nach Änderung), jeweils unter Backup/Implementation/PixelblazeMapper_20260909_*.1.toe. Rücknahmedaten zusätzlich als plain-data back_panel_partial_activation_backup im Router gespeichert. Es handelt sich nicht um einen vollständigen Layout-APPLY; dessen REVERT-Schaltfläche ist hierfür nicht zuständig.
+
+Pakettest: Universe120170RGB-LEDs; Universe12133RGB-LEDs und137 schwarze Reservepixel; jeweils510Bytes. Test mit realen Materialdaten liefert nichtschwarze Frames. 30s Hardware-Ausgabetest ausschließlich BACK_PANEL_249,1000Pakete/500Frames, kein Senderfehler. Tatsächlich ca17.4FPS bei Soll30 (noch nicht optimiert). Anschließend Sender aus, schwarze Pakete nur an.249, ursprüngliche Enabled-Konfiguration zurückgesetzt. Physische Sichtprüfung durch Benutzer noch ausstehend.
+
+Implementierung: tools/activate_back_panel_20260909.py, pixelblaze_mapper/output_slot_mask.py. Maskentests prüfen Kalibrierung, Bereichsgrenzen, unveränderte Eingaben sowie nicht iterierbare TD-Channels mit .vals. Bestehende native_gate-Arbeitsänderungen bleiben unangetastet und werden nicht in diesen Commit aufgenommen.

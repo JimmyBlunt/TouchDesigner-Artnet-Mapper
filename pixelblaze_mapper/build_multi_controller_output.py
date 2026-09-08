@@ -899,7 +899,8 @@ def build():
         sender_callbacks.module.stop()
     except Exception:
         pass
-    _replace_dat_text(sender_callbacks, _artnet_510_sender_source())
+    from pixelblaze_mapper.output_slot_mask import install_source as install_slot_mask
+    _replace_dat_text(sender_callbacks, install_slot_mask(_artnet_510_sender_source()))
     sender_execute = _get_or_create(owner, executeDAT, "artnet_510_execute")
     _replace_dat_text(sender_execute, _artnet_510_execute_source())
     _set_if_present(sender_execute, "active", True)
