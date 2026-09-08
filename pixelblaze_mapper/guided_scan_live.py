@@ -58,6 +58,14 @@ def set_scan_brightness(op, fraction):
     _status(op, 'Scan brightness %.1f%% — CHECK SCAN PLAN before the next view; Live unchanged' % percent)
 
 
+def brightness_position(op):
+    """Read-only visual binding; incomplete keyboard input must not break drawing."""
+    try:
+        return (scan_brightness(op) * 100 - 1) / 9
+    except (ValueError, TypeError):
+        return 0.0
+
+
 def _status(op, message):
     op(OWNER).store('message', message)
     op(OWNER + '/ui_panel/status').par.text = message

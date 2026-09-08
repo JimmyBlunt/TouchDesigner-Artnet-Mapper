@@ -352,6 +352,15 @@ def build():
     existing = canvas.op('brightness/string')
     field(canvas, 'brightness', field_text(existing) if existing is not None else '5', 510, 529, 100)
     slider = button(canvas, 'brightness_slider', 'SCAN BRIGHTNESS % | 1 — drag — 10', 625, 529, 515)
+    position = "__import__('pixelblaze_mapper.guided_scan_live', fromlist=['brightness_position']).brightness_position(op)"
+    fill = text(canvas, 'brightness_fill', '', 625, 529, 1, 7)
+    fill.par.layer = 61
+    fill.par.bgcolorr, fill.par.bgcolorg, fill.par.bgcolorb = .18, .65, .85
+    fill.par.w.expr = '515 * (' + position + ')'
+    marker = text(canvas, 'brightness_marker', '', 625, 529, 3, 36)
+    marker.par.layer = 62
+    marker.par.bgcolorr, marker.par.bgcolorg, marker.par.bgcolorb = .9, .96, 1
+    marker.par.x.expr = '625 + 512 * (' + position + ')'
     expression = "__import__('pixelblaze_mapper.guided_scan_live', fromlist=['set_scan_brightness']).set_scan_brightness(op, float(op(%r).panel.u))" % slider.path
     callback = click(owner, 'click_brightness', slider, expression)
     callback.par.panelvalue = 'lselect u'
