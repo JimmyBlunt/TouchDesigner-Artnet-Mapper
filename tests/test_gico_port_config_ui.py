@@ -32,7 +32,7 @@ class GicoPortConfigUIContracts(unittest.TestCase):
     def test_ui_exposes_global_constraint_and_derived_port_blocks(self):
         text = BUILDER.read_text(encoding="utf-8")
         self.assertIn("UNIVERSES PER PORT", text)
-        self.assertIn("FIRST UI UNIVERSE", text)
+        self.assertIn("START-UNIVERSE (AB 0)", text)
         self.assertIn("destination_pixel_start", text)
         self.assertIn("GICO PORT CONFIG", text)
         self.assertIn("canvas.viewer = True", text)

@@ -193,7 +193,7 @@ def _draft():
     previous = _saved()
     controller = replace(previous.controller, target_address=_field('target'),
         local_interface=_field('interface'), port=int(_field('udp_port')),
-        start_universe=ui_to_wire(int(_field('first_ui'))),
+        start_universe=int(_field('first_ui')),
         brightness=float(_field('brightness')), rate=int(_field('rate')),
         enabled=_flag('enabled'), color_order=_field('order').upper())
     ports = list(previous.ports)
@@ -320,7 +320,7 @@ def build():
                 ('delete', 'STAGE DELETE', 830, 721, 190), ('back', 'BACK TO GICO', 1030, 721, 220)]
     values = [('profile', draft.profile, 'PROFILE: gico_equal / independent'), ('target', draft.controller.target_address, 'TARGET IPv4'),
               ('interface', draft.controller.local_interface, 'LOCAL INTERFACE'), ('udp_port', draft.controller.port, 'UDP PORT'),
-              ('first_ui', runtime.module.wire_to_ui(draft.controller.start_universe), 'FIRST UI U (WIRE = UI - 1)'),
+              ('first_ui', draft.controller.start_universe, 'START-UNIVERSE (ART-NET, AB 0)'),
               ('rate', draft.controller.rate, 'RATE FPS'), ('brightness', draft.controller.brightness, 'BRIGHTNESS 0..1'),
               ('enabled', int(draft.controller.enabled), 'ENABLED 0/1'), ('order', draft.controller.color_order, 'DEFAULT COLOR ORDER')]
     for index, (name, value, label) in enumerate(values):
@@ -337,7 +337,8 @@ def build():
     poller.text = "def onFrameStart(frame):\n    op('runtime').module.poll_interfaces()\n"
     poller.par.active = True
     poller.par.framestart = True
-    text(canvas, 'port_header', '', 20, 520, 1240, 30, 10)
+    # The obsolete opaque strip otherwise covers the top half of column labels.
+    text(canvas, 'port_header', '', 20, 520, 1240, 30, 10).par.display = False
     columns = [('number','Port',20,45),('label','Bezeichnung',65,145),
                ('enabled','Aktiv\n0/1',215,50),('source','Erste Quell-LED\nleer = unzugeordnet',270,90),
                ('pixels','LED-Anzahl',365,80),('reserve','Reservierte\nUniversen',450,85),

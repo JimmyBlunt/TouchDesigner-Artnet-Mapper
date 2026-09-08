@@ -203,7 +203,7 @@ class RoutingApplyRegressionTests(unittest.TestCase):
         scope = {'op': lambda path: owner if path.endswith('/gico_port_config') else
                  (None if path == '/project1/math1' else self.router)}
         exec(embedded('build_gico_port_config_ui.py', '_runtime_source'), scope)
-        values = dict(universes_per_port='6', first_universe='1')
+        values = dict(universes_per_port='6', first_universe='0')
         for n, start, count in ((1, '0', 517), (2, '517', 269), (3, '786', 398), (4, '', 896)):
             values.update({f'p{n}_label': f'Port {n}', f'p{n}_enabled': '1',
                            f'p{n}_source': start, f'p{n}_count': str(count),
@@ -239,12 +239,12 @@ class RoutingApplyRegressionTests(unittest.TestCase):
         self.assertTrue(self.enabled)
 
     def test_gico_apply_converts_ui_once_and_preserves_other_controller(self):
-        for first in (1, 2, 7):
+        for first in (0, 1, 6, 120):
             scope, values = self.gico_scope()
             values['first_universe'] = str(first)
             apa = copy.deepcopy(self.tables['controller_config'].rows[2])
             self.assertTrue(scope['apply_safe_draft'](), self.messages)
-            self.assertEqual(self.tables['controller_config'][1, 'start_universe'], str(first - 1))
+            self.assertEqual(self.tables['controller_config'][1, 'start_universe'], str(first))
             self.assertEqual(self.tables['controller_config'][1, 'reserved_universes'], '24')
             self.assertEqual(self.tables['controller_config'].rows[2], apa)
             self.assertEqual([row[4] for row in self.tables['segment_config'].rows[2:]], ['0', '1020', '2040'])

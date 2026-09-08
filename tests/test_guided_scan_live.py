@@ -110,7 +110,7 @@ class GuidedScanLiveTests(unittest.TestCase):
         self.assertEqual(len(snapshot.black_frames()['WS2812_NODE']), 24)
         self.assertEqual(plan['identity'], {'517':'led517','785':'led785','1284':'anchor1284'})
         self.assertEqual(plan['scene_revision'], 'scene-revision')
-        self.assertIn('wire 0-23', summary)
+        self.assertIn('Art-Net U0-U23 (ab 0)', summary)
         self.assertEqual(json.loads(self.nodes[bridge.OWNER+'/worker_plan'].text), plan)
         self.assertFalse(guard.active())
         self.no_socket.assert_not_called()

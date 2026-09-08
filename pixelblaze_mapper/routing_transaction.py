@@ -72,7 +72,10 @@ def stop_outputs(router):
                 raise RuntimeError('Shared sender remains enabled')
         except Exception as error:
             errors.append('sender: ' + str(error))
-    for node in router.findChildren(name='dmxout_*', depth=1):
+    for node in router.findChildren(depth=1):
+        # Helper Constant/Select CHOPs may share the dmxout_ name prefix.
+        if node.type != 'dmxout':
+            continue
         try:
             node.par.active = False
             if bool(node.par.active):

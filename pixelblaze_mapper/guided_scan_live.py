@@ -143,9 +143,9 @@ def prepare(op):
     lines = []
     for name in snapshot.controller_names:
         frames = [f for f in snapshot.packet_descriptors() if f.controller == name]
-        lines.append('%s %s | U%d-U%d (display), wire %d-%d' %
-            (name, frames[0].target_address, frames[0].wire_universe + 1,
-             frames[-1].wire_universe + 1, frames[0].wire_universe, frames[-1].wire_universe))
+        lines.append('%s %s | Art-Net U%d-U%d (ab 0)' %
+            (name, frames[0].target_address, frames[0].wire_universe,
+             frames[-1].wire_universe))
     summary = '%s%d LEDs | 510 channels | max 5%% | %s' % ('SEPARATE CAPTURE | ' if standalone else '', len(source_ids), '; '.join(lines))
     op(OWNER + '/ui_panel/routing_summary').par.text = summary
     _status(op, 'PLAN READY — no camera or output started. Scan blacks ALL reserved universes of listed controllers.')

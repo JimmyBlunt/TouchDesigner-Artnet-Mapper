@@ -168,7 +168,8 @@ def _draft():
     source = op('/project1/math1')
     return GicoConfig(
         universes_per_port=int(_field('universes_per_port')),
-        first_universe=int(_field('first_universe')),
+        # Legacy persisted GICO model remains one-based; the editor is wire-based.
+        first_universe=int(_field('first_universe')) + 1,
         ports=tuple(ports),
         source_pixel_count=int(source.numSamples) if source is not None else TOTAL_PIXELS,
     )
@@ -220,12 +221,12 @@ def validate_draft():
             route = ('not routed: source missing' if not item.has_source_assignment
                      else 'source %d-%d' % (item.config.source_start, item.source_end_exclusive - 1))
             needed = (item.config.pixel_count + 169) // 170 if item.config.pixel_count else 0
-            label.par.text = 'UI U%d-U%d | target %d | %d/%d U needed/reserved | %s' % (
-                item.start_universe, item.end_universe, item.destination_pixel_start,
+            label.par.text = 'Art-Net U%d-U%d | target %d | %d/%d U needed/reserved | %s' % (
+                item.start_universe - 1, item.end_universe - 1, item.destination_pixel_start,
                 needed, config.universes_per_port, route)
         warnings = [issue.message for issue in plan.issues if not issue.blocking]
         _status('VALID DRAFT | reserved U%d-U%d (%d universes)%s' % (
-            config.first_universe, config.first_universe + plan.reserved_universes - 1,
+            config.first_universe - 1, config.first_universe + plan.reserved_universes - 2,
             plan.reserved_universes, (' | ' + '; '.join(warnings)) if warnings else ''))
         return plan
     except Exception as error:
@@ -297,10 +298,10 @@ def build():
     _text(canvas, "title", "GICO FIXED PORT CONFIGURATION", 20, 668, 1140, 36, 21, (0.91, 0.96, 1.0))
     _text(canvas, "help", "The controller uses one global universe count for every physical port. Derived blocks cannot overlap. Blank Source Start means visible draft only - no Art-Net routing.", 20, 620, 1140, 40, 12, (0.38, 0.76, 0.96))
     upp = _table_value(settings, "universes_per_port", 6)
-    first = _table_value(settings, "first_universe", 1)
+    first = int(_table_value(settings, "first_universe", 1)) - 1
     _text(canvas, "upp_label", "UNIVERSES PER PORT", 20, 574, 220, 32)
     _field(canvas, "universes_per_port", upp, 240, 574, 150)
-    _text(canvas, "first_label", "FIRST UI UNIVERSE", 420, 574, 190, 32)
+    _text(canvas, "first_label", "START-UNIVERSE (AB 0)", 420, 574, 190, 32)
     _field(canvas, "first_universe", first, 610, 574, 150)
     _text(canvas, "columns", "PORT / LABEL | ENABLED | SOURCE START | PIXELS | REVERSE | ORDER | DERIVED BLOCK", 20, 526, 1140, 30, 11, (0.72, 0.79, 0.86))
 

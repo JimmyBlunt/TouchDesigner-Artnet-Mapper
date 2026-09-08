@@ -51,7 +51,7 @@ class PortTopologyUIRuntimeTests(unittest.TestCase):
         draft = self.scope['_saved']()
         ctrl = draft.controller
         self.values.update(profile=draft.profile, target=ctrl.target_address, interface=ctrl.local_interface,
-                           udp_port=str(ctrl.port), first_ui=str(ctrl.start_universe + 1), brightness=str(ctrl.brightness),
+                           udp_port=str(ctrl.port), first_ui=str(ctrl.start_universe), brightness=str(ctrl.brightness),
                            rate=str(ctrl.rate), enabled=str(int(ctrl.enabled)), order=ctrl.color_order)
         page = self.owner.fetch('page', 0)
         for slot, port in enumerate(draft.ports[page * 6:page * 6 + 6]):
