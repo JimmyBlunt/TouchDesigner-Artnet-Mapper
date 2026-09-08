@@ -145,6 +145,7 @@ def frame_view(owner, *, reset=False):
     owner.store("view_span", span)
     if reset:
         owner.store("view_angles", (25.0, 15.0))
+        owner.store("view_zoom", 1.0)
     _camera(owner)
 
 
@@ -152,7 +153,7 @@ def _camera(owner):
     center = owner.fetch("view_center", (0, 0, 0))
     span = owner.fetch("view_span", 1.0)
     yaw, pitch = map(radians, owner.fetch("view_angles", (25, 15)))
-    distance = span * 2.5
+    distance = span * 2.5 / owner.fetch("view_zoom", 1.0)
     camera = owner.op("camera")
     camera.par.tx = center[0] + distance * sin(yaw) * cos(pitch)
     camera.par.ty = center[1] + distance * sin(pitch)
@@ -163,6 +164,20 @@ def _camera(owner):
     shape = owner.op("led_geometry/led_shape")
     for axis in "xyz":
         getattr(shape.par, "size" + axis).val = span * 0.007
+
+
+def zoom_view(owner, steps):
+    if not steps or owner.fetch('layout_view', '3d') != '3d':
+        return
+    steps = max(-10, min(10, float(steps)))
+    owner.store('view_zoom', max(.1, min(20., owner.fetch('view_zoom', 1.) * 1.15 ** steps)))
+    _camera(owner)
+
+
+def orbit_view(owner, degrees):
+    yaw, pitch = owner.fetch('view_angles', (25., 15.))
+    owner.store('view_angles', (yaw + degrees, pitch))
+    _camera(owner)
 
 
 def _transform_fields(owner):

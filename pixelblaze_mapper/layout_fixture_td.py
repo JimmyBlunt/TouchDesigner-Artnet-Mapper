@@ -144,7 +144,7 @@ def action(owner, name, chooser, confirm):
             for axis in "xyz":
                 owner.op("ui_panel/" + prefix + axis).par.enable = mode == "3d"
         owner.op("ui_panel/axes").par.text = ("2D: click a colored fixture then drag, or use arrows. Mode selects move / rotate / scale.\nThe last clicked canvas receives keys. Ctrl+Z/Y affects only the 2D draft.\n3D numeric transforms are disabled here. UV square is exactly 0..1; FIT UV is explicit." if mode == "2d" else
-            "USER AXES: X = HEIGHT | Y = RIGHT | Z = BACK\nLMB: selected object XY / chosen rotate-scale axis. RMB: orbit.\nViewport keys: arrows X/Y, Page Up/Down Z; Ctrl+Z/Y undo/redo; Escape cancels drag.")
+            "X = HEIGHT | Y = RIGHT | Z = BACK. RMB drag: orbit VIEW. Wheel: zoom VIEW.\nLMB drag / arrows: CHANGE selected object. Page Up/Down: Z. Ctrl+Z/Y: undo/redo.\nFRAME / RESET VIEW resets camera only. View buttons never move LEDs.")
         status(owner, ("2D FIXTURES | output arrangement and material UV are independent drafts" if mode == "2d" else "3D LAYOUT | X height/Y right/Z back | original scans preserved"))
         refresh(owner)
     elif name == "project2d":

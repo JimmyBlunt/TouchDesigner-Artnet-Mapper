@@ -237,6 +237,8 @@ def build(initial_path=""):
     _set(render, "lights", "")
     viewport = _panel(_node(panel, containerCOMP, "viewport"), 20, 280, 760, 500, 10)
     viewport.par.top = render.path
+    viewport.par.uvbuttonsright = True
+    viewport.par.mousewheel = True
     _set(viewport, "bgcolorr", .015)
     _set(viewport, "bgalpha", 1)
     _button(owner, panel, "view3d", "3D LAYOUT", 20, 790, 140)
@@ -253,8 +255,15 @@ def build(initial_path=""):
         fixture_range.op("string").text = ""
     _button(owner, panel, "project2d", "PROJECT RANGE TO 2D", 610, 790, 170)
     fixture_views = [_fixture_canvas(owner, panel, "output", 20), _fixture_canvas(owner, panel, "uv", 410)]
-    _text(panel, "axes", "USER AXES: X = HEIGHT  |  Y = RIGHT  |  Z = BACK\nLMB drag: selected object in XY plane or chosen rotate/scale axis. RMB: orbit view.\nViewport focus: arrows move X/Y; Page Up/Down move Z. Ctrl+Z/Y undo/redo. Escape cancels drag.",
-          20, 182, 760, 83, 12)
+    _text(panel, "axes", "X = HEIGHT | Y = RIGHT | Z = BACK. RMB drag: orbit VIEW. Wheel: zoom VIEW.\nLMB drag / arrows: CHANGE selected object. Page Up/Down: Z. Ctrl+Z/Y: undo/redo.\nFRAME / RESET VIEW resets camera only. View buttons never move LEDs.",
+          20, 180, 760, 56, 11)
+    for name, label, x, method, value in (
+            ('orbit_left', 'VIEW LEFT', 20, 'orbit_view', -15),
+            ('orbit_right', 'VIEW RIGHT', 180, 'orbit_view', 15),
+            ('zoom_in', 'ZOOM +', 340, 'zoom_view', 1),
+            ('zoom_out', 'ZOOM -', 500, 'zoom_view', -1)):
+        _button(owner, panel, name, label, x, 240, 150)
+        owner.op('click_' + name).text = "def onOffToOn(panelValue):\n    op(%r).module.adapter.%s(op(%r), %r)\n" % (runtime.path, method, owner.path, value)
     _text(panel, "objects", "", 20, 72, 760, 105, 11)
     _text(panel, "provenance", "", 810, 150, 600, 55, 11)
 
@@ -315,6 +324,13 @@ def build(initial_path=""):
     move.par.offtoon, move.par.ontooff = False, False
     move.text = "def onValueChange(panelValue, prev):\n    panel=op(%r).panel\n    if panel.lselect: op(%r).module.drag('update', camera=False)\n    elif panel.rselect: op(%r).module.drag('update', camera=True)\n    return\n" % (viewport.path, runtime.path, runtime.path)
     move.par.active = True
+    wheel = _node(owner, panelexecuteDAT, 'view_wheel')
+    wheel.par.panels, wheel.par.fromop = viewport.path, viewport.path
+    wheel.par.panelvalue = 'wheel'
+    wheel.par.offtoon, wheel.par.ontooff = False, False
+    wheel.par.valuechange = True
+    wheel.text = "def onValueChange(panelValue, prev):\n    if float(panelValue): op(%r).module.adapter.zoom_view(op(%r), float(panelValue))\n" % (runtime.path, owner.path)
+    wheel.par.active = True
     keys = _node(owner, keyboardinDAT, "keyboard")
     keyboard_callback = _node(owner, textDAT, "keyboard_callbacks")
     keyboard_callback.text = "def keyEvent(dat,key,character,alt,lalt,ralt,ctrl,lctrl,rctrl,shift,lshift,rshift,state,time):\n    if state and not alt:\n        op(%r).module.key(key,ctrl=ctrl)\n    return\ndef shortcutEvent(dat,shortcutName,time):\n    return\n" % runtime.path
