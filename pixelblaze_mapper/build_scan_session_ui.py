@@ -254,7 +254,7 @@ def act(command):
             live.prepare(op)
         elif command == 'arm':
             message = str(OWNER.op('ui_panel/routing_summary').par.text.eval())
-            answer = ui.messageBox('Start one MariMapper view?', message + '\n\nThis switches ALL reserved universes of the listed controllers to black, then scans selected LEDs at max 5%. Camera and object must stay fixed. No automatic Live resume. Continue?', buttons=['Cancel', 'Start Scan'])
+            answer = ui.messageBox('Start one MariMapper view?', message + '\n\nThis switches ALL reserved universes of the listed controllers to black, then scans selected LEDs at the selected scan brightness (1-10%). Camera and object must stay fixed. No automatic Live resume. Continue?', buttons=['Cancel', 'Start Scan'])
             if answer == 1:
                 live.start(op, confirmed=True)
         elif command == 'offline':

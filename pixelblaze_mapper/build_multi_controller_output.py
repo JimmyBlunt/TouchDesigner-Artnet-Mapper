@@ -348,14 +348,8 @@ def refresh_status(force=False):
         fps = state.get('telemetry', {}).get('actual_send_fps', 0.0)
         op('ui_panel/safety').par.text = '%s | sender %s | %.1f actual fps | %d RGB source pixels' % (
             summary.state, 'ON' if summary.sender_enabled else 'OFF', fps, _source_pixels())
-        for name, prefix in (('WS2812_NODE', 'ws'), ('APA102_ESP', 'apa')):
-            item = next((item for item in summary.controllers if item.name == name), None)
-            value = ('%s | %s | wire %s | %d reserved U' % (name, item.state, item.universe_label,
-                     item.universe_count)) if item else name + ' | NOT CONFIGURED'
-            op('ui_panel/' + prefix + '_title').par.text = value
-        warnings = [row.get('message', '') for row in records(table_rows(op('validation')))
-                    if row.get('code') == 'unassigned_source']
-        op('ui_panel/unassigned').par.text = '; '.join(warnings) or 'All source pixels have a routing assignment'
+        from pixelblaze_mapper.router_dynamic_ui import refresh
+        refresh(op('/project1/multi_controller_output'), summary)
     except Exception as error:
         op('ui_panel/safety').par.text = 'STATUS UNAVAILABLE | ' + str(error)
 
@@ -400,8 +394,8 @@ def _rebuild_router():
 def apply_safe():
     try:
         rows = table_rows(op('controller_config'))
-        _controller_draft(rows, 'WS2812_NODE', 'ws')
-        _controller_draft(rows, 'APA102_ESP', 'apa')
+        from pixelblaze_mapper.router_dynamic_ui import apply_drafts
+        rows = apply_drafts(op('/project1/multi_controller_output'), rows)
         panel, pattern, chase = _write_calibration()
         calibration = table_rows(op('calibration_config'))
         values = {'panel': panel, 'pattern': pattern, 'chase_index': str(chase)}
@@ -900,7 +894,8 @@ def build():
     except Exception:
         pass
     from pixelblaze_mapper.output_slot_mask import install_source as install_slot_mask
-    _replace_dat_text(sender_callbacks, install_slot_mask(_artnet_510_sender_source()))
+    from pixelblaze_mapper.sender_pacing import install_source as install_pacing
+    _replace_dat_text(sender_callbacks, install_pacing(install_slot_mask(_artnet_510_sender_source())))
     sender_execute = _get_or_create(owner, executeDAT, "artnet_510_execute")
     _replace_dat_text(sender_execute, _artnet_510_execute_source())
     _set_if_present(sender_execute, "active", True)
@@ -1052,9 +1047,9 @@ network stop. The builder never saves the TOE automatically.
     status_execute.par.active = True
     status_execute.par.framestart = True
     _replace_dat_text(status_execute, "def onFrameStart(frame):\n    op('ui_callbacks').module.refresh_status()\n    return\n")
+    from pixelblaze_mapper.router_dynamic_ui import install as install_router_cards
+    install_router_cards(owner, globals())
     callbacks.module.refresh_status(force=True)
-    from pixelblaze_mapper.router_extra_brightness_ui import install as install_extra_brightness
-    install_extra_brightness(owner, globals())
     print({"owner": owner.path, "controllers": len(plan.controllers), "outputsActive": False, "productionTouched": False, "projectSaved": False})
     return owner
 

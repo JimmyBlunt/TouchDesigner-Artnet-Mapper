@@ -222,7 +222,7 @@ class BuilderContractTests(unittest.TestCase):
         text = (Path(__file__).parents[1] / "pixelblaze_mapper" / "build_multi_controller_output.py").read_text(encoding="utf-8")
         self.assertIn("def _replace_dat_text(node, source):", text)
         self.assertIn("node.write(source)", text)
-        self.assertIn("_replace_dat_text(sender_callbacks, install_slot_mask(_artnet_510_sender_source()))", text)
+        self.assertIn("_replace_dat_text(sender_callbacks, install_pacing(install_slot_mask(_artnet_510_sender_source())))", text)
         self.assertIn("_replace_dat_text(sender_execute, _artnet_510_execute_source())", text)
         self.assertNotIn("sender_callbacks.text =", text)
         self.assertNotIn("sender_execute.text =", text)
