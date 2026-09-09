@@ -1,0 +1,15 @@
+{
+  "source_range": [
+    0,
+    1183
+  ],
+  "changed_leds": 1184,
+  "output_slots": 3744,
+  "rear_rows_unchanged": true,
+  "routing_unchanged": true,
+  "global_projection": "u=(1-Y)/rear_width; v=(X-rear_min)/rear_height",
+  "shared_height_with_rear": true,
+  "normal_output_started": false,
+  "active_hash": "e8ec813f52975e48c6043d045c5afd2382b0daa28ee050487971160392fa4021",
+  "mode": "partial fixed-slot data activation"
+}

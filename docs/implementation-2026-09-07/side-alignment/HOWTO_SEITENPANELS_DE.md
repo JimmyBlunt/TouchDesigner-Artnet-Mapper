@@ -1,6 +1,34 @@
 # Seitenpanels einzeln ausrichten – Arbeitsprotokoll
 
 Stand: 2026-09-09. **Alle drei Seitenpanels im Entwurf ausgerichtet und gespeichert.**
+
+### Nachtrag: ausdrücklich angeforderte Live-Übernahme
+
+Anschließend wurden die 1184 Seiten-IDs 0–1183 gezielt in `map_active`
+und `effect_panel_uv` übernommen. Rückwand-Zeilen, Controller, Segmente und
+53 reservierte Schwarz-Slots blieben unverändert. Dies ist eine geprüfte
+Teilübernahme, kein vollständiges APPLY des lückenhaften Layout-Dokuments.
+
+Globale UV-Projektion: u=(1−Y)/0,36875; v=(X−0,015625)/0,96875.
+Damit verwenden Seite und Rückwand dieselbe Höhenrichtung und denselben
+Höhenmaßstab. Lokale UVs werden je Seitenpanel aus dessen Grenzen gebildet.
+Sehr kleine Überstände über die alte Rückwand-UV-Grenze werden auf 0..1
+begrenzt (oberster Punkt liegt etwa 0,00065 über v=1).
+
+Vorher-Sicherung: `PixelblazeMapper_20260909_BEFORE_SIDE_LIVE.1.toe`.
+Nachher-Sicherung: `PixelblazeMapper_20260909_SIDE_PANELS_ACTIVE.1.toe`, beide
+unter `Backup/Implementation`, jeweils mit ausgeschalteter Ausgabe gespeichert.
+Danach wurde die laufende Sitzung ausdrücklich in Live versetzt: Material
+`arcs`, Controller WS2812_NODE (.244) und BACK_PANEL_249 (.249).
+Helligkeiten, Geschwindigkeitsparameter und Soll-Ausgaberaten nicht verändert.
+Stoppen über **ALL OFF** im Multi-Controller-Dialog.
+
+Rücknahme-Daten liegen zusätzlich im Router-Storage
+`side_panel_partial_activation_backup` (Map/UV vor Teilübernahme).
+Foto-Corner-Pins und unabhängige 2D-Fixtures sind hiermit nicht neu kalibriert;
+die physische Ansicht und Animationswirkung brauchen Nutzerabgleich.
+
+Die folgenden Abschnitte beschreiben den vorausgehenden Entwurfsstand.
 Die folgenden Diagnoseabschnitte halten den Weg zur bestätigten Form fest.
 Die aktive Map und die Foto-Vorschau der aktiven Map wurden nicht umgestellt.
 

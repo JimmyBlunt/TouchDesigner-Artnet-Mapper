@@ -1,0 +1,36 @@
+{
+  "sender": {
+    "enabled": true,
+    "error": "",
+    "mode": "live",
+    "calibration": [
+      "all",
+      "panel_id",
+      0
+    ],
+    "controllers": [
+      "WS2812_NODE",
+      "BACK_PANEL_249"
+    ],
+    "target_override": null,
+    "port_override": null,
+    "telemetry": {
+      "tick_count": 649,
+      "rate_skips": 0,
+      "send_count": 649,
+      "packet_count": 16874,
+      "send_ms_last": 7.849799992982298,
+      "send_ms_average": 7.912578890749464,
+      "send_ms_max": 23.753699992084876,
+      "actual_send_fps": 11.873678575104224,
+      "pack_count": 649,
+      "pack_ms_last": 4.414800001541153,
+      "pack_ms_average": 3.572711864294763,
+      "pack_ms_max": 12.121600011596456,
+      "plan_rebuilds": 3
+    }
+  },
+  "rgb_hash": "cf9d64a3201873c50cd237b4b0e7d5a0a0b8f9fd2fc341c8d44f9320269c05ff",
+  "rgb_max": 0.6274512410163879,
+  "errors": ""
+}
