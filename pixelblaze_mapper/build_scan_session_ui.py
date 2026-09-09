@@ -415,6 +415,8 @@ def build():
     for name,label,x,width in (('review_add','ADD AS NEW DRAFT OBJECT',20,600),('review_back','BACK TO GUIDED SCAN',640,340)):
         control=button(review,'btn_'+name,label,x,30,width)
         click(owner,'click_'+name,control,"op('runtime').module.act(%r)"%name)
+    from pixelblaze_mapper.led_search import install as install_led_search
+    install_led_search(globals())
     return owner
 
 

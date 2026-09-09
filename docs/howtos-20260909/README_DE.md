@@ -4,6 +4,8 @@ Stand: 9. September 2026, nach Einspielen der dynamischen Router-Karten und des 
 
 ## Direkt zum nächsten Schritt
 
+- [Vorher die tatsächliche LED-Anzahl mit Weiß/Grün/Rot bestimmen](05_LED_ANZAHL_SUCHEN_DE.md)
+
 1. [Nächstes Panel aufnehmen: Kamera, Art-Net, mehrere Ansichten, Fehlerbehebung](01_GUIDED_SCAN_DE.md)
 2. [3D-Ergebnis prüfen, hinzufügen oder ersetzen, ausrichten und übernehmen](02_3D_MAPPING_DE.md)
 3. [2D-Fixtures, Materialausschnitt, Exporte und Abnahme](03_2D_FIXTURES_UND_ABNAHME_DE.md)
