@@ -1053,6 +1053,8 @@ network stop. The builder never saves the TOE automatically.
     status_execute.par.framestart = True
     _replace_dat_text(status_execute, "def onFrameStart(frame):\n    op('ui_callbacks').module.refresh_status()\n    return\n")
     callbacks.module.refresh_status(force=True)
+    from pixelblaze_mapper.router_extra_brightness_ui import install as install_extra_brightness
+    install_extra_brightness(owner, globals())
     print({"owner": owner.path, "controllers": len(plan.controllers), "outputsActive": False, "productionTouched": False, "projectSaved": False})
     return owner
 
