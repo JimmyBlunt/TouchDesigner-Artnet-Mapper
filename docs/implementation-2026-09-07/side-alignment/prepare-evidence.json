@@ -1,0 +1,187 @@
+{
+  "panels": [
+    {
+      "key": "upper",
+      "object_id": "a5b334d1-faaa-53c9-8a61-683c96cd5cf6",
+      "source_range": [
+        517,
+        785
+      ],
+      "count": 269,
+      "size_cm": [
+        20.0,
+        16.0
+      ],
+      "center": [
+        0.94,
+        0.875,
+        0.3
+      ],
+      "bounds": [
+        [
+          0.8949999999999999,
+          0.8187500000000001,
+          0.2958705806364543
+        ],
+        [
+          0.9849999999999999,
+          0.9312500000000001,
+          0.3041294193635457
+        ]
+      ],
+      "scale_xy_ratio": 1.0466293953749974,
+      "estimated_count": 3,
+      "rotation_determinant": 1.0,
+      "singular_values": [
+        90.38614501028388,
+        54.47701084980108,
+        3.221657275276509
+      ]
+    },
+    {
+      "key": "middle",
+      "object_id": "a61acd69-d2d9-5188-a01c-d17b4e1c2121",
+      "source_range": [
+        0,
+        516
+      ],
+      "count": 517,
+      "size_cm": [
+        29.5,
+        29.0
+      ],
+      "center": [
+        0.62,
+        0.875,
+        0.3
+      ],
+      "bounds": [
+        [
+          0.5384374999999999,
+          0.79203125,
+          0.29588634282563775
+        ],
+        [
+          0.7015625,
+          0.95796875,
+          0.30411365717436223
+        ]
+      ],
+      "scale_xy_ratio": 0.8991570375270577,
+      "estimated_count": 2,
+      "rotation_determinant": 0.9999999999999999,
+      "singular_values": [
+        240.35542701680964,
+        115.56854923447636,
+        4.870783146777923
+      ]
+    },
+    {
+      "key": "lower",
+      "object_id": "84968831-cef1-5657-8ecb-7506ae9be79d",
+      "source_range": [
+        786,
+        1183
+      ],
+      "count": 398,
+      "size_cm": [
+        23.0,
+        33.0
+      ],
+      "center": [
+        0.2,
+        0.9,
+        0.3
+      ],
+      "bounds": [
+        [
+          0.10718749999999998,
+          0.8353125000000001,
+          0.29047511318730934
+        ],
+        [
+          0.2928124999999999,
+          0.9646875000000001,
+          0.30952488681269064
+        ]
+      ],
+      "scale_xy_ratio": 0.839869586932324,
+      "estimated_count": 19,
+      "rotation_determinant": 0.9999999999999989,
+      "singular_values": [
+        189.2742662397606,
+        86.65131201461752,
+        7.671310982422421
+      ]
+    }
+  ],
+  "units_per_cm": 0.005625000000000001,
+  "reference": "30cm rear envelope = .16875 existing world units",
+  "position_quality": "estimated from annotated photo; cabinet depth not measured",
+  "side_plane_z": 0.3,
+  "source_indices_unchanged": true,
+  "rear_bindings_and_coordinates_unchanged": true,
+  "inactive_gap": [
+    1643,
+    1644,
+    1645,
+    1646,
+    1647,
+    1648,
+    1649,
+    1650,
+    1651,
+    1652,
+    1653,
+    1654,
+    1655,
+    1656,
+    1657,
+    1658,
+    1659,
+    1660,
+    1661,
+    1662,
+    1663,
+    1664,
+    1665,
+    1666,
+    1667,
+    1668,
+    1669,
+    1670,
+    1671,
+    1672,
+    1673,
+    1674,
+    1675,
+    1676,
+    1677,
+    1678,
+    1679,
+    1680,
+    1681,
+    1682,
+    1683,
+    1684,
+    1685,
+    1686,
+    1687,
+    1688,
+    1689,
+    1690,
+    1691,
+    1692,
+    1693,
+    1694,
+    1695
+  ],
+  "active_applied": false,
+  "identity_reason": "Grouping changes object/local identity; source/wire indices stay exactly unchanged",
+  "fixture_policy": "Existing independent 2D draft preserved, not reprojected; requires explicit review before use",
+  "undo_redo_passed": true,
+  "document_roundtrip_passed": true,
+  "raw_sha256": "5ad5e9c5c2b101aa62e5b0820e7026f7f65420aba5c913eaa8ea8e1c170de7b4",
+  "active_hash_before": "b20eee0c05c5187a077e704e7e81e99aa16fb2cfe72235021ca312f18982d711",
+  "active_hash_after": "b20eee0c05c5187a077e704e7e81e99aa16fb2cfe72235021ca312f18982d711"
+}
