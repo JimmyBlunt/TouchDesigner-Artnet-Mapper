@@ -1,0 +1,30 @@
+{
+  "session_id": "capture-926aa175-d54f-43c4-ab6f-7b1d265a321e",
+  "files": [
+    {
+      "path": "Scans/back_panel2_738_249_20260910_220957/capture-0173835c-2328-4574-974d-36b783bf8b9f/capture.json",
+      "sha256": "c1b8a2230e8055a538d2b3e95570d9460b8697ede71aa7b56b35f045d1faabd0",
+      "bytes": 3504
+    },
+    {
+      "path": "Scans/back_panel2_738_249_20260910_220957/capture-0173835c-2328-4574-974d-36b783bf8b9f/result.json",
+      "sha256": "f5c75a4500dcd9412a97e6929151d8f7715548b73e0247827625ecfaf7d65b1e",
+      "bytes": 235
+    },
+    {
+      "path": "Scans/back_panel2_738_249_20260910_220957/capture-52e3b44a-64ca-449e-a1e8-e33b0e91eee1/capture.json",
+      "sha256": "31983124a43679256cf63b44bf4bef136aed50bd65643f7067ef8924b3d349f0",
+      "bytes": 3510
+    },
+    {
+      "path": "Scans/back_panel2_738_249_20260910_220957/capture-52e3b44a-64ca-449e-a1e8-e33b0e91eee1/result.json",
+      "sha256": "dd77fa40ca7ca2971ec4eee43fe2cfd30a0b1d1b2905706f95083a3c264ae60b",
+      "bytes": 525
+    },
+    {
+      "path": "Scans/back_panel2_738_249_20260910_220957/capture-52e3b44a-64ca-449e-a1e8-e33b0e91eee1/view.csv",
+      "sha256": "c0229adbe56df44547f86f9822f36814d70a94481de979ad78cb101a2365031c",
+      "bytes": 140
+    }
+  ]
+}

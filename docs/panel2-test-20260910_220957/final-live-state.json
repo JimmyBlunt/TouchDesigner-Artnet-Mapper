@@ -1,0 +1,35 @@
+{
+  "hashes": {
+    "/project1/pixelblaze_mapper/map_active": "34337d5ad151bb9e0990edb1090c304465eb453d39fcdfd7a8fe20a01052a35c",
+    "/project1/pixelblaze_mapper/effect_panel_uv": "b1824cffca0ce0817d3626911592129c910a71ea680351a65d567cace74e38e5",
+    "/project1/multi_controller_output/controller_config": "cc3fa68095bda2f8821943fd2c40cbdecc608f167b4c079e8238b7e5ef6de8d7",
+    "/project1/multi_controller_output/segment_config": "624f3a8feb75d4bfa8a8d14a23a16623e4a5a2b7afcd3349524b06a88ab943b4",
+    "/project1/layout_scene_editor/draft_document": "0d24c32517106e5b00055d96539058f8922c27acec09cd6d62ba7087c6d3cde3",
+    "/project1/layout_scene_editor/fixture_document": "3cca50ea3af91a01775b4e52b647802d0340add2231ba8ae5244606aed5dccbd"
+  },
+  "session_id": "capture-926aa175-d54f-43c4-ab6f-7b1d265a321e",
+  "capture_status": {
+    "state": "complete",
+    "blackout_sent": true,
+    "total": 5,
+    "exposure_applied": true,
+    "processed": 5,
+    "detected": 3,
+    "blackout_confirmed": false,
+    "optical_blackout_confirmed": false,
+    "camera_cleanup_attempted": true,
+    "camera_cleanup_errors": [],
+    "camera_cleanup_confirmed": true,
+    "blackout_errors": [],
+    "supervisor_cleanup_errors": [],
+    "view_csv": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\Scans\\back_panel2_738_249_20260910_220957\\capture-52e3b44a-64ca-449e-a1e8-e33b0e91eee1\\view.csv",
+    "exit_code": 0,
+    "directory": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\Scans\\back_panel2_738_249_20260910_220957\\capture-52e3b44a-64ca-449e-a1e8-e33b0e91eee1",
+    "running": false
+  },
+  "capture_lease_released": true,
+  "native_outputs_off": true,
+  "sender_off": true,
+  "errors": [],
+  "original_mapping_routing_unchanged": true
+}

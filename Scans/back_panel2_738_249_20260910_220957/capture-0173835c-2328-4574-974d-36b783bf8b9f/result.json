@@ -1,0 +1,9 @@
+{
+  "state": "failed",
+  "blackout_sent": true,
+  "blackout_confirmed": false,
+  "optical_blackout_confirmed": false,
+  "error": "No LEDs detected; no view accepted",
+  "blackout_errors": [],
+  "supervisor_cleanup_errors": []
+}
