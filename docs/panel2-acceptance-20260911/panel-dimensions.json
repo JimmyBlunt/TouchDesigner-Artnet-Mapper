@@ -1,0 +1,17 @@
+{
+  "object_id": "eeb92daf-cb0b-4ddf-952b-d3c49897b0f9",
+  "name": "Rueckpanel 2 | 30 x 30 cm",
+  "dimensions": {
+    "width_cm": 30.0,
+    "height_cm": 30.0,
+    "reference_object_id": "70cd6e54-b201-4123-85dd-37a7885a4d1f",
+    "source": "User: all rear panels same size as first",
+    "state": "target_dimensions_confirmed",
+    "metric_fit_applied": false,
+    "placement_confirmed": false
+  },
+  "transform_unchanged": true,
+  "scan_and_routes_unchanged": true,
+  "active_hash_unchanged": true,
+  "errors": []
+}
