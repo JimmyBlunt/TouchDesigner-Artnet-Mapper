@@ -1,0 +1,61 @@
+............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................FFFF.........F.FF..............................................................................................................................................................................................................................................................................................................
+======================================================================
+FAIL: test_builder_returning_blocked_is_not_success (test_routing_apply_regression.RoutingApplyRegressionTests.test_builder_returning_blocked_is_not_success)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\jbhtz\OneDrive\Desktop\Pictures\Documents\ChatGPT\LED-Touchdesigner-Controller\PixelblazeMapper\tests\test_routing_apply_regression.py", line 145, in test_builder_returning_blocked_is_not_success
+    self.assertFalse(self.enabled)
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_controller_row_order_is_not_identity (test_routing_apply_regression.RoutingApplyRegressionTests.test_controller_row_order_is_not_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\jbhtz\OneDrive\Desktop\Pictures\Documents\ChatGPT\LED-Touchdesigner-Controller\PixelblazeMapper\tests\test_routing_apply_regression.py", line 161, in test_controller_row_order_is_not_identity
+    self.assertTrue(self.scope['apply_safe']())
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_failed_builder_rolls_back_all_tables_and_stays_off (test_routing_apply_regression.RoutingApplyRegressionTests.test_failed_builder_rolls_back_all_tables_and_stays_off)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\jbhtz\OneDrive\Desktop\Pictures\Documents\ChatGPT\LED-Touchdesigner-Controller\PixelblazeMapper\tests\test_routing_apply_regression.py", line 134, in test_failed_builder_rolls_back_all_tables_and_stays_off
+    self.assertFalse(self.enabled)
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_failed_recovery_is_explicit (test_routing_apply_regression.RoutingApplyRegressionTests.test_failed_recovery_is_explicit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\jbhtz\OneDrive\Desktop\Pictures\Documents\ChatGPT\LED-Touchdesigner-Controller\PixelblazeMapper\tests\test_routing_apply_regression.py", line 190, in test_failed_recovery_is_explicit
+    self.assertFalse(self.enabled)
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_one_shot_partial_table_write_is_rolled_back (test_routing_apply_regression.RoutingApplyRegressionTests.test_one_shot_partial_table_write_is_rolled_back)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\jbhtz\OneDrive\Desktop\Pictures\Documents\ChatGPT\LED-Touchdesigner-Controller\PixelblazeMapper\tests\test_routing_apply_regression.py", line 181, in test_one_shot_partial_table_write_is_rolled_back
+    self.assertFalse(self.enabled)
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_stop_failure_blocks_commit_without_losing_tables (test_routing_apply_regression.RoutingApplyRegressionTests.test_stop_failure_blocks_commit_without_losing_tables)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\jbhtz\OneDrive\Desktop\Pictures\Documents\ChatGPT\LED-Touchdesigner-Controller\PixelblazeMapper\tests\test_routing_apply_regression.py", line 156, in test_stop_failure_blocks_commit_without_losing_tables
+    self.assertIn('Stop not confirmed', self.messages[-1])
+AssertionError: 'Stop not confirmed' not found in "BLOCKED - 'types.SimpleNamespace' object has no attribute 'fetch'"
+
+======================================================================
+FAIL: test_successful_apply_stops_before_rebuild_and_preserves_six_port_blocks (test_routing_apply_regression.RoutingApplyRegressionTests.test_successful_apply_stops_before_rebuild_and_preserves_six_port_blocks)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\jbhtz\OneDrive\Desktop\Pictures\Documents\ChatGPT\LED-Touchdesigner-Controller\PixelblazeMapper\tests\test_routing_apply_regression.py", line 117, in test_successful_apply_stops_before_rebuild_and_preserves_six_port_blocks
+    self.assertTrue(self.scope['apply_safe']())
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 891 tests in 31.729s
+
+FAILED (failures=7)

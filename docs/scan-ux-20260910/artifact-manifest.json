@@ -1,0 +1,9 @@
+{
+  "file": "PixelblazeMapper_SCAN_UX_20260910.1.toe",
+  "bytes": 6450318,
+  "sha256": "4ce9ba0552874d38d68ba8faa9ada59073b99119172f2a95fc3cd9f87f8f3598",
+  "source_commit": "f63ad54",
+  "baseline_commit": "d224049",
+  "branch": "codex/scan-workflow-ux-20260910",
+  "runtime_roundtrip": "roundtrip.json"
+}
