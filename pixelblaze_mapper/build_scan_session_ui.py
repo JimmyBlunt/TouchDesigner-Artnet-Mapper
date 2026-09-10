@@ -490,6 +490,8 @@ def build():
     text(canvas, 'capabilities', '', 600, 90, 540, 1, 11)
     text(canvas, 'offline_status', existing_label('offline_status', '3D: not started | no automatic layout replacement'), 20, 64, 1120, 26, 11)
     text(canvas, 'status', owner.fetch('message', 'Open Scan from Layout to stage an object. No camera or LED output is started.'), 20, 12, 1120, 46, 12)
+    from pixelblaze_mapper.scan_capture_progress import install as install_progress
+    install_progress(owner, text)
     poller = node(owner, executeDAT, 'capture_poll')
     poller.text = "from pixelblaze_mapper import guided_scan_live as live\nfrom pixelblaze_mapper import scan_offline_job as offline_job\ndef onFrameStart(frame):\n    live.poll(op)\n    if frame % 30 == 0: offline_job.poll(op)\ndef onStart():\n    live.shutdown()\n    offline_job.stop()\ndef onExit():\n    live.shutdown()\n    offline_job.stop()\n"
     poller.par.active = True

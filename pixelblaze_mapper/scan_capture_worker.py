@@ -96,6 +96,8 @@ worker IDs are deliberately translated to original source IDs by the supervisor.
         detections = []
         for index in range(count):
             wrapped.deadline = time.monotonic() + 30.0
+            result_queue.put({'state': 'capturing', 'current_index': index,
+                              'processed': index, 'detected': len(detections), 'total': count})
             led = enable_and_find_led(wrapped, backend, index, 0, timing,
                                       settings['threshold'], True)
             if led is not None:
@@ -104,6 +106,7 @@ worker IDs are deliberately translated to original source IDs by the supervisor.
                               'detected': len(detections), 'total': count})
         if not detections:
             raise RuntimeError('No LEDs detected; no view accepted')
+        result_queue.put({'state': 'movement_check', 'current_index': None})
         wrapped.deadline = time.monotonic() + 30.0
         again = enable_and_find_led(wrapped, backend, detections[0].led_id, 0,
                                    timing, settings['threshold'], True)
@@ -185,7 +188,9 @@ def run_capture(manifest):
     cancellation = mp.Event()
     parent, remote = mp.Pipe()
     results = mp.Queue()
-    outcome = {'state': 'failed', 'blackout_sent': False,
+    outcome = {'state': 'failed', 'processed': 0, 'detected': 0,
+               'total': len(snapshot.source_indices), 'current_index': None,
+               'current_source_index': None, 'blackout_sent': False,
                'blackout_confirmed': False, 'optical_blackout_confirmed': False}
     observations = None
     finished = False
@@ -233,7 +238,7 @@ def run_capture(manifest):
         child.start()
         child_started = True
         remote.close()
-        _emit({'state': 'camera_starting', 'total': len(snapshot.source_indices)})
+        _emit(dict(outcome, state='camera_starting'))
         last_send = time.monotonic()
         last_progress = time.monotonic()
         while not finished:
@@ -275,6 +280,13 @@ def run_capture(manifest):
                     break
                 last_progress = now
                 state = result.get('state')
+                # Dense worker positions are not necessarily original LED IDs.
+                if 'current_index' in result:
+                    index = result['current_index']
+                    result['current_source_index'] = None if index is None else snapshot.source_index(index)
+                for key in ('processed', 'detected', 'total', 'current_index', 'current_source_index'):
+                    if key in result:
+                        outcome[key] = result[key]
                 if state == 'camera_failed':
                     raise RuntimeError(result.get('error', 'Native camera failed'))
                 if state == 'view_ready':
@@ -338,6 +350,8 @@ def run_capture(manifest):
         outcome['supervisor_cleanup_errors'] = cleanup_errors
         if cleanup_errors and outcome['state'] == 'complete':
             outcome.update(state='failed', error='Supervisor cleanup incomplete')
+    outcome['last_source_index'] = outcome['current_source_index']
+    outcome['current_index'] = outcome['current_source_index'] = None
     return outcome, observations if outcome['state'] == 'complete' else None
 
 

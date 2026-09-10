@@ -95,6 +95,8 @@ COMMON = {
     'btn_back': (440, 68, 210, 36), 'btn_cancel': (660, 68, 200, 36),
     'btn_new_capture': (870, 68, 270, 36),
     'status': (20, 12, 1120, 46),
+    'capture_progress': (20, 128, 1120, 44),
+    'capture_progress_track': (20, 114, 1120, 6),
 }
 CAPTURE = {
     'source_ids_label': (20, 524, 1120, 26), 'source_ids': (20, 490, 1120, 32),
@@ -125,6 +127,8 @@ SETTINGS = {
 
 def refresh(owner):
     """Render navigation/help from stored facts; no hardware or file access."""
+    from .scan_capture_progress import refresh as refresh_progress
+    refresh_progress(owner)
     page = owner.fetch('workflow_page', 'capture')
     if page not in ('capture', 'offline', 'settings'):
         page = 'capture'

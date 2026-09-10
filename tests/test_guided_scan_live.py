@@ -272,7 +272,10 @@ class GuidedScanLiveTests(unittest.TestCase):
             bridge.start(self.op,confirmed=True)
         self.assertIs(bridge._capture,self.handle)
         self.assertTrue(guard.active())
-        self.assertEqual(self.owner.fetch('capture_status'),{'state':'starting'})
+        status = self.owner.fetch('capture_status')
+        self.assertEqual(status['state'], 'starting')
+        self.assertEqual((status['processed'], status['detected'], status['total']), (0, 0, 3))
+        self.assertIsNone(status['current_source_index'])
         json.dumps(self.owner.storage,allow_nan=False)
         self.assertFalse(any(value is self.handle for value in self.owner.storage.values()))
 

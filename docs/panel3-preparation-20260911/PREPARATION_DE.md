@@ -15,3 +15,5 @@ Eine eigene Sitzung fuer BACK_PANEL3_880_249 und der Ordner Scans/back_panel3_88
 Hinzufuegen, Ausrichten und Entfernen von Vorlagen fuer Panel 3 fuehrt der Benutzer spaeter selbst mit Anleitung aus. Die gewuenschte Fortschrittsanzeige mit geprueften/gesamten/erkannten LEDs ist weiterhin offen; sie wurde in dieser Vorbereitung nicht implementiert.
 
 Checkpoint: PixelblazeMapper_PANEL3_SCAN_READY_20260911.1.toe; SHA-256 siehe save.json. Gespeichert mit ausgeschaltetem Sender und ohne Operatorfehler; kein erneutes Laden getestet.
+
+Nachtrag: Die oben noch offene Fortschrittsanzeige wurde auf erneuten Benutzerwunsch vor dem ersten Panel-3-Scan installiert. Siehe SCAN_FORTSCHRITT_DE.md und progress-save.json fuer Umsetzung, Tests und neuen Checkpoint.

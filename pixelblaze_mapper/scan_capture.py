@@ -116,7 +116,10 @@ def start_capture(plan, *, confirmed=False):
         cwd=str(ROOT), stdin=subprocess.PIPE, stdout=subprocess.PIPE,
         stderr=subprocess.PIPE, text=True, bufsize=1, shell=False,
         creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
-    handle = CaptureHandle(process, directory)
+    handle = CaptureHandle(process, directory, status={
+        'state': 'starting', 'processed': 0, 'detected': 0,
+        'total': len(checked['routing']['source_indices']),
+        'current_index': None, 'current_source_index': None, 'blackout_sent': False})
     for stream, kind in ((process.stdout, 'status'), (process.stderr, 'stderr')):
         threading.Thread(target=_read, args=(handle, stream, kind), daemon=True).start()
     return handle

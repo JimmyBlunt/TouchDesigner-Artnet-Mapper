@@ -129,6 +129,7 @@ def stage_standalone(op, settings):
     owner = op(OWNER)
     owner.store('standalone_capture', dict(settings))
     owner.store('session', state.to_dict())
+    owner.store('capture_status', {})
     for key in ('capture_plan', 'capture_signature', 'manifest', 'candidate', 'merge_request'):
         owner.store(key, None)
     op(OWNER + '/ui_panel/source_ids/string').text = '0-%d' % (settings['count']-1)
@@ -236,7 +237,11 @@ def start(op, *, confirmed=False):
         raise
     _token = token
     _signature = _routing_signature(op)
-    op(OWNER).store('capture_status', {'state': 'starting'})
+    op(OWNER).store('capture_status', dict(_capture.status, state='starting',
+        processed=0, detected=0, total=len(plan['routing']['source_indices']),
+        current_index=None, current_source_index=None))
+    from .scan_capture_progress import refresh
+    refresh(op(OWNER))
     _status(op, 'SCAN STARTING — keep camera and object still; STOP aborts; Live stays off')
 
 
@@ -266,6 +271,8 @@ def poll(op):
             _status(op, 'SCAN ABORT — ' + str(error))
         status = scan_capture.poll_capture(_capture)
         op(OWNER).store('capture_status', status)
+        from .scan_capture_progress import refresh
+        refresh(op(OWNER))
         _status(op, 'SCAN %s | %s/%s | %s' % (status.get('state'), status.get('processed', 0),
             status.get('total', '?'), status.get('application_abort_reason', status.get('error', 'camera fixed; Live remains OFF'))))
         if not status['running']:
