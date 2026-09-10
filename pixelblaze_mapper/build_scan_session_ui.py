@@ -573,6 +573,8 @@ def build():
     install_registration(globals())
     from pixelblaze_mapper.scan_ui_style import install as install_scan_style
     install_scan_style(owner)
+    from pixelblaze_mapper.scan_coverage_visual_ui import install as install_coverage_visual
+    install_coverage_visual(globals())
     return owner
 
 

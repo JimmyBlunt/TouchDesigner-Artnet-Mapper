@@ -1,0 +1,9 @@
+{
+  "state": "failed",
+  "blackout_sent": true,
+  "blackout_confirmed": false,
+  "optical_blackout_confirmed": false,
+  "error": "Light detected during initial blackout; adjust exposure/threshold",
+  "blackout_errors": [],
+  "supervisor_cleanup_errors": []
+}
