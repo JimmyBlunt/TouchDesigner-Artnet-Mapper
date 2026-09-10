@@ -303,6 +303,11 @@ def act(command):
             settings = {name:field(name) for name in ('name','target','interface','universe','count','rate','order')}
             for name in ('universe','count','rate'):
                 settings[name] = int(settings[name])
+            frame_values = {name: field(name) for name in ('frame_start_universe', 'frame_universe_count')}
+            if any(frame_values.values()):
+                if not all(frame_values.values()):
+                    raise ValueError('Enter both controller frame start and universe count, or leave both blank')
+                settings.update({name: int(value) for name, value in frame_values.items()})
             state = live.stage_standalone(op, settings)
             OWNER.store('workflow_page', 'capture')
             OWNER.store('capture_status', {})
@@ -493,21 +498,23 @@ def build():
     poller.par.exit = True
     poller.par.start = True
     poller.text += "\n# Navigation and next-step hints read stored facts only.\n_scan_frame = onFrameStart\ndef onFrameStart(frame):\n    _scan_frame(frame)\n    if frame % 30 == 0:\n        from pixelblaze_mapper.scan_workflow_ux import refresh\n        refresh(op('/project1/guided_scan'))\n"
-    fresh = panel(node(owner, containerCOMP, 'new_capture_panel'), 0, 0, 820, 530, 10)
+    fresh = panel(node(owner, containerCOMP, 'new_capture_panel'), 0, 0, 820, 640, 10)
     fresh.viewer = True
-    text(fresh, 'title', 'NEW ACQUISITION | NO LAYOUT ASSIGNMENT', 20, 470, 780, 40, 20)
+    text(fresh, 'title', 'NEW ACQUISITION | NO LAYOUT ASSIGNMENT', 20, 580, 780, 40, 20)
     entries = [('name','CAPTURE','CAPTURE NAME'), ('target','','CONTROLLER IPv4'),
-               ('interface','','LOCAL IPv4 INTERFACE'), ('universe','0','START UNIVERSE (WIRE, ZERO-BASED)'),
+               ('interface','','LOCAL IPv4 INTERFACE'), ('universe','0','PANEL START UNIVERSE (ZERO-BASED)'),
                ('count','256','LED COUNT (LOCAL 0..COUNT-1)'), ('rate','30','FPS LIMIT'),
-               ('order','RGB','NETWORK COLOR ORDER (not LED wiring)')]
+               ('order','RGB','NETWORK COLOR ORDER (not LED wiring)'),
+               ('frame_start_universe','','CONTROLLER FRAME START (optional)'),
+               ('frame_universe_count','','CONTROLLER UNIVERSE COUNT (optional)')]
     for index,(name,value,label) in enumerate(entries):
-        x,y = 20+(index%2)*400, 395-(index//2)*82
+        x,y = 20+(index%2)*400, 505-(index//2)*82
         existing = fresh.op(name+'/string')
         if existing is not None:
             value = field_text(existing)
         text(fresh,name+'_label',label,x,y+32,380,27,11)
         field(fresh,name,value,x,y,380)
-    text(fresh,'notice','Creates acquisition IDs and routing only. No camera, LED output, geometry or live controller assignment. Existing scans remain on disk.',20,67,780,64,12)
+    text(fresh,'notice','Optional controller range: fill BOTH fields to send companion universes black. Leave both blank for this panel only. Creates IDs and routing; no camera or LED output.',20,67,780,84,12)
     control = button(fresh,'btn_stage','CREATE ACQUISITION (OUTPUT OFF)',20,20,780)
     click(owner,'click_stage_capture',control,"op('runtime').module.act('stage_capture')")
     review = panel(node(owner, containerCOMP, 'review_panel'), 0, 0, 1000, 710, 10)

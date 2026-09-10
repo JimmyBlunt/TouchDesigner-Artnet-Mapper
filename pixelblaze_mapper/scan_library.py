@@ -271,12 +271,35 @@ def resume_acquisition(view_path):
     if len(config.controllers) != 1 or len(config.segments) != 1:
         raise ScanSessionError('This is a Layout scan. Stage its original Layout object first.')
     c = config.controllers[0]
+    segment = config.segments[0]
+    if (segment.source_start != 0 or segment.count != config.source_pixel_count
+            or segment.reverse or segment.color_override is not None
+            or segment.destination_start < 0 or segment.destination_start % 170):
+        raise ScanSessionError('Original routing cannot be represented by independent scan settings')
     settings = {'name': c.name, 'target': c.target_address, 'interface': c.local_interface,
-                'universe': c.start_universe, 'count': config.source_pixel_count,
+                'universe': c.start_universe + segment.destination_start // 170,
+                'count': config.source_pixel_count,
                 'rate': c.rate, 'order': c.color_order}
-    routing(settings)
-    if revision(settings) != manifest.get('scene_revision'):
+    extended = dict(settings, frame_start_universe=c.start_universe,
+                    frame_universe_count=c.reserved_universes)
+    panel_only = (segment.destination_start == 0
+                  and c.reserved_universes == (config.source_pixel_count + 169) // 170)
+    # An expanded routing domain requires its own recorded settings revision.
+    # Never reinterpret an old diagnostic override as an authorised acquisition.
+    candidates = [settings, extended] if panel_only else [extended]
+    settings = next((candidate for candidate in candidates
+                     if revision(candidate) == manifest.get('scene_revision')), None)
+    if settings is None:
         raise ScanSessionError('Original acquisition settings cannot be verified. Stage its original Layout object instead.')
+    try:
+        restored = routing(settings)
+    except (ValueError, TypeError) as error:
+        raise ScanSessionError('Original routing cannot be represented by independent scan settings') from error
+    # Brightness is selected independently when preparing capture. Every other
+    # transport, segment and frame-domain property must round-trip exactly.
+    normalized = replace(config, controllers=(replace(c, brightness=restored.controllers[0].brightness),))
+    if restored != normalized:
+        raise ScanSessionError('Original routing cannot be represented by independent scan settings')
     identity = manifest.get('identity', {})
     if not identity or set(identity) != {str(i) for i in snapshot.source_indices}:
         raise ScanSessionError('Saved capture lacks complete LED identity metadata')

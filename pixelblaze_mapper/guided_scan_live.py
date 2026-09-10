@@ -181,6 +181,14 @@ def prepare(op):
             (name, frames[0].target_address, frames[0].wire_universe,
              frames[-1].wire_universe))
     summary = '%s%d LEDs | 510 channels | scan %.1f%% | %s' % ('SEPARATE CAPTURE | ' if standalone else '', len(source_ids), brightness * 100, '; '.join(lines))
+    if standalone is not None and 'frame_start_universe' in standalone:
+        from math import ceil
+        summary = ('SEPARATE CAPTURE | %d LEDs | scan %.1f%%\n'
+                   '%s %s | PANEL U%d-U%d | SEND U%d-U%d; other slots BLACK') % (
+            len(source_ids), brightness * 100, standalone['name'], standalone['target'],
+            standalone['universe'], standalone['universe'] + ceil(standalone['count']/170) - 1,
+            standalone['frame_start_universe'],
+            standalone['frame_start_universe'] + standalone['frame_universe_count'] - 1)
     op(OWNER + '/ui_panel/routing_summary').par.text = summary
     _status(op, 'PLAN READY — no camera or output started. Scan blacks ALL reserved universes of listed controllers.')
     return summary

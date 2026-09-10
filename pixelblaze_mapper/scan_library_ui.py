@@ -156,6 +156,10 @@ def stage_restored(owner, payload):
               'ui_panel/views': '', 'ui_panel/workspace': payload['workspace']}
     if payload.get('settings') is not None:
         values.update({'new_capture_panel/' + key: value for key, value in payload['settings'].items()})
+        for key in ('frame_start_universe', 'frame_universe_count'):
+            path = 'new_capture_panel/' + key
+            if key not in payload['settings'] and owner.op(path + '/string') is not None:
+                values[path] = ''
     if payload.get('camera'):
         camera = payload['camera']
         values.update({'ui_panel/camera': camera['device'], 'ui_panel/exposure': camera['exposure'],

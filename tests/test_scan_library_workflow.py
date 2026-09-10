@@ -24,11 +24,13 @@ class LibraryTests(unittest.TestCase):
                          'universe': 120, 'count': 4, 'rate': 30, 'order': 'RGB'}
         self.session = session(self.settings)
 
-    def capture(self, name, observed=(0, 2), state=None):
+    def capture(self, name, observed=(0, 2), state=None, config=None, indices=None, brightness=.05):
         state = state or self.session
-        snapshot = create_snapshot(routing(self.settings), (0, 1, 2, 3), brightness_cap=.05)
+        indices = tuple(range(self.settings['count'])) if indices is None else indices
+        snapshot = create_snapshot(config or routing(self.settings), indices, brightness_cap=brightness)
         plan = prepare_capture(snapshot, {'device': 0, 'exposure': -10, 'threshold': 160}, self.root,
-                               identity={str(t.source_index): t.led_id for t in state.targets},
+                               identity={str(t.source_index): t.led_id for t in state.targets
+                                         if t.source_index in indices},
                                scene_revision=state.scene_revision)
         directory = self.root / name
         directory.mkdir()
@@ -115,6 +117,59 @@ class LibraryTests(unittest.TestCase):
         file.write_text(json.dumps(original))
         with self.assertRaisesRegex(ScanSessionError, 'mixes'):
             library.resume_acquisition(path)
+
+    def test_resume_companion_frames_preserves_settings_identity_and_routes(self):
+        self.settings.update(universe=122, count=738, frame_start_universe=120, frame_universe_count=7)
+        self.session = session(self.settings)
+        config = routing(self.settings)
+        config = replace(config, controllers=(replace(config.controllers[0], brightness=.065),))
+        path = self.capture('capture-companion', observed=(0, 170, 510), config=config, brightness=.065)
+        original = (path.parent/'capture.json').read_bytes()
+        payload = library.resume_acquisition(path)
+        self.assertEqual(payload['settings'], self.settings)
+        self.assertEqual(ScanSession.from_dict(payload['session']), self.session)
+        self.assertAlmostEqual(payload['brightness'], 6.5)
+        before = create_snapshot(config, tuple(range(738)), brightness_cap=.065)
+        after = create_snapshot(routing(payload['settings']), tuple(range(738)), brightness_cap=.065)
+        self.assertEqual(before.targets, after.targets)
+        frames = after.packet_descriptors(170, on=True)
+        self.assertEqual([frame.wire_universe for frame in frames], list(range(120, 127)))
+        self.assertTrue(all(not any(frame.payload) for frame in frames[:2]))
+        self.assertEqual((path.parent/'capture.json').read_bytes(), original)
+
+    def test_resume_explicit_redundant_frame_keys_preserves_exact_revision(self):
+        self.settings.update(frame_start_universe=120, frame_universe_count=1)
+        self.session = session(self.settings)
+        payload = library.resume_acquisition(self.capture('capture-redundant'))
+        self.assertEqual(payload['settings'], self.settings)
+        self.assertEqual(payload['session']['scene_revision'], self.session.scene_revision)
+
+    def test_resume_historical_override_without_frame_revision_is_rejected(self):
+        self.settings.update(universe=122)
+        self.session = session(self.settings)
+        custom = routing(dict(self.settings, frame_start_universe=120, frame_universe_count=3))
+        path = self.capture('capture-historical', config=custom)
+        with self.assertRaisesRegex(ScanSessionError, 'settings'):
+            library.resume_acquisition(path)
+
+    def test_resume_rejects_unrepresentable_segments_and_transport(self):
+        config = routing(self.settings)
+        segment = config.segments[0]
+        variants = [
+            replace(config, segments=(replace(segment, source_start=1, count=3),)),
+            replace(config, segments=(replace(segment, count=3),)),
+            replace(config, segments=(replace(segment, reverse=True),)),
+            replace(config, segments=(replace(segment, color_override='GRB'),)),
+            replace(config, segments=(replace(segment, destination_start=1),)),
+            replace(config, controllers=(replace(config.controllers[0], port=6455),)),
+            replace(config, controllers=(replace(config.controllers[0], art_sync=True),)),
+        ]
+        for index, changed in enumerate(variants):
+            with self.subTest(index=index):
+                path = self.capture('capture-bad-%d' % index, observed=(1, 2),
+                                    config=changed, indices=(1, 2))
+                with self.assertRaisesRegex(ScanSessionError, 'routing'):
+                    library.resume_acquisition(path)
 
     def test_resume_relocated_copy_preserves_original_manifest_bytes(self):
         path = self.capture('capture-first')
@@ -302,6 +357,22 @@ class LibraryUIBehaviorTests(unittest.TestCase):
             ui_module.stage_restored(owner, library.resume_acquisition(path))
         self.assertEqual(owner.fetch('session'), {'old': True})
         self.assertEqual(owner.nodes['ui_panel/source_ids/string'].text, 'old scope')
+
+    def test_resume_restores_or_clears_optional_frame_fields(self):
+        owner = Owner()
+        for key in ('frame_start_universe', 'frame_universe_count'):
+            owner.nodes['new_capture_panel/'+key+'/string'] = SimpleNamespace(text='old')
+        payload = library.resume_acquisition(self.capture('capture-base'))
+        ui_module.stage_restored(owner, payload)
+        self.assertEqual(owner.op('new_capture_panel/frame_start_universe/string').text, '')
+        self.assertEqual(owner.op('new_capture_panel/frame_universe_count/string').text, '')
+        self.settings.update(frame_start_universe=118, frame_universe_count=3)
+        self.session = session(self.settings)
+        payload = library.resume_acquisition(self.capture('capture-expanded'))
+        ui_module.stage_restored(owner, payload)
+        self.assertEqual(owner.op('new_capture_panel/frame_start_universe/string').text, '118')
+        self.assertEqual(owner.op('new_capture_panel/frame_universe_count/string').text, '3')
+        self.assertEqual(owner.fetch('standalone_capture'), self.settings)
 
 
 if __name__ == '__main__':
