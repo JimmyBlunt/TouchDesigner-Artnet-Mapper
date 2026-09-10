@@ -13,7 +13,8 @@ from pathlib import Path
 
 ROOT = "/project1"
 OWNER = ROOT + "/show_control"
-MANIFEST = Path(r"C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/effects/effects_manifest.json")
+REPO_ROOT = Path(__file__).resolve().parents[1]
+MANIFEST = REPO_ROOT / "effects/effects_manifest.json"
 
 
 TRANSITION_SHADER = r'''out vec4 fragColor;
@@ -63,12 +64,12 @@ void main()
 '''
 
 
-LED_RENDER_CALLBACK = r'''# Canonical 3,744-LED Show renderer: mask each slot before mixing.
+LED_RENDER_CALLBACK = r'''# Dynamic canonical-source Show renderer: mask each slot before mixing.
 import sys
 LOCAL_ROOT = r'C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper'
 if LOCAL_ROOT not in sys.path:
     sys.path.insert(0, LOCAL_ROOT)
-from pixelblaze_mapper.show_renderer import render_frame
+from pixelblaze_mapper.show_renderer import render_frame, source_groups_from_panels
 
 def _value(path, key, default=''):
     table = op(path)
@@ -79,6 +80,30 @@ def _value(path, key, default=''):
 
 def _groups(path):
     return tuple(item for item in _value(path, 'target_groups', 'all').split(',') if item)
+
+_panel_signature = None
+_panel_groups = None
+
+
+def _source_groups(panels, count):
+    global _panel_signature, _panel_groups
+    text = panels.text
+    signature = (text, count)
+    if signature == _panel_signature:
+        return _panel_groups
+    rows = [row.split('\t') for row in text.splitlines()]
+    if not rows or len(rows) != count + 1 or 'index' not in rows[0] or 'panel' not in rows[0]:
+        raise RuntimeError('Show renderer requires a complete canonical panel lookup')
+    header = rows[0]
+    if len(set(header)) != len(header):
+        raise RuntimeError('Show panel lookup headers must be unique')
+    index_column, panel_column = header.index('index'), header.index('panel')
+    if any(len(row) != len(header) or row[index_column] != str(index) for index, row in enumerate(rows[1:])):
+        raise RuntimeError('Show panel lookup source indices must remain ordered')
+    groups = source_groups_from_panels(tuple(row[panel_column] for row in rows[1:]))
+    _panel_signature, _panel_groups = signature, groups
+    return groups
+
 
 def onSetupParameters(scriptOp):
     return
@@ -92,8 +117,12 @@ def onCook(scriptOp):
     if coordinates is None:
         raise RuntimeError('Canonical effect UV source is missing')
     count = coordinates.numSamples
-    if slot_a.numSamples != count or slot_b.numSamples != count or count != 3744:
-        raise RuntimeError('Show renderer requires two 3,744-sample slots and canonical UV')
+    if count <= 0 or slot_a.numSamples != count or slot_b.numSamples != count:
+        raise RuntimeError('Show renderer requires two slots matching the canonical UV source count')
+    panels = op('/project1/pixelblaze_mapper/effect_panel_uv')
+    if panels is None or panels.numRows != count + 1:
+        raise RuntimeError('Show renderer requires a complete canonical panel lookup')
+    source_groups = _source_groups(panels, count)
     request = 'transition_adapter/mixer_request'
     transition = _value(request, 'mode', 'cut')
     b_mix = float(_value(request, 'output_b_mix', '0'))
@@ -110,14 +139,14 @@ def onCook(scriptOp):
         input_a, input_b, u=coord_u, v=coord_v,
         transition=transition, output_b_mix=b_mix,
         brightness=brightness, blackout=blackout,
-        targets_a=targets_a, targets_b=targets_b,
+        targets_a=targets_a, targets_b=targets_b, source_groups=source_groups,
     )
     scriptOp.clear()
     scriptOp.numSamples = count
     for name, values in zip(('r', 'g', 'b'), frame):
         scriptOp.appendChan(name).vals = values
     return
-'''
+'''.replace('C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper', REPO_ROOT.as_posix())
 
 
 def _slot_uv_source(request_path=None):
@@ -154,7 +183,7 @@ def onCook(scriptOp):
     scriptOp.appendChan('ty').vals = v
     scriptOp.appendChan('tz').vals = [0.0] * count
     return
-'''
+'''.replace('C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper', REPO_ROOT.as_posix())
 
 
 def _get_or_create(parent, op_type, name):

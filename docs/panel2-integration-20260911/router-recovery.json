@@ -1,0 +1,7 @@
+{
+  "builder": "C:/Users/jbhtz/OneDrive/Desktop/Pictures/Documents/ChatGPT/LED-Touchdesigner-Controller/PixelblazeMapper/pixelblaze_mapper/build_multi_controller_output.py",
+  "count": 3744,
+  "route": "channel\tnet\tsubnet\tuniverse\r\nUniverse0\t0\t7\t8\r\nUniverse1\t0\t7\t9\r\n",
+  "contract_matches": false,
+  "errors": []
+}

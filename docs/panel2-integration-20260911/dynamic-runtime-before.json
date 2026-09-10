@@ -1,0 +1,138 @@
+{
+  "show_callback": "# Canonical 3,744-LED Show renderer: mask each slot before mixing.\nimport sys\nLOCAL_ROOT = r'C:/Users/jbhtz/OneDrive/Desktop/Pictures/Documents/ChatGPT/LED-Touchdesigner-Controller/PixelblazeMapper'\nif LOCAL_ROOT not in sys.path:\n    sys.path.insert(0, LOCAL_ROOT)\nfrom pixelblaze_mapper.show_renderer import render_frame\n\ndef _value(path, key, default=''):\n    table = op(path)\n    for row in range(1, table.numRows):\n        if str(table[row, 0]) == key:\n            return str(table[row, 1])\n    return default\n\ndef _groups(path):\n    return tuple(item for item in _value(path, 'target_groups', 'all').split(',') if item)\n\ndef onSetupParameters(scriptOp):\n    return\n\ndef onPulse(par):\n    return\n\ndef onCook(scriptOp):\n    slot_a, slot_b = scriptOp.inputs\n    coordinates = op('effect_uv_in')\n    if coordinates is None:\n        raise RuntimeError('Canonical effect UV source is missing')\n    count = coordinates.numSamples\n    if slot_a.numSamples != count or slot_b.numSamples != count or count != 3744:\n        raise RuntimeError('Show renderer requires two 3,744-sample slots and canonical UV')\n    request = 'transition_adapter/mixer_request'\n    transition = _value(request, 'mode', 'cut')\n    b_mix = float(_value(request, 'output_b_mix', '0'))\n    brightness = float(_value(request, 'brightness', '0'))\n    blackout = bool(int(float(_value(request, 'blackout', '0'))))\n    targets_a = _groups('slot_a_adapter/material_request')\n    targets_b = _groups('slot_b_adapter/material_request')\n    # td.Channel is indexable but not iterable. Snapshot channel values once so\n    # the optimized bulk renderer receives normal Python sequences.\n    input_a = [slot_a[name].vals for name in ('r', 'g', 'b')]\n    input_b = [slot_b[name].vals for name in ('r', 'g', 'b')]\n    coord_u, coord_v = coordinates['tx'].vals, coordinates['ty'].vals\n    frame = render_frame(\n        input_a, input_b, u=coord_u, v=coord_v,\n        transition=transition, output_b_mix=b_mix,\n        brightness=brightness, blackout=blackout,\n        targets_a=targets_a, targets_b=targets_b,\n    )\n    scriptOp.clear()\n    scriptOp.numSamples = count\n    for name, values in zip(('r', 'g', 'b'), frame):\n        scriptOp.appendChan(name).vals = values\n    return\n",
+  "preview_geos": [
+    {
+      "path": "/project1/pixelblaze_mapper/preview3d/led_points_geo",
+      "instanceop": "/project1/pixelblaze_mapper/preview3d/instance_data",
+      "colorop": "/project1/pixelblaze_mapper/preview3d/instance_data",
+      "alpha": "",
+      "alpha_mode": "ParMode.CONSTANT"
+    },
+    {
+      "path": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/cal_rear_geo",
+      "instanceop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/cal_rear_instances",
+      "colorop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/cal_rear_instances",
+      "alpha": "",
+      "alpha_mode": "ParMode.CONSTANT"
+    },
+    {
+      "path": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/cal_side_geo",
+      "instanceop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/cal_side_instances",
+      "colorop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/cal_side_instances",
+      "alpha": "",
+      "alpha_mode": "ParMode.CONSTANT"
+    },
+    {
+      "path": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/photo_map_geo",
+      "instanceop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/photo_map_instances",
+      "colorop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/photo_map_instances",
+      "alpha": "a",
+      "alpha_mode": "ParMode.CONSTANT"
+    },
+    {
+      "path": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_geo_00",
+      "instanceop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_data_00",
+      "colorop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_data_00",
+      "alpha": "",
+      "alpha_mode": "ParMode.CONSTANT"
+    },
+    {
+      "path": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_geo_01",
+      "instanceop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_data_01",
+      "colorop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_data_01",
+      "alpha": "",
+      "alpha_mode": "ParMode.CONSTANT"
+    },
+    {
+      "path": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_geo_02",
+      "instanceop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_data_02",
+      "colorop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_data_02",
+      "alpha": "",
+      "alpha_mode": "ParMode.CONSTANT"
+    },
+    {
+      "path": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_geo_03",
+      "instanceop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_data_03",
+      "colorop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_data_03",
+      "alpha": "",
+      "alpha_mode": "ParMode.CONSTANT"
+    },
+    {
+      "path": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_geo_04",
+      "instanceop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_data_04",
+      "colorop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_data_04",
+      "alpha": "",
+      "alpha_mode": "ParMode.CONSTANT"
+    },
+    {
+      "path": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_geo_05",
+      "instanceop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_data_05",
+      "colorop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_data_05",
+      "alpha": "",
+      "alpha_mode": "ParMode.CONSTANT"
+    },
+    {
+      "path": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_geo_06",
+      "instanceop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_data_06",
+      "colorop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_data_06",
+      "alpha": "",
+      "alpha_mode": "ParMode.CONSTANT"
+    },
+    {
+      "path": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_geo_07",
+      "instanceop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_data_07",
+      "colorop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_data_07",
+      "alpha": "",
+      "alpha_mode": "ParMode.CONSTANT"
+    },
+    {
+      "path": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_geo_08",
+      "instanceop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_data_08",
+      "colorop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_data_08",
+      "alpha": "",
+      "alpha_mode": "ParMode.CONSTANT"
+    },
+    {
+      "path": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_geo_09",
+      "instanceop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_data_09",
+      "colorop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/tile_mesh_data_09",
+      "alpha": "",
+      "alpha_mode": "ParMode.CONSTANT"
+    },
+    {
+      "path": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/interactive_camera/renderView/worldSpaceHelpers",
+      "instanceop": "None",
+      "colorop": "None",
+      "alpha": "",
+      "alpha_mode": "ParMode.CONSTANT"
+    },
+    {
+      "path": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/interactive_camera/renderView/worldSpaceHelpers/axes",
+      "instanceop": "None",
+      "colorop": "None",
+      "alpha": "",
+      "alpha_mode": "ParMode.CONSTANT"
+    },
+    {
+      "path": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/interactive_camera/renderView/worldSpaceHelpers/pivot",
+      "instanceop": "None",
+      "colorop": "None",
+      "alpha": "",
+      "alpha_mode": "ParMode.CONSTANT"
+    },
+    {
+      "path": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/mesh_rear_left_geo",
+      "instanceop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/mesh_rear_left_data",
+      "colorop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/mesh_rear_left_data",
+      "alpha": "",
+      "alpha_mode": "ParMode.CONSTANT"
+    },
+    {
+      "path": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/mesh_rear_right_geo",
+      "instanceop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/mesh_rear_right_data",
+      "colorop": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/mesh_rear_right_data",
+      "alpha": "",
+      "alpha_mode": "ParMode.CONSTANT"
+    }
+  ]
+}

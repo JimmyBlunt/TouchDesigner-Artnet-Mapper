@@ -377,8 +377,8 @@ def _write_calibration():
     panel = _field('cal_panel').lower()
     pattern = _field('cal_pattern').lower()
     chase = int(_field('cal_chase'))
-    if panel not in ('all', 'middle', 'upper', 'lower'):
-        raise ValueError('Calibration panel: all, middle, upper or lower')
+    if panel not in ('all', 'middle', 'upper', 'lower', 'rear'):
+        raise ValueError('Calibration panel: all, middle, upper, lower or rear')
     if pattern not in ('panel_id', 'rows', 'columns', 'chase'):
         raise ValueError('Calibration pattern: panel_id, rows, columns or chase')
     if not 0 <= chase < _source_pixels():
@@ -389,6 +389,7 @@ def _rebuild_router():
     # Preserve TouchDesigner's injected op and OP types.
     scope = dict(globals())
     scope['__name__'] = '__main__'
+    scope['__file__'] = BUILDER
     exec(compile(open(BUILDER, encoding='utf-8').read(), BUILDER, 'exec'), scope, scope)
 
 def apply_safe():
@@ -460,7 +461,7 @@ def _cycle(field, values):
     return start_calibration()
 
 def next_panel():
-    return _cycle('cal_panel', ['all', 'middle', 'upper', 'lower'])
+    return _cycle('cal_panel', ['all', 'middle', 'upper', 'lower', 'rear'])
 
 def next_pattern():
     return _cycle('cal_pattern', ['panel_id', 'rows', 'columns', 'chase'])
@@ -665,11 +666,12 @@ def set_live():
 def set_calibration(panel='all', pattern='panel_id', chase_index=0):
     global _mode, _calibration, _calibration_frames
     pixels = calibration_source(
-        load_coordinates(),
+        None,
+        active_uv=op('/project1/pixelblaze_mapper/effect_panel_uv'),
+        source_count=int(op('source_select').numSamples),
         panel=panel,
         pattern=pattern,
         chase_index=int(chase_index),
-        measurement_coordinates=load_measurement_coordinates(),
     )
     _calibration_frames = build_router_plan(_router_config()).pack_pixels(pixels)
     _calibration = (panel, pattern, int(chase_index))
@@ -904,7 +906,8 @@ def build():
         pass
     from pixelblaze_mapper.output_slot_mask import install_source as install_slot_mask
     from pixelblaze_mapper.sender_pacing import install_source as install_pacing
-    _replace_dat_text(sender_callbacks, install_pacing(install_slot_mask(_artnet_510_sender_source())))
+    from pixelblaze_mapper.guided_scan_live import guard_sender_source
+    _replace_dat_text(sender_callbacks, guard_sender_source(install_pacing(install_slot_mask(_artnet_510_sender_source()))))
     sender_execute = _get_or_create(owner, executeDAT, "artnet_510_execute")
     _replace_dat_text(sender_execute, _artnet_510_execute_source())
     _set_if_present(sender_execute, "active", True)
@@ -998,8 +1001,8 @@ def build():
     _label(canvas, "warning", "START ENABLED sends live Art-Net. ALL OUTPUTS OFF stops immediately.", 24, 258, 1132, 26, (0.97, 0.72, 0.26), 12)
     _label(canvas, "unassigned", "Reading source assignments", 24, 230, 1132, 24, (0.72, 0.79, 0.86), 11)
 
-    _label(canvas, "cal_title", "MEASURED 3D-MAP CALIBRATION", 24, 194, 1132, 30, (0.38, 0.76, 0.96), 16)
-    _label(canvas, "cal_panel_label", "Panel: all | middle | upper | lower", 24, 156, 260, 30, (0.72, 0.79, 0.86), 11)
+    _label(canvas, "cal_title", "ACTIVE LAYOUT CALIBRATION | rows / columns = 24 UV stripes", 24, 194, 1132, 30, (0.38, 0.76, 0.96), 16)
+    _label(canvas, "cal_panel_label", "Panel: all | middle | upper | lower | rear", 24, 156, 260, 30, (0.72, 0.79, 0.86), 11)
     _field(canvas, "cal_panel", calibration["panel"], 284, 156, 190, 30)
     _label(canvas, "cal_pattern_label", "Pattern: panel_id | rows | columns | chase", 494, 156, 310, 30, (0.72, 0.79, 0.86), 11)
     _field(canvas, "cal_pattern", calibration["pattern"], 804, 156, 190, 30)

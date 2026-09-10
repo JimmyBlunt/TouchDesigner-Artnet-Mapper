@@ -1,0 +1,7 @@
+<TD DAT>:86: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\Users\\jbhtz\\AppData\\Local\\Temp\\tmpxi1ghh0d\\builder.py' mode='r' encoding='utf-8'>
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+...........................................................................................................................................
+----------------------------------------------------------------------
+Ran 139 tests in 8.886s
+
+OK

@@ -15,6 +15,7 @@ from pixelblaze_mapper.installation_contract import PANEL_BY_NAME, TOTAL_PIXELS
 
 
 TARGET_GROUPS = frozenset({"all", "middle", "upper", "lower", "rear"})
+SOURCE_GROUP_NAMES = TARGET_GROUPS - {"all"}
 TRANSITIONS = frozenset({"cut", "crossfade", "dissolve", "wipe", "radial", "glitch"})
 
 
@@ -48,6 +49,24 @@ def _target_mask_frame(selected: tuple[str, ...]) -> tuple[float, ...]:
     ranges = tuple((PANEL_BY_NAME[group].start, PANEL_BY_NAME[group].stop) for group in selected)
     return tuple(float(any(start <= index < stop for start, stop in ranges))
                  for index in range(TOTAL_PIXELS))
+
+
+@lru_cache(maxsize=32)
+def source_groups_from_panels(panels: tuple[str, ...]) -> tuple[str | None, ...]:
+    """Resolve explicit material panel labels; unknown labels never imply rear.
+
+    The rear_ namespace is used for individually acquired rear panels. A source
+    address alone is never evidence that a new fixture belongs to that group.
+    """
+    return tuple(panel if panel in SOURCE_GROUP_NAMES else
+                 "rear" if panel.startswith("rear_") else None for panel in panels)
+
+
+@lru_cache(maxsize=32)
+def _explicit_target_mask(selected, source_groups):
+    if "all" in selected:
+        return (1.0,) * len(source_groups)
+    return tuple(float(group in selected) for group in source_groups)
 
 
 def normalize_target_groups(groups: Iterable[str]) -> tuple[str, ...]:
@@ -159,6 +178,7 @@ def render_frame(
     blackout: bool,
     targets_a: Iterable[str],
     targets_b: Iterable[str],
+    source_groups: Sequence[str | None] | None = None,
 ) -> tuple[list[float], ...]:
     """Render all canonical LEDs without per-pixel validation/function calls.
 
@@ -177,35 +197,46 @@ def render_frame(
         raise ValueError("brightness must be finite and inside 0..1")
     if not slot_a or len(slot_a) != len(slot_b):
         raise ValueError("slot frames must have the same non-zero channel count")
-    if len(u) != TOTAL_PIXELS or len(v) != TOTAL_PIXELS:
-        raise ValueError(f"UV frames must contain {TOTAL_PIXELS} values")
-    if any(len(channel) != TOTAL_PIXELS for channel in tuple(slot_a) + tuple(slot_b)):
-        raise ValueError(f"slot channels must contain {TOTAL_PIXELS} values")
+    count = len(u)
+    if not count or len(v) != count:
+        raise ValueError("UV frames must have the same positive source count")
+    if any(len(channel) != count for channel in tuple(slot_a) + tuple(slot_b)):
+        raise ValueError("slot channels must match the canonical UV source count")
 
     selected_a = normalize_target_groups(targets_a)
     selected_b = normalize_target_groups(targets_b)
-    mask_a = _target_mask_frame(selected_a)
-    mask_b = _target_mask_frame(selected_b)
+    if source_groups is None:
+        if count != TOTAL_PIXELS:
+            raise ValueError("Expanded source capacity requires explicit source groups")
+        mask_a = _target_mask_frame(selected_a)
+        mask_b = _target_mask_frame(selected_b)
+    else:
+        source_groups = tuple(source_groups)
+        if len(source_groups) != count or any(group is not None and group not in SOURCE_GROUP_NAMES
+                                              for group in source_groups):
+            raise ValueError("Source groups must match the UV count and use canonical group names or None")
+        mask_a = _explicit_target_mask(selected_a, source_groups)
+        mask_b = _explicit_target_mask(selected_b, source_groups)
     gain = 0.0 if blackout else level
     if gain == 0.0:
-        return tuple([0.0] * TOTAL_PIXELS for _ in slot_a)
+        return tuple([0.0] * count for _ in slot_a)
 
     if mix == 0.0 or mix == 1.0:
-        weights_b: Sequence[float] = (mix,) * TOTAL_PIXELS
+        weights_b: Sequence[float] = (mix,) * count
     elif transition == "crossfade":
-        weights_b: Sequence[float] = (mix,) * TOTAL_PIXELS
+        weights_b: Sequence[float] = (mix,) * count
     elif transition == "cut":
-        weights_b = (float(mix >= 0.5),) * TOTAL_PIXELS
+        weights_b = (float(mix >= 0.5),) * count
     elif transition == "wipe":
         weights_b = tuple(float(max(0.0, min(1.0, float(value))) <= mix) for value in u)
     elif transition == "radial":
         weights_b = tuple(float(max(0.0, min(1.0, hypot(float(x) - 0.5, float(y) - 0.5) * 1.42)) <= mix)
                           for x, y in zip(u, v))
     elif transition == "dissolve":
-        weights_b = tuple(float(_hash(index) <= mix) for index in range(TOTAL_PIXELS))
+        weights_b = tuple(float(_hash(index) <= mix) for index in range(count))
     else:
         salt = float(int(mix * 30.0))
-        weights_b = tuple(float(_hash(index // 16, salt) <= mix) for index in range(TOTAL_PIXELS))
+        weights_b = tuple(float(_hash(index // 16, salt) <= mix) for index in range(count))
 
     gains_b = [weight * mask * gain for weight, mask in zip(weights_b, mask_b)]
     gains_a = [(1.0 - weight) * mask * gain for weight, mask in zip(weights_b, mask_a)]
