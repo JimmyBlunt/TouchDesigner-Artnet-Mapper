@@ -4,7 +4,7 @@
 
 Die Scan-Bibliothek, Teilscan-Registrierung, Übernahme mit freien Quellenplätzen und Performance-Optimierungen sind eingebaut. Das Projekt wurde gespeichert, erneut geöffnet und auf unveränderte Mapping-, Routing-, Material- und Undo-Daten geprüft. Netzwerk-Ausgänge bleiben ausgeschaltet.
 
-**Softwareprüfung:** 995 Workspace-Tests ausgeführt, 994 bestanden, ein Windows-Symlink-Test übersprungen; keine Fehler.
+**Softwareprüfung:** 995 Workspace-Tests und zusätzlich 985 Tests im reinen Git-Export ausgeführt; jeweils ein Windows-Symlink-Test übersprungen, sonst vollständig bestanden. Alle 56 geprüften Projekt-/Datenbelege sind hashgleich.
 
 **Physische Abnahme noch offen:** Der Controller 10.0.0.249 empfängt Scanpakete, aber im aktuellen Kamerabild wurden beim Kurztest keine LEDs erkannt. Es wurde keine neue Ansicht akzeptiert. Kameraausrichtung/Sichtverbindung, zusätzliche Perspektiven und gemessene Montagepositionen müssen am Aufbau geprüft werden. Ein bestandener optischer Gesamtscan wird nicht behauptet.
 

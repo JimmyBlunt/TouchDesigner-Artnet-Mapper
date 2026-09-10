@@ -65,7 +65,7 @@ Verifikation mit der vorhandenen MariMapper-Python-Umgebung:
 & 'C:/Users/jbhtz/AppData/Roaming/uv/tools/marimapper/Scripts/python.exe' -m unittest discover -s tests -q
 ```
 
-Finaler Workspace-Lauf: **995 Tests, 994 bestanden, ein OS-abhängiger Symlink-Test übersprungen; keine Fehler.** `full-tests-first.txt` und `full-tests-second.txt` dokumentieren die zwischenzeitlich gefundenen Probleme; entscheidend ist `full-tests-final.txt`. Zusätzliche Git-Snapshot-Prüfung wird separat dokumentiert.
+Finaler Workspace-Lauf: **995 Tests, 994 bestanden, ein OS-abhängiger Symlink-Test übersprungen; keine Fehler.** `full-tests-first.txt` und `full-tests-second.txt` dokumentieren die zwischenzeitlich gefundenen Probleme; entscheidend ist `full-tests-final.txt`. Der reine Git-Export von `57bb3e1` besteht ebenfalls: **985 Tests, 984 bestanden, ein OS-abhängiger Symlink-Test übersprungen; keine Fehler.** Der Export enthält ausschließlich versionierte Dateien und wurde ohne `PYTHONPATH` aus einem neuen temporären Verzeichnis getestet. Der höhere Workspace-Zähler umfasst zusätzliche, bereits vorher unversionierte Alttests außerhalb dieser Änderung. `git-snapshot-tests.txt` und `git-snapshot-check.json` dokumentieren diesen unabhängigen Lauf; alle 56 geprüften TOE-/Scan-/Mapping-Belege sind hashgleich.
 
 ## Verbleibend am physischen Aufbau
 
@@ -78,3 +78,5 @@ Der erste reine Git-Export von `c52591e` scheiterte an bisher unversionierten Al
 Gezielt aufgenommen wurden die vollständige Seitenrekonstruktion samt unterem Seitenhelfer, räumlicher Lookup-Builder, vier erforderliche Mapping-/Messdateien sowie passende Tests. Für die Reproduktion wurden außerdem die frühere Mapping-Sicherung, Vorbereitungs-/Exportwerkzeuge und die historische Lookup-Dokumentation aufgenommen. Die dortigen Hardware-Abnahmehinweise beschreiben den älteren Lookup-Meilenstein; die heutige Software- und Hardwareabnahme ist oben getrennt dokumentiert. Der Lookup-Builder bestimmt seinen Datenpfad nun relativ zum Repository. JSON-Belege behalten ihre Originalbytes. `adopted-dependencies.json` dokumentiert Umfang und Hashes.
 
 Die unabhängige Rekonstruktion aus Sicherung und Rohmessung ergibt exakt alle 3.744 kanonischen Koordinaten; 21 fehlende und drei verworfene Messungen ergeben 24 geschätzte Positionen. Übrige unversionierte Altdateien bleiben außerhalb dieses Änderungsstands.
+
+Abschlussstand: `9a174a8` implementiert die Funktionen und Performance-Korrekturen, `c52591e` erhält originale CRLF-Aufnahmebytes, `57bb3e1` schließt die Alt-Abhängigkeiten für einen reinen Checkout. Der folgende reine Dokumentationscommit hält die erfolgreiche Exportprüfung und den nativen Endzustand fest. `final-live-state.json` bestätigt unverändertes Mapping/Routing/Entwurf, gültige Quellenmaske, fehlerfreie Operatoren und ausgeschaltete Ausgaben. `diff-check.txt` dokumentiert die erfolgreiche Whitespace-Prüfung aller Aufgabencommits.

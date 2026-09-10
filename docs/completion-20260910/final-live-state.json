@@ -1,0 +1,66 @@
+{
+  "file": "C:/Users/jbhtz/OneDrive/Desktop/Pictures/Documents/ChatGPT/LED-Touchdesigner-Controller/PixelblazeMapper/PixelblazeMapper_SCAN_COMPLETE_20260910.1.toe",
+  "hashes": {
+    "/project1/pixelblaze_mapper/map_active": "34337d5ad151bb9e0990edb1090c304465eb453d39fcdfd7a8fe20a01052a35c",
+    "/project1/pixelblaze_mapper/effect_panel_uv": "b1824cffca0ce0817d3626911592129c910a71ea680351a65d567cace74e38e5",
+    "/project1/multi_controller_output/controller_config": "cc3fa68095bda2f8821943fd2c40cbdecc608f167b4c079e8238b7e5ef6de8d7",
+    "/project1/multi_controller_output/segment_config": "624f3a8feb75d4bfa8a8d14a23a16623e4a5a2b7afcd3349524b06a88ab943b4",
+    "/project1/layout_scene_editor/draft_document": "0d24c32517106e5b00055d96539058f8922c27acec09cd6d62ba7087c6d3cde3",
+    "/project1/layout_scene_editor/fixture_document": "3cca50ea3af91a01775b4e52b647802d0340add2231ba8ae5244606aed5dccbd"
+  },
+  "errors": [],
+  "sender": {
+    "enabled": false,
+    "error": "",
+    "mode": "live",
+    "calibration": [
+      "all",
+      "panel_id",
+      0
+    ],
+    "controllers": [],
+    "target_override": null,
+    "port_override": null,
+    "telemetry": {
+      "tick_count": 15351,
+      "rate_skips": 0,
+      "send_count": 0,
+      "packet_count": 0,
+      "send_ms_last": 0.0,
+      "send_ms_average": 0.0,
+      "send_ms_max": 0.0,
+      "actual_send_fps": 0.0,
+      "pack_count": 0,
+      "pack_ms_last": 0.0,
+      "pack_ms_average": 0.0,
+      "pack_ms_max": 0.0,
+      "plan_rebuilds": 0
+    }
+  },
+  "native": {
+    "/project1/dmxout1": false,
+    "/project1/esp_artnet_out": false,
+    "/project1/multi_controller_output/dmxout_apa102_esp": false,
+    "/project1/multi_controller_output/dmxout_ws2812_node": false,
+    "/project1/multi_controller_output/dmxout_back_panel_249": false
+  },
+  "mask_contract_valid": true,
+  "scan_workspace": "C:/Users/jbhtz/OneDrive/Desktop/Pictures/Documents/ChatGPT/LED-Touchdesigner-Controller/PixelblazeMapper/Scans/back_test_249_20260909_001708",
+  "scan_result": {
+    "state": "review_required",
+    "running": false,
+    "output": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\Scans\\back_test_249_20260909_001708\\result-ffcb4375-f65b-4988-b8e2-47ee03da9ea4",
+    "session_id": "ffcb4375-f65b-4988-b8e2-47ee03da9ea4",
+    "review_required": true,
+    "log": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\Scans\\back_test_249_20260909_001708\\offline-job-f57e7833-3b8b-4391-9691-a724943af77f.log",
+    "elapsed_seconds": 4.8,
+    "exit_code": 0,
+    "candidate": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\Scans\\back_test_249_20260909_001708\\result-ffcb4375-f65b-4988-b8e2-47ee03da9ea4\\candidate_3d.csv",
+    "reconstructed": 203,
+    "missing_ids": [],
+    "coordinate_units": "arbitrary_sfm",
+    "registration": false,
+    "layout_applied": false
+  },
+  "original_mapping_routing_draft_preserved": true
+}
