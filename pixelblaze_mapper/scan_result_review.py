@@ -80,7 +80,8 @@ def inspect_result(status):
 
 def review_defaults(document, review):
     """Suggest an explicit collision-free additive offset, not a hardware route."""
-    used = {led.source_index for obj in document.scene.objects for led in obj.leds}
+    from .scan_partial_acceptance import occupied_sources
+    used = occupied_sources(document)
     ids = set(review['ids'])
     offset = 0 if not used.intersection(ids) else max(0, max(used) + 1 - min(ids))
     names = {obj.name for obj in document.scene.objects}
@@ -120,7 +121,8 @@ def append_reviewed(document, review, *, source_offset, name, transform=Transfor
     actual = tuple(i for i in range(len(scan.points)) if i not in set(scan.missing_indices))
     if ids != actual:
         raise SceneError('Reviewed LED selection no longer matches candidate')
-    used = {led.source_index for obj in document.scene.objects for led in obj.leds}
+    from .scan_partial_acceptance import occupied_sources
+    used = occupied_sources(document)
     collisions = used.intersection(source_offset + i for i in ids)
     if collisions:
         suggestion = review_defaults(document, review)['offset']
@@ -172,8 +174,17 @@ def add_to_draft(op, confirm):
     session = layout.editor(target)
     if session.preview is not None:
         raise SceneError('Finish the current layout drag first')
-    updated = append_reviewed(session.current, owner.fetch('result_review', {}),
-                             source_offset=int(read('offset')), name=read('name'), transform=transform)
+    review = owner.fetch('result_review', {})
+    acquisition = owner.fetch('session', {}) or {}
+    if acquisition.get('session_id') == review.get('session_id'):
+        from .scan_partial_acceptance import append_partial_reviewed
+        from .scan_workflow_ux import view_paths
+        updated = append_partial_reviewed(session.current, review, acquisition,
+            view_paths(field_text(owner.op('ui_panel/views/string'))),
+            source_offset=int(read('offset')), name=read('name'), transform=transform)
+    else:
+        updated = append_reviewed(session.current, review,
+                                 source_offset=int(read('offset')), name=read('name'), transform=transform)
     if not confirm('Add raw scan as a NEW draft object? Existing objects and live output remain unchanged. Source gaps are preserved. Alignment is manual, not verified registration. Undo is available in the 3D tab.'):
         return False
     session.commit(updated)
