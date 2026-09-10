@@ -1,0 +1,12 @@
+{
+  "state": "complete",
+  "blackout_sent": true,
+  "blackout_confirmed": false,
+  "optical_blackout_confirmed": false,
+  "camera_cleanup_attempted": true,
+  "camera_cleanup_errors": [],
+  "camera_cleanup_confirmed": true,
+  "blackout_errors": [],
+  "supervisor_cleanup_errors": [],
+  "view_csv": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\Scans\\back_test_249_20260909_001708\\capture-c21d8188-d97b-48eb-89c7-d3c004b36c09\\view.csv"
+}

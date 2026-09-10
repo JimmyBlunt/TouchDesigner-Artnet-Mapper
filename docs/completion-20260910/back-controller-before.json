@@ -1,0 +1,72 @@
+{
+  "status": {
+    "pixelCount": 203,
+    "universeCount": 2,
+    "packets": 0,
+    "framesComplete": 0,
+    "framesIncomplete": 0,
+    "fps": 0,
+    "packetsPerSecond": 0,
+    "heapFree": 217400,
+    "heapMinFree": 157148,
+    "frameTimeUs": 0,
+    "outputTimeUs": 0,
+    "lastFrameLatencyMs": null,
+    "startUniverse": 0,
+    "outputFrames": 0,
+    "timeouts": 0,
+    "droppedPackets": 0,
+    "sequenceErrors": 0
+  },
+  "config": {
+    "pixelCount": 203,
+    "startUniverse": 0,
+    "universeCount": 2,
+    "targetFps": 30,
+    "hardwareProfile": "extensionboard-6ws-3apa",
+    "outputs": [
+      {
+        "id": 0,
+        "type": "WS2812B",
+        "enabled": true,
+        "startPixel": 0,
+        "pixelCount": 203,
+        "dataPin": 27,
+        "clockPin": -1,
+        "colorOrder": "GRB",
+        "reverse": false,
+        "spiHz": 0,
+        "startUniverse": 120,
+        "targetFps": 30
+      },
+      {
+        "id": 1,
+        "type": "WS2812B",
+        "enabled": false,
+        "startPixel": 203,
+        "pixelCount": 256,
+        "dataPin": 14,
+        "clockPin": -1,
+        "colorOrder": "GRB",
+        "reverse": false,
+        "spiHz": 0,
+        "startUniverse": 122,
+        "targetFps": 30
+      },
+      {
+        "id": 2,
+        "type": "WS2812B",
+        "enabled": false,
+        "startPixel": 203,
+        "pixelCount": 556,
+        "dataPin": 25,
+        "clockPin": -1,
+        "colorOrder": "GRB",
+        "reverse": false,
+        "spiHz": 0,
+        "startUniverse": 126,
+        "targetFps": 30
+      }
+    ]
+  }
+}

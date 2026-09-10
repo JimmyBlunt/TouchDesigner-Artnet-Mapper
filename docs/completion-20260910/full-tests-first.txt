@@ -1,0 +1,133 @@
+======================================================================
+ERROR: test_calibration_due_subset_does_not_require_live_frames (test_generated_sender_runtime.GeneratedSenderRuntimeTests.test_calibration_due_subset_does_not_require_live_frames)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\jbhtz\OneDrive\Desktop\Pictures\Documents\ChatGPT\LED-Touchdesigner-Controller\PixelblazeMapper\tests\test_generated_sender_runtime.py", line 135, in test_calibration_due_subset_does_not_require_live_frames
+    namespace, clock, recorder, source = self.harness()
+                                         ^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\OneDrive\Desktop\Pictures\Documents\ChatGPT\LED-Touchdesigner-Controller\PixelblazeMapper\tests\test_generated_sender_runtime.py", line 87, in harness
+    exec(compile(install_pacing(install_mask(sender_source())), '<generated-sender>', 'exec'), namespace)
+                                             ^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\OneDrive\Desktop\Pictures\Documents\ChatGPT\LED-Touchdesigner-Controller\PixelblazeMapper\tests\test_sender_pacing.py", line 11, in sender_source
+    return ast.literal_eval(function.body[0].value)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\ast.py", line 112, in literal_eval
+    return _convert(node_or_string)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\ast.py", line 111, in _convert
+    return _convert_signed_num(node)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\ast.py", line 85, in _convert_signed_num
+    return _convert_num(node)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\ast.py", line 76, in _convert_num
+    _raise_malformed_node(node)
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\ast.py", line 73, in _raise_malformed_node
+    raise ValueError(msg + f': {node!r}')
+ValueError: malformed node or string on line 471: <ast.Call object at 0x000001DA3314F510>
+
+======================================================================
+ERROR: test_fast_callback_skips_without_extra_source_cooks (test_generated_sender_runtime.GeneratedSenderRuntimeTests.test_fast_callback_skips_without_extra_source_cooks)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\jbhtz\OneDrive\Desktop\Pictures\Documents\ChatGPT\LED-Touchdesigner-Controller\PixelblazeMapper\tests\test_generated_sender_runtime.py", line 152, in test_fast_callback_skips_without_extra_source_cooks
+    namespace, clock, recorder, source = self.harness()
+                                         ^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\OneDrive\Desktop\Pictures\Documents\ChatGPT\LED-Touchdesigner-Controller\PixelblazeMapper\tests\test_generated_sender_runtime.py", line 87, in harness
+    exec(compile(install_pacing(install_mask(sender_source())), '<generated-sender>', 'exec'), namespace)
+                                             ^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\OneDrive\Desktop\Pictures\Documents\ChatGPT\LED-Touchdesigner-Controller\PixelblazeMapper\tests\test_sender_pacing.py", line 11, in sender_source
+    return ast.literal_eval(function.body[0].value)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\ast.py", line 112, in literal_eval
+    return _convert(node_or_string)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\ast.py", line 111, in _convert
+    return _convert_signed_num(node)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\ast.py", line 85, in _convert_signed_num
+    return _convert_num(node)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\ast.py", line 76, in _convert_num
+    _raise_malformed_node(node)
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\ast.py", line 73, in _raise_malformed_node
+    raise ValueError(msg + f': {node!r}')
+ValueError: malformed node or string on line 471: <ast.Call object at 0x000001DA33220D90>
+
+======================================================================
+ERROR: test_live_real_packing_and_socket_calls_respect_both_rates (test_generated_sender_runtime.GeneratedSenderRuntimeTests.test_live_real_packing_and_socket_calls_respect_both_rates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\jbhtz\OneDrive\Desktop\Pictures\Documents\ChatGPT\LED-Touchdesigner-Controller\PixelblazeMapper\tests\test_generated_sender_runtime.py", line 110, in test_live_real_packing_and_socket_calls_respect_both_rates
+    namespace, clock, recorder, source = self.harness()
+                                         ^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\OneDrive\Desktop\Pictures\Documents\ChatGPT\LED-Touchdesigner-Controller\PixelblazeMapper\tests\test_generated_sender_runtime.py", line 87, in harness
+    exec(compile(install_pacing(install_mask(sender_source())), '<generated-sender>', 'exec'), namespace)
+                                             ^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\OneDrive\Desktop\Pictures\Documents\ChatGPT\LED-Touchdesigner-Controller\PixelblazeMapper\tests\test_sender_pacing.py", line 11, in sender_source
+    return ast.literal_eval(function.body[0].value)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\ast.py", line 112, in literal_eval
+    return _convert(node_or_string)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\ast.py", line 111, in _convert
+    return _convert_signed_num(node)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\ast.py", line 85, in _convert_signed_num
+    return _convert_num(node)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\ast.py", line 76, in _convert_num
+    _raise_malformed_node(node)
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\ast.py", line 73, in _raise_malformed_node
+    raise ValueError(msg + f': {node!r}')
+ValueError: malformed node or string on line 471: <ast.Call object at 0x000001DA33219350>
+
+======================================================================
+ERROR: test_embedded_realtime_callbacks_are_valid_python (test_multi_controller.BuilderContractTests.test_embedded_realtime_callbacks_are_valid_python)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\jbhtz\OneDrive\Desktop\Pictures\Documents\ChatGPT\LED-Touchdesigner-Controller\PixelblazeMapper\tests\test_multi_controller.py", line 214, in test_embedded_realtime_callbacks_are_valid_python
+    pack_source = self._builder_source_function("_pack_callbacks")("WS2812_NODE")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\OneDrive\Desktop\Pictures\Documents\ChatGPT\LED-Touchdesigner-Controller\PixelblazeMapper\pixelblaze_mapper\build_multi_controller_output.py", line 248, in _pack_callbacks
+    ''' .replace('C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper', LOCAL_ROOT.replace('\\', '/')) % controller_name
+                                                                       ^^^^^^^^^^
+NameError: name 'LOCAL_ROOT' is not defined
+
+======================================================================
+ERROR: test_installer (test_sender_pacing.SenderPacingTests.test_installer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\jbhtz\OneDrive\Desktop\Pictures\Documents\ChatGPT\LED-Touchdesigner-Controller\PixelblazeMapper\tests\test_sender_pacing.py", line 64, in test_installer
+    source = install_source(sender_source())
+                            ^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\OneDrive\Desktop\Pictures\Documents\ChatGPT\LED-Touchdesigner-Controller\PixelblazeMapper\tests\test_sender_pacing.py", line 11, in sender_source
+    return ast.literal_eval(function.body[0].value)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\ast.py", line 112, in literal_eval
+    return _convert(node_or_string)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\ast.py", line 111, in _convert
+    return _convert_signed_num(node)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\ast.py", line 85, in _convert_signed_num
+    return _convert_num(node)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\ast.py", line 76, in _convert_num
+    _raise_malformed_node(node)
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\ast.py", line 73, in _raise_malformed_node
+    raise ValueError(msg + f': {node!r}')
+ValueError: malformed node or string on line 471: <ast.Call object at 0x000001DA343BD650>
+
+======================================================================
+FAIL: test_discovery_and_offline_runtime_pass_edited_scope (test_scan_workflow_ux.ScanWorkflowUXTests.test_discovery_and_offline_runtime_pass_edited_scope)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\jbhtz\OneDrive\Desktop\Pictures\Documents\ChatGPT\LED-Touchdesigner-Controller\PixelblazeMapper\tests\test_scan_workflow_ux.py", line 156, in test_discovery_and_offline_runtime_pass_edited_scope
+    self.assertTrue(scope['act']('discover_views'))
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 913 tests in 19.326s
+
+FAILED (failures=1, errors=5)

@@ -201,20 +201,25 @@ def active_action(owner, name, confirm):
         raise SceneError("Finish or cancel the current drag before preparing/applying")
     mode = owner.fetch("layout_view", "3d")
     projection = (field(owner, "projection") or "YX").upper()
+    uv_source = owner.fetch("layout_uv_source", "current") if mode == "3d" else "projection"
+    if uv_source not in ("current", "projection"):
+        raise SceneError("Select Keep existing material UV or Project UV for 3D")
     if name in ("prepare", "apply") and field(owner, "preserverouting").upper() != "YES":
         raise SceneError("Type YES in Keep live routing. Draft controller/port bindings will NOT be applied.")
     if name == "prepare":
         owner.store("ui_prepared_context", None)
-        if not confirm("Prepare " + mode.upper() + " using projection " + projection + "? Output must already be OFF. Preserve existing live routing; all draft controller/port bindings are ignored. Nothing is activated yet."):
+        impact = ("physical XYZ, KEEP EXISTING MATERIAL UV" if uv_source == "current" else
+                  "physical XYZ + projected UV using " + projection) if mode == "3d" else "fixture sampling UV; preserve physical XYZ"
+        if not confirm("Prepare " + mode.upper() + ": " + impact + "? Output must already be OFF. Preserve existing live routing; all draft controller/port bindings are ignored. Nothing is activated yet."):
             return
-        plan = runtime.module.prepare(mode=mode, projection=projection, preserve_routing=True)
-        owner.store("ui_prepared_context", (mode, projection, plan.workspace_revision))
-        status(owner, "PREPARED " + mode.upper() + " | output OFF required | live routing preserved; draft routes NOT applied | click APPLY separately")
+        plan = runtime.module.prepare(mode=mode, projection=projection, preserve_routing=True, uv_source=uv_source)
+        owner.store("ui_prepared_context", (mode, projection, uv_source, plan.workspace_revision))
+        status(owner, "PREPARED " + mode.upper() + " | " + impact + " | output OFF; routing preserved | click APPLY separately")
     elif name == "apply":
         context = owner.fetch("ui_prepared_context", None)
-        if context is None or context[:2] != (mode, projection):
-            raise SceneError("Prepare this tab and projection first; selection changed or no reviewed plan exists")
-        impact = "physical XYZ + explicit projected UV" if mode == "3d" else "material UV + separate fixture-output representation; physical XYZ preserved"
+        if context is None or context[:3] != (mode, projection, uv_source):
+            raise SceneError("Prepare this tab, projection and material-UV choice first; selection changed or no reviewed plan exists")
+        impact = ("physical XYZ; KEEP EXISTING MATERIAL UV" if uv_source == "current" else "physical XYZ + explicit projected UV") if mode == "3d" else "material UV + separate fixture-output representation; physical XYZ preserved"
         if not confirm("APPLY prepared " + mode.upper() + " now: " + impact + ". Output must stay OFF. Existing live routing is preserved; draft routing is NOT applied. Continue?"):
             return
         runtime.module.apply()

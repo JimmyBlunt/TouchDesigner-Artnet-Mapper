@@ -3,6 +3,26 @@ import csv
 import math
 from collections import Counter
 from pathlib import Path
+from functools import lru_cache
+from itertools import islice
+
+
+@lru_cache(maxsize=32)
+def _view_ids(path, stamp, size):
+    """Cache unchanged observations across capture progress/status refreshes."""
+    if size > 16 * 1024 * 1024:
+        raise ValueError('view exceeds 16 MiB; choose a bounded observation file')
+    with open(path, newline='', encoding='utf-8-sig') as stream:
+        rows = list(islice(csv.DictReader(stream), 100001))
+    if len(rows) > 100000:
+        raise ValueError('view exceeds 100000 observations')
+    ids = [int(r['index']) for r in rows]
+    if not rows or len(ids) != len(set(ids)):
+        raise ValueError('empty view or duplicate LED IDs')
+    if any(not all(math.isfinite(float(r[k])) and 0 <= float(r[k]) <= 1
+                   for k in ('u', 'v')) for r in rows):
+        raise ValueError('invalid image coordinates')
+    return frozenset(ids)
 
 
 def coverage(paths, expected):
@@ -11,15 +31,9 @@ def coverage(paths, expected):
     accepted, errors = [], []
     for path in dict.fromkeys(str(Path(p).resolve()) for p in paths):
         try:
-            with open(path, newline='', encoding='utf-8-sig') as stream:
-                rows = list(csv.DictReader(stream))
-            ids = [int(r['index']) for r in rows]
-            if not rows or len(ids) != len(set(ids)):
-                raise ValueError('empty view or duplicate LED IDs')
-            if any(not all(math.isfinite(float(r[k])) and 0 <= float(r[k]) <= 1
-                           for k in ('u', 'v')) for r in rows):
-                raise ValueError('invalid image coordinates')
-            counts.update(set(ids) & expected)
+            stamp = Path(path).stat()
+            ids = _view_ids(path, stamp.st_mtime_ns, stamp.st_size)
+            counts.update(ids & expected)
             accepted.append(path)
         except (OSError, ValueError, KeyError, TypeError) as error:
             errors.append(Path(path).name + ': ' + str(error))

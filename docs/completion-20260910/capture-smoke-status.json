@@ -1,0 +1,16 @@
+{
+  "state": "failed",
+  "blackout_sent": true,
+  "total": 3,
+  "exposure_applied": true,
+  "processed": 3,
+  "detected": 0,
+  "blackout_confirmed": false,
+  "optical_blackout_confirmed": false,
+  "error": "No LEDs detected; no view accepted",
+  "blackout_errors": [],
+  "supervisor_cleanup_errors": [],
+  "exit_code": 1,
+  "directory": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\Scans\\back_test_249_20260909_001708\\capture-d59c69f7-fa92-469e-81a7-731eca3132ce",
+  "running": false
+}

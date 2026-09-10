@@ -9,7 +9,7 @@ import unittest
 from pixelblaze_mapper.layout_scene import Scene, Scan, append_scan, SceneError, export_pixelblaze_3d
 from pixelblaze_mapper.layout_scene_adapter import LayoutDocument
 from pixelblaze_mapper.fixture_scene import FixtureScene, project_fixture, scene_revision, replace_transform, Transform2D
-from pixelblaze_mapper.build_layout_apply import prepare_layout, apply_plan, POSITION_CALLBACK, TouchDesignerLayoutAdapter, MAP, UV
+from pixelblaze_mapper.build_layout_apply import prepare_layout, apply_plan, POSITION_CALLBACK, TouchDesignerLayoutAdapter, MAP, UV, SOURCE_MASK
 
 
 def inputs():
@@ -248,7 +248,7 @@ class LayoutApplyTests(unittest.TestCase):
         # Physical table negative Z is still viewed through the legacy +60 shift.
         displayed = {'tx': [10., 40.], 'ty': [20., 50.], 'tz': [30., 0.]}
         sample_uv = {'tx': [.2, .4], 'ty': [.1, .3], 'tz': [0., 0.]}
-        nodes = {MAP: Table(plan.map_rows), UV: Table(plan.uv_rows),
+        nodes = {MAP: Table(plan.map_rows), UV: Table(plan.uv_rows), SOURCE_MASK: Table(plan.source_mask_rows),
                  '/project1/LedMap': Chop(displayed), '/project1/null4': Chop(displayed),
                  '/project1/effect_sample_uv': Chop(sample_uv), '/project1/topto1': NS(numSamples=2),
                  '/project1/math1': NS(numSamples=2)}

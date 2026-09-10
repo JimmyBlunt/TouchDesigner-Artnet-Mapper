@@ -70,6 +70,8 @@ def build():
     if callbacks is None or instance_data is None:
         raise RuntimeError("LED Preview instance callback chain is incomplete")
     patched = patch_callback_source(callbacks.text)
+    from pixelblaze_mapper.preview_color_bulk import ensure_bulk_source
+    patched = ensure_bulk_source(patched)
     changed = patched != callbacks.text
     if changed:
         callbacks.text = patched

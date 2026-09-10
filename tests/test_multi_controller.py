@@ -206,7 +206,7 @@ class BuilderContractTests(unittest.TestCase):
         path = Path(__file__).parents[1] / "pixelblaze_mapper" / "build_multi_controller_output.py"
         tree = ast.parse(path.read_text(encoding="utf-8"))
         function = next(node for node in tree.body if isinstance(node, ast.FunctionDef) and node.name == name)
-        scope = {}
+        scope = {'__file__': str(path), 'LOCAL_ROOT': str(path.resolve().parents[1])}
         exec(compile(ast.Module(body=[function], type_ignores=[]), str(path), "exec"), scope, scope)
         return scope[name]
 

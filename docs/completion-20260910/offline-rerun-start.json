@@ -1,0 +1,12 @@
+{
+  "manifest": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\Scans\\back_test_249_20260909_001708\\scan-ffcb4375-f65b-4988-b8e2-47ee03da9ea4.json",
+  "status": {
+    "state": "running",
+    "running": true,
+    "output": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\Scans\\back_test_249_20260909_001708\\result-ffcb4375-f65b-4988-b8e2-47ee03da9ea4",
+    "session_id": "ffcb4375-f65b-4988-b8e2-47ee03da9ea4",
+    "review_required": true,
+    "log": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\Scans\\back_test_249_20260909_001708\\offline-job-f57e7833-3b8b-4391-9691-a724943af77f.log",
+    "elapsed_seconds": 0.0
+  }
+}

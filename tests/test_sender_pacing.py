@@ -5,10 +5,8 @@ from pathlib import Path
 from pixelblaze_mapper.sender_pacing import ControllerPacer, install_source
 
 def sender_source():
-    path = Path(__file__).resolve().parents[1] / 'pixelblaze_mapper/build_multi_controller_output.py'
-    tree = ast.parse(path.read_text(encoding='utf-8'))
-    function = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == '_artnet_510_sender_source')
-    return ast.literal_eval(function.body[0].value)
+    from tests.test_routing_apply_regression import embedded
+    return embedded('build_multi_controller_output.py', '_artnet_510_sender_source')
 
 
 class SenderPacingTests(unittest.TestCase):

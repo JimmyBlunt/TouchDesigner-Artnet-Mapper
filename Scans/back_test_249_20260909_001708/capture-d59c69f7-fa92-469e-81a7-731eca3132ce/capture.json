@@ -1,0 +1,104 @@
+{
+  "schema": "pixelblaze-single-view-capture",
+  "version": 1,
+  "routing": {
+    "brightness_cap": 0.062,
+    "controller_names": [
+      "BACK_TEST_249"
+    ],
+    "routing": {
+      "controllers": [
+        {
+          "art_sync": false,
+          "brightness": 0.062,
+          "color_order": "RGB",
+          "enabled": true,
+          "local_interface": "10.0.0.125",
+          "name": "BACK_TEST_249",
+          "port": 6454,
+          "rate": 30,
+          "reserved_universes": 2,
+          "start_universe": 120,
+          "target_address": "10.0.0.249"
+        }
+      ],
+      "segments": [
+        {
+          "color_override": null,
+          "controller": "BACK_TEST_249",
+          "count": 203,
+          "destination_start": 0,
+          "name": "capture",
+          "reverse": false,
+          "source_start": 0
+        }
+      ],
+      "source_pixel_count": 203,
+      "warn_unassigned": true
+    },
+    "schema": "pixelblaze-scan-routing",
+    "source_indices": [
+      0,
+      101,
+      202
+    ],
+    "targets": [
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 0,
+        "source_index": 0,
+        "wire_universe": 120,
+        "worker_index": 0
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 303,
+        "source_index": 101,
+        "wire_universe": 120,
+        "worker_index": 1
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 96,
+        "source_index": 202,
+        "wire_universe": 121,
+        "worker_index": 2
+      }
+    ],
+    "version": 1,
+    "fingerprint": "1b7505e6ff43dda50367e3a0e502753a26b0dacd3bfc25451874d6568e9cf544"
+  },
+  "camera": {
+    "device": 0,
+    "exposure": -10,
+    "threshold": 160
+  },
+  "workspace": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\Scans\\back_test_249_20260909_001708",
+  "directory_name": "capture-d59c69f7-fa92-469e-81a7-731eca3132ce",
+  "heartbeat_seconds": 5.0,
+  "max_led_seconds": 30.0,
+  "identity": {
+    "0": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:0",
+    "101": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:101",
+    "202": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:202"
+  },
+  "scene_revision": "1df8a570d35dc32302a939b479fe94a28403d488138c7a358c2e9d7a3116404d"
+}

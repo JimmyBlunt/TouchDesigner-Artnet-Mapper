@@ -15,7 +15,7 @@ from pathlib import Path
 
 OWNER = "/project1/multi_controller_output"
 SOURCE = "/project1/math1"
-LOCAL_ROOT = r"C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper"
+LOCAL_ROOT = str(Path(__file__).resolve().parents[1])
 if LOCAL_ROOT not in sys.path:
     sys.path.insert(0, LOCAL_ROOT)
 
@@ -30,6 +30,7 @@ from pixelblaze_mapper.multi_controller import (  # noqa: E402
     validate_router,
 )
 from pixelblaze_mapper.installation_contract import TOTAL_PIXELS
+from pixelblaze_mapper.native_dmx_gate import install_sink_gates
 
 
 def _safe_name(value):
@@ -238,14 +239,13 @@ def onCook(scriptOp):
     _latest_frames = frames
     for index, frame in enumerate(frames):
         channel = scriptOp.appendChan('Universe' + str(index))
-        for sample, value in enumerate(frame):
-            channel[sample] = value
+        channel.vals = list(frame)
     elapsed = (time.perf_counter() - started) * 1000.0
     _pack_count += 1
     _pack_ms_last = elapsed
     _pack_ms_total += elapsed
     _pack_ms_max = max(_pack_ms_max, elapsed)
-''' % controller_name
+''' .replace('C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper', LOCAL_ROOT.replace('\\', '/')) % controller_name
 
 
 def _label(parent, name, text, x, y, width, height, color=(0.75, 0.84, 0.91), size=13):
@@ -464,7 +464,7 @@ def next_panel():
 
 def next_pattern():
     return _cycle('cal_pattern', ['panel_id', 'rows', 'columns', 'chase'])
-'''
+'''.replace('C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper', str(__import__('pathlib').Path(__file__).resolve().parents[1]).replace('\\', '/'))
 
 
 def _artnet_510_sender_source():
@@ -755,7 +755,7 @@ def status():
                           'pack_count': _pack_count, 'pack_ms_last': _pack_ms_last,
                           'pack_ms_average': pack_average, 'pack_ms_max': _pack_ms_max,
                           'plan_rebuilds': _plan_rebuilds}}
-'''
+'''.replace('C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper', str(__import__('pathlib').Path(__file__).resolve().parents[1]).replace('\\', '/'))
 
 
 def _artnet_510_execute_source():
@@ -847,13 +847,15 @@ def build():
     source = _get_or_create(owner, selectCHOP, "source_select")
     _set_if_present(source, "chop", SOURCE)
     source.nodeX, source.nodeY = -520, 120
+    native_gate_specs = []
     for index, controller_plan in enumerate(plan.controllers):
         controller = controller_plan.config
         safe = _safe_name(controller.name)
         pack = _get_or_create(owner, scriptCHOP, "pack_" + safe)
         callback_path = str(pack.par.callbacks.eval()) if pack.par.callbacks is not None else ""
         callbacks = op(callback_path) or _get_or_create(owner, textDAT, "pack_" + safe + "_callbacks")
-        _replace_dat_text(callbacks, _pack_callbacks(controller.name))
+        from pixelblaze_mapper.output_slot_mask import install_native_source
+        _replace_dat_text(callbacks, install_native_source(_pack_callbacks(controller.name)))
         _set_if_present(pack, "callbacks", callbacks.path)
         _connect_first_input(pack, source)
         for candidate in owner.findChildren(name="pack_" + safe + "_callbacks*", depth=1):
@@ -862,7 +864,10 @@ def build():
         routing = _get_or_create(owner, tableDAT, "routing_" + safe)
         _write_table(routing, controller_plan.routing_rows())
         output = _get_or_create(owner, dmxoutCHOP, "dmxout_" + safe)
-        _connect_first_input(output, pack)
+        # An intact demand gate is preserved across rebuilds. The gate helper
+        # refuses unknown wiring instead of replacing a user's connection.
+        if not output.inputs:
+            _connect_first_input(output, pack)
         # Builder invariant: creating or rebuilding never starts network traffic.
         _set_if_present(output, "active", False)
         _set_if_present(output, "interface", "artnet")
@@ -882,6 +887,10 @@ def build():
         pack.nodeX, pack.nodeY = -250, -180 * index
         routing.nodeX, routing.nodeY = 0, -180 * index - 70
         output.nodeX, output.nodeY = 250, -180 * index
+        if controller_plan.universe_count:
+            native_gate_specs.append((output, pack, controller_plan.universe_count))
+
+    install_sink_gates(native_gate_specs, constant_type=constantCHOP, select_type=selectCHOP)
 
     # The GICO controller is configured for 510 DMX channels per universe.
     # TouchDesigner's DMX Out CHOP pads ArtDMX payloads to 512 bytes, which
@@ -1038,7 +1047,7 @@ network stop. The builder never saves the TOE automatically.
     # port.  Build its dedicated safe editor after the main router surface so
     # Ctrl+Shift+6 always contains the entry button.  The nested builder only
     # validates/edits drafts and never starts Art-Net.
-    gico_builder = Path(r"C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/pixelblaze_mapper/build_gico_port_config_ui.py")
+    gico_builder = Path(LOCAL_ROOT) / "pixelblaze_mapper/build_gico_port_config_ui.py"
     gico_scope = dict(globals())
     gico_scope["__name__"] = "pixelblaze_mapper_embedded_gico_ui"
     exec(compile(gico_builder.read_text(encoding="utf-8"), str(gico_builder), "exec"), gico_scope, gico_scope)

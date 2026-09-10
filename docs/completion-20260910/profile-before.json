@@ -1,0 +1,2369 @@
+[
+  {
+    "file": "/project1/esp_artnet_live_pack_callbacks",
+    "line": 21,
+    "function": "onCook",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 2.224812,
+    "cumulative_seconds": 3.6291203000000003
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'cook' of 'td.OP' objects>",
+    "primitive_calls": 706,
+    "calls": 706,
+    "self_seconds": 0.0918398,
+    "cumulative_seconds": 1.9720422000000002
+  },
+  {
+    "file": "/project1/esp_artnet_live_pack_callbacks",
+    "line": 12,
+    "function": "_clamp01",
+    "primitive_calls": 866364,
+    "calls": 866364,
+    "self_seconds": 0.5812414,
+    "cumulative_seconds": 1.0671167000000001
+  },
+  {
+    "file": "/project1/chopexec1",
+    "line": 22,
+    "function": "onValueChange",
+    "primitive_calls": 479,
+    "calls": 479,
+    "self_seconds": 0.007630700000000001,
+    "cumulative_seconds": 1.0265172
+  },
+  {
+    "file": "/project1/script4_callbacks",
+    "line": 68,
+    "function": "onCook",
+    "primitive_calls": 479,
+    "calls": 479,
+    "self_seconds": 0.0662252,
+    "cumulative_seconds": 0.9755784000000001
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/preview3d/animation_driver",
+    "line": 10,
+    "function": "onFrameStart",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0012074000000000002,
+    "cumulative_seconds": 0.9149803000000001
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/preview3d/instance_data_callbacks",
+    "line": 66,
+    "function": "onCook",
+    "primitive_calls": 55,
+    "calls": 55,
+    "self_seconds": 0.0433594,
+    "cumulative_seconds": 0.9046240000000001
+  },
+  {
+    "file": "/project1/script4_callbacks",
+    "line": 17,
+    "function": "generate_combined_effect",
+    "primitive_calls": 479,
+    "calls": 479,
+    "self_seconds": 0.471299,
+    "cumulative_seconds": 0.7663521000000001
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/preview3d/instance_data_callbacks",
+    "line": 94,
+    "function": "<listcomp>",
+    "primitive_calls": 55,
+    "calls": 55,
+    "self_seconds": 0.013305,
+    "cumulative_seconds": 0.6215247
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.min>",
+    "primitive_calls": 1594710,
+    "calls": 1594710,
+    "self_seconds": 0.4357937,
+    "cumulative_seconds": 0.4357937
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.max>",
+    "primitive_calls": 1705295,
+    "calls": 1705460,
+    "self_seconds": 0.40669170000000004,
+    "cumulative_seconds": 0.42572610000000005
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.round>",
+    "primitive_calls": 866424,
+    "calls": 866424,
+    "self_seconds": 0.30385700000000004,
+    "cumulative_seconds": 0.30385700000000004
+  },
+  {
+    "file": "/project1/show_control/transport_execute",
+    "line": 2,
+    "function": "onFrameEnd",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.005794400000000001,
+    "cumulative_seconds": 0.2746691
+  },
+  {
+    "file": "/project1/show_control/callbacks",
+    "line": 135,
+    "function": "advance",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0014438,
+    "cumulative_seconds": 0.2686294
+  },
+  {
+    "file": "/project1/show_control/callbacks",
+    "line": 76,
+    "function": "sync",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.011886,
+    "cumulative_seconds": 0.26173840000000004
+  },
+  {
+    "file": "/project1/multi_controller_output/router_status_execute",
+    "line": 1,
+    "function": "onFrameStart",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0020474,
+    "cumulative_seconds": 0.130167
+  },
+  {
+    "file": "/project1/multi_controller_output/ui_callbacks",
+    "line": 29,
+    "function": "refresh_status",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0044926,
+    "cumulative_seconds": 0.1281196
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.hasattr>",
+    "primitive_calls": 461,
+    "calls": 461,
+    "self_seconds": 0.1082015,
+    "cumulative_seconds": 0.1082015
+  },
+  {
+    "file": "/project1/script4_callbacks",
+    "line": 23,
+    "function": "<listcomp>",
+    "primitive_calls": 479,
+    "calls": 479,
+    "self_seconds": 0.0924008,
+    "cumulative_seconds": 0.0924008
+  },
+  {
+    "file": "/project1/show_control/render_sync",
+    "line": 96,
+    "function": "sync_render",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0070328000000000005,
+    "cumulative_seconds": 0.0896577
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/preview3d/instance_data_callbacks",
+    "line": 86,
+    "function": "<listcomp>",
+    "primitive_calls": 165,
+    "calls": 165,
+    "self_seconds": 0.0876851,
+    "cumulative_seconds": 0.0876851
+  },
+  {
+    "file": "/project1/show_control/callbacks",
+    "line": 30,
+    "function": "_put",
+    "primitive_calls": 4644,
+    "calls": 4644,
+    "self_seconds": 0.07298110000000001,
+    "cumulative_seconds": 0.07298110000000001
+  },
+  {
+    "file": "/project1/multi_controller_output/ui_callbacks",
+    "line": 20,
+    "function": "_source_pixels",
+    "primitive_calls": 60,
+    "calls": 60,
+    "self_seconds": 0.0714048,
+    "cumulative_seconds": 0.0714048
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\random.py",
+    "line": 520,
+    "function": "uniform",
+    "primitive_calls": 110378,
+    "calls": 110378,
+    "self_seconds": 0.0569298,
+    "cumulative_seconds": 0.069982
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'random' of '_random.Random' objects>",
+    "primitive_calls": 552784,
+    "calls": 552784,
+    "self_seconds": 0.06598040000000001,
+    "cumulative_seconds": 0.06598040000000001
+  },
+  {
+    "file": "/project1/material_phase_execute",
+    "line": 1,
+    "function": "onFrameStart",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.014860600000000002,
+    "cumulative_seconds": 0.06590120000000001
+  },
+  {
+    "file": "/project1/show_control/render_sync",
+    "line": 58,
+    "function": "_apply_slot",
+    "primitive_calls": 344,
+    "calls": 344,
+    "self_seconds": 0.012439,
+    "cumulative_seconds": 0.0616656
+  },
+  {
+    "file": "/project1/script4_callbacks",
+    "line": 86,
+    "function": "<listcomp>",
+    "primitive_calls": 479,
+    "calls": 479,
+    "self_seconds": 0.054968600000000006,
+    "cumulative_seconds": 0.054968600000000006
+  },
+  {
+    "file": "/project1/script4_callbacks",
+    "line": 87,
+    "function": "<listcomp>",
+    "primitive_calls": 479,
+    "calls": 479,
+    "self_seconds": 0.0435066,
+    "cumulative_seconds": 0.0435066
+  },
+  {
+    "file": "/project1/script4_callbacks",
+    "line": 88,
+    "function": "<listcomp>",
+    "primitive_calls": 479,
+    "calls": 479,
+    "self_seconds": 0.0429358,
+    "cumulative_seconds": 0.0429358
+  },
+  {
+    "file": "/project1/show_control/callbacks",
+    "line": 14,
+    "function": "_set",
+    "primitive_calls": 1892,
+    "calls": 1892,
+    "self_seconds": 0.035161000000000005,
+    "cumulative_seconds": 0.035161000000000005
+  },
+  {
+    "file": "/project1/show_control/render_sync",
+    "line": 51,
+    "function": "_value",
+    "primitive_calls": 2416,
+    "calls": 2416,
+    "self_seconds": 0.035136900000000006,
+    "cumulative_seconds": 0.035136900000000006
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\router_dynamic_ui.py",
+    "line": 153,
+    "function": "refresh",
+    "primitive_calls": 30,
+    "calls": 30,
+    "self_seconds": 0.0060989,
+    "cumulative_seconds": 0.0346005
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/preview3d/instance_data_callbacks",
+    "line": 92,
+    "function": "<genexpr>",
+    "primitive_calls": 220,
+    "calls": 220,
+    "self_seconds": 0.0190344,
+    "cumulative_seconds": 0.028329000000000003
+  },
+  {
+    "file": "/project1/show_control/callbacks",
+    "line": 39,
+    "function": "_persist_state",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0044443,
+    "cumulative_seconds": 0.0253495
+  },
+  {
+    "file": "/project1/guided_scan/capture_poll",
+    "line": 23,
+    "function": "onFrameStart",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0006571000000000001,
+    "cumulative_seconds": 0.024582700000000002
+  },
+  {
+    "file": "/sys/TDResources/threadManager/ThreadManagerExecute",
+    "line": 29,
+    "function": "onFrameEnd",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0071257000000000004,
+    "cumulative_seconds": 0.0228059
+  },
+  {
+    "file": "/project1/show_control/render_sync",
+    "line": 8,
+    "function": "_set_parameter",
+    "primitive_calls": 5662,
+    "calls": 5662,
+    "self_seconds": 0.0183975,
+    "cumulative_seconds": 0.0217793
+  },
+  {
+    "file": "/project1/esp_artnet_live_pack_callbacks",
+    "line": 5,
+    "function": "_config",
+    "primitive_calls": 860,
+    "calls": 860,
+    "self_seconds": 0.021210200000000002,
+    "cumulative_seconds": 0.021210200000000002
+  },
+  {
+    "file": "/project1/guided_scan/capture_poll",
+    "line": 15,
+    "function": "onFrameStart",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0004552,
+    "cumulative_seconds": 0.020446100000000002
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\router_dynamic_ui.py",
+    "line": 39,
+    "function": "mapping_counts",
+    "primitive_calls": 30,
+    "calls": 30,
+    "self_seconds": 0.0130498,
+    "cumulative_seconds": 0.020393500000000002
+  },
+  {
+    "file": "/project1/show_control/callbacks",
+    "line": 43,
+    "function": "<dictcomp>",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0018536000000000002,
+    "cumulative_seconds": 0.019731000000000002
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_coverage.py",
+    "line": 54,
+    "function": "refresh",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 0.0002877,
+    "cumulative_seconds": 0.0184132
+  },
+  {
+    "file": "/project1/show_control/callbacks",
+    "line": 23,
+    "function": "_get",
+    "primitive_calls": 1204,
+    "calls": 1204,
+    "self_seconds": 0.0178774,
+    "cumulative_seconds": 0.0178774
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/output_config/live_summary_execute",
+    "line": 1,
+    "function": "onFrameStart",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0005135000000000001,
+    "cumulative_seconds": 0.0137681
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/output_config/live_summary_runtime",
+    "line": 32,
+    "function": "update",
+    "primitive_calls": 9,
+    "calls": 9,
+    "self_seconds": 0.0100998,
+    "cumulative_seconds": 0.0132546
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\json\\__init__.py",
+    "line": 183,
+    "function": "dumps",
+    "primitive_calls": 174,
+    "calls": 174,
+    "self_seconds": 0.0017514000000000002,
+    "cumulative_seconds": 0.0122711
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\routing_transaction.py",
+    "line": 12,
+    "function": "table_rows",
+    "primitive_calls": 150,
+    "calls": 150,
+    "self_seconds": 0.0010945,
+    "cumulative_seconds": 0.0120006
+  },
+  {
+    "file": "/project1/material_state_runtime",
+    "line": 225,
+    "function": "phase",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.000351,
+    "cumulative_seconds": 0.0110492
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 298,
+    "function": "from_dict",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 0.0001687,
+    "cumulative_seconds": 0.011046100000000001
+  },
+  {
+    "file": "/project1/material_state_runtime",
+    "line": 212,
+    "function": "tick",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0016187,
+    "cumulative_seconds": 0.010698200000000001
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\json\\encoder.py",
+    "line": 183,
+    "function": "encode",
+    "primitive_calls": 174,
+    "calls": 174,
+    "self_seconds": 0.0017476000000000002,
+    "cumulative_seconds": 0.009990800000000001
+  },
+  {
+    "file": "/project1/multi_controller_output/gico_port_config/controller_ports/interface_poll",
+    "line": 1,
+    "function": "onFrameStart",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0029778,
+    "cumulative_seconds": 0.0099068
+  },
+  {
+    "file": "/project1/esp_artnet_live_pack_callbacks",
+    "line": 33,
+    "function": "<listcomp>",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0040721,
+    "cumulative_seconds": 0.0091378
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\routing_transaction.py",
+    "line": 13,
+    "function": "<listcomp>",
+    "primitive_calls": 690,
+    "calls": 690,
+    "self_seconds": 0.0089916,
+    "cumulative_seconds": 0.0089916
+  },
+  {
+    "file": "/sys/TDResources/threadManager/ThreadManagerExt",
+    "line": 1111,
+    "function": "pollTasks",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.006639600000000001,
+    "cumulative_seconds": 0.0087344
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\json\\__init__.py",
+    "line": 299,
+    "function": "loads",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0010873,
+    "cumulative_seconds": 0.00871
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\material_state.py",
+    "line": 169,
+    "function": "tick",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0009893,
+    "cumulative_seconds": 0.0081778
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\json\\encoder.py",
+    "line": 205,
+    "function": "iterencode",
+    "primitive_calls": 174,
+    "calls": 174,
+    "self_seconds": 0.008022300000000001,
+    "cumulative_seconds": 0.008022300000000001
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'appendChan' of 'td.scriptCHOP' objects>",
+    "primitive_calls": 2050,
+    "calls": 2050,
+    "self_seconds": 0.007404300000000001,
+    "cumulative_seconds": 0.007404300000000001
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\json\\decoder.py",
+    "line": 332,
+    "function": "decode",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0012287,
+    "cumulative_seconds": 0.0073442
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\show_sequencer.py",
+    "line": 104,
+    "function": "to_dict",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0008894,
+    "cumulative_seconds": 0.0073051
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\material_state.py",
+    "line": 104,
+    "function": "advanced",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0014915,
+    "cumulative_seconds": 0.0071885000000000004
+  },
+  {
+    "file": "/project1/multi_controller_output/gico_port_config/controller_ports/runtime",
+    "line": 57,
+    "function": "poll_interfaces",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0009891000000000001,
+    "cumulative_seconds": 0.006929
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\output_config_summary.py",
+    "line": 90,
+    "function": "build_output_summary",
+    "primitive_calls": 37,
+    "calls": 37,
+    "self_seconds": 0.0037346000000000002,
+    "cumulative_seconds": 0.006771500000000001
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'update' of 'set' objects>",
+    "primitive_calls": 300,
+    "calls": 300,
+    "self_seconds": 0.006732800000000001,
+    "cumulative_seconds": 0.006732800000000001
+  },
+  {
+    "file": "/project1/Preview/arcGeo/panelexec1",
+    "line": 22,
+    "function": "whileOn",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.006431500000000001,
+    "cumulative_seconds": 0.006431500000000001
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\show_sequencer.py",
+    "line": 105,
+    "function": "<dictcomp>",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0027235000000000002,
+    "cumulative_seconds": 0.006415700000000001
+  },
+  {
+    "file": "C:/Program Files/Derivative/TouchDesigner/bin/TouchInit.py",
+    "line": 44,
+    "function": "tdcustomimport",
+    "primitive_calls": 216,
+    "calls": 216,
+    "self_seconds": 0.0011396000000000002,
+    "cumulative_seconds": 0.0063923
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\logging\\handlers.py",
+    "line": 1515,
+    "function": "dequeue",
+    "primitive_calls": 516,
+    "calls": 516,
+    "self_seconds": 0.0009643000000000001,
+    "cumulative_seconds": 0.00638
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'eval' of 'td.Par' objects>",
+    "primitive_calls": 6157,
+    "calls": 6157,
+    "self_seconds": 0.0061187,
+    "cumulative_seconds": 0.0061187
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 43,
+    "function": "_ids",
+    "primitive_calls": 26,
+    "calls": 26,
+    "self_seconds": 0.0009376,
+    "cumulative_seconds": 0.0058865
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\pathlib.py",
+    "line": 1008,
+    "function": "stat",
+    "primitive_calls": 20,
+    "calls": 20,
+    "self_seconds": 3.09e-05,
+    "cumulative_seconds": 0.0058681
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method nt.stat>",
+    "primitive_calls": 20,
+    "calls": 20,
+    "self_seconds": 0.0056575,
+    "cumulative_seconds": 0.005837200000000001
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\routing_transaction.py",
+    "line": 29,
+    "function": "records",
+    "primitive_calls": 150,
+    "calls": 150,
+    "self_seconds": 0.0015170000000000001,
+    "cumulative_seconds": 0.0057927000000000005
+  },
+  {
+    "file": "",
+    "line": 1,
+    "function": "<module>",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0055887,
+    "cumulative_seconds": 0.0055887
+  },
+  {
+    "file": "/sys/TDResources/TDAppLogger/execute1",
+    "line": 22,
+    "function": "onFrameEnd",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0021731000000000003,
+    "cumulative_seconds": 0.005534000000000001
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\queue.py",
+    "line": 154,
+    "function": "get",
+    "primitive_calls": 516,
+    "calls": 516,
+    "self_seconds": 0.0028280000000000002,
+    "cumulative_seconds": 0.005415700000000001
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/preview3d/instance_data_callbacks",
+    "line": 10,
+    "function": "_coordinates",
+    "primitive_calls": 55,
+    "calls": 55,
+    "self_seconds": 0.0018019000000000002,
+    "cumulative_seconds": 0.0052115
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\json\\decoder.py",
+    "line": 343,
+    "function": "raw_decode",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.005037300000000001,
+    "cumulative_seconds": 0.005037300000000001
+  },
+  {
+    "file": "/project1/show_control/callbacks",
+    "line": 52,
+    "function": "runtime",
+    "primitive_calls": 344,
+    "calls": 344,
+    "self_seconds": 0.004811,
+    "cumulative_seconds": 0.0049709
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 44,
+    "function": "<genexpr>",
+    "primitive_calls": 3906,
+    "calls": 3906,
+    "self_seconds": 0.0016173000000000001,
+    "cumulative_seconds": 0.0049362
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\show_sequencer.py",
+    "line": 435,
+    "function": "plan",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0029411000000000003,
+    "cumulative_seconds": 0.004883
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\dataclasses.py",
+    "line": 1455,
+    "function": "replace",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0026656,
+    "cumulative_seconds": 0.0048306
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 304,
+    "function": "<genexpr>",
+    "primitive_calls": 22,
+    "calls": 22,
+    "self_seconds": 5.0900000000000004e-05,
+    "cumulative_seconds": 0.004734400000000001
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 86,
+    "function": "__post_init__",
+    "primitive_calls": 20,
+    "calls": 20,
+    "self_seconds": 5.14e-05,
+    "cumulative_seconds": 0.0046531
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 31,
+    "function": "_text",
+    "primitive_calls": 4738,
+    "calls": 4738,
+    "self_seconds": 0.0029383,
+    "cumulative_seconds": 0.0040184
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\router_dynamic_ui.py",
+    "line": 59,
+    "function": "_entries",
+    "primitive_calls": 30,
+    "calls": 30,
+    "self_seconds": 0.00030720000000000004,
+    "cumulative_seconds": 0.0039825
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\threading.py",
+    "line": 1192,
+    "function": "is_alive",
+    "primitive_calls": 688,
+    "calls": 688,
+    "self_seconds": 0.0017292000000000002,
+    "cumulative_seconds": 0.0038444000000000004
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.any>",
+    "primitive_calls": 310,
+    "calls": 310,
+    "self_seconds": 0.0009284,
+    "cumulative_seconds": 0.0037817000000000003
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\show_sequencer.py",
+    "line": 107,
+    "function": "<genexpr>",
+    "primitive_calls": 3612,
+    "calls": 3612,
+    "self_seconds": 0.0023164,
+    "cumulative_seconds": 0.0036922
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/preview3d/instance_data_callbacks",
+    "line": 133,
+    "function": "<listcomp>",
+    "primitive_calls": 55,
+    "calls": 55,
+    "self_seconds": 0.0013805,
+    "cumulative_seconds": 0.0036607000000000002
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_workflow_ux.py",
+    "line": 123,
+    "function": "refresh",
+    "primitive_calls": 3,
+    "calls": 3,
+    "self_seconds": 0.0028280000000000002,
+    "cumulative_seconds": 0.003392
+  },
+  {
+    "file": "<string>",
+    "line": 2,
+    "function": "__init__",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 3.26e-05,
+    "cumulative_seconds": 0.0030840000000000004
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 303,
+    "function": "<genexpr>",
+    "primitive_calls": 408,
+    "calls": 408,
+    "self_seconds": 0.0005299,
+    "cumulative_seconds": 0.0030528
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 160,
+    "function": "__post_init__",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 0.00016580000000000002,
+    "cumulative_seconds": 0.0030514
+  },
+  {
+    "file": "/project1/show_control/render_sync",
+    "line": 33,
+    "function": "_sender_badge",
+    "primitive_calls": 30,
+    "calls": 30,
+    "self_seconds": 0.001391,
+    "cumulative_seconds": 0.002926
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.__import__>",
+    "primitive_calls": 216,
+    "calls": 216,
+    "self_seconds": 0.0019184000000000002,
+    "cumulative_seconds": 0.0028237
+  },
+  {
+    "file": "/sys/TDResources/TDSysLogger/execute1",
+    "line": 22,
+    "function": "onFrameEnd",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0011663,
+    "cumulative_seconds": 0.0027685
+  },
+  {
+    "file": "/project1/multi_controller_output/artnet_510_execute",
+    "line": 1,
+    "function": "onFrameStart",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0021917,
+    "cumulative_seconds": 0.0026301000000000002
+  },
+  {
+    "file": "/project1/madmapper_player_controls/player_ui_update",
+    "line": 1,
+    "function": "onFrameStart",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0005143,
+    "cumulative_seconds": 0.0025125
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method td.importDAT>",
+    "primitive_calls": 216,
+    "calls": 216,
+    "self_seconds": 0.002429,
+    "cumulative_seconds": 0.002429
+  },
+  {
+    "file": "/sys/TDResources/threadManager/logger/execute1",
+    "line": 22,
+    "function": "onFrameEnd",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0009936,
+    "cumulative_seconds": 0.0024105000000000003
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\threading.py",
+    "line": 271,
+    "function": "__enter__",
+    "primitive_calls": 688,
+    "calls": 688,
+    "self_seconds": 0.0014705,
+    "cumulative_seconds": 0.0023193000000000003
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/preview3d/instance_data_callbacks",
+    "line": 3,
+    "function": "_resolve",
+    "primitive_calls": 110,
+    "calls": 110,
+    "self_seconds": 0.0021632,
+    "cumulative_seconds": 0.0022508000000000003
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'fetch' of 'td.OP' objects>",
+    "primitive_calls": 498,
+    "calls": 498,
+    "self_seconds": 0.0022458,
+    "cumulative_seconds": 0.0022458
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 57,
+    "function": "__post_init__",
+    "primitive_calls": 406,
+    "calls": 406,
+    "self_seconds": 0.0005948,
+    "cumulative_seconds": 0.0020386000000000002
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\show_sequencer.py",
+    "line": 412,
+    "function": "advance",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0009321,
+    "cumulative_seconds": 0.0020345000000000003
+  },
+  {
+    "file": "/project1/madmapper_player_controls/player_ui_runtime",
+    "line": 4,
+    "function": "update",
+    "primitive_calls": 9,
+    "calls": 9,
+    "self_seconds": 0.0018055,
+    "cumulative_seconds": 0.0019982000000000003
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\threading.py",
+    "line": 1125,
+    "function": "_wait_for_tstate_lock",
+    "primitive_calls": 688,
+    "calls": 688,
+    "self_seconds": 0.0009910000000000001,
+    "cumulative_seconds": 0.0017733
+  },
+  {
+    "file": "/sys/TDResources/threadManager/ThreadManagerExt",
+    "line": 1092,
+    "function": "pollWorkers",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0016777,
+    "cumulative_seconds": 0.0017461000000000002
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\routing_transaction.py",
+    "line": 33,
+    "function": "<genexpr>",
+    "primitive_calls": 1350,
+    "calls": 1350,
+    "self_seconds": 0.0012392,
+    "cumulative_seconds": 0.0016740000000000001
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.isinstance>",
+    "primitive_calls": 9591,
+    "calls": 9591,
+    "self_seconds": 0.0016652000000000001,
+    "cumulative_seconds": 0.0016652000000000001
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.getattr>",
+    "primitive_calls": 4134,
+    "calls": 4134,
+    "self_seconds": 0.0016574,
+    "cumulative_seconds": 0.0016574
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.len>",
+    "primitive_calls": 3783,
+    "calls": 3783,
+    "self_seconds": 0.0015167000000000002,
+    "cumulative_seconds": 0.0015167000000000002
+  },
+  {
+    "file": "/project1/guided_scan/capture_poll",
+    "line": 3,
+    "function": "onFrameStart",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0009428,
+    "cumulative_seconds": 0.0014882
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/output_config/live_summary_runtime",
+    "line": 14,
+    "function": "_rows",
+    "primitive_calls": 21,
+    "calls": 21,
+    "self_seconds": 0.0002331,
+    "cumulative_seconds": 0.0014705
+  },
+  {
+    "file": "/sys/TDResources/threadManager/ThreadManagerExt",
+    "line": 212,
+    "function": "GetStateSafe",
+    "primitive_calls": 688,
+    "calls": 688,
+    "self_seconds": 0.0010680000000000002,
+    "cumulative_seconds": 0.0012526
+  },
+  {
+    "file": "/project1/show_control/render_sync",
+    "line": 13,
+    "function": "_text_if_changed",
+    "primitive_calls": 90,
+    "calls": 90,
+    "self_seconds": 0.0007211,
+    "cumulative_seconds": 0.0012526
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'get' of 'dict' objects>",
+    "primitive_calls": 3311,
+    "calls": 3311,
+    "self_seconds": 0.0012513000000000001,
+    "cumulative_seconds": 0.0012513000000000001
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\threading.py",
+    "line": 274,
+    "function": "__exit__",
+    "primitive_calls": 688,
+    "calls": 688,
+    "self_seconds": 0.0008677,
+    "cumulative_seconds": 0.0012091
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'chans' of 'td.CHOP' objects>",
+    "primitive_calls": 479,
+    "calls": 479,
+    "self_seconds": 0.0011637000000000002,
+    "cumulative_seconds": 0.0011637000000000002
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.all>",
+    "primitive_calls": 110,
+    "calls": 110,
+    "self_seconds": 0.00041000000000000005,
+    "cumulative_seconds": 0.0011614000000000001
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.sorted>",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0011286,
+    "cumulative_seconds": 0.0011286
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\show_sequencer.py",
+    "line": 111,
+    "function": "_number",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0008010000000000001,
+    "cumulative_seconds": 0.0011024000000000001
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'strip' of 'str' objects>",
+    "primitive_calls": 6901,
+    "calls": 6901,
+    "self_seconds": 0.0010738,
+    "cumulative_seconds": 0.0010738
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\routing_transaction.py",
+    "line": 39,
+    "function": "<listcomp>",
+    "primitive_calls": 150,
+    "calls": 150,
+    "self_seconds": 0.0010303,
+    "cumulative_seconds": 0.0010303
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'clear' of 'td.scriptCHOP' objects>",
+    "primitive_calls": 227,
+    "calls": 227,
+    "self_seconds": 0.001015,
+    "cumulative_seconds": 0.001015
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/preview3d/instance_data_callbacks",
+    "line": 15,
+    "function": "<dictcomp>",
+    "primitive_calls": 55,
+    "calls": 55,
+    "self_seconds": 0.0008838,
+    "cumulative_seconds": 0.0010143
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/output_config/live_summary_runtime",
+    "line": 18,
+    "function": "<listcomp>",
+    "primitive_calls": 21,
+    "calls": 21,
+    "self_seconds": 0.0001639,
+    "cumulative_seconds": 0.0009483
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'match' of 're.Pattern' objects>",
+    "primitive_calls": 344,
+    "calls": 344,
+    "self_seconds": 0.0008771,
+    "cumulative_seconds": 0.0008771
+  },
+  {
+    "file": "<frozen importlib._bootstrap>",
+    "line": 1207,
+    "function": "_handle_fromlist",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0006604,
+    "cumulative_seconds": 0.0008724000000000001
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\local_interfaces.py",
+    "line": 56,
+    "function": "take_result",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0007081,
+    "cumulative_seconds": 0.0007918000000000001
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\queue.py",
+    "line": 209,
+    "function": "_qsize",
+    "primitive_calls": 516,
+    "calls": 516,
+    "self_seconds": 0.0005062,
+    "cumulative_seconds": 0.0007845
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/output_config/live_summary_runtime",
+    "line": 19,
+    "function": "<dictcomp>",
+    "primitive_calls": 70,
+    "calls": 70,
+    "self_seconds": 0.0007844000000000001,
+    "cumulative_seconds": 0.0007844000000000001
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'acquire' of '_thread.lock' objects>",
+    "primitive_calls": 688,
+    "calls": 688,
+    "self_seconds": 0.0007823000000000001,
+    "cumulative_seconds": 0.0007823000000000001
+  },
+  {
+    "file": "/project1/show_control/render_sync",
+    "line": 18,
+    "function": "_network_state",
+    "primitive_calls": 30,
+    "calls": 30,
+    "self_seconds": 0.0007729000000000001,
+    "cumulative_seconds": 0.0007729000000000001
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 178,
+    "function": "<setcomp>",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 0.0007703,
+    "cumulative_seconds": 0.0007703
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\pathlib.py",
+    "line": 868,
+    "function": "__new__",
+    "primitive_calls": 20,
+    "calls": 20,
+    "self_seconds": 5.17e-05,
+    "cumulative_seconds": 0.0007147000000000001
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 37,
+    "function": "_index",
+    "primitive_calls": 812,
+    "calls": 812,
+    "self_seconds": 0.0004961000000000001,
+    "cumulative_seconds": 0.0007093000000000001
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\material_state.py",
+    "line": 23,
+    "function": "_finite",
+    "primitive_calls": 344,
+    "calls": 344,
+    "self_seconds": 0.000522,
+    "cumulative_seconds": 0.0006728000000000001
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\dataclasses.py",
+    "line": 1253,
+    "function": "_is_dataclass_instance",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.000422,
+    "cumulative_seconds": 0.0006715
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\pathlib.py",
+    "line": 504,
+    "function": "_from_parts",
+    "primitive_calls": 20,
+    "calls": 20,
+    "self_seconds": 6.98e-05,
+    "cumulative_seconds": 0.0006630000000000001
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\routing_transaction.py",
+    "line": 37,
+    "function": "<genexpr>",
+    "primitive_calls": 690,
+    "calls": 690,
+    "self_seconds": 0.0005007000000000001,
+    "cumulative_seconds": 0.0006415
+  },
+  {
+    "file": "/project1/show_control/render_sync",
+    "line": 74,
+    "function": "<listcomp>",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0006409,
+    "cumulative_seconds": 0.0006409
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/preview3d/instance_data_callbacks",
+    "line": 90,
+    "function": "<genexpr>",
+    "primitive_calls": 220,
+    "calls": 220,
+    "self_seconds": 0.0006204,
+    "cumulative_seconds": 0.0006204
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'replace' of 'str' objects>",
+    "primitive_calls": 394,
+    "calls": 394,
+    "self_seconds": 0.0006025000000000001,
+    "cumulative_seconds": 0.0006025000000000001
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\pathlib.py",
+    "line": 484,
+    "function": "_parse_args",
+    "primitive_calls": 20,
+    "calls": 20,
+    "self_seconds": 9.83e-05,
+    "cumulative_seconds": 0.0005791
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\enum.py",
+    "line": 193,
+    "function": "__get__",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0004114,
+    "cumulative_seconds": 0.0005639
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\output_config_summary.py",
+    "line": 33,
+    "function": "_boolean",
+    "primitive_calls": 259,
+    "calls": 259,
+    "self_seconds": 0.00038310000000000004,
+    "cumulative_seconds": 0.0005532
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\material_state.py",
+    "line": 98,
+    "function": "__post_init__",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.00047180000000000003,
+    "cumulative_seconds": 0.0005438
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\guided_scan_live.py",
+    "line": 242,
+    "function": "poll",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.00044750000000000004,
+    "cumulative_seconds": 0.0005429
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method '__exit__' of '_thread.lock' objects>",
+    "primitive_calls": 1548,
+    "calls": 1548,
+    "self_seconds": 0.0005415,
+    "cumulative_seconds": 0.0005415
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\json\\encoder.py",
+    "line": 105,
+    "function": "__init__",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0005289,
+    "cumulative_seconds": 0.0005289
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'join' of 'str' objects>",
+    "primitive_calls": 424,
+    "calls": 424,
+    "self_seconds": 0.00026880000000000003,
+    "cumulative_seconds": 0.0004947
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method '__enter__' of '_thread.lock' objects>",
+    "primitive_calls": 516,
+    "calls": 516,
+    "self_seconds": 0.0004707,
+    "cumulative_seconds": 0.0004707
+  },
+  {
+    "file": "/project1/multi_controller_output/artnet_510_sender_callbacks",
+    "line": 283,
+    "function": "status",
+    "primitive_calls": 76,
+    "calls": 76,
+    "self_seconds": 0.0004622,
+    "cumulative_seconds": 0.0004622
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\pathlib.py",
+    "line": 56,
+    "function": "parse_parts",
+    "primitive_calls": 20,
+    "calls": 20,
+    "self_seconds": 0.00023590000000000001,
+    "cumulative_seconds": 0.0004534
+  },
+  {
+    "file": "/project1/multi_controller_output/artnet_510_sender_callbacks",
+    "line": 238,
+    "function": "tick",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.00043840000000000003,
+    "cumulative_seconds": 0.00043840000000000003
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\output_config_summary.py",
+    "line": 19,
+    "function": "_integer",
+    "primitive_calls": 851,
+    "calls": 851,
+    "self_seconds": 0.00042810000000000005,
+    "cumulative_seconds": 0.00042810000000000005
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method time.monotonic>",
+    "primitive_calls": 525,
+    "calls": 525,
+    "self_seconds": 0.00042050000000000003,
+    "cumulative_seconds": 0.00042050000000000003
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\router_dynamic_ui.py",
+    "line": 41,
+    "function": "<dictcomp>",
+    "primitive_calls": 30,
+    "calls": 30,
+    "self_seconds": 0.000124,
+    "cumulative_seconds": 0.0004148
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\show_sequencer.py",
+    "line": 328,
+    "function": "cue",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0003823,
+    "cumulative_seconds": 0.0003823
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method '__enter__' of '_thread.RLock' objects>",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.00037810000000000003,
+    "cumulative_seconds": 0.00037810000000000003
+  },
+  {
+    "file": "/project1/material_state_runtime",
+    "line": 39,
+    "function": "_now",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.00037450000000000005,
+    "cumulative_seconds": 0.00037450000000000005
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\show_sequencer.py",
+    "line": 364,
+    "function": "_next_index",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0003197,
+    "cumulative_seconds": 0.00036750000000000004
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method math.isfinite>",
+    "primitive_calls": 860,
+    "calls": 860,
+    "self_seconds": 0.0003592,
+    "cumulative_seconds": 0.0003592
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\threading.py",
+    "line": 575,
+    "function": "is_set",
+    "primitive_calls": 688,
+    "calls": 688,
+    "self_seconds": 0.0003419,
+    "cumulative_seconds": 0.0003419
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 186,
+    "function": "<genexpr>",
+    "primitive_calls": 22,
+    "calls": 22,
+    "self_seconds": 0.00030240000000000003,
+    "cumulative_seconds": 0.00030910000000000003
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\output_config_summary.py",
+    "line": 161,
+    "function": "display_rows",
+    "primitive_calls": 7,
+    "calls": 7,
+    "self_seconds": 0.00021400000000000002,
+    "cumulative_seconds": 0.0002919
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\routing_transaction.py",
+    "line": 22,
+    "function": "strict_flag",
+    "primitive_calls": 90,
+    "calls": 90,
+    "self_seconds": 0.00024700000000000004,
+    "cumulative_seconds": 0.0002908
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/output_config/live_summary_runtime",
+    "line": 17,
+    "function": "<listcomp>",
+    "primitive_calls": 21,
+    "calls": 21,
+    "self_seconds": 0.00028910000000000003,
+    "cumulative_seconds": 0.00028910000000000003
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'format' of 'str' objects>",
+    "primitive_calls": 55,
+    "calls": 55,
+    "self_seconds": 0.0002483,
+    "cumulative_seconds": 0.0002483
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\material_state.py",
+    "line": 146,
+    "function": "state",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0002291,
+    "cumulative_seconds": 0.0002291
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\output_config_summary.py",
+    "line": 26,
+    "function": "_floating",
+    "primitive_calls": 111,
+    "calls": 111,
+    "self_seconds": 0.00022160000000000002,
+    "cumulative_seconds": 0.00022160000000000002
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'upper' of 'str' objects>",
+    "primitive_calls": 218,
+    "calls": 218,
+    "self_seconds": 0.00021590000000000002,
+    "cumulative_seconds": 0.00021590000000000002
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'startswith' of 'str' objects>",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.00021470000000000001,
+    "cumulative_seconds": 0.00021470000000000001
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 167,
+    "function": "<genexpr>",
+    "primitive_calls": 408,
+    "calls": 408,
+    "self_seconds": 0.0001444,
+    "cumulative_seconds": 0.0001873
+  },
+  {
+    "file": "C:\\Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/touchdesigner-mcp-td\\modules\\utils\\logging.py",
+    "line": 33,
+    "function": "log_message",
+    "primitive_calls": 1,
+    "calls": 1,
+    "self_seconds": 1.56e-05,
+    "cumulative_seconds": 0.00018390000000000002
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_workflow_ux.py",
+    "line": 189,
+    "function": "<listcomp>",
+    "primitive_calls": 9,
+    "calls": 9,
+    "self_seconds": 0.00018260000000000002,
+    "cumulative_seconds": 0.00018260000000000002
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\pathlib.py",
+    "line": 546,
+    "function": "__fspath__",
+    "primitive_calls": 20,
+    "calls": 20,
+    "self_seconds": 2.79e-05,
+    "cumulative_seconds": 0.0001797
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'items' of 'dict' objects>",
+    "primitive_calls": 346,
+    "calls": 346,
+    "self_seconds": 0.0001729,
+    "cumulative_seconds": 0.0001729
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method '__exit__' of '_thread.RLock' objects>",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0001709,
+    "cumulative_seconds": 0.0001709
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\enum.py",
+    "line": 1257,
+    "function": "value",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.00015250000000000002,
+    "cumulative_seconds": 0.00015250000000000002
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\pathlib.py",
+    "line": 536,
+    "function": "__str__",
+    "primitive_calls": 20,
+    "calls": 20,
+    "self_seconds": 0.0001015,
+    "cumulative_seconds": 0.0001518
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_workflow_ux.py",
+    "line": 190,
+    "function": "<genexpr>",
+    "primitive_calls": 36,
+    "calls": 36,
+    "self_seconds": 0.0001438,
+    "cumulative_seconds": 0.000151
+  },
+  {
+    "file": "/sys/TDResources/threadManager/ThreadManagerExt",
+    "line": 1113,
+    "function": "<listcomp>",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.0001494,
+    "cumulative_seconds": 0.0001494
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\output_config_summary.py",
+    "line": 100,
+    "function": "<genexpr>",
+    "primitive_calls": 148,
+    "calls": 148,
+    "self_seconds": 0.0001487,
+    "cumulative_seconds": 0.0001487
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'values' of 'dict' objects>",
+    "primitive_calls": 172,
+    "calls": 172,
+    "self_seconds": 0.00014810000000000002,
+    "cumulative_seconds": 0.00014810000000000002
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\guided_scan_live.py",
+    "line": 29,
+    "function": "_field",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 0.000146,
+    "cumulative_seconds": 0.00014670000000000002
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.repr>",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 0.0001381,
+    "cumulative_seconds": 0.0001381
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\output_config_summary.py",
+    "line": 101,
+    "function": "<genexpr>",
+    "primitive_calls": 222,
+    "calls": 222,
+    "self_seconds": 0.00013340000000000002,
+    "cumulative_seconds": 0.00013340000000000002
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/output_config/live_summary_runtime",
+    "line": 23,
+    "function": "_sender_status",
+    "primitive_calls": 7,
+    "calls": 7,
+    "self_seconds": 9.340000000000001e-05,
+    "cumulative_seconds": 0.0001329
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_workflow_ux.py",
+    "line": 34,
+    "function": "guidance",
+    "primitive_calls": 3,
+    "calls": 3,
+    "self_seconds": 1.81e-05,
+    "cumulative_seconds": 0.000131
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/preview3d/instance_data_callbacks",
+    "line": 16,
+    "function": "<genexpr>",
+    "primitive_calls": 220,
+    "calls": 220,
+    "self_seconds": 0.000131,
+    "cumulative_seconds": 0.000131
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\output_config_summary.py",
+    "line": 62,
+    "function": "universe_label",
+    "primitive_calls": 51,
+    "calls": 51,
+    "self_seconds": 0.0001237,
+    "cumulative_seconds": 0.0001237
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'casefold' of 'str' objects>",
+    "primitive_calls": 363,
+    "calls": 363,
+    "self_seconds": 0.00012220000000000002,
+    "cumulative_seconds": 0.00012220000000000002
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'lower' of 'str' objects>",
+    "primitive_calls": 337,
+    "calls": 337,
+    "self_seconds": 0.0001161,
+    "cumulative_seconds": 0.0001161
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'end' of 're.Match' objects>",
+    "primitive_calls": 344,
+    "calls": 344,
+    "self_seconds": 0.0001123,
+    "cumulative_seconds": 0.0001123
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'append' of 'list' objects>",
+    "primitive_calls": 490,
+    "calls": 490,
+    "self_seconds": 0.0001123,
+    "cumulative_seconds": 0.0001123
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_workflow_ux.py",
+    "line": 21,
+    "function": "view_paths",
+    "primitive_calls": 3,
+    "calls": 3,
+    "self_seconds": 6.42e-05,
+    "cumulative_seconds": 0.00010970000000000001
+  },
+  {
+    "file": "C:\\Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/touchdesigner-mcp-td\\modules\\utils\\logging.py",
+    "line": 14,
+    "function": "_safe_write",
+    "primitive_calls": 1,
+    "calls": 1,
+    "self_seconds": 2.8100000000000002e-05,
+    "cumulative_seconds": 8.850000000000001e-05
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 172,
+    "function": "<setcomp>",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 8.630000000000001e-05,
+    "cumulative_seconds": 8.630000000000001e-05
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\pathlib.py",
+    "line": 147,
+    "function": "splitroot",
+    "primitive_calls": 20,
+    "calls": 20,
+    "self_seconds": 7.52e-05,
+    "cumulative_seconds": 8.580000000000001e-05
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 169,
+    "function": "<genexpr>",
+    "primitive_calls": 408,
+    "calls": 408,
+    "self_seconds": 8.25e-05,
+    "cumulative_seconds": 8.25e-05
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\router_dynamic_ui.py",
+    "line": 172,
+    "function": "<genexpr>",
+    "primitive_calls": 60,
+    "calls": 60,
+    "self_seconds": 7.49e-05,
+    "cumulative_seconds": 7.49e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'strftime' of 'datetime.date' objects>",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 4.07e-05,
+    "cumulative_seconds": 7.280000000000001e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method math.ceil>",
+    "primitive_calls": 111,
+    "calls": 111,
+    "self_seconds": 7.27e-05,
+    "cumulative_seconds": 7.27e-05
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\router_dynamic_ui.py",
+    "line": 166,
+    "function": "<genexpr>",
+    "primitive_calls": 60,
+    "calls": 60,
+    "self_seconds": 7.110000000000001e-05,
+    "cumulative_seconds": 7.110000000000001e-05
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_coverage.py",
+    "line": 65,
+    "function": "<listcomp>",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 6.76e-05,
+    "cumulative_seconds": 6.76e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.next>",
+    "primitive_calls": 30,
+    "calls": 30,
+    "self_seconds": 2.93e-05,
+    "cumulative_seconds": 6.64e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method sys.intern>",
+    "primitive_calls": 160,
+    "calls": 160,
+    "self_seconds": 6.49e-05,
+    "cumulative_seconds": 6.49e-05
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\pathlib.py",
+    "line": 523,
+    "function": "_format_parsed_parts",
+    "primitive_calls": 20,
+    "calls": 20,
+    "self_seconds": 3.48e-05,
+    "cumulative_seconds": 5.03e-05
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\router_dynamic_ui.py",
+    "line": 171,
+    "function": "<listcomp>",
+    "primitive_calls": 30,
+    "calls": 30,
+    "self_seconds": 4.9800000000000004e-05,
+    "cumulative_seconds": 4.9800000000000004e-05
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\output_config_summary.py",
+    "line": 81,
+    "function": "state",
+    "primitive_calls": 37,
+    "calls": 37,
+    "self_seconds": 4.55e-05,
+    "cumulative_seconds": 4.55e-05
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 170,
+    "function": "<setcomp>",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 4.11e-05,
+    "cumulative_seconds": 4.11e-05
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\tdutils\\outputcatcher.py",
+    "line": 22,
+    "function": "flush",
+    "primitive_calls": 1,
+    "calls": 1,
+    "self_seconds": 3.7e-06,
+    "cumulative_seconds": 3.8900000000000004e-05
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\output_config_summary.py",
+    "line": 103,
+    "function": "<setcomp>",
+    "primitive_calls": 37,
+    "calls": 37,
+    "self_seconds": 3.85e-05,
+    "cumulative_seconds": 3.85e-05
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\router_dynamic_ui.py",
+    "line": 159,
+    "function": "<listcomp>",
+    "primitive_calls": 30,
+    "calls": 30,
+    "self_seconds": 3.8100000000000005e-05,
+    "cumulative_seconds": 3.8100000000000005e-05
+  },
+  {
+    "file": "C:\\Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/touchdesigner-mcp-td\\modules\\utils\\serialization.py",
+    "line": 9,
+    "function": "safe_serialize",
+    "primitive_calls": 1,
+    "calls": 7,
+    "self_seconds": 2.4e-05,
+    "cumulative_seconds": 3.74e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'flush' of '_io.TextIOWrapper' objects>",
+    "primitive_calls": 1,
+    "calls": 1,
+    "self_seconds": 3.52e-05,
+    "cumulative_seconds": 3.52e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'split' of 'str' objects>",
+    "primitive_calls": 25,
+    "calls": 25,
+    "self_seconds": 3.41e-05,
+    "cumulative_seconds": 3.41e-05
+  },
+  {
+    "file": "<frozen importlib._bootstrap>",
+    "line": 405,
+    "function": "parent",
+    "primitive_calls": 4,
+    "calls": 4,
+    "self_seconds": 2.79e-05,
+    "cumulative_seconds": 3.29e-05
+  },
+  {
+    "file": "/project1/pixelblaze_mapper/output_config/live_summary_runtime",
+    "line": 51,
+    "function": "<listcomp>",
+    "primitive_calls": 7,
+    "calls": 7,
+    "self_seconds": 3.2200000000000003e-05,
+    "cumulative_seconds": 3.2200000000000003e-05
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 189,
+    "function": "<genexpr>",
+    "primitive_calls": 4,
+    "calls": 4,
+    "self_seconds": 1e-05,
+    "cumulative_seconds": 3.1100000000000004e-05
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\output_config_summary.py",
+    "line": 54,
+    "function": "state",
+    "primitive_calls": 51,
+    "calls": 51,
+    "self_seconds": 2.85e-05,
+    "cumulative_seconds": 2.85e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'index' of 'list' objects>",
+    "primitive_calls": 30,
+    "calls": 30,
+    "self_seconds": 2.65e-05,
+    "cumulative_seconds": 2.65e-05
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_coverage.py",
+    "line": 66,
+    "function": "<listcomp>",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 1.5300000000000003e-05,
+    "cumulative_seconds": 2.3e-05
+  },
+  {
+    "file": "<string>",
+    "line": 1,
+    "function": "<module>",
+    "primitive_calls": 1,
+    "calls": 1,
+    "self_seconds": 8.7e-06,
+    "cumulative_seconds": 2.29e-05
+  },
+  {
+    "file": "C:\\Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/touchdesigner-mcp-td\\modules\\utils\\serialization.py",
+    "line": 31,
+    "function": "<dictcomp>",
+    "primitive_calls": 1,
+    "calls": 2,
+    "self_seconds": 8.400000000000001e-06,
+    "cumulative_seconds": 2.1300000000000003e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.sum>",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 8.400000000000001e-06,
+    "cumulative_seconds": 2.11e-05
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\enum.py",
+    "line": 688,
+    "function": "__call__",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 1.5e-05,
+    "cumulative_seconds": 2e-05
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\tdutils\\outputcatcher.py",
+    "line": 15,
+    "function": "write",
+    "primitive_calls": 1,
+    "calls": 1,
+    "self_seconds": 8.6e-06,
+    "cumulative_seconds": 1.9600000000000002e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method __new__ of type object at 0x00007FFA9FB14FA0>",
+    "primitive_calls": 20,
+    "calls": 20,
+    "self_seconds": 1.41e-05,
+    "cumulative_seconds": 1.41e-05
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\contextlib.py",
+    "line": 403,
+    "function": "__exit__",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 1e-05,
+    "cumulative_seconds": 1.3100000000000002e-05
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 190,
+    "function": "<genexpr>",
+    "primitive_calls": 22,
+    "calls": 22,
+    "self_seconds": 1.27e-05,
+    "cumulative_seconds": 1.27e-05
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 182,
+    "function": "<genexpr>",
+    "primitive_calls": 22,
+    "calls": 22,
+    "self_seconds": 9.100000000000001e-06,
+    "cumulative_seconds": 1.1400000000000001e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'lstrip' of 'str' objects>",
+    "primitive_calls": 20,
+    "calls": 20,
+    "self_seconds": 1.06e-05,
+    "cumulative_seconds": 1.06e-05
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'update' of 'dict' objects>",
+    "primitive_calls": 3,
+    "calls": 3,
+    "self_seconds": 8.8e-06,
+    "cumulative_seconds": 8.8e-06
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method nt.fspath>",
+    "primitive_calls": 20,
+    "calls": 20,
+    "self_seconds": 8.200000000000001e-06,
+    "cumulative_seconds": 8.200000000000001e-06
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 213,
+    "function": "capture_ids",
+    "primitive_calls": 24,
+    "calls": 24,
+    "self_seconds": 8.1e-06,
+    "cumulative_seconds": 8.1e-06
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method now>",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 7.000000000000001e-06,
+    "cumulative_seconds": 7.000000000000001e-06
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'reverse' of 'list' objects>",
+    "primitive_calls": 20,
+    "calls": 20,
+    "self_seconds": 6.300000000000001e-06,
+    "cumulative_seconds": 6.300000000000001e-06
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method td.stdout>",
+    "primitive_calls": 1,
+    "calls": 1,
+    "self_seconds": 5.9e-06,
+    "cumulative_seconds": 5.9e-06
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 184,
+    "function": "<setcomp>",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 5.7000000000000005e-06,
+    "cumulative_seconds": 5.7000000000000005e-06
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'add' of 'set' objects>",
+    "primitive_calls": 30,
+    "calls": 30,
+    "self_seconds": 5.600000000000001e-06,
+    "cumulative_seconds": 5.600000000000001e-06
+  },
+  {
+    "file": "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\enum.py",
+    "line": 1095,
+    "function": "__new__",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 5e-06,
+    "cumulative_seconds": 5e-06
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'rpartition' of 'str' objects>",
+    "primitive_calls": 4,
+    "calls": 4,
+    "self_seconds": 5e-06,
+    "cumulative_seconds": 5e-06
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'write' of '_io.TextIOWrapper' objects>",
+    "primitive_calls": 1,
+    "calls": 1,
+    "self_seconds": 3.8e-06,
+    "cumulative_seconds": 3.8e-06
+  },
+  {
+    "file": "C:\\Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/touchdesigner-mcp-td\\modules\\mcp\\services\\api_service.py",
+    "line": 724,
+    "function": "_process_method_result",
+    "primitive_calls": 1,
+    "calls": 1,
+    "self_seconds": 2.0000000000000003e-06,
+    "cumulative_seconds": 2.8000000000000003e-06
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_offline_job.py",
+    "line": 130,
+    "function": "poll",
+    "primitive_calls": 3,
+    "calls": 3,
+    "self_seconds": 2.5e-06,
+    "cumulative_seconds": 2.5e-06
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'pop' of 'dict' objects>",
+    "primitive_calls": 4,
+    "calls": 4,
+    "self_seconds": 2.4000000000000003e-06,
+    "cumulative_seconds": 2.4000000000000003e-06
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'endswith' of 'str' objects>",
+    "primitive_calls": 1,
+    "calls": 1,
+    "self_seconds": 1.9e-06,
+    "cumulative_seconds": 1.9e-06
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<built-in method builtins.setattr>",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 1.6000000000000001e-06,
+    "cumulative_seconds": 1.6000000000000001e-06
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'getvalue' of '_io.StringIO' objects>",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 1.5e-06,
+    "cumulative_seconds": 1.5e-06
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'pop' of 'list' objects>",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 1.5e-06,
+    "cumulative_seconds": 1.5e-06
+  },
+  {
+    "file": "C:\\Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/touchdesigner-mcp-td\\modules\\utils\\result.py",
+    "line": 11,
+    "function": "success_result",
+    "primitive_calls": 1,
+    "calls": 1,
+    "self_seconds": 1.3e-06,
+    "cumulative_seconds": 1.3e-06
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 201,
+    "function": "<setcomp>",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 7.000000000000001e-07,
+    "cumulative_seconds": 7.000000000000001e-07
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 199,
+    "function": "<genexpr>",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 6.000000000000001e-07,
+    "cumulative_seconds": 6.000000000000001e-07
+  },
+  {
+    "file": "~",
+    "line": 0,
+    "function": "<method 'disable' of '_lsprof.Profiler' objects>",
+    "primitive_calls": 1,
+    "calls": 1,
+    "self_seconds": 6.000000000000001e-07,
+    "cumulative_seconds": 6.000000000000001e-07
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 305,
+    "function": "<genexpr>",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 5.000000000000001e-07,
+    "cumulative_seconds": 5.000000000000001e-07
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 203,
+    "function": "<setcomp>",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 5.000000000000001e-07,
+    "cumulative_seconds": 5.000000000000001e-07
+  },
+  {
+    "file": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\pixelblaze_mapper\\scan_session.py",
+    "line": 205,
+    "function": "<setcomp>",
+    "primitive_calls": 2,
+    "calls": 2,
+    "self_seconds": 4.0000000000000003e-07,
+    "cumulative_seconds": 4.0000000000000003e-07
+  }
+]

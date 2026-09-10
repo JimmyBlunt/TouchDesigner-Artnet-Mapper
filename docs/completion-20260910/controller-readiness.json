@@ -1,0 +1,15 @@
+[
+  {
+    "ip": "10.0.0.244",
+    "error": "<urlopen error timed out>"
+  },
+  {
+    "ip": "10.0.0.249",
+    "http_status": 200,
+    "title_excerpt": "<!doctype html>\n<html lang=\"de\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>ArtNet LED Cont"
+  },
+  {
+    "ip": "10.0.0.251",
+    "error": "<urlopen error timed out>"
+  }
+]

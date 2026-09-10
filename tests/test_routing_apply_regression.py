@@ -16,7 +16,7 @@ def embedded(filename, function):
     tree = ast.parse((ROOT / 'pixelblaze_mapper' / filename).read_text(encoding='utf-8'))
     node = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == function)
     # The extracted factory uses the same project root as the real module.
-    scope = {'PROJECT_ROOT': ROOT}
+    scope = {'PROJECT_ROOT': ROOT, '__file__': str(ROOT / 'pixelblaze_mapper' / filename)}
     exec(compile(ast.Module(body=[node], type_ignores=[]), '<factory>', 'exec'), scope)
     return scope[function]()
 
@@ -69,6 +69,25 @@ class RoutingApplyRegressionTests(unittest.TestCase):
         self.values = dict(ws_ip='10.0.0.245', ws_universe='0', ws_brightness='0.04', ws_enabled='1',
                            apa_ip='10.0.0.251', apa_universe='0', apa_brightness='0.02', apa_enabled='0',
                            cal_panel='all', cal_pattern='panel_id', cal_chase='0')
+        # The router now uses configuration-driven controller cards. Model the
+        # cards' stored drafts, including stale-baseline checks; the retired
+        # ws_/apa_ fields are no longer read by apply_safe().
+        from pixelblaze_mapper.routing_transaction import records
+        baselines = {r['name']: r for r in records(self.tables['controller_config'].rows)}
+        storage = {'router_card_name': None, 'router_card_baselines': baselines}
+        def fetch(key, default=None):
+            if key == 'router_card_drafts':
+                drafts = {}
+                for name, prefix in (('WS2812_NODE', 'ws'), ('APA102_ESP', 'apa')):
+                    base = baselines[name]
+                    drafts[name] = dict(target_ip=self.values[prefix + '_ip'],
+                        start_universe=self.values[prefix + '_universe'],
+                        brightness=self.values[prefix + '_brightness'],
+                        enabled=self.values[prefix + '_enabled'], rate=base['rate'])
+                return drafts
+            return storage.get(key, default)
+        self.router.fetch = fetch
+        self.router.store = storage.__setitem__
         self.scope = {'op': lambda name: self.router if name == '/project1/multi_controller_output' else self.router.op(name), 'parent': lambda: self.router}
         exec(embedded('build_multi_controller_output.py', '_ui_callbacks_source'), self.scope)
         self.messages = []
@@ -108,6 +127,10 @@ class RoutingApplyRegressionTests(unittest.TestCase):
         self.tables['controller_config'][1, 'reserved_universes'] = 24
         self.tables['segment_config'][2, 'destination_start'] = 1020
         self.tables['segment_config'][3, 'destination_start'] = 2040
+        # Reload the card after changing its routing reservation externally.
+        from pixelblaze_mapper.routing_transaction import records
+        self.router.fetch('router_card_baselines').update(
+            {r['name']: r for r in records(self.tables['controller_config'].rows)})
         expected_segments = copy.deepcopy(self.tables['segment_config'].rows)
         calls = []
         def rebuild():

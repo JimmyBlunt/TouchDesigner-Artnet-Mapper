@@ -1,0 +1,10 @@
+{
+  "kind": "offline Python microbenchmark; not native TouchDesigner timing",
+  "pixels": 3744,
+  "iterations_per_repeat": 100,
+  "repeats": 3,
+  "source_sha256": "bb890e8140ee00735d78b16c080eaa46b777bc11910e660d4a1e35626688accf",
+  "scalar_median_seconds_per_call": 0.004216884000052232,
+  "bulk_median_seconds_per_call": 0.0009334020000096643,
+  "speedup": 4.517757622126984
+}

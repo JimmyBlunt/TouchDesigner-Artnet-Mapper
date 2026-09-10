@@ -186,7 +186,7 @@ class StaticTouchDesignerContracts(unittest.TestCase):
         self.assertNotIn("outputConnectors", source)
         self.assertNotIn("send_bytes", source)
         self.assertIn('owner.op("/project1/layout_apply/runtime")', source)
-        self.assertIn('runtime.module.prepare(mode=mode, projection=projection, preserve_routing=True)', source)
+        self.assertIn('runtime.module.prepare(mode=mode, projection=projection, preserve_routing=True, uv_source=uv_source)', source)
         self.assertIn('field(owner, "preserverouting").upper() != "YES"', source)
 
 

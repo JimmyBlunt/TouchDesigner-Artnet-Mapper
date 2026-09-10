@@ -1,0 +1,21 @@
+{
+  "before_sha256": "bb890e8140ee00735d78b16c080eaa46b777bc11910e660d4a1e35626688accf",
+  "after_sha256": "309bb9efa2990e7d9fc1f2151bbf66e1ff02126fa7d4c83e4ac1ca2243a958b0",
+  "errors": "",
+  "offline": {
+    "state": "review_required",
+    "running": false,
+    "output": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\Scans\\back_test_249_20260909_001708\\result-ffcb4375-f65b-4988-b8e2-47ee03da9ea4",
+    "session_id": "ffcb4375-f65b-4988-b8e2-47ee03da9ea4",
+    "review_required": true,
+    "log": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\Scans\\back_test_249_20260909_001708\\offline-job-f57e7833-3b8b-4391-9691-a724943af77f.log",
+    "elapsed_seconds": 4.8,
+    "exit_code": 0,
+    "candidate": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\Scans\\back_test_249_20260909_001708\\result-ffcb4375-f65b-4988-b8e2-47ee03da9ea4\\candidate_3d.csv",
+    "reconstructed": 203,
+    "missing_ids": [],
+    "coordinate_units": "arbitrary_sfm",
+    "registration": false,
+    "layout_applied": false
+  }
+}

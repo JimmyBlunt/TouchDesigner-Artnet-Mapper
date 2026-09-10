@@ -132,6 +132,9 @@ def poll(op):
         return
     owner = op('/project1/guided_scan')
     status = _job.poll()
+    previous = owner.fetch('offline_status', {}) or {}
+    if previous == status:
+        return
     owner.store('offline_status', status)
     node = owner.op('offline_result')
     if node is not None:
@@ -141,3 +144,11 @@ def poll(op):
         label.par.text = '3D: %s | %ss | %s' % (status['state'], status.get('elapsed_seconds', 0),
             ('%s LEDs; raw SfM, align/review in Layout before apply' % status['reconstructed'])
             if 'reconstructed' in status else status.get('error', 'no camera / no LED output / no automatic merge'))
+    if (previous.get('output'), previous.get('state')) != (status.get('output'), status['state']):
+        message = ('3D RESULT READY | %s reconstructed LEDs; review alignment before adding to the draft.' % status['reconstructed']
+                   if status['state'] == 'review_required' else
+                   '3D JOB: %s%s' % (status['state'], ' | ' + status['error'] if status.get('error') else ''))
+        owner.store('message', message)
+        action = owner.op('ui_panel/status')
+        if action is not None:
+            action.par.text = message

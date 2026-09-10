@@ -1,0 +1,40 @@
+{
+  "pack": "CHANNELS_PER_UNIVERSE = 510\nPIXELS_PER_UNIVERSE = 170\nUNIVERSE_COUNT = 10\n\ndef _config(key, default):\n    table = op('/project1/esp_artnet_live_config')\n    for row in range(1, table.numRows):\n        if table[row, 0].val == key:\n            return table[row, 1].val\n    return default\n\ndef _clamp01(value):\n    return max(0.0, min(1.0, float(value)))\n\ndef onSetupParameters(scriptOp):\n    return\n\ndef onPulse(par):\n    return\n\ndef onCook(scriptOp):\n    source = scriptOp.inputs[0] if scriptOp.inputs else None\n    enabled = _config('enabled', '1') == '1'\n    master = max(0.0, min(1.0, float(_config('master_brightness', '0.02'))))\n    source_offset = max(0, int(_config('source_offset', '0')))\n    pixel_count = max(0, min(1679, int(_config('pixel_count', '1679'))))\n    order = _config('color_order', 'RGB').upper()\n    if sorted(order) != ['B', 'G', 'R']:\n        order = 'RGB'\n\n    scriptOp.clear()\n    scriptOp.numSamples = CHANNELS_PER_UNIVERSE\n    outputs = [scriptOp.appendChan('Universe%d' % u) for u in range(UNIVERSE_COUNT)]\n\n    if not enabled or source is None:\n        return\n\n    sources = {'R': source['r'], 'G': source['g'], 'B': source['b']}\n    for pixel in range(pixel_count):\n        source_index = source_offset + pixel\n        if source_index >= source.numSamples:\n            break\n        universe = pixel // PIXELS_PER_UNIVERSE\n        local_pixel = pixel % PIXELS_PER_UNIVERSE\n        channel_index = local_pixel * 3\n        output = outputs[universe]\n        for component, key in enumerate(order):\n            output[channel_index + component] = round(_clamp01(sources[key][source_index]) * 255.0 * master)\n\n    # Unwritten channels are zero. In Universe 9, channels 447..509\n    # therefore remain black after pixel 1678.\n    return\n",
+  "dmx": [
+    {
+      "path": "/project1/dmxout1",
+      "inputs": [
+        "/project1/merge1"
+      ]
+    },
+    {
+      "path": "/project1/esp_artnet_out",
+      "inputs": [
+        "/project1/esp_artnet_live_pack"
+      ]
+    },
+    {
+      "path": "/project1/multi_controller_output/dmxout_apa102_esp",
+      "inputs": [
+        "/project1/multi_controller_output/dmxout_apa102_esp_demand_gate"
+      ]
+    },
+    {
+      "path": "/project1/multi_controller_output/dmxout_ws2812_node",
+      "inputs": [
+        "/project1/multi_controller_output/dmxout_ws2812_node_demand_gate"
+      ]
+    },
+    {
+      "path": "/project1/multi_controller_output/dmxout_back_panel_249",
+      "inputs": [
+        "/project1/multi_controller_output/dmxout_back_panel_249_demand_gate"
+      ]
+    }
+  ],
+  "gates": [
+    "/project1/multi_controller_output/dmxout_apa102_esp_demand_gate",
+    "/project1/multi_controller_output/dmxout_ws2812_node_demand_gate",
+    "/project1/multi_controller_output/dmxout_back_panel_249_demand_gate"
+  ]
+}

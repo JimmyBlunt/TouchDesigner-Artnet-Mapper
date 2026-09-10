@@ -1,0 +1,9 @@
+{
+  "state": "cancelled",
+  "blackout_sent": true,
+  "blackout_confirmed": false,
+  "optical_blackout_confirmed": false,
+  "error": "Scan stopped",
+  "blackout_errors": [],
+  "supervisor_cleanup_errors": []
+}

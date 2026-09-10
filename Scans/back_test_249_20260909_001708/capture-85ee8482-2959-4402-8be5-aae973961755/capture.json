@@ -1,0 +1,3104 @@
+{
+  "schema": "pixelblaze-single-view-capture",
+  "version": 1,
+  "routing": {
+    "brightness_cap": 0.062,
+    "controller_names": [
+      "BACK_TEST_249"
+    ],
+    "routing": {
+      "controllers": [
+        {
+          "art_sync": false,
+          "brightness": 0.062,
+          "color_order": "RGB",
+          "enabled": true,
+          "local_interface": "10.0.0.125",
+          "name": "BACK_TEST_249",
+          "port": 6454,
+          "rate": 30,
+          "reserved_universes": 2,
+          "start_universe": 120,
+          "target_address": "10.0.0.249"
+        }
+      ],
+      "segments": [
+        {
+          "color_override": null,
+          "controller": "BACK_TEST_249",
+          "count": 203,
+          "destination_start": 0,
+          "name": "capture",
+          "reverse": false,
+          "source_start": 0
+        }
+      ],
+      "source_pixel_count": 203,
+      "warn_unassigned": true
+    },
+    "schema": "pixelblaze-scan-routing",
+    "source_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167,
+      168,
+      169,
+      170,
+      171,
+      172,
+      173,
+      174,
+      175,
+      176,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      187,
+      188,
+      189,
+      190,
+      191,
+      192,
+      193,
+      194,
+      195,
+      196,
+      197,
+      198,
+      199,
+      200,
+      201,
+      202
+    ],
+    "targets": [
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 0,
+        "source_index": 0,
+        "wire_universe": 120,
+        "worker_index": 0
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 3,
+        "source_index": 1,
+        "wire_universe": 120,
+        "worker_index": 1
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 6,
+        "source_index": 2,
+        "wire_universe": 120,
+        "worker_index": 2
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 9,
+        "source_index": 3,
+        "wire_universe": 120,
+        "worker_index": 3
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 12,
+        "source_index": 4,
+        "wire_universe": 120,
+        "worker_index": 4
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 15,
+        "source_index": 5,
+        "wire_universe": 120,
+        "worker_index": 5
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 18,
+        "source_index": 6,
+        "wire_universe": 120,
+        "worker_index": 6
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 21,
+        "source_index": 7,
+        "wire_universe": 120,
+        "worker_index": 7
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 24,
+        "source_index": 8,
+        "wire_universe": 120,
+        "worker_index": 8
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 27,
+        "source_index": 9,
+        "wire_universe": 120,
+        "worker_index": 9
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 30,
+        "source_index": 10,
+        "wire_universe": 120,
+        "worker_index": 10
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 33,
+        "source_index": 11,
+        "wire_universe": 120,
+        "worker_index": 11
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 36,
+        "source_index": 12,
+        "wire_universe": 120,
+        "worker_index": 12
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 39,
+        "source_index": 13,
+        "wire_universe": 120,
+        "worker_index": 13
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 42,
+        "source_index": 14,
+        "wire_universe": 120,
+        "worker_index": 14
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 45,
+        "source_index": 15,
+        "wire_universe": 120,
+        "worker_index": 15
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 48,
+        "source_index": 16,
+        "wire_universe": 120,
+        "worker_index": 16
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 51,
+        "source_index": 17,
+        "wire_universe": 120,
+        "worker_index": 17
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 54,
+        "source_index": 18,
+        "wire_universe": 120,
+        "worker_index": 18
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 57,
+        "source_index": 19,
+        "wire_universe": 120,
+        "worker_index": 19
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 60,
+        "source_index": 20,
+        "wire_universe": 120,
+        "worker_index": 20
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 63,
+        "source_index": 21,
+        "wire_universe": 120,
+        "worker_index": 21
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 66,
+        "source_index": 22,
+        "wire_universe": 120,
+        "worker_index": 22
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 69,
+        "source_index": 23,
+        "wire_universe": 120,
+        "worker_index": 23
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 72,
+        "source_index": 24,
+        "wire_universe": 120,
+        "worker_index": 24
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 75,
+        "source_index": 25,
+        "wire_universe": 120,
+        "worker_index": 25
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 78,
+        "source_index": 26,
+        "wire_universe": 120,
+        "worker_index": 26
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 81,
+        "source_index": 27,
+        "wire_universe": 120,
+        "worker_index": 27
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 84,
+        "source_index": 28,
+        "wire_universe": 120,
+        "worker_index": 28
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 87,
+        "source_index": 29,
+        "wire_universe": 120,
+        "worker_index": 29
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 90,
+        "source_index": 30,
+        "wire_universe": 120,
+        "worker_index": 30
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 93,
+        "source_index": 31,
+        "wire_universe": 120,
+        "worker_index": 31
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 96,
+        "source_index": 32,
+        "wire_universe": 120,
+        "worker_index": 32
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 99,
+        "source_index": 33,
+        "wire_universe": 120,
+        "worker_index": 33
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 102,
+        "source_index": 34,
+        "wire_universe": 120,
+        "worker_index": 34
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 105,
+        "source_index": 35,
+        "wire_universe": 120,
+        "worker_index": 35
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 108,
+        "source_index": 36,
+        "wire_universe": 120,
+        "worker_index": 36
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 111,
+        "source_index": 37,
+        "wire_universe": 120,
+        "worker_index": 37
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 114,
+        "source_index": 38,
+        "wire_universe": 120,
+        "worker_index": 38
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 117,
+        "source_index": 39,
+        "wire_universe": 120,
+        "worker_index": 39
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 120,
+        "source_index": 40,
+        "wire_universe": 120,
+        "worker_index": 40
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 123,
+        "source_index": 41,
+        "wire_universe": 120,
+        "worker_index": 41
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 126,
+        "source_index": 42,
+        "wire_universe": 120,
+        "worker_index": 42
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 129,
+        "source_index": 43,
+        "wire_universe": 120,
+        "worker_index": 43
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 132,
+        "source_index": 44,
+        "wire_universe": 120,
+        "worker_index": 44
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 135,
+        "source_index": 45,
+        "wire_universe": 120,
+        "worker_index": 45
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 138,
+        "source_index": 46,
+        "wire_universe": 120,
+        "worker_index": 46
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 141,
+        "source_index": 47,
+        "wire_universe": 120,
+        "worker_index": 47
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 144,
+        "source_index": 48,
+        "wire_universe": 120,
+        "worker_index": 48
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 147,
+        "source_index": 49,
+        "wire_universe": 120,
+        "worker_index": 49
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 150,
+        "source_index": 50,
+        "wire_universe": 120,
+        "worker_index": 50
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 153,
+        "source_index": 51,
+        "wire_universe": 120,
+        "worker_index": 51
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 156,
+        "source_index": 52,
+        "wire_universe": 120,
+        "worker_index": 52
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 159,
+        "source_index": 53,
+        "wire_universe": 120,
+        "worker_index": 53
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 162,
+        "source_index": 54,
+        "wire_universe": 120,
+        "worker_index": 54
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 165,
+        "source_index": 55,
+        "wire_universe": 120,
+        "worker_index": 55
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 168,
+        "source_index": 56,
+        "wire_universe": 120,
+        "worker_index": 56
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 171,
+        "source_index": 57,
+        "wire_universe": 120,
+        "worker_index": 57
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 174,
+        "source_index": 58,
+        "wire_universe": 120,
+        "worker_index": 58
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 177,
+        "source_index": 59,
+        "wire_universe": 120,
+        "worker_index": 59
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 180,
+        "source_index": 60,
+        "wire_universe": 120,
+        "worker_index": 60
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 183,
+        "source_index": 61,
+        "wire_universe": 120,
+        "worker_index": 61
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 186,
+        "source_index": 62,
+        "wire_universe": 120,
+        "worker_index": 62
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 189,
+        "source_index": 63,
+        "wire_universe": 120,
+        "worker_index": 63
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 192,
+        "source_index": 64,
+        "wire_universe": 120,
+        "worker_index": 64
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 195,
+        "source_index": 65,
+        "wire_universe": 120,
+        "worker_index": 65
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 198,
+        "source_index": 66,
+        "wire_universe": 120,
+        "worker_index": 66
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 201,
+        "source_index": 67,
+        "wire_universe": 120,
+        "worker_index": 67
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 204,
+        "source_index": 68,
+        "wire_universe": 120,
+        "worker_index": 68
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 207,
+        "source_index": 69,
+        "wire_universe": 120,
+        "worker_index": 69
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 210,
+        "source_index": 70,
+        "wire_universe": 120,
+        "worker_index": 70
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 213,
+        "source_index": 71,
+        "wire_universe": 120,
+        "worker_index": 71
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 216,
+        "source_index": 72,
+        "wire_universe": 120,
+        "worker_index": 72
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 219,
+        "source_index": 73,
+        "wire_universe": 120,
+        "worker_index": 73
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 222,
+        "source_index": 74,
+        "wire_universe": 120,
+        "worker_index": 74
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 225,
+        "source_index": 75,
+        "wire_universe": 120,
+        "worker_index": 75
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 228,
+        "source_index": 76,
+        "wire_universe": 120,
+        "worker_index": 76
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 231,
+        "source_index": 77,
+        "wire_universe": 120,
+        "worker_index": 77
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 234,
+        "source_index": 78,
+        "wire_universe": 120,
+        "worker_index": 78
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 237,
+        "source_index": 79,
+        "wire_universe": 120,
+        "worker_index": 79
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 240,
+        "source_index": 80,
+        "wire_universe": 120,
+        "worker_index": 80
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 243,
+        "source_index": 81,
+        "wire_universe": 120,
+        "worker_index": 81
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 246,
+        "source_index": 82,
+        "wire_universe": 120,
+        "worker_index": 82
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 249,
+        "source_index": 83,
+        "wire_universe": 120,
+        "worker_index": 83
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 252,
+        "source_index": 84,
+        "wire_universe": 120,
+        "worker_index": 84
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 255,
+        "source_index": 85,
+        "wire_universe": 120,
+        "worker_index": 85
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 258,
+        "source_index": 86,
+        "wire_universe": 120,
+        "worker_index": 86
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 261,
+        "source_index": 87,
+        "wire_universe": 120,
+        "worker_index": 87
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 264,
+        "source_index": 88,
+        "wire_universe": 120,
+        "worker_index": 88
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 267,
+        "source_index": 89,
+        "wire_universe": 120,
+        "worker_index": 89
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 270,
+        "source_index": 90,
+        "wire_universe": 120,
+        "worker_index": 90
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 273,
+        "source_index": 91,
+        "wire_universe": 120,
+        "worker_index": 91
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 276,
+        "source_index": 92,
+        "wire_universe": 120,
+        "worker_index": 92
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 279,
+        "source_index": 93,
+        "wire_universe": 120,
+        "worker_index": 93
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 282,
+        "source_index": 94,
+        "wire_universe": 120,
+        "worker_index": 94
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 285,
+        "source_index": 95,
+        "wire_universe": 120,
+        "worker_index": 95
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 288,
+        "source_index": 96,
+        "wire_universe": 120,
+        "worker_index": 96
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 291,
+        "source_index": 97,
+        "wire_universe": 120,
+        "worker_index": 97
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 294,
+        "source_index": 98,
+        "wire_universe": 120,
+        "worker_index": 98
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 297,
+        "source_index": 99,
+        "wire_universe": 120,
+        "worker_index": 99
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 300,
+        "source_index": 100,
+        "wire_universe": 120,
+        "worker_index": 100
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 303,
+        "source_index": 101,
+        "wire_universe": 120,
+        "worker_index": 101
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 306,
+        "source_index": 102,
+        "wire_universe": 120,
+        "worker_index": 102
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 309,
+        "source_index": 103,
+        "wire_universe": 120,
+        "worker_index": 103
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 312,
+        "source_index": 104,
+        "wire_universe": 120,
+        "worker_index": 104
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 315,
+        "source_index": 105,
+        "wire_universe": 120,
+        "worker_index": 105
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 318,
+        "source_index": 106,
+        "wire_universe": 120,
+        "worker_index": 106
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 321,
+        "source_index": 107,
+        "wire_universe": 120,
+        "worker_index": 107
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 324,
+        "source_index": 108,
+        "wire_universe": 120,
+        "worker_index": 108
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 327,
+        "source_index": 109,
+        "wire_universe": 120,
+        "worker_index": 109
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 330,
+        "source_index": 110,
+        "wire_universe": 120,
+        "worker_index": 110
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 333,
+        "source_index": 111,
+        "wire_universe": 120,
+        "worker_index": 111
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 336,
+        "source_index": 112,
+        "wire_universe": 120,
+        "worker_index": 112
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 339,
+        "source_index": 113,
+        "wire_universe": 120,
+        "worker_index": 113
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 342,
+        "source_index": 114,
+        "wire_universe": 120,
+        "worker_index": 114
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 345,
+        "source_index": 115,
+        "wire_universe": 120,
+        "worker_index": 115
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 348,
+        "source_index": 116,
+        "wire_universe": 120,
+        "worker_index": 116
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 351,
+        "source_index": 117,
+        "wire_universe": 120,
+        "worker_index": 117
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 354,
+        "source_index": 118,
+        "wire_universe": 120,
+        "worker_index": 118
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 357,
+        "source_index": 119,
+        "wire_universe": 120,
+        "worker_index": 119
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 360,
+        "source_index": 120,
+        "wire_universe": 120,
+        "worker_index": 120
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 363,
+        "source_index": 121,
+        "wire_universe": 120,
+        "worker_index": 121
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 366,
+        "source_index": 122,
+        "wire_universe": 120,
+        "worker_index": 122
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 369,
+        "source_index": 123,
+        "wire_universe": 120,
+        "worker_index": 123
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 372,
+        "source_index": 124,
+        "wire_universe": 120,
+        "worker_index": 124
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 375,
+        "source_index": 125,
+        "wire_universe": 120,
+        "worker_index": 125
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 378,
+        "source_index": 126,
+        "wire_universe": 120,
+        "worker_index": 126
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 381,
+        "source_index": 127,
+        "wire_universe": 120,
+        "worker_index": 127
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 384,
+        "source_index": 128,
+        "wire_universe": 120,
+        "worker_index": 128
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 387,
+        "source_index": 129,
+        "wire_universe": 120,
+        "worker_index": 129
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 390,
+        "source_index": 130,
+        "wire_universe": 120,
+        "worker_index": 130
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 393,
+        "source_index": 131,
+        "wire_universe": 120,
+        "worker_index": 131
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 396,
+        "source_index": 132,
+        "wire_universe": 120,
+        "worker_index": 132
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 399,
+        "source_index": 133,
+        "wire_universe": 120,
+        "worker_index": 133
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 402,
+        "source_index": 134,
+        "wire_universe": 120,
+        "worker_index": 134
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 405,
+        "source_index": 135,
+        "wire_universe": 120,
+        "worker_index": 135
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 408,
+        "source_index": 136,
+        "wire_universe": 120,
+        "worker_index": 136
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 411,
+        "source_index": 137,
+        "wire_universe": 120,
+        "worker_index": 137
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 414,
+        "source_index": 138,
+        "wire_universe": 120,
+        "worker_index": 138
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 417,
+        "source_index": 139,
+        "wire_universe": 120,
+        "worker_index": 139
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 420,
+        "source_index": 140,
+        "wire_universe": 120,
+        "worker_index": 140
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 423,
+        "source_index": 141,
+        "wire_universe": 120,
+        "worker_index": 141
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 426,
+        "source_index": 142,
+        "wire_universe": 120,
+        "worker_index": 142
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 429,
+        "source_index": 143,
+        "wire_universe": 120,
+        "worker_index": 143
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 432,
+        "source_index": 144,
+        "wire_universe": 120,
+        "worker_index": 144
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 435,
+        "source_index": 145,
+        "wire_universe": 120,
+        "worker_index": 145
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 438,
+        "source_index": 146,
+        "wire_universe": 120,
+        "worker_index": 146
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 441,
+        "source_index": 147,
+        "wire_universe": 120,
+        "worker_index": 147
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 444,
+        "source_index": 148,
+        "wire_universe": 120,
+        "worker_index": 148
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 447,
+        "source_index": 149,
+        "wire_universe": 120,
+        "worker_index": 149
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 450,
+        "source_index": 150,
+        "wire_universe": 120,
+        "worker_index": 150
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 453,
+        "source_index": 151,
+        "wire_universe": 120,
+        "worker_index": 151
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 456,
+        "source_index": 152,
+        "wire_universe": 120,
+        "worker_index": 152
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 459,
+        "source_index": 153,
+        "wire_universe": 120,
+        "worker_index": 153
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 462,
+        "source_index": 154,
+        "wire_universe": 120,
+        "worker_index": 154
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 465,
+        "source_index": 155,
+        "wire_universe": 120,
+        "worker_index": 155
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 468,
+        "source_index": 156,
+        "wire_universe": 120,
+        "worker_index": 156
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 471,
+        "source_index": 157,
+        "wire_universe": 120,
+        "worker_index": 157
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 474,
+        "source_index": 158,
+        "wire_universe": 120,
+        "worker_index": 158
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 477,
+        "source_index": 159,
+        "wire_universe": 120,
+        "worker_index": 159
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 480,
+        "source_index": 160,
+        "wire_universe": 120,
+        "worker_index": 160
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 483,
+        "source_index": 161,
+        "wire_universe": 120,
+        "worker_index": 161
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 486,
+        "source_index": 162,
+        "wire_universe": 120,
+        "worker_index": 162
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 489,
+        "source_index": 163,
+        "wire_universe": 120,
+        "worker_index": 163
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 492,
+        "source_index": 164,
+        "wire_universe": 120,
+        "worker_index": 164
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 495,
+        "source_index": 165,
+        "wire_universe": 120,
+        "worker_index": 165
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 498,
+        "source_index": 166,
+        "wire_universe": 120,
+        "worker_index": 166
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 501,
+        "source_index": 167,
+        "wire_universe": 120,
+        "worker_index": 167
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 504,
+        "source_index": 168,
+        "wire_universe": 120,
+        "worker_index": 168
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 0,
+        "slot": 507,
+        "source_index": 169,
+        "wire_universe": 120,
+        "worker_index": 169
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 0,
+        "source_index": 170,
+        "wire_universe": 121,
+        "worker_index": 170
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 3,
+        "source_index": 171,
+        "wire_universe": 121,
+        "worker_index": 171
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 6,
+        "source_index": 172,
+        "wire_universe": 121,
+        "worker_index": 172
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 9,
+        "source_index": 173,
+        "wire_universe": 121,
+        "worker_index": 173
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 12,
+        "source_index": 174,
+        "wire_universe": 121,
+        "worker_index": 174
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 15,
+        "source_index": 175,
+        "wire_universe": 121,
+        "worker_index": 175
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 18,
+        "source_index": 176,
+        "wire_universe": 121,
+        "worker_index": 176
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 21,
+        "source_index": 177,
+        "wire_universe": 121,
+        "worker_index": 177
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 24,
+        "source_index": 178,
+        "wire_universe": 121,
+        "worker_index": 178
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 27,
+        "source_index": 179,
+        "wire_universe": 121,
+        "worker_index": 179
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 30,
+        "source_index": 180,
+        "wire_universe": 121,
+        "worker_index": 180
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 33,
+        "source_index": 181,
+        "wire_universe": 121,
+        "worker_index": 181
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 36,
+        "source_index": 182,
+        "wire_universe": 121,
+        "worker_index": 182
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 39,
+        "source_index": 183,
+        "wire_universe": 121,
+        "worker_index": 183
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 42,
+        "source_index": 184,
+        "wire_universe": 121,
+        "worker_index": 184
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 45,
+        "source_index": 185,
+        "wire_universe": 121,
+        "worker_index": 185
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 48,
+        "source_index": 186,
+        "wire_universe": 121,
+        "worker_index": 186
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 51,
+        "source_index": 187,
+        "wire_universe": 121,
+        "worker_index": 187
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 54,
+        "source_index": 188,
+        "wire_universe": 121,
+        "worker_index": 188
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 57,
+        "source_index": 189,
+        "wire_universe": 121,
+        "worker_index": 189
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 60,
+        "source_index": 190,
+        "wire_universe": 121,
+        "worker_index": 190
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 63,
+        "source_index": 191,
+        "wire_universe": 121,
+        "worker_index": 191
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 66,
+        "source_index": 192,
+        "wire_universe": 121,
+        "worker_index": 192
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 69,
+        "source_index": 193,
+        "wire_universe": 121,
+        "worker_index": 193
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 72,
+        "source_index": 194,
+        "wire_universe": 121,
+        "worker_index": 194
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 75,
+        "source_index": 195,
+        "wire_universe": 121,
+        "worker_index": 195
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 78,
+        "source_index": 196,
+        "wire_universe": 121,
+        "worker_index": 196
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 81,
+        "source_index": 197,
+        "wire_universe": 121,
+        "worker_index": 197
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 84,
+        "source_index": 198,
+        "wire_universe": 121,
+        "worker_index": 198
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 87,
+        "source_index": 199,
+        "wire_universe": 121,
+        "worker_index": 199
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 90,
+        "source_index": 200,
+        "wire_universe": 121,
+        "worker_index": 200
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 93,
+        "source_index": 201,
+        "wire_universe": 121,
+        "worker_index": 201
+      },
+      {
+        "component_indices": [
+          0,
+          1,
+          2
+        ],
+        "controller": "BACK_TEST_249",
+        "frame_index": 1,
+        "slot": 96,
+        "source_index": 202,
+        "wire_universe": 121,
+        "worker_index": 202
+      }
+    ],
+    "version": 1,
+    "fingerprint": "32e25e8584fc9e58bc311bbbd89cbb890144fd3395c23a3aa742a3ec2bf09b74"
+  },
+  "camera": {
+    "device": 0,
+    "exposure": -10,
+    "threshold": 160
+  },
+  "workspace": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\Scans\\back_test_249_20260909_001708",
+  "directory_name": "capture-85ee8482-2959-4402-8be5-aae973961755",
+  "heartbeat_seconds": 5.0,
+  "max_led_seconds": 30.0,
+  "identity": {
+    "0": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:0",
+    "1": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:1",
+    "2": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:2",
+    "3": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:3",
+    "4": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:4",
+    "5": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:5",
+    "6": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:6",
+    "7": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:7",
+    "8": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:8",
+    "9": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:9",
+    "10": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:10",
+    "11": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:11",
+    "12": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:12",
+    "13": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:13",
+    "14": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:14",
+    "15": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:15",
+    "16": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:16",
+    "17": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:17",
+    "18": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:18",
+    "19": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:19",
+    "20": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:20",
+    "21": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:21",
+    "22": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:22",
+    "23": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:23",
+    "24": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:24",
+    "25": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:25",
+    "26": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:26",
+    "27": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:27",
+    "28": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:28",
+    "29": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:29",
+    "30": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:30",
+    "31": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:31",
+    "32": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:32",
+    "33": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:33",
+    "34": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:34",
+    "35": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:35",
+    "36": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:36",
+    "37": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:37",
+    "38": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:38",
+    "39": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:39",
+    "40": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:40",
+    "41": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:41",
+    "42": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:42",
+    "43": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:43",
+    "44": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:44",
+    "45": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:45",
+    "46": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:46",
+    "47": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:47",
+    "48": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:48",
+    "49": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:49",
+    "50": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:50",
+    "51": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:51",
+    "52": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:52",
+    "53": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:53",
+    "54": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:54",
+    "55": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:55",
+    "56": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:56",
+    "57": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:57",
+    "58": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:58",
+    "59": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:59",
+    "60": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:60",
+    "61": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:61",
+    "62": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:62",
+    "63": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:63",
+    "64": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:64",
+    "65": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:65",
+    "66": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:66",
+    "67": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:67",
+    "68": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:68",
+    "69": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:69",
+    "70": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:70",
+    "71": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:71",
+    "72": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:72",
+    "73": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:73",
+    "74": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:74",
+    "75": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:75",
+    "76": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:76",
+    "77": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:77",
+    "78": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:78",
+    "79": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:79",
+    "80": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:80",
+    "81": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:81",
+    "82": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:82",
+    "83": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:83",
+    "84": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:84",
+    "85": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:85",
+    "86": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:86",
+    "87": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:87",
+    "88": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:88",
+    "89": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:89",
+    "90": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:90",
+    "91": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:91",
+    "92": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:92",
+    "93": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:93",
+    "94": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:94",
+    "95": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:95",
+    "96": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:96",
+    "97": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:97",
+    "98": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:98",
+    "99": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:99",
+    "100": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:100",
+    "101": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:101",
+    "102": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:102",
+    "103": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:103",
+    "104": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:104",
+    "105": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:105",
+    "106": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:106",
+    "107": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:107",
+    "108": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:108",
+    "109": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:109",
+    "110": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:110",
+    "111": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:111",
+    "112": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:112",
+    "113": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:113",
+    "114": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:114",
+    "115": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:115",
+    "116": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:116",
+    "117": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:117",
+    "118": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:118",
+    "119": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:119",
+    "120": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:120",
+    "121": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:121",
+    "122": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:122",
+    "123": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:123",
+    "124": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:124",
+    "125": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:125",
+    "126": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:126",
+    "127": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:127",
+    "128": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:128",
+    "129": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:129",
+    "130": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:130",
+    "131": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:131",
+    "132": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:132",
+    "133": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:133",
+    "134": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:134",
+    "135": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:135",
+    "136": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:136",
+    "137": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:137",
+    "138": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:138",
+    "139": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:139",
+    "140": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:140",
+    "141": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:141",
+    "142": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:142",
+    "143": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:143",
+    "144": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:144",
+    "145": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:145",
+    "146": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:146",
+    "147": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:147",
+    "148": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:148",
+    "149": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:149",
+    "150": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:150",
+    "151": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:151",
+    "152": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:152",
+    "153": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:153",
+    "154": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:154",
+    "155": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:155",
+    "156": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:156",
+    "157": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:157",
+    "158": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:158",
+    "159": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:159",
+    "160": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:160",
+    "161": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:161",
+    "162": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:162",
+    "163": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:163",
+    "164": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:164",
+    "165": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:165",
+    "166": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:166",
+    "167": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:167",
+    "168": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:168",
+    "169": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:169",
+    "170": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:170",
+    "171": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:171",
+    "172": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:172",
+    "173": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:173",
+    "174": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:174",
+    "175": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:175",
+    "176": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:176",
+    "177": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:177",
+    "178": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:178",
+    "179": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:179",
+    "180": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:180",
+    "181": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:181",
+    "182": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:182",
+    "183": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:183",
+    "184": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:184",
+    "185": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:185",
+    "186": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:186",
+    "187": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:187",
+    "188": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:188",
+    "189": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:189",
+    "190": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:190",
+    "191": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:191",
+    "192": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:192",
+    "193": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:193",
+    "194": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:194",
+    "195": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:195",
+    "196": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:196",
+    "197": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:197",
+    "198": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:198",
+    "199": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:199",
+    "200": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:200",
+    "201": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:201",
+    "202": "capture-caf8b11c-3143-47ec-a44b-57b4e2a2e612:led:202"
+  },
+  "scene_revision": "1df8a570d35dc32302a939b479fe94a28403d488138c7a358c2e9d7a3116404d"
+}

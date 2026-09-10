@@ -1,0 +1,14 @@
+======================================================================
+FAIL: test_calibration_due_subset_does_not_require_live_frames (test_generated_sender_runtime.GeneratedSenderRuntimeTests.test_calibration_due_subset_does_not_require_live_frames)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\jbhtz\OneDrive\Desktop\Pictures\Documents\ChatGPT\LED-Touchdesigner-Controller\PixelblazeMapper\tests\test_generated_sender_runtime.py", line 142, in test_calibration_due_subset_does_not_require_live_frames
+    self.assert_packets(recorder, 600, 300)
+  File "C:\Users\jbhtz\OneDrive\Desktop\Pictures\Documents\ChatGPT\LED-Touchdesigner-Controller\PixelblazeMapper\tests\test_generated_sender_runtime.py", line 101, in assert_packets
+    self.assertEqual(counts, {('10.0.0.244', 0): side_frames, ('10.0.0.244', 1): side_frames,
+AssertionError: Counter() != {('10.0.0.244', 0): 600, ('10.0.0.244', 1[54 chars] 300}
+
+----------------------------------------------------------------------
+Ran 955 tests in 41.925s
+
+FAILED (failures=1, skipped=1)

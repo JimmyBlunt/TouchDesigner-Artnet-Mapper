@@ -264,13 +264,8 @@ def act(command):
                 open_review(op, path=filename)
             return True
         if command == 'discover_views':
-            from pixelblaze_mapper.scan_library import discover_saved_views
-            scope = offline_scope(_state(), _field('source_ids'), _field('anchors'))
-            found = discover_saved_views(_field('workspace'), session=scope)
-            paths = workflow.view_paths(_field('views') + ' | ' + ' | '.join(found['paths']))
-            _set_views(paths)
-            _status(found['message'])
-            return True
+            from pixelblaze_mapper.scan_library_ui import act as library_action
+            return library_action(op, ui, 'open')
         if command == 'offline_start':
             manifest = OWNER.fetch('manifest', None)
             if not manifest:
@@ -565,6 +560,12 @@ def build():
     scan_coverage.refresh(op)
     from pixelblaze_mapper.led_search import install as install_led_search
     install_led_search(globals())
+    from pixelblaze_mapper.scan_library_ui import install as install_library
+    install_library(globals())
+    from pixelblaze_mapper.scan_registration_ui import install as install_registration
+    install_registration(globals())
+    from pixelblaze_mapper.scan_ui_style import install as install_scan_style
+    install_scan_style(owner)
     return owner
 
 

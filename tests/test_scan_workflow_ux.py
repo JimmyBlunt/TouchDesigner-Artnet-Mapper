@@ -145,16 +145,17 @@ class ScanWorkflowUXTests(unittest.TestCase):
         self.assertEqual(selected.views, ())
         self.assertEqual(len(original.views), 2)
 
-    def test_discovery_and_offline_runtime_pass_edited_scope(self):
+    def test_library_opens_without_auto_selection_and_offline_uses_edited_scope(self):
         owner = self.owner()
         owner.store('session', self.session().to_dict())
         owner.op('ui_panel/source_ids/string').text = '1-2'
         owner.op('ui_panel/views/string').text = 'a.csv | b.csv'
-        scope = {'op': lambda path: owner}
+        scope = {'op': lambda path: owner, 'ui': Mock()}
         exec(builder._runtime_source(), scope)
-        with patch('pixelblaze_mapper.scan_library.discover_saved_views', return_value={'paths': [], 'message': 'No new views'}) as discover:
+        with patch('pixelblaze_mapper.scan_library_ui.act', return_value=True) as library_action:
             self.assertTrue(scope['act']('discover_views'))
-            self.assertEqual(discover.call_args.kwargs['session'].selected_ids, ('b', 'c'))
+            library_action.assert_called_once_with(scope['op'], scope['ui'], 'open')
+            self.assertEqual(owner.op('ui_panel/views/string').text, 'a.csv | b.csv')
         scope['attach_existing_views'] = Mock(side_effect=ValueError('Stop after scope validation'))
         with patch.object(scope['live'], '_capture', None), patch.object(scope['offline_job'], '_job', None), \
                 patch.object(scope['live'], 'prepare', side_effect=AssertionError('Hardware routing invoked')):

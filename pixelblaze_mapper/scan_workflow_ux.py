@@ -70,8 +70,10 @@ HELP = (
     'CAPTURE: Preview the camera, close preview, then check the scan plan. Start scan requires confirmation '
     'of the affected controllers. Keep camera and object fixed during capture; move the camera only between views. '
     'Two views are the minimum for 3D; additional overlapping views improve coverage.\n\n'
-    'EXISTING VIEWS: In Build 3D, Find saved views adds only files whose recorded LED identity and scene '
-    'revision match this session. Other CSVs can be selected explicitly; check their provenance.\n\n'
+    'EXISTING VIEWS: Open Scan library, search and select files to preview their measurements. '
+    'Add selected views checks LED identity and scene revision. Resume original restores a saved '
+    'independent acquisition without changing its original IDs. Missing/weak filters create a fresh '
+    'capture scope and retain old files.\n\n'
     'PARTIAL RESCAN: Source indices are zero-based and retain their identity. Use ranges such as 0-49, 78. '
     'Optional verification anchors (Settings) are captured but never replaced.\n\n'
     'RESULTS: Review an existing 3D result without recapturing. Raw reconstruction needs alignment and '
@@ -181,6 +183,9 @@ def refresh(owner):
     node = owner.op('review_panel/btn_review_advanced')
     if node is not None:
         node.par.label = 'HIDE ALIGNMENT SETTINGS' if advanced else 'ALIGNMENT SETTINGS (OPTIONAL)'
+        if hasattr(node, 'op') and node.op('scan_label') is not None:
+            from .scan_library_ui import style_button
+            style_button(node)
     node = owner.op('review_panel/alignment_hint')
     if node is not None:
         node.par.display = not advanced

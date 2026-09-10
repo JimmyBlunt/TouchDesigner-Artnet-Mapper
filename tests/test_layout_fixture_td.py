@@ -315,7 +315,7 @@ class ActiveBoundaryTests(unittest.TestCase):
         self.backend.prepare.assert_not_called()
         self.confirm.return_value = True
         self.action("prepare")
-        self.backend.prepare.assert_called_once_with(mode="3d", projection="YX", preserve_routing=True)
+        self.backend.prepare.assert_called_once_with(mode="3d", projection="YX", preserve_routing=True, uv_source="current")
         self.backend.apply.assert_not_called()
 
     def test_apply_requires_matching_tab_and_separate_confirmation(self):
@@ -341,6 +341,17 @@ class ActiveBoundaryTests(unittest.TestCase):
         self.action("prepare")
         self.assertIn("Output must be OFF", self.owner.op("ui_panel/status").par.text)
         self.backend.apply.assert_not_called()
+
+    def test_changing_material_uv_choice_invalidates_prepare(self):
+        self.owner.nodes["ui_panel/preserverouting/string"].text = "YES"
+        self.action("prepare")
+        self.assertIn("KEEP EXISTING MATERIAL UV", self.confirm.call_args.args[0])
+        self.owner.store("layout_uv_source", "projection")
+        self.action("apply")
+        self.backend.apply.assert_not_called()
+        self.action("prepare")
+        self.assertEqual(self.backend.prepare.call_args.kwargs['uv_source'], 'projection')
+        self.assertIn('projected UV', self.confirm.call_args.args[0])
 
     def test_revert_is_separate_and_keeps_draft(self):
         original = ui.editor(self.owner).current

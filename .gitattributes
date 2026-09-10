@@ -1,0 +1,4 @@
+# Acquisition files are hashed evidence; preserve exact bytes on every platform.
+Scans/**/*.csv -text
+Scans/**/*.json -text
+*.toe -text

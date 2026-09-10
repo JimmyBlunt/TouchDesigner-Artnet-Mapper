@@ -23,6 +23,12 @@ def action(name):
         return ui.messageBox('Layout draft', message, buttons=['Continue', 'Cancel']) == 0
     return adapter.action(owner(), name, ui.chooseFile, confirm)
 def refresh(): return adapter.refresh(owner())
+def set_uv_source(value):
+    if value not in ('current', 'projection'):
+        raise ValueError('Unknown 3D material UV choice')
+    owner().store('layout_uv_source', value)
+    owner().store('ui_prepared_context', None)
+    adapter.status(owner(), '3D geometry: KEEP EXISTING MATERIAL UV' if value == 'current' else '3D geometry + PROJECT MATERIAL UV using the selected Axes. Values must already fit 0..1.')
 def drag(phase, camera=False): return adapter.drag(owner(), phase, camera=camera)
 def key(name, ctrl=False): return adapter.key(owner(), name, ctrl=ctrl)
 def fixture_drag(domain, phase): return fixtures.drag(owner(), domain, phase)
@@ -254,6 +260,16 @@ def build(initial_path=""):
     if fixture_range.op("string") is not None and fixture_range.op("string").text.strip().lower() == "field":
         fixture_range.op("string").text = ""
     _button(owner, panel, "project2d", "PROJECT RANGE TO 2D", 610, 790, 170)
+    for name, label, value, x, width in (
+            ('uv_current', '3D: KEEP EXISTING MATERIAL UV', 'current', 810, 365),
+            ('uv_projection', '3D: PROJECT UV (AXES)', 'projection', 1185, 225)):
+        _button(owner, panel, name, label, x, 790, width)
+        owner.op('click_' + name).text = "def onOffToOn(panelValue):\n    op(%r).module.set_uv_source(%r)\n" % (runtime.path, value)
+        control = panel.op('btn_' + name)
+        selected = "op(%r).fetch('layout_uv_source', 'current') == %r" % (owner.path, value)
+        control.par.colorr.expr = '0.3 if ' + selected + ' else 0.75'
+        control.par.colorg.expr = '0.85'
+        control.par.colorb.expr = '1.0 if ' + selected + ' else 0.95'
     fixture_views = [_fixture_canvas(owner, panel, "output", 20), _fixture_canvas(owner, panel, "uv", 410)]
     _text(panel, "axes", "X = HEIGHT | Y = RIGHT | Z = BACK. RMB drag: orbit VIEW. Wheel: zoom VIEW.\nLMB drag / arrows: CHANGE selected object. Page Up/Down: Z. Ctrl+Z/Y: undo/redo.\nFRAME / RESET VIEW resets camera only. View buttons never move LEDs.",
           20, 180, 760, 56, 11)

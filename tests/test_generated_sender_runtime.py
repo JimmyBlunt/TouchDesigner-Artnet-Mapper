@@ -138,6 +138,10 @@ class GeneratedSenderRuntimeTests(unittest.TestCase):
             'side': (tuple([12] * 510), tuple([13] * 510)),
             'back': (tuple([21] * 510), tuple([22] * 510)),
         }
+        # This fixture seeds an already-reviewed cache without generating a
+        # calibration pattern. Real set_calibration binds the mask signature.
+        from pixelblaze_mapper.output_slot_mask import signature
+        namespace['_calibration_mask_signature'] = signature(namespace['op'], source.numSamples)
         self.run_ticks(namespace, clock)
         self.assert_packets(recorder, 600, 300)
         self.assertEqual(source.cooks, [])

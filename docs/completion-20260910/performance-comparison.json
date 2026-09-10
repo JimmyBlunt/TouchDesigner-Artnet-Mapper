@@ -1,0 +1,44 @@
+{
+  "window_seconds": 8,
+  "before": {
+    "python_self_seconds": 5.7912967,
+    "legacy_esp": {
+      "calls": 172,
+      "seconds": 3.6291203000000003,
+      "ms_per_call": 21.09953662790698
+    },
+    "preview": {
+      "calls": 55,
+      "seconds": 0.9046240000000001,
+      "ms_per_call": 16.447709090909093
+    },
+    "main_frame_callbacks": {
+      "calls": 172,
+      "seconds": 0.130167,
+      "ms_per_call": 0.7567848837209302
+    }
+  },
+  "after": {
+    "python_self_seconds": 2.7572745000000003,
+    "legacy_esp": {
+      "calls": 0,
+      "seconds": 0,
+      "ms_per_call": 0
+    },
+    "preview": {
+      "calls": 114,
+      "seconds": 0.48095410000000005,
+      "ms_per_call": 4.218895614035088
+    },
+    "main_frame_callbacks": {
+      "calls": 446,
+      "seconds": 0.1612238,
+      "ms_per_call": 0.3614883408071749
+    }
+  },
+  "conditions": "outputs OFF; running TD effect + visible scan UI; cProfile overhead, not a hardware send-FPS benchmark",
+  "meta": {
+    "frame": 203478,
+    "errors": ""
+  }
+}
