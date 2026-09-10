@@ -1,0 +1,20 @@
+{
+  "raw_source_points": 1183,
+  "appended_points": 1,
+  "source_missing_points": 21,
+  "rejected_outlier_indices": [
+    710,
+    714,
+    1167
+  ],
+  "estimated_points": 24,
+  "middle_range": "0..516",
+  "upper_range": "517..785",
+  "lower_range": "786..1183",
+  "rear_range": "1184..3743",
+  "output_points": 3744,
+  "source_file": "mappings\\sources\\complete_new_0_1183_raw_2026-08-24.json",
+  "previous_mapping": "mappings\\backups\\mapping_before_complete_new_2026-08-24.json",
+  "output_file": "mappings\\mapping_complete_new_0_1183_full_2026-08-24.json",
+  "network_outputs_enabled": false
+}

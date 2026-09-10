@@ -53,7 +53,7 @@ Der Profiler beeinflusst die Laufzeit; diese Werte sind keine garantierte Netzwe
 
 ## Versionskontrolle und Reproduktion
 
-Arbeitszweig: `codex/scan-completion-performance-20260910`, Ausgangspunkt `3fc90cf`. Die drei Agenten bearbeiteten Bibliothek/UX, Registrierung sowie Sparse Apply/Pfade; anschließend erfolgten unabhängige Ausgabeprüfung und Integration. Kleine zusammenhängende Commits und Dateihashes in `artifact-manifest.json` verbinden Code, Daten und TOE.
+Arbeitszweig: `codex/scan-completion-performance-20260910`, Ausgangspunkt `3fc90cf`. Die drei Agenten bearbeiteten Bibliothek/UX, Registrierung sowie Sparse Apply/Pfade; anschließend erfolgten unabhängige Ausgabeprüfung und Integration. Commits und Dateihashes in `artifact-manifest.json` verbinden Code, Daten und TOE.
 
 Die bereits vorhandenen Änderungen an `.gitignore`, `README.md` und `PixelblazeMapper_WORKING_PHASE2_EFFECTS_CORE.toe` wurden nicht überschrieben oder in diesen Änderungsstand aufgenommen. Der schon unversioniert vorhandene Native-DMX-Gate-Helfer samt Tests wird als geprüfte Abhängigkeit mit aufgenommen; seine ältere Gate-Integration im Router wird erhalten. Die überschaubaren vorhandenen Scan-JSON/CSV-Daten werden zur Nachvollziehbarkeit ebenfalls versioniert; historische Manifeste bleiben bytegleich, ihre ursprünglichen Pfade dienen weiter als Herkunftsbeleg.
 
@@ -70,3 +70,11 @@ Finaler Workspace-Lauf: **995 Tests, 994 bestanden, ein OS-abhängiger Symlink-T
 ## Verbleibend am physischen Aufbau
 
 Kamerasicht, Fokus/Belichtung am tatsächlich leuchtenden Aufbau, geeignete zusätzliche Perspektiven, verifizierte räumliche Referenzen/Montagepositionen sowie ein optischer Gesamtscan und längerer Hardwarelasttest sind noch erforderlich. Der fehlende optische Nachweis wurde nicht als Softwareerfolg ausgegeben. Der neue Teilersatzdialog verweigert beim vorhandenen Rohscan ohne passende Referenzanker zu Recht eine behauptete geprüfte Ausrichtung.
+
+## Git-Export: zusätzlich gefundene Abhängigkeiten
+
+Der erste reine Git-Export von `c52591e` scheiterte an bisher unversionierten Alt-Abhängigkeiten (963 Tests, sieben Fehler und ein fehlgeschlagener Test). Die Scan- und TOE-Dateihashes stimmten bereits vollständig. Der unveränderte Fehlerbeleg bleibt in `git-snapshot-first-tests.txt` und `git-snapshot-first-check.json`.
+
+Gezielt aufgenommen wurden die vollständige Seitenrekonstruktion samt unterem Seitenhelfer, räumlicher Lookup-Builder, vier erforderliche Mapping-/Messdateien sowie passende Tests. Für die Reproduktion wurden außerdem die frühere Mapping-Sicherung, Vorbereitungs-/Exportwerkzeuge und die historische Lookup-Dokumentation aufgenommen. Die dortigen Hardware-Abnahmehinweise beschreiben den älteren Lookup-Meilenstein; die heutige Software- und Hardwareabnahme ist oben getrennt dokumentiert. Der Lookup-Builder bestimmt seinen Datenpfad nun relativ zum Repository. JSON-Belege behalten ihre Originalbytes. `adopted-dependencies.json` dokumentiert Umfang und Hashes.
+
+Die unabhängige Rekonstruktion aus Sicherung und Rohmessung ergibt exakt alle 3.744 kanonischen Koordinaten; 21 fehlende und drei verworfene Messungen ergeben 24 geschätzte Positionen. Übrige unversionierte Altdateien bleiben außerhalb dieses Änderungsstands.

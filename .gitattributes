@@ -2,3 +2,10 @@
 Scans/**/*.csv -text whitespace=cr-at-eol
 Scans/**/*.json -text whitespace=cr-at-eol
 *.toe -text
+
+# Historical mapping evidence adopted for reproducible checkout.
+mappings/mapping_complete_new_0_1183_full_2026-08-24.json -text whitespace=cr-at-eol
+mappings/side_spatial_lookup_complete_new_2026-08-24.json -text whitespace=cr-at-eol
+mappings/complete_new_0_1183_report.json -text whitespace=cr-at-eol
+mappings/sources/complete_new_0_1183_raw_2026-08-24.json -text whitespace=cr-at-eol
+mappings/backups/mapping_before_complete_new_2026-08-24.json -text whitespace=cr-at-eol

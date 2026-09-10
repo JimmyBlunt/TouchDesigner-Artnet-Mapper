@@ -1,0 +1,116 @@
+======================================================================
+ERROR: test_artnet_complete_side_test (unittest.loader._FailedTest.test_artnet_complete_side_test)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_artnet_complete_side_test
+Traceback (most recent call last):
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "C:\Users\jbhtz\AppData\Local\Temp\pixelblaze-completion-check-6caydwcv\tests\test_artnet_complete_side_test.py", line 3, in <module>
+    from pixelblaze_mapper.complete_side_rescan import NEW_TOTAL_POINTS
+ModuleNotFoundError: No module named 'pixelblaze_mapper.complete_side_rescan'
+
+
+======================================================================
+ERROR: test_calibration_due_subset_does_not_require_live_frames (test_generated_sender_runtime.GeneratedSenderRuntimeTests.test_calibration_due_subset_does_not_require_live_frames)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\jbhtz\AppData\Local\Temp\pixelblaze-completion-check-6caydwcv\tests\test_generated_sender_runtime.py", line 135, in test_calibration_due_subset_does_not_require_live_frames
+    namespace, clock, recorder, source = self.harness()
+                                         ^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\AppData\Local\Temp\pixelblaze-completion-check-6caydwcv\tests\test_generated_sender_runtime.py", line 87, in harness
+    exec(compile(install_pacing(install_mask(sender_source())), '<generated-sender>', 'exec'), namespace)
+  File "<generated-sender>", line 15, in <module>
+  File "C:\Users\jbhtz\AppData\Local\Temp\pixelblaze-completion-check-6caydwcv\pixelblaze_mapper\spatial_map.py", line 20, in <module>
+    from pixelblaze_mapper.complete_side_rescan import NEW_TOTAL_POINTS, PANEL_SPECS
+ModuleNotFoundError: No module named 'pixelblaze_mapper.complete_side_rescan'
+
+======================================================================
+ERROR: test_fast_callback_skips_without_extra_source_cooks (test_generated_sender_runtime.GeneratedSenderRuntimeTests.test_fast_callback_skips_without_extra_source_cooks)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\jbhtz\AppData\Local\Temp\pixelblaze-completion-check-6caydwcv\tests\test_generated_sender_runtime.py", line 156, in test_fast_callback_skips_without_extra_source_cooks
+    namespace, clock, recorder, source = self.harness()
+                                         ^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\AppData\Local\Temp\pixelblaze-completion-check-6caydwcv\tests\test_generated_sender_runtime.py", line 87, in harness
+    exec(compile(install_pacing(install_mask(sender_source())), '<generated-sender>', 'exec'), namespace)
+  File "<generated-sender>", line 15, in <module>
+  File "C:\Users\jbhtz\AppData\Local\Temp\pixelblaze-completion-check-6caydwcv\pixelblaze_mapper\spatial_map.py", line 20, in <module>
+    from pixelblaze_mapper.complete_side_rescan import NEW_TOTAL_POINTS, PANEL_SPECS
+ModuleNotFoundError: No module named 'pixelblaze_mapper.complete_side_rescan'
+
+======================================================================
+ERROR: test_live_real_packing_and_socket_calls_respect_both_rates (test_generated_sender_runtime.GeneratedSenderRuntimeTests.test_live_real_packing_and_socket_calls_respect_both_rates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\jbhtz\AppData\Local\Temp\pixelblaze-completion-check-6caydwcv\tests\test_generated_sender_runtime.py", line 110, in test_live_real_packing_and_socket_calls_respect_both_rates
+    namespace, clock, recorder, source = self.harness()
+                                         ^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\AppData\Local\Temp\pixelblaze-completion-check-6caydwcv\tests\test_generated_sender_runtime.py", line 87, in harness
+    exec(compile(install_pacing(install_mask(sender_source())), '<generated-sender>', 'exec'), namespace)
+  File "<generated-sender>", line 15, in <module>
+  File "C:\Users\jbhtz\AppData\Local\Temp\pixelblaze-completion-check-6caydwcv\pixelblaze_mapper\spatial_map.py", line 20, in <module>
+    from pixelblaze_mapper.complete_side_rescan import NEW_TOTAL_POINTS, PANEL_SPECS
+ModuleNotFoundError: No module named 'pixelblaze_mapper.complete_side_rescan'
+
+======================================================================
+ERROR: setUpClass (test_pixel_mapper_dialog_regression.PixelMapperDialogRegressionTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\jbhtz\AppData\Local\Temp\pixelblaze-completion-check-6caydwcv\tests\test_pixel_mapper_dialog_regression.py", line 32, in setUpClass
+    cls.coordinates = json.loads(CANONICAL_MAP.read_text(encoding="utf-8"))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\jbhtz\\AppData\\Local\\Temp\\pixelblaze-completion-check-6caydwcv\\mappings\\mapping_complete_new_0_1183_full_2026-08-24.json'
+
+======================================================================
+ERROR: test_router_calibration (unittest.loader._FailedTest.test_router_calibration)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_router_calibration
+Traceback (most recent call last):
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "C:\Users\jbhtz\AppData\Local\Temp\pixelblaze-completion-check-6caydwcv\tests\test_router_calibration.py", line 3, in <module>
+    from pixelblaze_mapper.router_calibration import (
+  File "C:\Users\jbhtz\AppData\Local\Temp\pixelblaze-completion-check-6caydwcv\pixelblaze_mapper\router_calibration.py", line 13, in <module>
+    from pixelblaze_mapper.complete_side_rescan import (
+ModuleNotFoundError: No module named 'pixelblaze_mapper.complete_side_rescan'
+
+
+======================================================================
+ERROR: test_spatial_map (unittest.loader._FailedTest.test_spatial_map)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_spatial_map
+Traceback (most recent call last):
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jbhtz\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "C:\Users\jbhtz\AppData\Local\Temp\pixelblaze-completion-check-6caydwcv\tests\test_spatial_map.py", line 3, in <module>
+    from pixelblaze_mapper.complete_side_rescan import NEW_TOTAL_POINTS
+ModuleNotFoundError: No module named 'pixelblaze_mapper.complete_side_rescan'
+
+
+======================================================================
+FAIL: test_every_implemented_dialog_has_its_builder_in_version_control (test_dialog_contracts.DialogContractTests.test_every_implemented_dialog_has_its_builder_in_version_control)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\jbhtz\AppData\Local\Temp\pixelblaze-completion-check-6caydwcv\tests\test_dialog_contracts.py", line 31, in test_every_implemented_dialog_has_its_builder_in_version_control
+    self.assertFalse(missing, "missing dialog implementations: " + repr(missing))
+AssertionError: ['pixelblaze_mapper/build_spatial_lookup_td.py'] is not false : missing dialog implementations: ['pixelblaze_mapper/build_spatial_lookup_td.py']
+
+----------------------------------------------------------------------
+Ran 963 tests in 28.447s
+
+FAILED (failures=1, errors=7, skipped=1)

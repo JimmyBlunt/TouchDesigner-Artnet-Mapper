@@ -1,0 +1,31 @@
+{
+  "reason": "Pre-existing untracked runtime/test dependencies required by a clean Git checkout. Existing bytes adopted; only the lookup builder root is made repository-relative.",
+  "files": [
+    {
+      "path": "mappings/mapping_complete_new_0_1183_full_2026-08-24.json",
+      "sha256": "bae2dc5529a7b5137a59f07053d6fc057c2b7d2964a6cfb2c4fc1979ae3220ed",
+      "bytes": 232081
+    },
+    {
+      "path": "mappings/side_spatial_lookup_complete_new_2026-08-24.json",
+      "sha256": "3acd9606aa0700c4550ce7a3b77e6cb9743c324e5285af5011aae7791f309e01",
+      "bytes": 468362
+    },
+    {
+      "path": "mappings/complete_new_0_1183_report.json",
+      "sha256": "6d821323821d6df68e0384c051977722a62b222d83839303bf03b67be78dc9dd",
+      "bytes": 621
+    },
+    {
+      "path": "mappings/sources/complete_new_0_1183_raw_2026-08-24.json",
+      "sha256": "5ad5e9c5c2b101aa62e5b0820e7026f7f65420aba5c913eaa8ea8e1c170de7b4",
+      "bytes": 40366
+    },
+    {
+      "path": "mappings/backups/mapping_before_complete_new_2026-08-24.json",
+      "sha256": "e4bc63fe92ecfefbb7b1d11b7341750a219cc07af5dc07453213e3964aae36de",
+      "bytes": 200869
+    }
+  ],
+  "provenance_check": "Agent reconstructed all 3744 canonical coordinates exactly from the historical mapping backup and raw scan; 21 missing plus 3 outliers yield 24 estimated points."
+}
