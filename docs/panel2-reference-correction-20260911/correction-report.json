@@ -1,0 +1,69 @@
+{
+  "operation": "90 degree clockwise rotation followed by top-bottom mirror; screen axes swapped",
+  "center": [
+    0.9,
+    1.0,
+    0.4
+  ],
+  "transform_before": {
+    "translation": [
+      0.9153596599185501,
+      0.8510372040442947,
+      0.448615189638492
+    ],
+    "rotation_degrees": [
+      -93.25301591041439,
+      -66.90145779024802,
+      -48.98130397800255
+    ],
+    "scale": [
+      -0.0596980231171106,
+      0.0596980231171106,
+      0.0596980231171106
+    ],
+    "pivot": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "transform_after": {
+    "translation": [
+      0.851384810361508,
+      0.8510372040442947,
+      0.38464034008145
+    ],
+    "rotation_degrees": [
+      -144.5888613892189,
+      -14.920441608319818,
+      17.838014253399837
+    ],
+    "scale": [
+      0.0596980231171106,
+      0.0596980231171106,
+      0.0596980231171106
+    ],
+    "pivot": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "bounds_after": [
+    [
+      0.8156249999999999,
+      0.9966964814191633,
+      0.317679762734503
+    ],
+    [
+      0.984375,
+      1.0033035185808368,
+      0.4823202372654969
+    ]
+  ],
+  "center_depth_uniform_size_preserved": true,
+  "raw_scans_bindings_routes_preserved": true,
+  "other_objects_unchanged": true,
+  "bindings": 680,
+  "active_applied": false
+}

@@ -1,0 +1,78 @@
+{
+  "reference": "C:\\Users\\jbhtz\\AppData\\Local\\Temp\\codex-clipboard-365733f3-3482-4f38-ac7d-bdb6575d2d70.png",
+  "detected_reference_dots": 681,
+  "candidates": [
+    {
+      "swap": true,
+      "signs": [
+        1,
+        1
+      ],
+      "mean_distance": 0.023359489942893844,
+      "p90": 0.017761609105875226
+    },
+    {
+      "swap": false,
+      "signs": [
+        -1,
+        1
+      ],
+      "mean_distance": 0.04495075031139317,
+      "p90": 0.052869385137203545
+    },
+    {
+      "swap": false,
+      "signs": [
+        1,
+        -1
+      ],
+      "mean_distance": 0.045575396711121104,
+      "p90": 0.055565655352047494
+    },
+    {
+      "swap": false,
+      "signs": [
+        1,
+        1
+      ],
+      "mean_distance": 0.04615932241056296,
+      "p90": 0.0616048034373019
+    },
+    {
+      "swap": true,
+      "signs": [
+        -1,
+        -1
+      ],
+      "mean_distance": 0.04833854816601135,
+      "p90": 0.06007551996996849
+    },
+    {
+      "swap": true,
+      "signs": [
+        1,
+        -1
+      ],
+      "mean_distance": 0.05172102875891478,
+      "p90": 0.06423600622129684
+    },
+    {
+      "swap": true,
+      "signs": [
+        -1,
+        1
+      ],
+      "mean_distance": 0.0528126402771199,
+      "p90": 0.06571402410582164
+    },
+    {
+      "swap": false,
+      "signs": [
+        -1,
+        -1
+      ],
+      "mean_distance": 0.054321053408198205,
+      "p90": 0.0711954729263136
+    }
+  ]
+}
