@@ -56,6 +56,7 @@ worker IDs are deliberately translated to original source IDs by the supervisor.
 """
     camera = None
     cleanup = []
+    metrics = None
     try:
         from .camera_probe_worker import _native_api
         _native_api()  # Verify exact installed revision in child too; opens no camera.
@@ -63,7 +64,9 @@ worker IDs are deliberately translated to original source IDs by the supervisor.
             enable_and_find_led, TimeoutController)
         from marimapper.led import get_distance
         from .marimapper_router_backend import pipe_backend
-        backend = pipe_backend(connection, count, timeout=2.0)
+        from .scan_capture_timing import CaptureTimings, TimedBackend
+        metrics = CaptureTimings()
+        backend = TimedBackend(pipe_backend(connection, count, timeout=2.0), metrics)
         camera = Camera(settings['device'])
 
         class CancellableCamera:
@@ -79,7 +82,7 @@ worker IDs are deliberately translated to original source IDs by the supervisor.
                     raise InterruptedError('Capture cancelled')
                 if time.monotonic() > self.deadline:
                     raise TimeoutError('Native detector exceeded per-LED deadline')
-                return self.source.read()
+                return metrics.read(self.source.read)
 
             def eat(self, count=30):
                 # Delegating source.eat would bypass our cancellable read.
@@ -98,12 +101,14 @@ worker IDs are deliberately translated to original source IDs by the supervisor.
             wrapped.deadline = time.monotonic() + 30.0
             result_queue.put({'state': 'capturing', 'current_index': index,
                               'processed': index, 'detected': len(detections), 'total': count})
+            metrics.begin()
             led = enable_and_find_led(wrapped, backend, index, 0, timing,
                                       settings['threshold'], True)
+            measured = metrics.finish(timeout_seconds=getattr(timing, 'timeout', None))
             if led is not None:
                 detections.append(led)
             result_queue.put({'state': 'capturing', 'processed': index + 1,
-                              'detected': len(detections), 'total': count})
+                              'detected': len(detections), 'total': count, 'timing': measured})
         if not detections:
             raise RuntimeError('No LEDs detected; no view accepted')
         result_queue.put({'state': 'movement_check', 'current_index': None})
@@ -115,7 +120,10 @@ worker IDs are deliberately translated to original source IDs by the supervisor.
         result_queue.put({'state': 'view_ready', 'observations': [
             [led.led_id, float(led.point.u()), float(led.point.v())] for led in detections]})
     except BaseException as error:
-        result_queue.put({'state': 'camera_failed', 'error': str(error) or type(error).__name__})
+        failure = {'state': 'camera_failed', 'error': str(error) or type(error).__name__}
+        if metrics is not None and metrics.active:
+            failure['timing'] = metrics.finish(completed=False)
+        result_queue.put(failure)
     finally:
         if camera is not None:
             for name, action in (('reset', camera.reset), ('release', camera.device.release)):
@@ -239,7 +247,6 @@ def run_capture(manifest):
         child_started = True
         remote.close()
         _emit(dict(outcome, state='camera_starting'))
-        last_send = time.monotonic()
         last_progress = time.monotonic()
         while not finished:
             while not messages.empty():
@@ -264,15 +271,17 @@ def run_capture(manifest):
                     else:
                         raise ValueError('Unsupported native backend request')
                     send(frames)
-                    last_send = now
                     parent.send({'ok': True, 'request_id': req_id})
                 except Exception as error:
                     parent.send({'ok': False, 'request_id': req_id, 'error': str(error)})
                     raise
-            # Continuous 20 Hz stream, not native five bursts at full brightness.
-            if now - last_send >= interval:
+            # Polling and command sends can block. Schedule repeats from actual
+            # transmission completion, never the stale loop-entry timestamp:
+            # an early repeat would wait here and delay the next LED command.
+            now = time.monotonic()
+            if now - last_transmit >= interval:
                 send(frames)
-                last_send = now
+            now = time.monotonic()
             while True:
                 try:
                     result = results.get_nowait()
@@ -284,7 +293,7 @@ def run_capture(manifest):
                 if 'current_index' in result:
                     index = result['current_index']
                     result['current_source_index'] = None if index is None else snapshot.source_index(index)
-                for key in ('processed', 'detected', 'total', 'current_index', 'current_source_index'):
+                for key in ('processed', 'detected', 'total', 'current_index', 'current_source_index', 'timing'):
                     if key in result:
                         outcome[key] = result[key]
                 if state == 'camera_failed':
