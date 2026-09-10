@@ -102,7 +102,7 @@ CAPTURE = {
     'brightness': (20, 246, 100, 32), 'brightness_slider': (135, 246, 1005, 36),
     'brightness_fill': (135, 246, 1, 7), 'brightness_marker': (135, 246, 3, 36),
     'btn_prepare': (20, 183, 400, 36), 'btn_arm': (440, 183, 700, 36),
-    'routing_summary': (20, 112, 1120, 56),
+    'routing_summary': (20, 428, 1120, 54),
 }
 OFFLINE = {
     'views_label': (20, 524, 1120, 26), 'views': (20, 490, 1120, 32),
@@ -143,6 +143,8 @@ def refresh(owner):
             if name != 'brightness_fill':
                 node.par.w = width
             node.par.h = height
+            if name == 'routing_summary':
+                node.par.fontsize = 13
     for key in ('capture', 'offline', 'settings'):
         node = owner.op('ui_panel/btn_page_' + key)
         if node is not None:

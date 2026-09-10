@@ -13,3 +13,7 @@ Neue Vollscan-Sitzung und eigener Ordner Scans/back_panel2_738_249_20260910_full
 Der Nutzer startet die Aufnahme selbst über CHECK SCAN PLAN, danach START SCAN / NEXT VIEW und Start Scan im Bestätigungsdialog. Dieser Stand bestätigt die korrekte Softwarevorbereitung, keinen abgeschlossenen Vollscan.
 
 Die Screenshot-Randnotiz zur veralteten Coverage-Anzeige ist für später in LATER_UI_NOTE_DE.md erfasst.
+
+## Sichtbarkeit nach CHECK SCAN PLAN
+
+Nutzer meldete scheinbar wirkungslosen Klick. Liveprüfung bestätigte einen neu erzeugten gültigen738-LED-Plan ohne Fehler. Die Zusammenfassung lag jedoch unterhalb der Startbuttons (y112), im gezeigten Fensterausschnitt außerhalb des sichtbaren Bereichs. Sie steht jetzt direkt unter LEDS TO SCAN, oberhalb des Workspacefelds (y428), mit Schriftgröße13. Native Anzeige bestätigt; Captureplan unverändert, kein Scan gestartet. Die vorherige Coverage-Randnotiz bleibt separat für später vorgemerkt.
