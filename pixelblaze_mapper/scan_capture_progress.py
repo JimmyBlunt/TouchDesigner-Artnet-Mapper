@@ -1,7 +1,44 @@
 """Current-view progress, independent of cumulative multi-view coverage."""
+from collections import deque
+import time
 
 
-def presentation(status=None, planned_total=0):
+class ScanRate:
+    """Observe completed counts only; never change scan timing or touch hardware."""
+    def __init__(self):
+        self.key = None
+        self.samples = deque(maxlen=64)
+        self.last_rate = None
+
+    def update(self, status, now):
+        key = status.get('directory')
+        count = int(status.get('processed', 0) or 0)
+        if key != self.key or (self.samples and count < self.samples[-1][1]):
+            self.__init__()
+            self.key = key
+        if status.get('state') != 'capturing':
+            return self.last_rate
+        if self.samples and now <= self.samples[-1][0]:
+            return self.last_rate
+        self.samples.append((now, count))
+        while len(self.samples) > 2 and self.samples[1][0] <= now - 10:
+            self.samples.popleft()
+        start, previous = self.samples[0]
+        if now - start < 2:
+            return None
+        # Interpolate at the ten-second boundary for a stable rolling window.
+        if start < now - 10 and len(self.samples) > 1:
+            end, following = self.samples[1]
+            previous += (following - previous) * (now - 10 - start) / (end - start)
+            start = now - 10
+        self.last_rate = max(0, (count - previous) / (now - start))
+        return self.last_rate
+
+
+_rates = {}
+
+
+def presentation(status=None, planned_total=0, rate=None):
     status = status or {}
     total = max(0, int(status.get('total', planned_total) or 0))
     processed = min(total, max(0, int(status.get('processed', 0) or 0)))
@@ -24,6 +61,10 @@ def presentation(status=None, planned_total=0):
     if state == 'capturing' and status.get('current_source_index') is not None:
         label = 'AKTUELL: LED-ID %s (Position %s von %s)' % (
             status['current_source_index'], int(status['current_index']) + 1, total)
+    if rate is not None:
+        label += '  |  %s LEDs/s (aktuell)' % ('%.2f' % rate).replace('.', ',')
+    elif state == 'capturing':
+        label += '  |  LEDs/s wird gemessen'
     percent = ('%.1f' % (100 * fraction)).replace('.', ',')
     text = '%s\nGeprueft %d / %d  |  Erkannt %d  |  Nicht erkannt %d  |  %s %%' % (
         label, processed, total, detected, processed - detected, percent)
@@ -39,7 +80,12 @@ def refresh(owner):
         return
     plan = owner.fetch('capture_plan', None) or {}
     total = len(plan.get('routing', {}).get('source_indices', []))
-    data = presentation(owner.fetch('capture_status', None), total)
+    status = owner.fetch('capture_status', None) or {}
+    meter = _rates.setdefault(getattr(owner, 'path', 'guided_scan'), ScanRate())
+    if not status:
+        meter.__init__()
+    rate = meter.update(status, time.monotonic())
+    data = presentation(status, total, rate)
     node.par.text = data['text']
     track = owner.op('ui_panel/capture_progress_track')
     fill = track.op('fill') if track is not None and hasattr(track, 'op') else None
