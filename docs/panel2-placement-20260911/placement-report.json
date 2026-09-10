@@ -1,0 +1,58 @@
+{
+  "panel_cm": [
+    30,
+    30
+  ],
+  "position": "upper right, front view",
+  "center": [
+    0.9,
+    1.0,
+    0.4
+  ],
+  "bounds": [
+    [
+      0.815625,
+      0.9966964814191632,
+      0.3176797627345031
+    ],
+    [
+      0.9843750000000001,
+      1.0033035185808368,
+      0.482320237265497
+    ]
+  ],
+  "transform": {
+    "translation": [
+      0.948615189638492,
+      0.8510372040442947,
+      0.41535965991855
+    ],
+    "rotation_degrees": [
+      35.41113861078112,
+      14.920441608319818,
+      162.16198574660018
+    ],
+    "scale": [
+      0.0596980231171106,
+      0.0596980231171106,
+      0.0596980231171106
+    ],
+    "pivot": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "camera_orientation_reference": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\Scans\\back_panel2_738_249_20260910_fullscan\\capture-186094a3-5139-449d-97d9-42976d83b449\\view.csv",
+  "camera_score": 1.9778539546080733,
+  "fit": "uniform similarity to same normalized LED envelope as first panel",
+  "orientation_verified": false,
+  "physical_registration_verified": false,
+  "original_scan_unchanged": true,
+  "all_680_bindings_unchanged": true,
+  "missing_count": 58,
+  "other_objects_unchanged": true,
+  "routes_unchanged": true,
+  "existing_template_preserved": true,
+  "active_applied": false
+}

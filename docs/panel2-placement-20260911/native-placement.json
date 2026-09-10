@@ -1,0 +1,28 @@
+{
+  "active_hash_unchanged": true,
+  "sender_off": true,
+  "object_name": "Rueckwand oben rechts (Front) | Panel 2 | 30 x 30 cm",
+  "transform": {
+    "translation": [
+      0.948615189638492,
+      0.8510372040442947,
+      0.41535965991855
+    ],
+    "rotation_degrees": [
+      35.41113861078112,
+      14.920441608319818,
+      162.16198574660018
+    ],
+    "scale": [
+      0.0596980231171106,
+      0.0596980231171106,
+      0.0596980231171106
+    ],
+    "pivot": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "errors": []
+}
