@@ -110,7 +110,7 @@ def install(ns):
     import pathlib
     import td
     scope=dict(ns,__name__='led_search_helpers')
-    path=pathlib.Path('C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/pixelblaze_mapper/build_gico_port_config_ui.py')
+    path=pathlib.Path(__file__).resolve().parent / 'build_gico_port_config_ui.py'
     exec(compile(path.read_text(encoding='utf-8'),str(path),'exec'),scope,scope)
     node,panel,text,field,button,click=(scope[k] for k in ('_node','_panel','_text','_field','_button','_click'))
     owner=ns['op'](OWNER); fresh=owner.op('new_capture_panel')

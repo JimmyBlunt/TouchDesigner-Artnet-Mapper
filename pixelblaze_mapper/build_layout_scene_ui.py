@@ -269,11 +269,11 @@ def build(initial_path=""):
 
     fields = (
         ("initialfile", "Current layout file (read only)", initial_path, 810, 745, 600),
-        ("format", "Import format", "pixelblaze", 810, 676, 285),
+        ("format", "Import format: auto / marimapper-csv / pixelblaze", "auto", 810, 676, 285),
         ("objectname", "New object / scan name", "", 1110, 676, 300),
         ("sourcestart", "Explicit global source start", "0", 810, 607, 285),
         ("scanrange", "Original scan indices (blank = all)", "", 1110, 607, 300),
-        ("localrange", "Selected object LOCAL range to replace", "", 810, 538, 285),
+        ("localrange", "LOCAL LEDs: scan / replace (blank scan = all)", "", 810, 538, 285),
         ("expectedcount", "Expected final count (blank = any)", "", 1110, 538, 170),
         ("objectno", "Object number", "1", 810, 469, 110),
         ("mode", "Drag/key mode: move,rotate,scale", "move", 980, 469, 190),

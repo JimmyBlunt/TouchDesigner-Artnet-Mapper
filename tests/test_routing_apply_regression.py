@@ -15,7 +15,8 @@ ROOT = Path(__file__).resolve().parents[1]
 def embedded(filename, function):
     tree = ast.parse((ROOT / 'pixelblaze_mapper' / filename).read_text(encoding='utf-8'))
     node = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == function)
-    scope = {}
+    # The extracted factory uses the same project root as the real module.
+    scope = {'PROJECT_ROOT': ROOT}
     exec(compile(ast.Module(body=[node], type_ignores=[]), '<factory>', 'exec'), scope)
     return scope[function]()
 

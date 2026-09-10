@@ -74,6 +74,9 @@ def refresh(owner, *, fields=True, save=True):
     from .layout_session_storage import persist_layout, serialized
     persist_layout(owner, session)
     scene = session.display_scene
+    if owner.fetch('scan_range_object', session.selected_object_id) != session.selected_object_id:
+        write_field(owner, 'localrange', '')
+    owner.store('scan_range_object', session.selected_object_id)
     if save:
         text = serialized("document", session.current)
         if owner.op("draft_document").text != text:
@@ -227,6 +230,33 @@ def active_action(owner, name, confirm):
         raise SceneError("unknown active action")
 
 
+def selected_scan_ids(scene, object_id, local_text):
+    """Translate a user's local range to stable IDs without assuming source offsets."""
+    if not object_id:
+        raise SceneError('Select an object before scanning it')
+    obj = scene.object(object_id)
+    indices = parse_indices(local_text)
+    if not indices:
+        return tuple(led.led_id for led in obj.leds)
+    lookup = {led.local_index: led.led_id for led in obj.leds}
+    if not set(indices) <= set(lookup):
+        raise SceneError('The local scan range includes LEDs outside the selected object')
+    return tuple(lookup[index] for index in indices)
+
+
+def scan_import_format(path, requested='auto'):
+    """Detect supported file families; explicit expert choices remain available."""
+    requested = requested.strip().lower() or 'auto'
+    if requested != 'auto':
+        return requested
+    suffix = Path(path).suffix.lower()
+    if suffix == '.csv':
+        return 'marimapper-csv'
+    if suffix in ('.json', '.js', '.map'):
+        return 'pixelblaze'
+    raise SceneError('Choose a MariMapper CSV or Pixelblaze JSON/JS/MAP scan')
+
+
 def action(owner, name, chooser, confirm):
     """Draft actions plus three explicit optional active-transaction actions."""
     session = editor(owner)
@@ -280,10 +310,10 @@ def action(owner, name, chooser, confirm):
             layout_fixture_td.frame_output(owner)
             frame_view(owner, reset=True)
         elif name in ("append", "replace"):
-            format = field(owner, "format") or "pixelblaze"
             path = chooser(load=True, title="Open scan (original coordinates preserved)", fileTypes=["json", "csv", "js", "map"])
             if not path:
                 return
+            format = scan_import_format(path, field(owner, 'format'))
             scan = import_scan(Path(path), format=format, name=field(owner, "objectname") or Path(path).name)
             chosen = parse_indices(field(owner, "scanrange")) or None
             if name == "append":
@@ -326,13 +356,21 @@ def action(owner, name, chooser, confirm):
             temporary.write_text(text, encoding="utf-8")
             temporary.replace(target)
         elif name == "scan":
+            if session.preview is not None:
+                raise SceneError('Finish the current layout drag before staging a scan')
+            if owner.fetch('scan_range_object', session.selected_object_id) != session.selected_object_id:
+                raise SceneError('Selected object changed; select it again and enter its local scan range')
+            selected = selected_scan_ids(session.current.scene, session.selected_object_id,
+                                         field(owner, 'localrange'))
             target = owner.op("/project1/guided_scan/ui_panel")
             if target is None:
                 raise SceneError("Guided scan UI is not installed yet; run its isolated builder after review")
             runtime = owner.op("/project1/guided_scan/runtime")
-            if runtime is not None and hasattr(runtime.module, "stage_scene"):
-                runtime.module.stage_scene(session.current.scene, session.selected_object_id)
+            if runtime is None or not hasattr(runtime.module, 'stage_scene'):
+                raise SceneError('Guided scan runtime is missing; rebuild Guided Scan before staging')
+            runtime.module.stage_scene(session.current.scene, session.selected_object_id, selected_ids=selected)
             target.openViewer()
+            notice = 'SCAN STAGED | %d selected LEDs; local range preserved. Follow the next step in Guided Scan.' % len(selected)
         elif name.startswith("mode_"):
             write_field(owner, "mode", name[5:])
         else:

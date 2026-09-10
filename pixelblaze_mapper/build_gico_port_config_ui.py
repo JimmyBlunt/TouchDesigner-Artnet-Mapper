@@ -14,7 +14,7 @@ import sys
 from pathlib import Path
 
 
-PROJECT_ROOT = Path(r"C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper")
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 ROUTER = "/project1/multi_controller_output"
 OWNER = ROUTER + "/gico_port_config"
 MAIN_BUILDER = PROJECT_ROOT / "pixelblaze_mapper" / "build_multi_controller_output.py"
@@ -117,7 +117,7 @@ def _runtime_source():
 import sys
 from pathlib import Path
 
-PROJECT_ROOT = Path(r'C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper')
+PROJECT_ROOT = Path(__PROJECT_ROOT__)
 MAIN_BUILDER = PROJECT_ROOT / 'pixelblaze_mapper' / 'build_multi_controller_output.py'
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
@@ -254,7 +254,7 @@ def apply_safe_draft():
     except Exception as error:
         _status('APPLY BLOCKED - ' + str(error), False)
         return False
-'''
+'''.replace('__PROJECT_ROOT__', repr(str(PROJECT_ROOT)))
 
 
 def _table_value(table, key, default):
