@@ -96,3 +96,26 @@ Der Benutzer prüft nun Masse und Datenleitung gegen Masse. Noch keine
 Messwerte vorhanden. Durchgangs-/Widerstandsmessungen nur spannungsfrei,
 Datenanschluss vom Controller getrennt; eine Multimeter-Spannungsmessung
 der Datenleitung allein bewertet die schnellen Datenimpulse nicht.
+
+## Vom Benutzer gemeldete Widerstandsmessungen
+
+| Messpunkte | Gemeldeter Wert |
+| --- | --- |
+| Plus – Minus/GND | 34,6 MΩ |
+| Plus – DATA | 101 kΩ |
+| Minus/GND – DATA | 65 kΩ |
+| GND-Anschluss – GND der ersten LED | 0,0004 kΩ = 0,4 Ω |
+
+Die Messungen folgen der Aufforderung, spannungsfrei und mit abgetrenntem
+Controller zu messen; dieser Zustand wurde nicht separat bestätigt.
+Die Werte zeigen an diesen Messpunkten keinen offensichtlichen niederohmigen
+Kurzschluss. Die angeschlossene LED-Elektronik verhindert eine einfache
+Gut-/Schlechtbewertung der DATA-Widerstände ohne Vergleichsschaltung.
+0,4 Ω belegen Durchgang zur ersten LED, enthalten aber Messleitungs- und
+Kontaktwiderstände. Als nächster Schritt: Messspitzen direkt zusammenhalten
+und den Eigenwert im selben Messbereich erfassen. Erst danach lässt sich
+der zusätzliche Widerstand der GND-Verbindung abschätzen. Die Messung
+bewertet weder die Masseverbindungen im restlichen Panel noch das Verhalten
+unter Last oder die Signalqualität der Datenimpulse.
+
+Messhinweis: https://www.fluke.com/en-us/learn/blog/digital-multimeters/how-to-measure-resistance
