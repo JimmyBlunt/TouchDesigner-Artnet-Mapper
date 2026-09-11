@@ -20,3 +20,11 @@ und den Empfang vollständiger Rahmen prüfen.
 `controller-before.json` hält den Readback fest, `pending-panel5.json` die
 gewünschte Konfiguration und den noch offenen Zählunterschied. Panel 4 bleibt
 im abgeschlossenen Projektzustand bestehen.
+
+## Korrektur durch den Benutzer
+
+Die korrekte Anzahl ist **352 LEDs**; die zuvor genannten 362 waren ein
+Tippfehler. Die vorhandene Controllerkonfiguration ist damit bestätigt:
+Ausgang 5, U139–141, verteilt auf 170 + 170 + 12 LEDs. U138 bleibt frei.
+Keine Änderung am Controller erforderlich. Die Scanvorbereitung ist noch
+nicht ausgeführt; Panel 4 bleibt im abgeschlossenen Zustand.
