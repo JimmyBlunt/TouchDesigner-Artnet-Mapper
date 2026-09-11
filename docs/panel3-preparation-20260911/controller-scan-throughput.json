@@ -1,0 +1,68 @@
+[
+  {
+    "time": 114184.031,
+    "status": {
+      "pixelCount": 1821,
+      "universeCount": 13,
+      "packets": 324693,
+      "framesComplete": 7405,
+      "framesIncomplete": 24482,
+      "fps": 6,
+      "packetsPerSecond": 174,
+      "heapFree": 185748,
+      "heapMinFree": 163536,
+      "frameTimeUs": 28716,
+      "outputTimeUs": 28716,
+      "lastFrameLatencyMs": null,
+      "startUniverse": 0,
+      "outputFrames": 7405,
+      "timeouts": 72,
+      "droppedPackets": 0,
+      "sequenceErrors": 0
+    }
+  },
+  {
+    "time": 114189.046,
+    "status": {
+      "pixelCount": 1821,
+      "universeCount": 13,
+      "packets": 325537,
+      "framesComplete": 7431,
+      "framesIncomplete": 24539,
+      "fps": 7,
+      "packetsPerSecond": 178,
+      "heapFree": 179092,
+      "heapMinFree": 163536,
+      "frameTimeUs": 28754,
+      "outputTimeUs": 28754,
+      "lastFrameLatencyMs": null,
+      "startUniverse": 0,
+      "outputFrames": 7431,
+      "timeouts": 72,
+      "droppedPackets": 0,
+      "sequenceErrors": 0
+    }
+  },
+  {
+    "time": 114193.078,
+    "status": {
+      "pixelCount": 1821,
+      "universeCount": 13,
+      "packets": 326202,
+      "framesComplete": 7447,
+      "framesIncomplete": 24588,
+      "fps": 5,
+      "packetsPerSecond": 160,
+      "heapFree": 182152,
+      "heapMinFree": 163536,
+      "frameTimeUs": 28714,
+      "outputTimeUs": 28714,
+      "lastFrameLatencyMs": null,
+      "startUniverse": 0,
+      "outputFrames": 7447,
+      "timeouts": 73,
+      "droppedPackets": 0,
+      "sequenceErrors": 0
+    }
+  }
+]
