@@ -49,10 +49,10 @@ class CaptureWatchdog:
 
 
 def _camera_view(connection, result_queue, cancel, count, settings):
-    """Reuse native exposure, contour detection, adaptive timing and movement check.
+    """Reuse native images, exposure and adaptive timing with checked transitions.
 
-Only lifecycle/cancellation and strict movement failure differ from native. Dense
-worker IDs are deliberately translated to original source IDs by the supervisor.
+Our adapter starts search after send ACK and requires darkness after every LED.
+Dense worker IDs are translated to original source IDs by the supervisor.
 """
     camera = None
     cleanup = []
@@ -60,8 +60,8 @@ worker IDs are deliberately translated to original source IDs by the supervisor.
     try:
         from .camera_probe_worker import _native_api
         _native_api()  # Verify exact installed revision in child too; opens no camera.
-        from marimapper.detector import (Camera, set_cam_dark, find_led,
-            enable_and_find_led, TimeoutController)
+        from marimapper.detector import Camera, set_cam_dark, find_led, TimeoutController
+        from .scan_detector import enable_and_find_led, search_timeout
         from marimapper.led import get_distance
         from .marimapper_router_backend import pipe_backend
         from .scan_capture_timing import CaptureTimings, TimedBackend
@@ -101,10 +101,12 @@ worker IDs are deliberately translated to original source IDs by the supervisor.
             wrapped.deadline = time.monotonic() + 30.0
             result_queue.put({'state': 'capturing', 'current_index': index,
                               'processed': index, 'detected': len(detections), 'total': count})
+            timeout_used = search_timeout(timing) if getattr(timing, 'timeout', None) is not None else None
             metrics.begin()
             led = enable_and_find_led(wrapped, backend, index, 0, timing,
                                       settings['threshold'], True)
             measured = metrics.finish(timeout_seconds=getattr(timing, 'timeout', None))
+            measured['search_timeout_used_ms'] = round(timeout_used * 1000, 3) if timeout_used is not None else None
             if led is not None:
                 detections.append(led)
             result_queue.put({'state': 'capturing', 'processed': index + 1,

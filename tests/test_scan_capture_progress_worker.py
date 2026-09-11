@@ -41,7 +41,6 @@ class CameraProgressTests(unittest.TestCase):
                 raise answer
             return answer
 
-        detector.enable_and_find_led = detect
         led = ModuleType('marimapper.led')
         led.get_distance = lambda *args: 0
         cv2 = ModuleType('cv2')
@@ -49,6 +48,7 @@ class CameraProgressTests(unittest.TestCase):
         with patch.dict('sys.modules', {'marimapper': ModuleType('marimapper'),
                         'marimapper.detector': detector, 'marimapper.led': led, 'cv2': cv2}), \
              patch('pixelblaze_mapper.camera_probe_worker._native_api'), \
+             patch('pixelblaze_mapper.scan_detector.enable_and_find_led', side_effect=detect), \
              patch('pixelblaze_mapper.marimapper_router_backend.pipe_backend', return_value=backend):
             worker._camera_view(None, results, threading.Event(), 2,
                                 {'device': 0, 'exposure': -10, 'threshold': 160})

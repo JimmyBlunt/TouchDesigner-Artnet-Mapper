@@ -1,4 +1,4 @@
-"""Passive timings around the unchanged native single-LED detector."""
+"""Passive timings around single-LED capture and native camera reads."""
 from collections import deque
 import time
 
