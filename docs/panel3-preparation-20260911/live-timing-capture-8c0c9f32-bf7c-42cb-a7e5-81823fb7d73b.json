@@ -1,0 +1,114 @@
+{
+  "first": {
+    "observed_at": 113719.343,
+    "running": true,
+    "capture": {
+      "state": "capturing",
+      "processed": 114,
+      "detected": 99,
+      "total": 880,
+      "current_index": 114,
+      "current_source_index": 114,
+      "blackout_sent": false,
+      "blackout_confirmed": false,
+      "optical_blackout_confirmed": false,
+      "exposure_applied": true,
+      "timing": {
+        "completed_samples": 114,
+        "last_completed": true,
+        "last": {
+          "dark_before_ms": 47.0,
+          "send_on_ms": 15.0,
+          "detect_ms": 329.0,
+          "send_off_ms": 46.0,
+          "dark_after_ms": 172.0,
+          "camera_read_ms": 518.0,
+          "camera_frames": 15,
+          "cycle_ms": 609.0
+        },
+        "mean": {
+          "dark_before_ms": 46.956,
+          "send_on_ms": 22.053,
+          "detect_ms": 322.509,
+          "send_off_ms": 24.912,
+          "dark_after_ms": 244.623,
+          "camera_read_ms": 542.702,
+          "camera_frames": 16.544,
+          "cycle_ms": 661.053
+        },
+        "recent_mean": {
+          "dark_before_ms": 46.2,
+          "send_on_ms": 24.15,
+          "detect_ms": 389.0,
+          "send_off_ms": 24.95,
+          "dark_after_ms": 224.3,
+          "camera_read_ms": 583.35,
+          "camera_frames": 17.7,
+          "cycle_ms": 708.6
+        },
+        "search_timeout_ms": 907.35,
+        "search_timeout_used_ms": 907.35
+      },
+      "directory": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\Scans\\back_panel3_880_249_20260911_fullscan\\capture-8c0c9f32-bf7c-42cb-a7e5-81823fb7d73b",
+      "running": true
+    },
+    "display": "AKTUELL: LED-ID 114 (Position 115 von 880)  |  1,40 LEDs/s (aktuell)\nGeprueft 114 / 880  |  Erkannt 99  |  Nicht erkannt 15  |  13,0 %"
+  },
+  "second": {
+    "observed_at": 113729.406,
+    "running": true,
+    "capture": {
+      "state": "capturing",
+      "processed": 127,
+      "detected": 112,
+      "total": 880,
+      "current_index": 127,
+      "current_source_index": 127,
+      "blackout_sent": false,
+      "blackout_confirmed": false,
+      "optical_blackout_confirmed": false,
+      "exposure_applied": true,
+      "timing": {
+        "completed_samples": 127,
+        "last_completed": true,
+        "last": {
+          "dark_before_ms": 31.0,
+          "send_on_ms": 31.0,
+          "detect_ms": 610.0,
+          "send_off_ms": 0.0,
+          "dark_after_ms": 765.0,
+          "camera_read_ms": 1298.0,
+          "camera_frames": 36,
+          "cycle_ms": 1437.0
+        },
+        "mean": {
+          "dark_before_ms": 46.22,
+          "send_on_ms": 22.858,
+          "detect_ms": 319.535,
+          "send_off_ms": 24.929,
+          "dark_after_ms": 250.339,
+          "camera_read_ms": 545.882,
+          "camera_frames": 16.614,
+          "cycle_ms": 663.882
+        },
+        "recent_mean": {
+          "dark_before_ms": 39.95,
+          "send_on_ms": 28.75,
+          "detect_ms": 319.7,
+          "send_off_ms": 25.6,
+          "dark_after_ms": 289.9,
+          "camera_read_ms": 584.05,
+          "camera_frames": 17.6,
+          "cycle_ms": 703.9
+        },
+        "search_timeout_ms": 870.75,
+        "search_timeout_used_ms": 783.45
+      },
+      "directory": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\Scans\\back_panel3_880_249_20260911_fullscan\\capture-8c0c9f32-bf7c-42cb-a7e5-81823fb7d73b",
+      "running": true
+    },
+    "display": "AKTUELL: LED-ID 127 (Position 128 von 880)  |  1,30 LEDs/s (aktuell)\nGeprueft 127 / 880  |  Erkannt 112  |  Nicht erkannt 15  |  14,4 %"
+  },
+  "hardware_changed": false,
+  "scan_restarted": false
+}
