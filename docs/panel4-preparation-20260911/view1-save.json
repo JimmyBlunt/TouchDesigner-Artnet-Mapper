@@ -1,0 +1,29 @@
+{
+  "saved": true,
+  "file": "PixelblazeMapper_PANEL4_VIEW1_SAVED_20260911.1.toe",
+  "folder": "C:/Users/jbhtz/OneDrive/Desktop/Pictures/Documents/ChatGPT/LED-Touchdesigner-Controller/PixelblazeMapper",
+  "manifest": {
+    "schema": "pixelblaze-layout-save-manifest",
+    "version": 1,
+    "scene_id": "4e9891f6-d147-4ec3-9839-4630543e5aa5",
+    "layout_undo": 21,
+    "layout_redo": 0,
+    "fixture_undo": 0,
+    "fixture_redo": 0,
+    "selected_object_id": "9ab899f6-9b35-4c92-9f1f-c28d2d2c4477",
+    "selected_fixture_id": "d6a75d7c-b33e-44bd-845b-182889566d66",
+    "transient_startup_none": [
+      "layout_editor_session",
+      "fixture_history",
+      "fixture_preview",
+      "layout_drag",
+      "fixture_drag",
+      "ui_prepared_context"
+    ],
+    "prepared_invalidated_on_reopen": true,
+    "preview_recovered_as_one_undo_step": false
+  },
+  "ui_status": "Save Project .toe: PixelblazeMapper_PANEL4_VIEW1_SAVED_20260911.1.toe saved successfully.",
+  "sender_off": true,
+  "sha256": "f1cd4e72b73c41fed1418cee07f416f2e6d3468892c3bdff03aa7b9c34ddb770"
+}
