@@ -51,7 +51,20 @@ Pakete erscheinen nicht im Empfangszähler. Die Ursache dieser verbleibenden
 Differenz ist nicht geklärt. Der entscheidende Unterschied zu 01/02 ist,
 dass nun vollständige Rahmen verarbeitet und ausgegeben wurden.
 
-Die optische Bestätigung steht aus. Daraus folgt noch keine Diagnose einer
-defekten LED oder Verdrahtung. Das zuvor vom Benutzer beobachtete Flackern
-beim internen Controllertest ist getrennt von diesen Übertragungsproblemen
-zu bewerten.
+## Optische Rückmeldung des Benutzers
+
+Nach dem korrigierten Durchlauf: „erste led hat nicht geflackert aber alle
+dnach bi au die allerletzte wider“. Bezogen auf die sechs getesteten LEDs
+waren somit die erste und letzte unauffällig; bei den dazwischen getesteten
+LEDs trat wieder Flackern auf. Es wurden nicht alle 810 LEDs getestet.
+Noch zu klären ist, ob jeweils die ausgewählte LED selbst flackerte oder
+zusätzliche, eigentlich ausgeschaltete LEDs aufblitzten.
+
+Dies bestätigt ein optisches Problem auch beim gezielten externen Test,
+identifiziert aber noch kein defektes Bauteil. Das zuvor beobachtete Flackern
+beim internen Controllertest besteht unabhängig von Art-Net und TouchDesigner.
+Der vom Benutzer berichtete Gegenversuch mit einem anderen Panel am selben
+Controllerausgang war unauffällig. Damit stehen Panel 4 und seine Zuleitung
+im Vordergrund; ob dabei exakt dieselbe Zuleitung verwendet wurde, ist noch
+nicht bestätigt. Die erste LED ist anhand dieses Musters allein nicht als
+defekt identifiziert. Keine weitere Ausgabe ohne angekündigten Test gestartet.
