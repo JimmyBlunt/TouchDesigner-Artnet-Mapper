@@ -1,0 +1,139 @@
+{
+  "before": {
+    "pixelCount": 4105,
+    "universeCount": 28,
+    "packets": 0,
+    "framesComplete": 0,
+    "framesIncomplete": 0,
+    "fps": 0,
+    "packetsPerSecond": 0,
+    "heapFree": 143576,
+    "heapMinFree": 91632,
+    "frameTimeUs": 55913,
+    "outputTimeUs": 55913,
+    "lastFrameLatencyMs": null,
+    "startUniverse": 0,
+    "outputFrames": 1,
+    "timeouts": 0,
+    "droppedPackets": 0,
+    "sequenceErrors": 0
+  },
+  "after": {
+    "pixelCount": 4105,
+    "universeCount": 28,
+    "packets": 0,
+    "framesComplete": 0,
+    "framesIncomplete": 0,
+    "fps": 0,
+    "packetsPerSecond": 0,
+    "heapFree": 143948,
+    "heapMinFree": 91632,
+    "frameTimeUs": 55913,
+    "outputTimeUs": 55913,
+    "lastFrameLatencyMs": null,
+    "startUniverse": 0,
+    "outputFrames": 1,
+    "timeouts": 0,
+    "droppedPackets": 0,
+    "sequenceErrors": 0
+  },
+  "start": {
+    "transport": {
+      "submitted_batches": 0,
+      "sent_batches": 0,
+      "sent_packets": 0,
+      "stale_batches": 0,
+      "rejected_batches": 0,
+      "blackout_packets": 0,
+      "error": "",
+      "stop_reason": "",
+      "last_send_ms": 0.0,
+      "max_send_ms": 0.0,
+      "running": true,
+      "closed": false,
+      "kind": "external",
+      "queued_batches": 0,
+      "local_drops": 0
+    },
+    "enabled": true,
+    "error": "",
+    "mode": "live",
+    "calibration": [
+      "all",
+      "panel_id",
+      0
+    ],
+    "controllers": [
+      "BACK_PANEL_249"
+    ],
+    "target_override": null,
+    "port_override": null,
+    "telemetry": {
+      "tick_count": 0,
+      "rate_skips": 0,
+      "send_count": 0,
+      "packet_count": 0,
+      "send_ms_last": 0.0,
+      "send_ms_average": 0.0,
+      "send_ms_max": 0.0,
+      "actual_send_fps": 0.0,
+      "pack_count": 0,
+      "pack_ms_last": 0.0,
+      "pack_ms_average": 0.0,
+      "pack_ms_max": 0.0,
+      "plan_rebuilds": 1
+    }
+  },
+  "end": {
+    "sender": {
+      "transport": {
+        "kind": "direct"
+      },
+      "enabled": false,
+      "error": "Packet worker is not running: {'submitted_batches': 0, 'sent_batches': 0, 'sent_packets': 0, 'stale_batches': 0, 'rejected_batches': 0, 'blackout_packets': 0, 'error': '', 'stop_reason': 'idle_watchdog', 'last_send_ms': 0.0, 'max_send_ms': 0.0, 'running': False, 'closed': False}",
+      "mode": "live",
+      "calibration": [
+        "all",
+        "panel_id",
+        0
+      ],
+      "controllers": [],
+      "target_override": null,
+      "port_override": null,
+      "telemetry": {
+        "tick_count": 291,
+        "rate_skips": 0,
+        "send_count": 0,
+        "packet_count": 0,
+        "send_ms_last": 0.0,
+        "send_ms_average": 0.0,
+        "send_ms_max": 0.0,
+        "actual_send_fps": 0.0,
+        "pack_count": 1,
+        "pack_ms_last": 24.411599995801225,
+        "pack_ms_average": 24.411599995801225,
+        "pack_ms_max": 24.411599995801225,
+        "plan_rebuilds": 2
+      }
+    },
+    "worker_final": {
+      "submitted_batches": 0,
+      "sent_batches": 0,
+      "sent_packets": 0,
+      "stale_batches": 0,
+      "rejected_batches": 0,
+      "blackout_packets": 0,
+      "error": "",
+      "stop_reason": "idle_watchdog",
+      "last_send_ms": 0.0,
+      "max_send_ms": 0.0,
+      "running": false,
+      "closed": true,
+      "forced_termination": false
+    },
+    "off": true,
+    "errors": ""
+  },
+  "duration": 10,
+  "black_only": true
+}

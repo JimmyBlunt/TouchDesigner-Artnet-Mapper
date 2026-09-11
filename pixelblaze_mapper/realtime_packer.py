@@ -141,4 +141,8 @@ def _normalized_byte(value: Real, scale: float) -> int:
     value_type = type(value)
     if value_type is not float and value_type is not int and not isinstance(value, Real):
         raise MultiControllerValidationError("Source channel contains a non-numeric value")
-    return max(0, min(255, int(round(float(value) * scale))))
+    # round(float) already returns a builtin int, including ties-to-even.
+    # Avoid three builtin calls per channel while preserving conversion and
+    # nonfinite exceptions before clipping (do not clamp the float first).
+    rounded = round(float(value) * scale)
+    return 0 if rounded < 0 else 255 if rounded > 255 else rounded

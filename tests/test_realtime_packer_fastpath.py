@@ -96,6 +96,35 @@ class RealtimePackerFastpathTests(unittest.TestCase):
             legacy = compiled.pack_channels(*channels)
         self.assertEqual(actual, legacy)
 
+    def test_rear_panel_topology_preserves_reserved_black_and_reference_bytes(self):
+        from pixelblaze_mapper.multi_controller import ControllerConfig, RouterConfig, SegmentConfig
+        segments = ((1440, 203, 0), (3744, 738, 340), (4482, 880, 1190),
+                    (5362, 810, 2210), (6172, 352, 3230))
+        for brightness in (.2, .7, 1.):
+            config = RouterConfig(
+                (ControllerConfig('rear', '10.0.0.248', '10.0.0.125',
+                                  start_universe=120, reserved_universes=29,
+                                  brightness=brightness),),
+                tuple(SegmentConfig(str(i), start, count, 'rear', destination)
+                      for i, (start, count, destination) in enumerate(segments)),
+                source_pixel_count=6524, warn_unassigned=False)
+            rng = random.Random(20260912)
+            rgb = tuple(tuple(rng.uniform(-.1, 1.1) for _ in range(6524)) for _ in range(3))
+            # Representative missing positions must stay black even in a bright animation.
+            rgb = tuple(tuple(0. if i in (5407, 6295, 6369) else value
+                              for i, value in enumerate(channel)) for channel in rgb)
+            plan = build_router_plan(config)
+            expected = plan.pack_pixels(tuple(zip(*rgb)))['rear']
+            actual = packer.compile_router_packer(plan).pack_channels(*rgb)['rear']
+            self.assertEqual(actual, tuple(bytes(frame) for frame in expected))
+            self.assertEqual(len(actual), 29)
+            self.assertTrue(all(len(frame) == 510 for frame in actual))
+            self.assertEqual(actual[18], bytes(510))  # Unused U138.
+            self.assertEqual(actual[22:], (bytes(510),) * 7)  # Unmapped output 6.
+            joined = b''.join(actual)
+            for destination in (2210 + 45, 3230 + 123, 3230 + 197):
+                self.assertEqual(joined[destination * 3:destination * 3 + 3], bytes(3))
+
 
 def benchmark():
     """No network/TD imports: fixed inputs, byte equality, paired median timing."""

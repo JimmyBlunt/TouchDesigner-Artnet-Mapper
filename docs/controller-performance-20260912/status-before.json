@@ -1,0 +1,19 @@
+{
+  "pixelCount": 4105,
+  "universeCount": 28,
+  "packets": 0,
+  "framesComplete": 0,
+  "framesIncomplete": 0,
+  "fps": 0,
+  "packetsPerSecond": 0,
+  "heapFree": 158468,
+  "heapMinFree": 149900,
+  "frameTimeUs": 0,
+  "outputTimeUs": 0,
+  "lastFrameLatencyMs": null,
+  "startUniverse": 0,
+  "outputFrames": 0,
+  "timeouts": 0,
+  "droppedPackets": 0,
+  "sequenceErrors": 0
+}

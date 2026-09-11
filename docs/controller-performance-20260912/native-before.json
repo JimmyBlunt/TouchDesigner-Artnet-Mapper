@@ -1,0 +1,65 @@
+{
+  "sender": {
+    "enabled": false,
+    "error": "",
+    "mode": "live",
+    "calibration": [
+      "all",
+      "panel_id",
+      0
+    ],
+    "controllers": [],
+    "target_override": null,
+    "port_override": null,
+    "telemetry": {
+      "tick_count": 1398284,
+      "rate_skips": 128833,
+      "send_count": 26736,
+      "packet_count": 775344,
+      "send_ms_last": 52.58809999213554,
+      "send_ms_average": 59.15980019060513,
+      "send_ms_max": 83.34719997947104,
+      "actual_send_fps": 4.227949924074199,
+      "pack_count": 26736,
+      "pack_ms_last": 5.177399987587705,
+      "pack_ms_average": 5.973307805936227,
+      "pack_ms_max": 19.402299978537485,
+      "plan_rebuilds": 1
+    }
+  },
+  "file": "PixelblazeMapper_CONTROLLER248_ANIMATION_VERIFIED_20260911.1.toe",
+  "folder": "C:/Users/jbhtz/OneDrive/Desktop/Pictures/Documents/ChatGPT/LED-Touchdesigner-Controller/PixelblazeMapper",
+  "controllers": "enabled\tname\ttarget_ip\tlocal_interface\tport\tstart_universe\tcolor_order\tbrightness\trate\tart_sync\treserved_universes\r\n0\tWS2812_NODE\t10.0.0.244\t10.0.0.125\t6454\t0\tGRB\t0.7\t60\t0\t24\r\n0\tAPA102_ESP\t10.0.0.251\t10.0.0.125\t6454\t0\tRGB\t0.8\t30\t0\t0\r\n1\tBACK_PANEL_249\t10.0.0.248\t10.0.0.125\t6454\t120\tRGB\t0.7\t5\t0\t29\r\n",
+  "gap": {
+    "BACK_PANEL_249": 1.0
+  },
+  "errors": "",
+  "sys_path": [
+    "C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/touchdesigner-mcp-td\\modules",
+    "C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/touchdesigner-mcp-td\\modules\\td_server",
+    "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\tools",
+    "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\tools",
+    "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\tools",
+    "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\tools",
+    "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\tools",
+    "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\tools",
+    "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\tools",
+    "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\tools",
+    "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\tools",
+    "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\tools",
+    "C:/Users/jbhtz/OneDrive/Desktop/Pictures/Documents/ChatGPT/LED-Touchdesigner-Controller/PixelblazeMapper/tools",
+    "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper",
+    "C:/project1",
+    "C:\\project1",
+    "C:/Users/jbhtz/OneDrive/Desktop/Pictures/Documents/ChatGPT/LED-Touchdesigner-Controller/PixelblazeMapper/tools",
+    "C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper",
+    "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\touchdesigner-mcp-td\\modules\\mcp",
+    "C:/Users/jbhtz/OneDrive/Desktop/Pictures/Documents/ChatGPT/LED-Touchdesigner-Controller/PixelblazeMapper",
+    "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper",
+    "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\python311.zip",
+    "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\DLLs",
+    "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib",
+    "C:\\Program Files\\Derivative\\TouchDesigner\\bin",
+    "C:\\Program Files\\Derivative\\TouchDesigner\\bin\\Lib\\site-packages"
+  ]
+}

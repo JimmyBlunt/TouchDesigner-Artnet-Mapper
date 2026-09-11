@@ -345,9 +345,9 @@ def refresh_status(force=False):
         summary = build_output_summary(records(table_rows(op('controller_config'))),
             records(table_rows(op('segment_config'))), state, source_pixels=_source_pixels(),
             validation_rows=records(table_rows(op('validation'))))
-        fps = state.get('telemetry', {}).get('actual_send_fps', 0.0)
-        op('ui_panel/safety').par.text = '%s | sender %s | %.1f actual fps | %d RGB source pixels' % (
-            summary.state, 'ON' if summary.sender_enabled else 'OFF', fps, _source_pixels())
+        from pixelblaze_mapper.sender_external_source import rate_label
+        op('ui_panel/safety').par.text = '%s | sender %s | %s | %d RGB source pixels' % (
+            summary.state, 'ON' if summary.sender_enabled else 'OFF', rate_label(state), _source_pixels())
         from pixelblaze_mapper.router_dynamic_ui import refresh
         refresh(op('/project1/multi_controller_output'), summary)
     except Exception as error:
@@ -907,8 +907,9 @@ def build():
     from pixelblaze_mapper.output_slot_mask import install_source as install_slot_mask
     from pixelblaze_mapper.sender_pacing import install_source as install_pacing
     from pixelblaze_mapper.sender_packet_gap import install_source as install_packet_gap
+    from pixelblaze_mapper.sender_external_source import install_source as install_external_sender
     from pixelblaze_mapper.guided_scan_live import guard_sender_source
-    _replace_dat_text(sender_callbacks, guard_sender_source(install_packet_gap(install_pacing(install_slot_mask(_artnet_510_sender_source())))))
+    _replace_dat_text(sender_callbacks, guard_sender_source(install_external_sender(install_packet_gap(install_pacing(install_slot_mask(_artnet_510_sender_source()))))))
     sender_execute = _get_or_create(owner, executeDAT, "artnet_510_execute")
     _replace_dat_text(sender_execute, _artnet_510_execute_source())
     _set_if_present(sender_execute, "active", True)

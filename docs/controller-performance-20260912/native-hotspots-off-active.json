@@ -1,0 +1,243 @@
+{
+  "elapsed": 6.283401199994842,
+  "target": 60.0,
+  "perfs": [],
+  "active_nodes": 26,
+  "active": [
+    {
+      "path": "/project1/pixelblaze_mapper/preview3d/instance_data",
+      "type": "script",
+      "cpu_ms": 17.539499282836914,
+      "cooks": 2426398,
+      "frame": 532.0,
+      "delta": 20,
+      "cooks_per_second": 3.1829894930179563
+    },
+    {
+      "path": "/project1/topto1",
+      "type": "topto",
+      "cpu_ms": 7.60860013961792,
+      "cooks": 6590757,
+      "frame": 532.0,
+      "delta": 81,
+      "cooks_per_second": 12.891107446722724
+    },
+    {
+      "path": "/project1/legacy_source_mask",
+      "type": "script",
+      "cpu_ms": 4.754799842834473,
+      "cooks": 2635651,
+      "frame": 532.0,
+      "delta": 78,
+      "cooks_per_second": 12.41365902277003
+    },
+    {
+      "path": "/project1/moviefilein1",
+      "type": "moviefilein",
+      "cpu_ms": 1.1844000816345215,
+      "cooks": 1605076,
+      "frame": 532.0,
+      "delta": 78,
+      "cooks_per_second": 12.41365902277003
+    },
+    {
+      "path": "/project1/script4",
+      "type": "script",
+      "cpu_ms": 0.9587999582290649,
+      "cooks": 8184012,
+      "frame": 532.0,
+      "delta": 193,
+      "cooks_per_second": 30.71584860762328
+    },
+    {
+      "path": "/project1/layout_scene_editor/scene_render",
+      "type": "render",
+      "cpu_ms": 0.5684000253677368,
+      "cooks": 3893521,
+      "frame": 530.0,
+      "delta": 78,
+      "cooks_per_second": 12.41365902277003
+    },
+    {
+      "path": "/project1/chopexec1",
+      "type": "chopexec",
+      "cpu_ms": 0.5568000078201294,
+      "cooks": 5330974,
+      "frame": 532.0,
+      "delta": 78,
+      "cooks_per_second": 12.41365902277003
+    },
+    {
+      "path": "/project1/madmapper_material_player",
+      "type": "glsl",
+      "cpu_ms": 0.21160000562667847,
+      "cooks": 1757667,
+      "frame": 532.0,
+      "delta": 81,
+      "cooks_per_second": 12.891107446722724
+    },
+    {
+      "path": "/project1/material_gradient_player",
+      "type": "glsl",
+      "cpu_ms": 0.1251000165939331,
+      "cooks": 5485073,
+      "frame": 532.0,
+      "delta": 81,
+      "cooks_per_second": 12.891107446722724
+    },
+    {
+      "path": "/project1/math3",
+      "type": "math",
+      "cpu_ms": 0.11790004372596741,
+      "cooks": 6590757,
+      "frame": 532.0,
+      "delta": 81,
+      "cooks_per_second": 12.891107446722724
+    },
+    {
+      "path": "/project1/lookup1",
+      "type": "lookup",
+      "cpu_ms": 0.10200002789497375,
+      "cooks": 2635650,
+      "frame": 532.0,
+      "delta": 78,
+      "cooks_per_second": 12.41365902277003
+    },
+    {
+      "path": "/project1/math1",
+      "type": "math",
+      "cpu_ms": 0.08790001273155212,
+      "cooks": 5551014,
+      "frame": 530.0,
+      "delta": 78,
+      "cooks_per_second": 12.41365902277003
+    },
+    {
+      "path": "/project1/res1",
+      "type": "res",
+      "cpu_ms": 0.0826999843120575,
+      "cooks": 5485073,
+      "frame": 532.0,
+      "delta": 81,
+      "cooks_per_second": 12.891107446722724
+    },
+    {
+      "path": "/project1/merge3",
+      "type": "merge",
+      "cpu_ms": 0.049799978733062744,
+      "cooks": 6590757,
+      "frame": 532.0,
+      "delta": 81,
+      "cooks_per_second": 12.891107446722724
+    },
+    {
+      "path": "/project1/lfo1",
+      "type": "lfo",
+      "cpu_ms": 0.03880000114440918,
+      "cooks": 5330974,
+      "frame": 532.0,
+      "delta": 78,
+      "cooks_per_second": 12.41365902277003
+    },
+    {
+      "path": "/project1/visual_source_switch",
+      "type": "switch",
+      "cpu_ms": 0.03829997777938843,
+      "cooks": 5485073,
+      "frame": 532.0,
+      "delta": 81,
+      "cooks_per_second": 12.891107446722724
+    },
+    {
+      "path": "/project1/select4",
+      "type": "select",
+      "cpu_ms": 0.033399999141693115,
+      "cooks": 2635751,
+      "frame": 532.0,
+      "delta": 78,
+      "cooks_per_second": 12.41365902277003
+    },
+    {
+      "path": "/project1/shuffle1",
+      "type": "shuffle",
+      "cpu_ms": 0.032499998807907104,
+      "cooks": 2635650,
+      "frame": 532.0,
+      "delta": 78,
+      "cooks_per_second": 12.41365902277003
+    },
+    {
+      "path": "/project1/show_live_sample_switch",
+      "type": "switch",
+      "cpu_ms": 0.030699938535690308,
+      "cooks": 6590757,
+      "frame": 532.0,
+      "delta": 81,
+      "cooks_per_second": 12.891107446722724
+    },
+    {
+      "path": "/project1/merge2",
+      "type": "merge",
+      "cpu_ms": 0.030399978160858154,
+      "cooks": 2635751,
+      "frame": 532.0,
+      "delta": 78,
+      "cooks_per_second": 12.41365902277003
+    },
+    {
+      "path": "/project1/null5",
+      "type": "null",
+      "cpu_ms": 0.0203000009059906,
+      "cooks": 6590757,
+      "frame": 532.0,
+      "delta": 81,
+      "cooks_per_second": 12.891107446722724
+    },
+    {
+      "path": "/project1/select2",
+      "type": "select",
+      "cpu_ms": 0.01690000295639038,
+      "cooks": 2635633,
+      "frame": 532.0,
+      "delta": 78,
+      "cooks_per_second": 12.41365902277003
+    },
+    {
+      "path": "/project1/rename1",
+      "type": "rename",
+      "cpu_ms": 0.01669996976852417,
+      "cooks": 2635650,
+      "frame": 532.0,
+      "delta": 78,
+      "cooks_per_second": 12.41365902277003
+    },
+    {
+      "path": "/project1/select5",
+      "type": "select",
+      "cpu_ms": 0.014900028705596924,
+      "cooks": 2635751,
+      "frame": 532.0,
+      "delta": 78,
+      "cooks_per_second": 12.41365902277003
+    },
+    {
+      "path": "/project1/select3",
+      "type": "select",
+      "cpu_ms": 0.014099985361099243,
+      "cooks": 2635751,
+      "frame": 532.0,
+      "delta": 78,
+      "cooks_per_second": 12.41365902277003
+    },
+    {
+      "path": "/project1/rename2",
+      "type": "rename",
+      "cpu_ms": 0.013099968433380127,
+      "cooks": 2635650,
+      "frame": 532.0,
+      "delta": 78,
+      "cooks_per_second": 12.41365902277003
+    }
+  ],
+  "inactive_large_times_are_stale": true
+}
