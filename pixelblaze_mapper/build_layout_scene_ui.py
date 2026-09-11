@@ -141,6 +141,7 @@ def _fixture_canvas(owner, panel, domain, x):
     geometry.par.instanceop, geometry.par.instancecolorop = instances.path, instances.path
     for axis in "xyz":
         getattr(geometry.par, "instancet" + axis).val = "t" + axis
+        getattr(geometry.par, "instances" + axis).val = "s"
     for channel in "rgba":
         _set(geometry, "instance" + channel, channel)
     camera = _node(owner, cameraCOMP, prefix + "_camera")

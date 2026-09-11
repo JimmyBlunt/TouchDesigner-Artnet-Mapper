@@ -72,3 +72,60 @@ U120–137 erweitern. Panel 4 verwendet dabei U133–137, Offset 2210 relativ zu
 U120; der physische Controller-Pixeloffset 1821 ist keine Art-Net-Zieladresse.
 Der fehlende Slot und die entfernten Platzhalter müssen in der aktiven
 Schwarzmaske bleiben. Vorherige Panel-Ausgaben müssen bytegleich erhalten bleiben.
+
+## Erste und letzte LED markieren
+
+Auf Benutzerwunsch werden in der Layoutvorschau die tatsächlich vorhandenen
+lokalen Indizes 0 (LED 1, grün) und 809 (LED 810, rot) von Panel 4 vergrößert
+dargestellt. Die Markierungen folgen den Objekttransformationen. In der
+damaligen Frontansicht vor der anschließenden Drehung lagen beide links unten;
+die grüne unter der roten.
+Es wurden keine physischen LEDs angesteuert und keine Scankoordinaten geändert.
+
+Die optionale Storage-Einstellung `layout_endpoint_markers` begrenzt die
+Markierung auf ein bestimmtes Objekt und ausdrücklich angegebene lokale IDs.
+Die Instanzskalierung ist in `build_layout_scene_ui.py` hinterlegt und verwendet
+ohne Markierung den Faktor 1. Die native Vorschau wurde bildlich geprüft;
+aktiver Datenhash unverändert, keine Operatorfehler. Nachweise:
+`endpoint-markers.json`, `panel4-endpoint-markers.png`, `endpoint-save.json`.
+
+## Abschluss: Ausrichtung bestätigt und aktiv übernommen
+
+Der Benutzer verlangte eine Drehung um 90 Grad im Uhrzeigersinn in der
+Frontansicht, sodass erste und letzte LED oben links liegen, und bestätigte
+anschließend „ja passt so“. Die Drehung erfolgte um den unveränderten
+Panelmittelpunkt (0,7; 1; 0,4). Größe, Tiefe und sämtliche Messpunktidentitäten
+blieben erhalten. `rotation-result.json` dokumentiert die Transformation;
+`panel4-rotated-endpoints.png` zeigt die geprüfte Frontansicht mit beiden
+Endpunkten oben links (grün links neben rot).
+
+Panel 4 ist nun auch in der aktiven Map und Material-UV-Zuordnung integriert:
+
+- 810 reservierte Slots 5362–6171, davon 809 gemessene Punkte.
+- Source 5407 (lokaler Index 45 / LED 46) bleibt schwarz und unsichtbar.
+- Segment `BACK_SECOND_RIGHT_PANEL4`, Controller `BACK_PANEL_249`, Ausgang 4,
+  U133–137, Art-Net-Pixeloffset 2210 relativ zu U120.
+- Controllerrahmen von 13 auf 18 Universen U120–137 erweitert.
+- Gesamtkapazität 6172, davon 5292 aktive Layoutpunkte und 880 schwarze Slots.
+- Die früheren 256 Platzhalter 1696–1951 sind auch aktiv maskiert.
+- Die Ausgabebytes für Panel 1–3 und die Seiten bleiben im Offline-Vergleich
+  unverändert. Padding und der fehlende Panel-4-Slot sind schwarz.
+- Aktive Map, UVs, Maske, Material-Abtastung, Show-Ausgabe und Vorschau wurden
+  auf konsistente Länge geprüft. Keine Operatorfehler; LED-Ausgabe blieb aus.
+
+38 Tests für Layout-Apply, Sparse-Apply und den Ausgabeparametervertrag
+bestanden. Zusätzlich liefen der reale Paketvergleich und die native
+Transaktionsprüfung erfolgreich. Zur Rückkehr dient der vorherige vollständige
+Projektcheckpoint: Das isolierte Map-Revert wurde nach der kombinierten
+Kapazitäts-/Routingänderung zurückgesetzt, da es diese nicht vollständig
+rückgängig machen könnte.
+
+`tools/integrate_panel4_active_20260911.py` enthält die geprüfte Vorbereitung
+und native Übernahme mit Rücksetzung bei Fehlern. `active-before.json` und
+`transaction-snapshot.json` sichern den vorherigen Stand. `active-result.json`
+und `active-integrated-document.json` halten das Ergebnis fest;
+`complete-save.json` referenziert den fertigen Projektcheckpoint samt SHA-256.
+
+Panel 5 ist noch nicht konfiguriert. Bei fortlaufender Belegung desselben
+Controllers wäre U138 das nächste freie Startuniversum nach Panel 4;
+Port, LED-Anzahl und Position müssen vom Benutzer angegeben werden.

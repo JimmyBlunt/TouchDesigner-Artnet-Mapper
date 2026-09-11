@@ -1,0 +1,51 @@
+{
+  "source_count": 6172,
+  "valid_count": 5292,
+  "inactive_count": 880,
+  "panel4_missing_sources": [
+    5407
+  ],
+  "panel4_source_start": 5362,
+  "panel4_count": 810,
+  "retired_template_sources": [
+    1696,
+    1951
+  ],
+  "controller": "BACK_PANEL_249",
+  "physical_port": 4,
+  "destination_start": 2210,
+  "universes": [
+    133,
+    134,
+    135,
+    136,
+    137
+  ],
+  "controller_frame_universes": [
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    136,
+    137
+  ],
+  "offline_pack_checks_passed": true,
+  "panel1_panel2_panel3_and_side_frames_unchanged": true,
+  "active_mapping_integrated": true,
+  "network_output_started": false,
+  "old_template_removed_from_active": true,
+  "preview_count": 6172,
+  "errors": []
+}

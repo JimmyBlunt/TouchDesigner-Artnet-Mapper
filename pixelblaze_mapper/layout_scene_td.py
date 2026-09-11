@@ -123,13 +123,20 @@ def cook_instances(owner, script_op):
     points = scene.world_points()
     script_op.clear()
     script_op.numSamples = max(1, len(points))
-    arrays = {name: [] for name in ("tx", "ty", "tz", "r", "g", "b", "a")}
+    arrays = {name: [] for name in ("tx", "ty", "tz", "r", "g", "b", "a", "s")}
+    markers = owner.fetch("layout_endpoint_markers", {}) or {}
     for led, point in points:
         xyz = user_to_td(point)
         color = colors[binding_object[led.led_id]]
         if binding_object[led.led_id] == session.selected_object_id:
             color = tuple(min(1, c * 1.2) for c in color)
-        for name, value in zip(arrays, (*xyz, *color, 0.0 if led.scan_index in missing[led.scan_id] else 1.0)):
+        size = 1.0
+        if binding_object[led.led_id] == markers.get("object_id"):
+            if led.local_index == markers.get("first_local_index"):
+                color, size = (0.1, 1.0, 0.1), 5.0
+            elif led.local_index == markers.get("last_local_index"):
+                color, size = (1.0, 0.12, 0.08), 5.0
+        for name, value in zip(arrays, (*xyz, *color, 0.0 if led.scan_index in missing[led.scan_id] else 1.0, size)):
             arrays[name].append(value)
     for name, values in arrays.items():
         script_op.appendChan(name).vals = values or [0.0]
