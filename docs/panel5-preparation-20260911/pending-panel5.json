@@ -11,7 +11,7 @@
   "unused_universe": 138,
   "scan_frame_start": 120,
   "scan_frame_span": 22,
-  "state": "controller_count_confirmed_scan_not_prepared",
+  "state": "scan_plan_ready_camera_check_pending",
   "scan_started": false,
   "user_correction": "User corrected panel LED count from 362 to 352; controller setting is correct."
 }

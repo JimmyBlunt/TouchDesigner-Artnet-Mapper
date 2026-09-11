@@ -28,3 +28,23 @@ Tippfehler. Die vorhandene Controllerkonfiguration ist damit bestätigt:
 Ausgang 5, U139–141, verteilt auf 170 + 170 + 12 LEDs. U138 bleibt frei.
 Keine Änderung am Controller erforderlich. Die Scanvorbereitung ist noch
 nicht ausgeführt; Panel 4 bleibt im abgeschlossenen Zustand.
+
+## Scanplan vorbereitet
+
+Neue eigenständige Sitzung mit 352 lokalen IDs (0–351), 0 Ansichten und
+eigenem Ordner `Scans/back_panel5_352_249_20260911_fullscan` eingerichtet.
+Kamera 0, Belichtung −10, Schwelle 160, Helligkeit 9,2 % und Paketabstand
+1 ms aus der vorherigen Sitzung übernommen. Erste LED adressiert U139,
+Slot 0; letzte LED U141, Slot 11. Der vollständige Scanrahmen enthält
+22 Universen U120–141 einschließlich des schwarzen U138. Diese Zuordnung
+wurde anhand der erzeugten Pakete geprüft. Keine Kamera oder LED-Ausgabe
+gestartet, keine Operatorfehler und aktiver Layout-/Routinghash unverändert.
+
+`scan-ready/panel4-session-before.json` sichert die vorherige Sitzung;
+`scan-ready/prepared.json` enthält den Plan und `scan-ready/save.json`
+den Projektcheckpoint samt Prüfsumme. Reproduzierbare Vorbereitung:
+`tools/prepare_panel5_20260911.py`. Der Controller selbst wurde nicht verändert.
+
+Manuell fortsetzen: Capture Views → Check Camera → Close Camera →
+Check Scan Plan → Start Scan / Next View. Die Scanplan-Zusammenfassung
+muss 352 LEDs und PANEL U139–U141 anzeigen.
