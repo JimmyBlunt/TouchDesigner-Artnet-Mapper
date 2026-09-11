@@ -129,3 +129,31 @@ Schritt: GND-Anschluss bis zur ersten LED spannungsfrei mit sicheren Kontakten
 an blanken Metallstellen wiederholen; bei reproduzierbarem Wert die Strecke
 an zugänglichen Stecker-/Lötstellen abschnittsweise messen. Noch keine
 Versorgungsspannung, Belastungsmessung oder Signalform gemessen.
+
+## Reparaturmeldung und Wiederaufnahme
+
+Der Benutzer meldet die Ursache als gefunden und behoben: Ein Kabel war
+falsch verbunden, wodurch die Masseverbindung nicht sauber war. Die
+Verbindung wurde korrigiert. Der Benutzer möchte die Tests fortsetzen.
+Dies ist eine Reparaturmeldung vor dem erneuten Funktionstest, noch kein
+protokollierter fehlerfreier Nachtest.
+
+Readback nach Reparatur: Controller 10.0.0.249 erreichbar, Port 4 weiterhin
+810 LEDs ab U133, RGB-Reihenfolge am Ausgang GRB, GPIO14, 30 FPS; vollständiger
+Controllerbereich weiterhin 18 Universen. Interner Test inaktiv. Empfangszähler
+stehen aktuell auf 0. Hardwareprofil wird jetzt als esp32-wroom-flex-8ws-2apa
+gemeldet (zuvor extensionboard-6ws-3apa); die vier Ausgangszuordnungen sind
+unverändert. Keine Konfiguration durch diesen Arbeitsschritt geschrieben.
+
+Die TouchDesigner-Exec-Verbindung antwortete bei zwei reinen Leseversuchen
+nicht innerhalb von 20 bzw. 6 Sekunden. TouchDesigner wird vom Betriebssystem
+als laufend und ansprechbar gemeldet. Deshalb wurde kein neuer externer
+LED-Test gestartet, da die Anwendungsausgabesperre nicht geprüft werden konnte.
+Für den Nachtest kann der Benutzer den bereits bekannten internen Test für
+Port 4 einmal ausführen, bei gestopptem Scan und ausgeschalteter Live-Ausgabe.
+
+Die erste Panel-4-Scanansicht wurde vor der Reparatur aufgenommen. Wegen
+möglicher falscher Erkennungen durch zusätzlich aufblitzende LEDs sollte die
+weitere Scanserie nach einem sauberen Nachtest neu beginnen. Die alte Ansicht
+bleibt als Diagnose-/Archivbestand erhalten und soll nicht ungeprüft mit den
+neuen Ansichten kombiniert werden.
