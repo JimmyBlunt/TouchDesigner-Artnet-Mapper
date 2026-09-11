@@ -21,3 +21,7 @@ Der vorhandene Platzhalter direkt unter Panel 1 besitzt 256 Punkte mit Source-ID
 Vorgeschlagene manuelle Felder: Scale X/Y/Z jeweils `0.03649053`; Translate X `0.62302434`, Y `0.82087416`, Z `0.68790139`. Die Drehwinkel bleiben gleich. Translation verschiebt den ursprünglichen Scan-Ursprung; deshalb entsprechen die drei Feldwerte nicht direkt dem Zielmittelpunkt. Die resultierende LED-Hülle wäre ungefähr `[0.61664046, 0.99661739, 0.515625]` bis `[0.78335954, 1.00338261, 0.684375]`.
 
 Nur berechnet und erklärt, nicht durch den Assistenten angewendet. Der vorhandene Platzhalter bleibt bis zum separaten manuellen Entfernen bestehen; aktive Map und Hardware-Zuordnung wurden nicht geändert.
+
+## Platzierung durch Benutzer bestätigt
+
+Die anschließende native Prüfung bestätigt sämtliche vorgeschlagenen Transformwerte, 880 Punkte und keine Operatorfehler; Messwerte stehen in `panel3-placed-check.json`. `panel3-placed-native.png` zeigt die aktuelle Layout-Ansicht mit dem noch vorhandenen Platzhalter. `panel3-front-review.png` ist eine separate Datenzeichnung der unveränderten Messpunkte mit dem tatsächlich eingetragenen Transform: horizontal −Z, vertikal X. Sie zeigt ausschließlich Panel 3 zur Bestätigung der physischen Musterorientierung durch den Benutzer. Keine Layout-Mutation bei dieser Prüfung.
