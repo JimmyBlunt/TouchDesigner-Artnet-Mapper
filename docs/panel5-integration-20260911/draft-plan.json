@@ -1,0 +1,101 @@
+{
+  "panel_id": "9d1130c2-e47f-4f98-acaa-1f31b2332e57",
+  "expected_leds": 352,
+  "measured_leds": 341,
+  "missing_local_ids": [
+    123,
+    197,
+    231,
+    234,
+    235,
+    243,
+    244,
+    252,
+    253,
+    261,
+    270
+  ],
+  "missing_global_sources": [
+    6295,
+    6369,
+    6403,
+    6406,
+    6407,
+    6415,
+    6416,
+    6424,
+    6425,
+    6433,
+    6442
+  ],
+  "reserved_sources": [
+    6172,
+    6523
+  ],
+  "placement": {
+    "panel_cm": [
+      30,
+      30
+    ],
+    "position": "third row left, below Panel 3",
+    "center": [
+      0.5,
+      1.0,
+      0.6
+    ],
+    "bounds": [
+      [
+        0.4436518540126372,
+        0.9980339659643274,
+        0.515625
+      ],
+      [
+        0.5563481459873627,
+        1.0019660340356729,
+        0.684375
+      ]
+    ],
+    "transform": {
+      "translation": [
+        0.3871546371018799,
+        0.8081008085848139,
+        0.41969940403839523
+      ],
+      "rotation_degrees": [
+        51.936771228597706,
+        -52.515056423624166,
+        174.52229516576097
+      ],
+      "scale": [
+        0.009367616225250041,
+        0.009367616225250041,
+        0.009367616225250041
+      ],
+      "pivot": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "camera_orientation_reference": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\Scans\\back_panel5_352_249_20260911_fullscan\\capture-0e73dead-440c-46a9-b4e9-a01481965005\\view.csv",
+    "camera_score": 1.4989356913414937,
+    "fit": "uniform similarity to same normalized LED envelope as first panel",
+    "orientation_verified": false,
+    "physical_registration_verified": false,
+    "original_scan_unchanged": true,
+    "all_341_bindings_unchanged": true,
+    "missing_count": 11,
+    "other_objects_unchanged": true,
+    "routes_unchanged": true,
+    "existing_template_preserved": true,
+    "active_applied": false
+  },
+  "retired_template_sources": [
+    2464,
+    2719
+  ],
+  "retired_template_count": 256,
+  "other_points_and_routes_unchanged": true,
+  "active_applied": false,
+  "orientation_user_confirmed": false
+}
