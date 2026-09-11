@@ -1,0 +1,71 @@
+{
+  "sender": {
+    "enabled": false,
+    "error": "",
+    "mode": "live",
+    "calibration": [
+      "all",
+      "panel_id",
+      0
+    ],
+    "controllers": [],
+    "target_override": null,
+    "port_override": null,
+    "telemetry": {
+      "tick_count": 157229,
+      "rate_skips": 128833,
+      "send_count": 26736,
+      "packet_count": 775344,
+      "send_ms_last": 52.58809999213554,
+      "send_ms_average": 59.15980019060513,
+      "send_ms_max": 83.34719997947104,
+      "actual_send_fps": 4.227949924074199,
+      "pack_count": 26736,
+      "pack_ms_last": 5.177399987587705,
+      "pack_ms_average": 5.973307805936227,
+      "pack_ms_max": 19.402299978537485,
+      "plan_rebuilds": 1
+    }
+  },
+  "black_packets_sent": 290,
+  "before": {
+    "pixelCount": 4105,
+    "universeCount": 28,
+    "packets": 1539931,
+    "framesComplete": 49872,
+    "framesIncomplete": 4474,
+    "fps": 0,
+    "packetsPerSecond": 0,
+    "heapFree": 144356,
+    "heapMinFree": 111112,
+    "frameTimeUs": 55509,
+    "outputTimeUs": 55509,
+    "lastFrameLatencyMs": null,
+    "startUniverse": 0,
+    "outputFrames": 50527,
+    "timeouts": 3739,
+    "droppedPackets": 52819,
+    "sequenceErrors": 0
+  },
+  "after": {
+    "pixelCount": 4105,
+    "universeCount": 28,
+    "packets": 1540221,
+    "framesComplete": 49882,
+    "framesIncomplete": 4474,
+    "fps": 4,
+    "packetsPerSecond": 137,
+    "heapFree": 144164,
+    "heapMinFree": 111112,
+    "frameTimeUs": 55800,
+    "outputTimeUs": 55800,
+    "lastFrameLatencyMs": null,
+    "startUniverse": 0,
+    "outputFrames": 50537,
+    "timeouts": 3739,
+    "droppedPackets": 52829,
+    "sequenceErrors": 0
+  },
+  "complete_black_frames": 10,
+  "optical_blackout_confirmed": false
+}
