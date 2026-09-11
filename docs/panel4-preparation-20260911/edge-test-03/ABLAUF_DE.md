@@ -83,3 +83,16 @@ Daten-/Masseverbindungen und Versorgung untersuchen. Dies sind Prüfschritte,
 keine bestätigte Bauteildiagnose. Sichere Kontakte, gemeinsame Masse und kurze
 Datenleitungen werden auch in den Herstellerhinweisen beschrieben:
 https://learn.adafruit.com/adafruit-neopixel-uberguide/best-practices
+
+## Gegenversuch ohne Zwischenkabel
+
+Der Benutzer hat das Zwischenkabel entfernt und den Controllerausgang direkt
+mit Panel 4 verbunden. Das zusätzliche Aufblitzen blieb bestehen. Das
+entfernte Zwischenkabel ist damit als alleinige Ursache unwahrscheinlich;
+die Panelseite einschließlich Eingang, interner Verbindungen und Versorgung
+steht weiter im Vordergrund. Ein bestimmtes defektes Bauteil oder eine
+Signalpegel-/Timingwechselwirkung ist damit noch nicht abschließend bestimmt.
+Der Benutzer prüft nun Masse und Datenleitung gegen Masse. Noch keine
+Messwerte vorhanden. Durchgangs-/Widerstandsmessungen nur spannungsfrei,
+Datenanschluss vom Controller getrennt; eine Multimeter-Spannungsmessung
+der Datenleitung allein bewertet die schnellen Datenimpulse nicht.
