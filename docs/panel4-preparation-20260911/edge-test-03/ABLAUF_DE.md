@@ -55,10 +55,16 @@ dass nun vollständige Rahmen verarbeitet und ausgegeben wurden.
 
 Nach dem korrigierten Durchlauf: „erste led hat nicht geflackert aber alle
 dnach bi au die allerletzte wider“. Bezogen auf die sechs getesteten LEDs
-waren somit die erste und letzte unauffällig; bei den dazwischen getesteten
-LEDs trat wieder Flackern auf. Es wurden nicht alle 810 LEDs getestet.
-Noch zu klären ist, ob jeweils die ausgewählte LED selbst flackerte oder
-zusätzliche, eigentlich ausgeschaltete LEDs aufblitzten.
+waren die Testphasen für die erste und letzte LED unauffällig; bei den
+dazwischen getesteten LEDs trat wieder zusätzliches Aufblitzen auf.
+Es wurden nicht alle 810 LEDs getestet.
+
+Anschließende ausdrückliche Klarstellung: „es flakert nie die eigentluche LED
+sondern immer andere“. Die jeweils angesteuerte LED selbst bleibt also
+stabil; andere, laut Testdaten schwarze LEDs blitzen ungewollt auf.
+Die frühere Formulierung darf nicht als Flackern der Ziel-LED gelesen werden.
+Ob diese anderen LEDs in der elektrischen Reihenfolge ausschließlich hinter
+der Ziel-LED liegen, ist noch nicht bestätigt.
 
 Dies bestätigt ein optisches Problem auch beim gezielten externen Test,
 identifiziert aber noch kein defektes Bauteil. Das zuvor beobachtete Flackern
@@ -68,3 +74,12 @@ Controllerausgang war unauffällig. Damit stehen Panel 4 und seine Zuleitung
 im Vordergrund; ob dabei exakt dieselbe Zuleitung verwendet wurde, ist noch
 nicht bestätigt. Die erste LED ist anhand dieses Musters allein nicht als
 defekt identifiziert. Keine weitere Ausgabe ohne angekündigten Test gestartet.
+
+Nächster sinnvoller Vergleich: gleiche Controllerbuchse und exakt dieselbe
+Zuleitung mit dem unauffälligen Panel verwenden, sofern dies nicht bereits
+der vorherige Gegenversuch war. Steckverbindungen nur spannungsfrei wechseln.
+Bei weiter nur an Panel 4 auftretendem Fehler dessen Eingangsstecker,
+Daten-/Masseverbindungen und Versorgung untersuchen. Dies sind Prüfschritte,
+keine bestätigte Bauteildiagnose. Sichere Kontakte, gemeinsame Masse und kurze
+Datenleitungen werden auch in den Herstellerhinweisen beschrieben:
+https://learn.adafruit.com/adafruit-neopixel-uberguide/best-practices
