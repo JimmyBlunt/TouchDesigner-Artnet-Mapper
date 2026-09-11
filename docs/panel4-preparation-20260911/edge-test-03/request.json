@@ -1,0 +1,11 @@
+{
+  "name": "BACK_PANEL4_810_249",
+  "target": "10.0.0.249",
+  "interface": "10.0.0.125",
+  "universe": 133,
+  "count": 810,
+  "rate": 30,
+  "order": "RGB",
+  "frame_start_universe": 120,
+  "frame_universe_count": 18
+}
