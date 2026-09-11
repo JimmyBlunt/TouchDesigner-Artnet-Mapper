@@ -1,0 +1,90 @@
+{
+  "/project1/madmapper_player_controls": {
+    "type": "base",
+    "custom": {
+      "Source": "imported",
+      "Material": "arcs",
+      "Speed": "1.0",
+      "Scale": "4.0",
+      "Width": "0.5",
+      "Colorr": "0.91",
+      "Colorg": "0.0",
+      "Colorb": "1.0",
+      "Coordinatemode": "global",
+      "Intensity": "1.0",
+      "Contrast": "1.25",
+      "Trail": "0.55",
+      "Direction": "0.125",
+      "Rotation": "0.0",
+      "Seed": "0.0",
+      "Transition": "0.5",
+      "Hybridmix": "0.5",
+      "Density": "1.0",
+      "Panelcolumns": "2",
+      "Panelrows": "5",
+      "Color2r": "0.0",
+      "Color2g": "0.72",
+      "Color2b": "0.86",
+      "Color2a": "1.0",
+      "Focusx": "0.5",
+      "Focusy": "0.5",
+      "Framezoom": "1.0",
+      "Gradientpreset": "neon_cyan_magenta",
+      "Gradientstrength": "1.0",
+      "Colormode": "original",
+      "Globalmasterspeed": "1.0"
+    },
+    "inputs": [],
+    "children": [
+      [
+        "out1",
+        "out"
+      ],
+      [
+        "ui_panel",
+        "container"
+      ],
+      [
+        "material_preview",
+        "select"
+      ],
+      [
+        "player_ui_update",
+        "execute"
+      ],
+      [
+        "player_ui_runtime",
+        "text"
+      ]
+    ]
+  },
+  "/project1/material_gradient_player": {
+    "type": "glsl",
+    "custom": {},
+    "inputs": [
+      "/project1/visual_source_switch"
+    ]
+  },
+  "/project1/visual_source_switch": {
+    "type": "switch",
+    "custom": {},
+    "inputs": [
+      "/project1/moviefilein1",
+      "/project1/madmapper_material_player",
+      "/project1/show_control_out",
+      "/project1/madmapper_library/imported_material_out"
+    ]
+  },
+  "/project1/multi_controller_output/ui_callbacks": {
+    "type": "text",
+    "custom": {},
+    "inputs": [],
+    "text": "import ipaddress\nimport sys\nimport time\n\nPROJECT_ROOT = r'C:/Users/jbhtz/OneDrive/Desktop/Pictures/Documents/ChatGPT/LED-Touchdesigner-Controller/PixelblazeMapper'\nif PROJECT_ROOT not in sys.path:\n    sys.path.insert(0, PROJECT_ROOT)\nfrom pixelblaze_mapper.routing_transaction import table_rows, apply_router_transaction, stop_outputs\nfrom pixelblaze_mapper.installation_contract import TOTAL_PIXELS\nfrom pixelblaze_mapper.output_config_summary import build_output_summary\nfrom pixelblaze_mapper.routing_transaction import records\n\n_last_status_update = 0.0\n\nBUILDER = r'C:/Users/jbhtz/OneDrive/Desktop/Pictures/Documents/ChatGPT/LED-Touchdesigner-Controller/PixelblazeMapper/pixelblaze_mapper/build_multi_controller_output.py'\n\ndef _field(name):\n    return str(op('ui_panel/' + name + '/string')[0, 0]).strip()\n\ndef _source_pixels():\n    source = op('/project1/math1')\n    return int(source.numSamples) if source is not None else TOTAL_PIXELS\n\ndef _set_status(text, color=(0.35, 0.90, 0.67)):\n    node = op('ui_panel/action_status')\n    node.par.text = 'LAST ACTION: ' + text\n    node.par.fontcolorr, node.par.fontcolorg, node.par.fontcolorb = color\n\ndef refresh_status(force=False):\n    global _last_status_update\n    now = time.monotonic()\n    if not force and now - _last_status_update < 0.25:\n        return\n    _last_status_update = now\n    try:\n        sender = op('artnet_510_sender_callbacks')\n        state = sender.module.status() if sender is not None else {'enabled': False, 'error': 'Sender unavailable'}\n        summary = build_output_summary(records(table_rows(op('controller_config'))),\n            records(table_rows(op('segment_config'))), state, source_pixels=_source_pixels(),\n            validation_rows=records(table_rows(op('validation'))))\n        fps = state.get('telemetry', {}).get('actual_send_fps', 0.0)\n        op('ui_panel/safety').par.text = '%s | sender %s | %.1f actual fps | %d RGB source pixels' % (\n            summary.state, 'ON' if summary.sender_enabled else 'OFF', fps, _source_pixels())\n        from pixelblaze_mapper.router_dynamic_ui import refresh\n        refresh(op('/project1/multi_controller_output'), summary)\n    except Exception as error:\n        op('ui_panel/safety').par.text = 'STATUS UNAVAILABLE | ' + str(error)\n\ndef _controller_draft(rows, name, prefix):\n    header = rows[0]\n    row = next((row for row in rows[1:] if row[header.index('name')] == name), None)\n    if row is None:\n        return\n    address = _field(prefix + '_ip')\n    ipaddress.ip_address(address)\n    universe = int(_field(prefix + '_universe'))\n    brightness = float(_field(prefix + '_brightness'))\n    enabled = int(_field(prefix + '_enabled'))\n    if not 0 <= universe <= 32767:\n        raise ValueError('Universe must be 0..32767')\n    if not 0.0 <= brightness <= 1.0:\n        raise ValueError('Brightness must be 0.0..1.0')\n    if enabled not in (0, 1):\n        raise ValueError('Enabled must be 0 or 1')\n    for key, value in (('target_ip', address), ('start_universe', universe),\n                       ('brightness', brightness), ('enabled', enabled)):\n        row[header.index(key)] = str(value)\n\ndef _write_calibration():\n    panel = _field('cal_panel').lower()\n    pattern = _field('cal_pattern').lower()\n    chase = int(_field('cal_chase'))\n    if panel not in ('all', 'middle', 'upper', 'lower', 'rear'):\n        raise ValueError('Calibration panel: all, middle, upper, lower or rear')\n    if pattern not in ('panel_id', 'rows', 'columns', 'chase'):\n        raise ValueError('Calibration pattern: panel_id, rows, columns or chase')\n    if not 0 <= chase < _source_pixels():\n        raise ValueError('Chase index must be 0..%d' % (_source_pixels() - 1))\n    return panel, pattern, chase\n\ndef _rebuild_router():\n    # Preserve TouchDesigner's injected op and OP types.\n    scope = dict(globals())\n    scope['__name__'] = '__main__'\n    scope['__file__'] = BUILDER\n    exec(compile(open(BUILDER, encoding='utf-8').read(), BUILDER, 'exec'), scope, scope)\n\ndef apply_safe():\n    try:\n        rows = table_rows(op('controller_config'))\n        from pixelblaze_mapper.router_dynamic_ui import apply_drafts\n        rows = apply_drafts(op('/project1/multi_controller_output'), rows)\n        panel, pattern, chase = _write_calibration()\n        calibration = table_rows(op('calibration_config'))\n        values = {'panel': panel, 'pattern': pattern, 'chase_index': str(chase)}\n        for row in calibration[1:]:\n            if row[0] in values:\n                row[1] = values[row[0]]\n        apply_router_transaction(op('/project1/multi_controller_output'), rows,\n            table_rows(op('segment_config')), _rebuild_router,\n            extra_tables=((op('calibration_config'), calibration),), source_pixels=_source_pixels())\n        _set_status('VALIDATED - draft applied; network outputs remain OFF')\n        return True\n    except Exception as error:\n        _set_status('BLOCKED - ' + str(error), (0.98, 0.38, 0.32))\n        return False\n\ndef all_off():\n    stop_outputs(op('/project1/multi_controller_output'))\n    _set_status('SAFE - all Art-Net outputs are OFF')\n\ndef start_enabled():\n    all_off()\n    if not apply_safe():\n        return False\n    sender = op('artnet_510_sender_callbacks')\n    sender.module.set_live()\n    started = sender.module.set_enabled(True)\n    state = sender.module.status()\n    active = state.get('controllers', [])\n    if started:\n        _set_status('LIVE - shared 510-byte sender: ' + ', '.join(active), (0.98, 0.72, 0.24))\n    else:\n        _set_status('BLOCKED - ' + state.get('error', 'sender did not start'), (0.98, 0.38, 0.32))\n    return started\n\ndef start_calibration():\n    all_off()\n    try:\n        panel, pattern, chase = _write_calibration()\n    except Exception as error:\n        _set_status('BLOCKED - ' + str(error), (0.98, 0.38, 0.32))\n        return False\n    if not apply_safe():\n        return False\n    sender = op('artnet_510_sender_callbacks')\n    try:\n        sender.module.set_calibration(panel, pattern, chase)\n        started = sender.module.set_enabled(True)\n        state = sender.module.status()\n        if not started:\n            raise RuntimeError(state.get('error', 'sender did not start'))\n        _set_status('CALIBRATION - %s / %s / index %d' % (panel, pattern, chase), (0.38, 0.76, 0.96))\n        return True\n    except Exception as error:\n        sender.module.set_enabled(False)\n        _set_status('BLOCKED - ' + str(error), (0.98, 0.38, 0.32))\n        return False\n\ndef _cycle(field, values):\n    current = _field(field).lower()\n    index = values.index(current) if current in values else -1\n    op('ui_panel/' + field + '/string').text = values[(index + 1) % len(values)]\n    return start_calibration()\n\ndef next_panel():\n    return _cycle('cal_panel', ['all', 'middle', 'upper', 'lower', 'rear'])\n\ndef next_pattern():\n    return _cycle('cal_pattern', ['panel_id', 'rows', 'columns', 'chase'])\n"
+  },
+  "/project1/material_state_runtime": {
+    "type": "text",
+    "custom": {},
+    "inputs": [],
+    "text": "import json\nimport sys\nfrom dataclasses import replace\nfrom pathlib import Path\n\nPROJECT_ROOT = Path(r'C:/Users/jbhtz/OneDrive/Desktop/Pictures/Documents/ChatGPT/LED-Touchdesigner-Controller/PixelblazeMapper')\nif str(PROJECT_ROOT) not in sys.path:\n    sys.path.insert(0, str(PROJECT_ROOT))\n\nfrom pixelblaze_mapper.material_state import MaterialSettings, MaterialStateStore\nfrom pixelblaze_mapper.material_storage import runtime_cache, state_document\n\nCONTROLS = op('/project1/madmapper_player_controls')\nTABLE = op('/project1/material_state_table')\nSTATE_OWNER = op('/project1')\nSTORE_KEY = 'p1_material_state_store'\nINIT_KEY = 'p1_material_state_runtime_schema'\nRUNTIME_SCHEMA = 3\n_stored = STATE_OWNER.fetch(STORE_KEY, None)\n_runtime_cache = runtime_cache(STATE_OWNER, 'p1_material_runtime_cache')\n_runtime_store = _runtime_cache.get('store')\nif isinstance(_runtime_store, MaterialStateStore):\n    STORE = _runtime_store\nelse:\n    # Convert stale pre-reload instances by their data, not class identity.\n    _document = state_document(_runtime_store if _runtime_store is not None else _stored)\n    STORE = MaterialStateStore.from_dict(_document) if _document is not None else MaterialStateStore()\n    _runtime_cache['store'] = STORE\nif _stored is not None and not isinstance(_stored, dict):\n    STATE_OWNER.store(STORE_KEY, state_document(STORE))\n_durable_document = STATE_OWNER.fetch(STORE_KEY, None)\n# The live marker skips expensive reinitialization after DAT reload. It must\n# not survive a file reopen, which needs to rebase the persisted phase clock.\nif hasattr(STATE_OWNER, 'storeStartupValue'):\n    STATE_OWNER.storeStartupValue(INIT_KEY, None)\n_applying = False\n\n\ndef _now():\n    return float(absTime.seconds)\n\n\ndef _table_document():\n    if TABLE is None or TABLE.numRows < 2:\n        return None\n    for row in range(1, TABLE.numRows):\n        if str(TABLE[row, 0]) == 'document':\n            value = str(TABLE[row, 1]).strip()\n            return json.loads(value) if value else None\n    return None\n\n\ndef _persist():\n    global _durable_document\n    _durable_document = STORE.to_dict()\n    STATE_OWNER.store(STORE_KEY, _durable_document)\n    _runtime_cache['store'] = STORE\n    STATE_OWNER.store(INIT_KEY, RUNTIME_SCHEMA)\n    document = json.dumps(STORE.to_dict(), sort_keys=True, separators=(',', ':'))\n    TABLE.clear()\n    TABLE.appendRow(('key', 'json'))\n    TABLE.appendRow(('document', document))\n\n\ndef _rgba(prefix):\n    values = []\n    for suffix in 'rgba':\n        parameter = getattr(CONTROLS.par, prefix + suffix, None)\n        values.append(float(parameter.eval()) if parameter is not None else 1.0)\n    return tuple(values)\n\n\ndef _settings_from_controls():\n    gradient = CONTROLS.par.Gradientpreset\n    return MaterialSettings(\n        speed=float(CONTROLS.par.Speed.eval()),\n        scale=float(CONTROLS.par.Scale.eval()),\n        width=float(CONTROLS.par.Width.eval()),\n        focus_x=float(CONTROLS.par.Focusx.eval()),\n        focus_y=float(CONTROLS.par.Focusy.eval()),\n        zoom=float(CONTROLS.par.Framezoom.eval()),\n        gradient=str(gradient.eval()) if gradient is not None else 'custom',\n        color_a=_rgba('Color'),\n        color_b=_rgba('Color2'),\n        coordinate_mode=str(CONTROLS.par.Coordinatemode.eval()),\n        intensity=float(CONTROLS.par.Intensity.eval()),\n        contrast=float(CONTROLS.par.Contrast.eval()),\n        color_mode=str(CONTROLS.par.Colormode.eval()),\n        gradient_strength=float(CONTROLS.par.Gradientstrength.eval()),\n    )\n\n\ndef _apply(settings):\n    global _applying\n    previous_applying = _applying\n    _applying = True\n    try:\n        CONTROLS.par.Speed = settings.speed\n        CONTROLS.par.Scale = settings.scale\n        CONTROLS.par.Width = settings.width\n        CONTROLS.par.Focusx = settings.focus_x\n        CONTROLS.par.Focusy = settings.focus_y\n        CONTROLS.par.Framezoom = settings.zoom\n        CONTROLS.par.Intensity = settings.intensity\n        CONTROLS.par.Contrast = settings.contrast\n        CONTROLS.par.Colormode = settings.color_mode\n        CONTROLS.par.Gradientstrength = settings.gradient_strength\n        if CONTROLS.par.Gradientpreset is not None:\n            CONTROLS.par.Gradientpreset = settings.gradient\n        for suffix, value in zip('rgba', settings.color_a):\n            parameter = getattr(CONTROLS.par, 'Color' + suffix, None)\n            if parameter is not None:\n                parameter.val = value\n        for suffix, value in zip('rgba', settings.color_b):\n            parameter = getattr(CONTROLS.par, 'Color2' + suffix, None)\n            if parameter is not None:\n                parameter.val = value\n        CONTROLS.par.Coordinatemode = settings.coordinate_mode\n    finally:\n        _applying = previous_applying\n\n\ndef _current_key():\n    source = str(CONTROLS.par.Source.eval())\n    if source == 'materials':\n        return 'core:' + str(CONTROLS.par.Material.eval())\n    if source == 'imported':\n        if STORE.active_key and STORE.active_key.startswith('madmapper:'):\n            return STORE.active_key\n        state = op('/project1/madmapper_library/browser_state')\n        if state is not None:\n            values = {str(state[row, 0]): str(state[row, 1]).strip() for row in range(1, state.numRows)}\n            material_id = values.get('active_id') or values.get('live_preview_id')\n            if material_id:\n                return 'madmapper:' + material_id\n            for row in range(1, state.numRows):\n                if str(state[row, 0]) == 'selected_id' and str(state[row, 1]).strip():\n                    return 'madmapper:' + str(state[row, 1]).strip()\n    return source + ':default'\n\n\ndef initialize(force=False):\n    global STORE\n    if not force and STATE_OWNER.fetch(INIT_KEY, None) == RUNTIME_SCHEMA:\n        existing = _runtime_cache.get('store')\n        if isinstance(existing, MaterialStateStore):\n            STORE = existing\n            return STORE.active_key\n    # Storage includes the most recent phase tick; the DAT is a recovery copy\n    # updated only on settings/activation, not at frame rate.\n    document = STATE_OWNER.fetch(STORE_KEY, None)\n    if not isinstance(document, dict):\n        document = _table_document()\n    if document:\n        STORE = MaterialStateStore.from_dict(document)\n    CONTROLS.par.Globalmasterspeed = STORE.global_master_speed\n    key = _current_key()\n    if STORE.active_key != key:\n        state = STORE.activate(key, _now(), initial=_settings_from_controls())\n    else:\n        # A persisted timestamp belongs to the previous TD runtime.  Keep the\n        # exact stored phase, but anchor future integration at this launch so\n        # closed/reload time can never be counted as material animation.\n        state = STORE.rebase_active(_now())\n    _apply(state.settings)\n    _persist()\n    return key\n\n\ndef activate(key, preset=None):\n    global _applying\n    now = _now()\n    if STORE.active_key is not None:\n        STORE.set_active_settings(_settings_from_controls(), now)\n    initial = MaterialSettings()\n    if preset:\n        initial = replace(\n            initial,\n            scale=float(preset.get('scale', initial.scale)),\n            width=float(preset.get('width', initial.width)),\n        )\n    state = STORE.activate(str(key), now, initial=initial)\n    _applying = True\n    try:\n        if str(key).startswith('core:'):\n            CONTROLS.par.Source = 'materials'\n            CONTROLS.par.Material = str(key).split(':', 1)[1]\n        elif str(key).startswith('madmapper:'):\n            CONTROLS.par.Source = 'imported'\n        _apply(state.settings)\n    finally:\n        _applying = False\n    _persist()\n    return state.settings.to_dict()\n\n\ndef controls_changed():\n    if _applying:\n        return\n    now = _now()\n    STORE.set_global_master_speed(float(CONTROLS.par.Globalmasterspeed.eval()), now)\n    settings = _settings_from_controls()\n    key = _current_key()\n    if STORE.active_key != key:\n        state = STORE.activate(key, now, initial=settings)\n        _apply(state.settings)\n    else:\n        STORE.set_active_settings(settings, now)\n    _persist()\n\n\ndef tick():\n    value = STORE.tick(_now())\n    # Keep just two primitive clock scalars current in the existing dictionary.\n    # No store(), DAT rewrite, JSON encoding, or all-material copy per frame.\n    if isinstance(_durable_document, dict) and STORE.active_key is not None:\n        saved = _durable_document.get('materials', {}).get(STORE.active_key)\n        if saved is not None:\n            state = STORE.state(STORE.active_key)\n            saved['phase'] = float(state.phase)\n            saved['last_time'] = state.last_time\n    return value\n\n\ndef phase():\n    return tick()\n\n\nif STATE_OWNER.fetch(INIT_KEY, None) != RUNTIME_SCHEMA:\n    initialize()\n"
+  }
+}

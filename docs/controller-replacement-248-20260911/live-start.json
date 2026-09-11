@@ -1,0 +1,36 @@
+{
+  "state": {
+    "enabled": true,
+    "error": "",
+    "mode": "live",
+    "calibration": [
+      "all",
+      "panel_id",
+      0
+    ],
+    "controllers": [
+      "BACK_PANEL_249"
+    ],
+    "target_override": null,
+    "port_override": null,
+    "telemetry": {
+      "tick_count": 0,
+      "rate_skips": 0,
+      "send_count": 0,
+      "packet_count": 0,
+      "send_ms_last": 0.0,
+      "send_ms_average": 0.0,
+      "send_ms_max": 0.0,
+      "actual_send_fps": 0.0,
+      "pack_count": 0,
+      "pack_ms_last": 0.0,
+      "pack_ms_average": 0.0,
+      "pack_ms_max": 0.0,
+      "plan_rebuilds": 1
+    }
+  },
+  "frame_hash": "7bb2ee06ede930894b7466dc9f6339b1d8a48aacf904d794b31e91d49fe39cb2",
+  "source_nonblack": true,
+  "port6_black": true,
+  "stop_button": "ALL OUTPUTS OFF"
+}

@@ -1,0 +1,103 @@
+{
+  "before": {
+    "pixelCount": 4105,
+    "universeCount": 28,
+    "packets": 38915,
+    "framesComplete": 908,
+    "framesIncomplete": 850,
+    "fps": 0,
+    "packetsPerSecond": 0,
+    "heapFree": 146100,
+    "heapMinFree": 111112,
+    "frameTimeUs": 55513,
+    "outputTimeUs": 55513,
+    "lastFrameLatencyMs": null,
+    "startUniverse": 0,
+    "outputFrames": 1563,
+    "timeouts": 116,
+    "droppedPackets": 1247,
+    "sequenceErrors": 0
+  },
+  "start": {
+    "enabled": true,
+    "error": "",
+    "mode": "live",
+    "calibration": [
+      "all",
+      "panel_id",
+      0
+    ],
+    "controllers": [
+      "BACK_PANEL_249"
+    ],
+    "target_override": null,
+    "port_override": null,
+    "telemetry": {
+      "tick_count": 0,
+      "rate_skips": 0,
+      "send_count": 0,
+      "packet_count": 0,
+      "send_ms_last": 0.0,
+      "send_ms_average": 0.0,
+      "send_ms_max": 0.0,
+      "actual_send_fps": 0.0,
+      "pack_count": 0,
+      "pack_ms_last": 0.0,
+      "pack_ms_average": 0.0,
+      "pack_ms_max": 0.0,
+      "plan_rebuilds": 5
+    }
+  },
+  "after": {
+    "pixelCount": 4105,
+    "universeCount": 28,
+    "packets": 39513,
+    "framesComplete": 926,
+    "framesIncomplete": 853,
+    "fps": 5,
+    "packetsPerSecond": 145,
+    "heapFree": 145752,
+    "heapMinFree": 111112,
+    "frameTimeUs": 55517,
+    "outputTimeUs": 55517,
+    "lastFrameLatencyMs": null,
+    "startUniverse": 0,
+    "outputFrames": 1581,
+    "timeouts": 119,
+    "droppedPackets": 1268,
+    "sequenceErrors": 0
+  },
+  "end": {
+    "sender": {
+      "enabled": true,
+      "error": "",
+      "mode": "live",
+      "calibration": [
+        "all",
+        "panel_id",
+        0
+      ],
+      "controllers": [
+        "BACK_PANEL_249"
+      ],
+      "target_override": null,
+      "port_override": null,
+      "telemetry": {
+        "tick_count": 83,
+        "rate_skips": 61,
+        "send_count": 22,
+        "packet_count": 638,
+        "send_ms_last": 70.95889997435734,
+        "send_ms_average": 66.97061818241227,
+        "send_ms_max": 74.93940001586452,
+        "actual_send_fps": 3.28990138014899,
+        "pack_count": 22,
+        "pack_ms_last": 14.634299994213507,
+        "pack_ms_average": 11.192827271191742,
+        "pack_ms_max": 15.631300018867478,
+        "plan_rebuilds": 5
+      }
+    },
+    "errors": ""
+  }
+}

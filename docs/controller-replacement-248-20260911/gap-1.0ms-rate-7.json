@@ -1,0 +1,72 @@
+{
+  "rate": 7,
+  "gap_ms": 1.0,
+  "before": {
+    "pixelCount": 4105,
+    "universeCount": 28,
+    "packets": 15664,
+    "framesComplete": 169,
+    "framesIncomplete": 767,
+    "fps": 3,
+    "packetsPerSecond": 86,
+    "heapFree": 143584,
+    "heapMinFree": 111112,
+    "frameTimeUs": 55567,
+    "outputTimeUs": 55567,
+    "lastFrameLatencyMs": null,
+    "startUniverse": 0,
+    "outputFrames": 824,
+    "timeouts": 39,
+    "droppedPackets": 447,
+    "sequenceErrors": 0
+  },
+  "after": {
+    "pixelCount": 4105,
+    "universeCount": 28,
+    "packets": 16406,
+    "framesComplete": 192,
+    "framesIncomplete": 770,
+    "fps": 6,
+    "packetsPerSecond": 192,
+    "heapFree": 143596,
+    "heapMinFree": 111112,
+    "frameTimeUs": 55573,
+    "outputTimeUs": 55573,
+    "lastFrameLatencyMs": null,
+    "startUniverse": 0,
+    "outputFrames": 847,
+    "timeouts": 42,
+    "droppedPackets": 473,
+    "sequenceErrors": 0
+  },
+  "sender": {
+    "enabled": true,
+    "error": "",
+    "mode": "live",
+    "calibration": [
+      "all",
+      "panel_id",
+      0
+    ],
+    "controllers": [
+      "BACK_PANEL_249"
+    ],
+    "target_override": null,
+    "port_override": null,
+    "telemetry": {
+      "tick_count": 46,
+      "rate_skips": 19,
+      "send_count": 27,
+      "packet_count": 783,
+      "send_ms_last": 93.75800000270829,
+      "send_ms_average": 75.26459259356164,
+      "send_ms_max": 93.75800000270829,
+      "actual_send_fps": 6.634366758491001,
+      "pack_count": 27,
+      "pack_ms_last": 27.05100001185201,
+      "pack_ms_average": 16.068807406419957,
+      "pack_ms_max": 27.05100001185201,
+      "plan_rebuilds": 3
+    }
+  }
+}

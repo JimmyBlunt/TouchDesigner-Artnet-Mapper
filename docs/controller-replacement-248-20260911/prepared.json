@@ -1,0 +1,34 @@
+{
+  "target": "10.0.0.248",
+  "stable_controller_key": "BACK_PANEL_249",
+  "panels": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "sent_universes": [
+    120,
+    148
+  ],
+  "black_universes": [
+    138,
+    142,
+    143,
+    144,
+    145,
+    146,
+    147,
+    148
+  ],
+  "brightness_percent": 20,
+  "requested_fps": 15,
+  "material": "ocean_waves",
+  "speed": 0.35,
+  "other_controllers_disabled_for_animation": true,
+  "geometry_and_masks_unchanged": true,
+  "old_capture_plan_invalidated": true,
+  "output_started": false,
+  "errors": []
+}

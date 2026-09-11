@@ -1,0 +1,112 @@
+{
+  "start": {
+    "sender": {
+      "enabled": true,
+      "error": "",
+      "mode": "live",
+      "calibration": [
+        "all",
+        "panel_id",
+        0
+      ],
+      "controllers": [
+        "BACK_PANEL_249"
+      ],
+      "target_override": null,
+      "port_override": null,
+      "telemetry": {
+        "tick_count": 738,
+        "rate_skips": 570,
+        "send_count": 168,
+        "packet_count": 4872,
+        "send_ms_last": 67.3059000109788,
+        "send_ms_average": 63.830308334997554,
+        "send_ms_max": 81.79140000720508,
+        "actual_send_fps": 4.9709235691531255,
+        "pack_count": 169,
+        "pack_ms_last": 15.268499992089346,
+        "pack_ms_average": 11.056051478127415,
+        "pack_ms_max": 23.84790001087822,
+        "plan_rebuilds": 5
+      }
+    },
+    "hash": "6f19cd1d7021a66e6a831044e349e79d4810ae7d75e8f4f9dfe06cfad44fc31b",
+    "unmapped_black": true,
+    "unused_black": true,
+    "errors": ""
+  },
+  "before": {
+    "pixelCount": 4105,
+    "universeCount": 28,
+    "packets": 30820,
+    "framesComplete": 648,
+    "framesIncomplete": 826,
+    "fps": 5,
+    "packetsPerSecond": 145,
+    "heapFree": 143920,
+    "heapMinFree": 111112,
+    "frameTimeUs": 55518,
+    "outputTimeUs": 55518,
+    "lastFrameLatencyMs": null,
+    "startUniverse": 0,
+    "outputFrames": 1303,
+    "timeouts": 92,
+    "droppedPackets": 966,
+    "sequenceErrors": 0
+  },
+  "after": {
+    "pixelCount": 4105,
+    "universeCount": 28,
+    "packets": 31986,
+    "framesComplete": 686,
+    "framesIncomplete": 829,
+    "fps": 5,
+    "packetsPerSecond": 145,
+    "heapFree": 144088,
+    "heapMinFree": 111112,
+    "frameTimeUs": 55959,
+    "outputTimeUs": 55959,
+    "lastFrameLatencyMs": null,
+    "startUniverse": 0,
+    "outputFrames": 1341,
+    "timeouts": 95,
+    "droppedPackets": 1006,
+    "sequenceErrors": 0
+  },
+  "end": {
+    "sender": {
+      "enabled": true,
+      "error": "",
+      "mode": "live",
+      "calibration": [
+        "all",
+        "panel_id",
+        0
+      ],
+      "controllers": [
+        "BACK_PANEL_249"
+      ],
+      "target_override": null,
+      "port_override": null,
+      "telemetry": {
+        "tick_count": 846,
+        "rate_skips": 636,
+        "send_count": 210,
+        "packet_count": 6090,
+        "send_ms_last": 73.20089999120682,
+        "send_ms_average": 65.94521238252388,
+        "send_ms_max": 106.56650000601076,
+        "actual_send_fps": 4.971910311565343,
+        "pack_count": 212,
+        "pack_ms_last": 14.194999996107072,
+        "pack_ms_average": 12.050483489731977,
+        "pack_ms_max": 25.882499990984797,
+        "plan_rebuilds": 5
+      }
+    },
+    "hash": "048b768bca8537825c5a1244b3fef2ac718bad32a6d830632a5ed6015b599277",
+    "unmapped_black": true,
+    "unused_black": true,
+    "errors": ""
+  }
+}

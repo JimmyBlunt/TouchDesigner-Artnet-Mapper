@@ -1,0 +1,68 @@
+{
+  "capture_running": false,
+  "probe_running": false,
+  "guard": false,
+  "sender": {
+    "enabled": false,
+    "error": "",
+    "mode": "live",
+    "calibration": [
+      "all",
+      "panel_id",
+      0
+    ],
+    "controllers": [],
+    "target_override": null,
+    "port_override": null,
+    "telemetry": {
+      "tick_count": 150411,
+      "rate_skips": 0,
+      "send_count": 0,
+      "packet_count": 0,
+      "send_ms_last": 0.0,
+      "send_ms_average": 0.0,
+      "send_ms_max": 0.0,
+      "actual_send_fps": 0.0,
+      "pack_count": 0,
+      "pack_ms_last": 0.0,
+      "pack_ms_average": 0.0,
+      "pack_ms_max": 0.0,
+      "plan_rebuilds": 0
+    }
+  },
+  "tables": {
+    "/project1/multi_controller_output/ui_panel/router_target_ip/string": "10.0.0.249\r\n",
+    "/project1/multi_controller_output/segment_config": "name\tsource_start\tcount\tcontroller\tdestination_start\treverse\tcolor_override\r\nAPA102\t1187\t1167\tAPA102_ESP\t512\t0\t\r\nGICO_PORT_1_MIDDLE\t0\t517\tWS2812_NODE\t0\t0\tGRB\r\nGICO_PORT_2_UPPER\t517\t269\tWS2812_NODE\t1020\t0\tGRB\r\nGICO_PORT_3_LOWER\t786\t398\tWS2812_NODE\t2040\t0\tGRB\r\nBACK_TOP_LEFT\t1440\t203\tBACK_PANEL_249\t0\t0\tRGB\r\nBACK_TOP_RIGHT_PANEL2\t3744\t738\tBACK_PANEL_249\t340\t0\tRGB\r\nBACK_SECOND_LEFT_PANEL3\t4482\t880\tBACK_PANEL_249\t1190\t0\tRGB\r\nBACK_SECOND_RIGHT_PANEL4\t5362\t810\tBACK_PANEL_249\t2210\t0\tRGB\r\nBACK_THIRD_LEFT_PANEL5\t6172\t352\tBACK_PANEL_249\t3230\t0\tRGB\r\n",
+    "/project1/multi_controller_output/gico_port_config/controller_ports/ui_panel/target/string": "10.0.0.249\r\n",
+    "/project1/multi_controller_output/controller_config": "enabled\tname\ttarget_ip\tlocal_interface\tport\tstart_universe\tcolor_order\tbrightness\trate\tart_sync\treserved_universes\r\n1\tWS2812_NODE\t10.0.0.244\t10.0.0.125\t6454\t0\tGRB\t0.7\t60\t0\t24\r\n0\tAPA102_ESP\t10.0.0.251\t10.0.0.125\t6454\t0\tRGB\t0.8\t30\t0\t0\r\n1\tBACK_PANEL_249\t10.0.0.249\t10.0.0.125\t6454\t120\tRGB\t0.9\t30\t0\t22\r\n",
+    "/project1/multi_controller_output/controller_summary": "controller\tenabled\ttarget\tpixel_span\tuniverses\tstatus\r\nWS2812_NODE\t0\t10.0.0.244\t4080\t24\tSAFE / DISABLED\r\nAPA102_ESP\t0\t10.0.0.251\t1679\t10\tSAFE / DISABLED\r\nBACK_PANEL_249\t0\t10.0.0.249\t3740\t22\tSAFE / DISABLED\r\n"
+  },
+  "scan_settings": {
+    "name": "BACK_PANEL5_352_249",
+    "target": "10.0.0.249",
+    "interface": "10.0.0.125",
+    "universe": 139,
+    "count": 352,
+    "rate": 30,
+    "order": "RGB",
+    "frame_start_universe": 120,
+    "frame_universe_count": 22
+  },
+  "new_capture_target": "10.0.0.249\r\n",
+  "intent": {
+    "panel": 5,
+    "position": "third row left, below Panel 3",
+    "width_cm": 30,
+    "height_cm": 30,
+    "led_count": 352,
+    "controller": "10.0.0.249",
+    "physical_output": 5,
+    "gpio": 19,
+    "start_universe": 139,
+    "end_universe": 141,
+    "controller_frame_start": 120,
+    "controller_frame_count": 22,
+    "state": "scan_plan_ready_camera_check_pending",
+    "scan_started": false
+  }
+}

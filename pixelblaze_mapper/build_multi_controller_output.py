@@ -906,8 +906,9 @@ def build():
         pass
     from pixelblaze_mapper.output_slot_mask import install_source as install_slot_mask
     from pixelblaze_mapper.sender_pacing import install_source as install_pacing
+    from pixelblaze_mapper.sender_packet_gap import install_source as install_packet_gap
     from pixelblaze_mapper.guided_scan_live import guard_sender_source
-    _replace_dat_text(sender_callbacks, guard_sender_source(install_pacing(install_slot_mask(_artnet_510_sender_source()))))
+    _replace_dat_text(sender_callbacks, guard_sender_source(install_packet_gap(install_pacing(install_slot_mask(_artnet_510_sender_source())))))
     sender_execute = _get_or_create(owner, executeDAT, "artnet_510_execute")
     _replace_dat_text(sender_execute, _artnet_510_execute_source())
     _set_if_present(sender_execute, "active", True)

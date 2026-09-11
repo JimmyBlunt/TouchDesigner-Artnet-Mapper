@@ -1,0 +1,29 @@
+{
+  "saved": true,
+  "file": "PixelblazeMapper_CONTROLLER248_ANIMATION_VERIFIED_20260911.1.toe",
+  "folder": "C:/Users/jbhtz/OneDrive/Desktop/Pictures/Documents/ChatGPT/LED-Touchdesigner-Controller/PixelblazeMapper",
+  "manifest": {
+    "schema": "pixelblaze-layout-save-manifest",
+    "version": 1,
+    "scene_id": "4e9891f6-d147-4ec3-9839-4630543e5aa5",
+    "layout_undo": 26,
+    "layout_redo": 0,
+    "fixture_undo": 0,
+    "fixture_redo": 0,
+    "selected_object_id": "9d1130c2-e47f-4f98-acaa-1f31b2332e57",
+    "selected_fixture_id": "d6a75d7c-b33e-44bd-845b-182889566d66",
+    "transient_startup_none": [
+      "layout_editor_session",
+      "fixture_history",
+      "fixture_preview",
+      "layout_drag",
+      "fixture_drag",
+      "ui_prepared_context"
+    ],
+    "prepared_invalidated_on_reopen": true,
+    "preview_recovered_as_one_undo_step": false
+  },
+  "ui_status": "Save Project .toe: PixelblazeMapper_CONTROLLER248_ANIMATION_VERIFIED_20260911.1.toe saved successfully.",
+  "sender_off": true,
+  "sha256": "d6b6ce6037553d3aa6ce48bb07f7bf003788668ad1e1fedf26804c2d169eb4e0"
+}
