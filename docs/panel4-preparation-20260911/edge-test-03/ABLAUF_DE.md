@@ -157,3 +157,8 @@ möglicher falscher Erkennungen durch zusätzlich aufblitzende LEDs sollte die
 weitere Scanserie nach einem sauberen Nachtest neu beginnen. Die alte Ansicht
 bleibt als Diagnose-/Archivbestand erhalten und soll nicht ungeprüft mit den
 neuen Ansichten kombiniert werden.
+
+Abschlussmeldung: Der Benutzer bestätigt einen einwandfreien internen
+Nachtest ohne zusätzliches Aufblitzen nach der korrigierten Masseverkabelung.
+Die neue, ausdrücklich gewünschte Scanserie wird unter `../post-repair/`
+dokumentiert. Die TouchDesigner-Verbindung antwortet inzwischen wieder.
