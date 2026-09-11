@@ -1,0 +1,16 @@
+{
+  "panel": 5,
+  "position": "below Panel 3, third row left",
+  "controller": "10.0.0.249",
+  "physical_port_readback": 5,
+  "gpio_readback": 19,
+  "requested_led_count": 362,
+  "controller_led_count": 352,
+  "start_universe": 139,
+  "end_universe": 141,
+  "unused_universe": 138,
+  "scan_frame_start": 120,
+  "scan_frame_span": 22,
+  "state": "controller_count_mismatch",
+  "scan_started": false
+}
