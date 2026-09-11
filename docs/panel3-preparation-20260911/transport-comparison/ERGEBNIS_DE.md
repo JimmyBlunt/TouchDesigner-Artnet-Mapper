@@ -38,3 +38,9 @@ Der vorbereitete Vollscan umfasst wieder **0–879**, Panel 3 auf **U127–U132*
 - `save.json` enthält den tatsächlich gespeicherten TOE-Dateinamen und SHA-256. Der Checkpoint wurde gespeichert, nicht erneut geöffnet.
 
 Die kurze Stichprobe belegt die Verbesserung unter diesen Bedingungen. Geschwindigkeit und Erkennungsquote über alle 880 LEDs werden erst im nächsten Vollscan bestätigt.
+
+## Nachtrag: erster vollständiger Scan mit 1 ms
+
+Aufnahme `capture-4837c418-23bc-4190-8aea-29d84cb6a854` ist vollständig abgeschlossen: **880 verarbeitet, 864 erkannt (98,18 %)**. Mittlere LED-Zykluszeit **334,073 ms**, entsprechend **2,99 LEDs/s**; das gesamte Transportmessfenster einschließlich Anlauf/Abschluss dauerte **300,328 s** (rund fünf Minuten). Keine lokalen Sendefehler, keine Fehler beim Kameraabschluss und keine Fehler am Guided-Scan-Operator. Damit bestätigt der Vollscan die Geschwindigkeit aus dem Kurztest. Die Erkennungsquoten verschiedener Kamerapositionen sind kein isolierter Vergleich der Transportänderung.
+
+Die vier produktiven CSV-Ansichten enthalten zusammen alle **880 LEDs mindestens einmal**, **875 mindestens zweimal**, **855 mindestens dreimal**. Fünf LEDs sind erst einmal beobachtet. Diese Zählung belegt Beobachtungsabdeckung, noch keine erfolgreich rekonstruierte 3D-Position. Die vierte Ansicht ist im nativen Dialog zur vorhandenen Liste hinzugefügt. Als nächster Schritt können die Ansichten unter BUILD 3D / SAVED SCANS rekonstruiert und die räumlichen Lücken visuell geprüft werden.
