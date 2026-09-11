@@ -1,0 +1,122 @@
+{
+  "indices": [
+    0,
+    1,
+    2,
+    807,
+    808,
+    809
+  ],
+  "rounds": 2,
+  "brightness_percent": 5,
+  "on_seconds": 2,
+  "black_seconds": 1,
+  "packet_gap_ms": 1,
+  "events": [
+    {
+      "elapsed": 0.016,
+      "phase": "initial black"
+    },
+    {
+      "elapsed": 2.297,
+      "phase": "round 1 LED 0"
+    },
+    {
+      "elapsed": 4.703,
+      "phase": "black after LED 0"
+    },
+    {
+      "elapsed": 5.969,
+      "phase": "round 1 LED 1"
+    },
+    {
+      "elapsed": 8.094,
+      "phase": "black after LED 1"
+    },
+    {
+      "elapsed": 9.11,
+      "phase": "round 1 LED 2"
+    },
+    {
+      "elapsed": 11.313,
+      "phase": "black after LED 2"
+    },
+    {
+      "elapsed": 12.625,
+      "phase": "round 1 LED 807"
+    },
+    {
+      "elapsed": 14.625,
+      "phase": "black after LED 807"
+    },
+    {
+      "elapsed": 15.86,
+      "phase": "round 1 LED 808"
+    },
+    {
+      "elapsed": 17.891,
+      "phase": "black after LED 808"
+    },
+    {
+      "elapsed": 19.172,
+      "phase": "round 1 LED 809"
+    },
+    {
+      "elapsed": 21.172,
+      "phase": "black after LED 809"
+    },
+    {
+      "elapsed": 22.422,
+      "phase": "round 2 LED 0"
+    },
+    {
+      "elapsed": 24.641,
+      "phase": "black after LED 0"
+    },
+    {
+      "elapsed": 25.875,
+      "phase": "round 2 LED 1"
+    },
+    {
+      "elapsed": 27.891,
+      "phase": "black after LED 1"
+    },
+    {
+      "elapsed": 28.906,
+      "phase": "round 2 LED 2"
+    },
+    {
+      "elapsed": 31.094,
+      "phase": "black after LED 2"
+    },
+    {
+      "elapsed": 32.391,
+      "phase": "round 2 LED 807"
+    },
+    {
+      "elapsed": 34.485,
+      "phase": "black after LED 807"
+    },
+    {
+      "elapsed": 35.766,
+      "phase": "round 2 LED 808"
+    },
+    {
+      "elapsed": 37.86,
+      "phase": "black after LED 808"
+    },
+    {
+      "elapsed": 39.172,
+      "phase": "round 2 LED 809"
+    },
+    {
+      "elapsed": 41.438,
+      "phase": "black after LED 809"
+    }
+  ],
+  "packets_sent": 1800,
+  "errors": [],
+  "elapsed_seconds": 43.891,
+  "blackout_sent": true,
+  "optical_blackout_confirmed": false
+}
