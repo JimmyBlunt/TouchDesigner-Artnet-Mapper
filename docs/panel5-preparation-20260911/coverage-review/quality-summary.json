@@ -1,0 +1,10 @@
+{
+  "points": 341,
+  "planarity_singular_ratio": 0.024875037723636393,
+  "raw_error_percentiles": {
+    "median": 0.438777,
+    "p90": 1.059457,
+    "p99": 1.8707114000000018,
+    "max": 2.228363
+  }
+}
