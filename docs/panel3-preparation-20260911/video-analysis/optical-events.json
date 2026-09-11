@@ -1,0 +1,266 @@
+[
+  {
+    "start": 0.367,
+    "end": 0.567,
+    "duration": 0.2,
+    "frames": 12,
+    "midframe": 27,
+    "area_max": 1264
+  },
+  {
+    "start": 1.618,
+    "end": 1.735,
+    "duration": 0.117,
+    "frames": 7,
+    "midframe": 100,
+    "area_max": 1819
+  },
+  {
+    "start": 2.085,
+    "end": 2.318,
+    "duration": 0.233,
+    "frames": 14,
+    "midframe": 131,
+    "area_max": 2193
+  },
+  {
+    "start": 2.568,
+    "end": 2.802,
+    "duration": 0.233,
+    "frames": 14,
+    "midframe": 160,
+    "area_max": 2945
+  },
+  {
+    "start": 3.118,
+    "end": 3.385,
+    "duration": 0.267,
+    "frames": 16,
+    "midframe": 194,
+    "area_max": 4920
+  },
+  {
+    "start": 3.602,
+    "end": 3.735,
+    "duration": 0.133,
+    "frames": 8,
+    "midframe": 219,
+    "area_max": 3751
+  },
+  {
+    "start": 5.12,
+    "end": 5.42,
+    "duration": 0.3,
+    "frames": 18,
+    "midframe": 315,
+    "area_max": 4388
+  },
+  {
+    "start": 5.637,
+    "end": 5.837,
+    "duration": 0.2,
+    "frames": 12,
+    "midframe": 343,
+    "area_max": 4253
+  },
+  {
+    "start": 6.02,
+    "end": 6.503,
+    "duration": 0.483,
+    "frames": 29,
+    "midframe": 375,
+    "area_max": 4537
+  },
+  {
+    "start": 7.188,
+    "end": 7.905,
+    "duration": 0.717,
+    "frames": 43,
+    "midframe": 452,
+    "area_max": 3957
+  },
+  {
+    "start": 8.305,
+    "end": 8.505,
+    "duration": 0.2,
+    "frames": 12,
+    "midframe": 503,
+    "area_max": 3810
+  },
+  {
+    "start": 8.655,
+    "end": 9.472,
+    "duration": 0.817,
+    "frames": 49,
+    "midframe": 543,
+    "area_max": 4408
+  },
+  {
+    "start": 9.94,
+    "end": 10.123,
+    "duration": 0.183,
+    "frames": 11,
+    "midframe": 601,
+    "area_max": 4108
+  },
+  {
+    "start": 10.673,
+    "end": 10.857,
+    "duration": 0.183,
+    "frames": 11,
+    "midframe": 645,
+    "area_max": 3377
+  },
+  {
+    "start": 11.04,
+    "end": 11.673,
+    "duration": 0.633,
+    "frames": 38,
+    "midframe": 680,
+    "area_max": 4368
+  },
+  {
+    "start": 11.957,
+    "end": 12.073,
+    "duration": 0.117,
+    "frames": 7,
+    "midframe": 720,
+    "area_max": 3906
+  },
+  {
+    "start": 12.508,
+    "end": 12.625,
+    "duration": 0.117,
+    "frames": 7,
+    "midframe": 753,
+    "area_max": 3072
+  },
+  {
+    "start": 12.842,
+    "end": 12.975,
+    "duration": 0.133,
+    "frames": 8,
+    "midframe": 773,
+    "area_max": 4175
+  },
+  {
+    "start": 13.308,
+    "end": 13.492,
+    "duration": 0.183,
+    "frames": 11,
+    "midframe": 803,
+    "area_max": 4263
+  },
+  {
+    "start": 13.658,
+    "end": 13.808,
+    "duration": 0.15,
+    "frames": 9,
+    "midframe": 823,
+    "area_max": 4107
+  },
+  {
+    "start": 14.025,
+    "end": 14.525,
+    "duration": 0.5,
+    "frames": 30,
+    "midframe": 855,
+    "area_max": 3872
+  },
+  {
+    "start": 14.758,
+    "end": 14.875,
+    "duration": 0.117,
+    "frames": 7,
+    "midframe": 888,
+    "area_max": 3721
+  },
+  {
+    "start": 15.543,
+    "end": 16.027,
+    "duration": 0.483,
+    "frames": 29,
+    "midframe": 946,
+    "area_max": 4975
+  },
+  {
+    "start": 16.677,
+    "end": 17.477,
+    "duration": 0.8,
+    "frames": 48,
+    "midframe": 1023,
+    "area_max": 4317
+  },
+  {
+    "start": 18.395,
+    "end": 18.845,
+    "duration": 0.45,
+    "frames": 27,
+    "midframe": 1116,
+    "area_max": 3832
+  },
+  {
+    "start": 19.128,
+    "end": 19.578,
+    "duration": 0.45,
+    "frames": 27,
+    "midframe": 1160,
+    "area_max": 3640
+  },
+  {
+    "start": 19.862,
+    "end": 19.995,
+    "duration": 0.133,
+    "frames": 8,
+    "midframe": 1194,
+    "area_max": 3581
+  },
+  {
+    "start": 20.162,
+    "end": 20.295,
+    "duration": 0.133,
+    "frames": 8,
+    "midframe": 1212,
+    "area_max": 3430
+  },
+  {
+    "start": 20.813,
+    "end": 21.08,
+    "duration": 0.267,
+    "frames": 16,
+    "midframe": 1255,
+    "area_max": 3883
+  },
+  {
+    "start": 21.897,
+    "end": 22.397,
+    "duration": 0.5,
+    "frames": 30,
+    "midframe": 1327,
+    "area_max": 3744
+  },
+  {
+    "start": 23.113,
+    "end": 23.23,
+    "duration": 0.117,
+    "frames": 7,
+    "midframe": 1389,
+    "area_max": 3128
+  },
+  {
+    "start": 23.632,
+    "end": 23.832,
+    "duration": 0.2,
+    "frames": 12,
+    "midframe": 1422,
+    "area_max": 3897
+  },
+  {
+    "start": 24.382,
+    "end": 24.715,
+    "duration": 0.333,
+    "frames": 20,
+    "midframe": 1471,
+    "area_max": 3771
+  }
+]

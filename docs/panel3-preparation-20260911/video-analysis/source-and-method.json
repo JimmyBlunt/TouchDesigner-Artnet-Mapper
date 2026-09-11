@@ -1,0 +1,38 @@
+{
+  "source_path": "C:\\Users\\jbhtz\\AppData\\Local\\Packages\\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\\LocalState\\sessions\\2F5BBF6BE7DCB095C571D69D4719E40309735583\\transfers\\2026-37\\WhatsApp Video 2026-09-11 at 10.11.05.mp4",
+  "source_sha256": "86bc332cbd9301be839bb5985e6258f9e5ba0e3eff8dcd1b066885a4c7efb509",
+  "frames": 1523,
+  "duration_seconds": 25.381666666666668,
+  "fps_reported": 59.96456460397664,
+  "resolution": [
+    464,
+    832
+  ],
+  "method": "OpenCV: B-R>40, B-G>15, B>120; largest connected blue-highlight component >=20 pixels; presentation timestamps from decoded frames",
+  "threshold_sensitivity": {
+    "10": {
+      "events": 34,
+      "min_seconds": 0.085,
+      "max_seconds": 0.817
+    },
+    "20": {
+      "events": 33,
+      "min_seconds": 0.117,
+      "max_seconds": 0.817
+    },
+    "50": {
+      "events": 33,
+      "min_seconds": 0.117,
+      "max_seconds": 0.817
+    },
+    "100": {
+      "events": 33,
+      "min_seconds": 0.117,
+      "max_seconds": 0.817
+    }
+  },
+  "events": 33,
+  "minimum_on_seconds": 0.117,
+  "maximum_on_seconds": 0.817,
+  "median_on_seconds": 0.2
+}
