@@ -107,6 +107,22 @@ class GuidedScanLiveTests(unittest.TestCase):
         self.nodes[path] = TextTable([['8']])
         self.assertEqual(bridge.scan_brightness(self.op), .08)
 
+    def test_packet_gap_is_visible_in_plan_and_changes_invalidate_start(self):
+        self.assertEqual(bridge.scan_packet_gap(self.op), 0)
+        path = bridge.OWNER + '/ui_panel/packet_gap/string'
+        self.nodes[path] = TextTable([['1']])
+        summary = self.prepare()
+        self.assertEqual(self.owner.fetch('capture_plan')['packet_gap_ms'], 1)
+        self.assertIn('packet gap 1.0 ms', summary)
+        self.nodes[path].text = '2'
+        with patch.object(scan_capture, 'start_capture') as launch:
+            with self.assertRaisesRegex(RuntimeError, 'Prepare the plan again'):
+                bridge.start(self.op, confirmed=True)
+            launch.assert_not_called()
+        for value in ('-1', '3', 'nan', 'inf', 'invalid'):
+            self.nodes[path].text = value
+            with self.assertRaises(ValueError): bridge.scan_packet_gap(self.op)
+
     def test_brightness_drag_locked_while_capturing(self):
         path = bridge.OWNER+'/ui_panel/brightness/string'
         self.nodes[path] = TextTable([['5']])

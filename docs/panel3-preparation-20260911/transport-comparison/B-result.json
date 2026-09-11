@@ -1,0 +1,91 @@
+{
+  "running": false,
+  "capture": {
+    "state": "complete",
+    "processed": 20,
+    "detected": 20,
+    "total": 20,
+    "current_index": null,
+    "current_source_index": null,
+    "blackout_sent": true,
+    "blackout_confirmed": false,
+    "optical_blackout_confirmed": false,
+    "transport": {
+      "packets_sent": 2067,
+      "batches_sent": 159,
+      "send_errors": 0,
+      "packet_gap_ms": 1.0,
+      "elapsed_seconds": 12.516
+    },
+    "exposure_applied": true,
+    "timing": {
+      "completed_samples": 20,
+      "last_completed": true,
+      "last": {
+        "dark_before_ms": 31.0,
+        "send_on_ms": 16.0,
+        "detect_ms": 109.0,
+        "send_off_ms": 31.0,
+        "dark_after_ms": 78.0,
+        "camera_read_ms": 186.0,
+        "camera_frames": 7,
+        "cycle_ms": 265.0
+      },
+      "mean": {
+        "dark_before_ms": 36.0,
+        "send_on_ms": 39.7,
+        "detect_ms": 93.85,
+        "send_off_ms": 56.2,
+        "dark_after_ms": 101.55,
+        "camera_read_ms": 192.95,
+        "camera_frames": 7.85,
+        "cycle_ms": 327.3
+      },
+      "recent_mean": {
+        "dark_before_ms": 36.0,
+        "send_on_ms": 39.7,
+        "detect_ms": 93.85,
+        "send_off_ms": 56.2,
+        "dark_after_ms": 101.55,
+        "camera_read_ms": 192.95,
+        "camera_frames": 7.85,
+        "cycle_ms": 327.3
+      },
+      "search_timeout_ms": 165.0,
+      "search_timeout_used_ms": 165.0
+    },
+    "camera_cleanup_attempted": true,
+    "camera_cleanup_errors": [],
+    "camera_cleanup_confirmed": true,
+    "blackout_errors": [],
+    "supervisor_cleanup_errors": [],
+    "last_source_index": null,
+    "view_csv": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\Scans\\panel3_transport_diagnostic_20260911\\capture-ad94a67a-89e9-4b49-ac5b-9b97a2fd56b7\\view.csv",
+    "exit_code": 0,
+    "directory": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\Scans\\panel3_transport_diagnostic_20260911\\capture-ad94a67a-89e9-4b49-ac5b-9b97a2fd56b7",
+    "running": false
+  },
+  "errors": [],
+  "controller": {
+    "time": 114761.343,
+    "status": {
+      "pixelCount": 1821,
+      "universeCount": 13,
+      "packets": 335506,
+      "framesComplete": 7738,
+      "framesIncomplete": 25191,
+      "fps": 0,
+      "packetsPerSecond": 0,
+      "heapFree": 186448,
+      "heapMinFree": 115692,
+      "frameTimeUs": 28726,
+      "outputTimeUs": 28726,
+      "lastFrameLatencyMs": null,
+      "startUniverse": 0,
+      "outputFrames": 7738,
+      "timeouts": 79,
+      "droppedPackets": 0,
+      "sequenceErrors": 0
+    }
+  }
+}

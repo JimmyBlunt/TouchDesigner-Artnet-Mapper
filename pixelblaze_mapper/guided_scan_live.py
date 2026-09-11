@@ -49,6 +49,15 @@ def scan_brightness(op):
     return percent / 100.0
 
 
+def scan_packet_gap(op):
+    node = op(OWNER + '/ui_panel/packet_gap/string')
+    raw = _field(op, 'packet_gap') if node is not None else op(OWNER).fetch('capture_packet_gap_ms', 0.0)
+    value = float(raw)
+    if not math.isfinite(value) or not 0 <= value <= 2:
+        raise ValueError('Packet gap must be 0-2 milliseconds')
+    return value
+
+
 def set_scan_brightness(op, fraction):
     if _capture is not None and _capture.process.poll() is None:
         _status(op, 'Brightness locked during capture; change it between views')
@@ -80,6 +89,7 @@ def _routing_signature(op):
     values['session'] = op(OWNER).fetch('session', None)
     values['standalone'] = op(OWNER).fetch('standalone_capture', None)
     values['requested_scope'] = [_field(op, 'source_ids'), _field(op, 'anchors')]
+    values['packet_gap_ms'] = scan_packet_gap(op)
     layout = op('/project1/layout_scene_editor')
     values['layout_workspace'] = layout.fetch('workspace', None) if layout is not None else None
     for name in ('draft_document', 'fixture_document'):
@@ -167,7 +177,9 @@ def prepare(op):
     # Detached scan-only configuration: do not modify live controller brightness.
     config = replace(config, controllers=tuple(replace(c, brightness=brightness) for c in config.controllers))
     snapshot = create_snapshot(config, source_ids, brightness_cap=brightness)
-    plan = scan_capture.prepare_capture(snapshot, asdict(_camera(op)), _field(op, 'workspace'))
+    gap = scan_packet_gap(op)
+    plan = scan_capture.prepare_capture(snapshot, asdict(_camera(op)), _field(op, 'workspace'), packet_gap_ms=gap)
+    op(OWNER).store('capture_packet_gap_ms', gap)
     plan['identity'] = {str(index): target.led_id for target in state.targets
                         for index in [target.source_index] if index in source_ids}
     plan['scene_revision'] = state.scene_revision
@@ -190,6 +202,11 @@ def prepare(op):
             standalone['universe'], standalone['universe'] + ceil(standalone['count']/170) - 1,
             standalone['frame_start_universe'],
             standalone['frame_start_universe'] + standalone['frame_universe_count'] - 1)
+    if '\n' in summary:
+        first, rest = summary.split('\n', 1)
+        summary = first + ' | packet gap %.1f ms\n' % gap + rest
+    else:
+        summary += ' | packet gap %.1f ms' % gap
     op(OWNER + '/ui_panel/routing_summary').par.text = summary
     _status(op, 'PLAN READY — no camera or output started. Scan blacks ALL reserved universes of listed controllers.')
     return summary

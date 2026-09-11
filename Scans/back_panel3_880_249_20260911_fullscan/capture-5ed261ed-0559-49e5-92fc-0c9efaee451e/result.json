@@ -1,0 +1,18 @@
+{
+  "state": "complete",
+  "processed": 880,
+  "detected": 833,
+  "total": 880,
+  "current_index": null,
+  "current_source_index": null,
+  "blackout_sent": true,
+  "blackout_confirmed": false,
+  "optical_blackout_confirmed": false,
+  "camera_cleanup_attempted": true,
+  "camera_cleanup_errors": [],
+  "camera_cleanup_confirmed": true,
+  "blackout_errors": [],
+  "supervisor_cleanup_errors": [],
+  "last_source_index": null,
+  "view_csv": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\Scans\\back_panel3_880_249_20260911_fullscan\\capture-5ed261ed-0559-49e5-92fc-0c9efaee451e\\view.csv"
+}

@@ -469,6 +469,12 @@ def build():
     canvas.op('btn_offline_stop').par.bgcolorb = .12
     canvas.op('btn_offline_stop').par.colorr, canvas.op('btn_offline_stop').par.colorg, canvas.op('btn_offline_stop').par.colorb = .95, .35, .35
     text(canvas, 'camera_status', existing_label('camera_status', 'CAMERA NOT TESTED'), 20, 529, 480, 32, 11)
+    text(canvas, 'packet_gap_label', 'PACKET GAP (ms, 0-2)', 460, 219, 300, 26, 11)
+    existing_gap = canvas.op('packet_gap/string')
+    field(canvas, 'packet_gap', field_text(existing_gap) if existing_gap is not None else
+          str(owner.fetch('capture_packet_gap_ms', 0.0)), 460, 183, 300)
+    text(canvas, 'packet_gap_help', 'Small gaps can improve controller reception. Check scan plan after changes.',
+         780, 183, 360, 62, 11)
     existing = canvas.op('brightness/string')
     field(canvas, 'brightness', field_text(existing) if existing is not None else '5', 510, 529, 100)
     slider = button(canvas, 'brightness_slider', 'SCAN BRIGHTNESS % | 1 — drag — 10', 625, 529, 515)

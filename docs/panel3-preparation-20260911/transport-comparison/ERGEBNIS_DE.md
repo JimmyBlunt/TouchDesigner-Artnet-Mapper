@@ -1,0 +1,40 @@
+# Panel 3: Netzwerkabstand und Scanvergleich, 11.09.2026
+
+Der kontrollierte Vergleich verbessert die Erkennung und die Geschwindigkeit deutlich. Für den nächsten Vollscan ist **PACKET GAP = 1 ms** eingestellt. Ein kompletter Scan aller 880 LEDs mit dieser Einstellung steht noch aus.
+
+| Test | Angeforderter Paketabstand | Erkannt | Mittlere Zeit je LED | LEDs/s |
+| --- | ---: | ---: | ---: | ---: |
+| A | 0 ms | 18/20 | 866,4 ms | 1,15 |
+| B | 1 ms | 20/20 | 327,3 ms | 3,06 |
+| B2, Wiederholung | 1 ms | 20/20 | 338,25 ms | 2,96 |
+
+Die Geschwindigkeit ist 1000 geteilt durch die mittlere abgeschlossene LED-Zykluszeit. Kameraanlauf und abschließendes Aufräumen sind darin nicht enthalten. Die Kamera wurde vor diesem Vergleich gegenüber dem vorherigen Vollscan bewegt und blieb während A, B und B2 an derselben Position. Helligkeit 9,2 %, Kamera 0, Belichtung −10 und Schwellwert 160 blieben gleich. Getestet wurden die lokalen IDs 1–15, 17–19, 21 und 22.
+
+## Ursache und Änderung
+
+Der Controller 10.0.0.249 erhält pro Ausgabe 13 Universen (120–132). Ohne Abstand kamen im Messfenster 4045 von 5356 lokal erfolgreich gesendeten Paketen am Controllerzähler an, etwa 75,5 %. Mit 1 ms Abstand waren es bei B 2041 von 2067, etwa 98,7 %. Gleichzeitig stieg die Zahl vollständiger Sammlungen von 80 bei A auf 152 bei B; unvollständige Sammlungen sanken von 331 auf 7. Die Messfenster schließen Kameraanlauf und Abschluss ein und sind unterschiedlich lang.
+
+Das ist starke Evidenz für Empfangsprobleme bei unmittelbar aufeinanderfolgenden Paketen. Die genaue Verluststelle innerhalb Netzwerk/Controller ist damit nicht bewiesen. Lokaler Sendeerfolg allein bestätigt keinen Empfang. Die mittlere Zeit in Kamera-Leseaufrufen sank von 729,6 auf 192,95 ms pro LED. Damit erklärt sich auch, warum die bisherige Phasenanzeige viel Kamerazeit auswies, obwohl der Transport die Erkennung beeinflusste.
+
+Der Worker wartet jetzt optional zwischen den Paketen eines Universenpaketsatzes. Es gibt keine zusätzliche Wartezeit vor dem ersten oder nach dem letzten Paket. Die bestehende Begrenzung auf höchstens 20 Paketsätze pro Sekunde bleibt bestehen. Windows kann einen angeforderten Abstand von 1 ms etwas verlängern; der Wert ist keine Präzisionsgarantie. Abbruch/Heartbeat werden vor dem nächsten beleuchteten Paket erneut geprüft. Der abschließende Not-Blackout verwendet keinen zusätzlichen Paketabstand.
+
+Die Einstellung wird im Scanplan gespeichert, beim Erzeugen des konkreten Scanverzeichnisses übernommen und zusammen mit Sendezählern im Ergebnis protokolliert. Zulässig sind 0–2 ms. Bestehende Pläne ohne das optionale Feld behalten 0 ms. Änderungen an diesem Feld machen einen vorher geprüften Plan ungültig.
+
+## Bedienung und wiederhergestellter Zustand
+
+1. In **SETTINGS → PACKET GAP (ms, 0-2)** steht für diesen Aufbau **1**.
+2. Nach einer Änderung **CHECK SCAN PLAN** drücken. Die Zusammenfassung zeigt den Paketabstand an.
+3. **CAPTURE VIEWS → START SCAN / NEXT VIEW** startet die nächste Aufnahme. Die Kamera während der Aufnahme stehen lassen.
+
+Der vorbereitete Vollscan umfasst wieder **0–879**, Panel 3 auf **U127–U132**. Gesendet werden **U120–U132**, wobei die anderen Panelbereiche schwarz bleiben. Die drei bisherigen vollständigen Ansichten sind erhalten. Die drei kurzen Diagnoseaufnahmen liegen separat unter `Scans/panel3_transport_diagnostic_20260911` und wurden nicht zur produktiven Rekonstruktion hinzugefügt. Es wurde kein weiterer Vollscan automatisch gestartet.
+
+## Prüfung und Nachweise
+
+- Acht gezielte Tests prüfen Planvalidierung, Paketabstand, Sendezähler, Fehler und Abbruchverhalten; zusätzlich wurden die betroffenen Capture-Tests ausgeführt.
+- 44 Tests für Paketabstand, Guided-Scan-Brücke und Workflow bestanden nach Ergänzung des Settings-Felds.
+- Die native Installation prüft 880 IDs, unveränderte Ansichten/Arbeitsordner, gültige Plansignatur, keine Operatorfehler und ausgeschaltete Ausgabe. Ergebnis: `native-gap-ready.json`.
+- A/B/B2-Rohmessungen stehen in den jeweiligen `*-start.json`, `*-observations.jsonl` und `*-result.json`. Zu jeder Diagnoseaufnahme bleiben Plan, Ergebnis und CSV erhalten.
+- `native-original.json` und `native-restored.json` dokumentieren Sicherung und Rückkehr zum Vollscan.
+- `save.json` enthält den tatsächlich gespeicherten TOE-Dateinamen und SHA-256. Der Checkpoint wurde gespeichert, nicht erneut geöffnet.
+
+Die kurze Stichprobe belegt die Verbesserung unter diesen Bedingungen. Geschwindigkeit und Erkennungsquote über alle 880 LEDs werden erst im nächsten Vollscan bestätigt.

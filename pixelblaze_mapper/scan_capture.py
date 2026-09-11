@@ -6,6 +6,7 @@ maps. A result is 2D observations, not an automatically merged 3D layout.
 """
 from dataclasses import dataclass, field
 import json
+from math import isfinite
 from pathlib import Path
 import queue
 import subprocess
@@ -17,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PYTHON = Path(r'C:/Users/jbhtz/AppData/Roaming/uv/tools/marimapper/Scripts/python.exe')
 
 
-def prepare_capture(snapshot, camera, workspace, *, identity=None, scene_revision=None):
+def prepare_capture(snapshot, camera, workspace, *, identity=None, scene_revision=None, packet_gap_ms=None):
     from .scan_routing import ScanRoutingSnapshot
     # Round trip validates serialized routing, not just a caller supplied hash.
     checked = ScanRoutingSnapshot.from_dict(snapshot.to_dict())
@@ -34,6 +35,10 @@ def prepare_capture(snapshot, camera, workspace, *, identity=None, scene_revisio
             'routing': checked.to_dict(), 'camera': dict(camera),
             'workspace': str(folder), 'directory_name': 'capture-' + str(uuid4()),
             'heartbeat_seconds': 5.0, 'max_led_seconds': 30.0}
+    if packet_gap_ms is not None:
+        if type(packet_gap_ms) not in (int, float) or not isfinite(packet_gap_ms) or not 0 <= packet_gap_ms <= 2:
+            raise ValueError('packet_gap_ms must be finite in 0..2 ms')
+        plan['packet_gap_ms'] = float(packet_gap_ms)
     if identity is not None or scene_revision is not None:
         if (type(identity) is not dict or set(identity) != {str(i) for i in checked.source_indices}
                 or any(type(value) is not str or not value.strip() for value in identity.values())
@@ -49,8 +54,10 @@ def validate_capture_manifest(plan):
     from .scan_routing import ScanRoutingSnapshot
     fields = {'schema', 'version', 'routing', 'camera', 'workspace', 'directory_name',
               'heartbeat_seconds', 'max_led_seconds'}
-    if type(plan) is not dict or set(plan) not in (fields, fields | {'identity', 'scene_revision'}):
+    if type(plan) is not dict or set(plan) - {'packet_gap_ms'} not in (fields, fields | {'identity', 'scene_revision'}):
         raise ValueError('Invalid capture manifest fields')
+    if 'packet_gap_ms' in plan and plan['packet_gap_ms'] is None:
+        raise ValueError('Explicit null packet_gap_ms is invalid')
     if (plan['schema'] != 'pixelblaze-single-view-capture' or type(plan['version']) is not int
             or plan['version'] != 1 or type(plan['heartbeat_seconds']) not in (int, float)
             or plan['heartbeat_seconds'] != 5.0 or type(plan['max_led_seconds']) not in (int, float)
@@ -62,7 +69,8 @@ def validate_capture_manifest(plan):
     if name != 'capture-' + str(UUID(name[8:])):
         raise ValueError('Capture directory must have a canonical generated ID')
     checked = prepare_capture(ScanRoutingSnapshot.from_dict(plan['routing']), plan['camera'], plan['workspace'],
-                              identity=plan.get('identity'), scene_revision=plan.get('scene_revision'))
+                              identity=plan.get('identity'), scene_revision=plan.get('scene_revision'),
+                              packet_gap_ms=plan.get('packet_gap_ms'))
     if 'identity' in plan and 'identity' not in checked:
         raise ValueError('Explicit null identity metadata is invalid')
     checked['directory_name'] = name
@@ -102,7 +110,7 @@ def start_capture(plan, *, confirmed=False):
     from .scan_routing import ScanRoutingSnapshot
     checked = prepare_capture(ScanRoutingSnapshot.from_dict(plan['routing']),
                               plan['camera'], plan['workspace'], identity=plan.get('identity'),
-                              scene_revision=plan.get('scene_revision'))
+                              scene_revision=plan.get('scene_revision'), packet_gap_ms=plan.get('packet_gap_ms'))
     if plan.get('schema') != checked['schema'] or plan.get('version') != 1:
         raise ValueError('Invalid capture plan')
     # Use a fresh directory even for repeated starts of the same prepared plan.

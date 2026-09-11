@@ -187,6 +187,7 @@ def run_capture(manifest):
     if any(frame.art_sync for frame in frames):
         raise ValueError('ArtSync controllers are not yet supported by scan capture')
     interval = 1.0 / min(20, *(frame.rate for frame in frames))
+    packet_gap_ms = manifest.get('packet_gap_ms', 0.0)
     from .camera_probe_worker import _native_api
     _native_api()  # Exact version/commit check BEFORE any socket or camera creation.
     messages = queue.Queue()
@@ -202,6 +203,10 @@ def run_capture(manifest):
                'total': len(snapshot.source_indices), 'current_index': None,
                'current_source_index': None, 'blackout_sent': False,
                'blackout_confirmed': False, 'optical_blackout_confirmed': False}
+    transport = {'packets_sent': 0, 'batches_sent': 0, 'send_errors': 0,
+                 'packet_gap_ms': packet_gap_ms}
+    outcome['transport'] = transport
+    transport_started = time.monotonic()
     observations = None
     finished = False
     last_request_id = 0
@@ -221,16 +226,30 @@ def run_capture(manifest):
                     break
             watchdog.check()  # No new light after stop/expiry during rate wait.
         errors = []
-        for frame in frame_map:
+        for frame_index, frame in enumerate(frame_map):
+            if frame_index and packet_gap_ms and not emergency:
+                time.sleep(packet_gap_ms / 1000.0)
+            # A stop arriving between paced packets must prevent further light.
+            if any(frame.payload):
+                while True:
+                    try:
+                        watchdog.command(messages.get_nowait())
+                    except queue.Empty:
+                        break
+                watchdog.check()
             try:
                 sock = sockets[frame.local_interface]
                 sock.sendto(artdmx_packet(frame.wire_universe, frame.payload),
                             (frame.target_address, frame.port))
+                transport['packets_sent'] += 1
             except Exception as error:
                 errors.append(str(error))
+                transport['send_errors'] += 1
         last_transmit = time.monotonic()
+        transport['elapsed_seconds'] = round(last_transmit - transport_started, 3)
         if errors:
             raise OSError('; '.join(errors))
+        transport['batches_sent'] += 1
 
     try:
         for controller in snapshot.packet_descriptors():
@@ -248,7 +267,7 @@ def run_capture(manifest):
         child.start()
         child_started = True
         remote.close()
-        _emit(dict(outcome, state='camera_starting'))
+        _emit(dict(outcome, state='camera_starting', transport=dict(transport)))
         last_progress = time.monotonic()
         while not finished:
             while not messages.empty():
@@ -295,6 +314,7 @@ def run_capture(manifest):
                 if 'current_index' in result:
                     index = result['current_index']
                     result['current_source_index'] = None if index is None else snapshot.source_index(index)
+                result['transport'] = dict(transport)
                 for key in ('processed', 'detected', 'total', 'current_index', 'current_source_index', 'timing'):
                     if key in result:
                         outcome[key] = result[key]
@@ -363,6 +383,7 @@ def run_capture(manifest):
             outcome.update(state='failed', error='Supervisor cleanup incomplete')
     outcome['last_source_index'] = outcome['current_source_index']
     outcome['current_index'] = outcome['current_source_index'] = None
+    outcome['transport'] = dict(transport)
     return outcome, observations if outcome['state'] == 'complete' else None
 
 

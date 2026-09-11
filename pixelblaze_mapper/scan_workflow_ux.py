@@ -122,6 +122,8 @@ SETTINGS = {
     'anchors_label': (20, 464, 1120, 26), 'anchors': (20, 430, 1120, 32),
     'python_label': (20, 297, 1120, 26), 'python': (20, 263, 1120, 32),
     'btn_ports': (20, 183, 400, 36),
+    'packet_gap_label': (460, 219, 300, 26), 'packet_gap': (460, 183, 300, 32),
+    'packet_gap_help': (780, 183, 360, 62),
 }
 
 
