@@ -8,6 +8,8 @@ Neben der hellen Scan-LED erscheint zeitgleich ein deutlich kleinerer grün/tür
 
 Das ist starke Evidenz für ein optisches Geisterbild/Objektivreflex im Handyvideo. Es beweist keinen Verdrahtungsfehler und erklärt nicht automatisch jedes vom Benutzer mit bloßem Auge beobachtete Flackern. Der Benutzer wurde gefragt, ob er genau diesen kleinen Punkt meint und ob zusätzliche LEDs auch ohne Handy sichtbar blitzen. Diese Antwort steht bei Erstellung der Notiz noch aus.
 
+**Nachtrag:** Der Benutzer bestätigt reales Aufblitzen mit bloßem Auge und liefert ein weiteres Video des internen Controller-Tests. Dieses zeigt zusätzliche schnelle Farb-/Helligkeitswechsel. Die Reflexbeobachtung erklärt das gemeldete Problem nicht; die weitere Eingrenzung steht in `../video-114413/BEOBACHTUNG_DE.md`.
+
 Zur Unterscheidung: bei einer ruhig leuchtenden Test-LED nur den Handywinkel leicht verändern; ein Reflex wandert relativ zum Panel. Eine tatsächlich zusätzlich leuchtende LED bleibt an ihrer physischen Position. Die Scan-Kamera muss für eine laufende Aufnahme unverändert bleiben. Es wurde für die Videoanalyse kein zusätzlicher Hardwaretest gestartet und keine Verdrahtung/Controller-Konfiguration geändert.
 
 Wenn tatsächlich mehrere nachfolgende LEDs auch mit bloßem Auge aufblitzen, bleiben Signalqualität/GND-Verbindung, Steck-/Lötstellen und Datenpegel sowie Controller-Ausgabetiming als Kandidaten offen. Aus diesem Handyvideo lässt sich keine bestimmte defekte LED oder Leitung identifizieren. Ein lokaler Sendezähler ohne Fehler beweist keinen fehlerfreien Controllerempfang.
