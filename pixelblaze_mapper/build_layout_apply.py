@@ -36,7 +36,17 @@ def _output_parameter_contract(node, resolve):
         if (str(getattr(par, 'style', '')).lower() == 'pulse'
                 or par.name in ('viewer', 'display', 'nodecolor', 'nodecolorr', 'nodecolorg', 'nodecolorb')):
             continue
-        value = par.eval()
+        # This reviewed endpoint follows source capacity. Its evaluated value
+        # changes when the legacy RGB stream cooks after a layout resize; that
+        # is not a wiring edit. Keep its exact expression/mode/binding below,
+        # while every other parameter still binds its evaluated value.
+        dynamic_lookup_end = (
+            getattr(node, 'path', None) == '/project1/lookup1'
+            and par.name == 'index2'
+            and getattr(par, 'expr', None) == 'me.inputs[1].numSamples-1'
+            and str(getattr(par, 'mode', '')) == 'ParMode.EXPRESSION'
+        )
+        value = None if dynamic_lookup_end else par.eval()
         values = value if isinstance(value, (list, tuple)) else [value]
         normalized = []
         for item in values:

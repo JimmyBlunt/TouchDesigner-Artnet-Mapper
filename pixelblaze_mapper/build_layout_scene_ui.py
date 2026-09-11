@@ -289,7 +289,7 @@ def build(initial_path=""):
         ("objectname", "New object / scan name", "", 1110, 676, 300),
         ("sourcestart", "Explicit global source start", "0", 810, 607, 285),
         ("scanrange", "Original scan indices (blank = all)", "", 1110, 607, 300),
-        ("localrange", "LOCAL LEDs: scan / replace (blank scan = all)", "", 810, 538, 285),
+        ("localrange", "LOCAL LEDs: scan / replace / remove", "", 810, 538, 285),
         ("expectedcount", "Expected final count (blank = any)", "", 1110, 538, 170),
         ("objectno", "Object number", "1", 810, 469, 110),
         ("mode", "Drag/key mode: move,rotate,scale", "move", 980, 469, 190),
@@ -306,6 +306,7 @@ def build(initial_path=""):
     _button(owner, panel, "select", "SELECT", 925, 469, 50)
     _button(owner, panel, "count", "SET COUNT", 1290, 538, 120)
     _button(owner, panel, "transform", "SET TRANSFORM", 810, 205, 170)
+    _button(owner, panel, "removeleds", "REMOVE LEDs", 985, 205, 120)
     _button(owner, panel, "route", "BIND ROUTE DRAFT", 1110, 205, 300)
     for name, label, x, width in (("exportscene", "EXPORT WORKSPACE", 810, 195),
                                  ("exportpb", "EXPORT PIXELBLAZE 3D", 1015, 195),

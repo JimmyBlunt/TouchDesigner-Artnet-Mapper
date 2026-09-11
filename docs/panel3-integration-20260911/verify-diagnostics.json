@@ -1,0 +1,11 @@
+{
+  "passed": false,
+  "contract_diffs": [
+    {
+      "path": "output_contract//project1/lookup1/parameters/index2/value",
+      "before": "0.0",
+      "after": "16085.0"
+    }
+  ],
+  "sampling_same": true
+}

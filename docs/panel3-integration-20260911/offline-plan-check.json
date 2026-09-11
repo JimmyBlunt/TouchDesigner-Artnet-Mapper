@@ -1,0 +1,40 @@
+{
+  "source_count": 5362,
+  "valid_count": 4739,
+  "inactive_count": 623,
+  "panel3_missing_sources": [],
+  "panel3_source_start": 4482,
+  "panel3_count": 880,
+  "retired_template_sources": [
+    1952,
+    2207
+  ],
+  "controller": "BACK_PANEL_249",
+  "physical_port": 3,
+  "destination_start": 1190,
+  "universes": [
+    127,
+    128,
+    129,
+    130,
+    131,
+    132
+  ],
+  "controller_frame_universes": [
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128,
+    129,
+    130,
+    131,
+    132
+  ],
+  "offline_pack_checks_passed": true,
+  "panel1_panel2_and_side_frames_unchanged": true
+}

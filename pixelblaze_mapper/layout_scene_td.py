@@ -267,6 +267,9 @@ def action(owner, name, chooser, confirm):
     session = editor(owner)
     notice = None
     try:
+        if name == 'removeleds':
+            from .layout_remove_leds import remove_from_ui
+            return remove_from_ui(owner, confirm)
         from . import layout_fixture_td
         if name in ("prepare", "apply", "revert"):
             return active_action(owner, name, confirm)
