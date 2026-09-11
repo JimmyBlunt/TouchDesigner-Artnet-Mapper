@@ -1,0 +1,18 @@
+{
+  "panel_id": "b5c6ab95-b0c7-462d-89e6-e20ca2f7d511",
+  "draft_count": 809,
+  "active_unchanged": true,
+  "output_off": true,
+  "errors": [],
+  "camera": {
+    "view_center": [
+      0.8977069218042877,
+      0.5003124999999999,
+      -0.48742505659365465
+    ],
+    "view_yaw": null,
+    "view_pitch": null,
+    "view_distance": null,
+    "view_span": 0.9693749999999999
+  }
+}

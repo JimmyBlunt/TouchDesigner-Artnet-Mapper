@@ -1,0 +1,83 @@
+{
+  "panel_id": "b5c6ab95-b0c7-462d-89e6-e20ca2f7d511",
+  "source_offset": 5362,
+  "reserved_source_range": [
+    5362,
+    6171
+  ],
+  "measured_leds": 809,
+  "expected_leds": 810,
+  "missing_local_ids": [
+    45
+  ],
+  "missing_global_sources": [
+    5407
+  ],
+  "placement": {
+    "panel_cm": [
+      30,
+      30
+    ],
+    "position": "second row right, below Panel 2",
+    "center": [
+      0.7,
+      1.0,
+      0.4
+    ],
+    "bounds": [
+      [
+        0.62037129675962,
+        0.9986698524226789,
+        0.31562499999999993
+      ],
+      [
+        0.7796287032403799,
+        1.0013301475773209,
+        0.484375
+      ]
+    ],
+    "transform": {
+      "translation": [
+        0.6426427835102864,
+        0.8131907681569526,
+        0.36470126758622035
+      ],
+      "rotation_degrees": [
+        43.42193991106391,
+        -46.25071924252675,
+        -174.88845644416386
+      ],
+      "scale": [
+        0.04638654265283534,
+        0.04638654265283534,
+        0.04638654265283534
+      ],
+      "pivot": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "camera_orientation_reference": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\Scans\\back_panel4_810_249_20260911_repaired\\capture-746b08a7-b027-4f1b-88ed-4bb7cbfcede9\\view.csv",
+    "camera_score": 1.4847368523157862,
+    "fit": "uniform similarity to same normalized LED envelope as first panel",
+    "orientation_verified": false,
+    "physical_registration_verified": false,
+    "original_scan_unchanged": true,
+    "all_809_bindings_unchanged": true,
+    "missing_count": 1,
+    "other_objects_unchanged": true,
+    "routes_unchanged": true,
+    "existing_template_preserved": true,
+    "active_applied": false
+  },
+  "retired_template_sources": [
+    1696,
+    1951
+  ],
+  "retired_template_count": 256,
+  "other_objects_unchanged": true,
+  "routes_unchanged": true,
+  "active_applied": false,
+  "orientation_user_confirmed": false
+}

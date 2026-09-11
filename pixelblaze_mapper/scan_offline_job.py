@@ -132,6 +132,11 @@ def poll(op):
         return
     owner = op('/project1/guided_scan')
     status = _job.poll()
+    session = owner.fetch('session', None)
+    if not isinstance(session, dict) or session.get('session_id') != status.get('session_id'):
+        # A completed handle can outlive its acquisition. Never display another
+        # panel's result as the result of the newly staged scan session.
+        return
     previous = owner.fetch('offline_status', {}) or {}
     if previous == status:
         return
