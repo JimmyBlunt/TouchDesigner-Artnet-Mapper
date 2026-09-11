@@ -119,3 +119,13 @@ bewertet weder die Masseverbindungen im restlichen Panel noch das Verhalten
 unter Last oder die Signalqualität der Datenimpulse.
 
 Messhinweis: https://www.fluke.com/en-us/learn/blog/digital-multimeters/how-to-measure-resistance
+
+Nachtrag: Direkt zusammengehaltene Messspitzen zeigen laut Benutzer 0.
+Damit ist ein angezeigter Messleitungs-Eigenwert von 0,4 Ω nicht bestätigt.
+Sofern Messbereich und REL/Nullstellung unverändert waren, bleiben für die
+GND-Messung 0,4 Ω einschließlich Kontaktwiderständen an den Messstellen.
+Das ist kein Beweis für die Ursache des zusätzlichen Aufblitzens. Nächster
+Schritt: GND-Anschluss bis zur ersten LED spannungsfrei mit sicheren Kontakten
+an blanken Metallstellen wiederholen; bei reproduzierbarem Wert die Strecke
+an zugänglichen Stecker-/Lötstellen abschnittsweise messen. Noch keine
+Versorgungsspannung, Belastungsmessung oder Signalform gemessen.
