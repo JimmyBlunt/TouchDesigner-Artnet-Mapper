@@ -1,0 +1,7 @@
+{
+  "stage": "host packet validation after native run had completed and restored",
+  "error": "ModuleNotFoundError: No module named pixelblaze_mapper",
+  "fix": "Add repository root to host script sys.path",
+  "hardware_target": false,
+  "verified_followup": "gico-td-loopback-002"
+}
