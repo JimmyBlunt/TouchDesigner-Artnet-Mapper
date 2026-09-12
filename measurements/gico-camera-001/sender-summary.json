@@ -1,0 +1,57 @@
+{
+  "run_complete": true,
+  "phases": [
+    {
+      "phase": "measure_15",
+      "requested_fps": 15,
+      "submitted": 900,
+      "elapsed_seconds": 60.000002400018275,
+      "producer_fps": 14.999999399995456,
+      "local_rejections": 0
+    },
+    {
+      "phase": "measure_25",
+      "requested_fps": 25,
+      "submitted": 1500,
+      "elapsed_seconds": 60.00000279999222,
+      "producer_fps": 24.99999883333663,
+      "local_rejections": 0
+    },
+    {
+      "phase": "measure_30",
+      "requested_fps": 30,
+      "submitted": 1800,
+      "elapsed_seconds": 60.00000279999222,
+      "producer_fps": 29.999998600003956,
+      "local_rejections": 0
+    }
+  ],
+  "worker_final": {
+    "submitted_batches": 5030,
+    "sent_batches": 5030,
+    "sent_packets": 120720,
+    "stale_batches": 0,
+    "rejected_batches": 0,
+    "blackout_packets": 48,
+    "send_errors": 0,
+    "send_buffer_bytes": 1048576,
+    "error": "",
+    "stop_reason": "requested",
+    "last_send_ms": 0.9251000010408461,
+    "max_send_ms": 3.878399991663173,
+    "actual_send_fps": 20.11058946786284,
+    "active_seconds": 220.46335309999995,
+    "active_average_fps": 22.81104741121712,
+    "gap_ms": 0.0,
+    "frame_rate": null,
+    "status_write_ms": 3.2109000021591783,
+    "max_status_write_ms": 8.912999997846782,
+    "status_write_skipped": 0,
+    "status_write_errors": 0,
+    "running": false,
+    "closed": true,
+    "cleanup_errors": [],
+    "forced_termination": false
+  },
+  "optical_analysis": "pending original user video; reported camera 60 fps; lower panel identity to be checked visually"
+}

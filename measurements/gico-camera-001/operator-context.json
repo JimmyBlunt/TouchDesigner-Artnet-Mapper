@@ -1,0 +1,8 @@
+{
+  "camera_reported_capture_fps": 60,
+  "camera_panel_description": "unteres Panel laut Benutzer",
+  "panel_id_confirmed": false,
+  "camera_recording_started_before_test": true,
+  "assessment": "Exploratory optical run. At 30 LED frames/s, 60 camera frames/s gives only about two samples per state; rolling shutter and transition frames can prevent consecutive-frame confirmation. Do not label unobserved IDs as proven controller drops.",
+  "test_target": "10.0.0.244"
+}

@@ -48,3 +48,8 @@ Headerkorrektur nach Integrationsreview: Der Kamerasender verwendet wie der
 bestehende native GICO-Pfad dauerhaft ArtDmx-Sequenz 0. Optische Bildnummern
 bleiben im Gray-/CRC-Payload. Der Test prüft zwei aufeinanderfolgende Batches
 mit jeweils 24 Sequenz-0-Paketen und den entsprechenden Logeintrag.
+
+
+## Erster optischer Aufnahmelauf ausgeführt
+
+`measurements/gico-camera-001`: Benutzer filmt das untere Panel mit angegebenen 60 Kamera-FPS. Lauf vollständig beendet, alle 5.030 Batches / 120.720 ArtDmx-Pakete ohne gemeldete Sendefehler oder Worker-Drops gesendet; abschließend 48 Schwarzpakete und Worker beendet. Rohphasen, Einreichungszeitpunkte und Bedienkontext gespeichert. Originalvideo und Identifikation des gefilmten Panels stehen noch aus. 60 Kamera-FPS erlauben bei 30 LED-FPS nur etwa zwei Abtastungen pro Zustand; dies ist zunächst eine orientierende Messung, kein Nachweis stabiler optischer 30 FPS.
