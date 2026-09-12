@@ -72,3 +72,11 @@ Die aktuelle Firmware verwendet `ChannelConfig` und `Channel::create` mit `FastL
 Der erste experimentelle Legacy-Build und sein späterer Zeigerpatch bleiben als Diagnosebelege erhalten. Der Hook `tools/patch_fastled.py` stellt heute ausschließlich diesen exakt bekannten früheren Einfügetext auf den SHA-geprüften Originaltext zurück; er wendet keinen neuen Vendorpatch an. Fremde Änderungen brechen den Build ab. Historischer lesbarer Diff und Patchtests liegen unter `patches/` beziehungsweise `test/`. Die Entscheidung mit geprüften Primärquellen steht in `docs/performance-program-20260912/teensy/driver-decision.md`.
 
 Dieser Patch gilt für unser ausschließlich RGB verwendendes, nicht serpentin gedrehtes Profil. Eine allgemeine RGBW-Freigabe folgt daraus nicht. Boot wird zusätzlich von der LED-Initialisierung getrennt und die erste DMA-Prüfung berücksichtigt noch nicht initialisierte DMA-Completion-Flags. Der tatsächliche Hardwarestatus der Folgeversion steht in `docs/performance-program-20260912/teensy/STATUS.md`.
+
+## Getesteter Ethernet-RX32-Stand (12.09.2026)
+
+Der Hook `tools/patch_qnethernet.py` erweitert ausschließlich im `teensy41_unwired_bench`-Build den SHA-geprüften QNEthernet-Ethernet-Ring von fünf auf 32 Deskriptoren. Die nachgelagerte 96er-UDP-Queue allein verhinderte die beobachteten Burstverluste während der FastLED-Vorbereitung nicht. Unbekannte Vendoränderungen brechen den Patch ab; zwei Regressionstests und die ELF-Pufferprüfung bestanden.
+
+120-s-Hardwaretest: alle 4.081 Bilder / 114.268 Pakete empfangen, 3.598 DMA-Abschlüsse (29,983 FPS), keine Teilbilder oder UDP-Queue-Drops. 34-FPS-Zuspielung bietet Reserve für den auf maximal 30 FPS begrenzten Ausgang; ältere wartende Komplettbilder werden dabei bewusst ersetzt. Im echten TD-Integrationstest kamen 33,770 Bilder/s an und 29,771 DMA-Abschlüsse/s zustande. Beide Tests endeten bestätigt STOP/schwarz. Keine LEDs angeschlossen: noch keine optische Freigabe.
+
+Aktuelle Images: `artifacts/teensy41_unwired_bench_rx32.hex` und `.elf`. Identitäts-/Hashprüfung und Flashprotokoll: `tools/flash_rx32_verified.py`; Ergebnisse: `docs/performance-program-20260912/teensy/RX32_ERGEBNISSE_DE.md` im Projektroot.

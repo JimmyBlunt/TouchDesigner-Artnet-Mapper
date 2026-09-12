@@ -126,13 +126,26 @@ def main():
                 if time.perf_counter() - next_frame > 1 / rate:
                     next_frame = time.perf_counter() + 1 / rate
             elapsed = time.perf_counter()-start
+            # Let the last real DMA transfer complete, then request a fresh
+            # snapshot. A STATUS in the same loop as the last submit is early.
+            time.sleep(.1)
+            requested_at=time.perf_counter()
             ser.write(b'STATUS\n')
-            time.sleep(.25)
+            snapshot_deadline=time.perf_counter()+3
+            while time.perf_counter()<snapshot_deadline:
+                if samples and samples[-1]['host_time']>=requested_at:break
+                time.sleep(.02)
+            else:raise RuntimeError('Fresh post-DMA status missing')
             rows = samples[first:]
+            after=samples[-1]
+            deltas={key:after[key]-before[key] for key in
+                    ('packets','complete','incomplete','submitted','dma_completed','blackouts','overwritten','udp_queue_drops')}
             result['cases'].append({'requested_fps': rate, 'frames_sent': count,
                                     'elapsed_seconds': elapsed, 'send_fps': count/elapsed,
                                     'max_send_interval_ms': max_interval*1000,
-                                    'before': before, 'telemetry': rows})
+                                    'before': before, 'telemetry': rows,
+                                    'counter_delta':deltas,
+                                    'completed_nonblack_dma_fps':(deltas['dma_completed']-deltas['blackouts'])/elapsed})
             print(json.dumps({'requested_fps': rate, 'send_fps': count/elapsed,
                               'latest_status': rows[-1] if rows else None}), flush=True)
     except BaseException as exc:
