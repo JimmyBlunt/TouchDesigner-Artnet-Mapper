@@ -75,6 +75,8 @@ def patch_dynamic_source(source):
     Geometry must bind its instance alpha to the emitted ``a`` channel.
     """
     from pixelblaze_mapper.preview_color_bulk import ensure_bulk_source
+    from pixelblaze_mapper.preview_numpy import restore_source, install_source
+    source = restore_source(source)
     if DYNAMIC_MARKER in source:
         for old, new in reversed(DYNAMIC_REPLACEMENTS):
             if source.count(new) != 1:
@@ -86,7 +88,7 @@ def patch_dynamic_source(source):
             raise ValueError('LED Preview capacity anchor differs from the reviewed callback')
         source = source.replace(old, new, 1)
     compile(source, '<active-capacity LED Preview>', 'exec')
-    return source
+    return install_source(source)
 
 
 def build():

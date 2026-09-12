@@ -33,8 +33,12 @@ class Script:
     def clear(self): self.channels = {}
     def appendChan(self, name):
         channel = NS(vals=[])
+        channel.copyNumpyArray=lambda array: setattr(channel,'vals',array.tolist())
         self.channels[name] = channel
         return channel
+    def numpyArray(self):
+        import numpy as np
+        return np.asarray([ch.vals for ch in self.channels.values()],dtype=np.float32)
     def store(self, key, value): self.storage[key] = value
     def fetch(self, key, default=None): return self.storage.get(key, default)
 
@@ -115,7 +119,7 @@ class DynamicSourceCapacityTests(unittest.TestCase):
         rows[2] = [1,12.,22.,32.]
         coords = Table(rows,"/project1/pixelblaze_mapper/map_active")
         mask = Table([["index","enabled"]]+[[i,int(i not in (0,count-1))] for i in range(count)])
-        colors = Script(count,{name:NS(vals=[1.]*count) for name in ("r","g","b")}); colors.path="colors"
+        colors = Script(count,{name:NS(vals=[1.]*count,index=i) for i,name in enumerate(("r","g","b"))}); colors.path="colors"
         status = Table([])
         nodes = {coords.path:coords,"coords":coords,"colors":colors,
                  "/project1/layout_apply/active_source_mask":mask}

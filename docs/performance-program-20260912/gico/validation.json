@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-12",
+  "mode": "offline_only",
+  "tests_passed": 16,
+  "test_seconds": 23.786,
+  "codec_roundtrips": 4096,
+  "single_bit_errors_rejected": 86016,
+  "synthetic_video": {
+    "codec": "MJPG",
+    "camera_fps": 120,
+    "panels": 3,
+    "source_rates": [
+      15,
+      25,
+      30
+    ],
+    "rate_tolerance_fps": 0.25,
+    "all_rate_assertions_passed": true,
+    "unobserved_ids": 0,
+    "invalid_samples": 0,
+    "timestamp_source": "decoded video POS_MSEC"
+  },
+  "hardware_output_started": false,
+  "touchdesigner_accessed": false,
+  "controller_configuration_changed": false,
+  "real_controller_fps": null,
+  "ready_for": "recording the first supervised physical camera test",
+  "artdmx_sequence": 0,
+  "header_compatibility_test": "Two consecutive submitted batches use sequence zero in every universe; optical frame IDs remain in payload"
+}

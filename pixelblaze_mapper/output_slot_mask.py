@@ -3,6 +3,29 @@ from functools import lru_cache
 
 CONTRACT = 'SPARSE_SOURCE_MASK_V1'
 MASK_PATH = '/project1/layout_apply/active_source_mask'
+_native_ranges_cache = {}
+
+
+def _validated_table_ranges(table, count):
+    # Manual TD tables increment totalCooks after a non-forced cook, even for
+    # multiple cell edits in the same frame. Never use cookFrame alone: a
+    # same-frame invalid mask must not reuse an earlier validated result.
+    # Unknown objects/dynamic table inputs retain the text-validation path.
+    if (getattr(table, 'type', None) != 'table' or getattr(table,'inputs',None)
+            or not getattr(table,'allowCooking',False) or getattr(table,'lock',False)):
+        return _table_ranges(table.text,count)
+    table.cook(force=False)
+    revision=(table.totalCooks,table.numRows,table.numCols,count)
+    key=table.id
+    cached=_native_ranges_cache.get(key)
+    if cached is not None and cached[0] is table and cached[1] == revision:
+        return cached[2]
+    # Do not replace a successful cache entry until the new content validates.
+    ranges=_table_ranges(table.text,count)
+    if len(_native_ranges_cache)>=4:
+        _native_ranges_cache.clear()
+    _native_ranges_cache[key]=(table,revision,ranges)
+    return ranges
 
 
 @lru_cache(maxsize=4)
@@ -28,7 +51,7 @@ def ranges_for(op, count):
         raise ValueError('Source mask requires a non-negative integer source count')
     table = op(MASK_PATH)
     if table is not None:
-        return _table_ranges(table.text, count)
+        return _validated_table_ranges(table, count)
     owner = op('/project1/multi_controller_output')
     ranges = owner.fetch('inactive_source_ranges', []) if owner is not None else []
     if not isinstance(ranges, (list, tuple)):
@@ -195,12 +218,8 @@ def install_native_source(source):
 
 
 LEGACY_MASK_CALLBACK = '''# SPARSE_SOURCE_MASK_V1
+# NUMPY_LEGACY_MASK_V1
 def onCook(scriptOp):
-    from pixelblaze_mapper.output_slot_mask import channels, ranges_for
-    scriptOp.clear()
-    source = scriptOp.inputs[0]
-    scriptOp.numSamples = source.numSamples
-    values = channels(source.chans(), ranges_for(op, source.numSamples))
-    for original, masked in zip(source.chans(), values):
-        scriptOp.appendChan(original.name).vals = list(getattr(masked, 'vals', masked))
+    from pixelblaze_mapper.numpy_realtime import legacy_mask_cook
+    legacy_mask_cook(scriptOp, op)
 '''

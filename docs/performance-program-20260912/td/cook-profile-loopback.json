@@ -1,0 +1,413 @@
+{
+  "baseline": {
+    "controllers": [
+      [
+        "enabled",
+        "name",
+        "target_ip",
+        "local_interface",
+        "port",
+        "start_universe",
+        "color_order",
+        "brightness",
+        "rate",
+        "art_sync",
+        "reserved_universes"
+      ],
+      [
+        "0",
+        "WS2812_NODE",
+        "10.0.0.244",
+        "10.0.0.125",
+        "6454",
+        "0",
+        "GRB",
+        "0.7",
+        "60",
+        "0",
+        "24"
+      ],
+      [
+        "0",
+        "APA102_ESP",
+        "10.0.0.251",
+        "10.0.0.125",
+        "6454",
+        "0",
+        "RGB",
+        "0.8",
+        "30",
+        "0",
+        "0"
+      ],
+      [
+        "1",
+        "BACK_PANEL_249",
+        "10.0.0.248",
+        "10.0.0.125",
+        "6454",
+        "120",
+        "RGB",
+        "0.7",
+        "8",
+        "0",
+        "29"
+      ]
+    ],
+    "gap": {
+      "BACK_PANEL_249": 1.5
+    },
+    "external": {
+      "enabled": true,
+      "python": "C:/Users/jbhtz/AppData/Roaming/uv/tools/marimapper/Scripts/python.exe"
+    },
+    "project": "PixelblazeMapper_CONTROLLER_PERFORMANCE_20260912.1.toe",
+    "rate": 60.0
+  },
+  "controller": "BACK_PANEL_249",
+  "requested_fps": 30,
+  "loopback_only": true,
+  "start": {
+    "transport": {
+      "submitted_batches": 0,
+      "sent_batches": 0,
+      "sent_packets": 0,
+      "stale_batches": 0,
+      "rejected_batches": 0,
+      "blackout_packets": 0,
+      "error": "",
+      "stop_reason": "",
+      "last_send_ms": 0.0,
+      "max_send_ms": 0.0,
+      "actual_send_fps": 0.0,
+      "active_seconds": 0.0,
+      "active_average_fps": 0.0,
+      "gap_ms": 0.0,
+      "running": true,
+      "closed": false,
+      "cleanup_errors": [],
+      "forced_termination": false,
+      "kind": "external",
+      "queued_batches": 0,
+      "local_drops": 0
+    },
+    "enabled": true,
+    "error": "",
+    "mode": "live",
+    "calibration": [
+      "all",
+      "panel_id",
+      0
+    ],
+    "controllers": [
+      "BACK_PANEL_249"
+    ],
+    "target_override": "127.0.0.1",
+    "port_override": 16454,
+    "telemetry": {
+      "tick_count": 0,
+      "rate_skips": 0,
+      "send_count": 0,
+      "packet_count": 0,
+      "send_ms_last": 0.0,
+      "send_ms_average": 0.0,
+      "send_ms_max": 0.0,
+      "actual_send_fps": 0.0,
+      "pack_count": 0,
+      "pack_ms_last": 0.0,
+      "pack_ms_average": 0.0,
+      "pack_ms_max": 0.0,
+      "plan_rebuilds": 1
+    }
+  },
+  "measured_seconds": 25.00394939997932,
+  "received": {
+    "120": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 486,
+      "mean_interval_ms": 46.81236034483779,
+      "p99_interval_ms": 84.92160000605509,
+      "max_interval_ms": 1064.0871000068728
+    },
+    "121": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 387,
+      "mean_interval_ms": 46.81194616861684,
+      "p99_interval_ms": 84.919799992349,
+      "max_interval_ms": 1064.0791999758221
+    },
+    "122": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 482,
+      "mean_interval_ms": 46.811518773960195,
+      "p99_interval_ms": 84.78450000984594,
+      "max_interval_ms": 1063.9985000016168
+    },
+    "123": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 491,
+      "mean_interval_ms": 46.81113888885356,
+      "p99_interval_ms": 84.44190002046525,
+      "max_interval_ms": 1063.981800019974
+    },
+    "124": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 479,
+      "mean_interval_ms": 46.8107645593448,
+      "p99_interval_ms": 84.419999999227,
+      "max_interval_ms": 1063.8824999914505
+    },
+    "125": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 494,
+      "mean_interval_ms": 46.81039176241475,
+      "p99_interval_ms": 84.39229999203235,
+      "max_interval_ms": 1063.8550999865402
+    },
+    "126": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 496,
+      "mean_interval_ms": 46.810022030642145,
+      "p99_interval_ms": 84.37619998585433,
+      "max_interval_ms": 1063.8781000161543
+    },
+    "127": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 358,
+      "mean_interval_ms": 46.809644444403595,
+      "p99_interval_ms": 84.36269999947399,
+      "max_interval_ms": 1063.7908000207972
+    },
+    "128": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 459,
+      "mean_interval_ms": 46.80925229883448,
+      "p99_interval_ms": 84.39079998061061,
+      "max_interval_ms": 1063.7667000119109
+    },
+    "129": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 474,
+      "mean_interval_ms": 46.80888486592995,
+      "p99_interval_ms": 84.3548999982886,
+      "max_interval_ms": 1063.70609998703
+    },
+    "130": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 477,
+      "mean_interval_ms": 46.80852432951815,
+      "p99_interval_ms": 84.39400000497699,
+      "max_interval_ms": 1063.6854999756906
+    },
+    "131": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 459,
+      "mean_interval_ms": 46.808178352492675,
+      "p99_interval_ms": 84.35650001047179,
+      "max_interval_ms": 1063.620600005379
+    },
+    "132": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 313,
+      "mean_interval_ms": 46.80780478927326,
+      "p99_interval_ms": 84.35210000607185,
+      "max_interval_ms": 1063.5988999856636
+    },
+    "133": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 485,
+      "mean_interval_ms": 46.80745517237333,
+      "p99_interval_ms": 83.6074999824632,
+      "max_interval_ms": 1063.5183999838773
+    },
+    "134": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 515,
+      "mean_interval_ms": 46.80706590038931,
+      "p99_interval_ms": 83.55680000386201,
+      "max_interval_ms": 1063.464600010775
+    },
+    "135": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 522,
+      "mean_interval_ms": 46.806700000007744,
+      "p99_interval_ms": 83.62130000023171,
+      "max_interval_ms": 1063.4143000061158
+    },
+    "136": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 510,
+      "mean_interval_ms": 46.80636379311586,
+      "p99_interval_ms": 83.56570001342334,
+      "max_interval_ms": 1063.3451000030618
+    },
+    "137": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 515,
+      "mean_interval_ms": 46.80596532565952,
+      "p99_interval_ms": 83.60610000090674,
+      "max_interval_ms": 1063.2896999886725
+    },
+    "138": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 1,
+      "mean_interval_ms": 46.8056229885085,
+      "p99_interval_ms": 83.55579999624752,
+      "max_interval_ms": 1063.2268999761436
+    },
+    "139": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 520,
+      "mean_interval_ms": 46.80528773947831,
+      "p99_interval_ms": 83.61770000192337,
+      "max_interval_ms": 1063.2055000169203
+    },
+    "140": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 435,
+      "mean_interval_ms": 46.8049603448583,
+      "p99_interval_ms": 83.56600001570769,
+      "max_interval_ms": 1063.1099000165705
+    },
+    "141": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 236,
+      "mean_interval_ms": 46.80458697315548,
+      "p99_interval_ms": 83.61240001977421,
+      "max_interval_ms": 1063.0908000166528
+    },
+    "142": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 1,
+      "mean_interval_ms": 46.80433773943687,
+      "p99_interval_ms": 83.57810002053156,
+      "max_interval_ms": 1063.0648999940604
+    },
+    "143": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 1,
+      "mean_interval_ms": 46.80402969351169,
+      "p99_interval_ms": 83.57449999311939,
+      "max_interval_ms": 1063.0317000031937
+    },
+    "144": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 1,
+      "mean_interval_ms": 46.80371053639079,
+      "p99_interval_ms": 83.57099999557249,
+      "max_interval_ms": 1062.969399994472
+    },
+    "145": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 1,
+      "mean_interval_ms": 46.803392911848604,
+      "p99_interval_ms": 83.65349998348393,
+      "max_interval_ms": 1062.8733000194188
+    },
+    "146": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 1,
+      "mean_interval_ms": 46.803107088091835,
+      "p99_interval_ms": 83.61159998457879,
+      "max_interval_ms": 1062.8513999981806
+    },
+    "147": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 1,
+      "mean_interval_ms": 46.802792720279434,
+      "p99_interval_ms": 83.67730001918972,
+      "max_interval_ms": 1062.8337999805808
+    },
+    "148": {
+      "packets": 523,
+      "fps": 20.91669566410307,
+      "distinct_payloads": 1,
+      "mean_interval_ms": 46.80240862069284,
+      "p99_interval_ms": 83.61920001334511,
+      "max_interval_ms": 1062.7479999966454
+    }
+  },
+  "end": {
+    "sender": {
+      "transport": {
+        "kind": "direct"
+      },
+      "enabled": false,
+      "error": "Packet worker stopped: idle_watchdog",
+      "mode": "live",
+      "calibration": [
+        "all",
+        "panel_id",
+        0
+      ],
+      "controllers": [],
+      "target_override": "127.0.0.1",
+      "port_override": 16454,
+      "telemetry": {
+        "tick_count": 559,
+        "rate_skips": 0,
+        "send_count": 557,
+        "packet_count": 16153,
+        "send_ms_last": 8.352299977559596,
+        "send_ms_average": 12.744645061618456,
+        "send_ms_max": 47.19310000655241,
+        "actual_send_fps": 22.98623367955794,
+        "pack_count": 557,
+        "pack_ms_last": 1.2199999764561653,
+        "pack_ms_average": 1.3649030512803246,
+        "pack_ms_max": 23.1738000002224,
+        "plan_rebuilds": 2
+      }
+    },
+    "worker_final": {
+      "submitted_batches": 557,
+      "sent_batches": 557,
+      "sent_packets": 16153,
+      "stale_batches": 0,
+      "rejected_batches": 0,
+      "blackout_packets": 58,
+      "error": "",
+      "stop_reason": "idle_watchdog",
+      "last_send_ms": 2.141200006008148,
+      "max_send_ms": 9.92069998756051,
+      "actual_send_fps": 22.988101763158216,
+      "active_seconds": 24.825160900014453,
+      "active_average_fps": 22.396632281230303,
+      "gap_ms": 0.0,
+      "running": false,
+      "closed": true,
+      "cleanup_errors": [],
+      "forced_termination": false
+    },
+    "off": true,
+    "errors": ""
+  }
+}

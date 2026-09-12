@@ -20,6 +20,7 @@ import time
 MAX_BATCH = 60_000
 WATCHDOG_SECONDS = 1.0
 INITIAL_GRACE_SECONDS = 5.0
+STATUS_CACHE_SECONDS = .1
 
 
 def _endpoint(address, port):
@@ -121,6 +122,8 @@ class ExternalPacketSender:
         self._ipc = None
         self._closed = False
         self._last_status = {}
+        self._status_checked_at = -math.inf
+        self._last_process_running = None
         self._cleanup_errors = []
         self._forced_termination = False
         self._token = secrets.token_hex(32)
@@ -160,25 +163,43 @@ class ExternalPacketSender:
         if self._closed or self._process.poll() is not None:
             raise RuntimeError('Packet worker is not running: ' + str(self.status()))
         packets = []
+        universes = set()
         for packet, target in packets_and_targets:
             if tuple(target) != self.target:
                 raise ValueError('External sender target differs from configured target')
-            packets.append(base64.b64encode(_packet(packet)).decode('ascii'))
+            packet = _packet(packet)
+            universe = packet[14:16]
+            if universe in universes:
+                raise ValueError('Duplicate universe in frame')
+            universes.add(universe)
+            packets.append(base64.b64encode(packet).decode('ascii'))
+        if not packets:
+            raise ValueError('Empty packet batch')
         raw = json.dumps(dict(token=self._token, packets=packets), separators=(',', ':')).encode()
-        _decode(raw, self._token)  # Fail before enqueueing malformed or oversized frames.
+        if len(raw) > MAX_BATCH:
+            raise ValueError('Batch exceeds IPC limit')
+        # Values were validated before encoding; only the worker needs to decode
+        # the transport envelope and authenticate its token again.
         try:
             self._ipc.sendto(raw, self._address)
         except BlockingIOError:
             return False
         return True
 
-    def status(self):
-        try:
-            self._last_status = json.loads((self._directory / 'status.json').read_text())
-        except (FileNotFoundError, OSError, ValueError):
-            pass
-        return dict(self._last_status, running=bool(
-            self._process is not None and self._process.poll() is None), closed=self._closed,
+    def status(self, force=False):
+        # File-backed counters can lag briefly, but process health never comes
+        # from the cache. A worker exit refreshes final counters immediately.
+        running = bool(self._process is not None and self._process.poll() is None)
+        now = time.monotonic()
+        if (force or running != self._last_process_running
+                or now - self._status_checked_at >= STATUS_CACHE_SECONDS):
+            try:
+                self._last_status = json.loads((self._directory / 'status.json').read_text())
+            except (FileNotFoundError, OSError, ValueError):
+                pass
+            self._status_checked_at = now
+            self._last_process_running = running
+        return dict(self._last_status, running=running, closed=self._closed,
             cleanup_errors=list(self._cleanup_errors), forced_termination=self._forced_termination)
 
     def close(self):
@@ -204,7 +225,7 @@ class ExternalPacketSender:
                     self._process.wait(timeout=.2)
                 except (OSError, subprocess.TimeoutExpired) as error:
                     self._cleanup_errors.append('worker termination: ' + str(error))
-        result = self.status()
+        result = self.status(force=True)
         self._last_status = result
         # Keep files if a process could not be stopped; close() remains retryable
         # while submit() stays blocked. Failed filesystem cleanup is retryable too.

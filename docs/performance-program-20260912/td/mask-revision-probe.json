@@ -1,0 +1,51 @@
+[
+  {
+    "label": "initial",
+    "total": 1,
+    "frame": 9038851,
+    "rows": 3,
+    "text": "\t\r\nindex\tenabled\r\n0\t1\r\n"
+  },
+  {
+    "label": "afterwrite",
+    "total": 1,
+    "frame": 9038851,
+    "rows": 3,
+    "text": "\t\r\nindex\t0\r\n0\t1\r\n"
+  },
+  {
+    "label": "aftercook",
+    "total": 2,
+    "frame": 9038851,
+    "rows": 3,
+    "text": "\t\r\nindex\t0\r\n0\t1\r\n"
+  },
+  {
+    "label": "afterwrite",
+    "total": 2,
+    "frame": 9038851,
+    "rows": 3,
+    "text": "\t\r\nindex\t1\r\n0\t1\r\n"
+  },
+  {
+    "label": "aftercook",
+    "total": 3,
+    "frame": 9038851,
+    "rows": 3,
+    "text": "\t\r\nindex\t1\r\n0\t1\r\n"
+  },
+  {
+    "label": "afterwrite",
+    "total": 3,
+    "frame": 9038851,
+    "rows": 3,
+    "text": "\t\r\nindex\tbad\r\n0\t1\r\n"
+  },
+  {
+    "label": "aftercook",
+    "total": 4,
+    "frame": 9038851,
+    "rows": 3,
+    "text": "\t\r\nindex\tbad\r\n0\t1\r\n"
+  }
+]

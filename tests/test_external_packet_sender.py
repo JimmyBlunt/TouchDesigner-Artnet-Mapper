@@ -27,10 +27,115 @@ class ExternalPacketSenderTests(unittest.TestCase):
         sender._ipc = Mock()
         sender._closed = False
         sender._last_status = {}
+        sender._status_checked_at = float('-inf')
+        sender._last_process_running = None
         sender._cleanup_errors = []
         sender._forced_termination = False
+        sender.target = ('127.0.0.1', 6454)
+        sender._address = ('127.0.0.1', 42000)
+        sender._token = 'test-token'
         self.addCleanup(sender.close)
         return sender
+
+    def test_status_caches_disk_reads_but_polls_process_every_time(self):
+        sender = self.fake_sender()
+        sender._process.poll.return_value = None
+        with patch('pixelblaze_mapper.external_packet_sender.time.monotonic', return_value=10.) as clock, \
+             patch.object(Path, 'read_text', side_effect=[
+                 '{"sent_batches":1}', '{"sent_batches":2}', '{"sent_batches":3}']) as read:
+            self.assertEqual(sender.status()['sent_batches'], 1)
+            clock.return_value = 10.05
+            self.assertEqual(sender.status()['sent_batches'], 1)
+            self.assertEqual(read.call_count, 1)
+            self.assertEqual(sender._process.poll.call_count, 2)
+            clock.return_value = 10.101
+            self.assertEqual(sender.status()['sent_batches'], 2)
+            self.assertEqual(read.call_count, 2)
+            self.assertEqual(sender.status(force=True)['sent_batches'], 3)
+            self.assertEqual(read.call_count, 3)
+        sender._process.poll.return_value = 0
+
+    def test_worker_exit_inside_cache_window_reads_final_watchdog_status(self):
+        sender = self.fake_sender()
+        sender._process.poll.return_value = None
+        with patch('pixelblaze_mapper.external_packet_sender.time.monotonic', return_value=10.), \
+             patch.object(Path, 'read_text', side_effect=[
+                 '{"sent_batches":1,"stop_reason":""}',
+                 '{"sent_batches":2,"stop_reason":"idle_watchdog","blackout_packets":4}']) as read:
+            self.assertTrue(sender.status()['running'])
+            sender._process.poll.return_value = 0
+            report = sender.status()
+            self.assertFalse(report['running'])
+            self.assertEqual(report['stop_reason'], 'idle_watchdog')
+            self.assertEqual(report['blackout_packets'], 4)
+            self.assertEqual(read.call_count, 2)
+
+    def test_close_forces_final_counters_even_if_process_was_already_stopped(self):
+        sender = self.fake_sender()
+        with patch('pixelblaze_mapper.external_packet_sender.time.monotonic', return_value=10.), \
+             patch.object(Path, 'read_text', side_effect=[
+                 '{"sent_batches":1}',
+                 '{"sent_batches":2,"blackout_packets":4,"stop_reason":"requested"}']) as read:
+            sender.status()
+            report = sender.close()
+            self.assertEqual(report['sent_batches'], 2)
+            self.assertEqual(report['blackout_packets'], 4)
+            self.assertFalse(sender._directory.exists())
+            self.assertEqual(read.call_count, 2)
+            self.assertEqual(sender.close()['sent_batches'], 2)
+
+    def test_transient_status_read_failure_keeps_counters_and_live_health(self):
+        sender = self.fake_sender()
+        sender._process.poll.return_value = None
+        with patch('pixelblaze_mapper.external_packet_sender.time.monotonic', return_value=10.) as clock, \
+             patch.object(Path, 'read_text', side_effect=[
+                 '{"sent_batches":1}', PermissionError('atomic file replacement'),
+                 '{"sent_batches":2}']) as read:
+            sender.status()
+            clock.return_value = 10.101
+            self.assertEqual(sender.status()['sent_batches'], 1)
+            self.assertTrue(sender.status()['running'])
+            self.assertEqual(read.call_count, 2)
+            clock.return_value = 10.202
+            self.assertEqual(sender.status()['sent_batches'], 2)
+        sender._process.poll.return_value = 0
+
+    def test_submit_validates_before_enqueue_without_decoding_own_envelope(self):
+        sender = self.fake_sender()
+        sender._process.poll.return_value = None
+        values = [packet(120), packet(121, 33)]
+        with patch('pixelblaze_mapper.external_packet_sender._decode', side_effect=AssertionError('redundant decode')):
+            self.assertTrue(sender.submit((p, sender.target) for p in values))
+        raw, endpoint = sender._ipc.sendto.call_args.args
+        self.assertEqual(endpoint, sender._address)
+        self.assertEqual(_decode(raw, sender._token), tuple(values))
+        sender._ipc.sendto.reset_mock()
+        bad_batches = [[], [(values[0],sender.target)]*2,
+                       [(values[0][:-1],sender.target)],
+                       [(packet(32768),sender.target)],
+                       [(values[0],('127.0.0.2',6454))],
+                       [(packet(i),sender.target) for i in range(90)]]
+        for batch in bad_batches:
+            with self.subTest(packets=len(batch)), self.assertRaises(ValueError):
+                sender.submit(batch)
+            sender._ipc.sendto.assert_not_called()
+        sender._process.poll.return_value = 0
+
+    def test_submit_exact_ipc_size_boundary_is_checked_on_encoded_bytes(self):
+        sender = self.fake_sender()
+        sender._process.poll.return_value = None
+        batch = [(packet(120),sender.target)]
+        self.assertTrue(sender.submit(batch))
+        size = len(sender._ipc.sendto.call_args.args[0])
+        sender._ipc.sendto.reset_mock()
+        with patch('pixelblaze_mapper.external_packet_sender.MAX_BATCH', size):
+            self.assertTrue(sender.submit(batch))
+        sender._ipc.sendto.reset_mock()
+        with patch('pixelblaze_mapper.external_packet_sender.MAX_BATCH', size-1):
+            with self.assertRaisesRegex(ValueError, 'IPC limit'):
+                sender.submit(batch)
+        sender._ipc.sendto.assert_not_called()
+        sender._process.poll.return_value = 0
 
     def test_stop_marker_failure_does_not_skip_ipc_close_or_worker_termination(self):
         sender = self.fake_sender()
