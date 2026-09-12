@@ -1,6 +1,11 @@
 """Bulk transfers for preview attributes; leave coordinate/missing logic intact."""
 import numpy as np
+from collections import OrderedDict
 from .preview_color_bulk import normalize_rgb
+
+# Derived arrays are transient. TD storage is serialized and dependency tracked.
+_position_cache = OrderedDict()
+_POSITION_CACHE_LIMIT = 8
 
 MARKER = '# NUMPY_PREVIEW_TRANSFERS_V1'
 REPLACEMENTS = (
@@ -73,18 +78,22 @@ def color_arrays(colors,missing,n):
 
 
 def write_positions(script_op,values):
-    # The coordinate callback owns immutable fitted lists and replaces them
-    # when its map/mask/fit signature changes. Keep the converted array on
-    # that same operator instead of rewalking thousands of Python tuples.
-    signature=script_op.fetch('coord_signature',None)
-    cached=script_op.fetch('numpy_coord_array',None)
-    if (signature is not None and cached is not None and len(cached)==3
-            and cached[0] == signature and cached[1] is values):
-        positions=cached[2]
+    # Read only our own cache metadata without making the operator depend on
+    # a storage key it updates during onCook. External map reads remain tracked.
+    signature=script_op.storage.get('coord_signature')
+    key=id(script_op)
+    cached=_position_cache.get(key)
+    if (signature is not None and cached is not None
+            and cached[0] is script_op and cached[1] == signature and cached[2] is values):
+        positions=cached[3]
+        _position_cache.move_to_end(key)
     else:
         positions=position_arrays(values)
         if signature is not None:
-            script_op.store('numpy_coord_array',(signature,values,positions))
+            _position_cache[key]=(script_op,signature,values,positions)
+            _position_cache.move_to_end(key)
+            while len(_position_cache)>_POSITION_CACHE_LIMIT:
+                _position_cache.popitem(last=False)
     for name,row in zip(('tx','ty','tz'),positions):
         script_op.appendChan(name).copyNumpyArray(row)
 

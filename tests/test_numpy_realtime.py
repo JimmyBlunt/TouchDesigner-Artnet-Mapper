@@ -6,6 +6,37 @@ from pixelblaze_mapper.numpy_realtime import NumpyControllerPacker, mask_array
 
 
 class NumpyPackerTests(unittest.TestCase):
+    def test_preview_arrays_are_transient_and_operator_caches_are_isolated(self):
+        from unittest.mock import patch
+        from tests.test_dynamic_source_capacity import Script
+        from pixelblaze_mapper import preview_numpy
+        preview_numpy._position_cache.clear()
+        first, second = Script(), Script()
+        for node in (first, second):
+            node.store('coord_signature', ('map', 1))
+        values = [(1., 2., 3.)]
+        with patch.object(preview_numpy, 'position_arrays', wraps=preview_numpy.position_arrays) as convert:
+            preview_numpy.write_positions(first, values)
+            preview_numpy.write_positions(second, values)
+            preview_numpy.write_positions(first, values)
+            self.assertEqual(convert.call_count, 2)
+            self.assertEqual(first.storage, {'coord_signature': ('map', 1)})
+            self.assertEqual(second.storage, first.storage)
+            preview_numpy._position_cache.clear()
+            preview_numpy.write_positions(first, values)
+            self.assertEqual(convert.call_count, 3)
+            self.assertEqual(first.channels['tx'].vals, [1.])
+
+    def test_preview_transient_cache_is_bounded(self):
+        from tests.test_dynamic_source_capacity import Script
+        from pixelblaze_mapper import preview_numpy
+        preview_numpy._position_cache.clear()
+        for i in range(20):
+            node = Script()
+            node.store('coord_signature', ('map', i))
+            preview_numpy.write_positions(node, [(float(i), 0., 0.)])
+        self.assertLessEqual(len(preview_numpy._position_cache), 8)
+
     def test_preview_position_cache_rebuilds_for_coordinate_replacements(self):
         from unittest.mock import patch
         from tests.test_dynamic_source_capacity import Script
