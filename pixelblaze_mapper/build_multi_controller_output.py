@@ -342,12 +342,14 @@ def refresh_status(force=False):
     try:
         sender = op('artnet_510_sender_callbacks')
         state = sender.module.status() if sender is not None else {'enabled': False, 'error': 'Sender unavailable'}
+        # ROUTER_STATUS_SOURCE_ONCE_V1
+        source_pixels = _source_pixels()
         summary = build_output_summary(records(table_rows(op('controller_config'))),
-            records(table_rows(op('segment_config'))), state, source_pixels=_source_pixels(),
+            records(table_rows(op('segment_config'))), state, source_pixels=source_pixels,
             validation_rows=records(table_rows(op('validation'))))
         from pixelblaze_mapper.sender_external_source import rate_label
         op('ui_panel/safety').par.text = '%s | sender %s | %s | %d RGB source pixels' % (
-            summary.state, 'ON' if summary.sender_enabled else 'OFF', rate_label(state), _source_pixels())
+            summary.state, 'ON' if summary.sender_enabled else 'OFF', rate_label(state), source_pixels)
         from pixelblaze_mapper.router_dynamic_ui import refresh
         refresh(op('/project1/multi_controller_output'), summary)
     except Exception as error:

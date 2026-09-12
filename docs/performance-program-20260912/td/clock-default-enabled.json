@@ -1,0 +1,14 @@
+{
+  "before": {
+    "enabled": true,
+    "python": "C:/Users/jbhtz/AppData/Roaming/uv/tools/marimapper/Scripts/python.exe"
+  },
+  "after": {
+    "enabled": true,
+    "python": "C:/Users/jbhtz/AppData/Roaming/uv/tools/marimapper/Scripts/python.exe",
+    "frame_pacing": true,
+    "worker_priority": "normal"
+  },
+  "sender_off": true,
+  "controller_rates_unchanged": true
+}

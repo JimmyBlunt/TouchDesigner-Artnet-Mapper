@@ -1,0 +1,156 @@
+[
+  {
+    "path": "/project1/guided_scan/capture_poll",
+    "events": [
+      [
+        "framestart",
+        "True"
+      ],
+      [
+        "frameend",
+        "False"
+      ]
+    ],
+    "source": "from pixelblaze_mapper import guided_scan_live as live\nfrom pixelblaze_mapper import scan_offline_job as offline_job\ndef onFrameStart(frame):\n    live.poll(op)\n    if frame % 30 == 0: offline_job.poll(op)\ndef onStart():\n    live.shutdown()\n    offline_job.stop()\ndef onExit():\n    live.shutdown()\n    offline_job.stop()\n\n# Read-only coverage refresh; no camera or output calls.\n_base_frame = onFrameStart\ndef onFrameStart(frame):\n    _base_frame(frame)\n    if frame % 60 == 0:\n        from pixelblaze_mapper.scan_coverage import refresh\n        refresh(op)\n\n# Navigation and next-step hints read stored facts only.\n_scan_frame = onFrameStart\ndef onFrameStart(frame):\n    _scan_frame(frame)\n    if frame % 30 == 0:\n        from pixelblaze_mapper.scan_workflow_ux import refresh\n        refresh(op('/project1/guided_scan'))\n"
+  },
+  {
+    "path": "/project1/guided_scan/led_search_exit",
+    "events": [
+      [
+        "framestart",
+        "False"
+      ],
+      [
+        "frameend",
+        "False"
+      ]
+    ],
+    "source": "def onExit():\n    from pixelblaze_mapper.led_search import stop\n    stop()\n"
+  },
+  {
+    "path": "/project1/show_control/transport_execute",
+    "events": [
+      [
+        "framestart",
+        "False"
+      ],
+      [
+        "frameend",
+        "True"
+      ]
+    ],
+    "source": "_last = None\ndef onFrameEnd(frame):\n    global _last\n    now = absTime.seconds\n    if _last is None:\n        _last = now\n        return\n    delta = max(0.0, min(1.0, now - _last))\n    _last = now\n    if delta > 0.0:\n        op('callbacks').module.advance(delta)\n    return\n"
+  },
+  {
+    "path": "/project1/pixelblaze_mapper/preview3d/animation_driver",
+    "events": [
+      [
+        "framestart",
+        "True"
+      ],
+      [
+        "frameend",
+        "False"
+      ]
+    ],
+    "source": "def onStart():\n    return\n\ndef onCreate():\n    return\n\ndef onExit():\n    return\n\ndef onFrameStart(frame):\n    # 15 fps preview animation keeps the development component lightweight.\n    if int(frame) % 4 == 0:\n        op('instance_data').cook(force=True)\n    return\n\ndef onFrameEnd(frame):\n    return\n\ndef onPlayStateChange(state):\n    return\n\ndef onDeviceChange():\n    return\n\ndef onProjectPreSave():\n    return\n\ndef onProjectPostSave():\n    return\n"
+  },
+  {
+    "path": "/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype/interactive_camera/execute1",
+    "events": [
+      [
+        "framestart",
+        "False"
+      ],
+      [
+        "frameend",
+        "False"
+      ]
+    ],
+    "source": "# me - this DAT\n# \n# frame - the current frame\n# state - True if the timeline is paused\n# \n# Make sure the corresponding toggle is enabled in the Execute DAT.\n\ndef onStart():\n\treturn\n\ndef onCreate():\n\treturn\n\ndef onExit():\n\treturn\n\ndef onFrameStart(frame):\n\n\tcurTime = absTime.seconds;\n\tlastFrameTime = me.fetch(\"lastFrameTime\", curTime);\n\n\tif parent().par.Autorotate and not parent.Camera.TransformActive:\n\t\n\t\tframeTime = curTime - lastFrameTime;\n\t\n\t\tparent.Camera.AutoRotate(frameTime);\n\t\t\n\tif parent().par.Keysactive and not parent.Camera.TransformActive:\n\t\t\n\t\tframeTime = curTime - lastFrameTime;\n\t\tparent.Camera.DoKeyMovement(frameTime);\n\t\n\n\tme.store(\"lastFrameTime\", curTime);\n\n\treturn\n\ndef onFrameEnd(frame):\n\treturn\n\ndef onPlayStateChange(state):\n\treturn\n\ndef onDeviceChange():\n\treturn\n\ndef onProjectPreSave():\n\treturn\n\ndef onProjectPostSave():\n\treturn\n\n\t"
+  },
+  {
+    "path": "/project1/pixelblaze_mapper/output_config/live_summary_execute",
+    "events": [
+      [
+        "framestart",
+        "True"
+      ],
+      [
+        "frameend",
+        "False"
+      ]
+    ],
+    "source": "def onFrameStart(frame):\n    if int(frame) % 15:\n        return\n    op('live_summary_runtime').module.update()\n    return\n"
+  },
+  {
+    "path": "/project1/material_phase_execute",
+    "events": [
+      [
+        "framestart",
+        "True"
+      ],
+      [
+        "frameend",
+        "False"
+      ]
+    ],
+    "source": "def onFrameStart(frame):\n    runtime = op('/project1/material_state_runtime')\n    # phase() performs the one durable tick; do not advance twice per frame.\n    phase = runtime.module.phase()\n    controls = op('/project1/madmapper_player_controls')\n    source = str(controls.par.Source.eval()) if controls is not None else ''\n    if source == 'materials':\n        player = op('/project1/madmapper_material_player')\n        if player is not None:\n            player.par.vec0valuey.val = phase\n    elif source == 'imported':\n        imported = op('/project1/madmapper_library/live_preview')\n        if imported is not None:\n            imported.par.vec0valuex.val = phase\n            imported.cook(force=True)\n    return\n"
+  },
+  {
+    "path": "/project1/multi_controller_output/gico_port_config/controller_ports/interface_poll",
+    "events": [
+      [
+        "framestart",
+        "True"
+      ],
+      [
+        "frameend",
+        "False"
+      ]
+    ],
+    "source": "def onFrameStart(frame):\n    op('runtime').module.poll_interfaces()\n"
+  },
+  {
+    "path": "/project1/multi_controller_output/artnet_510_execute",
+    "events": [
+      [
+        "framestart",
+        "True"
+      ],
+      [
+        "frameend",
+        "False"
+      ]
+    ],
+    "source": "def onFrameStart(frame):\n    op('artnet_510_sender_callbacks').module.tick()\n    return\n\ndef onExit():\n    op('artnet_510_sender_callbacks').module.stop()\n    return\n"
+  },
+  {
+    "path": "/project1/multi_controller_output/router_status_execute",
+    "events": [
+      [
+        "framestart",
+        "True"
+      ],
+      [
+        "frameend",
+        "False"
+      ]
+    ],
+    "source": "def onFrameStart(frame):\n    op('ui_callbacks').module.refresh_status()\n    return\n"
+  },
+  {
+    "path": "/project1/madmapper_player_controls/player_ui_update",
+    "events": [
+      [
+        "framestart",
+        "True"
+      ],
+      [
+        "frameend",
+        "False"
+      ]
+    ],
+    "source": "def onFrameStart(frame):\n    if int(frame) % 15:\n        return\n    op('player_ui_runtime').module.update()\n    return\n"
+  }
+]

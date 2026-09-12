@@ -1,0 +1,29 @@
+{
+  "before": [
+    {
+      "Name": "OneDrive.Sync.Service.exe",
+      "ProcessId": 25640,
+      "ExecutablePath": "C:\\Users\\jbhtz\\AppData\\Local\\Microsoft\\OneDrive\\26.158.0816.0003\\OneDrive.Sync.Service.exe"
+    },
+    {
+      "Name": "OneDrive.exe",
+      "ProcessId": 4976,
+      "ExecutablePath": "C:\\Users\\jbhtz\\AppData\\Local\\Microsoft\\OneDrive\\OneDrive.exe"
+    }
+  ],
+  "stopped": [
+    "OneDrive.Sync.Service.exe",
+    "OneDrive.exe"
+  ],
+  "restored": [
+    {
+      "running": true,
+      "name": "OneDrive.exe"
+    },
+    {
+      "running": true,
+      "name": "OneDrive.Sync.Service.exe"
+    }
+  ],
+  "benchmark_exit": 0
+}

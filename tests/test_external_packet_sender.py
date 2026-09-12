@@ -10,7 +10,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import Mock, patch
 
-from pixelblaze_mapper.external_packet_sender import ExternalPacketSender, _decode, _packet, _wait_until, _latest_queued_batch
+from pixelblaze_mapper.external_packet_sender import ExternalPacketSender, _decode, _packet, _wait_until, _latest_queued_batch, _FrameDeadline, _write, _periodic_status, _StopCheck, _worker
 
 
 def packet(universe, level=17):
@@ -19,6 +19,158 @@ def packet(universe, level=17):
 
 
 class ExternalPacketSenderTests(unittest.TestCase):
+    def test_stop_cache_expires_at_20ms_and_forced_boundaries_are_fresh(self):
+        path = Mock()
+        path.exists.side_effect = [False, True]
+        stop = _StopCheck(path)
+        with patch('pixelblaze_mapper.external_packet_sender.time.monotonic', return_value=0.) as clock:
+            self.assertFalse(stop.check(force=True))
+            clock.return_value = .019999
+            self.assertFalse(stop.check())
+            path.exists.assert_called_once()
+            clock.return_value = .02
+            self.assertTrue(stop.check())
+            self.assertTrue(stop.check(force=True))
+            self.assertEqual(path.exists.call_count, 2)
+        path.exists.reset_mock(side_effect=True)
+        path.exists.side_effect = [False, True]
+        stop = _StopCheck(path)
+        with patch('pixelblaze_mapper.external_packet_sender.time.monotonic', return_value=1.):
+            self.assertFalse(stop.check())
+            self.assertTrue(stop.check(force=True))
+
+    def run_mock_worker(self, outgoing, packets, extra_patches=()):
+        # Exercise the actual worker, sockets simulated; no port binding.
+        from contextlib import ExitStack
+        incoming = Mock()
+        incoming.getsockname.return_value = ('127.0.0.1', 42000)
+        raw = json.dumps(dict(token='secret', packets=[
+            base64.b64encode(p).decode() for p in packets])).encode()
+        incoming.recvfrom.side_effect = [(raw, ('127.0.0.1', 42001)), BlockingIOError()]
+        outgoing.getsockopt.return_value = 1024 * 1024
+        snapshots = []
+        with tempfile.TemporaryDirectory() as directory, ExitStack() as stack:
+            config = Path(directory) / 'config.json'
+            config.write_text(json.dumps(dict(token='secret', local=['127.0.0.1', 42002],
+                                             target=['127.0.0.1', 42003], gap=0.)))
+            stack.enter_context(patch('pixelblaze_mapper.external_packet_sender.socket.socket',
+                                      side_effect=[outgoing, incoming]))
+            stack.enter_context(patch('pixelblaze_mapper.external_packet_sender._write',
+                                      side_effect=lambda path, value: snapshots.append((path.name, dict(value)))))
+            stack.enter_context(patch('pixelblaze_mapper.external_packet_sender.time.sleep'))
+            for context in extra_patches:
+                stack.enter_context(context)
+            _worker(config)
+        outgoing.close.assert_called_once()
+        incoming.close.assert_called_once()
+        return snapshots[-1][1]
+
+    def test_nonblocking_send_failure_is_visible_and_blackout_restores_timeout(self):
+        for successful_packets in (0, 1):
+            with self.subTest(successful_packets=successful_packets):
+                outgoing = Mock()
+                outgoing.sendto.side_effect = ([528] * successful_packets +
+                                              [BlockingIOError(10035, 'would block')] + [528] * 4)
+                values = [packet(120), packet(121)]
+                report = self.run_mock_worker(outgoing, values)
+                outgoing.setblocking.assert_called_once_with(False)
+                outgoing.setsockopt.assert_called_once_with(socket.SOL_SOCKET, socket.SO_SNDBUF, 1024 * 1024)
+                outgoing.settimeout.assert_called_once_with(.2)
+                calls = outgoing.method_calls
+                timeout_index = calls.index(unittest.mock.call.settimeout(.2))
+                self.assertEqual(sum(call[0] == 'sendto' for call in calls[:timeout_index]), successful_packets + 1)
+                self.assertEqual(report['sent_packets'], successful_packets)
+                self.assertEqual(report['sent_batches'], 0)
+                self.assertEqual(report['send_errors'], 1)
+                self.assertEqual(report['stop_reason'], 'error')
+                self.assertIn('would block', report['error'])
+                self.assertEqual(report['blackout_packets'], 4)
+                self.assertEqual([call.args[0] for call in outgoing.sendto.call_args_list[-4:]],
+                                 [p[:18] + bytes(510) for p in values] * 2)
+
+    def test_stop_during_long_batch_uses_bounded_cache_then_blackens_all_universes(self):
+        now = [0.]
+        path = Mock()
+        path.exists.side_effect = lambda: now[0] >= .009
+        stop = _StopCheck(path)
+        outgoing = Mock()
+        def send(value, _target):
+            if any(value[18:]):
+                now[0] += .004
+            return len(value)
+        outgoing.sendto.side_effect = send
+        values = [packet(i) for i in range(29)]
+        report = self.run_mock_worker(outgoing, values, [
+            patch('pixelblaze_mapper.external_packet_sender._StopCheck', return_value=stop),
+            patch('pixelblaze_mapper.external_packet_sender.time.monotonic', side_effect=lambda: now[0]),
+            patch('pixelblaze_mapper.external_packet_sender.time.perf_counter', side_effect=lambda: now[0])])
+        self.assertEqual(report['sent_packets'], 5)
+        self.assertEqual(report['sent_batches'], 0)
+        self.assertEqual(report['stop_reason'], 'requested')
+        self.assertEqual(report['send_errors'], 0)
+        self.assertLessEqual(now[0] - .009, .02)
+        self.assertEqual(path.exists.call_count, 3)  # Loop, batch start, expired cache.
+        self.assertEqual(report['blackout_packets'], 58)
+
+    def test_periodic_status_skips_locked_replace_then_catches_up(self):
+        stats = dict(sent_batches=1, status_write_ms=0., max_status_write_ms=0.,
+                     status_write_skipped=0, status_write_errors=0)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'status.json'
+            original_replace = Path.replace
+            calls = []
+            def locked_once(temporary, destination):
+                calls.append(destination)
+                if len(calls) == 1:
+                    raise PermissionError('reader holds status file')
+                return original_replace(temporary, destination)
+            with patch.object(Path, 'replace', autospec=True, side_effect=locked_once), \
+                 patch('pixelblaze_mapper.external_packet_sender.time.sleep') as sleep, \
+                 patch('pixelblaze_mapper.external_packet_sender.time.perf_counter', side_effect=[0., .003, .1, .101]):
+                _periodic_status(path, stats)
+                self.assertFalse(path.exists())
+                self.assertEqual(len(calls), 1)
+                self.assertEqual(stats['status_write_skipped'], 1)
+                stats['sent_batches'] = 2
+                _periodic_status(path, stats)
+                sleep.assert_not_called()
+            saved = json.loads(path.read_text())
+            self.assertEqual(saved['sent_batches'], 2)
+            self.assertEqual(saved['status_write_skipped'], 1)
+            self.assertEqual(saved['status_write_errors'], 0)
+            self.assertAlmostEqual(saved['status_write_ms'], 3.)
+            self.assertAlmostEqual(stats['status_write_ms'], 1.)
+            self.assertAlmostEqual(stats['max_status_write_ms'], 3.)
+
+    def test_periodic_status_os_error_is_measured_without_stopping_output(self):
+        stats = dict(status_write_ms=0., max_status_write_ms=0.,
+                     status_write_skipped=0, status_write_errors=0)
+        with patch('pixelblaze_mapper.external_packet_sender._write', side_effect=OSError('disk unavailable')) as write, \
+             patch('pixelblaze_mapper.external_packet_sender.time.perf_counter', side_effect=[1., 1.2]):
+            _periodic_status(Path('status.json'), stats)
+        write.assert_called_once_with(Path('status.json'), stats, retry=False)
+        self.assertEqual(stats['status_write_errors'], 1)
+        self.assertEqual(stats['status_write_skipped'], 0)
+        self.assertAlmostEqual(stats['max_status_write_ms'], 200.)
+
+    def test_final_write_keeps_bounded_permission_retries_and_final_counters(self):
+        path = Mock()
+        temporary = path.with_suffix.return_value
+        temporary.replace.side_effect = [PermissionError('locked'), None]
+        final = dict(sent_batches=42, blackout_packets=4, stop_reason='requested')
+        with patch('pixelblaze_mapper.external_packet_sender.time.monotonic', side_effect=[1., 1.01]), \
+             patch('pixelblaze_mapper.external_packet_sender.time.sleep') as sleep:
+            _write(path, final)
+        self.assertEqual(temporary.replace.call_count, 2)
+        sleep.assert_called_once_with(.005)
+        self.assertEqual(json.loads(temporary.write_text.call_args.args[0]), final)
+        temporary.replace.side_effect = PermissionError('still locked')
+        with patch('pixelblaze_mapper.external_packet_sender.time.monotonic', side_effect=[1., 1.201]), \
+             patch('pixelblaze_mapper.external_packet_sender.time.sleep') as sleep:
+            with self.assertRaises(PermissionError):
+                _write(path, final)
+            sleep.assert_not_called()
+
     def fake_sender(self):
         sender = ExternalPacketSender.__new__(ExternalPacketSender)
         sender._directory = Path(tempfile.mkdtemp(prefix='worker-close-test-'))
@@ -168,6 +320,54 @@ class ExternalPacketSenderTests(unittest.TestCase):
                 ExternalPacketSender(sys.executable, '127.0.0.1', '127.0.0.1')
         self.assertFalse(directory.exists())
 
+    def test_worker_start_timeout_is_five_seconds_and_cleans_up(self):
+        directory = Path(tempfile.mkdtemp(prefix='worker-start-timeout-test-'))
+        process = Mock()
+        state = dict(now=0., stopped=False)
+        process.poll.side_effect = lambda: 0 if state['stopped'] else None
+        process.kill.side_effect = lambda: state.update(stopped=True)
+        def advance(_seconds):
+            state['now'] += .25
+        with patch('pixelblaze_mapper.external_packet_sender.tempfile.mkdtemp', return_value=str(directory)), \
+             patch('pixelblaze_mapper.external_packet_sender.subprocess.Popen', return_value=process), \
+             patch('pixelblaze_mapper.external_packet_sender.time.monotonic', side_effect=lambda: state['now']), \
+             patch('pixelblaze_mapper.external_packet_sender.time.sleep', side_effect=advance):
+            with self.assertRaisesRegex(TimeoutError, 'exceeded 5 seconds'):
+                ExternalPacketSender(sys.executable, '127.0.0.1', '127.0.0.1')
+        self.assertEqual(state['now'], 5.)
+        process.kill.assert_called_once()
+        self.assertFalse(directory.exists())
+
+    def test_worker_priority_validation_precedes_process_start(self):
+        with patch('pixelblaze_mapper.external_packet_sender.subprocess.Popen') as start:
+            for priority in ('high', 'realtime', 'AboveNormal', '', None, 3, []):
+                with self.subTest(priority=priority), self.assertRaisesRegex(ValueError, 'Worker priority'):
+                    ExternalPacketSender(sys.executable, '127.0.0.1', '127.0.0.1', priority=priority)
+            start.assert_not_called()
+
+    def test_worker_priority_creation_flags_and_default(self):
+        for options, expected in (({}, 0x08000000), ({'priority': 'normal'}, 0x08000000),
+                                  ({'priority': 'above_normal'}, 0x08008000)):
+            with self.subTest(options=options), \
+                 patch('pixelblaze_mapper.external_packet_sender.subprocess.CREATE_NO_WINDOW', 0x08000000, create=True), \
+                 patch('pixelblaze_mapper.external_packet_sender.subprocess.ABOVE_NORMAL_PRIORITY_CLASS', 0x8000, create=True), \
+                 patch('pixelblaze_mapper.external_packet_sender.subprocess.Popen', side_effect=OSError('mock launch')) as start:
+                with self.assertRaisesRegex(OSError, 'mock launch'):
+                    ExternalPacketSender(sys.executable, '127.0.0.1', '127.0.0.1', **options)
+                self.assertEqual(start.call_args.kwargs['creationflags'], expected)
+
+    def test_worker_priority_portable_without_windows_flag(self):
+        import pixelblaze_mapper.external_packet_sender as module
+        original = module.subprocess
+        class PortableSubprocess:
+            DEVNULL = original.DEVNULL
+            TimeoutExpired = original.TimeoutExpired
+            Popen = Mock(side_effect=OSError('mock launch'))
+        with patch.object(module, 'subprocess', PortableSubprocess):
+            with self.assertRaisesRegex(OSError, 'mock launch'):
+                ExternalPacketSender(sys.executable, '127.0.0.1', '127.0.0.1', priority='above_normal')
+        self.assertEqual(PortableSubprocess.Popen.call_args.kwargs['creationflags'], 0)
+
     def test_bounded_queue_drain_does_not_consume_unprocessed_129th_batch(self):
         def envelope(level):
             return json.dumps(dict(token='secret', packets=[
@@ -225,14 +425,14 @@ class ExternalPacketSenderTests(unittest.TestCase):
         self.addCleanup(receiver.close)
         return receiver
 
-    def sender(self, receiver, gap=0):
+    def sender(self, receiver, gap=0, frame_rate=None):
         # Reserve then release an ephemeral local source port; never binds6454.
         reserve = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         reserve.bind(('127.0.0.1', 0))
         local_port = reserve.getsockname()[1]
         reserve.close()
         sender = ExternalPacketSender(sys.executable, '127.0.0.1', '127.0.0.1',
-                                      receiver.getsockname()[1], local_port, gap)
+                                      receiver.getsockname()[1], local_port, gap, frame_rate=frame_rate)
         self.addCleanup(sender.close)
         return sender
 
@@ -358,6 +558,130 @@ class ExternalPacketSenderTests(unittest.TestCase):
         self.assertGreater(report['actual_send_fps'], 4.)
         self.assertLess(report['actual_send_fps'], 12.)
         self.assertAlmostEqual(report['active_average_fps'], 2 / report['active_seconds'])
+
+    def test_frame_rate_invalid_values_fail_before_starting_worker(self):
+        with patch('pixelblaze_mapper.external_packet_sender.subprocess.Popen') as start:
+            for rate in (0, -1, float('inf'), float('nan'), 5e-324, 120.01, 1e308):
+                with self.subTest(rate=rate), self.assertRaises(ValueError):
+                    ExternalPacketSender(sys.executable, '127.0.0.1', '127.0.0.1', frame_rate=rate)
+            start.assert_not_called()
+
+    def test_frame_deadline_latest_whole_batch_empty_slots_and_stall(self):
+        pacer = _FrameDeadline(30.)
+        stats = dict(stale_batches=0)
+        first = (packet(120, 1), packet(121, 1))
+        newest = (packet(120, 3), packet(121, 3))
+        self.assertEqual(pacer.wait_seconds(100.), .05)
+        pacer.offer(first, stats)
+        self.assertEqual(pacer.take(100.), first)
+        pacer.offer((packet(120, 2),), stats)
+        pacer.offer(newest, stats)
+        self.assertEqual(stats['stale_batches'], 1)
+        self.assertIsNone(pacer.take(100.02))
+        self.assertAlmostEqual(pacer.wait_seconds(100.02), 1 / 30 - .02)
+        # A long stalled clock discards elapsed slots, not whole-frame atomicity.
+        self.assertEqual(pacer.take(105.012), newest)
+        self.assertGreater(pacer.deadline, 105.012)
+        self.assertLessEqual(pacer.deadline, 105.012 + 1 / 30)
+        pacer.offer(first, stats)
+        self.assertIsNone(pacer.take(105.012))
+        self.assertEqual(pacer.take(pacer.deadline), first)
+        # Empty intervals never repeat the last data.
+        self.assertIsNone(pacer.take(200.))
+        self.assertIsNone(pacer.take(201.))
+
+    def test_phase_clock_does_not_accumulate_repeated_wakeup_delay(self):
+        pacer = _FrameDeadline(30.)
+        stats = dict(stale_batches=0)
+        pacer.offer((packet(120),), stats)
+        pacer.take(10.)
+        for slot in range(1, 301):
+            pacer.offer((packet(120),), stats)
+            self.assertIsNotNone(pacer.take(10 + slot / 30 + .003))
+        self.assertAlmostEqual(pacer.deadline, 10 + 301 / 30, places=9)
+        self.assertEqual(stats['stale_batches'], 0)
+
+    def test_paced_latest_batch_no_repeat_and_responsive_stop(self):
+        receiver = self.receiver()
+        sender = self.sender(receiver, frame_rate=2)
+        target = receiver.getsockname()
+        sender.submit([(packet(120, 1), target)])
+        self.assertEqual(receiver.recvfrom(600)[0], packet(120, 1))
+        for level in range(2, 21):
+            sender.submit([(packet(120, level), target), (packet(121, level), target)])
+        self.assertEqual([receiver.recvfrom(600)[0] for _ in range(2)],
+                         [packet(120, 20), packet(121, 20)])
+        receiver.settimeout(.2)
+        with self.assertRaises(socket.timeout):
+            receiver.recvfrom(600)
+        # Pending frame must not delay stop to the next (500 ms) slot.
+        sender.submit([(packet(122, 99), target)])
+        time.sleep(.03)
+        started = time.monotonic()
+        report = sender.close()
+        self.assertLess(time.monotonic() - started, .35)
+        self.assertEqual(report['sent_batches'], 2)
+        self.assertGreaterEqual(report['stale_batches'], 18)
+        self.assertEqual(report['frame_rate'], 2.)
+        self.assertEqual(report['blackout_packets'], 6)
+        receiver.settimeout(1.)
+        black = [receiver.recvfrom(600)[0] for _ in range(6)]
+        self.assertEqual({int.from_bytes(p[14:16], 'little') for p in black}, {120, 121, 122})
+        self.assertTrue(all(not any(p[18:]) for p in black))
+
+    def test_paced_watchdog_ignores_invalid_inputs_and_does_not_send_pending(self):
+        receiver = self.receiver()
+        sender = self.sender(receiver, frame_rate=.2)
+        target = receiver.getsockname()
+        sender.submit([(packet(120, 1), target)])
+        self.assertEqual(receiver.recvfrom(600)[0], packet(120, 1))
+        sender.submit([(packet(121, 2), target)])
+        started = time.monotonic()
+        while time.monotonic() - started < 1.25:
+            sender._ipc.sendto(b'{"token":"wrong","packets":[]}', sender._address)
+            time.sleep(.03)
+        report = sender.close()
+        self.assertEqual(report['stop_reason'], 'idle_watchdog')
+        self.assertEqual(report['sent_batches'], 1)
+        self.assertEqual(report['submitted_batches'], 2)
+        self.assertGreater(report['rejected_batches'], 0)
+        self.assertEqual(report['blackout_packets'], 4)
+
+    def test_paced_overfed_loopback_average_rate_and_latest_values(self):
+        receiver = self.receiver()
+        receiver.setblocking(False)
+        sender = self.sender(receiver, frame_rate=30)
+        target = receiver.getsockname()
+        observed = []
+        start = time.monotonic()
+        duration = 1.5
+        level = 0
+        while time.monotonic() - start < duration:
+            level = level % 250 + 1
+            sender.submit([(packet(120, level), target), (packet(121, level), target)])
+            while True:
+                try:
+                    data = receiver.recvfrom(600)[0]
+                except BlockingIOError:
+                    break
+                observed.append((time.monotonic(), data))
+            time.sleep(.004)
+        time.sleep(.06)
+        while True:
+            try:
+                data = receiver.recvfrom(600)[0]
+            except BlockingIOError:
+                break
+            observed.append((time.monotonic(), data))
+        report = sender.close()
+        self.assertEqual(len(observed), 2 * report['sent_batches'])
+        for first, second in zip(observed[::2], observed[1::2]):
+            self.assertEqual(first[1][18:], second[1][18:])
+        self.assertEqual(observed[-1][1], packet(121, level))
+        self.assertEqual(report['submitted_batches'], report['sent_batches'] + report['stale_batches'])
+        self.assertGreater(report['stale_batches'], report['sent_batches'])
+        self.assertGreater(report['active_average_fps'], 27)
+        self.assertLess(report['active_average_fps'], 32)
 
 
 if __name__ == '__main__':

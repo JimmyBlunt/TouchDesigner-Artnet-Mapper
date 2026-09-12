@@ -172,7 +172,9 @@ def refresh(owner, summary):
     route_text = '; '.join('%s: src %s + %s -> target %s' % (r['name'], r['source_start'], r['count'], r['destination_start']) for r in routes)
     c.op('router_route').par.text = '%d routes | %d reserved universes | NIC %s | UDP %d\n%s' % (
         len(routes), item.universe_count, item.local_interface, item.port, route_text or 'No pixel routes assigned')
-    counts = mapping_counts(entries, segments, summary.source_pixels or 0, owner.fetch('inactive_source_ranges', []))
+    from pixelblaze_mapper.router_status_source import mapping_counts_cached
+    counts = mapping_counts_cached(owner, entries, segments, summary.source_pixels or 0,
+                                   owner.fetch('inactive_source_ranges', []))
     c.op('unassigned').par.text = 'SOURCE PIXELS: enabled routes %(enabled)d | disabled-only %(disabled_only)d | unassigned %(unassigned)d | explicit black slots %(inactive)d' % counts
 
 

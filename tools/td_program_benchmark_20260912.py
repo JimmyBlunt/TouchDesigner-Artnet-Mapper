@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'docs/performance-program-20260912/td'
 
 
-def run(label, seconds=30, controller='BACK_PANEL_249', rate=30):
+def run(label, seconds=30, controller='BACK_PANEL_249', rate=30, frame_pacing=None, worker_priority=None):
     OUT.mkdir(parents=True, exist_ok=True)
     path = OUT / (label + '.json')
     if path.exists():
@@ -47,9 +47,12 @@ for row in range(1,t.numRows):
  t[row,'enabled']='1' if str(t[row,'name'])==name else '0'
  if str(t[row,'name'])==name:t[row,'rate']=%r;t[row,'local_interface']='127.0.0.1'
 r.store('live_packet_gap_ms',{name:0.0})
-settings=dict(r.fetch('external_sender_settings',{}));settings['enabled']=True;r.store('external_sender_settings',settings)
+settings=dict(r.fetch('external_sender_settings',{}));settings['enabled']=True
+if %r is not None:settings['frame_pacing']=%r
+if %r is not None:settings['worker_priority']=%r
+r.store('external_sender_settings',settings)
 s.set_live();assert s.set_enabled(True,target_override='127.0.0.1',port_override=16454)
-result=json.dumps(s.status())''' % (controller,str(rate)))
+result=json.dumps(s.status())''' % (controller,str(rate),frame_pacing,frame_pacing,worker_priority,worker_priority))
         time.sleep(3)
         begin=time.perf_counter();time.sleep(seconds);end=time.perf_counter()
         report['measured_seconds']=end-begin
@@ -59,13 +62,22 @@ result=json.dumps(s.status())''' % (controller,str(rate)))
             by_universe.setdefault(universe,[]).append((stamp,crc))
         for universe,rows in by_universe.items():
             times=[r[0] for r in rows]
+            bins=[0]*int(end-begin)
+            for stamp in times:
+                slot=int(stamp-begin)
+                if slot<len(bins):bins[slot]+=1
             intervals=sorted((b-a)*1000 for a,b in zip(times,times[1:]))
             by_universe[universe]={'packets':len(rows),'fps':len(rows)/(end-begin),
                 'distinct_payloads':len(set(r[1] for r in rows)),
+                'per_second_packets':bins,
+                'minimum_full_second_fps':min(bins) if bins else None,
                 'mean_interval_ms':sum(intervals)/len(intervals) if intervals else None,
                 'p99_interval_ms':intervals[min(len(intervals)-1,int(len(intervals)*.99))] if intervals else None,
                 'max_interval_ms':max(intervals) if intervals else None}
         report['received']=by_universe
+    except Exception as error:
+        report['failure']={'type':type(error).__name__,'message':str(error)}
+        raise
     finally:
         try:
             report['end']=td(r'''import json
@@ -76,13 +88,25 @@ for row in baseline['controllers']:t.appendRow(row)
 r.store('live_packet_gap_ms',baseline['gap']);r.store('external_sender_settings',baseline['external'])
 result=json.dumps({'sender':state,'worker_final':r.fetch('last_external_sender_status'),
  'off':not s.status()['enabled'],'errors':op('/project1').errors(recurse=True)})''' % json.dumps(baseline))
+            if 'start' not in report:
+                # A startup failure can leave the previous run's owner storage.
+                # Do not present that old worker result as this run's evidence.
+                report['end']['worker_final']=None
+                report['end']['worker_final_unavailable']='Worker did not start successfully'
         finally:
             running.clear();thread.join(1);sock.close()
             path.write_text(json.dumps(report,indent=2),encoding='utf-8')
-    print(json.dumps({'label':label,'received':report.get('received'), 'end':report.get('end')},indent=2))
+    received=list(report.get('received',{}).values())
+    print(json.dumps({'label':label,'universes':len(received),
+        'fps_range':[min(r['fps'] for r in received),max(r['fps'] for r in received)] if received else [],
+        'minimum_full_second_fps':min(r['minimum_full_second_fps'] for r in received) if received else None,
+        'max_interval_ms':max(r['max_interval_ms'] for r in received) if received else None,
+        'end':report.get('end')},indent=2))
 
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('label');p.add_argument('--seconds',type=float,default=30)
     p.add_argument('--controller',default='BACK_PANEL_249');p.add_argument('--rate',type=int,default=30)
-    a=p.parse_args();run(a.label,a.seconds,a.controller,a.rate)
+    p.add_argument('--frame-pacing',action='store_true',default=None)
+    p.add_argument('--worker-priority',choices=('normal','above_normal'))
+    a=p.parse_args();run(a.label,a.seconds,a.controller,a.rate,a.frame_pacing,a.worker_priority)

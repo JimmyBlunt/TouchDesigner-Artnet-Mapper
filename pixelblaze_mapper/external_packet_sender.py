@@ -21,6 +21,9 @@ MAX_BATCH = 60_000
 WATCHDOG_SECONDS = 1.0
 INITIAL_GRACE_SECONDS = 5.0
 STATUS_CACHE_SECONDS = .1
+STARTUP_TIMEOUT_SECONDS = 5.0
+SEND_BUFFER_BYTES = 1024 * 1024
+STOP_CACHE_SECONDS = .02
 
 
 def _endpoint(address, port):
@@ -56,7 +59,7 @@ def _decode(raw, token):
     return packets
 
 
-def _write(path, value):
+def _write(path, value, *, retry=True):
     temporary = path.with_suffix('.tmp')
     temporary.write_text(json.dumps(value), encoding='utf-8')
     # Windows can briefly deny replacement while status() has the target open.
@@ -66,9 +69,28 @@ def _write(path, value):
             temporary.replace(path)
             return
         except PermissionError:
-            if time.monotonic() >= deadline:
+            if not retry or time.monotonic() >= deadline:
                 raise
             time.sleep(.005)
+
+
+def _periodic_status(path, stats):
+    """Best-effort telemetry: never sleep/retry a contested status replacement.
+
+    File creation/write/replace itself can still block in the OS. Measure that
+    wall time separately from UDP send time. Measurements appear in the next
+    successful snapshot (or final status), since this write measures itself.
+    """
+    started = time.perf_counter()
+    try:
+        _write(path, stats, retry=False)
+    except PermissionError:
+        stats['status_write_skipped'] += 1
+    except OSError:
+        stats['status_write_errors'] += 1
+    finally:
+        stats['status_write_ms'] = (time.perf_counter() - started) * 1000
+        stats['max_status_write_ms'] = max(stats['max_status_write_ms'], stats['status_write_ms'])
 
 
 def _wait_until(deadline):
@@ -109,14 +131,89 @@ def _latest_queued_batch(incoming, raw, origin, token, stats):
     return latest
 
 
+def _frame_rate(value):
+    if value is None:
+        return None
+    value = float(value)
+    if not math.isfinite(value) or not 0 < value <= 120 or not math.isfinite(1 / value):
+        raise ValueError('Frame rate must be finite, greater than zero and at most 120')
+    return value
+
+
+class _FrameDeadline:
+    """One pending complete frame, dispatched on a monotonic phase clock.
+
+    Advance to a future slot, skipping every elapsed slot after a stall. This
+    avoids catch-up bursts without accumulating normal OS wake-up jitter into
+    a progressively slower rate. Adjacent actual starts may be closer than a
+    period when a late dispatch is followed by an on-time slot.
+    Empty intervals do not produce repeats or advance a synthetic FPS counter.
+    """
+    def __init__(self, frame_rate):
+        self.period = 1 / frame_rate
+        self.deadline = -math.inf
+        self.pending = None
+
+    def offer(self, packets, stats):
+        if self.pending is not None:
+            stats['stale_batches'] += 1
+        self.pending = packets
+
+    def wait_seconds(self, now):
+        if self.pending is None:
+            return .05
+        return min(.05, max(0., self.deadline - now))
+
+    def take(self, now):
+        if self.pending is None or now < self.deadline:
+            return None
+        result, self.pending = self.pending, None
+        if not math.isfinite(self.deadline):
+            self.deadline = now + self.period
+        else:
+            elapsed_slots = math.floor((now - self.deadline) / self.period) + 1
+            self.deadline += elapsed_slots * self.period
+            if self.deadline <= now:  # Floating-point boundary protection.
+                self.deadline += self.period
+        return result
+
+
+class _StopCheck:
+    """Cache only negative stop checks for at most 20 ms within a batch.
+
+    Batch/receive boundaries force a fresh check. This bounds cache-induced
+    latency, not OS filesystem or scheduler stalls; a seen stop is permanent.
+    """
+    def __init__(self, path):
+        self.path = path
+        self.checked_at = -math.inf
+        self.stopped = False
+
+    def check(self, *, force=False):
+        now = time.monotonic()
+        if not self.stopped and (force or now - self.checked_at >= STOP_CACHE_SECONDS):
+            self.stopped = self.path.exists()
+            self.checked_at = now
+        return self.stopped
+
+
 class ExternalPacketSender:
     def __init__(self, python_executable, local_address, target_address,
-                 target_port=6454, local_port=6454, gap_ms=0.0):
+                 target_port=6454, local_port=6454, gap_ms=0.0, frame_rate=None,
+                 priority='normal'):
         self.target = _endpoint(target_address, target_port)
         local = _endpoint(local_address, local_port)
         gap = float(gap_ms)
         if not math.isfinite(gap) or not 0 <= gap <= 5:
             raise ValueError('Packet gap must be 0..5 ms')
+        frame_rate = _frame_rate(frame_rate)
+        if priority not in ('normal', 'above_normal'):
+            raise ValueError('Worker priority must be normal or above_normal')
+        creationflags = getattr(subprocess, 'CREATE_NO_WINDOW', 0)
+        if priority == 'above_normal':
+            # This flag exists only on Windows. Never use High or Realtime;
+            # other platforms retain their normal process scheduling policy.
+            creationflags |= getattr(subprocess, 'ABOVE_NORMAL_PRIORITY_CLASS', 0)
         self._directory = Path(tempfile.mkdtemp(prefix='td-artnet-worker-'))
         self._process = None
         self._ipc = None
@@ -127,15 +224,16 @@ class ExternalPacketSender:
         self._cleanup_errors = []
         self._forced_termination = False
         self._token = secrets.token_hex(32)
-        config = dict(token=self._token, local=local, target=self.target, gap=gap / 1000)
+        config = dict(token=self._token, local=local, target=self.target,
+                      gap=gap / 1000, frame_rate=frame_rate)
         config_path = self._directory / 'config.json'
         try:
             _write(config_path, config)
             self._process = subprocess.Popen(
                 [str(python_executable), str(Path(__file__).resolve()), '--worker', str(config_path)],
                 stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-                creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
-            deadline = time.monotonic() + 2.0
+                creationflags=creationflags)
+            deadline = time.monotonic() + STARTUP_TIMEOUT_SECONDS
             while time.monotonic() < deadline:
                 ready = self._directory / 'ready.json'
                 if ready.exists():
@@ -146,7 +244,7 @@ class ExternalPacketSender:
                 if self._process.poll() is not None:
                     raise RuntimeError('Packet worker failed: ' + str(self.status()))
                 time.sleep(.01)
-            raise TimeoutError('Packet worker startup exceeded two seconds')
+            raise TimeoutError(f'Packet worker startup exceeded {STARTUP_TIMEOUT_SECONDS:g} seconds')
         except Exception:
             # No submissions can exist before startup succeeds; avoid another
             # graceful-shutdown timeout after the bounded readiness deadline.
@@ -243,11 +341,16 @@ def _worker(config_path):
     folder = config_path.parent
     config = json.loads(config_path.read_text())
     incoming = outgoing = None
+    frame_rate = _frame_rate(config.get('frame_rate'))
+    pacer = _FrameDeadline(frame_rate) if frame_rate is not None else None
     stats = dict(submitted_batches=0, sent_batches=0, sent_packets=0,
                  stale_batches=0, rejected_batches=0, blackout_packets=0,
+                 send_errors=0, send_buffer_bytes=0,
                  error='', stop_reason='', last_send_ms=0., max_send_ms=0.,
                  actual_send_fps=0., active_seconds=0., active_average_fps=0.,
-                 gap_ms=config['gap'] * 1000)
+                 gap_ms=config['gap'] * 1000, frame_rate=frame_rate,
+                 status_write_ms=0., max_status_write_ms=0.,
+                 status_write_skipped=0, status_write_errors=0)
     last_packets = {}
     target = _endpoint(*config['target'])
     gap = config['gap']
@@ -256,41 +359,68 @@ def _worker(config_path):
     last_report = 0.
     first_send = previous_send = None
     interval_ema = 0.
+    stop = _StopCheck(folder / 'stop')
     try:
         outgoing = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        outgoing.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, SEND_BUFFER_BYTES)
         outgoing.bind(_endpoint(*config['local']))
-        outgoing.settimeout(.2)
+        outgoing.setblocking(False)
+        stats['send_buffer_bytes'] = outgoing.getsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF)
         incoming = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         incoming.setsockopt(socket.SOL_SOCKET, socket.SO_RCVBUF, 1024 * 1024)
         incoming.bind(('127.0.0.1', 0))
         incoming.settimeout(.05)
         _write(folder / 'status.json', stats)
         _write(folder / 'ready.json', dict(port=incoming.getsockname()[1]))
-        while not (folder / 'stop').exists():
+        while not stop.check(force=True):
             timeout = WATCHDOG_SECONDS if received_first_batch else INITIAL_GRACE_SECONDS
             if time.monotonic() - last_received > timeout:
                 stats['stop_reason'] = 'idle_watchdog' if received_first_batch else 'startup_watchdog'
                 break
+            if pacer is not None:
+                # recv remains interruptible by input and bounded to 50 ms even
+                # at very low output rates. A due frame uses a nonblocking drain.
+                incoming.settimeout(pacer.wait_seconds(time.monotonic()))
+            latest = None
             try:
                 raw, origin = incoming.recvfrom(MAX_BATCH + 1)
-            except socket.timeout:
-                continue
-            incoming.setblocking(False)
-            # A finite queue drain avoids starvation if a producer outruns us.
-            latest = _latest_queued_batch(incoming, raw, origin, config['token'], stats)
-            incoming.settimeout(.05)
+            except (socket.timeout, BlockingIOError):
+                if pacer is None:
+                    continue
+            else:
+                incoming.setblocking(False)
+                # A finite queue drain avoids starvation if a producer outruns us.
+                latest = _latest_queued_batch(incoming, raw, origin, config['token'], stats)
+                incoming.settimeout(.05)
+            if latest is not None:
+                last_received = time.monotonic()
+                received_first_batch = True
+                last_packets.update((packet[14:16], packet) for packet in latest)
+                if pacer is not None:
+                    pacer.offer(latest, stats)
+            if pacer is not None:
+                now = time.monotonic()
+                # A socket wait may cross the watchdog boundary. Expired input
+                # must not light a pending frame merely because its slot is due.
+                if received_first_batch and now - last_received > WATCHDOG_SECONDS:
+                    stats['stop_reason'] = 'idle_watchdog'
+                    break
+                latest = pacer.take(now)
             if latest is None:
                 continue
-            last_received = time.monotonic()
-            received_first_batch = True
-            last_packets.update((packet[14:16], packet) for packet in latest)
             started = time.perf_counter()
             for index, packet in enumerate(latest):
-                if (folder / 'stop').exists():
-                    break
                 if index and gap:
                     _wait_until(time.perf_counter() + gap)
-                outgoing.sendto(packet, target)
+                if stop.check(force=index == 0):
+                    break
+                try:
+                    outgoing.sendto(packet, target)
+                except OSError:
+                    # Includes EWOULDBLOCK: never count or silently discard a
+                    # failed packet, and never spin/retry an incomplete frame.
+                    stats['send_errors'] += 1
+                    raise
                 stats['sent_packets'] += 1
             else:
                 stats['sent_batches'] += 1
@@ -307,7 +437,7 @@ def _worker(config_path):
             stats['last_send_ms'] = (time.perf_counter() - started) * 1000
             stats['max_send_ms'] = max(stats['max_send_ms'], stats['last_send_ms'])
             if time.monotonic() - last_report >= .5:
-                _write(folder / 'status.json', stats)
+                _periodic_status(folder / 'status.json', stats)
                 last_report = time.monotonic()
         if not stats['stop_reason']:
             stats['stop_reason'] = 'requested'
@@ -317,6 +447,9 @@ def _worker(config_path):
     finally:
         if outgoing is not None:
             try:
+                # A full nonblocking send buffer must not immediately prevent
+                # the final blackout. Retain the previous bounded send timeout.
+                outgoing.settimeout(.2)
                 # Send each universe that this worker touched as black, twice.
                 # This confirms local send completion only, not receiver delivery.
                 for repeat in range(2):

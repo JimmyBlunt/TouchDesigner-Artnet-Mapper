@@ -21,21 +21,28 @@ class ExternalSocket:
         self.queued_batches = 0
         self.local_drops = 0
         self.gap_ms = None
+        self.frame_rate = None
+        self.requested_rate = None
 
     def bind(self, endpoint):
         from .external_packet_sender import ExternalPacketSender
         from .sender_packet_gap import seconds
         self.gap_ms = seconds(self.owner.fetch('live_packet_gap_ms', {}), self.config['name'])*1000
+        self.frame_rate = float(self.config['rate']) if self.settings.get('frame_pacing',False) else None
+        self.requested_rate = self.frame_rate
         self.worker = ExternalPacketSender(
             self.settings['python'], endpoint[0], self.config['target'],
             target_port=self.config['port'], local_port=endpoint[1],
-            gap_ms=self.gap_ms)
+            gap_ms=self.gap_ms, frame_rate=self.frame_rate,
+            priority=self.settings.get('worker_priority','normal'))
 
     def sendto(self, packet, target):
         self.pending.append((packet, target))
 
     def flush(self):
         from .sender_packet_gap import seconds
+        if self.frame_rate is not None and self.requested_rate != self.frame_rate:
+            raise RuntimeError('Frame rate changed; stop and restart output to apply it')
         if self.gap_ms != seconds(self.owner.fetch('live_packet_gap_ms', {}), self.config['name'])*1000:
             raise RuntimeError('Packet gap changed; stop and restart output to apply it')
         batch, self.pending = self.pending, []
@@ -66,10 +73,55 @@ def make_socket(owner, configs, target_override=None, port_override=None):
     return ExternalSocket(owner, config, settings)
 
 
+def producer_configs(configs, transport):
+    if not isinstance(transport,ExternalSocket) or transport.frame_rate is None:
+        return configs
+    if len(configs) != 1:
+        # flush() is inside the sender's stop-on-error block. Invalidate there
+        # instead of throwing outside tick's guarded transport section.
+        transport.requested_rate=None
+        return configs
+    transport.requested_rate=float(configs[0]['rate'])
+    return [dict(c,rate=min(120.,2*float(c['rate']))) for c in configs]
+
+
+def install_frame_clock_source(source):
+    setup=('    configs = _controllers(True)\n'
+           '    if not configs:\n'
+           "        _last_error = 'No controller row has Enabled=1'\n"
+           '        stop()\n'
+           '        return\n'
+           '    now = time.monotonic()\n')
+    old=setup+'    configs = _pacer.due(configs, now)\n'
+    previous=setup+('    # EXTERNAL_FRAME_CLOCK_V1\n'
+         '    from pixelblaze_mapper.sender_external_source import producer_configs\n'
+         '    configs = _pacer.due(producer_configs(configs, _socket), now)\n')
+    new=('    # EXTERNAL_FRAME_CLOCK_V2\n'
+         '    try:\n'
+         '        configs = _controllers(True)\n'
+         '        if not configs:\n'
+         "            raise RuntimeError('No controller row has Enabled=1')\n"
+         '        now = time.monotonic()\n'
+         '        from pixelblaze_mapper.sender_external_source import producer_configs\n'
+         '        configs = _pacer.due(producer_configs(configs, _socket), now)\n'
+         '    except Exception as error:\n'
+         '        _last_error = str(error)\n'
+         '        stop()\n'
+         '        return\n')
+    if '# EXTERNAL_FRAME_CLOCK_V2' in source:
+        if source.count(new)!=1:raise ValueError('Changed external frame clock block')
+        return source
+    if '# EXTERNAL_FRAME_CLOCK_V1' in source:
+        if source.count(previous)!=1:raise ValueError('Changed external frame clock block')
+        return source.replace(previous,new,1)
+    if source.count(old)!=1:raise ValueError('Expected reviewed controller pacing block')
+    return source.replace(old,new,1)
+
+
 def install_source(source):
     marker = '# EXTERNAL_PACKET_PROCESS_V1'
     if marker in source:
-        return install_health_source(source)
+        return install_frame_clock_source(install_health_source(source))
     replacements = (
         ('_socket = None\n_enabled = False',
          marker+'\nfrom pixelblaze_mapper.sender_external_source import make_socket, ExternalSocket\n_socket = None\n_enabled = False'),
@@ -87,7 +139,7 @@ def install_source(source):
         if source.count(before) != 1:
             raise ValueError('Shared sender external process patch does not match expected source')
         source = source.replace(before, after, 1)
-    return install_health_source(source)
+    return install_frame_clock_source(install_health_source(source))
 
 
 def install_health_source(source):

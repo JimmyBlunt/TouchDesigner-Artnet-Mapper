@@ -1,0 +1,24 @@
+{
+  "installed": [
+    "/project1/multi_controller_output/artnet_510_sender_callbacks",
+    "/project1/legacy_source_mask_callbacks",
+    "/project1/pixelblaze_mapper/preview3d/instance_data_callbacks"
+  ],
+  "before_hashes": {
+    "/project1/pixelblaze_mapper/map_active": "77cf9c80c7ccff6357c6648089e81691f55429c22881747a9f2cc0d1bfe994c2",
+    "/project1/layout_apply/active_source_mask": "30170d46e801d87d9798556f2f6dde5bfafd9d79694745718e9b8b4b28c0ed07",
+    "/project1/multi_controller_output/segment_config": "fe612885a3bf1322cf36f60d6a06fc725bdaed9f5d227bf1c95a4e896f076eb1",
+    "/project1/multi_controller_output/controller_config": "0a790347c1638c696e6bcc76391e024a2da984489239a773b01fa5ccce7d6bb9"
+  },
+  "after_hashes": {
+    "/project1/pixelblaze_mapper/map_active": "77cf9c80c7ccff6357c6648089e81691f55429c22881747a9f2cc0d1bfe994c2",
+    "/project1/layout_apply/active_source_mask": "30170d46e801d87d9798556f2f6dde5bfafd9d79694745718e9b8b4b28c0ed07",
+    "/project1/multi_controller_output/segment_config": "fe612885a3bf1322cf36f60d6a06fc725bdaed9f5d227bf1c95a4e896f076eb1",
+    "/project1/multi_controller_output/controller_config": "0a790347c1638c696e6bcc76391e024a2da984489239a773b01fa5ccce7d6bb9"
+  },
+  "routing_payloads_identical": true,
+  "mask_array_identical": true,
+  "sender_off": true,
+  "source_slots": 6524,
+  "errors": ""
+}

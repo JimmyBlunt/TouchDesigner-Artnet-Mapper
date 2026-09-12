@@ -1,0 +1,126 @@
+{
+  "baseline": {
+    "controllers": [
+      [
+        "enabled",
+        "name",
+        "target_ip",
+        "local_interface",
+        "port",
+        "start_universe",
+        "color_order",
+        "brightness",
+        "rate",
+        "art_sync",
+        "reserved_universes"
+      ],
+      [
+        "0",
+        "WS2812_NODE",
+        "10.0.0.244",
+        "10.0.0.125",
+        "6454",
+        "0",
+        "GRB",
+        "0.7",
+        "60",
+        "0",
+        "24"
+      ],
+      [
+        "0",
+        "APA102_ESP",
+        "10.0.0.251",
+        "10.0.0.125",
+        "6454",
+        "0",
+        "RGB",
+        "0.8",
+        "30",
+        "0",
+        "0"
+      ],
+      [
+        "1",
+        "BACK_PANEL_249",
+        "10.0.0.248",
+        "10.0.0.125",
+        "6454",
+        "120",
+        "RGB",
+        "0.7",
+        "8",
+        "0",
+        "29"
+      ]
+    ],
+    "gap": {
+      "BACK_PANEL_249": 1.5
+    },
+    "external": {
+      "enabled": true,
+      "python": "C:/Users/jbhtz/AppData/Roaming/uv/tools/marimapper/Scripts/python.exe"
+    },
+    "project": "PixelblazeMapper_30FPS_PROGRAM_20260912.2.toe",
+    "rate": 60.0
+  },
+  "controller": "BACK_PANEL_249",
+  "requested_fps": 30,
+  "loopback_only": true,
+  "end": {
+    "sender": {
+      "transport": {
+        "kind": "direct"
+      },
+      "enabled": false,
+      "error": "Packet worker startup exceeded 5 seconds",
+      "mode": "live",
+      "calibration": [
+        "all",
+        "panel_id",
+        0
+      ],
+      "controllers": [],
+      "target_override": "127.0.0.1",
+      "port_override": 16454,
+      "telemetry": {
+        "tick_count": 1,
+        "rate_skips": 0,
+        "send_count": 0,
+        "packet_count": 0,
+        "send_ms_last": 0.0,
+        "send_ms_average": 0.0,
+        "send_ms_max": 0.0,
+        "actual_send_fps": 0.0,
+        "pack_count": 0,
+        "pack_ms_last": 0.0,
+        "pack_ms_average": 0.0,
+        "pack_ms_max": 0.0,
+        "plan_rebuilds": 2
+      }
+    },
+    "worker_final": {
+      "submitted_batches": 4321,
+      "sent_batches": 3611,
+      "sent_packets": 104719,
+      "stale_batches": 710,
+      "rejected_batches": 0,
+      "blackout_packets": 58,
+      "error": "",
+      "stop_reason": "requested",
+      "last_send_ms": 6.691399990813807,
+      "max_send_ms": 232.23689998849295,
+      "actual_send_fps": 29.429120980893583,
+      "active_seconds": 123.21481820000918,
+      "active_average_fps": 29.29842410788649,
+      "gap_ms": 0.0,
+      "frame_rate": 30.0,
+      "running": false,
+      "closed": true,
+      "cleanup_errors": [],
+      "forced_termination": false
+    },
+    "off": true,
+    "errors": ""
+  }
+}

@@ -9,6 +9,21 @@ from tests.test_sender_pacing import sender_source
 
 
 class ExternalSourceTests(unittest.TestCase):
+    def test_clocked_producer_headroom_is_opt_in_and_preserves_config(self):
+        from pixelblaze_mapper.sender_external_source import producer_configs
+        configs=[{'name':'rear','rate':30}]
+        sock=ExternalSocket(Mock(),configs[0],{})
+        self.assertIs(producer_configs(configs,sock),configs)
+        sock.frame_rate=30
+        self.assertEqual(producer_configs(configs,sock)[0]['rate'],60)
+        self.assertEqual(configs[0]['rate'],30)
+        sock.worker=Mock();sock.gap_ms=0;sock.owner.fetch.return_value={}
+        configs[0]['rate']=40
+        producer_configs(configs,sock)
+        with self.assertRaisesRegex(RuntimeError,'Frame rate changed'):
+            sock.flush()
+        sock.worker.submit.assert_not_called()
+
     def test_patch_composes_and_preserves_guard_and_masks(self):
         from pixelblaze_mapper.guided_scan_live import guard_sender_source
         patched = guard_sender_source(install_source(gap(pace(mask(sender_source())))))
