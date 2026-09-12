@@ -53,3 +53,5 @@ mit jeweils 24 Sequenz-0-Paketen und den entsprechenden Logeintrag.
 ## Erster optischer Aufnahmelauf ausgeführt
 
 `measurements/gico-camera-001`: Benutzer filmt das untere Panel mit angegebenen 60 Kamera-FPS. Lauf vollständig beendet, alle 5.030 Batches / 120.720 ArtDmx-Pakete ohne gemeldete Sendefehler oder Worker-Drops gesendet; abschließend 48 Schwarzpakete und Worker beendet. Rohphasen, Einreichungszeitpunkte und Bedienkontext gespeichert. Originalvideo und Identifikation des gefilmten Panels stehen noch aus. 60 Kamera-FPS erlauben bei 30 LED-FPS nur etwa zwei Abtastungen pro Zustand; dies ist zunächst eine orientierende Messung, kein Nachweis stabiler optischer 30 FPS.
+
+WhatsApp-Vorprüfung: 576×1024, knapp 60 FPS, 244,013 s. Kalibrierpunkte erkennbar, aber kurze Decoderstichproben zu 96–100 % uneindeutig; keine belastbare LED-FPS-Zahl. Nach Abgleich zweier Schwarzpausen fehlen in dieser Datei ungefähr 33 s des letzten Messabschnitts. Originaldatei angekündigt; vor erneutem Test zunächst diese prüfen. Belege: `measurements/gico-camera-001-whatsapp-review/BEWERTUNG_DE.md`.

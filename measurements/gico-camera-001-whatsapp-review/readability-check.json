@@ -1,0 +1,116 @@
+{
+  "scope": "Three short 3-second readability checks only; not a full controller-rate measurement",
+  "provisional_panel_name": "side_3; physical identity not yet independently confirmed",
+  "video_zero_estimate_seconds": 58.62,
+  "alignment_basis": "two 2-second black pauses at 147.038-149.007 and 212.078-214.062 match sender pauses spaced 65.047 seconds; scale approximately 1",
+  "duration_seconds": 244.013,
+  "expected_last_measure_end_seconds": 277.121,
+  "missing_last_measure_seconds_approx": 33.108,
+  "results": [
+    {
+      "start_video_s": 100,
+      "requested_led_fps": 15,
+      "frames": 181,
+      "classification": {
+        "transition_or_pwm": 181
+      },
+      "summary": {
+        "camera_samples": 181,
+        "valid_samples": 0,
+        "rejected_fraction": 1.0,
+        "stable_distinct_images": 0,
+        "observation_span_seconds": 0,
+        "observed_unique_fps_estimate": null,
+        "camera_fps_median": 60.00000000000341,
+        "camera_interval_max_ms": 18.33333333333087,
+        "observed_interval_max_ms": null,
+        "unobserved_ids": 0,
+        "unobserved_ranges": [],
+        "unexpected_discontinuities": 0,
+        "proven_controller_drops": null,
+        "warnings": [
+          "Unobserved IDs can be camera/decode misses; they are not proven controller drops.",
+          "A camera cannot distinguish repeated electrical refreshes of the same LED image.",
+          "CRC8 reduces but does not eliminate plausible mixed-frame/rolling-shutter errors."
+        ]
+      }
+    },
+    {
+      "start_video_s": 170,
+      "requested_led_fps": 25,
+      "frames": 180,
+      "classification": {
+        "transition_or_pwm": 169,
+        "valid": 7,
+        "crc_or_reference": 4
+      },
+      "summary": {
+        "camera_samples": 180,
+        "valid_samples": 7,
+        "rejected_fraction": 0.9611111111111111,
+        "stable_distinct_images": 3,
+        "observation_span_seconds": 0.7183333333333337,
+        "observed_unique_fps_estimate": 1.392111368909512,
+        "camera_fps_median": 59.99999999995225,
+        "camera_interval_max_ms": 18.33333333334508,
+        "observed_interval_max_ms": 718.3333333333337,
+        "unobserved_ids": 19,
+        "unobserved_ranges": [
+          {
+            "after_id": 452,
+            "before_id": 455,
+            "unobserved_ids": 2,
+            "start": 170.13500000000002,
+            "end": 170.25166666666667
+          },
+          {
+            "after_id": 455,
+            "before_id": 473,
+            "unobserved_ids": 17,
+            "start": 170.25166666666667,
+            "end": 170.97
+          }
+        ],
+        "unexpected_discontinuities": 0,
+        "proven_controller_drops": null,
+        "warnings": [
+          "Unobserved IDs can be camera/decode misses; they are not proven controller drops.",
+          "A camera cannot distinguish repeated electrical refreshes of the same LED image.",
+          "CRC8 reduces but does not eliminate plausible mixed-frame/rolling-shutter errors.",
+          "Camera sampling is below 4x requested sender FPS."
+        ]
+      }
+    },
+    {
+      "start_video_s": 225,
+      "requested_led_fps": 30,
+      "frames": 180,
+      "classification": {
+        "transition_or_pwm": 176,
+        "valid": 3,
+        "crc_or_reference": 1
+      },
+      "summary": {
+        "camera_samples": 180,
+        "valid_samples": 3,
+        "rejected_fraction": 0.9833333333333333,
+        "stable_distinct_images": 0,
+        "observation_span_seconds": 0,
+        "observed_unique_fps_estimate": null,
+        "camera_fps_median": 59.99999999995225,
+        "camera_interval_max_ms": 18.33333333331666,
+        "observed_interval_max_ms": null,
+        "unobserved_ids": 0,
+        "unobserved_ranges": [],
+        "unexpected_discontinuities": 0,
+        "proven_controller_drops": null,
+        "warnings": [
+          "Unobserved IDs can be camera/decode misses; they are not proven controller drops.",
+          "A camera cannot distinguish repeated electrical refreshes of the same LED image.",
+          "CRC8 reduces but does not eliminate plausible mixed-frame/rolling-shutter errors.",
+          "Camera sampling is below 4x requested sender FPS."
+        ]
+      }
+    }
+  ]
+}
