@@ -1,0 +1,30 @@
+[
+  {
+    "video_s": 150,
+    "inliers": 139
+  },
+  {
+    "video_s": 400,
+    "inliers": 139
+  },
+  {
+    "video_s": 700,
+    "inliers": 139
+  },
+  {
+    "video_s": 900,
+    "inliers": 139
+  },
+  {
+    "video_s": 1200,
+    "inliers": 138
+  },
+  {
+    "video_s": 1400,
+    "inliers": 139
+  },
+  {
+    "video_s": 1460,
+    "inliers": 138
+  }
+]

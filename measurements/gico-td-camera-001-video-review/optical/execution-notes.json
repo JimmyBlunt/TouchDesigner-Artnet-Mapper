@@ -1,0 +1,16 @@
+{
+  "mode": "Offline video and sender-log analysis; no hardware or TouchDesigner changes",
+  "source_video": "E:/LED2.mov",
+  "decoder_threads_per_process": 2,
+  "split": {
+    "measure_15": "extraction",
+    "measure_25": "extraction-25",
+    "measure_30_slow": "extraction-30",
+    "measure_30_end": "extraction-30"
+  },
+  "sequential_runner": "Initial all-window process was stopped after its complete measure_15 NPZ and JSON checkpoint, because agents were independently completing the remaining windows. No partial subsequent window is used.",
+  "model_selection": "Ridge model selected using separate one-hot holdouts (all on >= 0.9335, all off <= 0.0436), rather than expected dynamic frame IDs. Earlier diagonal-model evidence retained separately.",
+  "numeric_archive": "Scores saved as float32 for diagnostics. Integer decisions in stats are the authoritative outputs of float64 decoding; do not silently reclassify boundary values from rounded scores.",
+  "timebase": "8x in slow windows based on independent black-phase boundaries; 1x end analyzed separately and checked against independently decoded ID progression.",
+  "progress_display": "The first extractor version prints bounded_rate=null because its progress lookup uses an incorrect summary key. Archived JSON uses the correct observed_unique_fps_estimate field. Rates are read from archived JSON and independently recomputed in comparison.json."
+}

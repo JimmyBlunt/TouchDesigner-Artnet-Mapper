@@ -1,0 +1,571 @@
+[
+  {
+    "before": null,
+    "after": {
+      "phase": "all_on",
+      "time": 0.312038100004429,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "all_on",
+      "time": 2.977631699992344,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "black_reference",
+      "time": 3.005847199994605,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "black_reference",
+      "time": 3.969241599988891,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "marker_00",
+      "time": 4.006743600009941,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "marker_00",
+      "time": 4.998789300007047,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "marker_01",
+      "time": 5.033142000000225,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "marker_01",
+      "time": 5.975425000011455,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "marker_02",
+      "time": 6.003838100004941,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "marker_02",
+      "time": 6.9785342999966815,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "marker_03",
+      "time": 7.006033199984813,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "marker_03",
+      "time": 7.985232000006363,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "marker_04",
+      "time": 8.013158099987777,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "marker_04",
+      "time": 8.998475800006418,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "marker_05",
+      "time": 9.007201600004919,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "marker_05",
+      "time": 9.971958499983884,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "marker_06",
+      "time": 10.001216000004206,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "marker_06",
+      "time": 10.998120800009929,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "marker_07",
+      "time": 11.008565099997213,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "marker_07",
+      "time": 11.960773800004972,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "marker_08",
+      "time": 12.003490900009638,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "marker_08",
+      "time": 12.98597300000256,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "marker_09",
+      "time": 13.012074600002961,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "marker_09",
+      "time": 13.976697400008561,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "marker_10",
+      "time": 14.005621999996947,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "marker_10",
+      "time": 14.973939199990127,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "marker_11",
+      "time": 15.003377899993211,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "marker_11",
+      "time": 15.985693299997365,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "marker_12",
+      "time": 16.006343799992464,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "marker_12",
+      "time": 16.962783700000728,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "marker_13",
+      "time": 17.01064469999983,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "marker_13",
+      "time": 17.994788000010885,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "marker_14",
+      "time": 18.00600699998904,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "marker_14",
+      "time": 18.984840399993118,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "marker_15",
+      "time": 19.01210550000542,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "marker_15",
+      "time": 19.99802900000941,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "marker_16",
+      "time": 20.012757099990267,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "marker_16",
+      "time": 20.97899669999606,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "marker_17",
+      "time": 21.010006099997554,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "marker_17",
+      "time": 21.96877740000491,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "marker_18",
+      "time": 22.0074701999838,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "marker_18",
+      "time": 22.973326500010444,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "marker_19",
+      "time": 23.005380899994634,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "marker_19",
+      "time": 23.98438320000423,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "marker_20",
+      "time": 24.009034699993208,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "marker_20",
+      "time": 24.98579889998655,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "warmup_15",
+      "time": 25.014721399988048,
+      "id": 0,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "warmup_15",
+      "time": 27.984628000005614,
+      "id": 44,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "measure_15",
+      "time": 28.014163099986035,
+      "id": 0,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "measure_15",
+      "time": 87.9732490000024,
+      "id": 899,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "pause_15",
+      "time": 88.00726559999748,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "pause_15",
+      "time": 89.9996347000124,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "warmup_25",
+      "time": 90.02079939999385,
+      "id": 0,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "warmup_25",
+      "time": 92.98633489999338,
+      "id": 74,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "measure_25",
+      "time": 93.01108759999624,
+      "id": 0,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "measure_25",
+      "time": 152.9734949999838,
+      "id": 1499,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "pause_25",
+      "time": 153.00227840000298,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "pause_25",
+      "time": 154.99577149999095,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "warmup_30",
+      "time": 155.0045734999876,
+      "id": 0,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "warmup_30",
+      "time": 157.98485609999625,
+      "id": 89,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "measure_30",
+      "time": 158.01218819999485,
+      "id": 0,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  },
+  {
+    "before": {
+      "phase": "measure_30",
+      "time": 217.97231959999772,
+      "id": 1799,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    },
+    "after": {
+      "phase": "pause_30",
+      "time": 218.00392960000318,
+      "id": null,
+      "sequence": 0,
+      "accepted": true,
+      "meaning": "native TD batch queued; worker may replace stale batches"
+    }
+  }
+]

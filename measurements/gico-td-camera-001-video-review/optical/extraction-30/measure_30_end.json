@@ -1,0 +1,629 @@
+{
+  "window": "measure_30_end",
+  "video_start": 1450.0,
+  "video_end": 1471.0,
+  "scale": 1.0,
+  "offset": 1254.0,
+  "real_duration": 21.0,
+  "time_basis": "1x end hypothesis; validate independently decoded ID progression",
+  "requested_fps": 30,
+  "samples": 630,
+  "reasons": {
+    "recovered_crc": 254,
+    "direct_crc": 362,
+    "too_many_erasures": 12,
+    "crc_mismatch": 2
+  },
+  "model_sha256": "d30a7e3fe9253d4403262201462c28c2b6b580b34c11d3a283b62205286961f0",
+  "direct_only": {
+    "camera_samples": 630,
+    "valid_samples": 362,
+    "rejected_fraction": 0.4253968253968254,
+    "stable_distinct_images": 27,
+    "observation_span_seconds": 17.966666666666697,
+    "observed_unique_fps_estimate": 1.3914656771799605,
+    "camera_fps_median": 30.000000000027285,
+    "camera_interval_max_ms": 33.33333333353039,
+    "observed_interval_max_ms": 2933.3333333331666,
+    "unobserved_ids": 515,
+    "unobserved_ranges": [
+      {
+        "after_id": 1163,
+        "before_id": 1166,
+        "unobserved_ids": 2,
+        "start": 196.80000000000018,
+        "end": 196.8666666666668
+      },
+      {
+        "after_id": 1166,
+        "before_id": 1188,
+        "unobserved_ids": 21,
+        "start": 196.8666666666668,
+        "end": 197.63333333333344
+      },
+      {
+        "after_id": 1188,
+        "before_id": 1194,
+        "unobserved_ids": 5,
+        "start": 197.63333333333344,
+        "end": 197.83333333333348
+      },
+      {
+        "after_id": 1194,
+        "before_id": 1258,
+        "unobserved_ids": 63,
+        "start": 197.83333333333348,
+        "end": 199.9666666666667
+      },
+      {
+        "after_id": 1258,
+        "before_id": 1260,
+        "unobserved_ids": 1,
+        "start": 199.9666666666667,
+        "end": 200.03333333333353
+      },
+      {
+        "after_id": 1260,
+        "before_id": 1348,
+        "unobserved_ids": 87,
+        "start": 200.03333333333353,
+        "end": 202.9666666666667
+      },
+      {
+        "after_id": 1348,
+        "before_id": 1350,
+        "unobserved_ids": 1,
+        "start": 202.9666666666667,
+        "end": 203.03333333333353
+      },
+      {
+        "after_id": 1350,
+        "before_id": 1396,
+        "unobserved_ids": 45,
+        "start": 203.03333333333353,
+        "end": 204.56666666666683
+      },
+      {
+        "after_id": 1396,
+        "before_id": 1404,
+        "unobserved_ids": 7,
+        "start": 204.56666666666683,
+        "end": 204.83333333333348
+      },
+      {
+        "after_id": 1404,
+        "before_id": 1416,
+        "unobserved_ids": 11,
+        "start": 204.83333333333348,
+        "end": 205.23333333333335
+      },
+      {
+        "after_id": 1416,
+        "before_id": 1456,
+        "unobserved_ids": 39,
+        "start": 205.23333333333335,
+        "end": 206.56666666666683
+      },
+      {
+        "after_id": 1456,
+        "before_id": 1482,
+        "unobserved_ids": 25,
+        "start": 206.56666666666683,
+        "end": 207.4333333333334
+      },
+      {
+        "after_id": 1482,
+        "before_id": 1488,
+        "unobserved_ids": 5,
+        "start": 207.4333333333334,
+        "end": 207.63333333333344
+      },
+      {
+        "after_id": 1488,
+        "before_id": 1503,
+        "unobserved_ids": 14,
+        "start": 207.63333333333344,
+        "end": 208.13333333333344
+      },
+      {
+        "after_id": 1503,
+        "before_id": 1524,
+        "unobserved_ids": 20,
+        "start": 208.13333333333344,
+        "end": 208.83333333333348
+      },
+      {
+        "after_id": 1524,
+        "before_id": 1546,
+        "unobserved_ids": 21,
+        "start": 208.83333333333348,
+        "end": 209.56666666666683
+      },
+      {
+        "after_id": 1546,
+        "before_id": 1572,
+        "unobserved_ids": 25,
+        "start": 209.56666666666683,
+        "end": 210.4333333333334
+      },
+      {
+        "after_id": 1572,
+        "before_id": 1576,
+        "unobserved_ids": 3,
+        "start": 210.4333333333334,
+        "end": 210.56666666666683
+      },
+      {
+        "after_id": 1576,
+        "before_id": 1580,
+        "unobserved_ids": 3,
+        "start": 210.56666666666683,
+        "end": 210.70000000000005
+      },
+      {
+        "after_id": 1580,
+        "before_id": 1599,
+        "unobserved_ids": 18,
+        "start": 210.70000000000005,
+        "end": 211.33333333333348
+      },
+      {
+        "after_id": 1599,
+        "before_id": 1608,
+        "unobserved_ids": 8,
+        "start": 211.33333333333348,
+        "end": 211.60000000000014
+      },
+      {
+        "after_id": 1608,
+        "before_id": 1616,
+        "unobserved_ids": 7,
+        "start": 211.60000000000014,
+        "end": 211.8666666666668
+      },
+      {
+        "after_id": 1616,
+        "before_id": 1635,
+        "unobserved_ids": 18,
+        "start": 211.8666666666668,
+        "end": 212.53333333333353
+      },
+      {
+        "after_id": 1635,
+        "before_id": 1695,
+        "unobserved_ids": 59,
+        "start": 212.53333333333353,
+        "end": 214.53333333333353
+      },
+      {
+        "after_id": 1695,
+        "before_id": 1702,
+        "unobserved_ids": 6,
+        "start": 214.53333333333353,
+        "end": 214.76666666666665
+      },
+      {
+        "after_id": 1702,
+        "before_id": 1704,
+        "unobserved_ids": 1,
+        "start": 214.76666666666665,
+        "end": 214.83333333333348
+      }
+    ],
+    "unexpected_discontinuities": 0,
+    "proven_controller_drops": null,
+    "warnings": [
+      "Unobserved IDs can be camera/decode misses; they are not proven controller drops.",
+      "A camera cannot distinguish repeated electrical refreshes of the same LED image.",
+      "CRC8 reduces but does not eliminate plausible mixed-frame/rolling-shutter errors.",
+      "Camera sampling is below 4x requested sender FPS."
+    ]
+  },
+  "bounded_erasures": {
+    "camera_samples": 630,
+    "valid_samples": 616,
+    "rejected_fraction": 0.022222222222222223,
+    "stable_distinct_images": 57,
+    "observation_span_seconds": 19.5,
+    "observed_unique_fps_estimate": 2.8205128205128207,
+    "camera_fps_median": 30.000000000027285,
+    "camera_interval_max_ms": 33.33333333353039,
+    "observed_interval_max_ms": 1000.0,
+    "unobserved_ids": 538,
+    "unobserved_ranges": [
+      {
+        "after_id": 1140,
+        "before_id": 1149,
+        "unobserved_ids": 8,
+        "start": 196.03333333333353,
+        "end": 196.33333333333348
+      },
+      {
+        "after_id": 1149,
+        "before_id": 1156,
+        "unobserved_ids": 6,
+        "start": 196.33333333333348,
+        "end": 196.56666666666683
+      },
+      {
+        "after_id": 1156,
+        "before_id": 1163,
+        "unobserved_ids": 6,
+        "start": 196.56666666666683,
+        "end": 196.80000000000018
+      },
+      {
+        "after_id": 1163,
+        "before_id": 1166,
+        "unobserved_ids": 2,
+        "start": 196.80000000000018,
+        "end": 196.8666666666668
+      },
+      {
+        "after_id": 1166,
+        "before_id": 1170,
+        "unobserved_ids": 3,
+        "start": 196.8666666666668,
+        "end": 197.03333333333353
+      },
+      {
+        "after_id": 1170,
+        "before_id": 1188,
+        "unobserved_ids": 17,
+        "start": 197.03333333333353,
+        "end": 197.63333333333344
+      },
+      {
+        "after_id": 1188,
+        "before_id": 1194,
+        "unobserved_ids": 5,
+        "start": 197.63333333333344,
+        "end": 197.83333333333348
+      },
+      {
+        "after_id": 1194,
+        "before_id": 1208,
+        "unobserved_ids": 13,
+        "start": 197.83333333333348,
+        "end": 198.30000000000018
+      },
+      {
+        "after_id": 1208,
+        "before_id": 1214,
+        "unobserved_ids": 5,
+        "start": 198.30000000000018,
+        "end": 198.5
+      },
+      {
+        "after_id": 1214,
+        "before_id": 1238,
+        "unobserved_ids": 23,
+        "start": 198.5,
+        "end": 199.30000000000018
+      },
+      {
+        "after_id": 1238,
+        "before_id": 1258,
+        "unobserved_ids": 19,
+        "start": 199.30000000000018,
+        "end": 199.9666666666667
+      },
+      {
+        "after_id": 1258,
+        "before_id": 1260,
+        "unobserved_ids": 1,
+        "start": 199.9666666666667,
+        "end": 200.03333333333353
+      },
+      {
+        "after_id": 1260,
+        "before_id": 1275,
+        "unobserved_ids": 14,
+        "start": 200.03333333333353,
+        "end": 200.53333333333353
+      },
+      {
+        "after_id": 1275,
+        "before_id": 1290,
+        "unobserved_ids": 14,
+        "start": 200.53333333333353,
+        "end": 201.03333333333353
+      },
+      {
+        "after_id": 1290,
+        "before_id": 1298,
+        "unobserved_ids": 7,
+        "start": 201.03333333333353,
+        "end": 201.30000000000018
+      },
+      {
+        "after_id": 1298,
+        "before_id": 1306,
+        "unobserved_ids": 7,
+        "start": 201.30000000000018,
+        "end": 201.56666666666683
+      },
+      {
+        "after_id": 1306,
+        "before_id": 1330,
+        "unobserved_ids": 23,
+        "start": 201.56666666666683,
+        "end": 202.3666666666668
+      },
+      {
+        "after_id": 1330,
+        "before_id": 1348,
+        "unobserved_ids": 17,
+        "start": 202.3666666666668,
+        "end": 202.9666666666667
+      },
+      {
+        "after_id": 1348,
+        "before_id": 1350,
+        "unobserved_ids": 1,
+        "start": 202.9666666666667,
+        "end": 203.03333333333353
+      },
+      {
+        "after_id": 1350,
+        "before_id": 1366,
+        "unobserved_ids": 15,
+        "start": 203.03333333333353,
+        "end": 203.56666666666683
+      },
+      {
+        "after_id": 1366,
+        "before_id": 1396,
+        "unobserved_ids": 29,
+        "start": 203.56666666666683,
+        "end": 204.56666666666683
+      },
+      {
+        "after_id": 1396,
+        "before_id": 1404,
+        "unobserved_ids": 7,
+        "start": 204.56666666666683,
+        "end": 204.83333333333348
+      },
+      {
+        "after_id": 1404,
+        "before_id": 1410,
+        "unobserved_ids": 5,
+        "start": 204.83333333333348,
+        "end": 205.03333333333353
+      },
+      {
+        "after_id": 1410,
+        "before_id": 1416,
+        "unobserved_ids": 5,
+        "start": 205.03333333333353,
+        "end": 205.23333333333335
+      },
+      {
+        "after_id": 1416,
+        "before_id": 1419,
+        "unobserved_ids": 2,
+        "start": 205.23333333333335,
+        "end": 205.33333333333348
+      },
+      {
+        "after_id": 1419,
+        "before_id": 1426,
+        "unobserved_ids": 6,
+        "start": 205.33333333333348,
+        "end": 205.56666666666683
+      },
+      {
+        "after_id": 1426,
+        "before_id": 1456,
+        "unobserved_ids": 29,
+        "start": 205.56666666666683,
+        "end": 206.56666666666683
+      },
+      {
+        "after_id": 1456,
+        "before_id": 1464,
+        "unobserved_ids": 7,
+        "start": 206.56666666666683,
+        "end": 206.83333333333348
+      },
+      {
+        "after_id": 1464,
+        "before_id": 1482,
+        "unobserved_ids": 17,
+        "start": 206.83333333333348,
+        "end": 207.4333333333334
+      },
+      {
+        "after_id": 1482,
+        "before_id": 1488,
+        "unobserved_ids": 5,
+        "start": 207.4333333333334,
+        "end": 207.63333333333344
+      },
+      {
+        "after_id": 1488,
+        "before_id": 1503,
+        "unobserved_ids": 14,
+        "start": 207.63333333333344,
+        "end": 208.13333333333344
+      },
+      {
+        "after_id": 1503,
+        "before_id": 1516,
+        "unobserved_ids": 12,
+        "start": 208.13333333333344,
+        "end": 208.56666666666683
+      },
+      {
+        "after_id": 1516,
+        "before_id": 1524,
+        "unobserved_ids": 7,
+        "start": 208.56666666666683,
+        "end": 208.83333333333348
+      },
+      {
+        "after_id": 1524,
+        "before_id": 1544,
+        "unobserved_ids": 19,
+        "start": 208.83333333333348,
+        "end": 209.5
+      },
+      {
+        "after_id": 1544,
+        "before_id": 1546,
+        "unobserved_ids": 1,
+        "start": 209.5,
+        "end": 209.56666666666683
+      },
+      {
+        "after_id": 1546,
+        "before_id": 1550,
+        "unobserved_ids": 3,
+        "start": 209.56666666666683,
+        "end": 209.66666666666674
+      },
+      {
+        "after_id": 1550,
+        "before_id": 1554,
+        "unobserved_ids": 3,
+        "start": 209.66666666666674,
+        "end": 209.83333333333348
+      },
+      {
+        "after_id": 1554,
+        "before_id": 1565,
+        "unobserved_ids": 10,
+        "start": 209.83333333333348,
+        "end": 210.20000000000005
+      },
+      {
+        "after_id": 1565,
+        "before_id": 1572,
+        "unobserved_ids": 6,
+        "start": 210.20000000000005,
+        "end": 210.4333333333334
+      },
+      {
+        "after_id": 1572,
+        "before_id": 1576,
+        "unobserved_ids": 3,
+        "start": 210.4333333333334,
+        "end": 210.56666666666683
+      },
+      {
+        "after_id": 1576,
+        "before_id": 1580,
+        "unobserved_ids": 3,
+        "start": 210.56666666666683,
+        "end": 210.70000000000005
+      },
+      {
+        "after_id": 1580,
+        "before_id": 1586,
+        "unobserved_ids": 5,
+        "start": 210.70000000000005,
+        "end": 210.9000000000001
+      },
+      {
+        "after_id": 1586,
+        "before_id": 1599,
+        "unobserved_ids": 12,
+        "start": 210.9000000000001,
+        "end": 211.33333333333348
+      },
+      {
+        "after_id": 1599,
+        "before_id": 1608,
+        "unobserved_ids": 8,
+        "start": 211.33333333333348,
+        "end": 211.60000000000014
+      },
+      {
+        "after_id": 1608,
+        "before_id": 1616,
+        "unobserved_ids": 7,
+        "start": 211.60000000000014,
+        "end": 211.8666666666668
+      },
+      {
+        "after_id": 1616,
+        "before_id": 1634,
+        "unobserved_ids": 17,
+        "start": 211.8666666666668,
+        "end": 212.4666666666667
+      },
+      {
+        "after_id": 1635,
+        "before_id": 1644,
+        "unobserved_ids": 8,
+        "start": 212.53333333333353,
+        "end": 212.83333333333348
+      },
+      {
+        "after_id": 1644,
+        "before_id": 1648,
+        "unobserved_ids": 3,
+        "start": 212.83333333333348,
+        "end": 212.9666666666667
+      },
+      {
+        "after_id": 1648,
+        "before_id": 1666,
+        "unobserved_ids": 17,
+        "start": 212.9666666666667,
+        "end": 213.56666666666683
+      },
+      {
+        "after_id": 1666,
+        "before_id": 1674,
+        "unobserved_ids": 7,
+        "start": 213.56666666666683,
+        "end": 213.83333333333348
+      },
+      {
+        "after_id": 1674,
+        "before_id": 1695,
+        "unobserved_ids": 20,
+        "start": 213.83333333333348,
+        "end": 214.53333333333353
+      },
+      {
+        "after_id": 1695,
+        "before_id": 1702,
+        "unobserved_ids": 6,
+        "start": 214.53333333333353,
+        "end": 214.76666666666665
+      },
+      {
+        "after_id": 1702,
+        "before_id": 1704,
+        "unobserved_ids": 1,
+        "start": 214.76666666666665,
+        "end": 214.83333333333348
+      },
+      {
+        "after_id": 1704,
+        "before_id": 1726,
+        "unobserved_ids": 21,
+        "start": 214.83333333333348,
+        "end": 215.56666666666683
+      },
+      {
+        "after_id": 1726,
+        "before_id": 1734,
+        "unobserved_ids": 7,
+        "start": 215.56666666666683,
+        "end": 215.83333333333348
+      }
+    ],
+    "unexpected_discontinuities": 0,
+    "proven_controller_drops": null,
+    "warnings": [
+      "Unobserved IDs can be camera/decode misses; they are not proven controller drops.",
+      "A camera cannot distinguish repeated electrical refreshes of the same LED image.",
+      "CRC8 reduces but does not eliminate plausible mixed-frame/rolling-shutter errors.",
+      "Camera sampling is below 4x requested sender FPS."
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "file": "measurements/gico-td-camera-001-video-review/optical/extraction/measure_15.npz",
+    "registration_inliers_min": 137,
+    "registration_residual_p99": 0.05675955267501702,
+    "max_consecutive_unreadable_frames": 1,
+    "max_unreadable_frame_interval_ms": 4.166666666666667
+  },
+  {
+    "file": "measurements/gico-td-camera-001-video-review/optical/extraction-25/measure_25.npz",
+    "registration_inliers_min": 137,
+    "registration_residual_p99": 0.05553174489076682,
+    "max_consecutive_unreadable_frames": 1,
+    "max_unreadable_frame_interval_ms": 4.166666666666667
+  },
+  {
+    "file": "measurements/gico-td-camera-001-video-review/optical/extraction-30/measure_30_end.npz",
+    "registration_inliers_min": 137,
+    "registration_residual_p99": 0.05888049593405964,
+    "max_consecutive_unreadable_frames": 1,
+    "max_unreadable_frame_interval_ms": 33.333333333333336
+  },
+  {
+    "file": "measurements/gico-td-camera-001-video-review/optical/extraction-30/measure_30_slow.npz",
+    "registration_inliers_min": 137,
+    "registration_residual_p99": 0.05253106290050905,
+    "max_consecutive_unreadable_frames": 1,
+    "max_unreadable_frame_interval_ms": 4.166666666666667
+  }
+]

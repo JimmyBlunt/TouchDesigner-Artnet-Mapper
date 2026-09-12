@@ -68,3 +68,11 @@ Das ist starke optische Evidenz für nominal 30 FPS am gefilmten Panel im unabh�
 TD→GICO-Test implementiert: nativer Bytevergleich für 25 Muster und lokaler Kurzlauf mit 3.888 geprüften Paketen bestanden. Details in TD_ANLEITUNG_DE.md.
 
 TD→GICO-Hardwarelauf `measurements/gico-td-camera-001` vollständig abgeschlossen: 220,012 s, 6.541 gesendete Batches / 156.984 Datenpakete, keine gemeldeten Sendefehler; Worker-Mittelwert 29,773 Batches/s bei 30 FPS Solltransport. 3.139 ältere Einreichungen durch Latest-Frame-Verhalten verworfen, nicht mit Netzwerkverlusten gleichzusetzen. Inhalt nominell 15/25/30 FPS, Transport durchgehend 30 FPS. Nach 48 Schwarzpaketen regulär beendet; alle Wiederherstellungsprüfungen bestanden und Ausgabe zusätzlich live als aus bestätigt. Benutzer filmt nach Vorbereitung mit iPhone 13 Slo-Mo 240 FPS; Originalaufnahme und tatsächliche Zeitbasis noch ausstehend. Noch keine optische FPS-Aussage dieses TD-Laufs. Details: `measurements/gico-td-camera-001/ERGEBNISSE_DE.md`.
+
+## TD-Originalaufnahme LED2.mov ausgewertet (2026-09-13)
+
+Die unabhängige Prüfung der gemischten Zeitbasis und die optische Auswertung sind abgeschlossen. In den vollständig verlangsamten Fenstern wurden 14,933 / 23,544 / 26,680 unterschiedliche sichtbare IDs pro Sekunde bei Sollinhalt 15 / 25 / 30 FPS erkannt; ausgewertete reale Zeiten 59,5 / 59,5 / 33,875 s. Jede gezählte ID ist mindestens zweimal unmittelbar hintereinander erkannt, einschließlich begrenzter CRC-Erasure-Rekonstruktion. Das normal schnelle Exportende bestätigt ergänzend 26,322 IDs/s über 21 s mit nur einem Kamerabild als Mindestbeleg.
+
+Stabile optische 30 FPS sind für diesen TD-Testpfad nicht nachgewiesen. Bereits vor dem Worker fehlen über die gesamte 30-FPS-Phase 88 von 1.800 geplanten Inhalts-IDs; weitere optische Lücken sind keiner einzelnen nachfolgenden Stufe zugeordnet. Getrennte Inhalts-/TD-/Worker-Zeitgeber sowie Producerpausen ungefähr alle 12,8 s müssen als Nächstes isoliert werden. Das ist keine allgemeine GICO-Grenze: Der unabhängige Sendertest zeigte zuvor nominal 30 FPS am gefilmten Panel.
+
+Bericht, Grafik, Kalibrierung, Rohentscheidungen und Sendervergleich: `measurements/gico-td-camera-001-video-review/ERGEBNISSE_DE.md`. Diese Auswertung erfolgte ausschließlich offline, ohne Änderungen an TD, Firmware oder LED-Ausgabe.

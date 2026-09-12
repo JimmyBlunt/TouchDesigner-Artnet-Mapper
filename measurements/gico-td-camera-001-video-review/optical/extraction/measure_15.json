@@ -1,0 +1,1152 @@
+{
+  "window": "measure_15",
+  "video_start": 133.0,
+  "video_end": 609.0,
+  "scale": 8.0,
+  "offset": -93.0,
+  "real_duration": 59.5,
+  "time_basis": "confirmed 8x middle",
+  "requested_fps": 15,
+  "samples": 14280,
+  "reasons": {
+    "direct_crc": 10447,
+    "too_many_erasures": 198,
+    "crc_mismatch": 121,
+    "recovered_crc": 3514
+  },
+  "model_sha256": "d30a7e3fe9253d4403262201462c28c2b6b580b34c11d3a283b62205286961f0",
+  "direct_only": {
+    "camera_samples": 14280,
+    "valid_samples": 10447,
+    "rejected_fraction": 0.2684173669467787,
+    "stable_distinct_images": 710,
+    "observation_span_seconds": 59.46666666666667,
+    "observed_unique_fps_estimate": 11.905829596412556,
+    "camera_fps_median": 240.00000000021828,
+    "camera_interval_max_ms": 4.166666666677088,
+    "observed_interval_max_ms": 262.50000000000284,
+    "unobserved_ids": 184,
+    "unobserved_ranges": [
+      {
+        "after_id": 12,
+        "before_id": 14,
+        "unobserved_ids": 1,
+        "start": 28.804166666666667,
+        "end": 28.9375
+      },
+      {
+        "after_id": 17,
+        "before_id": 19,
+        "unobserved_ids": 1,
+        "start": 29.14166666666667,
+        "end": 29.27916666666667
+      },
+      {
+        "after_id": 28,
+        "before_id": 30,
+        "unobserved_ids": 1,
+        "start": 29.879166666666666,
+        "end": 30.012500000000003
+      },
+      {
+        "after_id": 33,
+        "before_id": 35,
+        "unobserved_ids": 1,
+        "start": 30.212500000000002,
+        "end": 30.34166666666667
+      },
+      {
+        "after_id": 44,
+        "before_id": 46,
+        "unobserved_ids": 1,
+        "start": 30.945833333333333,
+        "end": 31.087500000000002
+      },
+      {
+        "after_id": 49,
+        "before_id": 51,
+        "unobserved_ids": 1,
+        "start": 31.270833333333336,
+        "end": 31.40416666666667
+      },
+      {
+        "after_id": 60,
+        "before_id": 62,
+        "unobserved_ids": 1,
+        "start": 32.0,
+        "end": 32.145833333333336
+      },
+      {
+        "after_id": 63,
+        "before_id": 65,
+        "unobserved_ids": 1,
+        "start": 32.225,
+        "end": 32.35
+      },
+      {
+        "after_id": 65,
+        "before_id": 67,
+        "unobserved_ids": 1,
+        "start": 32.35,
+        "end": 32.47916666666667
+      },
+      {
+        "after_id": 68,
+        "before_id": 70,
+        "unobserved_ids": 1,
+        "start": 32.54166666666667,
+        "end": 32.67916666666667
+      },
+      {
+        "after_id": 73,
+        "before_id": 75,
+        "unobserved_ids": 1,
+        "start": 32.87916666666666,
+        "end": 33.00416666666666
+      },
+      {
+        "after_id": 76,
+        "before_id": 78,
+        "unobserved_ids": 1,
+        "start": 33.079166666666666,
+        "end": 33.204166666666666
+      },
+      {
+        "after_id": 78,
+        "before_id": 80,
+        "unobserved_ids": 1,
+        "start": 33.204166666666666,
+        "end": 33.34583333333333
+      },
+      {
+        "after_id": 80,
+        "before_id": 83,
+        "unobserved_ids": 2,
+        "start": 33.34583333333333,
+        "end": 33.54166666666667
+      },
+      {
+        "after_id": 83,
+        "before_id": 85,
+        "unobserved_ids": 1,
+        "start": 33.54166666666667,
+        "end": 33.670833333333334
+      },
+      {
+        "after_id": 90,
+        "before_id": 92,
+        "unobserved_ids": 1,
+        "start": 34.0,
+        "end": 34.145833333333336
+      },
+      {
+        "after_id": 92,
+        "before_id": 95,
+        "unobserved_ids": 2,
+        "start": 34.145833333333336,
+        "end": 34.34583333333333
+      },
+      {
+        "after_id": 97,
+        "before_id": 100,
+        "unobserved_ids": 2,
+        "start": 34.47083333333333,
+        "end": 34.68333333333334
+      },
+      {
+        "after_id": 101,
+        "before_id": 103,
+        "unobserved_ids": 1,
+        "start": 34.74166666666667,
+        "end": 34.87916666666666
+      },
+      {
+        "after_id": 104,
+        "before_id": 106,
+        "unobserved_ids": 1,
+        "start": 34.975,
+        "end": 35.083333333333336
+      },
+      {
+        "after_id": 107,
+        "before_id": 110,
+        "unobserved_ids": 2,
+        "start": 35.145833333333336,
+        "end": 35.35
+      },
+      {
+        "after_id": 113,
+        "before_id": 115,
+        "unobserved_ids": 1,
+        "start": 35.545833333333334,
+        "end": 35.670833333333334
+      },
+      {
+        "after_id": 118,
+        "before_id": 121,
+        "unobserved_ids": 2,
+        "start": 35.858333333333334,
+        "end": 36.079166666666666
+      },
+      {
+        "after_id": 124,
+        "before_id": 126,
+        "unobserved_ids": 1,
+        "start": 36.27916666666667,
+        "end": 36.40833333333333
+      },
+      {
+        "after_id": 129,
+        "before_id": 132,
+        "unobserved_ids": 2,
+        "start": 36.608333333333334,
+        "end": 36.8125
+      },
+      {
+        "after_id": 133,
+        "before_id": 135,
+        "unobserved_ids": 1,
+        "start": 36.87916666666667,
+        "end": 37.0
+      },
+      {
+        "after_id": 136,
+        "before_id": 138,
+        "unobserved_ids": 1,
+        "start": 37.108333333333334,
+        "end": 37.2375
+      },
+      {
+        "after_id": 139,
+        "before_id": 142,
+        "unobserved_ids": 2,
+        "start": 37.275000000000006,
+        "end": 37.47916666666667
+      },
+      {
+        "after_id": 145,
+        "before_id": 147,
+        "unobserved_ids": 1,
+        "start": 37.708333333333336,
+        "end": 37.80416666666667
+      },
+      {
+        "after_id": 150,
+        "before_id": 153,
+        "unobserved_ids": 2,
+        "start": 38.00833333333334,
+        "end": 38.212500000000006
+      },
+      {
+        "after_id": 156,
+        "before_id": 158,
+        "unobserved_ids": 1,
+        "start": 38.4125,
+        "end": 38.54166666666667
+      },
+      {
+        "after_id": 159,
+        "before_id": 161,
+        "unobserved_ids": 1,
+        "start": 38.608333333333334,
+        "end": 38.74583333333334
+      },
+      {
+        "after_id": 161,
+        "before_id": 163,
+        "unobserved_ids": 1,
+        "start": 38.74583333333334,
+        "end": 38.88333333333334
+      },
+      {
+        "after_id": 164,
+        "before_id": 166,
+        "unobserved_ids": 1,
+        "start": 38.95,
+        "end": 39.087500000000006
+      },
+      {
+        "after_id": 169,
+        "before_id": 171,
+        "unobserved_ids": 1,
+        "start": 39.27916666666667,
+        "end": 39.4125
+      },
+      {
+        "after_id": 172,
+        "before_id": 174,
+        "unobserved_ids": 1,
+        "start": 39.475,
+        "end": 39.608333333333334
+      },
+      {
+        "after_id": 174,
+        "before_id": 176,
+        "unobserved_ids": 1,
+        "start": 39.608333333333334,
+        "end": 39.74583333333334
+      },
+      {
+        "after_id": 176,
+        "before_id": 179,
+        "unobserved_ids": 2,
+        "start": 39.74583333333334,
+        "end": 39.97083333333333
+      },
+      {
+        "after_id": 179,
+        "before_id": 181,
+        "unobserved_ids": 1,
+        "start": 39.97083333333333,
+        "end": 40.11666666666667
+      },
+      {
+        "after_id": 186,
+        "before_id": 188,
+        "unobserved_ids": 1,
+        "start": 40.4125,
+        "end": 40.53333333333333
+      },
+      {
+        "after_id": 188,
+        "before_id": 191,
+        "unobserved_ids": 2,
+        "start": 40.53333333333333,
+        "end": 40.725
+      },
+      {
+        "after_id": 193,
+        "before_id": 195,
+        "unobserved_ids": 1,
+        "start": 40.87916666666667,
+        "end": 41.00416666666667
+      },
+      {
+        "after_id": 204,
+        "before_id": 206,
+        "unobserved_ids": 1,
+        "start": 41.608333333333334,
+        "end": 41.7375
+      },
+      {
+        "after_id": 209,
+        "before_id": 211,
+        "unobserved_ids": 1,
+        "start": 41.94583333333334,
+        "end": 42.083333333333336
+      },
+      {
+        "after_id": 216,
+        "before_id": 218,
+        "unobserved_ids": 1,
+        "start": 42.420833333333334,
+        "end": 42.55
+      },
+      {
+        "after_id": 220,
+        "before_id": 222,
+        "unobserved_ids": 1,
+        "start": 42.68333333333334,
+        "end": 42.81666666666667
+      },
+      {
+        "after_id": 225,
+        "before_id": 227,
+        "unobserved_ids": 1,
+        "start": 43.00833333333334,
+        "end": 43.150000000000006
+      },
+      {
+        "after_id": 236,
+        "before_id": 238,
+        "unobserved_ids": 1,
+        "start": 43.75,
+        "end": 43.88333333333333
+      },
+      {
+        "after_id": 241,
+        "before_id": 243,
+        "unobserved_ids": 1,
+        "start": 44.0875,
+        "end": 44.2125
+      },
+      {
+        "after_id": 257,
+        "before_id": 259,
+        "unobserved_ids": 1,
+        "start": 45.145833333333336,
+        "end": 45.27916666666667
+      },
+      {
+        "after_id": 268,
+        "before_id": 270,
+        "unobserved_ids": 1,
+        "start": 45.88333333333333,
+        "end": 46.00416666666667
+      },
+      {
+        "after_id": 273,
+        "before_id": 275,
+        "unobserved_ids": 1,
+        "start": 46.208333333333336,
+        "end": 46.35
+      },
+      {
+        "after_id": 284,
+        "before_id": 286,
+        "unobserved_ids": 1,
+        "start": 46.94166666666667,
+        "end": 47.079166666666666
+      },
+      {
+        "after_id": 289,
+        "before_id": 291,
+        "unobserved_ids": 1,
+        "start": 47.266666666666666,
+        "end": 47.40833333333334
+      },
+      {
+        "after_id": 300,
+        "before_id": 302,
+        "unobserved_ids": 1,
+        "start": 48.050000000000004,
+        "end": 48.150000000000006
+      },
+      {
+        "after_id": 305,
+        "before_id": 307,
+        "unobserved_ids": 1,
+        "start": 48.35416666666667,
+        "end": 48.475
+      },
+      {
+        "after_id": 316,
+        "before_id": 318,
+        "unobserved_ids": 1,
+        "start": 49.09166666666667,
+        "end": 49.212500000000006
+      },
+      {
+        "after_id": 320,
+        "before_id": 323,
+        "unobserved_ids": 2,
+        "start": 49.35416666666667,
+        "end": 49.587500000000006
+      },
+      {
+        "after_id": 323,
+        "before_id": 325,
+        "unobserved_ids": 1,
+        "start": 49.587500000000006,
+        "end": 49.675000000000004
+      },
+      {
+        "after_id": 330,
+        "before_id": 332,
+        "unobserved_ids": 1,
+        "start": 50.00416666666667,
+        "end": 50.145833333333336
+      },
+      {
+        "after_id": 332,
+        "before_id": 335,
+        "unobserved_ids": 2,
+        "start": 50.145833333333336,
+        "end": 50.34583333333334
+      },
+      {
+        "after_id": 335,
+        "before_id": 337,
+        "unobserved_ids": 1,
+        "start": 50.34583333333334,
+        "end": 50.5
+      },
+      {
+        "after_id": 337,
+        "before_id": 339,
+        "unobserved_ids": 1,
+        "start": 50.5,
+        "end": 50.612500000000004
+      },
+      {
+        "after_id": 340,
+        "before_id": 342,
+        "unobserved_ids": 1,
+        "start": 50.675000000000004,
+        "end": 50.800000000000004
+      },
+      {
+        "after_id": 345,
+        "before_id": 347,
+        "unobserved_ids": 1,
+        "start": 51.0,
+        "end": 51.141666666666666
+      },
+      {
+        "after_id": 348,
+        "before_id": 350,
+        "unobserved_ids": 1,
+        "start": 51.22083333333334,
+        "end": 51.34583333333334
+      },
+      {
+        "after_id": 350,
+        "before_id": 352,
+        "unobserved_ids": 1,
+        "start": 51.34583333333334,
+        "end": 51.47083333333334
+      },
+      {
+        "after_id": 353,
+        "before_id": 355,
+        "unobserved_ids": 1,
+        "start": 51.545833333333334,
+        "end": 51.67916666666667
+      },
+      {
+        "after_id": 358,
+        "before_id": 361,
+        "unobserved_ids": 2,
+        "start": 51.85416666666667,
+        "end": 52.083333333333336
+      },
+      {
+        "after_id": 364,
+        "before_id": 366,
+        "unobserved_ids": 1,
+        "start": 52.275000000000006,
+        "end": 52.40833333333334
+      },
+      {
+        "after_id": 369,
+        "before_id": 372,
+        "unobserved_ids": 2,
+        "start": 52.612500000000004,
+        "end": 52.800000000000004
+      },
+      {
+        "after_id": 373,
+        "before_id": 375,
+        "unobserved_ids": 1,
+        "start": 52.88333333333333,
+        "end": 53.0125
+      },
+      {
+        "after_id": 376,
+        "before_id": 378,
+        "unobserved_ids": 1,
+        "start": 53.087500000000006,
+        "end": 53.208333333333336
+      },
+      {
+        "after_id": 379,
+        "before_id": 382,
+        "unobserved_ids": 2,
+        "start": 53.270833333333336,
+        "end": 53.475
+      },
+      {
+        "after_id": 385,
+        "before_id": 387,
+        "unobserved_ids": 1,
+        "start": 53.675000000000004,
+        "end": 53.81666666666667
+      },
+      {
+        "after_id": 390,
+        "before_id": 393,
+        "unobserved_ids": 2,
+        "start": 54.00833333333333,
+        "end": 54.208333333333336
+      },
+      {
+        "after_id": 396,
+        "before_id": 398,
+        "unobserved_ids": 1,
+        "start": 54.40416666666667,
+        "end": 54.545833333333334
+      },
+      {
+        "after_id": 401,
+        "before_id": 404,
+        "unobserved_ids": 2,
+        "start": 54.737500000000004,
+        "end": 54.95
+      },
+      {
+        "after_id": 405,
+        "before_id": 407,
+        "unobserved_ids": 1,
+        "start": 55.045833333333334,
+        "end": 55.145833333333336
+      },
+      {
+        "after_id": 408,
+        "before_id": 410,
+        "unobserved_ids": 1,
+        "start": 55.208333333333336,
+        "end": 55.38333333333333
+      },
+      {
+        "after_id": 411,
+        "before_id": 414,
+        "unobserved_ids": 2,
+        "start": 55.4125,
+        "end": 55.62083333333334
+      },
+      {
+        "after_id": 416,
+        "before_id": 419,
+        "unobserved_ids": 2,
+        "start": 55.74166666666667,
+        "end": 55.94166666666667
+      },
+      {
+        "after_id": 419,
+        "before_id": 421,
+        "unobserved_ids": 1,
+        "start": 55.94166666666667,
+        "end": 56.087500000000006
+      },
+      {
+        "after_id": 426,
+        "before_id": 428,
+        "unobserved_ids": 1,
+        "start": 56.41666666666667,
+        "end": 56.545833333333334
+      },
+      {
+        "after_id": 428,
+        "before_id": 431,
+        "unobserved_ids": 2,
+        "start": 56.545833333333334,
+        "end": 56.74166666666667
+      },
+      {
+        "after_id": 431,
+        "before_id": 433,
+        "unobserved_ids": 1,
+        "start": 56.74166666666667,
+        "end": 56.875
+      },
+      {
+        "after_id": 433,
+        "before_id": 435,
+        "unobserved_ids": 1,
+        "start": 56.875,
+        "end": 57.01666666666667
+      },
+      {
+        "after_id": 436,
+        "before_id": 438,
+        "unobserved_ids": 1,
+        "start": 57.07916666666667,
+        "end": 57.212500000000006
+      },
+      {
+        "after_id": 441,
+        "before_id": 443,
+        "unobserved_ids": 1,
+        "start": 57.4125,
+        "end": 57.54166666666667
+      },
+      {
+        "after_id": 446,
+        "before_id": 448,
+        "unobserved_ids": 1,
+        "start": 57.74583333333334,
+        "end": 57.87916666666667
+      },
+      {
+        "after_id": 460,
+        "before_id": 462,
+        "unobserved_ids": 1,
+        "start": 58.675000000000004,
+        "end": 58.80833333333334
+      },
+      {
+        "after_id": 465,
+        "before_id": 467,
+        "unobserved_ids": 1,
+        "start": 59.00416666666667,
+        "end": 59.14166666666667
+      },
+      {
+        "after_id": 476,
+        "before_id": 478,
+        "unobserved_ids": 1,
+        "start": 59.74583333333334,
+        "end": 59.85416666666667
+      },
+      {
+        "after_id": 481,
+        "before_id": 483,
+        "unobserved_ids": 1,
+        "start": 60.083333333333336,
+        "end": 60.208333333333336
+      },
+      {
+        "after_id": 492,
+        "before_id": 494,
+        "unobserved_ids": 1,
+        "start": 60.80416666666667,
+        "end": 60.94166666666667
+      },
+      {
+        "after_id": 497,
+        "before_id": 499,
+        "unobserved_ids": 1,
+        "start": 61.14166666666667,
+        "end": 61.26666666666667
+      },
+      {
+        "after_id": 513,
+        "before_id": 515,
+        "unobserved_ids": 1,
+        "start": 62.20416666666667,
+        "end": 62.35
+      },
+      {
+        "after_id": 524,
+        "before_id": 526,
+        "unobserved_ids": 1,
+        "start": 62.9375,
+        "end": 63.083333333333336
+      },
+      {
+        "after_id": 529,
+        "before_id": 531,
+        "unobserved_ids": 1,
+        "start": 63.270833333333336,
+        "end": 63.40833333333334
+      },
+      {
+        "after_id": 540,
+        "before_id": 542,
+        "unobserved_ids": 1,
+        "start": 64.00833333333334,
+        "end": 64.12083333333334
+      },
+      {
+        "after_id": 545,
+        "before_id": 547,
+        "unobserved_ids": 1,
+        "start": 64.35,
+        "end": 64.47916666666667
+      },
+      {
+        "after_id": 556,
+        "before_id": 558,
+        "unobserved_ids": 1,
+        "start": 65.0875,
+        "end": 65.2125
+      },
+      {
+        "after_id": 561,
+        "before_id": 563,
+        "unobserved_ids": 1,
+        "start": 65.4125,
+        "end": 65.54583333333333
+      },
+      {
+        "after_id": 572,
+        "before_id": 574,
+        "unobserved_ids": 1,
+        "start": 66.14583333333334,
+        "end": 66.27083333333334
+      },
+      {
+        "after_id": 577,
+        "before_id": 580,
+        "unobserved_ids": 2,
+        "start": 66.5,
+        "end": 66.67500000000001
+      },
+      {
+        "after_id": 581,
+        "before_id": 583,
+        "unobserved_ids": 1,
+        "start": 66.73750000000001,
+        "end": 66.87916666666666
+      },
+      {
+        "after_id": 584,
+        "before_id": 586,
+        "unobserved_ids": 1,
+        "start": 66.94166666666666,
+        "end": 67.0875
+      },
+      {
+        "after_id": 587,
+        "before_id": 590,
+        "unobserved_ids": 2,
+        "start": 67.14583333333334,
+        "end": 67.35416666666667
+      },
+      {
+        "after_id": 593,
+        "before_id": 595,
+        "unobserved_ids": 1,
+        "start": 67.54166666666667,
+        "end": 67.68333333333334
+      },
+      {
+        "after_id": 598,
+        "before_id": 602,
+        "unobserved_ids": 3,
+        "start": 67.88333333333334,
+        "end": 68.14583333333334
+      },
+      {
+        "after_id": 604,
+        "before_id": 606,
+        "unobserved_ids": 1,
+        "start": 68.27083333333334,
+        "end": 68.40833333333333
+      },
+      {
+        "after_id": 617,
+        "before_id": 619,
+        "unobserved_ids": 1,
+        "start": 69.14583333333334,
+        "end": 69.27083333333334
+      },
+      {
+        "after_id": 620,
+        "before_id": 622,
+        "unobserved_ids": 1,
+        "start": 69.37916666666666,
+        "end": 69.475
+      },
+      {
+        "after_id": 625,
+        "before_id": 627,
+        "unobserved_ids": 1,
+        "start": 69.725,
+        "end": 69.80416666666667
+      },
+      {
+        "after_id": 644,
+        "before_id": 646,
+        "unobserved_ids": 1,
+        "start": 70.94583333333334,
+        "end": 71.11250000000001
+      },
+      {
+        "after_id": 649,
+        "before_id": 651,
+        "unobserved_ids": 1,
+        "start": 71.27916666666667,
+        "end": 71.41666666666667
+      },
+      {
+        "after_id": 652,
+        "before_id": 654,
+        "unobserved_ids": 1,
+        "start": 71.47083333333333,
+        "end": 71.61666666666667
+      },
+      {
+        "after_id": 654,
+        "before_id": 656,
+        "unobserved_ids": 1,
+        "start": 71.61666666666667,
+        "end": 71.74166666666667
+      },
+      {
+        "after_id": 656,
+        "before_id": 659,
+        "unobserved_ids": 2,
+        "start": 71.74166666666667,
+        "end": 71.94166666666666
+      },
+      {
+        "after_id": 659,
+        "before_id": 661,
+        "unobserved_ids": 1,
+        "start": 71.94166666666666,
+        "end": 72.07916666666668
+      },
+      {
+        "after_id": 666,
+        "before_id": 668,
+        "unobserved_ids": 1,
+        "start": 72.40416666666667,
+        "end": 72.54583333333333
+      },
+      {
+        "after_id": 673,
+        "before_id": 676,
+        "unobserved_ids": 2,
+        "start": 72.85416666666667,
+        "end": 73.08333333333334
+      },
+      {
+        "after_id": 677,
+        "before_id": 679,
+        "unobserved_ids": 1,
+        "start": 73.14583333333334,
+        "end": 73.27916666666667
+      },
+      {
+        "after_id": 680,
+        "before_id": 682,
+        "unobserved_ids": 1,
+        "start": 73.36250000000001,
+        "end": 73.48333333333333
+      },
+      {
+        "after_id": 683,
+        "before_id": 686,
+        "unobserved_ids": 2,
+        "start": 73.54583333333333,
+        "end": 73.73333333333333
+      },
+      {
+        "after_id": 689,
+        "before_id": 691,
+        "unobserved_ids": 1,
+        "start": 73.94583333333334,
+        "end": 74.07916666666668
+      },
+      {
+        "after_id": 694,
+        "before_id": 697,
+        "unobserved_ids": 2,
+        "start": 74.275,
+        "end": 74.50416666666666
+      },
+      {
+        "after_id": 700,
+        "before_id": 702,
+        "unobserved_ids": 1,
+        "start": 74.67916666666667,
+        "end": 74.80000000000001
+      },
+      {
+        "after_id": 716,
+        "before_id": 718,
+        "unobserved_ids": 1,
+        "start": 75.74166666666667,
+        "end": 75.88333333333334
+      },
+      {
+        "after_id": 721,
+        "before_id": 723,
+        "unobserved_ids": 1,
+        "start": 76.07916666666667,
+        "end": 76.20416666666667
+      },
+      {
+        "after_id": 732,
+        "before_id": 734,
+        "unobserved_ids": 1,
+        "start": 76.84166666666667,
+        "end": 76.94166666666668
+      },
+      {
+        "after_id": 748,
+        "before_id": 750,
+        "unobserved_ids": 1,
+        "start": 77.87916666666668,
+        "end": 78.0125
+      },
+      {
+        "after_id": 753,
+        "before_id": 755,
+        "unobserved_ids": 1,
+        "start": 78.24583333333334,
+        "end": 78.34583333333333
+      },
+      {
+        "after_id": 780,
+        "before_id": 782,
+        "unobserved_ids": 1,
+        "start": 80.0125,
+        "end": 80.15
+      },
+      {
+        "after_id": 785,
+        "before_id": 787,
+        "unobserved_ids": 1,
+        "start": 80.35416666666667,
+        "end": 80.47916666666667
+      },
+      {
+        "after_id": 792,
+        "before_id": 794,
+        "unobserved_ids": 1,
+        "start": 80.80000000000001,
+        "end": 80.95416666666667
+      },
+      {
+        "after_id": 796,
+        "before_id": 798,
+        "unobserved_ids": 1,
+        "start": 81.09166666666667,
+        "end": 81.20833333333334
+      },
+      {
+        "after_id": 801,
+        "before_id": 803,
+        "unobserved_ids": 1,
+        "start": 81.41250000000001,
+        "end": 81.54166666666667
+      },
+      {
+        "after_id": 812,
+        "before_id": 814,
+        "unobserved_ids": 1,
+        "start": 82.14583333333334,
+        "end": 82.275
+      },
+      {
+        "after_id": 817,
+        "before_id": 819,
+        "unobserved_ids": 1,
+        "start": 82.47083333333333,
+        "end": 82.60833333333333
+      },
+      {
+        "after_id": 833,
+        "before_id": 835,
+        "unobserved_ids": 1,
+        "start": 83.54166666666667,
+        "end": 83.67916666666667
+      },
+      {
+        "after_id": 838,
+        "before_id": 841,
+        "unobserved_ids": 2,
+        "start": 83.87916666666668,
+        "end": 84.08333333333334
+      },
+      {
+        "after_id": 844,
+        "before_id": 846,
+        "unobserved_ids": 1,
+        "start": 84.27083333333334,
+        "end": 84.41250000000001
+      },
+      {
+        "after_id": 849,
+        "before_id": 852,
+        "unobserved_ids": 2,
+        "start": 84.61250000000001,
+        "end": 84.80833333333334
+      },
+      {
+        "after_id": 853,
+        "before_id": 855,
+        "unobserved_ids": 1,
+        "start": 84.88333333333334,
+        "end": 84.99166666666667
+      },
+      {
+        "after_id": 856,
+        "before_id": 858,
+        "unobserved_ids": 1,
+        "start": 85.08333333333334,
+        "end": 85.20416666666667
+      },
+      {
+        "after_id": 859,
+        "before_id": 862,
+        "unobserved_ids": 2,
+        "start": 85.27916666666667,
+        "end": 85.48333333333333
+      },
+      {
+        "after_id": 865,
+        "before_id": 867,
+        "unobserved_ids": 1,
+        "start": 85.6875,
+        "end": 85.84583333333333
+      },
+      {
+        "after_id": 874,
+        "before_id": 876,
+        "unobserved_ids": 1,
+        "start": 86.26666666666667,
+        "end": 86.40833333333333
+      },
+      {
+        "after_id": 876,
+        "before_id": 879,
+        "unobserved_ids": 2,
+        "start": 86.40833333333333,
+        "end": 86.61250000000001
+      },
+      {
+        "after_id": 881,
+        "before_id": 883,
+        "unobserved_ids": 1,
+        "start": 86.73333333333333,
+        "end": 86.87916666666668
+      },
+      {
+        "after_id": 884,
+        "before_id": 886,
+        "unobserved_ids": 1,
+        "start": 86.95416666666667,
+        "end": 87.07916666666667
+      }
+    ],
+    "unexpected_discontinuities": 0,
+    "proven_controller_drops": null,
+    "warnings": [
+      "Unobserved IDs can be camera/decode misses; they are not proven controller drops.",
+      "A camera cannot distinguish repeated electrical refreshes of the same LED image.",
+      "CRC8 reduces but does not eliminate plausible mixed-frame/rolling-shutter errors."
+    ]
+  },
+  "bounded_erasures": {
+    "camera_samples": 14280,
+    "valid_samples": 13961,
+    "rejected_fraction": 0.022338935574229692,
+    "stable_distinct_images": 890,
+    "observation_span_seconds": 59.46666666666667,
+    "observed_unique_fps_estimate": 14.932735426008968,
+    "camera_fps_median": 240.00000000021828,
+    "camera_interval_max_ms": 4.166666666677088,
+    "observed_interval_max_ms": 174.99999999999716,
+    "unobserved_ids": 4,
+    "unobserved_ranges": [
+      {
+        "after_id": 216,
+        "before_id": 218,
+        "unobserved_ids": 1,
+        "start": 42.41666666666667,
+        "end": 42.545833333333334
+      },
+      {
+        "after_id": 408,
+        "before_id": 410,
+        "unobserved_ids": 1,
+        "start": 55.20416666666667,
+        "end": 55.37916666666667
+      },
+      {
+        "after_id": 600,
+        "before_id": 602,
+        "unobserved_ids": 1,
+        "start": 68.01666666666668,
+        "end": 68.14166666666668
+      },
+      {
+        "after_id": 792,
+        "before_id": 794,
+        "unobserved_ids": 1,
+        "start": 80.80000000000001,
+        "end": 80.95416666666667
+      }
+    ],
+    "unexpected_discontinuities": 0,
+    "proven_controller_drops": null,
+    "warnings": [
+      "Unobserved IDs can be camera/decode misses; they are not proven controller drops.",
+      "A camera cannot distinguish repeated electrical refreshes of the same LED image.",
+      "CRC8 reduces but does not eliminate plausible mixed-frame/rolling-shutter errors."
+    ]
+  }
+}
