@@ -1,0 +1,31 @@
+{
+  "scope": "Short readability check with existing fixed-position decoder; not a controller FPS measurement",
+  "cases": [
+    {
+      "start_video_s": 100,
+      "requested_fps": 15,
+      "samples": 181,
+      "classifications": {
+        "transition_or_pwm": 181
+      }
+    },
+    {
+      "start_video_s": 170,
+      "requested_fps": 25,
+      "samples": 180,
+      "classifications": {
+        "transition_or_pwm": 107,
+        "valid": 66,
+        "crc_or_reference": 7
+      }
+    },
+    {
+      "start_video_s": 225,
+      "requested_fps": 30,
+      "samples": 180,
+      "classifications": {
+        "transition_or_pwm": 180
+      }
+    }
+  ]
+}
