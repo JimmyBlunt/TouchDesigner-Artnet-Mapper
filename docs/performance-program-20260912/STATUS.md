@@ -40,3 +40,13 @@ Aktualisierung während der laufenden Arbeit:
 - Benchmark „numpy-quiet-60s“: 1.474 vollständige Batches/60 s = 24,566 FPS,
   keine Worker-Drops/Fehler; gepackte Pixel im Mittel 1,125 ms. Firmwarecompiler
   waren pausiert; sonstige Systemlast (insbesondere OneDrive) blieb bestehen.
+
+Versionierte Zwischenstände:
+- d8017bd: erste native NumPy-/Senderoptimierungen, gespeicherter TD-Checkpoint,
+  reproduzierbare Messungen und aufnahmebereiter GICO-Kameratest.
+- 319c8e5: Teensy-Quellen, Hosttests, funktionsfähige Safe-Ethernet-Firmware und
+  erstes experimentelles FastLED-Bench-Image. Letzteres startet noch nicht bis
+  zur Statusschleife; eine mögliche FastLED-ObjectFLED-Ursache wird untersucht.
+  Dieser Commit ist ausdrücklich KEINE erfolgreiche DMA-Ausgabeabnahme.
+- Show-Idle-Synchronisierung anschließend im TD-Projekt installiert; Plan und
+  sechs State-/Request-DATs blieben unverändert. 39 gezielte Show-Tests bestanden.

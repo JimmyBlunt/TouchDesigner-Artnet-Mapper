@@ -42,3 +42,19 @@ Temporäre Profiling-Callbacks wurden vollständig wiederhergestellt.
 Loopbacktests laufen ausschließlich auf 127.0.0.1:16454. Sie belegen den echten
 TD-Produktions-/Pack-/UDP-Pfad, aber keine Controller- oder optische LED-Bildrate.
 Firmwarelasttests und GICO-Kameratest liefern dafür getrennte Nachweise.
+
+## Weitere Diagnose und Taktung
+
+Perform-Mode-Vergleich nach Cacheoptimierungen: 28,800 FPS über 45 s.
+Mit zusätzlichem Show-Idle-Fastpath, pausierten Compilern und vorübergehend
+beendetem OneDrive-Hauptprogramm: 28,908 FPS über 120 s; keine Worker-Drops,
+keine Fehler, 3.469 vollständige UDP-Batches. OneDrive.Sync.Service blieb
+aktiv. OneDrive-Hauptprogramm wurde anschließend wieder gestartet und geprüft.
+Die Ausgabe ist damit weiterhin nicht als stabile 30 FPS abgenommen.
+
+Ein optionaler, separat zu prüfender Modus entkoppelt den Sendetakt:
+TD bereitet mit bis zu doppelter Zielrate vor, der Worker hält nur das neueste
+vollständige Bild bis zum nächsten phasenfesten Ausgabeslot. Er wiederholt
+keine alten Bilder, wenn keine neue Produktion vorliegt. Bewusst ersetzte,
+noch nicht gesendete Bilder zählen als stale; das ist keine UDP-Verlustmessung.
+Der Modus ist standardmäßig ausgeschaltet, bis seine native Abnahme erfolgt.

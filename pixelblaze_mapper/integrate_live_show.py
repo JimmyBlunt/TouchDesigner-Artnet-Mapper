@@ -241,7 +241,7 @@ def _render_sync_source(effect_definitions):
         for item in effect_definitions
     }
     catalog.update({item["label"]: catalog[item["id"]] for item in effect_definitions})
-    return '''import json
+    source = '''import json
 import time
 CATALOG = %s
 MODES = {'global': 0, 'panel': 1, 'panel_local': 1, 'hybrid': 2}
@@ -377,6 +377,8 @@ def sync_render():
         _set_parameter(button, 'bgcolorb', 0.24 if enabled else 0.16)
     return {'a': label_a, 'b': label_b, 'outgoing': outgoing_slot, 'incoming': incoming_slot, 'mode': mode, 'progress': progress, 'output_b_mix': output_b_mix, 'brightness': brightness, 'loop': loop, 'blackout': blackout}
 ''' % repr(catalog)
+    from pixelblaze_mapper.show_sync_fastpath import install_render_source
+    return install_render_source(source)
 
 
 def integrate():

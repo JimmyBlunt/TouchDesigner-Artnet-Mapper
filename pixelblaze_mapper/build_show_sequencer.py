@@ -384,6 +384,8 @@ def advance(seconds):
     return sync()
 
 '''
+    from pixelblaze_mapper.show_sync_fastpath import install_callback_source
+    callbacks.text = install_callback_source(callbacks.text)
 
     canvas = _get_or_create(owner, containerCOMP, "control_panel")
     _fixed(canvas, 0, 0, 1000, 300)
