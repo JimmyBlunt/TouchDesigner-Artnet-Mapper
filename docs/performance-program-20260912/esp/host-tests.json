@@ -1,0 +1,13 @@
+{
+  "result": "passed",
+  "test_groups": 12,
+  "command": "zig c++ -std=c++17 -nostdlib++ -O2 -Iinclude test/test_frame_assembler.cpp -o build/test_frame_assembler.exe; build/test_frame_assembler.exe",
+  "compiler": "ziglang 0.13.0",
+  "host_benchmark_fps": 2500000,
+  "benchmark_scope": "Host-only parser; not ESP/network/LED FPS",
+  "files": {
+    "include\\frame_assembler.h": "b2b5a08b9f3e5064520131bd861719070aa59cf75834397350096c58983d6d11",
+    "include\\apa_frame.h": "7a17faefd9d0081e65805ed82430e4ede81b737a476ce80f4fab41c80005a5e4",
+    "test\\test_frame_assembler.cpp": "f5361cd830d0dd323fb1c10bb8f8a9d967d875511361c72ad57801ad73e6fff3"
+  }
+}

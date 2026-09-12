@@ -1,0 +1,43 @@
+{
+  "label": "physical768-socket-v1",
+  "compiled_panel_profile": 768,
+  "created_utc": "2026-09-12T03:46:02.001460+00:00",
+  "platformio": "6.1.18",
+  "platform": "espressif32@6.10.0",
+  "fastled": "3.9.15",
+  "board": "ESP32-D0WD rev1.0 /4MB /MAC e8:68:e7:0d:38:a4",
+  "output_default": "disarmed; LED GPIO initialization deferred until ARM",
+  "flash_offsets": {
+    "bootloader.bin": "0x1000",
+    "partitions.bin": "0x8000",
+    "boot_app0.bin": "0xe000",
+    "firmware.bin": "0x10000"
+  },
+  "artifacts": {
+    "firmware.bin": {
+      "bytes": 799328,
+      "sha256": "3c93a10dc2c5796f60aec11b8a441bfb9b2ad18f2d345df81fdd671b016e5a40"
+    },
+    "bootloader.bin": {
+      "bytes": 17536,
+      "sha256": "3d234a7471f67b013686dabd4dee7c1fa915c9928463616a94bc9297acf1abf8"
+    },
+    "partitions.bin": {
+      "bytes": 3072,
+      "sha256": "148b959cbff1c38aa8e1d5c0ba9d612c54997b945e56a63f41223eef650653a1"
+    },
+    "boot_app0.bin": {
+      "bytes": 8192,
+      "sha256": "f94c5d786a7a8fab06ac5d10e33bf37711a6697636dc037559ea19cc410a17f0"
+    }
+  },
+  "sources": {
+    "platformio.ini": "dd04ea5e0f4316d6b9ce90b2038f3d6f517c26a4923f75e22de06b5bf27293aa",
+    "src\\main.cpp": "323641eaba78bedc8ef9035b00adacfb3a7a3c04ff1672882f34ecd74bf5af88",
+    "include\\frame_assembler.h": "b2b5a08b9f3e5064520131bd861719070aa59cf75834397350096c58983d6d11",
+    "include\\apa_frame.h": "7a17faefd9d0081e65805ed82430e4ede81b737a476ce80f4fab41c80005a5e4",
+    "README_DE.md": "8f2a6e5d648c0493e2fbbb5485dc7a2967dfa8ea2bd7401b4a8bfdf063beb2fa"
+  },
+  "private_artifact_directory": "C:\\Users\\jbhtz\\AppData\\Local\\CodexESP30\\artifacts\\physical768-socket-v1",
+  "archive_sha256": "495ae336c021181ea6a94d13309f1d97edc39c046159901a32ecffdb81cc650a"
+}

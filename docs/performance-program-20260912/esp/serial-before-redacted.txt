@@ -1,0 +1,5 @@
+status frames=0 fps=0 pps=0 pixels=1755 heap=199384 safeMode=no
+status frames=0 fps=0 pps=0 pixels=1755 heap=199384 safeMode=no
+status frames=0 fps=0 pps=0 pixels=1755 heap=199384 safeMode=no
+status frames=0 fps=0 pps=0 pixels=1755 heap=199384 safeMode=no
+status frames=0 fps=0 pps=0 pixels=1755 heap=199384 safeMode=no

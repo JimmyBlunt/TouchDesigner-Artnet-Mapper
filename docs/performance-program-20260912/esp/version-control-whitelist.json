@@ -1,0 +1,42 @@
+{
+  "stage_whitelist": [
+    "docs/performance-program-20260912/esp/STATUS.md",
+    "docs/performance-program-20260912/esp/backup-verification.json",
+    "docs/performance-program-20260912/esp/build-mixed-local-deps.log",
+    "docs/performance-program-20260912/esp/build-mixed.log",
+    "docs/performance-program-20260912/esp/build-physical768-socket-v1.json",
+    "docs/performance-program-20260912/esp/config-before-redacted.json",
+    "docs/performance-program-20260912/esp/driver-install.json",
+    "docs/performance-program-20260912/esp/esp-firmware-physical768-socket-v1.zip",
+    "docs/performance-program-20260912/esp/experimental-physical768-socket-v1.json",
+    "docs/performance-program-20260912/esp/experimental-physical768-visible-socket-v1.json",
+    "docs/performance-program-20260912/esp/flash-physical768-socket-v1.json",
+    "docs/performance-program-20260912/esp/flash-physical768-socket-v1.log",
+    "docs/performance-program-20260912/esp/host-tests.json",
+    "docs/performance-program-20260912/esp/original-baseline-virtual1755-gap1.0.json",
+    "docs/performance-program-20260912/esp/original-baseline-virtual1755.json",
+    "docs/performance-program-20260912/esp/original-baseline.json",
+    "docs/performance-program-20260912/esp/partitions-before.json",
+    "docs/performance-program-20260912/esp/runtime-physical768-socket-v1-serial.json",
+    "docs/performance-program-20260912/esp/serial-before-redacted.txt",
+    "docs/performance-program-20260912/esp/version-control-whitelist.json",
+    "firmware/esp_artnet_30fps/.gitignore",
+    "firmware/esp_artnet_30fps/README_DE.md",
+    "firmware/esp_artnet_30fps/baseline_original.py",
+    "firmware/esp_artnet_30fps/benchmark.py",
+    "firmware/esp_artnet_30fps/flash_verified.py",
+    "firmware/esp_artnet_30fps/include/apa_frame.h",
+    "firmware/esp_artnet_30fps/include/frame_assembler.h",
+    "firmware/esp_artnet_30fps/platformio.ini",
+    "firmware/esp_artnet_30fps/snapshot_build.py",
+    "firmware/esp_artnet_30fps/src/main.cpp",
+    "firmware/esp_artnet_30fps/test/test_frame_assembler.cpp"
+  ],
+  "do_not_stage": [
+    "firmware/esp_artnet_30fps/.venv",
+    "firmware/esp_artnet_30fps/.pio",
+    "firmware/esp_artnet_30fps/build",
+    "C:/Users/jbhtz/AppData/Local/CodexESP30/backups"
+  ],
+  "private_backup_policy": "Full flash images and raw startup log can contain credentials; keep outside Git. Only backup hashes/redacted configuration/secret-free firmware packages are versioned."
+}

@@ -1,0 +1,37 @@
+{
+  "pixelCount": 1755,
+  "startUniverse": 0,
+  "universeCount": 11,
+  "targetFps": 30,
+  "hardwareProfile": "extensionboard-6ws-3apa",
+  "outputs": [
+    {
+      "id": 0,
+      "type": "WS2812B",
+      "enabled": true,
+      "startPixel": 0,
+      "pixelCount": 731,
+      "dataPin": 14,
+      "clockPin": -1,
+      "colorOrder": "GRB",
+      "reverse": false,
+      "spiHz": 0,
+      "startUniverse": 0,
+      "targetFps": 30
+    },
+    {
+      "id": 1,
+      "type": "APA102",
+      "enabled": true,
+      "startPixel": 731,
+      "pixelCount": 1024,
+      "dataPin": 18,
+      "clockPin": 19,
+      "colorOrder": "BGR",
+      "reverse": false,
+      "spiHz": 4000000,
+      "startUniverse": 4,
+      "targetFps": 30
+    }
+  ]
+}

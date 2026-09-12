@@ -1,0 +1,190 @@
+Processing esp32_testnode_mixed (platform: espressif32@6.10.0; board: esp32dev; framework: arduino)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif32/esp32dev.html
+PLATFORM: Espressif 32 (6.10.0) > Espressif ESP32 Dev Module
+HARDWARE: ESP32 240MHz, 320KB RAM, 4MB Flash
+DEBUG: Current (cmsis-dap) External (cmsis-dap, esp-bridge, esp-prog, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
+PACKAGES:
+ - framework-arduinoespressif32 @ 3.20017.241212+sha.dcc1105b
+ - tool-esptoolpy @ 1.40501.0 (4.5.1)
+ - toolchain-xtensa-esp32 @ 8.4.0+2021r2-patch5
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ chain, Compatibility ~ soft
+Found 34 compatible libraries
+Scanning dependencies...
+Dependency Graph
+|-- FastLED @ 3.9.15
+|-- Preferences @ 2.0.0
+|-- SPI @ 2.0.0
+|-- WebServer @ 2.0.0
+|-- WiFi @ 2.0.0
+Building in release mode
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\FastLED.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\bitswap.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\cled_controller.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\colorpalettes.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\colorutils.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\crgb.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\fl\allocator.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\fl\bytestreammemory.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\fl\engine_events.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\fl\file_system.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\fl\five_bit_hd_gamma.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\fl\json.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\fl\rectangular_draw_buffer.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\fl\ref.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\fl\screenmap.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\fl\sin32.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\fl\str.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\fl\stub_main.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\fl\xmap.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\fl\xymap.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\fx\2d\bilinear_expansion.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\fx\2d\noisepalette.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\fx\2d\scale_up.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\fx\frame.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\fx\fx_engine.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\fx\time.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\fx\video.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\fx\video\frame_interpolator.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\fx\video\frame_tracker.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\fx\video\pixel_stream.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\fx\video\video_impl.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\hsv2rgb.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\lib8tion.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\noise.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\platforms.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\platforms\arm\k20\clockless_objectfled.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\platforms\esp\32\clockless_i2s_esp32s3.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\platforms\esp\32\i2s\i2s_esp32dev.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\platforms\esp\32\rmt_4\idf4_rmt.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\platforms\esp\32\rmt_4\idf4_rmt_impl.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\platforms\esp\32\rmt_5\idf5_rmt.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\platforms\esp\32\rmt_5\strip_rmt.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\platforms\esp\32\spi_ws2812\strip_spi.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\platforms\wasm\active_strip_data.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\platforms\wasm\compiler\Arduino.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\platforms\wasm\engine_listener.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\platforms\wasm\fs_wasm.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\platforms\wasm\js.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\platforms\wasm\timer.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\platforms\wasm\ui\button.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\platforms\wasm\ui\checkbox.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\platforms\wasm\ui\description.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\platforms\wasm\ui\slider.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\platforms\wasm\ui\title.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\platforms\wasm\ui\ui_internal.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\platforms\wasm\ui\ui_manager.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\platforms\wasm\ui\ui_number_field.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\power_mgt.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\rgbw.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\sensors\digital_pin.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\sensors\pir.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\simplex.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\third_party\espressif\led_strip\src\led_strip_api.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\third_party\espressif\led_strip\src\led_strip_rmt_dev.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\third_party\espressif\led_strip\src\led_strip_rmt_encoder.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\third_party\espressif\led_strip\src\led_strip_spi_dev.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\third_party\object_fled\src\OjectFLED.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\transpose8x1_noinline.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libbff\FastLED\wiring.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\src\main.cpp.o
+In file included from C:/Users/jbhtz/AppData/Local/CodexESP30/libdeps/esp32_testnode_mixed/FastLED/src/platforms/esp/32/fastled_esp32.h:16,
+                 from C:/Users/jbhtz/AppData/Local/CodexESP30/libdeps/esp32_testnode_mixed/FastLED/src/platforms.h:44,
+                 from C:/Users/jbhtz/AppData/Local/CodexESP30/libdeps/esp32_testnode_mixed/FastLED/src/FastLED.h:70,
+                 from src/main.cpp:5:
+C:/Users/jbhtz/AppData/Local/CodexESP30/libdeps/esp32_testnode_mixed/FastLED/src/platforms/esp/32/clockless_i2s_esp32.h:106:5: note: #pragma message: NOTE: ESP32 support using I2S parallel driver. All strips must use the same chipset
+     "NOTE: ESP32 support using I2S parallel driver. All strips must use the same chipset"
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Building C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\bootloader.bin
+esptool.py v4.5.1
+Creating esp32 image...
+Merged 1 ELF section
+Successfully created esp32 image.
+Generating partitions C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\partitions.bin
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\lib8d5\SPI\SPI.cpp.o
+Archiving C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\lib8d5\libSPI.a
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\lib72b\Preferences\Preferences.cpp.o
+Archiving C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\lib72b\libPreferences.a
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\liba23\WiFi\WiFi.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\liba23\WiFi\WiFiAP.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\liba23\WiFi\WiFiClient.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\liba23\WiFi\WiFiGeneric.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\liba23\WiFi\WiFiMulti.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\liba23\WiFi\WiFiSTA.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\liba23\WiFi\WiFiScan.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\liba23\WiFi\WiFiServer.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\liba23\WiFi\WiFiUdp.cpp.o
+Archiving C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\liba23\libWiFi.a
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libe00\FS\FS.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libe00\FS\vfs_api.cpp.o
+Archiving C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libe00\libFS.a
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\lib946\WebServer\Parsing.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\lib946\WebServer\WebServer.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\lib946\WebServer\detail\mimetable.cpp.o
+Archiving C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\lib946\libWebServer.a
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\Esp.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\FirmwareMSC.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\FunctionalInterrupt.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\HWCDC.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\HardwareSerial.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\IPAddress.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\IPv6Address.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\MD5Builder.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\Print.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\Stream.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\StreamString.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\Tone.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\USB.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\USBCDC.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\USBMSC.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\WMath.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\WString.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\base64.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\cbuf.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\esp32-hal-adc.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\esp32-hal-bt.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\esp32-hal-cpu.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\esp32-hal-dac.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\esp32-hal-gpio.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\esp32-hal-i2c-slave.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\esp32-hal-i2c.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\esp32-hal-ledc.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\esp32-hal-matrix.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\esp32-hal-misc.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\esp32-hal-psram.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\esp32-hal-rgb-led.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\esp32-hal-rmt.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\esp32-hal-sigmadelta.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\esp32-hal-spi.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\esp32-hal-time.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\esp32-hal-timer.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\esp32-hal-tinyusb.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\esp32-hal-touch.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\esp32-hal-uart.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\firmware_msc_fat.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\libb64\cdecode.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\libb64\cencode.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\main.cpp.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\stdlib_noniso.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\wiring_pulse.c.o
+Compiling C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\FrameworkArduino\wiring_shift.c.o
+Archiving C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\libFrameworkArduino.a
+Linking C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\firmware.elf
+Retrieving maximum program size C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\firmware.elf
+Checking size C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [==        ]  16.9% (used 55328 bytes from 327680 bytes)
+Flash: [======    ]  60.5% (used 792753 bytes from 1310720 bytes)
+Building C:\Users\jbhtz\AppData\Local\CodexESP30\build\esp32_testnode_mixed\firmware.bin
+esptool.py v4.5.1
+Creating esp32 image...
+Merged 27 ELF sections
+Successfully created esp32 image.
+======================== [SUCCESS] Took 1360.80 seconds ========================
+
+Environment           Status    Duration
+--------------------  --------  ------------
+esp32_testnode_mixed  SUCCESS   00:22:40.799
+========================= 1 succeeded in 00:22:40.799 =========================

@@ -1,0 +1,147 @@
+{
+  "target": "10.0.0.251",
+  "mac": "E8-68-E7-0D-38-A4",
+  "pattern": "black",
+  "original_config": {
+    "pixelCount": 1755,
+    "startUniverse": 0,
+    "universeCount": 11,
+    "targetFps": 30,
+    "hardwareProfile": "extensionboard-6ws-3apa",
+    "outputs": [
+      {
+        "id": 0,
+        "type": "WS2812B",
+        "enabled": true,
+        "startPixel": 0,
+        "pixelCount": 731,
+        "dataPin": 14,
+        "clockPin": -1,
+        "colorOrder": "GRB",
+        "reverse": false,
+        "spiHz": 0,
+        "startUniverse": 0,
+        "targetFps": 30
+      },
+      {
+        "id": 1,
+        "type": "APA102",
+        "enabled": true,
+        "startPixel": 731,
+        "pixelCount": 1024,
+        "dataPin": 18,
+        "clockPin": 19,
+        "colorOrder": "BGR",
+        "reverse": false,
+        "spiHz": 4000000,
+        "startUniverse": 4,
+        "targetFps": 30
+      }
+    ]
+  },
+  "physical_counts_user_approximate": [
+    256,
+    512
+  ],
+  "virtual_load_test": true,
+  "optical_fps_measured": false,
+  "cases": [
+    {
+      "requested_fps": 30,
+      "output_ceiling_fps": 60,
+      "sent_frames": 552,
+      "send_elapsed_seconds": 20.00580009998521,
+      "sender_fps": 27.591998182587464,
+      "sender_overruns": 27,
+      "gap_ms": 1.0,
+      "max_sender_frame_interval_ms": 176.45649999030866,
+      "delta": {
+        "packets": 5008,
+        "framesComplete": 280,
+        "framesIncomplete": 257,
+        "outputFrames": 280,
+        "timeouts": 5,
+        "droppedPackets": 0,
+        "sequenceErrors": 0
+      },
+      "before": {
+        "pixelCount": 1755,
+        "universeCount": 12,
+        "packets": 0,
+        "framesComplete": 0,
+        "framesIncomplete": 0,
+        "fps": 0,
+        "packetsPerSecond": 0,
+        "heapFree": 193460,
+        "heapMinFree": 172496,
+        "frameTimeUs": 38564,
+        "outputTimeUs": 38564,
+        "lastFrameLatencyMs": null,
+        "startUniverse": 0,
+        "outputFrames": 1,
+        "timeouts": 0,
+        "droppedPackets": 0,
+        "sequenceErrors": 0
+      },
+      "after": {
+        "pixelCount": 1755,
+        "universeCount": 12,
+        "packets": 5008,
+        "framesComplete": 280,
+        "framesIncomplete": 257,
+        "fps": 14,
+        "packetsPerSecond": 268,
+        "heapFree": 193356,
+        "heapMinFree": 172496,
+        "frameTimeUs": 38009,
+        "outputTimeUs": 38009,
+        "lastFrameLatencyMs": null,
+        "startUniverse": 0,
+        "outputFrames": 281,
+        "timeouts": 5,
+        "droppedPackets": 0,
+        "sequenceErrors": 0
+      },
+      "config": {
+        "pixelCount": 1755,
+        "startUniverse": 0,
+        "universeCount": 12,
+        "targetFps": 60,
+        "hardwareProfile": "extensionboard-6ws-3apa",
+        "outputs": [
+          {
+            "id": 0,
+            "type": "WS2812B",
+            "enabled": true,
+            "startPixel": 0,
+            "pixelCount": 731,
+            "dataPin": 14,
+            "clockPin": -1,
+            "colorOrder": "GRB",
+            "reverse": false,
+            "spiHz": 0,
+            "startUniverse": 0,
+            "targetFps": 60
+          },
+          {
+            "id": 1,
+            "type": "APA102",
+            "enabled": true,
+            "startPixel": 731,
+            "pixelCount": 1024,
+            "dataPin": 18,
+            "clockPin": 19,
+            "colorOrder": "BGR",
+            "reverse": false,
+            "spiHz": 4000000,
+            "startUniverse": 5,
+            "targetFps": 60
+          }
+        ]
+      },
+      "original_reported_output_fps": 13.995941107109584
+    }
+  ],
+  "restored_exactly": true,
+  "final_black_sent": true
+}

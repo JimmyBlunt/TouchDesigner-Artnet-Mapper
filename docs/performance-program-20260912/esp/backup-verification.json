@@ -1,0 +1,18 @@
+{
+  "verified_utc": "2026-09-12T03:06:55.033455+00:00",
+  "port": "COM5",
+  "device": "USB\\VID_10C4&PID_EA60\\0001",
+  "chip": "ESP32-D0WD revision 1.0",
+  "mac": "e8:68:e7:0d:38:a4",
+  "flash_bytes": 4194304,
+  "baud": 230400,
+  "two_independent_full_reads_identical": true,
+  "sha256": "213b16a2e37df6435a4262552063cb8921fe1ea9b04ea194562d83cc8fb4da1d",
+  "private_backup_paths": [
+    "C:\\Users\\jbhtz\\AppData\\Local\\CodexESP30\\backups\\esp32-e868e70d38a4-read1-20260912.bin",
+    "C:\\Users\\jbhtz\\AppData\\Local\\CodexESP30\\backups\\esp32-e868e70d38a4-read2-20260912.bin"
+  ],
+  "nvs_config_redacted": "config-before-redacted.json",
+  "device_state": "bootloader; original flash untouched",
+  "credentials_in_backup": "possible; excluded from version control"
+}

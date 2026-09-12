@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+.pio/
+.pio-core/
+build/
+secrets.h
+*.bin
+*.elf
+*.map

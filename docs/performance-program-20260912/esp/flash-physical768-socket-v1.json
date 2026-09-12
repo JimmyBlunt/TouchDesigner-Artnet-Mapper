@@ -1,0 +1,36 @@
+{
+  "label": "physical768-socket-v1",
+  "completed_utc": "2026-09-12T03:47:34.560569+00:00",
+  "mac": "e8:68:e7:0d:38:a4",
+  "port": "COM5",
+  "returncode": 0,
+  "firmware_sha256": "3c93a10dc2c5796f60aec11b8a441bfb9b2ad18f2d345df81fdd671b016e5a40",
+  "hash_verification_messages": 4,
+  "runtime_disarmed_verified": true,
+  "log": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\docs\\performance-program-20260912\\esp\\flash-physical768-socket-v1.log",
+  "runtime_ip": "10.0.0.151",
+  "runtime_config": {
+    "experimental": true,
+    "profile": 768,
+    "routingMutable": false,
+    "outputs": [
+      {
+        "pin": 14,
+        "count": 256,
+        "universe": 0,
+        "type": "WS2812B",
+        "clockPin": -1,
+        "colorOrder": "GRB"
+      },
+      {
+        "pin": 18,
+        "count": 512,
+        "universe": 2,
+        "type": "APA102",
+        "clockPin": 19,
+        "spiHz": 4000000,
+        "colorOrder": "BGR"
+      }
+    ]
+  }
+}

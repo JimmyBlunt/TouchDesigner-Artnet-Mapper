@@ -1,0 +1,20 @@
+{
+  "source": "https://www.silabs.com/documents/public/software/CP210x_Universal_Windows_Driver.zip",
+  "downloaded_utc": "2026-09-12T02:49:14.095834+00:00",
+  "inf_driver_version": "08/14/2026,11.6.0.420",
+  "catalog_signature": "Valid; Microsoft Windows Hardware Compatibility Publisher",
+  "device": "USB\\VID_10C4&PID_EA60\\0001",
+  "initial_problem": "CM_PROB_FAILED_INSTALL",
+  "plain_pnputil_result": "Access denied (Medium Integrity)",
+  "elevated_pnputil": "completed successfully via Windows UAC",
+  "files": {
+    "cp210x.zip": "ce40eb9cdb52726e98986e03ed506e17aa5aa771cc0ff3e9c376be399e07f992",
+    "extracted\\silabser.inf": "38e00414a04a2d525bdc61f4ae7cc12d42f90296c17bd793dfc244a2d5b58b84",
+    "extracted\\silabser.cat": "8e5c5231ec368b039cfd13f7b314e46682ec06c455b25ddc544f3b410eaf0b19"
+  },
+  "result_com_port": "COM5",
+  "device_status": "OK / CM_PROB_NONE",
+  "chip": "ESP32-D0WD revision 1.0",
+  "mac": "e8:68:e7:0d:38:a4",
+  "flash_bytes": 4194304
+}
