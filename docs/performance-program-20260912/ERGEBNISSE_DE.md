@@ -53,3 +53,8 @@ Die drei parallel beauftragten Agenten bearbeiteten GICO, ESP und Teensy. Nach i
 Abschluss-Commits: `fa74eec` (ESP Raw64 einschließlich beider Hardwareprofile), `385d5ed` (Teensy RX32 einschließlich 120-s-DMA-Test). Firmwarearchive, HEX/ELF und gespeicherter TD-Checkpoint wurden abschließend gegen ihre SHA256-Manifeste geprüft (`final-artifact-verification.json`). `final-hardware-state.json` und `final-td-state.json` bestätigen ausgeschaltete Ausgaben und unverändertes Routing. Die originale Leerzeile im fehlgeschlagenen Teensy-Flashlog bleibt als unveränderter Rohbeleg erhalten.
 
 Die aktive Messphase ist beendet. Die zehnminütige Statusautomation wurde bis zur nächsten Hardware-/Kameraabnahme pausiert; die noch offene strenge Jitter-Abnahme wird dadurch nicht als erfüllt markiert.
+
+
+## Nachtrag: erste GICO-Originalaufnahme
+
+Die Originaldatei wurde inzwischen vollständig ausgewertet. Im 30-FPS-Fenster wurden 1.785 aufeinanderfolgende Bildnummern ohne Lücke mindestens einmal erkannt, etwa 29,991/s. Darin enthalten ist eine begrenzte CRC-Rekonstruktion unklarer Bits; 593 IDs werden nur durch ein Kamerabild bestätigt. Das spricht deutlich für 30 FPS am gefilmten Panel dieses unabhängigen Sendertests. Eine strenge Zweibild-, elektrische oder TD→GICO-Abnahme folgt daraus noch nicht. Ausführliche Grenzen, Decoderverbesserung und Rohdaten: `measurements/gico-camera-001-original-review/ERGEBNISSE_DE.md` im Projektroot. Die ursprüngliche Tabellenzeile zum damals noch ausstehenden GICO-Video bleibt als zeitlicher Zwischenstand lesbar.

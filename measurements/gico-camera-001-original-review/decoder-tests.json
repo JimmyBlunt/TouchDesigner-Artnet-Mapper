@@ -1,0 +1,13 @@
+{
+  "tests": "python -m unittest discover -s tests -p test_gico_optical_erasure.py -v",
+  "passed_groups": 3,
+  "elapsed_seconds": 5.117,
+  "all_4096_plain_ids_checked": true,
+  "81920_single_known_bit_flips_rejected": true,
+  "bounded_three_erasure_combinations_on_8_ids_checked": true,
+  "time_or_expected_fps_used_by_decoder": false,
+  "source_sha256": {
+    "pixelblaze_mapper\\gico_optical_erasure.py": "2457cd4ef184475282661931ed02aa8a4f8ebdeba702f02fc1dffee6b697ac34",
+    "tests\\test_gico_optical_erasure.py": "10f67744775decff7e7745680d540687ea40d99cbda7547c37b39485e36f4f1a"
+  }
+}

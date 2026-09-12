@@ -57,3 +57,10 @@ mit jeweils 24 Sequenz-0-Paketen und den entsprechenden Logeintrag.
 WhatsApp-Vorprüfung: 576×1024, knapp 60 FPS, 244,013 s. Kalibrierpunkte erkennbar, aber kurze Decoderstichproben zu 96–100 % uneindeutig; keine belastbare LED-FPS-Zahl. Nach Abgleich zweier Schwarzpausen fehlen in dieser Datei ungefähr 33 s des letzten Messabschnitts. Originaldatei angekündigt; vor erneutem Test zunächst diese prüfen. Belege: `measurements/gico-camera-001-whatsapp-review/BEWERTUNG_DE.md`.
 
 Zweite WhatsApp-Datei geprüft: 289,323 s inklusive schwarzem Testende, aber 464×832 statt 576×1024 Pixel. In drei Decoderstichproben 0/181, 66/180, 0/180 gültige Kameraaufnahmen; weiterhin keine belastbare GICO-FPS-Angabe. Originaldatei abwarten. Belege: `measurements/gico-camera-001-video2-review/BEWERTUNG_DE.md`.
+
+
+## Originalaufnahme vollständig ausgewertet
+
+`E:/LED Full.mov`, 1080×1920, knapp 60 FPS, 289,323 s. Neue lokale Kalibrierung und begrenzter Erasure-CRC-Decoder getestet. Im 30-FPS-Fenster 1.785 aufeinanderfolgende IDs 8–1.792 mindestens einmal gelesen, keine ID-Lücke: 29,991 beobachtete neue IDs/s. 809 IDs haben mindestens eine vollständig gelesene CRC-Aufnahme, 976 sind nur mit begrenzter Erasure-Rekonstruktion belegt. 593 IDs erscheinen nur in einem Kamerabild. Strenge Zweibildbeobachtung daher 20,209/s, ausdrücklich keine GICO-Leistungsgrenze. Bei 25 FPS 24,987/s (Einbild), bei 15 FPS 14,730/s einschließlich etwa einer Sekunde verworfener Bildregistrierung.
+
+Das ist starke optische Evidenz für nominal 30 FPS am gefilmten Panel im unabhängigen Sendertest. Keine elektrische/all-port/TD-Integrationsabnahme; strengere 120/240-FPS-Aufnahme optional für ursprüngliche Zweibildabnahme. Vollständiger Bericht und Rohbelege: `measurements/gico-camera-001-original-review/ERGEBNISSE_DE.md`. Keine Hardwareausgabe während der Auswertung.

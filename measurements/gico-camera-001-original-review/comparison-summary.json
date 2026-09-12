@@ -1,0 +1,128 @@
+[
+  {
+    "phase": "measure_15",
+    "requested_fps": 15,
+    "valid_id_distinct_total": 877,
+    "ids_seen_only_once": 0,
+    "one_camera_frame": {
+      "camera_samples": 3568,
+      "valid_samples": 3087,
+      "rejected_fraction": 0.13480941704035873,
+      "stable_distinct_images": 877,
+      "observation_span_seconds": 59.401666666666664,
+      "observed_unique_fps_estimate": 14.730226424623329,
+      "camera_fps_median": 60.00000000000341,
+      "camera_interval_max_ms": 18.33333333334508,
+      "observed_interval_max_ms": 1066.6666666666629,
+      "unobserved_ids": 16,
+      "unexpected_discontinuities": 0,
+      "proven_controller_drops": null
+    },
+    "two_consecutive_camera_frames": {
+      "camera_samples": 3568,
+      "valid_samples": 3087,
+      "rejected_fraction": 0.13480941704035873,
+      "stable_distinct_images": 877,
+      "observation_span_seconds": 59.401666666666664,
+      "observed_unique_fps_estimate": 14.730226424623329,
+      "camera_fps_median": 60.00000000000341,
+      "camera_interval_max_ms": 18.33333333334508,
+      "observed_interval_max_ms": 1066.6666666666629,
+      "unobserved_ids": 16,
+      "unexpected_discontinuities": 0,
+      "proven_controller_drops": null
+    },
+    "alignment_check_latency_s_min_p01_median_p99_max": [
+      -0.022693366664846337,
+      -0.016026404678969895,
+      0.013973799976525925,
+      0.045873659998737465,
+      0.05381039997794801
+    ],
+    "note": "Sender timestamps used only for post-decoding plausibility check, never ID reconstruction; latency includes offset uncertainty and camera exposure/PTS."
+  },
+  {
+    "phase": "measure_25",
+    "requested_fps": 25,
+    "valid_id_distinct_total": 1488,
+    "ids_seen_only_once": 70,
+    "one_camera_frame": {
+      "camera_samples": 3568,
+      "valid_samples": 3129,
+      "rejected_fraction": 0.12303811659192825,
+      "stable_distinct_images": 1488,
+      "observation_span_seconds": 59.47,
+      "observed_unique_fps_estimate": 24.987388599293762,
+      "camera_fps_median": 59.99999999995225,
+      "camera_interval_max_ms": 18.33333333334508,
+      "observed_interval_max_ms": 83.33333333331439,
+      "unobserved_ids": 1,
+      "unexpected_discontinuities": 0,
+      "proven_controller_drops": null
+    },
+    "two_consecutive_camera_frames": {
+      "camera_samples": 3568,
+      "valid_samples": 3129,
+      "rejected_fraction": 0.12303811659192825,
+      "stable_distinct_images": 1418,
+      "observation_span_seconds": 59.403333333333336,
+      "observed_unique_fps_estimate": 23.837046181471298,
+      "camera_fps_median": 59.99999999995225,
+      "camera_interval_max_ms": 18.33333333334508,
+      "observed_interval_max_ms": 116.66666666667425,
+      "unobserved_ids": 69,
+      "unexpected_discontinuities": 0,
+      "proven_controller_drops": null
+    },
+    "alignment_check_latency_s_min_p01_median_p99_max": [
+      -0.02913106667148213,
+      -0.018185900007221107,
+      0.0001468333178991088,
+      0.02014740531765028,
+      0.028083366651941333
+    ],
+    "note": "Sender timestamps used only for post-decoding plausibility check, never ID reconstruction; latency includes offset uncertainty and camera exposure/PTS."
+  },
+  {
+    "phase": "measure_30",
+    "requested_fps": 30,
+    "valid_id_distinct_total": 1785,
+    "ids_seen_only_once": 593,
+    "one_camera_frame": {
+      "camera_samples": 3568,
+      "valid_samples": 2982,
+      "rejected_fraction": 0.16423766816143498,
+      "stable_distinct_images": 1785,
+      "observation_span_seconds": 59.45166666666668,
+      "observed_unique_fps_estimate": 29.990748787530478,
+      "camera_fps_median": 60.00000000005457,
+      "camera_interval_max_ms": 18.333333333373503,
+      "observed_interval_max_ms": 51.66666666667652,
+      "unobserved_ids": 0,
+      "unexpected_discontinuities": 0,
+      "proven_controller_drops": null
+    },
+    "two_consecutive_camera_frames": {
+      "camera_samples": 3568,
+      "valid_samples": 2982,
+      "rejected_fraction": 0.16423766816143498,
+      "stable_distinct_images": 1192,
+      "observation_span_seconds": 58.88500000000002,
+      "observed_unique_fps_estimate": 20.20888171860405,
+      "camera_fps_median": 60.00000000005457,
+      "camera_interval_max_ms": 18.333333333373503,
+      "observed_interval_max_ms": 450.00000000001705,
+      "unobserved_ids": 577,
+      "unexpected_discontinuities": 0,
+      "proven_controller_drops": null
+    },
+    "alignment_check_latency_s_min_p01_median_p99_max": [
+      -0.022213500023354982,
+      -0.019732502676971818,
+      -0.005545916672332396,
+      0.012516015337802472,
+      0.014453633327121906
+    ],
+    "note": "Sender timestamps used only for post-decoding plausibility check, never ID reconstruction; latency includes offset uncertainty and camera exposure/PTS."
+  }
+]
