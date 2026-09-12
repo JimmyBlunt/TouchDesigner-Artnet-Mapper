@@ -1,0 +1,13 @@
+{
+  "reason": "User requested save and close before relocating the project folders",
+  "project": "PixelblazeMapper_30FPS_PROGRAM_20260912_worker-clock-ui.2.toe",
+  "previous_project": "PixelblazeMapper_30FPS_PROGRAM_20260912_worker-clock-ui.1.toe",
+  "size_bytes": 16186562,
+  "sha256": "d7033b0516abdb31d3ad819173e1c347a5a9a9f6e18fdbfadddbd29cfd46cfe7",
+  "save_returned_true": true,
+  "outputs_off_verified_before_save": true,
+  "temporary_gico_session_and_nodes_absent": true,
+  "exit_method": "project.quit() after successful save",
+  "touchdesigner_process_absent_after_exit": true,
+  "next_step": "Wait for user's new folder location; check paths before reopening and enabling output"
+}
