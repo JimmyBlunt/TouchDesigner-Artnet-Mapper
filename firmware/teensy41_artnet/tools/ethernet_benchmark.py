@@ -12,6 +12,7 @@ import subprocess
 import threading
 import time
 import serial
+from serial.tools import list_ports
 
 
 def main():
@@ -21,15 +22,20 @@ def main():
     p.add_argument('--seconds', type=float, default=60)
     p.add_argument('--rates', type=int, nargs='+', default=[10, 20, 30, 40])
     p.add_argument('--arm-unwired-bench', action='store_true')
+    p.add_argument('--led-limit', type=int, default=880)
     p.add_argument('--output', type=Path, required=True)
     args = p.parse_args()
     if args.output.exists() or not 5 <= args.seconds <= 600:
         raise ValueError('Output must be new and duration between 5 and 600 seconds')
     if any(r < 1 or r > 120 for r in args.rates):
         raise ValueError('Rates must be 1..120')
+    candidates=[x for x in list_ports.comports() if x.device.lower()==args.port.lower()]
+    if len(candidates)!=1 or candidates[0].vid!=0x16c0 or candidates[0].pid!=0x0483 or candidates[0].serial_number!='7858800':
+        raise RuntimeError('Port is not the explicitly identified Teensy 4.1 test board')
     ser = serial.Serial(args.port, 115200, timeout=.2, write_timeout=1)
     samples = []
     read_errors = []
+    diagnostics = []
     stop = threading.Event()
 
     def reader():
@@ -39,6 +45,8 @@ def main():
                 sample = json.loads(line)
                 if sample.get('firmware') == 'teensy41-artnet-0.1':
                     samples.append({'host_time': time.perf_counter(), **sample})
+                else:
+                    diagnostics.append({'host_time': time.perf_counter(), 'data': sample})
             except (ValueError, UnicodeDecodeError):
                 pass
             except serial.SerialException as exc:
@@ -66,10 +74,21 @@ def main():
         # Resolve ARP before the measured UDP burst. The cold smoke test lost the
         # first 27 packets before the socket/firmware saw them; do not hide it in RX loss.
         warmup = subprocess.run(['ping', '-S', '10.0.0.125', '-n', '1', '-w', '2000', args.target],
-                                capture_output=True, text=True, timeout=5)
+                                capture_output=True, text=True, errors='replace', timeout=5)
         result['arp_warmup'] = {'returncode': warmup.returncode, 'output': warmup.stdout}
         if warmup.returncode:
             raise RuntimeError('Identified Teensy did not answer the pre-test Ethernet ping')
+        if not 1 <= args.led_limit <= 880:
+            raise ValueError('LED limit must be 1..880')
+        ser.write(('LIMIT %d\nSTATUS\n' % args.led_limit).encode())
+        limit_deadline=time.monotonic()+3
+        while time.monotonic()<limit_deadline:
+            if samples and samples[-1].get('led_limit')==args.led_limit:
+                break
+            time.sleep(.05)
+        else:
+            raise RuntimeError('LED limit not acknowledged; reboot before changing initialized driver length')
+        result['led_limit']=args.led_limit
         seq = 1
         for rate in args.rates:
             ser.write(b'STOP\n')
@@ -123,13 +142,22 @@ def main():
         stop_requested_at = time.perf_counter()
         try:
             ser.write(b'STOP\nSTATUS\n')
-            time.sleep(.5)
+            # STATUS in the STOP command loop can precede the deferred blackout.
+            # Ask again after subsequent loops; a fixed 0.5s sleep misses the 1s
+            # periodic report, especially on a paging/CPU-loaded test host.
+            deadline=time.perf_counter()+5
+            while time.perf_counter()<deadline:
+                time.sleep(.2)
+                if samples and samples[-1]['host_time']>stop_requested_at and not samples[-1]['armed'] and samples[-1]['black']:
+                    break
+                ser.write(b'STATUS\n')
         except serial.SerialException as exc:
             result['stop_error'] = str(exc)
         result['final_status'] = samples[-1] if samples else None
         result['stop_confirmed'] = bool(samples and samples[-1]['host_time'] > stop_requested_at
                                         and not samples[-1]['armed'] and samples[-1]['black'])
         result['serial_read_errors'] = read_errors
+        result['diagnostics'] = diagnostics
         stop.set()
         worker.join(1)
         ser.close()

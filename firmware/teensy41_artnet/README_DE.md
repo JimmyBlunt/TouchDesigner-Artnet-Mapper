@@ -8,7 +8,7 @@ Die Firmware ist ein eigenständiger Testcontroller. Sie ersetzt keine ESP-Binä
 
 - `teensy41_safe`: USB-Serial und Ethernet-Empfang; keinerlei LED-Pininitialisierung. `ARM` bleibt wirkungslos. Dieses Image eignet sich zur ersten Geräteidentifikation.
 - `teensy41_driver_compile`: sieben FastLED-Controller werden als Quellcode instanziiert. Die Fixture-Pins sind ausschließlich Compiler-Testwerte, werden im Programmablauf nie initialisiert und sind keine Verdrahtungsvorgabe.
-- `teensy41_hardware`: erfordert `include/hardware_pins.h` mit sieben geprüften Pinbelegungen. Das Beispiel bricht absichtlich mit einer klaren Fehlermeldung ab. Erst dieser Build initialisiert die bekannten Pins und sendet beim Start schwarz. Ausgabe bleibt bis `ARM` deaktiviert.
+- `teensy41_hardware`: erfordert `include/hardware_pins.h` mit sieben geprüften Pinbelegungen. Das Beispiel bricht absichtlich mit einer klaren Fehlermeldung ab. Auch dieser Build initialisiert GPIO/FastLED erst bei `ARM`; USB und Ethernet stehen vorher zur Diagnose bereit. Ein zuvor leuchtendes, separat versorgtes Panel wird durch einen Controller-Neustart ohne Datenübertragung nicht zwangsläufig gelöscht; vor einer Betriebsmigration zuerst STOP/Schwarz ausführen.
 - `teensy41_unwired_bench`: nach Nutzerbestätigung USB + Ethernet ohne angeschlossene LEDs vorbereitet. Nur an diesem unverdrahteten Testgerät werden Pins 2–8 verwendet. Eigene Kennzeichnung `unwired_bench:true` verhindert Verwechslung im Lasttestskript. Diese Pinbelegung ist keine freigegebene Verkabelung für die Panels.
 
 ## Unveränderte logische Adressierung
@@ -42,6 +42,7 @@ Serielle Befehle mit Zeilenende:
 - `STATUS`: JSON-Telemetrie; ebenfalls ungefähr jede Sekunde, sofern Serial ausreichend freien Puffer meldet.
 - `ARM`: nur bei bestätigtem Hardware-Pinout wirksam. Vorher empfangene Bilder werden verworfen; nur neue vollständige Bilder dürfen leuchten. Die erste vollständige Aufnahme muss innerhalb einer Sekunde eintreffen.
 - `STOP`: sofort entwaffnen; nach Ablauf der vorherigen LED-Datenübertragung schwarz senden. Netzwerk-Linkverlust oder eine Sekunde ohne vollständiges Bild führt ebenfalls zu STOP. Kein selbstständiges Wiederanlaufen; erneutes ARM erforderlich.
+- `CRASH`: gespeicherten Teensy-CrashReport über USB ausgeben; nur zur Fehlerdiagnose außerhalb einer Leistungsmessung.
 
 Erste Hardwarehelligkeit 16/255, zeitliches Dithering aus. Ausgabe maximal 30 FPS, ohne Aufholbursts. `submit_fps` zählt gestartete FastLED-Aufrufe und ist **kein optisch bestätigter LED-FPS-Zähler**. `show_call_us` misst die Dauer des Aufrufs, nicht zwingend die gesamte asynchrone Datenübertragung. UDP-Drops zählen nur die QNEthernet-Socketqueue, nicht alle möglichen Verluste im PHY/Netzwerk.
 
@@ -63,3 +64,11 @@ Erste Hardwarehelligkeit 16/255, zeitliches Dithering aus. Ausgabe maximal 30 FP
 - [PJRC Teensy 4.1 und Ethernet-Hardware](https://www.pjrc.com/store/teensy41.html)
 
 Lizenzhinweis für Weitergabe: QNEthernet verwendet AGPL-3.0-or-later. Die eingebundenen Bibliothekslizenzen und die korrespondierenden Firmwarequellen müssen bei einer späteren Distribution berücksichtigt werden.
+
+## Moderner FastLED-Channel-Pfad und historischer Korrekturpatch
+
+Die aktuelle Firmware verwendet `ChannelConfig` und `Channel::create` mit `FastLED.setExclusiveDriver<fl::Bus::OBJECT_FLED>()`. Damit nutzt sie den modernen Engine im unveränderten FastLED-Release. Gamma ist 1, Dithering deaktiviert, Farbreihenfolge GRB. Die öffentliche Channel-API vermeidet drei im älteren `addLeds`-Proxy unabhängig geprüfte Fehler: nuller `drawBuffer`, zu früh abgeschlossenes Mehrkanallayout und fehlender Frame-End-Flush.
+
+Der erste experimentelle Legacy-Build und sein späterer Zeigerpatch bleiben als Diagnosebelege erhalten. Der Hook `tools/patch_fastled.py` stellt heute ausschließlich diesen exakt bekannten früheren Einfügetext auf den SHA-geprüften Originaltext zurück; er wendet keinen neuen Vendorpatch an. Fremde Änderungen brechen den Build ab. Historischer lesbarer Diff und Patchtests liegen unter `patches/` beziehungsweise `test/`. Die Entscheidung mit geprüften Primärquellen steht in `docs/performance-program-20260912/teensy/driver-decision.md`.
+
+Dieser Patch gilt für unser ausschließlich RGB verwendendes, nicht serpentin gedrehtes Profil. Eine allgemeine RGBW-Freigabe folgt daraus nicht. Boot wird zusätzlich von der LED-Initialisierung getrennt und die erste DMA-Prüfung berücksichtigt noch nicht initialisierte DMA-Completion-Flags. Der tatsächliche Hardwarestatus der Folgeversion steht in `docs/performance-program-20260912/teensy/STATUS.md`.

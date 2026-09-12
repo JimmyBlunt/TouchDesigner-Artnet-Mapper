@@ -1,12 +1,16 @@
 #include <Arduino.h>
 #include <QNEthernet.h>
 #include "receiver_core.h"
+#include <malloc.h>
+extern "C" { extern char* __brkval; extern unsigned long _heap_end; }
 
 #ifndef PINOUT_CONFIRMED
 #define PINOUT_CONFIRMED 0
 #endif
 #if PINOUT_CONFIRMED || defined(PINOUT_COMPILE_FIXTURE)
 #include <FastLED.h>
+#include "fl/channels/channel.h"
+#include "platforms/arm/teensy/teensy4_common/drivers/objectfled/bus_traits.h"
 #else
 struct CRGB { uint8_t r,g,b; }; // Safe image has no LED driver dependency.
 #endif
@@ -34,6 +38,9 @@ constexpr uint32_t kPeriodUs=33334; // <=30 FPS, no catch-up output bursts.
 constexpr uint32_t kWireGuardUs=880*30+300;
 static_assert(kWireGuardUs<kPeriodUs,"Longest chain exceeds the 30 FPS budget");
 bool armed=false, black=true, networkStarted=false;
+bool outputsInitialized=false;
+unsigned outputLimit=880;
+int capped(int count) { return count<int(outputLimit)?count:int(outputLimit); }
 uint32_t showStart=0, lastReport=0, submitted=0, blackoutCount=0;
 uint32_t showUs=0, maxShowUs=0, maxLoopUs=0, foreignPackets=0, telemetrySkipped=0;
 uint32_t previousSubmitted=0, previousComplete=0, maxQueue=0;
@@ -48,6 +55,8 @@ bool dmaPending=false;
 void clearLeds() { ::memset(static_cast<void*>(leds),0,sizeof(leds)); }
 bool dmaReady() {
 #if PINOUT_CONFIRMED
+  // Before first show(), ObjectFLED has not configured DMA completion flags yet.
+  if(!outputsInitialized || (submitted==0 && blackoutCount==0)) return true;
   // Pinned FastLED internal API: avoid rewriting its shared DMA framebuffer
   // while the previous transfer is still active, without blocking UDP drainage.
   const bool busy=fl::ObjectFLEDDmaManager::getInstance().isBusy();
@@ -61,21 +70,44 @@ bool dmaReady() {
 void registerOutputs() {
 #if PINOUT_CONFIRMED || defined(PINOUT_COMPILE_FIXTURE)
   // Incoming ArtDmx is RGB; only the physical output swaps to GRB.
-  FastLED.addLeds<WS2812B,LED_PIN_1,GRB>(leds+0,203);
-  FastLED.addLeds<WS2812B,LED_PIN_2,GRB>(leds+203,738);
-  FastLED.addLeds<WS2812B,LED_PIN_3,GRB>(leds+941,880);
-  FastLED.addLeds<WS2812B,LED_PIN_4,GRB>(leds+1821,810);
-  FastLED.addLeds<WS2812B,LED_PIN_5,GRB>(leds+2631,352);
-  FastLED.addLeds<WS2812B,LED_PIN_6,GRB>(leds+2983,680);
-  FastLED.addLeds<WS2812B,LED_PIN_7,GRB>(leds+3663,442);
+  // Public Channel API selects the current engine, bypassing the legacy proxy.
+  FastLED.setExclusiveDriver<fl::Bus::OBJECT_FLED>();
+  const int pins[]={LED_PIN_1,LED_PIN_2,LED_PIN_3,LED_PIN_4,LED_PIN_5,LED_PIN_6,LED_PIN_7};
+  const int offsets[]={0,203,941,1821,2631,2983,3663};
+  const int counts[]={203,738,880,810,352,680,442};
+  fl::ChannelOptions options;
+  options.mBus=fl::Bus::OBJECT_FLED;
+  options.mGamma=1.0f;
+  options.mDitherMode=0;
+  for(unsigned i=0;i<7;++i) {
+    fl::ClocklessChipset chipset(pins[i],fl::makeTimingConfig<fl::TIMING_WS2812_800KHZ>());
+    fl::ChannelConfig config(chipset,fl::span<CRGB>(leds+offsets[i],capped(counts[i])),GRB,options);
+    FastLED.add(fl::Channel::create(config));
+  }
+  FastLED.setBrightness(16);
+  FastLED.setDither(0);
+  outputsInitialized=true;
 #endif
 }
 void showFrame(bool isBlack) {
 #if PINOUT_CONFIRMED
+  const bool first=submitted==0 && blackoutCount==0;
+  if(first && Serial) {
+    const auto info=mallinfo();
+    Serial.printf("{\"diagnostic\":\"first_show_enter\",\"heap_unallocated\":%lu,\"arena_free\":%u,\"arena_used\":%u,\"led_limit\":%u}\n",
+      (unsigned long)((char*)&_heap_end-__brkval),info.fordblks,info.uordblks,outputLimit);
+    Serial.flush();
+  }
   const uint32_t started=micros();
   FastLED.show();
   showUs=micros()-started;
   if(showUs>maxShowUs) maxShowUs=showUs;
+  if(first && Serial) {
+    const auto info=mallinfo();
+    Serial.printf("{\"diagnostic\":\"first_show_return\",\"heap_unallocated\":%lu,\"arena_free\":%u,\"arena_used\":%u}\n",
+      (unsigned long)((char*)&_heap_end-__brkval),info.fordblks,info.uordblks);
+    Serial.send_now();
+  }
   showStart=started;
   dmaPending=true;
   if(isBlack) ++blackoutCount; else ++submitted;
@@ -94,7 +126,7 @@ void report() {
   const auto ip=Ethernet.localIP();
   const int n=snprintf(line,sizeof(line),
     "{\"firmware\":\"teensy41-artnet-0.1\",\"pinout_confirmed\":%s,"
-    "\"unwired_bench\":%s,\"armed\":%s,\"black\":%s,\"ip\":\"%u.%u.%u.%u\",\"link\":%s,"
+    "\"unwired_bench\":%s,\"led_limit\":%u,\"armed\":%s,\"black\":%s,\"ip\":\"%u.%u.%u.%u\",\"link\":%s,"
     "\"packets\":%lu,\"udp_received\":%lu,\"udp_queue_drops\":%lu,"
     "\"queue_peak\":%lu,\"rejected\":%lu,\"foreign\":%lu,\"ignored\":%lu,"
     "\"complete\":%lu,\"incomplete\":%lu,\"stale\":%lu,\"duplicates\":%lu,"
@@ -103,7 +135,7 @@ void report() {
     "\"show_call_us\":%lu,\"max_show_call_us\":%lu,\"max_loop_us\":%lu,"
     "\"telemetry_skipped\":%lu,\"dma_completed\":%lu,\"dma_elapsed_us\":%lu,"
     "\"dma_busy_deferrals\":%lu,\"physical_fps_verified\":false}\n",
-    PINOUT_CONFIRMED?"true":"false",kUnwiredBench?"true":"false",armed?"true":"false",black?"true":"false",
+    PINOUT_CONFIRMED?"true":"false",kUnwiredBench?"true":"false",outputLimit,armed?"true":"false",black?"true":"false",
     ip[0],ip[1],ip[2],ip[3],Ethernet.linkState()?"true":"false",
     c.packets,udp.totalReceiveCount(),udp.droppedReceiveCount(),maxQueue,
     c.rejected,foreignPackets,c.ignored,c.complete,c.incomplete,c.stale,c.duplicate,
@@ -124,7 +156,13 @@ void serialCommands() {
       if(!overflow) {
         if(!strcmp(command,"STOP")) stopOutput();
         else if(!strcmp(command,"STATUS")) report();
+        else if(!strcmp(command,"CRASH") && Serial) Serial.print(CrashReport);
+        else if(!strncmp(command,"LIMIT ",6) && kUnwiredBench && !outputsInitialized && !armed) {
+          const unsigned long limit=::strtoul(command+6,nullptr,10);
+          if(limit>=1 && limit<=880) outputLimit=limit;
+        }
         else if(!strcmp(command,"ARM") && PINOUT_CONFIRMED) {
+          if(!outputsInitialized) registerOutputs();
           receiver.clear(); armed=true; armedAt=millis();
         }
       }
@@ -135,13 +173,8 @@ void serialCommands() {
 }
 void setup() {
   Serial.begin(115200); // Never wait for USB: networking remains responsive.
-#if PINOUT_CONFIRMED
-  registerOutputs();
-  FastLED.setBrightness(16); // Initial bench brightness cap; do not apply live settings.
-  FastLED.setDither(0);
-  clearLeds();
-  showFrame(true);
-#endif
+  // Keep USB/Ethernet available even if a driver fails on first ARM/show.
+  // No GPIO is initialized before ARM, including in the unwired bench image.
   Ethernet.setHostname("teensy-artnet-test");
   Ethernet.begin(); // DHCP: no guessed static address and no collision with ESP .151.
   networkStarted=udp.begin(6454);

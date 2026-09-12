@@ -14,7 +14,7 @@ try {
     $py = Join-Path $PSScriptRoot '.toolchain/Scripts/python.exe'
     & $py -m pip install -r requirements-build.txt
     if ($LASTEXITCODE) { throw 'Toolchain installation failed' }
-    & $py -m platformio run -j 2 -e teensy41_safe -e teensy41_driver_compile
+    & $py -m platformio run -j 1 -e teensy41_safe -e teensy41_driver_compile
     if ($LASTEXITCODE) { throw 'Firmware compilation failed' }
     if ($NativeTests) {
         & $py -m ziglang c++ -nostdlib++ -std=c++17 -O2 -Iinclude test/native/receiver_tests.cpp -o test/native/receiver_tests.exe
