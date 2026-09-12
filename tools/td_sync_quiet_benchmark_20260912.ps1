@@ -1,7 +1,8 @@
 param(
     [Parameter(Mandatory=$true)][ValidatePattern('^[a-zA-Z0-9-]+$')][string]$Label,
     [ValidateRange(10,180)][int]$Seconds=60,
-    [ValidateRange(1,120)][int]$Rate=30
+    [ValidateRange(1,120)][int]$Rate=30,
+    [switch]$Teensy
 )
 $ErrorActionPreference='Stop'
 $projectRoot=Split-Path -Parent $PSScriptRoot
@@ -37,7 +38,8 @@ try {
         }
         $report.stopped += $process.Name
     }
-    & 'C:/Users/jbhtz/AppData/Roaming/uv/tools/marimapper/Scripts/python.exe' (Join-Path $PSScriptRoot 'td_perform_benchmark_20260912.py') $Label --seconds $Seconds --rate $Rate --frame-pacing
+    $script=if ($Teensy) {'td_teensy_integrated_20260912.py'} else {'td_perform_benchmark_20260912.py'}
+    & 'C:/Users/jbhtz/AppData/Roaming/uv/tools/marimapper/Scripts/python.exe' (Join-Path $PSScriptRoot $script) $Label --seconds $Seconds --rate $Rate --frame-pacing
     $report.benchmark_exit=$LASTEXITCODE
     if ($LASTEXITCODE -ne 0) {throw "Benchmark exited $LASTEXITCODE"}
 }

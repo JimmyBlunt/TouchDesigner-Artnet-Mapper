@@ -1,0 +1,71 @@
+{
+  "project": "PixelblazeMapper_30FPS_PROGRAM_20260912_worker-clock-ui.1.toe",
+  "folder": "C:/Users/jbhtz/OneDrive/Desktop/Pictures/Documents/ChatGPT/LED-Touchdesigner-Controller/PixelblazeMapper",
+  "all_outputs_off": true,
+  "controllers": [
+    [
+      "enabled",
+      "name",
+      "target_ip",
+      "local_interface",
+      "port",
+      "start_universe",
+      "color_order",
+      "brightness",
+      "rate",
+      "art_sync",
+      "reserved_universes"
+    ],
+    [
+      "0",
+      "WS2812_NODE",
+      "10.0.0.244",
+      "10.0.0.125",
+      "6454",
+      "0",
+      "GRB",
+      "0.7",
+      "60",
+      "0",
+      "24"
+    ],
+    [
+      "0",
+      "APA102_ESP",
+      "10.0.0.251",
+      "10.0.0.125",
+      "6454",
+      "0",
+      "RGB",
+      "0.8",
+      "30",
+      "0",
+      "0"
+    ],
+    [
+      "1",
+      "BACK_PANEL_249",
+      "10.0.0.248",
+      "10.0.0.125",
+      "6454",
+      "120",
+      "RGB",
+      "0.7",
+      "8",
+      "0",
+      "29"
+    ]
+  ],
+  "gap": {
+    "BACK_PANEL_249": 1.5
+  },
+  "external": {
+    "enabled": true,
+    "python": "C:/Users/jbhtz/AppData/Roaming/uv/tools/marimapper/Scripts/python.exe",
+    "frame_pacing": true,
+    "worker_priority": "normal"
+  },
+  "perform": false,
+  "segments_sha256": "fe612885a3bf1322cf36f60d6a06fc725bdaed9f5d227bf1c95a4e896f076eb1",
+  "errors": ""
+}

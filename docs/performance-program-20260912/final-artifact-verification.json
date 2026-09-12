@@ -1,0 +1,7 @@
+{
+  "physical768-raw-v2": "archive and four flashed artifacts match manifest; no NVS section",
+  "virtual1755-raw-v2": "archive and four flashed artifacts match manifest; no NVS section",
+  "teensy_hex": "faefa8abf2c9819555a8442b97347b5bacf7804039cf84ff5553cd86087b0733",
+  "teensy_elf": "4e4ed88e98f6ff3a2f71c0288f96bd05b0da32ea8aff9c371570a96ed9b87a8a",
+  "td_saved_checkpoint": "1acf5c42671f5ca2068f09c886905b28b8f6ebeb4138aa94eb9f6c038f09e03a"
+}
