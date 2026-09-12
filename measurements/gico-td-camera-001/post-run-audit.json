@@ -1,0 +1,8 @@
+{
+  "outputs_off": true,
+  "session_active": false,
+  "temporary_nodes": [],
+  "source": "/project1/math1",
+  "errors": "",
+  "method": "TouchDesigner live bridge; guided_scan_live.assert_outputs_off and operator inspection after completion"
+}
