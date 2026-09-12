@@ -17,6 +17,14 @@ New-Item -ItemType Directory -Force build | Out-Null
 ./build/test_frame_assembler.exe
 ```
 
+Für einen Vergleichsbuild im selben Cache kann ausschließlich der Projektcode
+übersteuert werden, beispielsweise mit
+`$env:PLATFORMIO_BUILD_SRC_FLAGS = '-DEXPERIMENTAL_PROFILE_OVERRIDE=1755'`.
+Danach dieselbe Mixed-Umgebung bauen. Vor einem normalen768-Build diese Variable
+entfernen. Kein kombiniertes `-U/-D PANEL_PROFILE` verwenden: SCons ordnet diese
+Schalter um. Das Snapshotwerkzeug prüft die tatsächliche Größe des `leds`-Symbols
+im ELF unabhängig vom Umgebungsnamen.
+
 Die Rückwandprofile nutzen GPIOs 26,27,25,14,19,17 (GRB / WS2812B). Die Mixed-Profile verwenden WS an GPIO14 und APA102 DATA18/CLOCK19 mit Hardware-SPI4MHz; beide Treiber laufen gleichzeitig und synchronisieren vor dem nächsten Frame:
 
 | Profil | Pixel pro Port | Startuniversen |
@@ -43,6 +51,24 @@ HTTP: `GET /api/status`, `GET /api/config`, `POST /api/arm?enabled=true` bzw. `f
 
 Nach Start und bei jedem neuen Arm müssen frische vollständige Frames eintreffen. Ohne vollständiges Frame wird nach einer Sekunde schwarz gesetzt. Feste Helligkeitsobergrenze16/255 (~6.3%), Zielsendetakt30FPS und Ausgabeobergrenze60FPS gegen Phasenaliasing. Höhere theoretische Ausgangsrate ist kein Ersatz für Messung. Der Host sendet als fest zugelassener einzelner Sender10.0.0.125 ArtDmx an UDP6454; für eindeutige Messung pro Bild eine gemeinsame Nichtnull-Sequenz 1..255 verwenden. Sender mit unabhängigen Sequenzen pro Universum benötigen eine andere Assemblierungsstrategie.
 
+## Empfangsoptimierung V2
+
+Die aktuelle Version bindet UDP6454 über die lwIP-Raw-API auf deren TCP/IP-Thread.
+Ein Callback kopiert maximal531Bytes in eine begrenzte64-Paket-FreeRTOS-Queue
+und gibt den Netzwerkpuffer sofort frei. Damit entfällt die SDK-Socketmailbox
+mit nur sechs Datagrammen. `rawUdpQueueDrops`, `rawUdpQueuePeak`, Oversize- und
+Epoch-Zähler machen die zusätzliche Schicht beobachtbar. Veraltete Queuepakete
+werden bei ARM/STOP durch eine Generation verworfen. Quelle bleibt10.0.0.125.
+Die historischen Socketfelder bleiben zur Kompatibilität vorhanden, messen
+aber nicht die Größe der neuen Queue. WLAN-interne Verluste sind weiterhin
+nur durch Sender-/Empfangsvergleich vollständig erkennbar.
+
+Am virtuellen1755-Profil: zuvor16/898 vollständige Bilder in30s, danach
+1800/1800 Bilder und21600/21600Pakete in60s. Beide Ausgänge bestätigten1799
+Transfers; ein neueres Bild ersetzte nach Hostjitter das vorherige. Gemessen
+29,983Ausgaben/s, keine Raw-Queue-Drops. Hardwaretests für malformed/oversize,
+ARM mit altem Teilbild, frisches vollständiges Bild und STOP bestanden.
+
 ## Messprotokoll
 
 Vor und nach jedem 20-s-Lauf `/api/status` lesen. Getrennt berichten: gesendete Bilder und Datagramme, vollständige Empfangsbilder, `outputFrames`-Delta, unvollständige Frames, Mailboxüberschreibungen, RSSI und Transferdauer. `outputFrames` steigt erst nach abgeschlossener WS- und gegebenenfalls APA-Übertragung. Die getrennten Transferzähler enthalten zusätzlich Schwarzübertragungen. Kamera oder Logic-Analyzer ergänzt den noch fehlenden optischen Nachweis.
@@ -53,7 +79,7 @@ Vor und nach jedem 20-s-Lauf `/api/status` lesen. Getrennt berichten: gesendete 
 
 Der Berichtspfad muss neu sein. `--above-normal` erhöht ausschließlich die Priorität dieses Windows-Senderprozesses bis zu dessen Ende. `--gap-ms 1` ist ein optionaler Kontrolltest für Burstverträglichkeit. Standardmäßig werden nur schwarze Bilder gesendet. `--pattern moving-dot` sendet einen roten Punkt am WS- und einen blauen Punkt am APA-Ausgang, Hostwert255 mit einmaliger Firmwarebegrenzung16/255. Keine doppelte Helligkeitsskalierung verwenden. Jeder Lauf deaktiviert die Ausgabe in einem `finally`-Block.
 
-Die bisherige neue Physical768-Messung war durch Hostpausen bis243 ms begrenzt (angefordert30, tatsächlich23,03 Host-FPS). Das ist noch keine bestandene30-FPS-Abnahme. Die Originalfirmware erreichte am kleinen Aufbau bereits29,77 Ausgabe-FPS; beim virtuellen12-Universen-Bursttest dagegen nur0,55–0,60. Artefakte und aktueller Status liegen unter `docs/performance-program-20260912/esp/`.
+Die erste neue Physical768-Messung war durch PC-Speicherdruck begrenzt. Nach dem Schließen von Chrome erreichte der Aufbau900/900 bestätigte Ausgaben in30s und5400/5400 empfangenePakete ohne Teilbilder. Die abschließende Raw-V2-Messung über 120,002 s bestätigte alle 3.599 Bilder auf beiden Ausgängen und alle 21.594 Pakete: 29,991 FPS, keine Teilbilder, Queue-Drops oder Mailboxüberschreibungen. Das physische 768er-Profil ist wieder installiert und disarmed. Die Originalfirmware erreichte am kleinen Aufbau bereits29,77 Ausgabe-FPS; beim virtuellen12-Universen-Bursttest dagegen nur0,55–0,60. Artefakte und aktueller Status liegen unter `docs/performance-program-20260912/esp/`.
 
 ## Sicherung und reproduzierbare Artefakte
 

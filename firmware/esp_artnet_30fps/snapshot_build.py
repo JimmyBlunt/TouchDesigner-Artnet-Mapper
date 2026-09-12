@@ -6,6 +6,7 @@ import json
 import os
 from pathlib import Path
 import shutil
+import subprocess
 import zipfile
 
 def main(label, profile):
@@ -16,9 +17,17 @@ def main(label, profile):
     target=report/('esp-firmware-'+label+'.zip')
     manifest_path=report/('build-'+label+'.json')
     if target.exists() or manifest_path.exists(): raise RuntimeError('Snapshot label already exists')
-    source=[root/'platformio.ini',root/'src/main.cpp',root/'include/frame_assembler.h',root/'include/apa_frame.h',root/'README_DE.md']
+    source=[root/'platformio.ini',root/'src/main.cpp',root/'include/frame_assembler.h',root/'include/apa_frame.h',root/'include/raw_udp_receiver.h',root/'README_DE.md']
     if any(p.stat().st_mtime>(build/'firmware.bin').stat().st_mtime for p in source if p.suffix in ('.cpp','.h')):
         raise RuntimeError('Source is newer than firmware; rebuild before snapshot')
+    # Verify the compiled pixel count independently of the environment label.
+    # This also catches an ineffective source-only profile override.
+    nm=private/'pio/packages/toolchain-xtensa-esp32/bin/xtensa-esp32-elf-nm.exe'
+    symbols=subprocess.check_output([str(nm),'-S',str(build/'firmware.elf')],text=True)
+    led_sizes=[int(line.split()[1],16) for line in symbols.splitlines()
+               if len(line.split())==4 and line.split()[-1]=='leds']
+    if led_sizes != [profile*3]:
+        raise RuntimeError('Compiled LED buffer does not match the requested profile')
     artifacts={name:build/name for name in ('firmware.bin','bootloader.bin','partitions.bin')}
     artifacts['boot_app0.bin']=private/'pio/packages/framework-arduinoespressif32/tools/partitions/boot_app0.bin'
     manifest={'label':label,'compiled_panel_profile':profile,
@@ -26,6 +35,7 @@ def main(label, profile):
         'platformio':'6.1.18','platform':'espressif32@6.10.0','fastled':'3.9.15',
         'board':'ESP32-D0WD rev1.0 /4MB /MAC e8:68:e7:0d:38:a4',
         'output_default':'disarmed; LED GPIO initialization deferred until ARM',
+        'compiled_led_buffer_bytes_verified':led_sizes[0],
         'flash_offsets':{'bootloader.bin':'0x1000','partitions.bin':'0x8000','boot_app0.bin':'0xe000','firmware.bin':'0x10000'},
         'artifacts':{name:{'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for name,p in artifacts.items()},
         'sources':{str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in source}}

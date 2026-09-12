@@ -95,6 +95,8 @@ def run(local_ip, duration, rates, pattern='black', gap_ms=0):
                     'receivedPackets', 'completedFrames', 'incompleteFrames',
                     'outputFrames', 'supersededFrames', 'malformedPackets', 'latePackets',
                     'wsCompletedTransfers', 'apaCompletedTransfers')}
+                for key in ('rawUdpDatagrams','rawUdpQueueDrops','rawUdpOversizePackets','rawUdpStaleEpochPackets'):
+                    if key in before and key in after:delta[key]=(after[key]-before[key]) & 0xffffffff
                 results['cases'].append({'requested_fps': fps, **sent,
                     'sent_datagrams': sent['sent_frames'] * len(universes),
                     'receiver_counter_delta': delta, 'before': before, 'after': after,

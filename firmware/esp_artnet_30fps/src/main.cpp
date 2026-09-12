@@ -9,6 +9,14 @@
 #include <atomic>
 #include "frame_assembler.h"
 #include "apa_frame.h"
+#include "raw_udp_receiver.h"
+
+// A distinct source-only override avoids SCons reordering -U/-D flags. The
+// default environment remains unchanged, so library objects can be reused.
+#ifdef EXPERIMENTAL_PROFILE_OVERRIDE
+#undef PANEL_PROFILE
+#define PANEL_PROFILE EXPERIMENTAL_PROFILE_OVERRIDE
+#endif
 
 #if !defined(CONFIG_IDF_TARGET_ESP32)
 #error This build is for classic ESP32 only. Validate S3 hardware and driver separately.
@@ -91,56 +99,33 @@ void prepareApa() {
 #endif
 
 void receiverTask(void*) {
-  uint8_t packet[531];
-  int fd = -1;
+  rawudp::Packet packet;
+  unsigned drained=0;
   for (;;) {
-    if (WiFi.status() != WL_CONNECTED) {
-      if (fd >= 0) { close(fd); fd = -1; }
-      vTaskDelay(pdMS_TO_TICKS(20)); continue;
-    }
-    if (fd < 0) {
-      fd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
-      if (fd < 0) { ++socketErrors; vTaskDelay(pdMS_TO_TICKS(500)); continue; }
-      int bufferBytes = 65536;
-      // Some lwIP builds omit SO_RCVBUF. Report the effective value if available.
-      setsockopt(fd, SOL_SOCKET, SO_RCVBUF, &bufferBytes, sizeof(bufferBytes));
-      socklen_t size = sizeof(bufferBytes);
-      if (!getsockopt(fd, SOL_SOCKET, SO_RCVBUF, &bufferBytes, &size)) socketReceiveBuffer = bufferBytes;
-      fcntl(fd, F_SETFL, O_NONBLOCK);
-      sockaddr_in addr{}; addr.sin_family = AF_INET; addr.sin_port = htons(6454); addr.sin_addr.s_addr = INADDR_ANY;
-      if (bind(fd, reinterpret_cast<sockaddr*>(&addr), sizeof(addr))) {
-        ++socketErrors; close(fd); fd = -1; vTaskDelay(pdMS_TO_TICKS(500)); continue;
-      }
-    }
-    // Drain a burst without waiting between universes. Bound each pass so WiFi
-    // and other tasks still receive CPU time under sustained malformed traffic.
-    for (unsigned i = 0; i < 128; ++i) {
-      sockaddr_in source{}; socklen_t sourceSize = sizeof(source);
-      int size = recvfrom(fd, packet, sizeof(packet), 0,
-                          reinterpret_cast<sockaddr*>(&source), &sourceSize);
-      if (size < 0) {
-        if (errno != EAGAIN && errno != EWOULDBLOCK) ++socketErrors;
-        break;
-      }
-      // This test receiver deliberately supports exactly one IPv4 sender.
-      if (source.sin_addr.s_addr != htonl(0x0a00007d)) { ++foreignSourcePackets; continue; }
-      uint32_t now = micros();
-      xSemaphoreTake(assemblyMutex, portMAX_DELAY);
-      auto result = assembler.accept(packet, size, now);
-      if (result == artframe::Result::Complete) {
-        lastCompleteUs = now;
-        xSemaphoreTake(mailboxMutex, portMAX_DELAY);
-        if (pending) ++supersededFrames;
-        memcpy(pendingRgb, assembler.rgb, sizeof(pendingRgb));
-        pending = true; pendingAt = now;
-        xSemaphoreGive(mailboxMutex);
+    if(xQueueReceive(rawudp::queue,&packet,pdMS_TO_TICKS(1))==pdTRUE) {
+      xSemaphoreTake(assemblyMutex,portMAX_DELAY);
+      // ARM/STOP invalidates packets already queued by the network callback.
+      if(packet.epoch!=rawudp::epoch.load()) {
+        ++rawudp::stale;
+      } else {
+        auto result=assembler.accept(packet.data,packet.length,packet.stamp);
+        if(result==artframe::Result::Complete) {
+          lastCompleteUs=packet.stamp;
+          xSemaphoreTake(mailboxMutex,portMAX_DELAY);
+          if(pending)++supersededFrames;
+          memcpy(pendingRgb,assembler.rgb,sizeof(pendingRgb));
+          pending=true;pendingAt=packet.stamp;
+          xSemaphoreGive(mailboxMutex);
+        }
       }
       xSemaphoreGive(assemblyMutex);
+      if(++drained>=128) {drained=0;vTaskDelay(1);}
+    } else {
+      drained=0;
+      xSemaphoreTake(assemblyMutex,portMAX_DELAY);
+      assembler.expire(micros());
+      xSemaphoreGive(assemblyMutex);
     }
-    xSemaphoreTake(assemblyMutex, portMAX_DELAY);
-    assembler.expire(micros());
-    xSemaphoreGive(assemblyMutex);
-    vTaskDelay(1);
   }
 }
 
@@ -222,7 +207,10 @@ String statusJson() {
   s += ",\"showCallUs\":" + String(showUs.load()) + ",\"maxShowCallUs\":" + String(maxShowUs.load());
   s += ",\"blackoutFrames\":" + String(blackouts.load()) + ",\"socketErrors\":" + String(socketErrors.load());
   s += ",\"socketReceiveBufferBytes\":" + String(socketReceiveBuffer.load());
-  s += ",\"foreignSourcePackets\":" + String(foreignSourcePackets.load()) + ",\"allowedSender\":\"10.0.0.125\"";
+  s += ",\"receiveMode\":\"raw-udp-queue64\",\"rawUdpDatagrams\":" + String(rawudp::datagrams.load());
+  s += ",\"rawUdpQueueDrops\":" + String(rawudp::dropped.load()) + ",\"rawUdpQueuePeak\":" + String(rawudp::peak.load());
+  s += ",\"rawUdpOversizePackets\":" + String(rawudp::oversized.load()) + ",\"rawUdpStaleEpochPackets\":" + String(rawudp::stale.load());
+  s += ",\"foreignSourcePackets\":" + String(rawudp::foreign.load()) + ",\"allowedSender\":\"10.0.0.125\"";
   s += ",\"freeHeap\":" + String(ESP.getFreeHeap()) + ",\"rssi\":" + String(WiFi.RSSI());
   s += ",\"uptimeMs\":" + String(millis()) + ",\"targetFps\":30,\"outputCeilingFps\":60,\"brightnessLimit255\":16,\"networkDropCounterAvailable\":false}";
   return s;
@@ -233,6 +221,7 @@ void setArmed(bool value) {
   xSemaphoreTake(assemblyMutex, portMAX_DELAY);
   xSemaphoreTake(mailboxMutex, portMAX_DELAY);
   assembler.resetCandidate();
+  ++rawudp::epoch;
   pending = false; armed = value;
   xSemaphoreGive(mailboxMutex);
   xSemaphoreGive(assemblyMutex);
@@ -292,6 +281,9 @@ void setup() {
     if (http.arg("enabled") != "true" && http.arg("enabled") != "false") { http.send(400,"application/json","{\"error\":\"enabled=true or false required\"}"); return; }
     setArmed(http.arg("enabled") == "true"); http.send(200,"application/json",statusJson());
   });
+  if(!rawudp::begin()) {
+    Serial.println("FATAL: raw UDP queue/bind initialization failed");while(true)delay(1000);
+  }
   http.begin();
 #if defined(HAS_APA_OUTPUT)
   apaDone=xSemaphoreCreateBinary();

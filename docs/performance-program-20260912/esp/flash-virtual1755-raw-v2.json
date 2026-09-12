@@ -1,0 +1,11 @@
+{
+  "label": "virtual1755-raw-v2",
+  "completed_utc": "2026-09-12T04:51:19.396620+00:00",
+  "mac": "e8:68:e7:0d:38:a4",
+  "port": "COM5",
+  "returncode": 0,
+  "firmware_sha256": "62efd65692e74f4a18bc6f4487e41012996f5fe8f27295a6fc731c18ddd536e3",
+  "hash_verification_messages": 4,
+  "runtime_disarmed_verified": false,
+  "log": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\docs\\performance-program-20260912\\esp\\flash-virtual1755-raw-v2.log"
+}

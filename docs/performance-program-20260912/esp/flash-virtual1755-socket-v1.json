@@ -1,0 +1,11 @@
+{
+  "label": "virtual1755-socket-v1",
+  "completed_utc": "2026-09-12T04:37:19.580250+00:00",
+  "mac": "e8:68:e7:0d:38:a4",
+  "port": "COM5",
+  "returncode": 0,
+  "firmware_sha256": "aea7d1239dcac636d0c37780f71ebc2199428dae8e72823f6ad585bd98af6c8d",
+  "hash_verification_messages": 4,
+  "runtime_disarmed_verified": false,
+  "log": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\docs\\performance-program-20260912\\esp\\flash-virtual1755-socket-v1.log"
+}

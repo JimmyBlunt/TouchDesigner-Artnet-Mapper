@@ -1,0 +1,11 @@
+{
+  "label": "physical768-raw-v2",
+  "completed_utc": "2026-09-12T04:57:24.220237+00:00",
+  "mac": "e8:68:e7:0d:38:a4",
+  "port": "COM5",
+  "returncode": 0,
+  "firmware_sha256": "cfee468ab700cbcb732e0ea221cc02933afd329f62d05ef299ad00d7dfc027be",
+  "hash_verification_messages": 4,
+  "runtime_disarmed_verified": false,
+  "log": "C:\\Users\\jbhtz\\OneDrive\\Desktop\\Pictures\\Documents\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\docs\\performance-program-20260912\\esp\\flash-physical768-raw-v2.log"
+}
