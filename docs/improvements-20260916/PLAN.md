@@ -72,3 +72,42 @@ verdienen: das Auflösen der doppelten LED-Positionsquelle, das Auslagern des
 353-Knoten-Prototyps, die Konsolidierung der Konfigurationsquellen, das
 Entfernen der 63 toten Browser-Knoten und die Vereinheitlichung der
 Panelgrößen. Sie stehen im Analysebericht mit Begründung.
+
+---
+
+## Ergebnis (Stand 16.09.2026, nach dem visuellen Review)
+
+**Gruppe B — 8 von 9 umgesetzt, 1 zurueckgenommen.**
+B7 (Shortcut-Buttons beschriften) war auf einer falschen Annahme gebaut und
+wurde zurueckgenommen: die Buttons tragen ihren Text in einem Kind-COMP
+`scan_label`, der in opviewer-Aufnahmen nicht mitrendert. B6 musste nach dem
+visuellen Review korrigiert werden - dieselbe Ursache, die Farbe gehoerte an
+das Kind-COMP statt an den Button.
+
+**Gruppe C — alle drei umgesetzt und gemessen.**
+
+| Messung | vorher | nachher |
+|---|---|---|
+| effect_sample_uv Cook | 261 ms | 34 ms |
+| Layout-Historie im Storage | 152,9 MB | 34,8 MB |
+| restore_layout | 82 s | 2,59 s |
+| Projektdatei | 20,78 MB | 10,68 MB |
+
+**Gruppe D — vorbereitet, nicht aktiviert.**
+D1 und D2 liegen als apply()/revert()-Skripte bereit. D3 wurde bewusst nicht
+gebaut; die Begruendung steht in `steps/D3_watchdog_analysis.md`.
+
+**Zwei Korrekturen am Analysebericht**, beide durch Nachmessen statt
+Nachlesen gefunden:
+
+1. Die Tastenbelegung: gueltig sind `pageup`/`pagedown` und `esc`, nicht
+   `pgup`/`pgdn`/`escape`. Kaputt war nur Escape, nicht die dritte Achse.
+2. Die Bildrate liegt bei 59,9 fps, nicht bei 20. Der Sender steht auf
+   `enabled: False` - die Art-Net-Ausgabe ist derzeit abgeschaltet. Der
+   time.sleep()-Befund ist echt, aber latent.
+
+**Methodische Lehre fuer kuenftige Analysen:** opviewer-Aufnahmen zeigen
+nicht, was der Benutzer sieht. Kind-COMPs mit Text und eigenem Hintergrund
+fehlen darin vollstaendig. Zwei der drei falschen Schluesse dieser Runde
+gehen darauf zurueck. Fuer Aussagen ueber Beschriftung und Farbe zaehlt nur
+ein geoeffnetes Panelfenster.
