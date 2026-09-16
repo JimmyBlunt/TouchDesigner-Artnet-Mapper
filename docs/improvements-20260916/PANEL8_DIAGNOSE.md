@@ -131,3 +131,35 @@ haengen dort **549**. Am Universum-Bedarf aendert das nichts (beides
 erfordert vier Universen), aber die beiden Wahrheiten sollten angeglichen
 werden - entweder `pixelCount` am Controller auf 549, oder bewusst als
 Reserve stehen lassen und hier vermerken.
+
+### Unstimmigkeit geschlossen
+
+Der Betreiber hat `pixelCount` fuer Ausgang 1 am Controller auf 549
+korrigiert. Damit stimmen alle drei Wahrheiten ueberein:
+
+    Controller  Ausgang 0  256 px ab U156   Ausgang 1  549 px ab U158
+                pixelCount 805   universeCount 6
+    TouchDesigner  PANEL8_251 reserved_universes 6, sendet U156..161
+    segment_config  PANEL8_UNTER_PANEL6 256 px -> Ziel 0
+                    PANEL7_OUT1_251     549 px -> Ziel 256
+
+Messung danach:
+
+    framesComplete    1438 und steigend
+    framesIncomplete     0     (vorher liefen Reste mit)
+    fps                 20
+    timeouts             0
+    droppedPackets       0
+    TD send_ms        23,4 ms  (vorher 34,7 - der Frame ist jetzt passend
+                                dimensioniert statt mit Blind-Pixeln gefuellt)
+
+Hinweis zu den Farbreihenfolgen: der Controller meldet fuer beide Ausgaenge
+RGB, waehrend `segment_config` fuer Panel 8 `color_override = BGR` traegt und
+fuer Panel 7 RGB. Das war vor dieser Sitzung schon so und hat fuer Panel 8
+offenbar gestimmt - beim ersten Blick auf Panel 7 also darauf achten, ob die
+Farben stimmen oder vertauscht sind.
+
+Die aktuelle Controller-Konfiguration liegt als
+`controller_10.0.0.251_config_20260917_final.json` daneben; das aeltere
+`..._backup_20260917.json` ist der Stand *vor* den Korrekturen und sollte
+nicht mehr zum Zurueckschreiben verwendet werden.
