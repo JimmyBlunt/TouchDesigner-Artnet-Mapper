@@ -87,3 +87,47 @@ Solange diese Zeile fehlt, gehen an die Universen 158..161 nur Nullen.
 Das ist genau der Befund aus der Analyse: ein neues Panel muss an mehreren
 Stellen eingetragen werden, und keine davon prueft die anderen. Hier war es
 die Universen-Reserve, die niemand mitgezogen hat.
+
+---
+
+## Nachtrag 17.09.2026: Panel 7 auf Ausgang 1 eingetragen
+
+Angaben des Betreibers: 549 LEDs, Farbreihenfolge RGB.
+
+Neue Zeile in `segment_config`:
+
+    name               PANEL7_OUT1_251
+    source_start       2976
+    count              549
+    controller         PANEL8_251
+    destination_start  256
+    reverse            0
+    color_override     RGB
+
+Der Quellbereich 2976..3524 lag frei; auf Kollision mit allen zwoelf
+bestehenden Segmenten geprueft, keine.
+
+Nach dem Eintrag traegt der Frame fuer PANEL8_251 alle sechs Universen:
+
+    U156  Summe 23617   Panel 8
+    U157  Summe 25701   Panel 8 + Anfang Panel 7
+    U158  Summe     0   Panel 7, Quellpixel dort ohne Licht
+    U159  Summe 27053   Panel 7
+    U160  Summe 15842   Panel 7
+    U161  Summe     0   Rest
+
+    Controller: framesComplete 1692 | fps 23 | droppedPackets 0
+
+Dass U158 und U161 schwarz sind, ist kein Fehler: Panel 7 ist noch nicht
+vermessen und greift daher auf Quellpixel ohne sinnvolle UV-Zuordnung zu.
+Was dort leuchtet, ist bedeutungslos, bis der gefuehrte Scan gelaufen ist.
+Fuer den Scan selbst spielt es keine Rolle, weil dieser die LEDs direkt
+ansteuert.
+
+### Offene Unstimmigkeit
+
+Der Controller ist fuer Ausgang 1 auf **560** Pixel konfiguriert, physisch
+haengen dort **549**. Am Universum-Bedarf aendert das nichts (beides
+erfordert vier Universen), aber die beiden Wahrheiten sollten angeglichen
+werden - entweder `pixelCount` am Controller auf 549, oder bewusst als
+Reserve stehen lassen und hier vermerken.
