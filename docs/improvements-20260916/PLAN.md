@@ -47,9 +47,9 @@ Ein Commit pro Änderung. Commit-Nachricht nennt Wirkung und Messwert.
 
 | ID | Änderung | Ort | Erwartung | Status |
 |---|---|---|---|---|
-| C1 | LED-Abtastpunkte vektorisieren | `effect_sample_uv_callbacks` | 261 ms → < 5 ms | offen |
-| C2 | Durchleite-Knoten entfernen | `/project1/res1` | ein GPU-Blit/Frame gespart | offen |
-| C3 | Undo-Historie deduplizieren | `layout_scene_editor` Storage | 160 MB → wenige MB, Kaltstart 82 s → < 1 s | offen |
+| C1 | LED-Abtastpunkte vektorisieren | `effect_sample_uv_callbacks` | 261 ms → < 5 ms | erledigt |
+| C2 | Durchleite-Knoten entfernen | `/project1/res1` | ein GPU-Blit/Frame gespart | erledigt |
+| C3 | Undo-Historie deduplizieren | `layout_scene_editor` Storage | 160 MB → wenige MB, Kaltstart 82 s → < 1 s | erledigt |
 
 ## Gruppe D — Eingriffe in die Live-Ausgabe (Freigabe erforderlich)
 
