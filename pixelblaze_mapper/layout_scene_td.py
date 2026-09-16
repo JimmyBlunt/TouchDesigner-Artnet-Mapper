@@ -12,7 +12,7 @@ from pathlib import Path
 from .layout_scene import Scene, SceneError, Transform, import_scan, export_pixelblaze_3d, new_id
 from .layout_scene_adapter import (
     LayoutDocument, LayoutEditor, document_json, load_document_json,
-    object_color, parse_indices, nudge, user_to_td,
+    object_color, parse_indices, nudge, user_to_td, canonical_key,
 )
 
 PALETTE_VERSION = 1
@@ -439,7 +439,7 @@ def drag(owner, phase, *, camera=False):
 
 def key(owner, key_name, ctrl=False):
     session = editor(owner)
-    key_name = str(key_name).lower()
+    key_name = canonical_key(key_name)
     if owner.fetch("layout_view", "3d") == "2d":
         from .layout_fixture_td import key as fixture_key
         return fixture_key(owner, key_name, ctrl=ctrl)

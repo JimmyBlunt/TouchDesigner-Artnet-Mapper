@@ -4,7 +4,7 @@ from pathlib import Path
 import json
 
 from .layout_scene import SceneError
-from .layout_scene_adapter import object_color, scene_revision, parse_indices
+from .layout_scene_adapter import object_color, scene_revision, parse_indices, canonical_key
 
 
 def project_selection(scene, object_id, *, projection="YX", local_indices=None, fixture_id=None):
@@ -272,6 +272,7 @@ def drag(owner, domain, phase):
 def key(owner, key_name, ctrl=False):
     from .fixture_scene import replace_transform
     from .layout_scene_td import field, status
+    key_name = canonical_key(key_name)
     try:
         if key_name == "escape":
             owner.store("fixture_preview", None)

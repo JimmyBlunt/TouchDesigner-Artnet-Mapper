@@ -285,6 +285,21 @@ def object_color(object_id):
     return tuple(0.25 + b / 255 * 0.7 for b in digest[:3])
 
 
+# TouchDesigner's keyboardIn DAT reports these keys as 'pgup', 'pgdn' and 'esc',
+# while the direction vocabulary below uses the long spellings. Before the audit
+# of 2026-09-16 the two never met: the keyboard node listed the long names, which
+# TouchDesigner rejected as invalid, so Escape and the third-axis nudge were dead
+# without any visible error. Accept both spellings so either side can change.
+KEY_ALIASES = {"pgup": "pageup", "pgdn": "pagedown", "esc": "escape",
+               "page_up": "pageup", "page_down": "pagedown"}
+
+
+def canonical_key(name) -> str:
+    """Normalise a key name to this module's vocabulary."""
+    name = str(name).lower()
+    return KEY_ALIASES.get(name, name)
+
+
 def nudge(transform: Transform, key: str, *, mode="move", axis="z", step=0.01) -> Transform:
     if not isinstance(step, (int, float)) or isinstance(step, bool) or not isfinite(step) or step <= 0:
         raise SceneError("step must be positive")
