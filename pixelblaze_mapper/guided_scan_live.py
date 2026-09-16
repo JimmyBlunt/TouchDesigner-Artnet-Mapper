@@ -207,6 +207,12 @@ def prepare(op):
         summary = first + ' | packet gap %.1f ms\n' % gap + rest
     else:
         summary += ' | packet gap %.1f ms' % gap
+    if standalone is not None and 'ports' in standalone:
+        from math import ceil
+        summary = ('SEPARATE CAPTURE | %d LEDs | scan %.1f%% | packet gap %.1f ms\n%s %s | %s | SEND U%d-U%d; other slots BLACK') % (
+            len(source_ids), brightness*100, gap, standalone['name'], standalone['target'],
+            ' + '.join('%d LEDs U%d-U%d'%(p['count'],p['universe'],p['universe']+ceil(p['count']/170)-1) for p in standalone['ports']),
+            standalone['frame_start_universe'], standalone['frame_start_universe']+standalone['frame_universe_count']-1)
     op(OWNER + '/ui_panel/routing_summary').par.text = summary
     _status(op, 'PLAN READY — no camera or output started. Scan blacks ALL reserved universes of listed controllers.')
     return summary

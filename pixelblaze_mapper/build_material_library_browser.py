@@ -15,7 +15,7 @@ from pathlib import Path
 
 
 OWNER = "/project1/madmapper_library"
-LOCAL_ROOT = Path(r"C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper")
+LOCAL_ROOT = Path(str(project.folder)) if 'project' in globals() else Path(__file__).resolve().parents[1]
 DEFAULT_CATALOG = LOCAL_ROOT / "material_library" / "catalogs" / "madmapper-official-d7ff211.json"
 DEFAULT_IMPORT_ROOT = LOCAL_ROOT / "material_library" / "imported"
 DEFAULT_PAGE_SIZE = 8
@@ -981,6 +981,11 @@ def _parameter_context(item):
     # Check dependency stamps; Refresh also clears this cache for source edits.
     source_path = _validated_file(item.get('source_path'), {'.fs'})
     cached = _parameter_context_cache.get(item['id'])
+    validation = item.get('metadata', {}).get('_TD_VALIDATION', {})
+    if validation.get('status') == 'quarantined':
+        import hashlib
+        if hashlib.sha256(source_path.read_bytes()).hexdigest() == validation.get('source_sha256'):
+            raise ValueError(validation.get('reason', 'GPU validation is suspended for this source'))
     def stamps(paths):
         return tuple((str(path), path.stat().st_mtime_ns, path.stat().st_size) for path in paths)
     valid = cached is not None and cached['stamp'] == stamps(cached['paths'])
@@ -1021,6 +1026,8 @@ def _active_item():
 
 def _configure_parameter_uniforms(preview, adaptation, values, publish_schema=True):
     from pixelblaze_mapper.madmapper_parameters import uniform_vector
+    from pixelblaze_mapper.material_texture_runtime import bind_textures
+    bind_textures(preview, adaptation)
     preview.par.vec.sequence.numBlocks = 3 + len(adaptation.schema)
     rows = [('index', 'name', 'label', 'group', 'type', 'uniform', 'compile_time',
              'components', 'min', 'max', 'values', 'value')]
@@ -1466,7 +1473,7 @@ def build():
     preview_shader = _get_or_create(owner, textDAT, "preview_shader")
     if not str(preview_shader.text).strip():
         preview_shader.text = FALLBACK_SHADER
-    live_preview = _get_or_create(owner, glslTOP, "live_preview")
+    live_preview = _get_or_create(owner, glslmultiTOP, "live_preview")
     _set_if_present(live_preview, "glslversion", "glsl430")
     _set_if_present(live_preview, "mode", "vertexpixel")
     _set_if_present(live_preview, "pixeldat", preview_shader.path)
@@ -1523,7 +1530,7 @@ def build():
     hover_shader = _get_or_create(owner, textDAT, "hover_shader")
     if not str(hover_shader.text).strip():
         hover_shader.text = FALLBACK_SHADER
-    hover_preview = _get_or_create(owner, glslTOP, "hover_preview")
+    hover_preview = _get_or_create(owner, glslmultiTOP, "hover_preview")
     _set_if_present(hover_preview, "glslversion", "glsl430")
     _set_if_present(hover_preview, "mode", "vertexpixel")
     _set_if_present(hover_preview, "pixeldat", hover_shader.path)
@@ -1562,7 +1569,7 @@ def build():
     detail_shader = _get_or_create(owner, textDAT, "detail_shader")
     if not str(detail_shader.text).strip():
         detail_shader.text = FALLBACK_SHADER
-    detail_preview = _get_or_create(owner, glslTOP, "detail_preview")
+    detail_preview = _get_or_create(owner, glslmultiTOP, "detail_preview")
     for name in ('glslversion', 'mode', 'outputresolution', 'resolutionw', 'resolutionh'):
         _set_if_present(detail_preview, name, hover_preview.par[name].eval())
     detail_preview.par.pixeldat = detail_shader.path

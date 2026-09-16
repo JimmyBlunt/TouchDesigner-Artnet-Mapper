@@ -75,7 +75,13 @@ HELP = (
     'independent acquisition without changing its original IDs. Missing/weak filters create a fresh '
     'capture scope and retain old files.\n\n'
     'PARTIAL RESCAN: Source indices are zero-based and retain their identity. Use ranges such as 0-49, 78. '
+    'Change LEDS TO SCAN, then CHECK SCAN PLAN before START SCAN. Keep the original acquisition, '
+    'controller counts and workspace. For the last 64 of 1122 LEDs use 1058-1121. '
+    'Restore the full scope before preparing 3D with the full-view files and the additional partial views. '
     'Optional verification anchors (Settings) are captured but never replaced.\n\n'
+    'LED SEARCH: Ctrl+Shift+S opens the manual light test; Ctrl+Shift+9 opens the shortcut overview. '
+    'In LED SEARCH, load controller outputs, choose OUT and enter a local zero-based LED index. '
+    'The controller supplies each output count and universe. SHOW starts the test; STOP ends it.\n\n'
     'RESULTS: Review an existing 3D result without recapturing. Raw reconstruction needs alignment and '
     'quality review. Adding a draft object does not replace the original object or resume Live output.'
 )

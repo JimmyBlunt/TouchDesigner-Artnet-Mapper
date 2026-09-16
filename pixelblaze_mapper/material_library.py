@@ -276,7 +276,7 @@ def extract_isf_metadata(source: str) -> dict[str, Any]:
     Malformed comments are ignored.  A JSON object is considered ISF metadata
     when it contains at least one standard ISF/MadMapper metadata key.
     """
-    decoder = json.JSONDecoder()
+    decoder = json.JSONDecoder(strict=False)
     marker_keys = {
         "ISFVSN", "INPUTS", "CATEGORIES", "DESCRIPTION", "CREDIT", "PASSES",
         "IMPORTED", "VSN", "NAME", "LABEL", "TAGS",
@@ -291,9 +291,21 @@ def extract_isf_metadata(source: str) -> dict[str, Any]:
             value, _ = decoder.raw_decode(candidate)
         except json.JSONDecodeError:
             try:
-                relaxed = _normalise_relaxed_numbers(_remove_trailing_commas(candidate))
+                # MadMapper accepts line comments and single-quoted values.
+                # Tokenize strings first so URLs and quoted // survive.
+                token = re.compile(r'"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'|//[^\n]*')
+                def clean(match):
+                    text = match.group()
+                    if text.startswith('//'):
+                        return ''
+                    if text.startswith("'"):
+                        import ast
+                        return json.dumps(ast.literal_eval(text))
+                    return re.sub(r'\\(?!["\\/bfnrtu])', r'\\\\', text)
+                relaxed = token.sub(clean, candidate)
+                relaxed = _normalise_relaxed_numbers(_remove_trailing_commas(relaxed))
                 value, _ = decoder.raw_decode(relaxed)
-            except json.JSONDecodeError:
+            except (json.JSONDecodeError, ValueError, SyntaxError):
                 continue
         if isinstance(value, dict) and marker_keys.intersection(value):
             return _json_value(value)
@@ -586,6 +598,11 @@ def build_catalog(source_root: str | Path, *, source_id: str | None = None, sour
         kind, compatibility, reasons = _kind_and_compatibility(
             resolved, source, metadata, too_large
         )
+        if resolved.suffix.casefold() == '.fs' and 'materialColorForPixel' in source and not too_large:
+            from pixelblaze_mapper.madmapper_td_adapter import adapt_material
+            adaptation = adapt_material(resolved, library_roots=(root, root.parent, resolved.parent))
+            compatibility = Compatibility.ADAPTABLE if adaptation.adaptable else Compatibility.UNSUPPORTED
+            reasons = adaptation.reasons or adaptation.warnings
         if kind == "glsl_helper":
             in_library = any(
                 part.casefold() in {"library", "libraries", "includes"}

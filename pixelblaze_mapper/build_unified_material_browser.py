@@ -14,7 +14,7 @@ from pathlib import Path
 
 ROOT = "/project1"
 OWNER = ROOT + "/material_browser"
-PROJECT_ROOT = Path(r"C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper")
+PROJECT_ROOT = Path(str(project.folder)) if 'project' in globals() else Path(__file__).resolve().parents[1]
 MANIFEST = PROJECT_ROOT / "effects" / "effects_manifest.json"
 CATALOG = PROJECT_ROOT / "material_library" / "catalogs" / "madmapper-official-d7ff211.json"
 IMPORT_ROOT = PROJECT_ROOT / "material_library" / "imported"
@@ -508,9 +508,9 @@ from difflib import SequenceMatcher
 from pathlib import Path
 
 OWNER = op('/project1/material_browser')
-MANIFEST = Path(r'C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/effects/effects_manifest.json')
-CATALOG = Path(r'C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/material_library/catalogs/madmapper-official-d7ff211.json')
-IMPORT_ROOT = Path(r'C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/material_library/imported')
+MANIFEST = Path(str(project.folder)) / 'effects/effects_manifest.json'
+CATALOG = Path(str(project.folder)) / 'material_library/catalogs/madmapper-official-d7ff211.json'
+IMPORT_ROOT = Path(str(project.folder)) / 'material_library/imported'
 ITEMS = []
 FILTERED = []
 CATALOG_CACHE_KEY = 'unified_catalog_cache_v1'
@@ -522,9 +522,18 @@ NATIVE_SELECTED_SLOT = 0
 NATIVE_PAGE_STORE_KEY = 'native_parameter_page'
 NATIVE_SLOT_STORE_KEY = 'native_parameter_selected_slot'
 
+def _library_paths():
+    library = op('/project1/madmapper_library')
+    paths = []
+    for name, fallback in (('Catalogfile', CATALOG), ('Importroot', IMPORT_ROOT)):
+        parameter = library.par[name] if library is not None else None
+        value = str(parameter.eval()).strip() if parameter is not None else ''
+        paths.append(Path(value).expanduser() if value else fallback)
+    return tuple(paths)
+
 def _catalog_signature():
     stamps = []
-    for path in (MANIFEST, CATALOG, IMPORT_ROOT):
+    for path in (MANIFEST,) + _library_paths():
         try:
             stat = path.stat()
             stamps.append((str(path), stat.st_mtime_ns, stat.st_size))
@@ -912,11 +921,12 @@ def _core_items():
     return result
 
 def _imported_items():
-    data = json.loads(CATALOG.read_text(encoding='utf-8'))
+    catalog_path, import_root = _library_paths()
+    data = json.loads(catalog_path.read_text(encoding='utf-8'))
     result = []
     for raw in data.get('materials', []):
         material_id = str(raw.get('id', ''))
-        directory = IMPORT_ROOT / material_id
+        directory = import_root / material_id
         if not (directory / 'material-import.json').is_file():
             continue
         groups = [str(value).lower() for value in raw.get('groups', [])]
@@ -925,7 +935,7 @@ def _imported_items():
         tags = list(dict.fromkeys(['imported', 'madmapper'] + tags))
         preview = str(raw.get('preview_path', ''))
         if preview and not Path(preview).is_absolute():
-            preview = str((CATALOG.parent / preview).resolve())
+            preview = str((catalog_path.parent / preview).resolve())
         prepared = directory / 'prepared.frag'
         result.append({
             'key': 'madmapper:' + material_id, 'id': material_id,
@@ -1041,6 +1051,8 @@ def _sync_core_preview_activity(visible):
                 node.lock = index not in active
 
 def render():
+    from pixelblaze_mapper.unified_material_hover import stop
+    stop(OWNER)
     compact = _state('layout', '4x2') == '8x4'
     size = 32 if compact else 8
     count = max(1, (len(FILTERED) + size - 1) // size)
@@ -1260,6 +1272,8 @@ def build():
     switch.par.index.expr = "op('/project1/madmapper_player_controls').par.Source.menuIndex"
 
     browser.store("unified_material_browser_version", 1)
+    from pixelblaze_mapper.unified_material_hover import install as install_hover
+    install_hover(op, globals())
     runtime.module.refresh()
     print({"browser": browser.path, "slots": SLOT_COUNT, "sources": names,
            "networkOutputEnabled": False, "projectSaved": False})

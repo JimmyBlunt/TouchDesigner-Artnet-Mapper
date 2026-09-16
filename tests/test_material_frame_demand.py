@@ -76,7 +76,7 @@ class MaterialFrameDemandTests(unittest.TestCase):
             nodes['unified_viewer_%d' % slot] = NS(par=NS())
             nodes['unified_card_%d' % slot] = NS(par=NS(), store=Mock(), unstore=Mock())
         item = dict(source='imported', key='a', label='A', category='test', preview_path='same.png')
-        scope = dict(OWNER=NS(op=nodes.get), FILTERED=[item], _set_state=Mock(),
+        scope = dict(OWNER=NS(op=nodes.get, fetch=lambda key, default=None: default, store=Mock()), FILTERED=[item], _set_state=Mock(),
                      _state=lambda key, default='': {'layout': '8x4', 'page': 0, 'source': 'All', 'group': 'All'}.get(key, default),
                      _button=Mock(), _sync_core_preview_activity=Mock())
         node = next(n for n in ast.parse(_runtime_source()).body if isinstance(n, ast.FunctionDef) and n.name == 'render')

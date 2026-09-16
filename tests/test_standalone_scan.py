@@ -9,6 +9,26 @@ SETTINGS = dict(name='TEST_249',target='10.0.0.249',interface='10.0.0.125',unive
 
 
 class StandaloneTests(unittest.TestCase):
+    def test_panel6_split_skips_padding_and_keeps_all_other_ports_black(self):
+        settings=dict(SETTINGS,universe=142,count=1048,frame_start_universe=120,frame_universe_count=33,
+                      ports=[{'universe':142,'count':536},{'universe':146,'count':512}])
+        snapshot=create_snapshot(standalone_scan.routing(settings),tuple(range(1048)),brightness_cap=.05)
+        self.assertEqual([(snapshot.targets[i].wire_universe,snapshot.targets[i].slot) for i in (0,535,536,1047)],
+                         [(142,0),(145,75),(146,0),(149,3)])
+        for i in (535,536,1047):
+            frames=snapshot.packet_descriptors(i,on=True)
+            self.assertEqual([f.wire_universe for f in frames],list(range(120,153)))
+            self.assertEqual(sum(v!=0 for f in frames for v in f.payload),3)
+        self.assertEqual(len(standalone_scan.session(settings).targets),1048)
+
+    def test_invalid_split_rejected_before_io(self):
+        base=dict(SETTINGS,universe=142,count=1048,frame_start_universe=120,frame_universe_count=33)
+        for ports in ([],[{'universe':142,'count':536}],
+                      [{'universe':142,'count':536},{'universe':145,'count':512}],
+                      [{'universe':142,'count':536},{'universe':151,'count':512}],
+                      [{'universe':142,'count':True},{'universe':146,'count':1047}]):
+            with self.subTest(ports=ports),self.assertRaises(ValueError):
+                standalone_scan.routing(dict(base,ports=ports))
     def test_panel_two_targets_and_companion_black_frames(self):
         settings = dict(SETTINGS, count=738, universe=122,
                         frame_start_universe=120, frame_universe_count=7)
@@ -57,6 +77,18 @@ class StandaloneTests(unittest.TestCase):
 
 
 class StandaloneBridgeTests(GuidedScanLiveTests):
+    def test_split_prepare_survives_capture_manifest_roundtrip(self):
+        settings=dict(SETTINGS,universe=142,count=1048,frame_start_universe=120,frame_universe_count=33,
+                      ports=[{'universe':142,'count':536},{'universe':146,'count':512}])
+        guided_scan_live.stage_standalone(self.op,settings)
+        summary=self.prepare()
+        checked=scan_capture.validate_capture_manifest(self.owner.fetch('capture_plan'))
+        snapshot=ScanRoutingSnapshot.from_dict(checked['routing'])
+        self.assertEqual(snapshot.targets[536].wire_universe,146)
+        self.assertEqual(snapshot.targets[-1].slot,3)
+        self.assertIn('536 LEDs U142-U145 + 512 LEDs U146-U149',summary)
+        self.assertEqual(len(checked['identity']),1048)
+
     def test_normal_prepare_preserves_full_controller_envelope(self):
         settings = dict(SETTINGS,count=738,universe=122,frame_start_universe=120,frame_universe_count=7)
         guided_scan_live.stage_standalone(self.op,settings)

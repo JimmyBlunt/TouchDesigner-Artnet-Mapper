@@ -158,7 +158,7 @@ def test_every_runtime_file_read_is_approved_and_live_preview_is_isolated():
     assert "_state('last_import_id') == item['id']" in runtime
     assert "TDOutputSwizzle" in runtime
     assert "material is not marked TouchDesigner-ready" in runtime
-    assert 'glslTOP, "live_preview"' in text
+    assert 'glslmultiTOP, "live_preview"' in text
 
 
 def test_hover_preview_cannot_replace_the_published_imported_material():
@@ -169,7 +169,7 @@ def test_hover_preview_cannot_replace_the_published_imported_material():
     assert "preview = OWNER.op('hover_preview')" in runtime
     assert "info = OWNER.op('hover_preview_info')" in runtime
     assert "OWNER.op('preview_shader').text = source" not in runtime.split("def _compile_hover_item(item):", 1)[1].split("def hover_slot", 1)[0]
-    assert '_get_or_create(owner, glslTOP, "hover_preview")' in text
+    assert '_get_or_create(owner, glslmultiTOP, "hover_preview")' in text
     assert 'hover_preview.outputConnectors[0].connect(imported_output)' not in text
     assert "_configure_parameter_uniforms(preview, adaptation, values, publish_schema=False)" in runtime
     assert "OWNER.store('hover_compiled_id', material_id)" in runtime

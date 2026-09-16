@@ -70,6 +70,17 @@ class MaterialTree:
 
 
 class MetadataAndScanningTests(unittest.TestCase):
+    def test_relaxed_header_comments_and_single_quotes_preserve_urls(self):
+        source = '''/*{
+            "DESCRIPTION": "https://example.org/material", // explanation
+            "INPUTS": [{"NAME": "enabled", "TYPE": "bool", "DEFAULT": 'true'},],
+            "CREDIT": "Author's material",
+        }*/'''
+        metadata = extract_isf_metadata(source)
+        self.assertEqual('https://example.org/material', metadata['DESCRIPTION'])
+        self.assertEqual("Author's material", metadata['CREDIT'])
+        self.assertEqual('true', metadata['INPUTS'][0]['DEFAULT'])
+
     def test_isf_metadata_extraction_ignores_bad_comment_and_handles_nested_json(self):
         source = "/* {not-json} */\n" + ISF_PARTICLES
         metadata = extract_isf_metadata(source)

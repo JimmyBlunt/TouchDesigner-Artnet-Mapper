@@ -41,13 +41,13 @@ class AdapterTests(unittest.TestCase):
         self.assertNotIn("vec2 localUV = fract(uv * panelCount)", result.shader)
         self.assertIn("mapMadMapperUV(vUV.st)", result.shader)
         self.assertIn("uniform vec4 uMMParam000; // native input: speed", result.shader)
-        self.assertIn("#define speed (uMMParam000.x)", result.shader)
+        self.assertIn("float speed = uMMParam000.x;", result.shader)
         self.assertIn("uniform vec4 uMMParam001; // native input: color", result.shader)
-        self.assertIn("#define color (uMMParam001)", result.shader)
+        self.assertIn("vec4 color = uMMParam001;", result.shader)
         self.assertIn("#define mode_IS_Soft_Glow", result.shader)
         self.assertEqual({"speed": "uMMParam000", "color": "uMMParam001"}, result.bindings)
         self.assertEqual(("speed", "color", "mode"), tuple(item.name for item in result.schema))
-        self.assertIn("#define phase (uTDTime * (speed))", result.shader)
+        self.assertIn("float phase = uTDTime * (speed);", result.shader)
         self.assertIn("TDOutputSwizzle(materialColorForPixel(mapMadMapperUV(vUV.st)))", result.shader)
         self.assertIn("float zoom = clamp(uTDMaterial0.w, 0.25, 8.0)", result.shader)
         self.assertIn("float scale = max(uTDMaterial0.y, 0.01) / 4.0", result.shader)
@@ -69,8 +69,8 @@ class AdapterTests(unittest.TestCase):
             result = adapt_material(self._material(Path(directory), source))
         self.assertTrue(result.adaptable, result.reasons)
         self.assertIn("uniform vec4 uMMParam000; // native input: speed", result.shader)
-        self.assertIn("#define speed (uMMParam000.x)", result.shader)
-        self.assertIn("#define mat_time_source (uTDTime * (speed))", result.shader)
+        self.assertIn("float speed = uMMParam000.x;", result.shader)
+        self.assertIn("float mat_time_source = uTDTime * (speed);", result.shader)
 
     def test_native_inputs_get_independent_type_correct_uniforms(self):
         source = r'''/*{
@@ -92,16 +92,16 @@ class AdapterTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             result = adapt_material(self._material(Path(directory), source))
         self.assertTrue(result.adaptable, result.reasons)
-        self.assertIn("#define speedA (uMMParam000.x)", result.shader)
-        self.assertIn("#define speedB (uMMParam001.x)", result.shader)
-        self.assertIn("#define steps (int(round(uMMParam002.x)))", result.shader)
-        self.assertIn("#define pulse (int(round(uMMParam003.x)))", result.shader)
-        self.assertIn("#define enabled (uMMParam004.x > 0.5)", result.shader)
-        self.assertIn("#define mode (int(round(uMMParam005.x)))", result.shader)
-        self.assertIn("#define origin (uMMParam006.xy)", result.shader)
-        self.assertIn("#define size (uMMParam007.xy)", result.shader)
-        self.assertIn("#define range (uMMParam008.xy)", result.shader)
-        self.assertIn("#define tint (uMMParam009)", result.shader)
+        self.assertIn("float speedA = uMMParam000.x;", result.shader)
+        self.assertIn("float speedB = uMMParam001.x;", result.shader)
+        self.assertIn("int steps = int(round(uMMParam002.x));", result.shader)
+        self.assertIn("int pulse = int(round(uMMParam003.x));", result.shader)
+        self.assertIn("bool enabled = uMMParam004.x > 0.5;", result.shader)
+        self.assertIn("int mode = int(round(uMMParam005.x));", result.shader)
+        self.assertIn("vec2 origin = uMMParam006.xy;", result.shader)
+        self.assertIn("vec2 size = uMMParam007.xy;", result.shader)
+        self.assertIn("vec2 range = uMMParam008.xy;", result.shader)
+        self.assertIn("vec4 tint = uMMParam009;", result.shader)
         self.assertEqual("Speed", result.schema[0].display_label)
         self.assertEqual("Speed", result.schema[1].display_label)
         self.assertEqual(("Layer A",), result.schema[0].groups)
@@ -159,10 +159,46 @@ class AdapterTests(unittest.TestCase):
             result = adapt_material(shader)
         self.assertIn("requires a MadMapper vertex shader", result.reasons)
 
+    def test_commented_dependencies_do_not_block_material(self):
+        source = '''/*{}*/
+        // gl_FragColor = vec4(0);
+        /* in vec3 customData; #include "missing.glsl" */
+        vec4 materialColorForPixel(vec2 uv){return vec4(uv,0,1);}
+        '''
+        with tempfile.TemporaryDirectory() as directory:
+            result = adapt_material(self._material(Path(directory), source))
+        self.assertTrue(result.adaptable, result.reasons)
+
+    def test_texture_dependency_resolved_and_exposed_for_runtime(self):
+        source = '''/*{"IMPORTED":[{"NAME":"pattern","PATH":"texture.png"}]}*/
+        vec4 materialColorForPixel(vec2 uv){return IMG_NORM_PIXEL(pattern,uv);}
+        '''
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            asset = root/'texture.png'
+            asset.write_bytes(b'test asset')
+            result = adapt_material(self._material(root, source))
+            self.assertTrue(result.adaptable, result.reasons)
+            self.assertEqual(str(asset.resolve()), result.textures[0]['resolved_path'])
+            self.assertIn('#define pattern sTD2DInputs[0]', result.shader)
+
+    def test_library_parameters_can_shadow_native_input_names(self):
+        source = '''/*{"INPUTS":[{"NAME":"contrast","TYPE":"float","DEFAULT":1}]}*/
+        #include "helper.glsl"
+        vec4 materialColorForPixel(vec2 uv){return vec4(helper(contrast));}
+        '''
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root/'helper.glsl').write_text('float helper(float contrast){return contrast;}', encoding='utf-8')
+            result = adapt_material(self._material(root, source))
+        self.assertTrue(result.adaptable)
+        self.assertIn('float helper(float contrast)', result.shader)
+        self.assertNotIn('#define contrast ', result.shader)
+
     def test_texture_audio_feedback_and_varyings_are_rejected(self):
         cases = (
             ('/*{"INPUTS":[{"NAME":"fft","TYPE":"audioFFT"}]}*/\nvec4 materialColorForPixel(vec2 uv){return vec4(1);}', "requires audiofft input"),
-            ('/*{"IMPORTED":[{"NAME":"noise","PATH":"n.png"}]}*/\nvec4 materialColorForPixel(vec2 uv){return vec4(1);}', "requires imported textures"),
+            ('/*{"IMPORTED":[{"NAME":"noise","PATH":"n.png"}]}*/\nvec4 materialColorForPixel(vec2 uv){return texture(noise, uv);}', "missing texture: n.png"),
             ('/*{"RASTERISATION_SETTINGS":{"REQUIRES_LAST_FRAME":true}}*/\nvec4 materialColorForPixel(vec2 uv){return vec4(1);}', "requires previous-frame feedback"),
             ('/*{}*/\nin vec3 customData;\nvec4 materialColorForPixel(vec2 uv){return vec4(customData,1);}', "requires MadMapper-specific vertex/surface varyings"),
         )

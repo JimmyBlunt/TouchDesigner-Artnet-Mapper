@@ -30,6 +30,7 @@ SHORTCUTS = (
     ShortcutSpec("0", "GICO PORT CONFIG", "/project1/multi_controller_output/gico_port_config/ui_panel", "Globale Universen pro Port und feste GICO-Portblöcke konfigurieren"),
     ShortcutSpec("l", "LAYOUT + 2D EDITOR", "/project1/layout_scene_editor/ui_panel", "Layout, Objekte und 2D-Fixtures gemeinsam bearbeiten"),
     ShortcutSpec("g", "GUIDED SCAN", "/project1/guided_scan/ui_panel", "Geführten Scan vorbereiten und Messfortschritt prüfen"),
+    ShortcutSpec("s", "LED SEARCH", "/project1/guided_scan/led_search_panel", "Controller, Ausgang und LED direkt fuer den Leuchttest waehlen"),
     ShortcutSpec("c", "CONTROLLER PORTS", "/project1/multi_controller_output/gico_port_config/controller_ports/ui_panel", "Controller und unabhängige Portkapazitäten als Entwurf bearbeiten"),
 )
 

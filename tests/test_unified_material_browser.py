@@ -2,7 +2,9 @@
 
 import ast
 import importlib.util
+import json
 import unittest
+from types import SimpleNamespace
 from pathlib import Path
 
 
@@ -32,6 +34,36 @@ def test_combines_core_manifest_with_confirmed_import_manifests():
     assert "material-import.json" in runtime
     assert "_core_items() + _imported_items()" in runtime
     assert "'imported', 'madmapper'" in runtime
+
+
+def test_browser_reads_the_same_configured_folder_as_import_dialog(tmp_path):
+    catalog = tmp_path / 'catalog.json'
+    imports = tmp_path / 'actual-imports'
+    imports.mkdir()
+    records = []
+    for material_id, name in (('glow', 'Glow Boundary'), ('kirby', 'Kirby')):
+        directory = imports / material_id
+        directory.mkdir()
+        (directory / 'material-import.json').write_text('{}')
+        (directory / 'prepared.frag').write_text('// prepared')
+        records.append({'id': material_id, 'name': name})
+    catalog.write_text(json.dumps({'materials': records}))
+    values = {'Catalogfile': str(catalog), 'Importroot': str(imports)}
+    parameters = {key: SimpleNamespace(eval=lambda key=key: values[key]) for key in values}
+    runtime = ast.parse(module()._runtime_source())
+    functions = ast.Module(body=[n for n in runtime.body if isinstance(n, ast.FunctionDef)
+        and n.name in ('_library_paths', '_catalog_signature', '_imported_items')], type_ignores=[])
+    scope = {'Path': Path, 'json': json, 'CATALOG': tmp_path/'obsolete-catalog.json',
+        'IMPORT_ROOT': tmp_path/'obsolete-imports', 'MANIFEST': catalog,
+        'op': lambda path: SimpleNamespace(par=parameters)}
+    exec(compile(functions, '<configured-imports>', 'exec'), scope)
+    items = scope['_imported_items']()
+    assert {i['label'] for i in items} == {'Glow Boundary', 'Kirby'}
+    assert all(Path(i['prepared_path']).is_relative_to(imports) for i in items)
+    before = scope['_catalog_signature']()
+    values['Importroot'] = str(tmp_path/'new-empty-folder')
+    assert scope['_catalog_signature']() != before
+    assert scope['_imported_items']() == []
 
 
 def test_search_group_source_paging_and_both_layouts_exist():

@@ -8,8 +8,13 @@ __pycache__/
 *.log
 .DS_Store
 Thumbs.db
+material_library/sources/
+material_library/imported/
+material_library/prepared/
+material_library/catalogs/*.json
 
 # Keep only the verified current TouchDesigner project and stable alias.
 *.toe
 !PixelblazeMapper_WORKING_PHASE2_EFFECTS_CORE.43.toe
+!PixelblazeMapper_WORKING_PHASE2_EFFECTS_CORE.49.toe
 !PixelblazeMapper_WORKING_PHASE2_EFFECTS_CORE.toe

@@ -6,7 +6,7 @@ receivers.
 
 ## Verified project
 
-Open `PixelblazeMapper_WORKING_PHASE2_EFFECTS_CORE.43.toe` in TouchDesigner.
+Open `PixelblazeMapper_WORKING_PHASE2_EFFECTS_CORE.49.toe` in TouchDesigner.
 `PixelblazeMapper_WORKING_PHASE2_EFFECTS_CORE.toe` is the matching stable alias.
 Both files contain the same tested state.
 
@@ -42,8 +42,14 @@ mapping.
 
 ## TouchDesigner controls
 
-- `/project1/madmapper_material_browser`: clickable 5 x 5 library with 25
-  GPU effects; legacy indices `0..12` remain stable.
+- `/project1/material_browser`: unified searchable Core + imported MadMapper
+  browser. It offers 4 x 2 and 8 x 4 card layouts, source/group filters and a
+  capture TOP at `/project1/material_browser/ui_preview`; legacy Core indices
+  `0..12` remain stable.
+- `/project1/madmapper_library/browser_ui`: interactive searchable 638-item official
+  MadMapper catalog with thumbnails, groups, two-click import and isolated
+  TouchDesigner GLSL preview. Confirmed imports receive the `IMPORTED` group
+  and automatically appear in the unified material browser.
 - `/project1/multi_controller_output/ui_preview`: editable receiver IP,
   start universe, brightness and enable fields plus validated safe apply,
   deliberate start and immediate all-off controls.
@@ -71,13 +77,15 @@ Run the portable test suite from the repository root:
 python -m unittest discover -s tests
 ```
 
-The checked-in state passes 92 tests. Live TouchDesigner acceptance additionally
+The checked-in state passes 127 tests. Live TouchDesigner acceptance additionally
 verified all 25 material clicks, all coordinate modes, exact cue boundaries,
 all six transition renders, both controller packers, invalid-field blocking,
-safe black Art-Net traffic to both configured receivers and final all-off state.
+safe black Art-Net traffic to both configured receivers, 638 MadMapper catalog
+entries, fuzzy search, safe/blocked import paths and final all-off state.
 
 Detailed instructions and evidence are in `docs/HOWTO_CURRENT_SYSTEM_DE.md` and
-`docs/TEST_REPORT_2026-08-18_DE.md`.
+`docs/TEST_REPORT_2026-08-18_DE.md`. The material-library workflow is documented
+in `docs/MADMAPPER_MATERIAL_LIBRARY_DE.md`.
 
 ## Repository contents
 

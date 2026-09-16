@@ -3,7 +3,8 @@
 The catalog intentionally contains every discovered material.  This adapter is
 the second safety gate: it only emits a GLSL TOP fragment shader when the
 MadMapper source can be represented without hidden surface state, feedback,
-audio, or texture wiring.  Unsupported materials still keep their thumbnail
+audio, or unsupported texture types. Resolved image assets are exposed for
+runtime wiring. Unsupported materials still keep their thumbnail
 and metadata in the browser.
 """
 
@@ -31,7 +32,7 @@ _SAFE_IDENTIFIER_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 
 _TEXTURE_INPUTS = {"image", "audio", "audiofft", "2d", "3d", "cube"}
 _SUPPORTED_GENERATORS = {"time_base"}
-ADAPTER_VERSION = 3
+ADAPTER_VERSION = 4
 ADAPTER_MARKER = "// PIXELBLAZE_MADMAPPER_ADAPTER_VERSION %d" % ADAPTER_VERSION
 
 
@@ -44,6 +45,7 @@ class AdaptationResult:
     metadata: Mapping[str, Any]
     schema: tuple[MaterialParameter, ...] = ()
     bindings: Mapping[str, str] = field(default_factory=dict)
+    textures: tuple[Mapping[str, Any], ...] = ()
 
     @property
     def adaptable(self) -> bool:
@@ -157,7 +159,12 @@ def _runtime_input_definitions(parameter: MaterialParameter) -> list[str]:
         expression = uniform
     else:  # pragma: no cover - guarded by parameter_schema
         return []
-    definitions.append("#define %s (%s)" % (name, expression))
+    glsl_type = {'float':'float', 'int':'int', 'event':'int', 'long':'int',
+                 'bool':'bool', 'point2d':'vec2', 'size2d':'vec2',
+                 'floatrange':'vec2', 'color':'vec4'}[kind]
+    # Variables permit normal lexical shadowing in library function arguments
+    # and material locals. Macros corrupted declarations such as float speed.
+    definitions.append("%s %s = %s;" % (glsl_type, name, expression))
     return definitions
 
 
@@ -215,7 +222,7 @@ def _generator_definitions(metadata: Mapping[str, Any]) -> tuple[list[str], list
         params = params if isinstance(params, dict) else {}
         speed = params.get("speed", 1.0)
         speed_expr = speed if isinstance(speed, str) and _SAFE_IDENTIFIER_RE.match(speed) else _glsl_number(speed)
-        definitions.append("#define %s (uTDTime * (%s))" % (name, speed_expr))
+        definitions.append("float %s = uTDTime * (%s);" % (name, speed_expr))
         if any(key in params for key in ("bpm_sync", "strob", "speed_curve", "link_speed_to_global_bpm")):
             warnings.append("%s uses simplified TouchDesigner time-base semantics" % name)
     return definitions, reasons, warnings
@@ -259,6 +266,48 @@ def adapt_material(
     path = Path(shader_path).resolve()
     source = path.read_text(encoding="utf-8-sig")
     metadata = _metadata_from_source(source)
+    if path.parent.name == '[recode]_Albers':
+        for generator in _items(metadata, 'GENERATORS'):
+            if generator.get('NAME') == 'mat_noise_color_time':
+                generator['PARAMS']['speed'] = 'colorAnimation'
+    if path.parent.name == '[recode]_The_Chemical_Brothers':
+        for generator in _items(metadata, 'GENERATORS'):
+            if generator.get('NAME') == 'mat_time':
+                generator['PARAMS']['speed'] = 'mat_tunnelSpeed'
+    # Dependency checks must inspect executable GLSL, never tutorial comments.
+    source = re.sub(r'/\*.*?\*/|//[^\n]*', lambda m: '\n' * m.group().count('\n'), source, flags=re.DOTALL)
+    if path.stem == 'Weather':
+        source = source.replace('float t = mat_time;', '')
+    # Unused generator declarations in upstream templates may refer to deleted
+    # controls. Retain the transitive dependencies of generators actually used.
+    generators = _items(metadata, 'GENERATORS')
+    used = {g.get('NAME') for g in generators if re.search(r'\b'+re.escape(str(g.get('NAME', '')))+r'\b', source)}
+    for _ in generators:
+        for g in generators:
+            if g.get('NAME') in used:
+                used.update(v for v in g.get('PARAMS', {}).values() if isinstance(v, str))
+    metadata['GENERATORS'] = [g for g in generators if g.get('NAME') in used]
+    if path.stem == 'Bar Code Enhanced':
+        source = re.sub(r'^\s*a\s*(?=vec2\s+rotate2D)', '', source)
+    # These names collide with defines supplied by TouchDesigner's GLSL header.
+    renamed_inputs = set()
+    input_names = {item.get('NAME') for item in _items(metadata, 'INPUTS')}
+    for name in ('F2', 'F3', 'F4', 'G2', 'G3', 'G4', 'long'):
+        if name in input_names or re.search(r'\b(?:float|vec[234])\s+[^;\n]*\b' + name + r'\s*(?:[=,;])', source):
+            source = re.sub(r'\b' + name + r'\b', 'mm_material_' + name, source)
+            renamed_inputs.add(name)
+    source = re.sub(r'\blong\s+(?=[A-Za-z_]\w*)', 'int ', source)
+    for name in ('tanh', 'round'):
+        if re.search(r'\b(?:float|vec[234])\s+'+name+r'\s*\(', source):
+            source = re.sub(r'\b'+name+r'\b', 'mm_material_'+name, source)
+    if path.stem == 'GridZoomSandwich':
+        source = source.replace('gl_FragColor = vec4(0.25);', 'return vec4(0.25);')
+    if path.stem == 'strobeFlip':
+        for generator in _items(metadata, 'GENERATORS'):
+            if generator.get('PARAMS', {}).get('speed') == 'speed':
+                generator['PARAMS']['speed'] = 'mat_speed'
+    if path.stem in ('Cartoon Fire', 'Perlinsphere'):
+        source = 'vec4 mod289(vec4 x){return x-floor(x*(1.0/289.0))*289.0;}\n' + source
     reasons: list[str] = []
     warnings: list[str] = []
 
@@ -278,18 +327,58 @@ def adapt_material(
     raster = metadata.get("RASTERISATION_SETTINGS", {})
     if isinstance(raster, dict) and raster.get("REQUIRES_LAST_FRAME"):
         reasons.append("requires previous-frame feedback")
-    if _items(metadata, "IMPORTED"):
-        reasons.append("requires imported textures")
+    textures = []
+    texture_defs = []
+    for item in _items(metadata, "IMPORTED"):
+        name = str(item.get('NAME', ''))
+        if not re.search(r'\b' + re.escape(name) + r'\b', source) and name != 'noiseLUT':
+            continue
+        value = item.get('PATH')
+        if not isinstance(value, str) or str(item.get('TYPE','2d')).lower() not in ('2d','image'):
+            reasons.append('requires cube/3D texture: ' + name)
+            continue
+        resolved = _resolve_include(value, path.parent, [Path(x) for x in library_roots])
+        if resolved is None:
+            # MadMapper shares assets between sibling material folders.
+            matches = {p.resolve() for root in library_roots for p in Path(root).rglob(Path(value).name) if p.is_file()}
+            if len(matches) == 1:
+                resolved = matches.pop()
+            elif matches:
+                import hashlib
+                hashes = {hashlib.sha256(p.read_bytes()).digest() for p in matches}
+                if len(hashes) == 1:
+                    resolved = sorted(matches)[0]
+        if resolved is None:
+            reasons.append('missing texture: ' + value)
+            continue
+        if not _SAFE_IDENTIFIER_RE.match(name):
+            reasons.append('invalid texture identifier: ' + name)
+            continue
+        textures.append(dict(item, resolved_path=str(resolved)))
+        texture_defs.append('#define %s sTD2DInputs[%d]' % (name, len(textures)-1))
 
     input_defs, input_reasons, schema, bindings = _input_definitions(metadata, input_values)
     generator_defs, generator_reasons, generator_warnings = _generator_definitions(metadata)
+    for name in renamed_inputs:
+        input_defs = [re.sub(r'\b'+name+r'\b', 'mm_material_'+name, line) for line in input_defs]
+        generator_defs = [re.sub(r'\b'+name+r'\b', 'mm_material_'+name, line) for line in generator_defs]
     reasons.extend(input_reasons)
     reasons.extend(generator_reasons)
     warnings.extend(generator_warnings)
 
-    body = _HEADER_RE.sub("", source, count=1)
+    body = source
     body = re.sub(r"^\s*#version[^\n]*$", "", body, flags=re.MULTILINE)
+    # Undefine library macros which would rewrite material-local declarations.
+    declarations = set(re.findall(r'\b(?:float|int|vec[234])\s+([A-Za-z_]\w*)', body))
     body, include_reasons = _inline_includes(body, path.parent, [Path(item) for item in library_roots], {path})
+    macros = set(re.findall(r'^\s*#define\s+(\w+)\b', body, re.MULTILINE))
+    collisions = declarations & macros
+    for name in collisions:
+        # Rename the library macro and references only inside expanded includes.
+        body = re.sub(r'// BEGIN .*?// END [^\n]*', lambda m: re.sub(r'\b'+re.escape(name)+r'\b', 'MM_LIBRARY_'+name, m.group()), body, flags=re.DOTALL)
+    body = re.sub(r'\bprecision\s+(?:lowp|mediump|highp)\s+\w+\s*;', '', body)
+    body = re.sub(r'\b(?:lowp|mediump|highp)\s+', '', body)
+    body = re.sub(r'^(\s*)#define\s+(F4|G4)\b', r'\1#undef \2\n\1#define \2', body, flags=re.MULTILINE)
     reasons.extend(include_reasons)
 
     if reasons:
@@ -310,6 +399,11 @@ uniform vec4 uTDCoordinate; // mode, panel columns, panel rows, hybrid mix
 #define FRAMEINDEX int(uTDTime * 60.0)
 #define RENDERSIZE vec2(512.0, 512.0)
 #define DATE vec4(0.0)
+#define IMG_NORM_PIXEL(image, coord) texture(image, coord)
+#define isf_FragNormCoord vUV.st
+#define IMG_PIXEL(image, coord) texture(image, (coord) / vec2(textureSize(image, 0)))
+#define IMG_SIZE(image) vec2(textureSize(image, 0))
+#define texture2D texture
 
 vec2 mapMadMapperUV(vec2 uv)
 {
@@ -324,7 +418,7 @@ vec2 mapMadMapperUV(vec2 uv)
     return framed;
 }
 """ % ADAPTER_MARKER
-    prepared = "\n".join([prelude, *input_defs, *generator_defs, body, """
+    prepared = "\n".join([prelude, *input_defs, *generator_defs, *texture_defs, body, """
 void main()
 {
     fragColor = TDOutputSwizzle(materialColorForPixel(mapMadMapperUV(vUV.st)));
@@ -332,7 +426,7 @@ void main()
 """])
     return AdaptationResult(
         "adaptable", (), tuple(dict.fromkeys(warnings)), prepared, metadata,
-        schema, bindings,
+        schema, bindings, tuple(textures),
     )
 
 

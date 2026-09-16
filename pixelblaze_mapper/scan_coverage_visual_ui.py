@@ -1,5 +1,6 @@
 """Read-only camera-view coverage map; no camera, output or scan-scope actions."""
 from pathlib import Path
+from dataclasses import replace
 from .scan_session import ScanSession
 from .scan_workflow_ux import view_paths, compact_indices
 from .scan_library_ui import style_button
@@ -70,11 +71,20 @@ def render(owner):
     p=owner.op('coverage_visual_panel')
     if not view:
         p.op('summary').par.text='Noch keine gueltigen gespeicherten Ansichten.'
+        for name in ('view_name', 'detail'):
+            p.op(name).par.text=''
+        p.op('legend_good').par.text='TUERKIS: mindestens 3 Ansichten'
+        p.op('legend_weak').par.text='GELB: weniger als 3 Ansichten'
+        p.op('footer').par.text='Abgeschlossene Aufnahmen der aktuellen Sitzung auswaehlen, dann REFRESH.'
+        for name in ('previous', 'next', 'best'):
+            style_button(p.op('btn_'+name),enabled=False)
         return
     known=data.get('reconstructed_count') if data.get('has_candidate') else None
     result=('%s/%s in 3D' % (known,data['total'])) if known is not None else '3D noch nicht berechnet'
-    p.op('summary').par.text='%s | %d ohne 3D | %d nie erkannt' % (
-        result,len(data['unreconstructed_ids']),len(data['never_seen_ids']))
+    p.op('summary').par.text=(('%s | %d ohne 3D | %d nie erkannt' % (
+        result,len(data['unreconstructed_ids']),len(data['never_seen_ids']))) if known is not None else
+        '%s | %d/%d erkannt | %d nie erkannt' % (
+            result,data['total']-len(data['never_seen_ids']),data['total'],len(data['never_seen_ids'])))
     p.op('view_name').par.text='ANSICHT %d / %d | BLICKRICHTUNG DER GESPEICHERTEN AUFNAHME' % (index+1,len(data['views']))
     p.op('legend_good').par.text=('TUERKIS: 3D, mindestens 3 Ansichten' if known is not None
                                  else 'TUERKIS: mindestens 3 Ansichten')
@@ -85,18 +95,36 @@ def render(owner):
     for group in groups:
         hints.append('%s: Nachbarn %s / %s' % (compact_indices(group['missing_ids']),
                                              group['before']['id'],group['after']['id']))
-    p.op('detail').par.text=('%d orange Punkte in dieser Ansicht\n'
+    p.op('detail').par.text=('NIE ERKANNT (Scanindizes ab 0):\n%s\n\n'
+        '%d orange Punkte in dieser Ansicht\n'
         '%d nie erkannte LEDs mit Nachbarhinweis\n\n'
         'Violett zeigt gemessene Nachbarn, NICHT die Position fehlender LEDs. '
         'Verkabelung kann die Richtung wechseln.\n\n%s') % (
+            compact_indices(data['never_seen_ids']) or 'keine',
             view['visible_unreconstructed'],view['neighbor_missing_count'],
             '\n'.join(hints[:8]) or 'Keine verlaesslichen Nachbarpaare in dieser Ansicht.')
     unlocated=data.get('unlocated_count',len(data['never_seen_ids']))
+    guidance=('Orange Bereiche aus weiteren Blickwinkeln aufnehmen, mit gut sichtbaren gemeinsamen LEDs. '
+              if known is not None else
+              'Gelb bedeutet: in weniger als 3 Ansichten erkannt. 3D noch nicht berechnet. ')
     p.op('footer').par.text=('Gespeicherte Messpunkte, kein Kamerafoto. Oben im Bild bleibt oben. '
-        'Orange Bereiche aus weiteren Blickwinkeln aufnehmen, mit gut sichtbaren gemeinsamen LEDs. '
-        '%d nie erkannte LEDs sind in keiner Ansicht eingrenzbar. REFRESH nach neuen Aufnahmen.' % unlocated)
+        + guidance + '%d nie erkannte LEDs sind in keiner Ansicht eingrenzbar. REFRESH nach neuen Aufnahmen.' % unlocated)
     style_button(p.op('btn_previous'),enabled=index>0)
     style_button(p.op('btn_next'),enabled=index+1<len(data['views']))
+    style_button(p.op('btn_best'),enabled=True)
+
+
+def _store_data(owner, data):
+    owner.store('coverage_visual_data',data)
+    owner.store('coverage_visual_revision',owner.fetch('coverage_visual_revision',0)+1)
+    owner.store('coverage_visual_index',0)
+
+
+def _cook_image(owner):
+    # Storage changes do not reliably invalidate an already cooked Script TOP.
+    preview=owner.op('coverage_visual_image')
+    if preview is not None:
+        preview.cook(force=True)
 
 
 def act(op,command):
@@ -105,13 +133,18 @@ def act(op,command):
         if command in ('open','refresh'):
             from .scan_coverage_visual import build_data
             session=ScanSession.from_dict(owner.fetch('session'))
+            if owner.fetch('standalone_capture',None) is not None:
+                # A partial next scan must not hide already completed full views.
+                # Expand only the read-only coverage snapshot, never the scan plan.
+                session=replace(session,selected_ids=tuple(t.led_id for t in session.targets),
+                                anchor_ids=())
             expected=[t.source_index for t in session.targets if t.led_id in session.capture_ids]
             paths=view_paths(owner.op('ui_panel/views/string').text)
             status=owner.fetch('offline_status',{}) or {}
-            candidate=status.get('candidate') if status.get('state')=='review_required' else None
+            candidate=(status.get('candidate') if status.get('state')=='review_required'
+                       and status.get('session_id')==session.session_id else None)
             data=build_data(paths,expected,candidate,session=session)
-            owner.store('coverage_visual_data',data)
-            owner.store('coverage_visual_revision',owner.fetch('coverage_visual_revision',0)+1)
+            _store_data(owner,data)
             best=next((i for i,v in enumerate(data['views']) if v['path']==data['best_view']),0)
             owner.store('coverage_visual_index',best)
         elif command in ('previous','next'):
@@ -126,9 +159,13 @@ def act(op,command):
         else:
             raise ValueError('Unknown coverage-map action')
         render(owner)
+        _cook_image(owner)
         if command=='open':owner.op('coverage_visual_panel').openViewer()
         return True
     except Exception as error:
+        _store_data(owner,{})
+        render(owner)
+        _cook_image(owner)
         owner.op('coverage_visual_panel/footer').par.text='Anzeige nicht verfuegbar: '+str(error)
         if command=='open':owner.op('coverage_visual_panel').openViewer()
         return False

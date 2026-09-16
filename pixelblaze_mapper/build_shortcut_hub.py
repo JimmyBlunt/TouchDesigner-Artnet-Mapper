@@ -38,11 +38,13 @@ def _set(node, name, value):
 def _label(parent, name, text, x, y, width, height, color=(0.82, 0.88, 0.94), size=13):
     node = _get_or_create(parent, textCOMP, name)
     for parameter, value in (("x", x), ("y", y), ("w", width), ("h", height),
+                             ("hmode", "fixed"), ("vmode", "fixed"), ("layer", 30),
                              ("text", text), ("fontsize", size), ("fontcolorr", color[0]),
                              ("fontcolorg", color[1]), ("fontcolorb", color[2]),
                              ("bgalpha", 0), ("display", True),
                              ("clickthrough", True), ("wordwrap", True),
-                             ("align", "centerleft"), ("valign", "center")):
+                             ("type", "multiline"), ("fontalpha", 1),
+                             ("alignx", "left"), ("aligny", "center")):
         _set(node, parameter, value)
     return node
 
@@ -64,6 +66,9 @@ def open_target(key):
         ui.status = 'Shortcut target missing: ' + path
         return False
     try:
+        if key == 's':
+            from pixelblaze_mapper.led_search import act
+            return act(op, 'open')
         target.openViewer()
     except Exception as error:
         ui.status = 'Shortcut viewer failed: ' + path + ' | ' + str(error)
@@ -84,12 +89,14 @@ def shortcutEvent(dat, shortcutName, time):
 
 
 def _open_button(owner, panel, item, y):
+    from pixelblaze_mapper.scan_library_ui import style_button
     button = _get_or_create(panel, buttonCOMP, "open_" + item.key)
     for name, value in (("x", 994), ("y", y), ("w", 94), ("h", 38),
                         ("hmode", "fixed"), ("vmode", "fixed"), ("label", "OPEN"),
                         ("buttontype", "momentary"), ("value0", False),
                         ("display", True), ("layer", 30), ("fontsize", 12)):
         _set(button, name, value)
+    style_button(button)
     node = _get_or_create(owner, panelexecuteDAT, 'open_click_' + item.key)
     node.par.active = False
     node.par.fromop = button.path
