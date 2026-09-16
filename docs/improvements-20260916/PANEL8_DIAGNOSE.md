@@ -163,3 +163,69 @@ Die aktuelle Controller-Konfiguration liegt als
 `controller_10.0.0.251_config_20260917_final.json` daneben; das aeltere
 `..._backup_20260917.json` ist der Stand *vor* den Korrekturen und sollte
 nicht mehr zum Zurueckschreiben verwendet werden.
+
+---
+
+## Korrektur: destination_start war falsch gerechnet
+
+Beim Anlegen des Panel-7-Segments hatte ich `destination_start = 256`
+eingetragen, weil der Controller fuer Ausgang 1 `startPixel: 256` meldet.
+Das ist die falsche Groesse.
+
+`destination_start` ist ein Pixel-Index **innerhalb des Controller-Frames**,
+und der Frame beginnt beim ersten reservierten Universum. Die Universums-
+nummer ergibt sich daraus als `destination_start // 170` - nachzulesen in
+`build_port_topology_ui.py` Zeile 166:
+
+    tail = controller.reserved_universes - (last.destination_start // 170)
+
+Und der Scan-Code rechnet es selbst genauso vor (`standalone_scan.py`):
+
+    destination_start = (port['universe'] - first) * 170
+
+Fuer Panel 7 auf Universum 158 bei Frame-Start 156 heisst das:
+
+    (158 - 156) * 170 = 340
+
+Mit 256 landete das Segment auf Universum 157 - also 84 Pixel zu frueh.
+Der Controller beginnt Ausgang 1 aber exakt an der Universumsgrenze 158.
+Folge waere ein um 84 LEDs verschobenes Bild gewesen, bei dem die letzten
+84 LEDs leer bleiben. Korrigiert auf 340, damit belegt das Segment die
+Ziel-Pixel 340..888, also genau die Universen 158..161.
+
+Merksatz: `startPixel` in der Controller-Konfiguration und
+`destination_start` in `segment_config` sind **nicht dasselbe**, sobald ein
+Ausgang nicht an einer Universumsgrenze endet. Panel 8 endet bei Pixel 255
+mitten in Universum 157; der Controller richtet Ausgang 1 trotzdem auf die
+naechste ganze Universumsgrenze aus.
+
+Nachmessung nach der Korrektur, Quelldaten je Universum:
+
+    U158  Panel7 lokal   0..169   alles 0      Quellpixel ohne Licht
+    U159  Panel7 lokal 170..339   Mittel 0,24  Daten
+    U160  Panel7 lokal 340..509   Mittel 0,34  Daten
+    U161  Panel7 lokal 510..548   alles 0      Quellpixel ohne Licht
+
+Die schwarzen Universen sind kein Packfehler: die Quellpixel 2976..3145 und
+3486..3524 tragen derzeit schlicht kein Licht, weil Panel 7 noch keine
+echte UV-Zuordnung hat. Das loest der Scan.
+
+## Hinweis zum Scan-Dialog
+
+`NEW ACQUISITION` blockiert mit "Controller frame range must contain every
+panel universe", wenn `CONTROLLER UNIVERSE COUNT` zu klein ist. Die Pruefung
+in `standalone_scan.py` verlangt:
+
+    letztes Panel-Universum  <=  frame_start + frame_count
+
+549 LEDs = ceil(549/170) = 4 Universen, belegt also 158..161 (exklusives
+Ende 162). Bei Frame-Start 156 muss der Count daher mindestens 6 sein.
+Mit 3 reichte der Rahmen nur bis 159 - blockiert.
+
+Richtige Werte fuer Panel 7:
+
+    PANEL START UNIVERSE        158
+    LED COUNT                   549
+    CONTROLLER FRAME START      156
+    CONTROLLER UNIVERSE COUNT     6
+    NETWORK COLOR ORDER         RGB
