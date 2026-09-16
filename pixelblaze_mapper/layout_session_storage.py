@@ -10,6 +10,25 @@ import weakref
 
 from .layout_scene import SceneError
 
+# Audit 2026-09-16: the durable snapshot carried the complete undo stack, each
+# entry a full copy of the ~9.3 MB layout document. Measured on the live system:
+# 160,303,985 characters (152.9 MB) in TouchDesigner storage, re-encoded on every
+# project save and decoded again on every load - the 82 s cold cook of
+# layout_scene_editor/instances. The live editor keeps its full history in memory
+# for the session; this only caps how much of it survives a reload.
+# Set to 0 to persist no history at all, or raise it to trade start-up time for
+# undo depth across restarts.
+PERSISTED_HISTORY_DEPTH = 2
+
+
+def _persisted_tail(entries):
+    """Keep the entries nearest to `current`, so the restored timeline stays contiguous."""
+    entries = list(entries)
+    if PERSISTED_HISTORY_DEPTH <= 0:
+        return []
+    return entries[-PERSISTED_HISTORY_DEPTH:]
+
+
 LAYOUT_KEY = "layout_session_snapshot"
 FIXTURE_KEY = "fixture_session_snapshot"
 TRANSIENT_KEYS = ("layout_editor_session", "fixture_history", "fixture_preview",
@@ -91,8 +110,8 @@ def layout_snapshot(editor, *, force=False):
     # immutable dataclass data is still serializable without pickling the class.
     encode = lambda document: serialized("document", document, force=force)
     return {"schema": "pixelblaze-layout-session", "version": 2,
-            "current": encode(editor.current), "undo": [encode(v) for v in editor._undo],
-            "redo": [encode(v) for v in editor._redo], "selected_object_id": editor.selected_object_id,
+            "current": encode(editor.current), "undo": [encode(v) for v in _persisted_tail(editor._undo)],
+            "redo": [encode(v) for v in _persisted_tail(editor._redo)], "selected_object_id": editor.selected_object_id,
             "preview": serialized("scene", editor.preview, force=force) if editor.preview is not None else None}
 
 
@@ -130,8 +149,8 @@ def restore_layout(data):
 def fixture_snapshot(history, preview=None, *, force=False):
     encode = lambda scene: serialized("fixture", scene, force=force)
     return {"schema": "pixelblaze-fixture-session", "version": 2,
-            "current": encode(history.current), "undo": [encode(v) for v in history._undo],
-            "redo": [encode(v) for v in history._redo], "preview": encode(preview) if preview is not None else None}
+            "current": encode(history.current), "undo": [encode(v) for v in _persisted_tail(history._undo)],
+            "redo": [encode(v) for v in _persisted_tail(history._redo)], "preview": encode(preview) if preview is not None else None}
 
 
 def restore_fixtures(data):
