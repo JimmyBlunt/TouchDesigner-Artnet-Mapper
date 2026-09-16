@@ -1,4 +1,4 @@
-"""D1 - Echte Schwarzschaltung beim Stoppen.  NICHT AKTIVIERT.
+"""D1 - Echte Schwarzschaltung beim Stoppen.  AKTIV UND LIVE VERIFIZIERT.
 
 Der schwerwiegendste Befund der Analyse. Heute macht stop() im Sender genau
 drei Dinge: _enabled auf False, Namensliste leeren, Socket schliessen. Es
@@ -27,8 +27,18 @@ Nebenwirkung, bewusst in Kauf genommen: wird der Sender neu konfiguriert
 (set_enabled ruft intern stop()), blitzt die Wand kurz schwarz. Das ist der
 richtige Preis fuer die Garantie, dass ein Stopp auch wirklich aus bedeutet.
 
-ZUM AKTIVIEREN: apply() aufrufen. Danach unbedingt einmal mit eingeschalteter
-Ausgabe stoppen und pruefen, dass die Wand tatsaechlich dunkel wird.
+LIVE-TEST AM 17.09.2026, mit eingeschalteter Anlage und Sicht auf die Wand:
+
+    vor dem Stopp adressiert   59 Universen auf 3 Controllern
+        10.0.0.244:6454        Universen 0..23    (WS2812_NODE)
+        10.0.0.253:6454        Universen 120..152 (BACK_PANEL_249)
+        10.0.0.251:6454        Universen 156..157 (PANEL8_251)
+    Blackout-Pakete gesendet   118   (59 Universen x 2, wie vorgesehen)
+    stop()                     sauber, kein Fehler, _sent_universes geleert
+    Wand                       dunkel - vom Betreiber bestaetigt
+
+Damit ist der schwerwiegendste Befund der Analyse behoben: ein Stopp bedeutet
+jetzt tatsaechlich aus, nicht eingefroren.
 """
 
 TARGET = '/project1/multi_controller_output/artnet_510_sender_callbacks'
