@@ -33,15 +33,15 @@ Ein Commit pro Änderung. Commit-Nachricht nennt Wirkung und Messwert.
 
 | ID | Änderung | Ort | Status |
 |---|---|---|---|
-| B1 | Toten Frame-Cook abschalten (1.776.293 Cooks ins Leere) | `/project1/chopexec1` → `script4` | offen |
-| B2 | Tastenbelegung korrigieren (`pgup`/`pgdn`/`esc`) | `layout_scene_editor/keyboard` + `layout_scene_td.key()` | offen |
-| B3 | Suchfeld auf Enter reagieren lassen | `material_browser/unified_search` | offen |
-| B4 | Überlagerung der Parameterschublade auflösen | `material_browser/native_parameter_drawer` | offen |
-| B5 | Statusanzeige des Routers drosseln (87 ms alle 250 ms) | `multi_controller_output/router_status_execute` | offen |
-| B6 | Destruktive Buttons farblich kennzeichnen | `layout_scene_editor/ui_panel` | offen |
-| B7 | Shortcut-Buttons beschriften (14 leere Labels) | `shortcut_hub/help_panel/open_*` | offen |
-| B8 | `preview3d`-Treiber an Viewer-Sichtbarkeit koppeln | `pixelblaze_mapper/preview3d/animation_driver` | offen |
-| B9 | Tote Pfade markieren statt löschen (`node_status`-Tabelle) | `/project1/node_status` (neu) | offen |
+| B1 | Toten Frame-Cook abschalten (1.776.293 Cooks ins Leere) | `/project1/chopexec1` → `script4` | erledigt |
+| B2 | Tastenbelegung korrigieren (`pgup`/`pgdn`/`esc`) | `layout_scene_editor/keyboard` + `layout_scene_td.key()` | erledigt |
+| B3 | Suchfeld auf Enter reagieren lassen | `material_browser/unified_search` | erledigt |
+| B4 | Überlagerung der Parameterschublade auflösen | `material_browser/native_parameter_drawer` | erledigt |
+| B5 | Statusanzeige des Routers drosseln (87 ms alle 250 ms) | `multi_controller_output/router_status_execute` | erledigt |
+| B6 | Destruktive Buttons farblich kennzeichnen | `layout_scene_editor/ui_panel` | erledigt |
+| B7 | Shortcut-Buttons beschriften (14 leere Labels) | `shortcut_hub/help_panel/open_*` | erledigt |
+| B8 | `preview3d`-Treiber an Viewer-Sichtbarkeit koppeln | `pixelblaze_mapper/preview3d/animation_driver` | erledigt |
+| B9 | Tote Pfade markieren statt löschen (`node_status`-Tabelle) | `/project1/node_status` (neu) | erledigt |
 
 ## Gruppe C — Performance
 
