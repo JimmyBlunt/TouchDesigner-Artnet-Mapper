@@ -1,0 +1,70 @@
+# Select reviewed global or true per-panel local UV by LED index.
+# /project1/pixelblaze_mapper/effect_panel_uv owns the panel ranges; it carries
+# one header row plus one row per source pixel (7646 as of 2026-09-16).
+#
+# Audit 2026-09-16, step C1: this used to loop over every LED in Python with
+# four table[row, name] lookups each - roughly 30,000 cell accesses per cook,
+# 261 ms, blocking the main thread every time the coordinate mode or hybrid mix
+# changed. Now the four columns are read once and combined with NumPy.
+
+LOOKUP = '/project1/pixelblaze_mapper/effect_panel_uv'
+CONTROLS = '/project1/madmapper_player_controls'
+COLUMNS = ('global_u', 'global_v', 'local_u', 'local_v')
+
+
+def onSetupParameters(scriptOp):
+    return
+
+
+def onPulse(par):
+    return
+
+
+def _read_columns(table, count):
+    """One pass per column instead of four lookups per LED."""
+    import numpy as np
+    out = {}
+    for name in COLUMNS:
+        cells = table.col(name)
+        if cells is None:
+            raise RuntimeError('True panel UV lookup is missing column ' + name)
+        out[name] = np.array([float(cell.val) for cell in cells[1:count + 1]], dtype=np.float64)
+        if out[name].size != count:
+            raise RuntimeError('True panel UV lookup is incomplete for ' + name)
+    return out
+
+
+def onCook(scriptOp):
+    import numpy as np
+    source = scriptOp.inputs[0]
+    count = source.numSamples
+    table = op(LOOKUP)
+    controls = op(CONTROLS)
+    if table is None or table.numRows != count + 1:
+        raise RuntimeError('True panel UV lookup is missing or incomplete')
+    mode = str(controls.par.Coordinatemode.eval()) if controls is not None else 'global'
+    blend = float(controls.par.Hybridmix.eval()) if controls is not None else 0.5
+    blend = max(0.0, min(1.0, blend))
+
+    cols = _read_columns(table, count)
+    if mode in ('panel', 'panel_local'):
+        u, v = cols['local_u'], cols['local_v']
+    elif mode == 'hybrid':
+        u = cols['global_u'] + (cols['local_u'] - cols['global_u']) * blend
+        v = cols['global_v'] + (cols['local_v'] - cols['global_v']) * blend
+    else:
+        u, v = cols['global_u'], cols['global_v']
+
+    scriptOp.clear()
+    scriptOp.numSamples = count
+    out_u = scriptOp.appendChan('tx')
+    out_v = scriptOp.appendChan('ty')
+    out_z = scriptOp.appendChan('tz')
+
+    # Deliberately NOT scriptOp.copyNumpyArray(): it replaces the channels and
+    # renames them to chan1/chan2/chan3, which silently breaks every downstream
+    # reference to tx/ty/tz. Verified the hard way on 2026-09-16.
+    out_u.vals = u.astype(np.float32)
+    out_v.vals = v.astype(np.float32)
+    out_z.vals = np.zeros(count, dtype=np.float32)
+    return

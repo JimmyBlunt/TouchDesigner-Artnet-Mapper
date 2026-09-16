@@ -1,0 +1,48 @@
+# Select reviewed global or true per-panel local UV by LED index.
+# /project1/pixelblaze_mapper/effect_panel_uv owns the four real panel ranges:
+# middle 0..516, upper 517..785, lower 786..1183, rear 1184..3743.
+
+LOOKUP = '/project1/pixelblaze_mapper/effect_panel_uv'
+CONTROLS = '/project1/madmapper_player_controls'
+
+
+def onSetupParameters(scriptOp):
+    return
+
+
+def onPulse(par):
+    return
+
+
+def onCook(scriptOp):
+    source = scriptOp.inputs[0]
+    count = source.numSamples
+    table = op(LOOKUP)
+    controls = op(CONTROLS)
+    if table is None or table.numRows != count + 1:
+        raise RuntimeError('True panel UV lookup is missing or incomplete')
+    mode = str(controls.par.Coordinatemode.eval()) if controls is not None else 'global'
+    blend = float(controls.par.Hybridmix.eval()) if controls is not None else 0.5
+    blend = max(0.0, min(1.0, blend))
+
+    scriptOp.clear()
+    scriptOp.numSamples = count
+    out_u = scriptOp.appendChan('tx')
+    out_v = scriptOp.appendChan('ty')
+    out_z = scriptOp.appendChan('tz')
+
+    for index in range(count):
+        row = index + 1
+        global_u = float(table[row, 'global_u'])
+        global_v = float(table[row, 'global_v'])
+        local_u = float(table[row, 'local_u'])
+        local_v = float(table[row, 'local_v'])
+        if mode in ('panel', 'panel_local'):
+            out_u[index], out_v[index] = local_u, local_v
+        elif mode == 'hybrid':
+            out_u[index] = global_u + (local_u - global_u) * blend
+            out_v[index] = global_v + (local_v - global_v) * blend
+        else:
+            out_u[index], out_v[index] = global_u, global_v
+        out_z[index] = 0.0
+    return
