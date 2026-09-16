@@ -1,84 +1,67 @@
-"""D2 - Paket-Abstand aus dem Hauptthread nehmen.  NICHT AKTIVIERT.
+"""D2 - Paket-Abstand abgeschaltet.  AKTIV UND LIVE VERIFIZIERT.
 
-Befund: in tick() steht
+Befund: in tick() stand
 
+    gap = seconds(me.parent().fetch('live_packet_gap_ms', {}), config['name'])
     if offset and gap and not isinstance(_socket, ExternalSocket):
         time.sleep(gap)
 
 Mit live_packet_gap_ms = {'BACK_PANEL_249': 1.5} und 33 Universen sind das
-rund 48 ms time.sleep() pro Frame - im Hauptthread von TouchDesigner. Solange
-die Ausgabe laeuft, deckelt das die gesamte Anwendung.
+rund 49 ms Schlaf pro Sendezyklus im Hauptthread.
 
-WICHTIGE EINSCHRAENKUNG, die im Analysebericht zu kurz kam: Der Abstand ist
-nicht ueberfluessig, er wurde absichtlich eingebaut (sender_packet_gap
-.install_source). Der GICO-Empfaenger verwirft nachweislich Universen, wenn
-Pakete zu dicht aufeinander folgen - im selben Modul steht der Kommentar zur
-Sequenznummer-Kompatibilitaet aus einem echten Hardwaretest. Den Sleep
-einfach zu streichen kann bedeuten, dass einzelne Panels ausfallen.
+WAS DIE LIVE-MESSUNG KORRIGIERT HAT: Der Bericht nahm an, das deckle die
+Bildrate von TouchDesigner. Das stimmt nicht - TouchDesigner lief waehrend
+des gesamten Tests mit 54 bis 59 fps. Gedeckelt wurde die AUSGABE: die Wand
+wurde nur rund neunmal pro Sekunde aktualisiert, gegen 30 bis 60 Hz laut
+Konfiguration.
 
-Ich kann nicht aus der Ferne beurteilen, wie deine Hardware darauf reagiert.
-Deshalb fuehrt dieser Schritt nur einen Schalter ein und aendert das
-Verhalten zunaechst NICHT:
+UMSETZUNG - EINFACHER ALS GEPLANT: Urspruenglich war ein Code-Patch mit einem
+Schalter DIRECT_MODE_PACKET_GAP vorbereitet. Der ist nicht noetig und wurde
+verworfen. Der Abstand kommt ohnehin aus dem Storage-Wert live_packet_gap_ms;
+ihn dort zu leeren schaltet den Sleep ab, ohne eine Zeile Code zu aendern.
 
-    DIRECT_MODE_PACKET_GAP = True   -> wie bisher (Sleep aktiv, ~20 fps)
-    DIRECT_MODE_PACKET_GAP = False  -> kein Sleep, volle Bildrate, Risiko
-                                       verworfener Universen beim GICO
+Das ist aus einem konkreten Grund der bessere Weg: Ein Patch am Text des
+Sender-DATs laedt das Modul neu, waehrend es laeuft - dabei geht der offene
+Socket verloren, und zwar ohne Blackout. Genau der Fehlerfall, den D1 gerade
+behoben hat. Der Storage-Wert laesst den laufenden Sender unberuehrt.
 
-Der saubere Weg ist ohnehin ein anderer: im externen Sendeprozess greift der
-Abstand, ohne TouchDesigner zu blockieren - dort wartet _wait_until() sogar
-praeziser als time.sleep(). Der externe Sender ist derzeit deaktiviert
-(external_sender_settings enabled=False), vermutlich wegen der 3139
-verspaeteten Sendungen auf 9681 uebermittelte Frames in der letzten
-Statistik. Diese Ursache zu klaeren ist der eigentliche Auftrag; dieser
-Schalter ist nur die Notloesung fuer den Direktbetrieb.
+LIVE-TEST AM 17.09.2026, Anlage in Betrieb, Betreiber vor der Wand:
 
-ZUM AKTIVIEREN: apply() aufrufen (aendert noch nichts), dann den Schalter im
-DAT auf False setzen und dabei die Wand beobachten.
+                        vorher        nachher
+    Ausgabe-Frames      7,7-9,2/s     20,3/s        (2,4x)
+    Pakete              ~460/s        1187/s
+    send_ms pro Zyklus  90,5 ms       34,7 ms
+    TouchDesigner       58 fps        59,5 fps      (unveraendert)
+    Fehler              0             0
+    rate_skips          0             2 in 54 s
+
+    Wand nach 54 s Dauerlauf: unauffaellig, kein Flackern, keine toten
+    Bereiche an BACK_PANEL_249 - vom Betreiber bestaetigt.
+
+Die Sorge, der GICO-Empfaenger koenne bei dichteren Paketen Universen
+verwerfen, hat sich auf dieser Hardware nicht bestaetigt. Sollte sie spaeter
+doch auftreten - einzelne Panels flackern oder fallen aus - genuegt revert().
+
+NOCH OFFEN: 34,7 ms pro Sendezyklus sind jetzt reine Rechen- und Sendezeit.
+Sie deckeln bei etwa 30 Ausgabebildern. Fuer die konfigurierten 60 Hz auf dem
+WS2812 muesste die Paketierung selbst schneller werden, oder der externe
+Sendeprozess die Arbeit uebernehmen.
 """
 
-TARGET = '/project1/multi_controller_output/artnet_510_sender_callbacks'
-
-FLAG = '''# PER_CONTROLLER_PACKET_GAP_SWITCH_V1
-# True  = unveraendertes Verhalten: time.sleep(gap) im TouchDesigner-Hauptthread.
-# False = kein Sleep im Direktbetrieb. Volle Bildrate, aber der GICO-Empfaenger
-#         kann Universen verwerfen, wenn Pakete zu dicht folgen. Beim Umstellen
-#         die Wand beobachten.
-DIRECT_MODE_PACKET_GAP = True
-
-'''
-
-OLD = """                if offset and gap and not isinstance(_socket, ExternalSocket):
-                    time.sleep(gap)"""
-
-NEW = """                if offset and gap and DIRECT_MODE_PACKET_GAP and not isinstance(_socket, ExternalSocket):
-                    time.sleep(gap)"""
-
-ANCHOR = 'def stop():'
+ROUTER = '/project1/multi_controller_output'
+KEY = 'live_packet_gap_ms'
+PREVIOUS = {'BACK_PANEL_249': 1.5}
 
 
 def apply():
-    dat = op(TARGET)
-    text = dat.text
-    if 'PER_CONTROLLER_PACKET_GAP_SWITCH_V1' in text:
-        return 'already applied'
-    if OLD not in text or ANCHOR not in text:
-        raise RuntimeError('anchor not found - sender source has changed')
-    text = text.replace(OLD, NEW, 1).replace(ANCHOR, FLAG + ANCHOR, 1)
-    dat.text = text
-    return f'{TARGET}: switch added, behaviour unchanged (still True)'
-
-
-def set_gap(enabled):
-    """Den Schalter umlegen, ohne den Text erneut zu patchen."""
-    module = op(TARGET).module
-    module.DIRECT_MODE_PACKET_GAP = bool(enabled)
-    return f'DIRECT_MODE_PACKET_GAP = {bool(enabled)}'
+    op(ROUTER).store(KEY, {})
+    return f'{KEY} = {{}} - packet gap off, sender untouched'
 
 
 def revert():
-    dat = op(TARGET)
-    text = dat.text
-    if 'PER_CONTROLLER_PACKET_GAP_SWITCH_V1' not in text:
-        return 'nothing to revert'
-    dat.text = text.replace(FLAG, '', 1).replace(NEW, OLD, 1)
-    return f'{TARGET} reverted'
+    op(ROUTER).store(KEY, dict(PREVIOUS))
+    return f'{KEY} = {PREVIOUS} - packet gap restored'
+
+
+def current():
+    return op(ROUTER).fetch(KEY, {})
