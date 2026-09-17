@@ -57,3 +57,37 @@ der Farbton bleibt richtig, die Flächen wirken nur heller.
 
 Ursprüngliche Materialquelle: `/project1/material_gradient_player`
 (auch als Kommentar am TOP hinterlegt und in `material-before-colortest.txt`).
+
+---
+
+## Ergebnis (17.09.2026)
+
+Panel 7 zeigte im Test die falsche Farbe. Korrigiert in `segment_config`,
+Zeile `PORT_PANEL8_251_2`, Spalte `color_override`: **RGB → BGR**, damit
+identisch zu Panel 8 am selben Controller 10.0.0.251. Vom Betrachter an der
+Wand bestätigt.
+
+Alle übrigen Flächen waren bereits korrekt.
+
+| Fläche | Controller | Reihenfolge |
+|---|---|---|
+| Seite oben / Mitte / unten | `WS2812_NODE` | GRB |
+| Panel 1–6 | `BACK_PANEL_249` | RGB |
+| Panel 8 | `PANEL8_251` | BGR |
+| **Panel 7** | `PANEL8_251` | **BGR** (war RGB) |
+
+Angewendet über `apply_router_transaction`; die Ausgabe wird dabei gestoppt
+und muss danach wieder gestartet werden. Anschließend Material
+`/project1/material_gradient_player` zurückgesetzt und gespeichert als
+`PixelblazeMapper_PANEL7_COLOR_OK_20260917.toe`.
+
+Das Testmuster `/project1/colororder_test` bleibt als Diagnosewerkzeug liegen.
+Es wirkt nur, solange es auf `/project1/topto1` gelegt ist.
+
+## Wo was eingestellt wird
+
+| Einstellung | Ort | Apply |
+|---|---|---|
+| Farbreihenfolge pro Panel | `segment_config`, Spalte `color_override` | APPLY im Art-Net Router (Ctrl+Shift+6), danach START |
+| Farbreihenfolge pro Controller | `controller_config`, Spalte `color_order` | dito; `color_override` schlägt diesen Wert |
+| Helligkeits-Gain pro Panel | `/project1/panel_brightness_config`, Spalte `gain` | keins, greift sofort |
