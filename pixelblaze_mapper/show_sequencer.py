@@ -18,9 +18,14 @@ from typing import Any, Mapping
 SCHEMA_VERSION = 2
 COORDINATE_MODES = frozenset({"global", "panel_local", "hybrid"})
 TARGET_GROUPS = frozenset({"all", "middle", "upper", "lower", "rear"})
-TRANSITION_TYPES = frozenset(
-    {"cut", "crossfade", "dissolve", "wipe", "radial", "glitch"}
-)
+# Kept in step with pixelblaze_mapper.show_renderer.TRANSITIONS by
+# tests/test_show_transitions.py; this module stays import-free on purpose.
+TRANSITION_TYPES = frozenset({
+    "cut", "crossfade", "fade_black", "burn",
+    "dissolve", "glitch",
+    "wipe", "wipe_left", "wipe_up", "wipe_down",
+    "radial", "iris", "bars", "checker", "spiral",
+})
 
 
 class ShowValidationError(ValueError):
@@ -154,7 +159,7 @@ class Cue:
         duration = _number(self.duration, "cue.duration", minimum=0.001)
         if self.transition not in TRANSITION_TYPES:
             raise ShowValidationError(
-                "cue.transition must be cut, crossfade, dissolve, wipe, radial, or glitch"
+                "cue.transition must be one of: " + ", ".join(sorted(TRANSITION_TYPES))
             )
         transition_duration = _number(
             self.transition_duration, "cue.transition_duration", minimum=0.0

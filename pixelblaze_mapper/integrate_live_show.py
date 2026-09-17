@@ -20,6 +20,11 @@ MANIFEST = REPO_ROOT / "effects/effects_manifest.json"
 TRANSITION_SHADER = r'''out vec4 fragColor;
 uniform vec4 uTransition;
 
+// Mode numbers follow pixelblaze_mapper.show_renderer.TRANSITION_INFO order.
+// tests/test_show_transitions.py keeps the LED path and this preview in step.
+const float TAU = 6.28318530718;
+const float BURN_FEATHER = 0.18;
+
 float showHash(vec2 p)
 {
     return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
@@ -41,24 +46,40 @@ void main()
     }
     vec4 colorB = texture(sTD2DInputs[1], uvB);
 
-    vec4 result = colorA;
+    float weight;
+    float gain = 1.0;
     if (progress <= 0.0) {
-        result = colorA;
+        weight = 0.0;
     } else if (progress >= 1.0) {
-        result = texture(sTD2DInputs[1], uv);
+        weight = 1.0;
+        colorB = texture(sTD2DInputs[1], uv);
     } else if (mode == 0) {
-        result = progress >= 1.0 ? colorB : colorA;
+        weight = step(0.5, progress);
     } else if (mode == 1) {
-        result = mix(colorA, colorB, progress);
+        weight = progress;
+    } else if (mode == 2) {
+        weight = step(0.5, progress);
+        gain = abs(2.0 * progress - 1.0);
+    } else if (mode == 3) {
+        weight = clamp((progress * (1.0 + BURN_FEATHER) - showHash(floor(uv * 96.0))) / BURN_FEATHER, 0.0, 1.0);
     } else {
-        float reveal = 0.0;
-        if (mode == 2) reveal = showHash(floor(uv * 96.0));
-        else if (mode == 3) reveal = uv.x;
-        else if (mode == 4) reveal = clamp(length(uv - 0.5) * 1.42, 0.0, 1.0);
-        else reveal = showHash(floor(uv * vec2(40.0, 24.0)));
-        result = mix(colorA, colorB, step(reveal, progress));
+        float reveal;
+        if (mode == 4) reveal = showHash(floor(uv * 96.0));
+        else if (mode == 5) reveal = showHash(floor(uv * vec2(40.0, 24.0)));
+        else if (mode == 6) reveal = uv.x;
+        else if (mode == 7) reveal = 1.0 - uv.x;
+        else if (mode == 8) reveal = 1.0 - uv.y;
+        else if (mode == 9) reveal = uv.y;
+        else if (mode == 10) reveal = clamp(length(uv - 0.5) * 1.42, 0.0, 1.0);
+        else if (mode == 11) reveal = 1.0 - clamp(length(uv - 0.5) * 1.42, 0.0, 1.0);
+        else if (mode == 12) reveal = fract(uv.x * 12.0);
+        else if (mode == 13) reveal = showHash(floor(uv * vec2(16.0, 10.0)));
+        else reveal = fract(atan(uv.y - 0.5, uv.x - 0.5) / TAU);
+        weight = step(reveal, progress);
     }
-    result.rgb *= blackout ? 0.0 : brightness;
+
+    vec4 result = mix(colorA, colorB, weight);
+    result.rgb *= blackout ? 0.0 : brightness * gain;
     fragColor = TDOutputSwizzle(result);
 }
 '''
@@ -245,7 +266,10 @@ def _render_sync_source(effect_definitions):
 import time
 CATALOG = %s
 MODES = {'global': 0, 'panel': 1, 'panel_local': 1, 'hybrid': 2}
-TRANSITIONS = {'cut': 0, 'crossfade': 1, 'dissolve': 2, 'wipe': 3, 'radial': 4, 'glitch': 5}
+TRANSITIONS = {'cut': 0, 'crossfade': 1, 'fade_black': 2, 'burn': 3,
+               'dissolve': 4, 'glitch': 5, 'wipe': 6, 'wipe_left': 7,
+               'wipe_up': 8, 'wipe_down': 9, 'radial': 10, 'iris': 11,
+               'bars': 12, 'checker': 13, 'spiral': 14}
 _last_feedback = 0.0
 
 def _set_parameter(node, name, value):

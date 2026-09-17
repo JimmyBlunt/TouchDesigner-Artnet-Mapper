@@ -8,7 +8,7 @@ remain correct even when several panels use the same panel-local UV values.
 from __future__ import annotations
 
 from functools import lru_cache
-from math import hypot, isfinite, sin
+from math import atan2, hypot, isfinite, pi, sin
 from typing import Iterable, Sequence
 
 from pixelblaze_mapper.installation_contract import PANEL_BY_NAME, TOTAL_PIXELS
@@ -16,7 +16,72 @@ from pixelblaze_mapper.installation_contract import PANEL_BY_NAME, TOTAL_PIXELS
 
 TARGET_GROUPS = frozenset({"all", "middle", "upper", "lower", "rear"})
 SOURCE_GROUP_NAMES = TARGET_GROUPS - {"all"}
-TRANSITIONS = frozenset({"cut", "crossfade", "dissolve", "wipe", "radial", "glitch"})
+# Ordered so the UI can list them by family; the set is what validates.
+TRANSITION_INFO = (
+    ("cut", "blend", "harter Schnitt"),
+    ("crossfade", "blend", "lineare Überblendung"),
+    ("fade_black", "blend", "über Schwarz blenden"),
+    ("burn", "blend", "weiche, gefaserte Auflösung"),
+    ("dissolve", "reveal", "zufällige LEDs zuerst"),
+    ("glitch", "reveal", "blockweise, springend"),
+    ("wipe", "reveal", "Wisch nach rechts"),
+    ("wipe_left", "reveal", "Wisch nach links"),
+    ("wipe_up", "reveal", "Wisch nach oben"),
+    ("wipe_down", "reveal", "Wisch nach unten"),
+    ("radial", "reveal", "von der Mitte nach außen"),
+    ("iris", "reveal", "von außen zur Mitte"),
+    ("bars", "reveal", "senkrechte Lamellen"),
+    ("checker", "reveal", "Schachbrettfelder"),
+    ("spiral", "reveal", "Winkel-Sweep um die Mitte"),
+)
+TRANSITIONS = frozenset(name for name, _family, _label in TRANSITION_INFO)
+# Reveals compare a per-LED threshold against the mix; blends do not.
+_REVEALS = frozenset(name for name, family, _label in TRANSITION_INFO if family == "reveal")
+BAR_COUNT = 12.0
+CHECKER_COLUMNS = 16
+CHECKER_ROWS = 10
+BURN_FEATHER = 0.18
+
+
+def _clamp(value: float) -> float:
+    return 0.0 if value < 0.0 else (1.0 if value > 1.0 else value)
+
+
+def _reveal_threshold(transition: str, index: int, u: float, v: float, mix: float) -> float:
+    """Per-LED reveal threshold in 0..1; the LED flips once mix passes it."""
+
+    if transition == "wipe":
+        return _clamp(u)
+    if transition == "wipe_left":
+        return 1.0 - _clamp(u)
+    if transition == "wipe_up":
+        return 1.0 - _clamp(v)
+    if transition == "wipe_down":
+        return _clamp(v)
+    if transition == "radial":
+        return _clamp(hypot(u - 0.5, v - 0.5) * 1.42)
+    if transition == "iris":
+        return 1.0 - _clamp(hypot(u - 0.5, v - 0.5) * 1.42)
+    if transition == "bars":
+        return (_clamp(u) * BAR_COUNT) % 1.0
+    if transition == "checker":
+        column = int(_clamp(u) * CHECKER_COLUMNS)
+        row = int(_clamp(v) * CHECKER_ROWS)
+        return _hash(column + row * 31)
+    if transition == "spiral":
+        return (atan2(v - 0.5, u - 0.5) / (2.0 * pi)) % 1.0
+    if transition == "dissolve":
+        return _hash(index)
+    # glitch: whole blocks jump together, re-salted as the mix advances
+    return _hash(index // 16, float(int(mix * 30.0)))
+
+
+def transition_gain_scale(transition: str, output_b_mix: float) -> float:
+    """Brightness factor during the transition; only fade_black dips."""
+
+    if transition != "fade_black":
+        return 1.0
+    return abs(2.0 * float(output_b_mix) - 1.0)
 
 
 def slot_uv_frame(global_u, global_v, local_u, local_v, *, mode='global', hybrid_mix=0.5):
@@ -123,17 +188,12 @@ def transition_b_weight(
         return mix
     if transition == "crossfade":
         return mix
-    if transition == "cut":
+    if transition in ("cut", "fade_black"):
         return float(mix >= 0.5)
-    if transition == "wipe":
-        threshold = max(0.0, min(1.0, u))
-    elif transition == "radial":
-        threshold = max(0.0, min(1.0, hypot(u - 0.5, v - 0.5) * 1.42))
-    elif transition == "dissolve":
-        threshold = _hash(led_index)
-    else:
-        threshold = _hash(led_index // 16, float(int(mix * 30.0)))
-    return float(threshold <= mix)
+    if transition == "burn":
+        # Feathered edge: a band of LEDs is mid-blend instead of flipping.
+        return _clamp((mix * (1.0 + BURN_FEATHER) - _hash(led_index)) / BURN_FEATHER)
+    return float(_reveal_threshold(transition, led_index, u, v, mix) <= mix)
 
 
 def render_led(
@@ -159,7 +219,7 @@ def render_led(
     mask_a = target_mask(targets_a, led_index)
     mask_b = target_mask(targets_b, led_index)
     weight_b = transition_b_weight(transition, output_b_mix, led_index, uv)
-    gain = 0.0 if blackout else level
+    gain = 0.0 if blackout else level * transition_gain_scale(transition, output_b_mix)
     return tuple(
         ((1.0 - weight_b) * float(a) * mask_a + weight_b * float(b) * mask_b) * gain
         for a, b in zip(color_a, color_b)
@@ -217,7 +277,7 @@ def render_frame(
             raise ValueError("Source groups must match the UV count and use canonical group names or None")
         mask_a = _explicit_target_mask(selected_a, source_groups)
         mask_b = _explicit_target_mask(selected_b, source_groups)
-    gain = 0.0 if blackout else level
+    gain = 0.0 if blackout else level * transition_gain_scale(transition, mix)
     if gain == 0.0:
         return tuple([0.0] * count for _ in slot_a)
 
@@ -225,15 +285,31 @@ def render_frame(
         weights_b: Sequence[float] = (mix,) * count
     elif transition == "crossfade":
         weights_b: Sequence[float] = (mix,) * count
-    elif transition == "cut":
+    elif transition in ("cut", "fade_black"):
         weights_b = (float(mix >= 0.5),) * count
+    elif transition == "burn":
+        edge = mix * (1.0 + BURN_FEATHER)
+        weights_b = tuple(_clamp((edge - _hash(index)) / BURN_FEATHER) for index in range(count))
     elif transition == "wipe":
-        weights_b = tuple(float(max(0.0, min(1.0, float(value))) <= mix) for value in u)
+        weights_b = tuple(float(_clamp(float(value)) <= mix) for value in u)
+    elif transition == "wipe_left":
+        weights_b = tuple(float(1.0 - _clamp(float(value)) <= mix) for value in u)
+    elif transition == "wipe_down":
+        weights_b = tuple(float(_clamp(float(value)) <= mix) for value in v)
+    elif transition == "wipe_up":
+        weights_b = tuple(float(1.0 - _clamp(float(value)) <= mix) for value in v)
     elif transition == "radial":
-        weights_b = tuple(float(max(0.0, min(1.0, hypot(float(x) - 0.5, float(y) - 0.5) * 1.42)) <= mix)
+        weights_b = tuple(float(_clamp(hypot(float(x) - 0.5, float(y) - 0.5) * 1.42) <= mix)
+                          for x, y in zip(u, v))
+    elif transition == "iris":
+        weights_b = tuple(float(1.0 - _clamp(hypot(float(x) - 0.5, float(y) - 0.5) * 1.42) <= mix)
                           for x, y in zip(u, v))
     elif transition == "dissolve":
         weights_b = tuple(float(_hash(index) <= mix) for index in range(count))
+    elif transition in ("bars", "checker", "spiral"):
+        weights_b = tuple(
+            float(_reveal_threshold(transition, index, float(x), float(y), mix) <= mix)
+            for index, (x, y) in enumerate(zip(u, v)))
     else:
         salt = float(int(mix * 30.0))
         weights_b = tuple(float(_hash(index // 16, salt) <= mix) for index in range(count))
