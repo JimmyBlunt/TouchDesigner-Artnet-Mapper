@@ -1,0 +1,28 @@
+{
+ "message": "Nichts aufgenommen - kein Regler bewegt",
+ "recording": "0",
+ "tracks": {
+  "mat_zoom": 2,
+  "mat_strob": 2,
+  "mat_saturation": 2
+ },
+ "core_leak": [],
+ "stored_values": {
+  "mat_zoom": 0.6,
+  "mat_morph": [
+   0.0,
+   0.0
+  ],
+  "mat_glossy": false,
+  "mat_speed": 0.02224694104560623,
+  "mat_bpm_sync": false,
+  "mat_reverse": false,
+  "mat_offset": 0.0,
+  "mat_strob": 0.3,
+  "mat_brightness": 0.0,
+  "mat_contrast": 1.0,
+  "mat_saturation": 0.8,
+  "mat_hue_shift": 0.0,
+  "mat_invert": false
+ }
+}

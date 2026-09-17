@@ -164,9 +164,10 @@ Eine Cue speichert **einen** Reglerstand. Die Aufnahme ergänzt, was ein Regler
 ### AUFNAHME – für eine vorhandene Cue
 
 1. Cue in der Liste auswählen.
-2. **AUFNAHME** drücken. Drei Dinge passieren gleichzeitig: die Show springt an
-   den **Anfang dieser Cue** und spielt los, die Regler im Material Player
-   werden auf die Werte der Cue **gestellt**, und der Knopf wird rot.
+2. **AUFNAHME** drücken. Zwei Dinge passieren gleichzeitig: die Show springt an
+   den **Anfang dieser Cue** und spielt los, und der Knopf wird rot. **An deinen
+   Reglern wird nichts verändert** – die Aufnahme beginnt genau in dem Zustand,
+   den du gerade eingestellt hast.
 3. Regler bewegen. Was du bewegst, ist **sofort auf der Wand zu sehen** – du
    nimmst nicht blind auf.
 4. **AUFNAHME LÄUFT** erneut drücken zum Beenden. Die Meldung nennt, wie viele
@@ -195,10 +196,27 @@ aufgenommene Bewegung ab.
 | Importiertes Material | Dessen **eigene** Regler (`mat_zoom`, `mat_speed`, `mat_morph` …) |
 
 Bei einem importierten Material sind es also genau die Regler, die du im
-Browser auch tatsächlich anfasst. Nicht aufgezeichnet werden Farbverläufe,
+Browser auch tatsächlich anfasst. Core-Regler bleiben bei einer
+importierten Cue außen vor: einen `mat_`-Regler anzufassen schiebt über den
+Materialzustand auch die Core-Schieber ein Stück, und diese Spuren gehörten
+niemandem. Nicht aufgezeichnet werden Farbverläufe,
 Seed und mehrteilige Regler wie Farben – eine Automationsspur ist eine Zahl
 über die Zeit, und eine Farbe in Komponenten zu zerlegen würde etwas
 aufzeichnen, das du als einen Regler siehst.
+
+### Der Startzustand wird mitgenommen
+
+Früher stellte die Aufnahme die Regler erst auf die gespeicherten Werte der Cue
+zurück – das setzte das Material zurück, das du gerade eingestellt hattest.
+Das tut sie nicht mehr. Stattdessen gilt:
+
+- Die Aufnahme startet **aus dem aktuellen Zustand**. Was du vorher am Material
+  gedreht hast, bleibt stehen und ist auf der Wand zu sehen.
+- Beim Beenden wird dieser Startzustand **in die Cue geschrieben**. Regler, die
+  du gar nicht angefasst hast, stehen bei der Wiedergabe also genau dort, wo sie
+  bei der Aufnahme standen – auch ohne eigene Spur.
+- Aufgezeichnet wird trotzdem nur, was sich bewegt: der Zustand kommt in die
+  Cue, die Bewegung in die Aufnahme.
 
 ### Sonstiges
 

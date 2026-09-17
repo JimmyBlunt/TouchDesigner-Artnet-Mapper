@@ -749,6 +749,7 @@ def _apply(command):
 
 
 TAKE_KEY = 'record_take'
+STATE_KEY = 'record_start_state'
 # Long enough that no live performance runs into it, short enough to stay an
 # obviously temporary value if a take is ever abandoned mid-flight.
 OPEN_ENDED_DURATION = 900.0
@@ -810,7 +811,12 @@ def start_recording(as_new_cue=False):
     transport._runtime_record = None
     transport.runtime()
     transport.command('play')
-    _seed_player_from_cue(document['cues'][index])
+    # Deliberately NOT seeding the controls from the cue. Writing the Material
+    # Player fires controls_changed(), which overwrites the ACTIVE material's
+    # stored settings - so arming the recorder reset the material the operator
+    # had just dialled in. A take starts from what is on screen; the opening
+    # sample captures it, and stop_recording() writes it into the cue.
+    OWNER.store(STATE_KEY, _live_state())
     OWNER.store(TAKE_KEY, automation.new_take(cue_id))
     _set_state('recording', '1')
     _set_state('record_cue', cue_id)
@@ -841,29 +847,53 @@ def _trim_new_cue(cue_id, span):
     write(document)
 
 
-def _seed_player_from_cue(cue):
-    """Put the Material Player sliders where the cue already is.
+def _live_state():
+    """Everything the operator currently has set, for both kinds of material."""
 
-    Live monitoring feeds the player's values to the slot being recorded. If
-    the sliders still sat wherever they were left, hitting record would make
-    the cue jump to those positions before a finger touched anything. Seeding
-    them from the cue makes the take start seamlessly, as an overdub should.
+    return {'player': {name: value for name, value in player_values().items()
+                       if isinstance(value, (int, float)) and not isinstance(value, bool)},
+            'imported': live_imported_values()}
+
+
+def _store_state_in_cue(cue_id):
+    """Fold the state the take started from into the cue itself.
+
+    Controls that never moved produce no track, so without this the cue would
+    keep whatever it was created with and replay something other than what was
+    performed. Recording captures the state, not only the movement.
     """
 
-    controls = op('/project1/madmapper_player_controls')
-    if controls is None:
+    state = OWNER.fetch(STATE_KEY, None) or {}
+    OWNER.unstore(STATE_KEY)
+    document = show()
+    index = next((i for i, cue in enumerate(document['cues']) if cue['id'] == cue_id), None)
+    if index is None:
         return
-    parameters = cue.get('parameters', {})
+    cue = document['cues'][index]
+    if editor.is_imported(cue):
+        values = state.get('imported') or {}
+        if not values:
+            return
+        data = imported_data()
+        record = dict(data.get(cue_id) or {})
+        record.setdefault('material_id', editor.material_id(cue))
+        record.setdefault('label', cue.get('preset') or cue['name'])
+        merged = dict(record.get('values') or {})
+        merged.update(values)
+        record['values'] = merged
+        data[cue_id] = record
+        _write_imported(data)
+        return
+    player = state.get('player') or {}
+    if not player:
+        return
+    parameters = dict(cue['parameters'])
     for player_name, parameter in editor.PLAYER_PARAMETERS.items():
-        if parameter not in automation.RECORDABLE or parameter not in parameters:
-            continue
-        par = getattr(controls.par, player_name, None)
-        if par is None:
-            continue
-        try:
-            par.val = float(parameters[parameter])
-        except (TypeError, ValueError):
-            continue
+        if player_name in player and parameter in parameters:
+            parameters[parameter] = float(player[player_name])
+    cues = [dict(entry) for entry in document['cues']]
+    cues[index] = dict(cue, parameters=parameters)
+    write(dict(document, cues=cues))
 
 
 def stop_recording(reason=''):
@@ -874,6 +904,7 @@ def stop_recording(reason=''):
     _set_state('recording', '0')
     if recorded and cue_id:
         _write_automation(automation.merge(automation_data(), cue_id, recorded))
+        _store_state_in_cue(cue_id)
         if _state('recording_new', '0') == '1':
             _set_state('recording_new', '0')
             _trim_new_cue(cue_id, recorder.span)
@@ -883,6 +914,7 @@ def stop_recording(reason=''):
         _message('Aufnahme gesichert: %d Regler, %.1f s%s'
                  % (len(recorded), recorder.span, ending))
         return
+    OWNER.unstore(STATE_KEY)
     if _state('recording_new', '0') == '1':
         _set_state('recording_new', '0')
     reason = recorder.diagnosis() if recorder is not None else 'no-movement'
@@ -922,18 +954,21 @@ def record_tick(elapsed):
         if recorder.last_time is not None and moment + 1e-6 < recorder.last_time:
             stop_recording(reason='cue-ended')
             return
-        values = player_values()
-        sample = {}
-        for player_name, parameter in editor.PLAYER_PARAMETERS.items():
-            if parameter in automation.RECORDABLE and player_name in values:
-                try:
-                    sample[parameter] = float(values[player_name])
-                except (TypeError, ValueError):
-                    continue
-        # An imported cue is driven by the material's own controls, so those
-        # are what the operator actually turns; the core sliders do nothing.
+        # An imported cue is driven by the material's own controls, so those are
+        # what the operator turns. The core sliders are ignored there: touching
+        # a mat_ control writes back through the material state and nudges them,
+        # which would litter the take with tracks nobody moved.
         if editor.is_imported(cues[index]):
-            sample.update(live_imported_values())
+            sample = live_imported_values()
+        else:
+            values = player_values()
+            sample = {}
+            for player_name, parameter in editor.PLAYER_PARAMETERS.items():
+                if parameter in automation.RECORDABLE and player_name in values:
+                    try:
+                        sample[parameter] = float(values[player_name])
+                    except (TypeError, ValueError):
+                        continue
         if sample:
             recorder.sample(moment, sample)
     except Exception as error:
