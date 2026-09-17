@@ -208,3 +208,41 @@ class SurvivalTests(unittest.TestCase):
         take = automation.new_take('c9')
         self.assertEqual(Recorder.from_state(take).cue_id, 'c9')
         self.assertTrue(Recorder.from_state(take).is_empty())
+
+
+class ImportedParameterTests(unittest.TestCase):
+    """Imported materials bring controls no fixed list could know."""
+
+    def test_mat_prefixed_names_are_admitted(self):
+        for name in ('mat_zoom', 'mat_morph', 'mat_bpm_sync', 'mat_hue_shift'):
+            with self.subTest(name):
+                self.assertTrue(automation.recordable(name))
+
+    def test_core_names_still_pass(self):
+        for name in ('speed', 'density', 'brightness'):
+            self.assertTrue(automation.recordable(name))
+
+    def test_anything_else_is_refused(self):
+        for name in ('', 'mat_', 'gradient', 'seed', 'mat_a-b', 'mat_x.y', 'Mat_zoom', '../etc'):
+            with self.subTest(name):
+                self.assertFalse(automation.recordable(name))
+
+    def test_an_imported_track_round_trips(self):
+        take = Recorder('c1')
+        for index in range(8):
+            take.sample(index * 0.25, {'mat_zoom': float(index), 'mat_morph': 1.0})
+        data = automation.merge(automation.empty(), 'c1', take.result())
+        self.assertEqual(automation.validate(data), data)
+        self.assertAlmostEqual(automation.values_at(data, 'c1', 0.5)['mat_zoom'], 2.0)
+        self.assertNotIn('mat_morph', data['tracks']['c1'])
+
+    def test_a_rejected_name_cannot_reach_the_renderer(self):
+        with self.assertRaises(AutomationError):
+            automation.merge(automation.empty(), 'c1', {'gradient': [[0.0, 1.0], [1.0, 2.0]]})
+
+    def test_core_and_imported_tracks_coexist(self):
+        take = Recorder('c1')
+        for index in range(8):
+            take.sample(index * 0.25, {'speed': float(index), 'mat_zoom': float(index) * 2})
+        data = automation.merge(automation.empty(), 'c1', take.result())
+        self.assertEqual(sorted(data['tracks']['c1']), ['mat_zoom', 'speed'])

@@ -24,6 +24,10 @@ RECORDABLE = (
     "contrast", "trail", "direction", "rotation_degrees", "effect_transition",
     "hybrid_mix", "density", "brightness",
 )
+# An imported MadMapper material brings its own controls, named mat_<something>
+# by the adapter. They cannot be listed up front - every material has different
+# ones - so they are admitted by shape instead of by name.
+IMPORT_PARAMETER_PREFIX = "mat_"
 MAX_SAMPLES_PER_TRACK = 4000
 MIN_INTERVAL = 1.0 / 60.0
 EPSILON = 1e-4
@@ -31,6 +35,23 @@ EPSILON = 1e-4
 
 class AutomationError(ValueError):
     """Raised when a recording or track is malformed."""
+
+
+def recordable(name: str) -> bool:
+    """Whether a parameter may be automated.
+
+    Core parameters are a fixed list. An imported material's controls are not
+    knowable in advance, so a mat_ prefix plus a plain identifier is the rule;
+    anything else is refused so a stray key cannot reach the renderer.
+    """
+
+    name = str(name)
+    if name in RECORDABLE:
+        return True
+    if not name.startswith(IMPORT_PARAMETER_PREFIX):
+        return False
+    rest = name[len(IMPORT_PARAMETER_PREFIX):]
+    return bool(rest) and rest.replace("_", "").isalnum()
 
 
 def empty() -> dict:
@@ -60,7 +81,7 @@ def validate(automation: Mapping[str, Any]) -> dict:
             raise AutomationError("each track must map parameters to samples")
         clean = {}
         for name, samples in parameters.items():
-            if name not in RECORDABLE:
+            if not recordable(name):
                 raise AutomationError("parameter not recordable: %s" % name)
             clean[name] = _clean_samples(samples, name)
         if clean:
@@ -156,7 +177,7 @@ def merge(automation: Mapping[str, Any], cue_id: str, tracks: Mapping[str, Any])
     result = validate(automation)
     clean = {}
     for name, samples in tracks.items():
-        if name not in RECORDABLE:
+        if not recordable(name):
             raise AutomationError("parameter not recordable: %s" % name)
         clean[name] = _clean_samples(samples, name)
     if clean:
@@ -236,7 +257,7 @@ class Recorder:
             state["first_time"] = time
         state["last_time"] = time
         for name, raw in values.items():
-            if name not in RECORDABLE:
+            if not recordable(name):
                 continue
             value = _number(raw, name)
             track = state["tracks"].setdefault(name, [])

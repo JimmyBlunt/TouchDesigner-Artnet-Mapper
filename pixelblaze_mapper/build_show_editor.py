@@ -180,8 +180,10 @@ def build():
     click(button("ed_btn_grad_next", ">", 802, 372, 34, 34), "grad_next")
 
     click(button("ed_btn_record", "AUFNAHME", 20, 326, 200, 36, (0.22, 0.07, 0.09), 12), "toggle_record")
-    click(button("ed_btn_record_clear", "AUFNAHME LOESCHEN", 230, 326, 200, 36), "clear_record")
-    text("ed_record_info", "", 440, 326, 540, 36, 11, DIM)
+    click(button("ed_btn_record_new", "AUFNAHME -> NEUE CUE", 230, 326, 220, 36,
+                 (0.16, 0.08, 0.20), 12), "record_new")
+    click(button("ed_btn_record_clear", "AUFNAHME LOESCHEN", 460, 326, 190, 36), "clear_record")
+    text("ed_record_info", "", 660, 326, 320, 36, 11, DIM)
 
     # A freshly created Table DAT already holds one empty cell, so test for the
     # header instead of an empty table; otherwise the keys are never written
@@ -190,7 +192,7 @@ def build():
 
     state = _get_or_create(owner, tableDAT, "editor_state")
     defaults = (("selected", "0"), ("page", "0"), ("recording", "0"),
-                ("record_cue", ""), ("message", ""))
+                ("record_cue", ""), ("recording_new", "0"), ("message", ""))
     if state.numRows < 2 or str(state[0, 0]) != "key":
         state.clear()
         state.appendRow(["key", "value"])
@@ -548,11 +550,17 @@ def repaint():
         _set_text('ed_record_info', '')
     _set_text('ed_hint', material_hint())
     recording = _state('recording', '0') == '1'
+    new_take = _state('recording_new', '0') == '1'
     record = PANEL.op('ed_btn_record')
     if record is not None:
-        record.par.label = 'AUFNAHME LAEUFT' if recording else 'AUFNAHME'
-        record.par.bgcolorr = 0.60 if recording else 0.22
-        record.par.bgcolorg = 0.12 if recording else 0.07
+        record.par.label = ('AUFNAHME LAEUFT' if recording and not new_take else 'AUFNAHME')
+        record.par.bgcolorr = 0.60 if recording and not new_take else 0.22
+        record.par.bgcolorg = 0.12 if recording and not new_take else 0.07
+    record_new = PANEL.op('ed_btn_record_new')
+    if record_new is not None:
+        record_new.par.label = ('AUFNAHME LAEUFT' if new_take else 'AUFNAHME -> NEUE CUE')
+        record_new.par.bgcolorr = 0.60 if new_take else 0.16
+        record_new.par.bgcolorg = 0.12 if new_take else 0.08
 
 
 def _cycle(values, current, delta):
@@ -727,6 +735,12 @@ def _apply(command):
         else:
             start_recording()
         return
+    if command == 'record_new':
+        if _state('recording', '0') == '1':
+            stop_recording()
+        else:
+            start_recording(as_new_cue=True)
+        return
     if command == 'clear_record':
         _write_automation(automation.clear_cue(automation_data(), document['cues'][index]['id']))
         _message('Aufnahme geloescht')
@@ -735,6 +749,9 @@ def _apply(command):
 
 
 TAKE_KEY = 'record_take'
+# Long enough that no live performance runs into it, short enough to stay an
+# obviously temporary value if a take is ever abandoned mid-flight.
+OPEN_ENDED_DURATION = 900.0
 
 
 def _take():
@@ -756,7 +773,7 @@ def _take():
         return None
 
 
-def start_recording():
+def start_recording(as_new_cue=False):
     """Arm the recorder and roll the transport from the top of the cue.
 
     Samples are stamped with CUE time. If the transport is not playing that
@@ -767,7 +784,22 @@ def start_recording():
     """
 
     document = show()
-    index = selected()
+    if as_new_cue:
+        # Record straight from the browser: the cue is created first so the
+        # take has something to attach to and the slot can already play the
+        # material while it is being performed. Its length is set on stop.
+        _apply('add_material')
+        document = show()
+        index = len(document['cues']) - 1
+        # Open-ended while performing: a cue created at the default length
+        # would cut the take off at 15 seconds. The real length is set from
+        # the take when recording stops.
+        document = editor.update_cue(document, index, 'duration', OPEN_ENDED_DURATION)
+        write(document)
+        _set_state('recording_new', '1')
+    else:
+        index = selected()
+        _set_state('recording_new', '0')
     if index < 0:
         raise ShowValidationError('Keine Cue ausgewaehlt')
     cue_id = document['cues'][index]['id']
@@ -782,7 +814,31 @@ def start_recording():
     OWNER.store(TAKE_KEY, automation.new_take(cue_id))
     _set_state('recording', '1')
     _set_state('record_cue', cue_id)
-    _message('Aufnahme laeuft - Cue %02d spielt von vorn' % (index + 1))
+    if as_new_cue:
+        _message('Aufnahme laeuft - neue Cue %02d, Laenge folgt der Aufnahme' % (index + 1))
+    else:
+        _message('Aufnahme laeuft - Cue %02d spielt von vorn' % (index + 1))
+
+
+def _trim_new_cue(cue_id, span):
+    """Make a freshly recorded cue exactly as long as its take.
+
+    A cue created for recording starts with the default length. Leaving it
+    there would replay the move and then sit on the last value for the rest of
+    the cue, which is not what was performed.
+    """
+
+    document = show()
+    index = next((i for i, cue in enumerate(document['cues']) if cue['id'] == cue_id), None)
+    if index is None:
+        return
+    duration = max(1.0, round(float(span) + 0.5, 1))
+    if duration >= OPEN_ENDED_DURATION:
+        duration = 15.0
+    document = editor.update_cue(document, index, 'duration', duration)
+    _set_state('selected', index)
+    _set_state('page', index // ROW_COUNT)
+    write(document)
 
 
 def _seed_player_from_cue(cue):
@@ -818,10 +874,17 @@ def stop_recording(reason=''):
     _set_state('recording', '0')
     if recorded and cue_id:
         _write_automation(automation.merge(automation_data(), cue_id, recorded))
+        if _state('recording_new', '0') == '1':
+            _set_state('recording_new', '0')
+            _trim_new_cue(cue_id, recorder.span)
+            _message('Neue Cue aufgenommen: %d Regler, %.1f s' % (len(recorded), recorder.span))
+            return
         ending = ' (Cue zu Ende)' if reason == 'cue-ended' else ''
         _message('Aufnahme gesichert: %d Regler, %.1f s%s'
                  % (len(recorded), recorder.span, ending))
         return
+    if _state('recording_new', '0') == '1':
+        _set_state('recording_new', '0')
     reason = recorder.diagnosis() if recorder is not None else 'no-movement'
     _message({'no-time': 'Nichts aufgenommen - die Show lief nicht, die Cue-Zeit stand still',
               'too-short': 'Nichts aufgenommen - die Bewegung war zu kurz',
@@ -867,6 +930,10 @@ def record_tick(elapsed):
                     sample[parameter] = float(values[player_name])
                 except (TypeError, ValueError):
                     continue
+        # An imported cue is driven by the material's own controls, so those
+        # are what the operator actually turns; the core sliders do nothing.
+        if editor.is_imported(cues[index]):
+            sample.update(live_imported_values())
         if sample:
             recorder.sample(moment, sample)
     except Exception as error:
@@ -947,6 +1014,53 @@ def _slot_cue_index(slot):
     return None
 
 
+def live_imported_values():
+    """Current control values of the active imported material, scalars only.
+
+    Vector controls (colours and the like) are skipped: an automation track is
+    one number over time, and splitting a colour into components would record
+    something the operator never sees as one control.
+    """
+
+    try:
+        snapshot = _library().parameter_snapshot()
+    except Exception:
+        return {}
+    values = {}
+    for item in snapshot.get('parameters', ()):
+        name = str(item.get('name', ''))
+        if not automation.recordable(name):
+            continue
+        value = item.get('value')
+        if isinstance(value, bool) or not isinstance(value, (int, float)):
+            continue
+        values[name] = float(value)
+    return values
+
+
+def _write_uniforms(renderer, adaptation, values):
+    """Update only the named uniforms on a slot renderer.
+
+    The library's full configure rebinds textures and republishes the schema -
+    far too much for every frame. Playing a recorded move only needs the value
+    parameters of the controls that actually move.
+    """
+
+    from pixelblaze_mapper.madmapper_parameters import uniform_vector
+    for parameter in adaptation.schema:
+        if parameter.name not in values or parameter.compile_time:
+            continue
+        block = 3 + parameter.index
+        try:
+            vector = uniform_vector(parameter, values[parameter.name])
+        except Exception:
+            continue
+        for suffix, component in zip('xyzw', vector):
+            par = getattr(renderer.par, 'vec%dvalue%s' % (block, suffix), None)
+            if par is not None:
+                par.val = component
+
+
 def imported_values(cue_id, material_id, defaults):
     """Captured slider values for one cue, falling back to the material's own."""
 
@@ -996,9 +1110,36 @@ def route_slot(player_name, request_path, effect):
         _library()._configure_parameter_uniforms(renderer, adaptation, values,
                                                  publish_schema=False)
         _slot_signature[slot] = signature
+    # Recorded moves ride on top of the cue's stored values, written as bare
+    # uniforms so a moving control costs a few parameter writes, not a full
+    # reconfigure with texture rebinding.
+    live = _imported_overrides(slot, cue_id)
+    if live:
+        _write_uniforms(OWNER.op('slot_%s_import' % slot), adaptation, live)
     if int(mux.par.index.eval()) != 1:
         mux.par.index = 1
     return (item['label'], material_id, _request_value(request_path, 'target_groups', 'all'))
+
+
+def _imported_overrides(slot, cue_id):
+    """What should override the cue's stored controls right now.
+
+    While a take is running this is the operator's hand on the live controls,
+    so the recording can be heard while it is made; otherwise it is whatever
+    was recorded earlier for this moment of the cue.
+    """
+
+    if not cue_id:
+        return {}
+    transport = OWNER.op('callbacks').module
+    if str(transport._get('outgoing_slot', 'A')).strip().lower() != slot:
+        return {}
+    if _state('recording', '0') == '1' and _state('record_cue', '') == cue_id:
+        return live_imported_values()
+    moment = float(transport._get('elapsed', '0') or 0)
+    recorded = automation.values_at(automation_data(), cue_id, moment)
+    return {name: value for name, value in recorded.items()
+            if name.startswith(automation.IMPORT_PARAMETER_PREFIX)}
 
 
 PLAYER_BY_PARAMETER = {value: key for key, value in editor.PLAYER_PARAMETERS.items()}

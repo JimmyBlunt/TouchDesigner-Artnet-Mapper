@@ -154,15 +154,14 @@ Was dabei intern passiert und warum es dich betrifft:
   Bild. Ein Wechsel kostet also einmal Kompilierzeit, danach läuft es normal.
 - In der Cue-Liste steht der **Materialname**, nicht die Katalog-ID.
 
-Nicht aufnehmbar sind die Regler importierter Materialien – der Aufnahmemodus
-(nächster Abschnitt) arbeitet mit den Core-Parametern.
-
 ---
 
 ## 7. Aufnahmemodus
 
 Eine Cue speichert **einen** Reglerstand. Die Aufnahme ergänzt, was ein Regler
-**während** der Cue getan hat.
+**während** der Cue getan hat. Dafür gibt es zwei Knöpfe.
+
+### AUFNAHME – für eine vorhandene Cue
 
 1. Cue in der Liste auswählen.
 2. **AUFNAHME** drücken. Drei Dinge passieren gleichzeitig: die Show springt an
@@ -173,7 +172,37 @@ Eine Cue speichert **einen** Reglerstand. Die Aufnahme ergänzt, was ein Regler
 4. **AUFNAHME LÄUFT** erneut drücken zum Beenden. Die Meldung nennt, wie viele
    Regler und wie viele Sekunden gesichert wurden.
 
-Die Aufnahme **endet von selbst, wenn die Cue zu Ende ist** – die Meldung sagt
+### AUFNAHME → NEUE CUE – für ein Material ohne vorhandene Cue
+
+Wenn du einfach ein Material im Browser eingestellt hast und eine Bewegung
+darauf aufnehmen willst, ohne vorher eine Cue anzulegen:
+
+1. Material im Browser auswählen und einstellen.
+2. **AUFNAHME → NEUE CUE** drücken. Es entsteht sofort eine neue Cue am Ende
+   der Liste, die dieses Material spielt, und die Aufnahme läuft.
+3. Regler bewegen, so lange du willst – diese Aufnahme hat **kein Zeitlimit**.
+4. Denselben Knopf erneut drücken. Die Cue bekommt jetzt genau die **Länge
+   deiner Aufnahme**, und die Bewegung hängt daran.
+
+Danach im Material Player auf **SHOW** umschalten: die Cue spielt die
+aufgenommene Bewegung ab.
+
+### Was aufgezeichnet wird
+
+| Cue-Art | Aufgezeichnete Regler |
+|---|---|
+| Core-Effekt | Die 14 Regler des Material Players: Speed, Scale, Width, Focus X/Y, Zoom, Intensity, Contrast, Trail, Direction, Rotation, Effect-Transition, Hybrid-Mix, Density |
+| Importiertes Material | Dessen **eigene** Regler (`mat_zoom`, `mat_speed`, `mat_morph` …) |
+
+Bei einem importierten Material sind es also genau die Regler, die du im
+Browser auch tatsächlich anfasst. Nicht aufgezeichnet werden Farbverläufe,
+Seed und mehrteilige Regler wie Farben – eine Automationsspur ist eine Zahl
+über die Zeit, und eine Farbe in Komponenten zu zerlegen würde etwas
+aufzeichnen, das du als einen Regler siehst.
+
+### Sonstiges
+
+Die Aufnahme für eine **vorhandene** Cue endet von selbst, wenn die Cue zu Ende ist – die Meldung sagt
 dann „(Cue zu Ende)". Eine Aufnahme ist damit immer genau eine Cue lang; was du
 danach am Regler machst, gehört schon zur nächsten Cue und wird nicht
 mitgeschrieben.
@@ -190,10 +219,6 @@ Details, die im Betrieb zählen:
   passiert bei der Wiedergabe wieder bei Sekunde 4 der Cue.
 - Vor der ersten und nach der letzten Messung wird der Wert **gehalten**, nicht
   extrapoliert.
-- Aufnehmbar sind: Speed, Scale, Width, Focus X/Y, Zoom, Intensity, Contrast,
-  Trail, Direction, Rotation, Effect-Transition, Hybrid-Mix, Density.
-  Farbverlauf und Seed sind bewusst **nicht** dabei – die springen, statt zu
-  fahren.
 - **DUPLIZIEREN** nimmt die Aufnahme mit, **LÖSCHEN** wirft sie weg.
 - **AUFNAHME LÖSCHEN** entfernt nur die Aufnahme der ausgewählten Cue.
 
