@@ -165,9 +165,13 @@ Eine Cue speichert **einen** Reglerstand. Die Aufnahme ergänzt, was ein Regler
 **während** der Cue getan hat.
 
 1. Cue in der Liste auswählen.
-2. **AUFNAHME** drücken – der Knopf wird rot und zeigt „AUFNAHME LÄUFT".
-3. Im Material Browser Regler bewegen, während die Show läuft.
-4. **AUFNAHME LÄUFT** erneut drücken zum Beenden.
+2. **AUFNAHME** drücken. Drei Dinge passieren gleichzeitig: die Show springt an
+   den **Anfang dieser Cue** und spielt los, die Regler im Material Player
+   werden auf die Werte der Cue **gestellt**, und der Knopf wird rot.
+3. Regler bewegen. Was du bewegst, ist **sofort auf der Wand zu sehen** – du
+   nimmst nicht blind auf.
+4. **AUFNAHME LÄUFT** erneut drücken zum Beenden. Die Meldung nennt, wie viele
+   Regler und wie viele Sekunden gesichert wurden.
 
 Danach steht rechts, wie viele Regler aufgezeichnet wurden und wie lang die
 Aufnahme ist. Bei der Wiedergabe fährt die Cue diese Bewegung nach, zwischen
@@ -187,6 +191,17 @@ Details, die im Betrieb zählen:
   fahren.
 - **DUPLIZIEREN** nimmt die Aufnahme mit, **LÖSCHEN** wirft sie weg.
 - **AUFNAHME LÖSCHEN** entfernt nur die Aufnahme der ausgewählten Cue.
+
+Warum Aufnahme die Show selbst startet: die Zeitmarken sind **Cue-Zeit**. Steht
+der Transport, steht diese Uhr, alle Messpunkte landen auf derselben Sekunde und
+die Aufnahme bleibt leer. Genau das sah früher aus wie „kein Regler bewegt".
+Bleibt eine Aufnahme leer, sagt die Meldung jetzt, woran es lag:
+
+| Meldung | Bedeutung |
+|---|---|
+| kein Regler bewegt | Es wurde wirklich nichts angefasst |
+| die Show lief nicht, die Cue-Zeit stand still | Der Transport lief nicht mit |
+| die Bewegung war zu kurz | Zu wenige Messpunkte für eine Kurve |
 
 ---
 

@@ -185,11 +185,19 @@ class Recorder:
         self._tracks: dict = {}
         self._last: dict = {}
         self.dropped = 0
+        # Kept apart so a failed take can say WHY it is empty: a control that
+        # never moved is a different problem from a clock that never ran.
+        self.changes = 0
+        self.first_time = None
+        self.last_time = None
 
     def sample(self, elapsed: float, values: Mapping[str, Any]) -> None:
         time = _number(elapsed, "elapsed")
         if time < 0.0:
             raise AutomationError("elapsed must not be negative")
+        if self.first_time is None:
+            self.first_time = time
+        self.last_time = time
         for name, raw in values.items():
             if name not in RECORDABLE:
                 continue
@@ -202,6 +210,7 @@ class Recorder:
             last_time, last_value = self._last[name]
             if abs(value - last_value) <= self.epsilon:
                 continue
+            self.changes += 1
             if time - last_time < MIN_INTERVAL:
                 # Keep the newest value inside one frame instead of stacking.
                 track[-1] = [time, value]
@@ -225,3 +234,22 @@ class Recorder:
 
     def is_empty(self) -> bool:
         return not self.result()
+
+    @property
+    def span(self) -> float:
+        """Seconds of cue time the take covered; 0.0 means the clock stood still."""
+
+        if self.first_time is None or self.last_time is None:
+            return 0.0
+        return max(0.0, float(self.last_time) - float(self.first_time))
+
+    def diagnosis(self) -> str:
+        """Why result() is empty, in the operator's terms."""
+
+        if self.result():
+            return ''
+        if not self.changes:
+            return 'no-movement'
+        if self.span <= 0.0:
+            return 'no-time'
+        return 'too-short'

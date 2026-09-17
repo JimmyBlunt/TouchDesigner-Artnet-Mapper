@@ -738,29 +738,75 @@ _recorder = None
 
 
 def start_recording():
+    """Arm the recorder and roll the transport from the top of the cue.
+
+    Samples are stamped with CUE time. If the transport is not playing that
+    clock never moves, every sample lands on the same instant and the take
+    collapses to nothing - which looked exactly like "no slider was touched".
+    So recording starts the show itself, at the beginning of the cue, the way
+    pressing record on a recorder rolls the tape.
+    """
+
     global _recorder
     document = show()
     index = selected()
     if index < 0:
         raise ShowValidationError('Keine Cue ausgewaehlt')
     cue_id = document['cues'][index]['id']
+    transport = OWNER.op('callbacks').module
+    for key, value in (('cue_index', index), ('elapsed', '0'),
+                       ('outgoing_slot', 'A'), ('incoming_slot', '')):
+        transport._set(key, value)
+    transport._runtime_record = None
+    transport.runtime()
+    transport.command('play')
+    _seed_player_from_cue(document['cues'][index])
     _recorder = automation.Recorder(cue_id)
     _set_state('recording', '1')
     _set_state('record_cue', cue_id)
-    _message('Aufnahme laeuft fuer Cue ' + cue_id)
+    _message('Aufnahme laeuft - Cue %02d spielt von vorn' % (index + 1))
+
+
+def _seed_player_from_cue(cue):
+    """Put the Material Player sliders where the cue already is.
+
+    Live monitoring feeds the player's values to the slot being recorded. If
+    the sliders still sat wherever they were left, hitting record would make
+    the cue jump to those positions before a finger touched anything. Seeding
+    them from the cue makes the take start seamlessly, as an overdub should.
+    """
+
+    controls = op('/project1/madmapper_player_controls')
+    if controls is None:
+        return
+    parameters = cue.get('parameters', {})
+    for player_name, parameter in editor.PLAYER_PARAMETERS.items():
+        if parameter not in automation.RECORDABLE or parameter not in parameters:
+            continue
+        par = getattr(controls.par, player_name, None)
+        if par is None:
+            continue
+        try:
+            par.val = float(parameters[parameter])
+        except (TypeError, ValueError):
+            continue
 
 
 def stop_recording():
     global _recorder
-    recorded = _recorder.result() if _recorder is not None else {}
+    recorder = _recorder
+    recorded = recorder.result() if recorder is not None else {}
     cue_id = _state('record_cue', '')
     _recorder = None
     _set_state('recording', '0')
     if recorded and cue_id:
         _write_automation(automation.merge(automation_data(), cue_id, recorded))
-        _message('Aufnahme gesichert: %d Regler' % len(recorded))
-    else:
-        _message('Nichts aufgenommen - kein Regler bewegt')
+        _message('Aufnahme gesichert: %d Regler, %.1f s' % (len(recorded), recorder.span))
+        return
+    reason = recorder.diagnosis() if recorder is not None else 'no-movement'
+    _message({'no-time': 'Nichts aufgenommen - die Show lief nicht, die Cue-Zeit stand still',
+              'too-short': 'Nichts aufgenommen - die Bewegung war zu kurz',
+              }.get(reason, 'Nichts aufgenommen - kein Regler bewegt'))
 
 
 def record_tick(elapsed):
@@ -929,8 +975,8 @@ def overlay(player_name, parameters):
     """
 
     data = automation_data()
-    tracks = data.get('tracks')
-    if not tracks:
+    tracks = data.get('tracks') or {}
+    if not tracks and _state('recording', '0') != '1':
         return parameters
     transport = OWNER.op('callbacks').module
     slot = str(transport._get('outgoing_slot', 'A')).strip().upper() or 'A'
@@ -941,6 +987,8 @@ def overlay(player_name, parameters):
     if not 0 <= index < len(document['cues']):
         return parameters
     cue_id = document['cues'][index]['id']
+    if _state('recording', '0') == '1' and _state('record_cue', '') == cue_id:
+        return _live_monitor(parameters)
     if cue_id not in tracks:
         return parameters
     values = automation.values_at(data, cue_id, float(transport._get('elapsed', '0') or 0))
@@ -948,6 +996,26 @@ def overlay(player_name, parameters):
     for parameter, value in values.items():
         if parameter in result:
             result[parameter] = float(value)
+    return result
+
+
+def _live_monitor(parameters):
+    """During a take, put the operator's hands on the output.
+
+    The show drives the slot from the cue's stored parameters, so moving a
+    Material Player slider while recording would change nothing on the wall -
+    the take would be made blind. Feeding the live values through instead
+    makes the recording audible while it happens.
+    """
+
+    values = player_values()
+    result = dict(parameters)
+    for player_name, parameter in editor.PLAYER_PARAMETERS.items():
+        if parameter in result and parameter in automation.RECORDABLE and player_name in values:
+            try:
+                result[parameter] = float(values[player_name])
+            except (TypeError, ValueError):
+                continue
     return result
 
 

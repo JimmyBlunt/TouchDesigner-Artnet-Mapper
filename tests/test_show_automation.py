@@ -135,3 +135,33 @@ class StorageTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class DiagnosisTests(unittest.TestCase):
+    """A take can come back empty for three different reasons."""
+
+    def test_untouched_controls_report_no_movement(self):
+        recorder = Recorder('c1')
+        for index in range(20):
+            recorder.sample(index * 0.1, {'speed': 2.0})
+        self.assertTrue(recorder.is_empty())
+        self.assertEqual(recorder.diagnosis(), 'no-movement')
+
+    def test_a_standing_clock_is_reported_separately(self):
+        # The transport was not playing: cue time never advanced, so every
+        # sample lands on the same instant and collapses into one.
+        recorder = Recorder('c1')
+        for index in range(20):
+            recorder.sample(0.0, {'speed': 1.0 + index})
+        self.assertTrue(recorder.is_empty())
+        self.assertGreater(recorder.changes, 0)
+        self.assertEqual(recorder.span, 0.0)
+        self.assertEqual(recorder.diagnosis(), 'no-time')
+
+    def test_a_good_take_has_no_diagnosis(self):
+        recorder = Recorder('c1')
+        for index in range(20):
+            recorder.sample(index * 0.1, {'speed': 1.0 + index})
+        self.assertFalse(recorder.is_empty())
+        self.assertEqual(recorder.diagnosis(), '')
+        self.assertAlmostEqual(recorder.span, 1.9)
