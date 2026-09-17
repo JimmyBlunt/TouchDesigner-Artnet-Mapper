@@ -1,0 +1,283 @@
+{
+  "schema_version": 2,
+  "name": "Transition Tour",
+  "loop": true,
+  "cues": [
+    {
+      "id": "c1-aurora",
+      "name": "Aurora Opening",
+      "effect": "Aurora",
+      "preset": "Ocean Blue",
+      "parameters": {
+        "speed": 0.55,
+        "scale": 3.0,
+        "width": 0.45,
+        "focus_x": 0.5,
+        "focus_y": 0.5,
+        "zoom": 1.0,
+        "gradient": "ocean_blue",
+        "color_a": [
+          0.02,
+          0.18,
+          0.72,
+          1.0
+        ],
+        "color_b": [
+          0.0,
+          0.78,
+          0.92,
+          1.0
+        ],
+        "intensity": 1.0,
+        "contrast": 1.25,
+        "trail": 0.6,
+        "direction": 0.125,
+        "rotation_degrees": 0.0,
+        "seed": 0.0,
+        "effect_transition": 0.5,
+        "panel_columns": 2.0,
+        "panel_rows": 5.0,
+        "hybrid_mix": 0.5,
+        "density": 1.0
+      },
+      "coordinate_mode": "global",
+      "duration": 18.0,
+      "transition": "crossfade",
+      "transition_duration": 3.5,
+      "brightness": 0.25,
+      "target_groups": [
+        "all"
+      ]
+    },
+    {
+      "id": "c2-plasma",
+      "name": "Plasma Drift",
+      "effect": "Plasma",
+      "preset": "Acid Lime",
+      "parameters": {
+        "speed": 0.9,
+        "scale": 5.0,
+        "width": 0.45,
+        "focus_x": 0.5,
+        "focus_y": 0.5,
+        "zoom": 1.0,
+        "gradient": "acid_lime_blue",
+        "color_a": [
+          0.76,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "color_b": [
+          0.0,
+          0.18,
+          1.0,
+          1.0
+        ],
+        "intensity": 1.0,
+        "contrast": 1.4,
+        "trail": 0.4,
+        "direction": 0.125,
+        "rotation_degrees": 0.0,
+        "seed": 0.0,
+        "effect_transition": 0.5,
+        "panel_columns": 2.0,
+        "panel_rows": 5.0,
+        "hybrid_mix": 0.5,
+        "density": 1.0
+      },
+      "coordinate_mode": "global",
+      "duration": 16.0,
+      "transition": "dissolve",
+      "transition_duration": 2.5,
+      "brightness": 0.25,
+      "target_groups": [
+        "all"
+      ]
+    },
+    {
+      "id": "c3-ripple",
+      "name": "Ripple Rings",
+      "effect": "Ripple Rings",
+      "preset": "Fire / Ice",
+      "parameters": {
+        "speed": 1.1,
+        "scale": 6.0,
+        "width": 0.45,
+        "focus_x": 0.5,
+        "focus_y": 0.45,
+        "zoom": 1.0,
+        "gradient": "fire_ice",
+        "color_a": [
+          1.0,
+          0.1,
+          0.02,
+          1.0
+        ],
+        "color_b": [
+          0.0,
+          0.8,
+          1.0,
+          1.0
+        ],
+        "intensity": 1.0,
+        "contrast": 1.25,
+        "trail": 0.4,
+        "direction": 0.125,
+        "rotation_degrees": 0.0,
+        "seed": 0.0,
+        "effect_transition": 0.5,
+        "panel_columns": 2.0,
+        "panel_rows": 5.0,
+        "hybrid_mix": 0.5,
+        "density": 1.0
+      },
+      "coordinate_mode": "global",
+      "duration": 16.0,
+      "transition": "wipe",
+      "transition_duration": 3.0,
+      "brightness": 0.25,
+      "target_groups": [
+        "all"
+      ]
+    },
+    {
+      "id": "c4-tunnel",
+      "name": "Tunnel Pull",
+      "effect": "Tunnel",
+      "preset": "Neon",
+      "parameters": {
+        "speed": 1.25,
+        "scale": 4.0,
+        "width": 0.45,
+        "focus_x": 0.5,
+        "focus_y": 0.5,
+        "zoom": 1.4,
+        "gradient": "neon_cyan_magenta",
+        "color_a": [
+          0.91,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "color_b": [
+          0.0,
+          0.72,
+          0.86,
+          1.0
+        ],
+        "intensity": 1.0,
+        "contrast": 1.25,
+        "trail": 0.4,
+        "direction": 0.125,
+        "rotation_degrees": 0.0,
+        "seed": 0.0,
+        "effect_transition": 0.5,
+        "panel_columns": 2.0,
+        "panel_rows": 5.0,
+        "hybrid_mix": 0.5,
+        "density": 1.2
+      },
+      "coordinate_mode": "hybrid",
+      "duration": 15.0,
+      "transition": "radial",
+      "transition_duration": 3.0,
+      "brightness": 0.25,
+      "target_groups": [
+        "all"
+      ]
+    },
+    {
+      "id": "c5-matrix",
+      "name": "Matrix Rain",
+      "effect": "Matrix Rain",
+      "preset": "Mono",
+      "parameters": {
+        "speed": 1.4,
+        "scale": 4.0,
+        "width": 0.45,
+        "focus_x": 0.5,
+        "focus_y": 0.5,
+        "zoom": 1.0,
+        "gradient": "mono_white",
+        "color_a": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "color_b": [
+          0.04,
+          0.04,
+          0.04,
+          1.0
+        ],
+        "intensity": 1.0,
+        "contrast": 1.25,
+        "trail": 0.25,
+        "direction": 0.125,
+        "rotation_degrees": 0.0,
+        "seed": 0.0,
+        "effect_transition": 0.5,
+        "panel_columns": 2.0,
+        "panel_rows": 5.0,
+        "hybrid_mix": 0.5,
+        "density": 1.3
+      },
+      "coordinate_mode": "panel_local",
+      "duration": 14.0,
+      "transition": "glitch",
+      "transition_duration": 2.0,
+      "brightness": 0.22,
+      "target_groups": [
+        "all"
+      ]
+    },
+    {
+      "id": "c6-comet",
+      "name": "Comet Tails",
+      "effect": "Comet Tails",
+      "preset": "Amber / Violet",
+      "parameters": {
+        "speed": 1.6,
+        "scale": 4.0,
+        "width": 0.45,
+        "focus_x": 0.5,
+        "focus_y": 0.5,
+        "zoom": 1.0,
+        "gradient": "amber_violet",
+        "color_a": [
+          1.0,
+          0.42,
+          0.02,
+          1.0
+        ],
+        "color_b": [
+          0.3,
+          0.0,
+          0.72,
+          1.0
+        ],
+        "intensity": 1.0,
+        "contrast": 1.25,
+        "trail": 0.7,
+        "direction": 0.125,
+        "rotation_degrees": 0.0,
+        "seed": 17.0,
+        "effect_transition": 0.5,
+        "panel_columns": 2.0,
+        "panel_rows": 5.0,
+        "hybrid_mix": 0.5,
+        "density": 1.0
+      },
+      "coordinate_mode": "panel_local",
+      "duration": 14.0,
+      "transition": "cut",
+      "transition_duration": 0.0,
+      "brightness": 0.25,
+      "target_groups": [
+        "all"
+      ]
+    }
+  ]
+}
