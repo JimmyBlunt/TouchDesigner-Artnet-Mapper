@@ -152,7 +152,7 @@ def build():
     click(button("ed_btn_delete", "LOESCHEN", 430, 528, 120, 38, (0.20, 0.06, 0.07)), "delete")
     click(button("ed_btn_up", "NACH OBEN", 560, 528, 120, 38), "move_up")
     click(button("ed_btn_down", "NACH UNTEN", 690, 528, 120, 38), "move_down")
-    text("ed_hint", "Feld aendern, dann UEBERNEHMEN", 820, 528, 160, 38, 10, DIM)
+    text("ed_hint", "", 820, 528, 160, 38, 10, DIM)
 
     for name, label, x, width in (("ed_lbl_name", "NAME", 20, 300),
                                   ("ed_lbl_duration", "DAUER s", 330, 120),
@@ -363,8 +363,36 @@ def player_values():
     return {par.name: par.eval() for par in node.customPars}
 
 
-def _effect_label(values):
-    identifier = str(values.get('Material', '')).strip()
+def current_material():
+    """What the Material Browser actually has active, as (kind, id).
+
+    madmapper_player_controls.Material only ever tracks CORE effects. Picking
+    an imported MadMapper material leaves it at whatever core effect was
+    selected before, which is why reading it reported the same name no matter
+    what was playing. The material state store is the one place both kinds of
+    material write to.
+    """
+
+    key = ''
+    runtime = op('/project1/material_state_runtime')
+    if runtime is not None:
+        try:
+            key = str(runtime.module._current_key() or '')
+        except Exception:
+            key = ''
+    if not key:
+        store = op('/project1').fetch('p1_material_state_store', None) or {}
+        key = str(store.get('active_key') or '')
+    if not key:
+        # No state runtime in this build: the player's core selection is all
+        # there is, and it is correct whenever only core effects are used.
+        key = 'core:' + str(player_values().get('Material', '')).strip()
+    kind, _, identifier = key.partition(':')
+    return kind, identifier
+
+
+def _effect_label(identifier):
+    identifier = str(identifier).strip()
     if not identifier:
         return 'Fill'
     catalog = getattr(OWNER.op('render_sync').module, 'CATALOG', {})
@@ -372,6 +400,15 @@ def _effect_label(values):
     if isinstance(entry, dict) and entry.get('label'):
         return str(entry['label'])
     return identifier.replace('_', ' ').title()
+
+
+def material_hint():
+    kind, identifier = current_material()
+    if kind == 'core':
+        return 'Aktuell: ' + _effect_label(identifier)
+    if kind == 'madmapper':
+        return 'Aktuell: importiert - nicht uebernehmbar'
+    return 'Aktuell: unbekannt'
 
 
 def repaint():
@@ -429,6 +466,7 @@ def repaint():
             _set_text(name, '')
         _set_text('ed_selection_info', 'Show ist leer  |  ' + _state('message', ''))
         _set_text('ed_record_info', '')
+    _set_text('ed_hint', material_hint())
     recording = _state('recording', '0') == '1'
     record = PANEL.op('ed_btn_record')
     if record is not None:
@@ -476,10 +514,17 @@ def _apply(command):
         _set_state('page', int(float(_state('page', '0') or 0)) + 1)
         return
     if command == 'add_material':
+        kind, identifier = current_material()
+        if kind != 'core':
+            # A cue is rendered by the Core catalog only; accepting an imported
+            # material here would build a show that fails at render time.
+            raise ShowValidationError(
+                'Importiertes Material laesst sich nicht uebernehmen - eine Show '
+                'spielt nur Core-Effekte. Im Material Browser einen Core-Effekt waehlen.')
         values = player_values()
         parameters = editor.parameters_from_player(values)
         mode = editor.PLAYER_COORDINATE_MODES.get(str(values.get('Coordinatemode', 'global')), 'global')
-        label = _effect_label(values)
+        label = _effect_label(identifier)
         document = editor.append_cue(document, editor.new_cue(
             label, parameters, name=label, coordinate_mode=mode,
             preset=str(values.get('Gradientpreset', ''))))

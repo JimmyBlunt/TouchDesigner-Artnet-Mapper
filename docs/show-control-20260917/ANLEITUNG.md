@@ -39,6 +39,8 @@ und Menüs darunter beziehen sich immer auf genau diese eine Cue.
    so einstellen, wie es dir gefällt.
 3. Zurück im Show-Panel: **+ AKTUELLES MATERIAL**. Das hängt genau diesen
    Zustand als neue Cue an – Effekt, Farbverlauf, Speed, alle Slider.
+   Rechts neben den Knöpfen steht mit *„Aktuell: …"* immer, was gerade
+   übernommen würde – ein Blick dorthin vor dem Klick spart Korrekturen.
 4. Schritte 2 und 3 wiederholen, bis alle Bilder drin sind.
 5. Pro Cue Dauer und Übergang setzen (siehe unten), dann **SPEICHERN** und
    **PLAY**.
@@ -46,6 +48,13 @@ und Menüs darunter beziehen sich immer auf genau diese eine Cue.
 Damit die Show auf die Wand kommt, muss im **Material Player (Ctrl+Shift+4)**
 der Parameter `Source` auf **`show`** stehen. Auf `imported` läuft stattdessen
 das einzelne Live-Material.
+
+> **Eine Show spielt nur Core-Effekte.** Die 25 Effekte aus
+> `effects/effects_manifest.json` (Aurora, Plasma, Fire, Matrix Rain …) lassen
+> sich übernehmen, ein importiertes MadMapper-Material nicht. Der Knopf weist
+> das ab und sagt es – täte er es nicht, entstünde eine Cue, die erst beim
+> Abspielen scheitert. Importierte Materialien laufen weiterhin live über den
+> Material Player, nur eben nicht im Show-Ablauf.
 
 ---
 
