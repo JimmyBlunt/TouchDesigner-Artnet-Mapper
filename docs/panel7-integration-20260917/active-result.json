@@ -1,0 +1,101 @@
+{
+  "panel_id": "665429e3-cbbe-4398-887e-dddc44e4039d",
+  "expected_leds": 549,
+  "measured_leds": 549,
+  "source_offset": 7646,
+  "source_count": 8195,
+  "retired_template_sources": [
+    2976,
+    3231
+  ],
+  "view_count": 5,
+  "transform": {
+    "translation": [
+      0.32616447291034356,
+      0.5625222602788543,
+      0.5697884216417374
+    ],
+    "rotation_degrees": [
+      -71.84762276259455,
+      0.4170153535429635,
+      -11.863820295437355
+    ],
+    "scale": [
+      0.06488302865618234,
+      0.06488302865618234,
+      0.06488302865618234
+    ],
+    "pivot": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "center": [
+    0.30000000000000004,
+    1.0,
+    0.6
+  ],
+  "bounds": [
+    [
+      0.21734054522913143,
+      0.998607266704131,
+      0.515625
+    ],
+    [
+      0.38265945477086877,
+      1.001392733295869,
+      0.684375
+    ]
+  ],
+  "orientation": "Filled block (scan 356-548) lower left; full-width strip (0-240) along top",
+  "block_scan_indices": {
+    "strip_top": [
+      0,
+      240
+    ],
+    "steps_middle": [
+      241,
+      355
+    ],
+    "filled_square": [
+      356,
+      548
+    ]
+  },
+  "similarity_only": true,
+  "planarity_ratio": 0.012075706330915032,
+  "physical_size_cm": [
+    30,
+    30
+  ],
+  "size_reference": "Same .16875 LED envelope as existing 30 cm panels",
+  "slot": "fourth row left: under Panel 5, left of Panel 8",
+  "other_objects_unchanged": true,
+  "active_applied": true,
+  "outputs": [
+    {
+      "controller": "PANEL8_251",
+      "port": 2,
+      "universe": 158,
+      "count": 549,
+      "source_start": 7646,
+      "destination_start": 340
+    }
+  ],
+  "valid_scene_points": 6534,
+  "inactive_source_count": 1661,
+  "offline_route_checks_passed": true,
+  "outputs_started": false,
+  "was_running_before": false,
+  "global_material": "/project1/material_gradient_player",
+  "segment": [
+    "PORT_PANEL8_251_2",
+    "7646",
+    "549",
+    "PANEL8_251",
+    "340",
+    "0",
+    "RGB"
+  ]
+}
