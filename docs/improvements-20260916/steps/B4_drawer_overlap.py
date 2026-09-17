@@ -20,6 +20,22 @@ setzt. Der Wiederherstellungsweg ist damit garantiert.
 
 Test am laufenden System: oeffnen -> 33 ausgeblendet, schliessen ->
 Ausgangszustand vollstaendig wiederhergestellt, keine Abweichung.
+
+KORREKTUR 17.09.2026: Die erste Fassung hat den Wiederherstellungs-Schluessel
+bei jedem Oeffnen ueberschrieben. _controls_behind_drawer() ueberspringt
+bereits ausgeblendete Elemente, also fand ein zweites Oeffnen nichts mehr und
+speicherte eine leere Liste - danach blendete Schliessen nichts mehr ein und
+der Browser blieb leer. Am laufenden System waren so 81 Elemente dauerhaft
+unsichtbar, darunter Vor/Zurueck, Seitenanzeige, Suchfeld und alle Karten.
+
+Zweiter Faktor: _layout_native_drawer() setzt die Hoehe der Schublade nach der
+Anzahl sichtbarer Parameter. Sie war 456 statt der gemessenen 232 px hoch, das
+verdeckte Band also 364..820 statt 588..820 - deutlich mehr als die 33
+Elemente der urspruenglichen Messung.
+
+Behoben durch Zusammenfuehren statt Ersetzen. Regressionstest am laufenden
+System: oeffnen -> 80 gespeichert, erneut oeffnen -> weiterhin 80,
+schliessen -> Panel bitgleich wie vorher, Schluessel geloescht.
 """
 
 TARGET = '/project1/material_browser/unified_runtime'
@@ -55,10 +71,20 @@ def _controls_behind_drawer():
     return found
 
 def _hide_controls_behind_drawer():
-    hidden = []
+    """Merge into the restore list; never replace it.
+
+    _controls_behind_drawer() skips children that are already hidden, so a
+    second open finds nothing and would store an empty list - after which
+    closing the drawer restores nothing and the browser stays blank. The
+    drawer also grows with the parameter count, so a re-render can cover
+    controls the first pass did not, which is why this merges instead of
+    only bailing out early.
+    """
+    hidden = list(OWNER.fetch(DRAWER_SHADOW_KEY, []) or [])
     for child in _controls_behind_drawer():
         child.par.display = False
-        hidden.append(child.name)
+        if child.name not in hidden:
+            hidden.append(child.name)
     OWNER.store(DRAWER_SHADOW_KEY, hidden)
     return hidden
 
