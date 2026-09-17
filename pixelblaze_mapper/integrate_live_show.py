@@ -322,6 +322,23 @@ def _value(path, key, default=''):
             return str(table[row, 1])
     return default
 
+def _automated(player_name, parameters):
+    """Overlay recorded parameter moves for the slot that is on air.
+
+    The overlay only replaces values that are already present, so a cue
+    without a recording, or a build without the editor, renders exactly as
+    before. Failures here must never stop the show, so they fall back to the
+    static cue parameters.
+    """
+    editor = op('editor_callbacks')
+    if editor is None:
+        return parameters
+    try:
+        return editor.module.overlay(player_name, parameters)
+    except Exception:
+        return parameters
+
+
 def _apply_slot(player_name, request_path):
     player = op(player_name)
     if _value(request_path, 'status', 'EMPTY') != 'READY':
@@ -334,6 +351,7 @@ def _apply_slot(player_name, request_path):
         parameters = json.loads(_value(request_path, 'parameters_json', '{}'))
     except Exception as exc:
         raise RuntimeError('invalid Show preset parameters: ' + str(exc))
+    parameters = _automated(player_name, parameters)
     required = ('speed', 'scale', 'width', 'focus_x', 'focus_y', 'zoom', 'gradient',
                 'color_a', 'color_b', 'intensity', 'contrast', 'trail', 'direction',
                 'rotation_degrees', 'seed', 'effect_transition', 'panel_columns',
