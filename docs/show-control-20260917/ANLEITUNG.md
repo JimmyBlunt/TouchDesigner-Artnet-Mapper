@@ -173,6 +173,11 @@ Eine Cue speichert **einen** Reglerstand. Die Aufnahme ergänzt, was ein Regler
 4. **AUFNAHME LÄUFT** erneut drücken zum Beenden. Die Meldung nennt, wie viele
    Regler und wie viele Sekunden gesichert wurden.
 
+Die Aufnahme **endet von selbst, wenn die Cue zu Ende ist** – die Meldung sagt
+dann „(Cue zu Ende)". Eine Aufnahme ist damit immer genau eine Cue lang; was du
+danach am Regler machst, gehört schon zur nächsten Cue und wird nicht
+mitgeschrieben.
+
 Danach steht rechts, wie viele Regler aufgezeichnet wurden und wie lang die
 Aufnahme ist. Bei der Wiedergabe fährt die Cue diese Bewegung nach, zwischen
 den Messpunkten linear interpoliert.

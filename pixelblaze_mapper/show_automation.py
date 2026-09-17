@@ -169,6 +169,12 @@ def merge(automation: Mapping[str, Any], cue_id: str, tracks: Mapping[str, Any])
 class Recorder:
     """Collects samples while a cue plays.
 
+    All of the take lives in a plain dict (``state``) so a host can keep it
+    somewhere that survives its own reloads. TouchDesigner re-executes a DAT
+    module whenever it feels like it, and a recorder held only in a module
+    global silently disappears mid-take - the take then looks as though no
+    control was ever touched.
+
     Only changes are kept: a control that is not touched costs two samples,
     not one per frame. ``MIN_INTERVAL`` bounds the rate so a fast render loop
     cannot fill the track, and the first sample of every touched parameter is
@@ -176,57 +182,88 @@ class Recorder:
     """
 
     def __init__(self, cue_id: str, *, epsilon: float = EPSILON,
-                 max_samples: int = MAX_SAMPLES_PER_TRACK) -> None:
+                 max_samples: int = MAX_SAMPLES_PER_TRACK, state: dict | None = None) -> None:
         if not str(cue_id).strip():
             raise AutomationError("recorder needs a cue id")
         self.cue_id = str(cue_id)
         self.epsilon = float(epsilon)
         self.max_samples = int(max_samples)
-        self._tracks: dict = {}
-        self._last: dict = {}
-        self.dropped = 0
-        # Kept apart so a failed take can say WHY it is empty: a control that
-        # never moved is a different problem from a clock that never ran.
-        self.changes = 0
-        self.first_time = None
-        self.last_time = None
+        if state is None:
+            state = new_take(self.cue_id)
+        self.state = state
+
+    @classmethod
+    def from_state(cls, state: Mapping[str, Any], **kwargs) -> "Recorder":
+        """Resume a take that was stored outside this process."""
+
+        if not isinstance(state, dict):
+            raise AutomationError("take state must be a dict")
+        for key in ("cue_id", "tracks", "last", "changes"):
+            if key not in state:
+                raise AutomationError("take state is missing %s" % key)
+        return cls(state["cue_id"], state=state, **kwargs)
+
+    @property
+    def _tracks(self) -> dict:
+        return self.state["tracks"]
+
+    @property
+    def _last(self) -> dict:
+        return self.state["last"]
+
+    @property
+    def changes(self) -> int:
+        return int(self.state["changes"])
+
+    @property
+    def dropped(self) -> int:
+        return int(self.state.get("dropped", 0))
+
+    @property
+    def first_time(self):
+        return self.state.get("first_time")
+
+    @property
+    def last_time(self):
+        return self.state.get("last_time")
 
     def sample(self, elapsed: float, values: Mapping[str, Any]) -> None:
         time = _number(elapsed, "elapsed")
         if time < 0.0:
             raise AutomationError("elapsed must not be negative")
-        if self.first_time is None:
-            self.first_time = time
-        self.last_time = time
+        state = self.state
+        if state.get("first_time") is None:
+            state["first_time"] = time
+        state["last_time"] = time
         for name, raw in values.items():
             if name not in RECORDABLE:
                 continue
             value = _number(raw, name)
-            track = self._tracks.setdefault(name, [])
+            track = state["tracks"].setdefault(name, [])
             if not track:
                 track.append([time, value])
-                self._last[name] = (time, value)
+                state["last"][name] = [time, value]
                 continue
-            last_time, last_value = self._last[name]
+            last_time, last_value = state["last"][name]
             if abs(value - last_value) <= self.epsilon:
                 continue
-            self.changes += 1
+            state["changes"] = int(state["changes"]) + 1
             if time - last_time < MIN_INTERVAL:
                 # Keep the newest value inside one frame instead of stacking.
                 track[-1] = [time, value]
-                self._last[name] = (time, value)
+                state["last"][name] = [time, value]
                 continue
             if len(track) >= self.max_samples:
-                self.dropped += 1
+                state["dropped"] = int(state.get("dropped", 0)) + 1
                 continue
             track.append([time, value])
-            self._last[name] = (time, value)
+            state["last"][name] = [time, value]
 
     def result(self) -> dict:
         """Tracks with a trailing sample so playback holds the final value."""
 
         tracks = {}
-        for name, track in self._tracks.items():
+        for name, track in self.state["tracks"].items():
             if len(track) < 2:
                 continue
             tracks[name] = [list(sample) for sample in track]
@@ -239,9 +276,10 @@ class Recorder:
     def span(self) -> float:
         """Seconds of cue time the take covered; 0.0 means the clock stood still."""
 
-        if self.first_time is None or self.last_time is None:
+        first, last = self.state.get("first_time"), self.state.get("last_time")
+        if first is None or last is None:
             return 0.0
-        return max(0.0, float(self.last_time) - float(self.first_time))
+        return max(0.0, float(last) - float(first))
 
     def diagnosis(self) -> str:
         """Why result() is empty, in the operator's terms."""
@@ -253,3 +291,10 @@ class Recorder:
         if self.span <= 0.0:
             return 'no-time'
         return 'too-short'
+
+
+def new_take(cue_id: str) -> dict:
+    """A blank, host-storable take."""
+
+    return {"cue_id": str(cue_id), "tracks": {}, "last": {},
+            "changes": 0, "dropped": 0, "first_time": None, "last_time": None}

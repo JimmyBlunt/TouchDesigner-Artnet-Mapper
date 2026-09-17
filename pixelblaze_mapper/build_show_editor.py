@@ -734,7 +734,26 @@ def _apply(command):
     raise ShowValidationError('Unbekannter Befehl: %s' % command)
 
 
-_recorder = None
+TAKE_KEY = 'record_take'
+
+
+def _take():
+    """The running take, or None.
+
+    Held in COMP storage rather than a module global: TouchDesigner
+    re-executes a DAT module whenever it likes, and a recorder kept in a
+    global vanishes mid-take. The take then looked exactly like "no control
+    was touched", which is what this whole mechanism kept reporting.
+    """
+
+    state = OWNER.fetch(TAKE_KEY, None)
+    if not isinstance(state, dict):
+        return None
+    try:
+        return automation.Recorder.from_state(state)
+    except automation.AutomationError:
+        OWNER.unstore(TAKE_KEY)
+        return None
 
 
 def start_recording():
@@ -747,7 +766,6 @@ def start_recording():
     pressing record on a recorder rolls the tape.
     """
 
-    global _recorder
     document = show()
     index = selected()
     if index < 0:
@@ -761,7 +779,7 @@ def start_recording():
     transport.runtime()
     transport.command('play')
     _seed_player_from_cue(document['cues'][index])
-    _recorder = automation.Recorder(cue_id)
+    OWNER.store(TAKE_KEY, automation.new_take(cue_id))
     _set_state('recording', '1')
     _set_state('record_cue', cue_id)
     _message('Aufnahme laeuft - Cue %02d spielt von vorn' % (index + 1))
@@ -792,16 +810,17 @@ def _seed_player_from_cue(cue):
             continue
 
 
-def stop_recording():
-    global _recorder
-    recorder = _recorder
+def stop_recording(reason=''):
+    recorder = _take()
     recorded = recorder.result() if recorder is not None else {}
     cue_id = _state('record_cue', '')
-    _recorder = None
+    OWNER.unstore(TAKE_KEY)
     _set_state('recording', '0')
     if recorded and cue_id:
         _write_automation(automation.merge(automation_data(), cue_id, recorded))
-        _message('Aufnahme gesichert: %d Regler, %.1f s' % (len(recorded), recorder.span))
+        ending = ' (Cue zu Ende)' if reason == 'cue-ended' else ''
+        _message('Aufnahme gesichert: %d Regler, %.1f s%s'
+                 % (len(recorded), recorder.span, ending))
         return
     reason = recorder.diagnosis() if recorder is not None else 'no-movement'
     _message({'no-time': 'Nichts aufgenommen - die Show lief nicht, die Cue-Zeit stand still',
@@ -817,10 +836,29 @@ def record_tick(elapsed):
     panel instead.
     """
 
-    global _recorder
-    if _recorder is None or _state('recording', '0') != '1':
+    if _state('recording', '0') != '1':
+        return
+    recorder = _take()
+    if recorder is None:
+        _set_state('recording', '0')
         return
     try:
+        # The show does not stop at the end of the cue being recorded. Sampling
+        # past that boundary stamps the NEXT cue's timeline onto this take, and
+        # because its clock restarts at zero the samples then collapse into one
+        # instead of growing - which looked like nothing had been recorded.
+        transport = OWNER.op('callbacks').module
+        document = show()
+        index = int(float(transport._get('cue_index', '0') or 0))
+        cue_id = _state('record_cue', '')
+        cues = document.get('cues', ())
+        if not (0 <= index < len(cues)) or cues[index]['id'] != cue_id:
+            stop_recording(reason='cue-ended')
+            return
+        moment = max(0.0, float(elapsed))
+        if recorder.last_time is not None and moment + 1e-6 < recorder.last_time:
+            stop_recording(reason='cue-ended')
+            return
         values = player_values()
         sample = {}
         for player_name, parameter in editor.PLAYER_PARAMETERS.items():
@@ -830,9 +868,9 @@ def record_tick(elapsed):
                 except (TypeError, ValueError):
                     continue
         if sample:
-            _recorder.sample(max(0.0, float(elapsed)), sample)
+            recorder.sample(moment, sample)
     except Exception as error:
-        _recorder = None
+        OWNER.unstore(TAKE_KEY)
         _set_state('recording', '0')
         _message('Aufnahme abgebrochen: %s' % error)
 
@@ -1021,4 +1059,11 @@ def _live_monitor(parameters):
 
 def playback_values(cue_id, elapsed):
     return automation.values_at(automation_data(), cue_id, elapsed)
+
+
+# The flag and the take live in the same COMP, so a reload cannot separate
+# them. Only a genuinely missing take clears the flag.
+if _state('recording', '0') == '1' and OWNER.fetch(TAKE_KEY, None) is None:
+    _set_state('recording', '0')
+    _set_state('record_cue', '')
 '''

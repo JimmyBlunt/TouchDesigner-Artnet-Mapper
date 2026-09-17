@@ -165,3 +165,46 @@ class DiagnosisTests(unittest.TestCase):
         self.assertFalse(recorder.is_empty())
         self.assertEqual(recorder.diagnosis(), '')
         self.assertAlmostEqual(recorder.span, 1.9)
+
+
+class SurvivalTests(unittest.TestCase):
+    """A take must outlive the host module that started it."""
+
+    def test_take_resumes_from_its_stored_state(self):
+        recorder = Recorder('c1')
+        for index in range(6):
+            recorder.sample(index * 0.2, {'speed': float(index)})
+        carried = recorder.state          # all the host has to keep
+        resumed = Recorder.from_state(carried)
+        for index in range(6, 12):
+            resumed.sample(index * 0.2, {'speed': float(index)})
+        self.assertEqual(len(resumed.result()['speed']), 12)
+        self.assertAlmostEqual(resumed.span, 2.2)
+        self.assertEqual(resumed.cue_id, 'c1')
+
+    def test_state_is_plain_data(self):
+        recorder = Recorder('c1')
+        recorder.sample(0.0, {'speed': 1.0})
+        recorder.sample(1.0, {'speed': 2.0})
+        import json as _json
+        self.assertEqual(_json.loads(_json.dumps(recorder.state))['cue_id'], 'c1')
+
+    def test_mutating_through_one_view_is_seen_by_the_other(self):
+        # The host keeps one dict; both views must write into it, or a reload
+        # would quietly fork the take.
+        first = Recorder('c1')
+        second = Recorder.from_state(first.state)
+        first.sample(0.0, {'speed': 1.0})
+        second.sample(1.0, {'speed': 5.0})
+        self.assertEqual(len(first.result()['speed']), 2)
+
+    def test_incomplete_state_is_refused(self):
+        with self.assertRaises(AutomationError):
+            Recorder.from_state({'cue_id': 'c1'})
+        with self.assertRaises(AutomationError):
+            Recorder.from_state('not a dict')
+
+    def test_blank_take_helper(self):
+        take = automation.new_take('c9')
+        self.assertEqual(Recorder.from_state(take).cue_id, 'c9')
+        self.assertTrue(Recorder.from_state(take).is_empty())
