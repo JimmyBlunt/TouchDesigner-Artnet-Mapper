@@ -32,6 +32,10 @@ DEFAULT_DURATION = 15.0
 DEFAULT_TRANSITION = "crossfade"
 DEFAULT_TRANSITION_DURATION = 3.0
 DEFAULT_BRIGHTNESS = 0.25
+# An imported MadMapper material is identified in cue.effect by this prefix
+# plus its catalog id; cue.preset then carries the readable label. Keeping the
+# identity inside the existing string field leaves the show schema untouched.
+IMPORT_PREFIX = "madmapper:"
 
 # The Material Player exposes one custom parameter per cue parameter. Kept as
 # an explicit table so a renamed parameter fails loudly instead of silently
@@ -263,6 +267,23 @@ def set_show_field(show: Mapping[str, Any], field: str, value: Any) -> dict:
     return _validated(result)
 
 
+def is_imported(cue: Mapping[str, Any]) -> bool:
+    return str(cue.get("effect", "")).startswith(IMPORT_PREFIX)
+
+
+def material_id(cue: Mapping[str, Any]) -> str:
+    effect = str(cue.get("effect", ""))
+    return effect[len(IMPORT_PREFIX):] if effect.startswith(IMPORT_PREFIX) else ""
+
+
+def display_effect(cue: Mapping[str, Any]) -> str:
+    """What to show in the cue list: a label, never a catalog id."""
+
+    if is_imported(cue):
+        return str(cue.get("preset") or material_id(cue))
+    return str(cue.get("effect", ""))
+
+
 def summary_rows(show: Mapping[str, Any]) -> list:
     """One display row per cue: index, name, effect, timing, transition."""
 
@@ -275,7 +296,8 @@ def summary_rows(show: Mapping[str, Any]) -> list:
             "index": index,
             "position": "%02d" % (index + 1),
             "name": cue["name"],
-            "effect": cue["effect"],
+            "effect": display_effect(cue),
+            "imported": is_imported(cue),
             "timing": timing,
             "transition": transition,
             "coordinate_mode": cue["coordinate_mode"],

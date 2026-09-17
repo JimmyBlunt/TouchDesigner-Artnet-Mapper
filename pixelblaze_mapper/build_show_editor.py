@@ -202,6 +202,11 @@ def build():
             if key not in present:
                 state.appendRow([key, value])
 
+    imported = _get_or_create(owner, textDAT, "imported_json")
+    if not imported.text.strip():
+        imported.clear()
+        imported.write("{}")
+
     automation = _get_or_create(owner, textDAT, "automation_json")
     if not automation.text.strip():
         automation.clear()
@@ -262,10 +267,11 @@ def _build_imported_slots(owner):
         renderer.outputConnectors[0].connect(mux.inputConnectors[1])
         if len(mux.inputs) != 2:
             raise RuntimeError("Slot %s switch needs both renderers" % slot.upper())
-        # Route both consumers through the switch, keeping A before B.
+        # The LED path reads the switch through the sampler's `top` parameter.
         _set(sampler, "top", mux.path)
-        if [node.path for node in mixer.inputs][position:position + 1] != [mux.path]:
-            _rewire_mixer(owner, mixer)
+    # The preview mixer is rewired once, after BOTH switches exist - doing it
+    # inside the loop would reach for a slot that has not been created yet.
+    _rewire_mixer(owner, mixer)
     return True
 
 
@@ -478,7 +484,10 @@ def material_hint():
     if kind == 'core':
         return 'Aktuell: ' + _effect_label(identifier)
     if kind == 'madmapper':
-        return 'Aktuell: importiert - nicht uebernehmbar'
+        try:
+            return 'Aktuell: ' + str(_library().parameter_snapshot().get('label') or 'importiert')
+        except Exception:
+            return 'Aktuell: importiertes Material'
     return 'Aktuell: unbekannt'
 
 
@@ -586,19 +595,30 @@ def _apply(command):
         return
     if command == 'add_material':
         kind, identifier = current_material()
-        if kind != 'core':
-            # A cue is rendered by the Core catalog only; accepting an imported
-            # material here would build a show that fails at render time.
-            raise ShowValidationError(
-                'Importiertes Material laesst sich nicht uebernehmen - eine Show '
-                'spielt nur Core-Effekte. Im Material Browser einen Core-Effekt waehlen.')
         values = player_values()
         parameters = editor.parameters_from_player(values)
         mode = editor.PLAYER_COORDINATE_MODES.get(str(values.get('Coordinatemode', 'global')), 'global')
-        label = _effect_label(identifier)
-        document = editor.append_cue(document, editor.new_cue(
-            label, parameters, name=label, coordinate_mode=mode,
-            preset=str(values.get('Gradientpreset', ''))))
+        if kind == 'madmapper':
+            snapshot = _library().parameter_snapshot()
+            if str(snapshot.get('material_id') or '') != identifier:
+                raise ShowValidationError('Die Bibliothek meldet ein anderes aktives Material')
+            label = str(snapshot.get('label') or identifier)
+            document = editor.append_cue(document, editor.new_cue(
+                IMPORT_PREFIX + identifier, parameters, name=label,
+                coordinate_mode=mode, preset=label))
+            cue_id = document['cues'][-1]['id']
+            data = imported_data()
+            # The slider values belong to the cue, not to the material, so two
+            # cues can use one material with different settings.
+            data[cue_id] = {'material_id': identifier, 'label': label,
+                            'values': {str(item['name']): item['value']
+                                       for item in snapshot.get('parameters', ())}}
+            _write_imported(data)
+        else:
+            label = _effect_label(identifier)
+            document = editor.append_cue(document, editor.new_cue(
+                label, parameters, name=label, coordinate_mode=mode,
+                preset=str(values.get('Gradientpreset', ''))))
         _set_state('selected', len(document['cues']) - 1)
         _set_state('page', (len(document['cues']) - 1) // ROW_COUNT)
         write(document)
@@ -610,6 +630,10 @@ def _apply(command):
         data = automation_data()
         if source_id in data.get('tracks', {}):
             _write_automation(automation.merge(data, copy_id, data['tracks'][source_id]))
+        imported = imported_data()
+        if source_id in imported:
+            imported[copy_id] = dict(imported[source_id])
+            _write_imported(imported)
         _set_state('selected', index + 1)
         write(document)
         return
@@ -619,6 +643,9 @@ def _apply(command):
         removed = document['cues'][index]['id']
         document = editor.delete_cue(document, index)
         _write_automation(automation.clear_cue(automation_data(), removed))
+        imported = imported_data()
+        if imported.pop(removed, None) is not None:
+            _write_imported(imported)
         _set_state('selected', max(0, index - 1))
         write(document)
         return
@@ -669,6 +696,8 @@ def _apply(command):
             json.dump(document, stream, indent=2)
         with open(path[:-5] + '.automation.json', 'w', encoding='utf-8') as stream:
             json.dump(automation_data(), stream, indent=2)
+        with open(path[:-5] + '.materials.json', 'w', encoding='utf-8') as stream:
+            json.dump(imported_data(), stream, indent=2)
         _message('gespeichert: ' + path)
         write(document)
         return
@@ -680,6 +709,11 @@ def _apply(command):
         try:
             with open(path[:-5] + '.automation.json', encoding='utf-8') as stream:
                 _write_automation(automation.validate(json.load(stream)))
+        except OSError:
+            pass
+        try:
+            with open(path[:-5] + '.materials.json', encoding='utf-8') as stream:
+                _write_imported(json.load(stream))
         except OSError:
             pass
         _set_state('selected', 0)
@@ -755,6 +789,132 @@ def record_tick(elapsed):
         _recorder = None
         _set_state('recording', '0')
         _message('Aufnahme abgebrochen: %s' % error)
+
+
+IMPORT_PREFIX = editor.IMPORT_PREFIX
+_slot_signature = {}
+
+
+def _library():
+    node = op('/project1/madmapper_library/runtime')
+    if node is None:
+        raise ShowValidationError('MadMapper-Bibliothek ist nicht geladen')
+    return node.module
+
+
+def _library_item(material_id):
+    module = _library()
+    item = next((entry for entry in module._items if entry['id'] == material_id), None)
+    if item is None:
+        module.refresh(reset_page=False)
+        item = next((entry for entry in module._items if entry['id'] == material_id), None)
+    if item is None:
+        raise ShowValidationError('Importiertes Material nicht im Katalog: ' + str(material_id))
+    return item
+
+
+def imported_data():
+    try:
+        return json.loads(OWNER.op('imported_json').text) or {}
+    except Exception:
+        return {}
+
+
+def _write_imported(data):
+    node = OWNER.op('imported_json')
+    node.clear()
+    node.write(json.dumps(data))
+
+
+def _request_value(path, key, fallback=''):
+    table = OWNER.op(path)
+    if table is None:
+        return fallback
+    for row in range(1, table.numRows):
+        if str(table[row, 0]) == key:
+            return str(table[row, 1])
+    return fallback
+
+
+def _slot_cue_index(slot):
+    """Which cue a slot is carrying, from the transport's own plan.
+
+    The outgoing slot holds the running cue; during a transition the incoming
+    slot already holds the next one, which is why this cannot simply read
+    cue_index for both.
+    """
+
+    transport = OWNER.op('callbacks').module
+    document = show()
+    count = len(document.get('cues', ()))
+    if not count:
+        return None
+    index = int(float(transport._get('cue_index', '0') or 0))
+    outgoing = str(transport._get('outgoing_slot', 'A')).strip().upper()
+    incoming = str(transport._get('incoming_slot', '')).strip().upper()
+    slot = slot.upper()
+    if slot == outgoing:
+        return index if 0 <= index < count else None
+    if incoming and slot == incoming:
+        following = index + 1
+        if following >= count:
+            return 0 if document.get('loop') else None
+        return following
+    return None
+
+
+def imported_values(cue_id, material_id, defaults):
+    """Captured slider values for one cue, falling back to the material's own."""
+
+    values = dict(defaults)
+    record = imported_data().get(str(cue_id))
+    if record and record.get('material_id') == material_id:
+        for name, value in (record.get('values') or {}).items():
+            if name in values:
+                values[name] = value
+    return values
+
+
+def route_slot(player_name, request_path, effect):
+    """Send one A/B slot to the core player or to its imported renderer.
+
+    Returns None for core effects so the caller keeps its existing path, and
+    the usual (label, preset, targets) triple once an imported material has
+    been loaded into this slot.
+    """
+
+    slot = 'a' if str(player_name).endswith('slot_a_player') else 'b'
+    mux = OWNER.op('slot_%s_mux' % slot)
+    if mux is None:
+        return None
+    effect = str(effect)
+    if not effect.startswith(IMPORT_PREFIX):
+        if int(mux.par.index.eval()) != 0:
+            mux.par.index = 0
+        return None
+    material_id = effect[len(IMPORT_PREFIX):]
+    item = _library_item(material_id)
+    adaptation, defaults = _library()._parameter_context(item)
+    index = _slot_cue_index(slot)
+    cue_id = ''
+    if index is not None:
+        cue_id = show()['cues'][index]['id']
+    values = imported_values(cue_id, material_id, defaults)
+    signature = (material_id, tuple(sorted((k, repr(v)) for k, v in values.items())))
+    if _slot_signature.get(slot) != signature:
+        shader = OWNER.op('slot_%s_import_fs' % slot)
+        renderer = OWNER.op('slot_%s_import' % slot)
+        # Recompiling a 12k shader every frame would stall the render; only
+        # swap the source when the material itself changed.
+        if _slot_signature.get(slot, ('',))[0] != material_id:
+            shader.clear()
+            shader.write(adaptation.shader)
+        _library()._configure_parameter_uniforms(renderer, adaptation, values,
+                                                 publish_schema=False)
+        _slot_signature[slot] = signature
+    if int(mux.par.index.eval()) != 1:
+        mux.par.index = 1
+    return (item['label'], material_id, _request_value(request_path, 'target_groups', 'all'))
 
 
 PLAYER_BY_PARAMETER = {value: key for key, value in editor.PLAYER_PARAMETERS.items()}

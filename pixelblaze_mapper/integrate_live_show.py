@@ -291,11 +291,33 @@ def _network_state(value):
             return
     table.appendRow(['network_output_enabled', value])
 
+IMPORT_PREFIX = 'madmapper:'
+
+
+def _resolvable(effect):
+    """A cue effect is either a Core catalog entry or an imported material.
+
+    An imported material is checked against the MadMapper catalog instead, so
+    a show that uses one still refuses to start when that material is gone -
+    which is the point of this gate.
+    """
+
+    effect = str(effect)
+    if not effect.startswith(IMPORT_PREFIX):
+        return effect in CATALOG
+    library = op('/project1/madmapper_library/runtime')
+    if library is None:
+        return False
+    material_id = effect[len(IMPORT_PREFIX):]
+    return any(item['id'] == material_id for item in library.module._items)
+
+
 def preflight():
     data = json.loads(op('show_json').text)
-    missing = [(cue['id'], cue['effect']) for cue in data['cues'] if cue['effect'] not in CATALOG]
+    missing = [(cue['id'], cue['effect']) for cue in data['cues'] if not _resolvable(cue['effect'])]
     if missing:
-        raise RuntimeError('Unresolved Show cue/effect: ' + repr(missing) + ' (Core catalog only)')
+        raise RuntimeError('Unresolved Show cue/effect: ' + repr(missing)
+                           + ' (not in the Core catalog or the MadMapper library)')
 
 def _sender_badge():
     try:
@@ -344,6 +366,13 @@ def _apply_slot(player_name, request_path):
     if _value(request_path, 'status', 'EMPTY') != 'READY':
         return '-', '-', 'all'
     effect = _value(request_path, 'effect')
+    # An imported MadMapper material is its own adapted shader, so it renders
+    # in the slot's second GLSL TOP rather than through the shared core player.
+    editor = op('editor_callbacks')
+    if editor is not None:
+        routed = editor.module.route_slot(player_name, request_path, effect)
+        if routed is not None:
+            return routed
     if effect not in CATALOG:
         raise RuntimeError('Unresolved Show effect: ' + effect + ' (Core catalog only)')
     definition = CATALOG[effect]

@@ -49,12 +49,10 @@ Damit die Show auf die Wand kommt, muss im **Material Player (Ctrl+Shift+4)**
 der Parameter `Source` auf **`show`** stehen. Auf `imported` läuft stattdessen
 das einzelne Live-Material.
 
-> **Eine Show spielt nur Core-Effekte.** Die 25 Effekte aus
-> `effects/effects_manifest.json` (Aurora, Plasma, Fire, Matrix Rain …) lassen
-> sich übernehmen, ein importiertes MadMapper-Material nicht. Der Knopf weist
-> das ab und sagt es – täte er es nicht, entstünde eine Cue, die erst beim
-> Abspielen scheitert. Importierte Materialien laufen weiterhin live über den
-> Material Player, nur eben nicht im Show-Ablauf.
+> **Beides geht: Core-Effekte und importierte Materialien.** Die 25 Effekte aus
+> `effects/effects_manifest.json` (Aurora, Plasma, Fire …) ebenso wie jedes
+> importierte MadMapper-Material. Für importierte Materialien gilt eine
+> Besonderheit, siehe Abschnitt 6.
 
 ---
 
@@ -133,7 +131,35 @@ Faustregel: große, ruhige Effekte wirken in `global`, kleinteilige Muster in
 
 ---
 
-## 6. Aufnahmemodus
+## 6. Importierte MadMapper-Materialien
+
+Ein Core-Effekt ist eine Nummer in einem gemeinsamen Shader – alle 25 stecken in
+derselben Datei. Ein importiertes Material ist dagegen ein **eigener Shader**.
+Deshalb hat jeder der beiden Show-Slots einen zweiten Renderer bekommen, der bei
+Bedarf den Shader des Materials lädt; ein Umschalter pro Slot entscheidet, wer
+gerade spielt. Für dich ändert sich nichts an der Bedienung: Material im Browser
+auswählen, **+ AKTUELLES MATERIAL** drücken.
+
+Was dabei intern passiert und warum es dich betrifft:
+
+- Die **Reglerwerte des Materials** werden pro Cue gespeichert, nicht pro
+  Material. Du kannst dasselbe Material zweimal in einer Show verwenden und
+  unterschiedlich einstellen.
+- Die Werte landen beim Speichern in `<name>.materials.json`, analog zu den
+  Aufnahmen.
+- Beim **Starten** prüft die Show, ob jedes benutzte Material noch in der
+  Bibliothek liegt. Fehlt eines, verweigert sie den Start und nennt die Cue –
+  besser als ein schwarzes Panel mitten in der Show.
+- Der Shader wird nur **neu geladen, wenn sich das Material ändert**, nicht pro
+  Bild. Ein Wechsel kostet also einmal Kompilierzeit, danach läuft es normal.
+- In der Cue-Liste steht der **Materialname**, nicht die Katalog-ID.
+
+Nicht aufnehmbar sind die Regler importierter Materialien – der Aufnahmemodus
+(nächster Abschnitt) arbeitet mit den Core-Parametern.
+
+---
+
+## 7. Aufnahmemodus
 
 Eine Cue speichert **einen** Reglerstand. Die Aufnahme ergänzt, was ein Regler
 **während** der Cue getan hat.
@@ -164,7 +190,7 @@ Details, die im Betrieb zählen:
 
 ---
 
-## 7. Speichern und Laden
+## 8. Speichern und Laden
 
 **SPEICHERN** legt zwei Dateien unter `shows/` ab, benannt nach dem Showtitel:
 
@@ -172,6 +198,7 @@ Details, die im Betrieb zählen:
 |---|---|
 | `<name>.json` | Die Show: Cues, Dauern, Übergänge |
 | `<name>.automation.json` | Die Aufnahmen, verknüpft über die Cue-ID |
+| `<name>.materials.json` | Reglerwerte importierter Materialien, je Cue |
 
 **LADEN** liest die Show, deren Name im Titelfeld steht – Name eintippen, dann
 LADEN. Eine fehlende Automations-Datei ist kein Fehler, die Show läuft dann
@@ -182,7 +209,7 @@ unverändert, damit ältere Shows weiter laufen.
 
 ---
 
-## 8. Transport
+## 9. Transport
 
 | Knopf | Wirkung |
 |---|---|
@@ -194,14 +221,16 @@ unverändert, damit ältere Shows weiter laufen.
 
 ---
 
-## 9. Fallstricke
+## 10. Fallstricke
 
 **Nach einer Bearbeitung steht der Transport auf PAUSE.** Jede Änderung baut
 den Sequencer neu auf, und das Projekt weigert sich bewusst, eine Show danach
 von allein weiterlaufen zu lassen. Einmal PLAY drücken.
 
-**Die Show landet nur dann auf der Wand,** wenn der Material Player auf
-`Source = show` steht. Sonst bearbeitest du eine Show, die niemand sieht.
+**Die Show landet nur dann auf der Wand,** wenn im Material Player (Ctrl+Shift+4)
+der Knopf **SHOW** leuchtet. Der zweite Knopf, **MATERIAL**, schaltet zurück auf
+das einzeln eingestellte Material. Sonst bearbeitest du eine Show, die niemand
+sieht.
 
 **Helligkeit ist pro Cue.** Sie multipliziert sich mit der Controller-Helligkeit
 und dem Panel-Gain aus `/project1/panel_brightness_config`. Wenn eine Cue zu
@@ -213,13 +242,15 @@ seine ursprüngliche Höhe zurück.
 
 ---
 
-## 10. Wo was liegt
+## 11. Wo was liegt
 
 | Sache | Ort |
 |---|---|
 | Panel | `/project1/show_control/control_panel` |
 | Aktuelle Show | `/project1/show_control/show_json` |
 | Aufnahmen | `/project1/show_control/automation_json` |
+| Werte importierter Materialien | `/project1/show_control/imported_json` |
+| Renderer je Slot | `slot_a_player` (Core) / `slot_a_import` (Import) / `slot_a_mux` |
 | Auswahl, Seite, Aufnahmestatus | `/project1/show_control/editor_state` |
 | Editor-Logik | `/project1/show_control/editor_callbacks` |
 | Transport-Logik | `/project1/show_control/callbacks` |
