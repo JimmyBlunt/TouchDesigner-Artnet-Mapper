@@ -186,6 +186,8 @@ def build():
     # A freshly created Table DAT already holds one empty cell, so test for the
     # header instead of an empty table; otherwise the keys are never written
     # and every lookup silently falls back to its default.
+    _build_imported_slots(owner)
+
     state = _get_or_create(owner, tableDAT, "editor_state")
     defaults = (("selected", "0"), ("page", "0"), ("recording", "0"),
                 ("record_cue", ""), ("message", ""))
@@ -215,6 +217,75 @@ def build():
            "productionTouched": False, "outputEnabled": False, "projectSaved": False})
     return canvas
 
+
+
+def _build_imported_slots(owner):
+    """Give each A/B slot a second renderer for imported MadMapper materials.
+
+    The core player runs one shared shader with an effect index; an imported
+    material is its own adapted fragment shader, so it needs its own GLSL TOP.
+    A switch per slot feeds both consumers - the LED sampler reads it through
+    its `top` parameter, the preview mixer through its input - so routing a cue
+    is one index, and the core path is byte-for-byte what it was.
+    """
+
+    source = owner.op("show_source")
+    mixer = owner.op("show_transition_mixer")
+    if source is None or mixer is None:
+        raise RuntimeError("Show slots are not integrated yet; run integrate_live_show.py first")
+    for position, slot in enumerate(("a", "b")):
+        player = owner.op("slot_%s_player" % slot)
+        sampler = owner.op("slot_%s_led_sampler" % slot)
+        if player is None or sampler is None:
+            raise RuntimeError("Show slot %s is missing" % slot.upper())
+        shader = _get_or_create(owner, textDAT, "slot_%s_import_fs" % slot)
+        if not shader.text.strip():
+            shader.clear()
+            shader.write(IMPORT_PLACEHOLDER_SHADER)
+        renderer = _get_or_create(owner, glslTOP, "slot_%s_import" % slot)
+        _set(renderer, "pixeldat", shader.path)
+        for name, value in (("outputresolution", "custom"),
+                            ("resolutionw", player.par.resolutionw.eval()),
+                            ("resolutionh", player.par.resolutionh.eval())):
+            _set(renderer, name, value)
+        if not renderer.inputs:
+            source.outputConnectors[0].connect(renderer)
+        renderer.nodeX, renderer.nodeY = player.nodeX, player.nodeY - 180
+        mux = _get_or_create(owner, switchTOP, "slot_%s_mux" % slot)
+        mux.nodeX, mux.nodeY = player.nodeX + 200, player.nodeY - 90
+        # Never loop on .inputs here: disconnecting connector 0 while connector
+        # 1 stays wired leaves .inputs non-empty, and `while node.inputs` then
+        # spins forever on TouchDesigner's main thread. Walk the connectors.
+        for connector in mux.inputConnectors:
+            connector.disconnect()
+        player.outputConnectors[0].connect(mux.inputConnectors[0])
+        renderer.outputConnectors[0].connect(mux.inputConnectors[1])
+        if len(mux.inputs) != 2:
+            raise RuntimeError("Slot %s switch needs both renderers" % slot.upper())
+        # Route both consumers through the switch, keeping A before B.
+        _set(sampler, "top", mux.path)
+        if [node.path for node in mixer.inputs][position:position + 1] != [mux.path]:
+            _rewire_mixer(owner, mixer)
+    return True
+
+
+def _rewire_mixer(owner, mixer):
+    """Point the preview mixer at the two switches, A first, B second."""
+
+    for connector in mixer.inputConnectors:
+        connector.disconnect()
+    for position, slot in enumerate(("a", "b")):
+        owner.op("slot_%s_mux" % slot).outputConnectors[0].connect(mixer.inputConnectors[position])
+    if len(mixer.inputs) != 2:
+        raise RuntimeError("Transition mixer needs both slots")
+
+
+IMPORT_PLACEHOLDER_SHADER = """out vec4 fragColor;
+void main()
+{
+    fragColor = TDOutputSwizzle(vec4(0.0, 0.0, 0.0, 1.0));
+}
+"""
 
 EDITOR_RUNTIME = '''# Show editor runtime: reads the panel, edits the show, writes it back.
 import json
