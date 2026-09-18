@@ -15,8 +15,13 @@ Run inside TouchDesigner in a scope that has the TouchDesigner globals::
 from __future__ import annotations
 
 CONTROLS = "/project1/madmapper_player_controls"
-ACTIVE = (0.09, 0.42, 0.34)
-IDLE = (0.05, 0.09, 0.13)
+# The running side is white, the other one stays dark: at a glance across the
+# room the lit button is the only bright thing on the panel. A dark teal on
+# near-black read as "both grey" and told the operator nothing.
+ACTIVE_BG = (0.94, 0.96, 0.98)
+ACTIVE_FG = (0.03, 0.05, 0.07)
+IDLE_BG = (0.07, 0.10, 0.14)
+IDLE_FG = (0.48, 0.56, 0.64)
 
 
 def _get_or_create(parent, op_type, name):
@@ -26,6 +31,53 @@ def _get_or_create(parent, op_type, name):
     node = parent.create(op_type, name)
     node.name = name
     return node
+
+
+def _paint(button, lit_when):
+    """Colour a button by writing the text COMP that actually draws it.
+
+    A buttonCOMP does not paint itself from its own Bgcolor: its inner `text`
+    child carries the whole look, and its stock expressions derive both fill
+    and label from the parent's Color, multiplied down to 40%. Setting Bgcolor
+    from outside therefore changed nothing at all, which is why both sides of
+    the switch stayed the same grey. So the inner text is what gets the
+    expressions - with the rollover brightening kept, because losing the hover
+    feedback would be a step back.
+    """
+
+    text = button.op("text")
+    if text is None:
+        return button
+    rollover = "%s.panel.rollover" % _literal(button.path)
+    for channel, active, idle in (("bgcolorr", ACTIVE_BG[0], IDLE_BG[0]),
+                                  ("bgcolorg", ACTIVE_BG[1], IDLE_BG[1]),
+                                  ("bgcolorb", ACTIVE_BG[2], IDLE_BG[2])):
+        _expression(getattr(text.par, channel),
+                    "(%s if (%s) else %s) + 0.07 * %s" % (active, lit_when, idle, rollover))
+    for channel, active, idle in (("fontcolorr", ACTIVE_FG[0], IDLE_FG[0]),
+                                  ("fontcolorg", ACTIVE_FG[1], IDLE_FG[1]),
+                                  ("fontcolorb", ACTIVE_FG[2], IDLE_FG[2])):
+        _expression(getattr(text.par, channel), "%s if (%s) else %s" % (active, lit_when, idle))
+    return button
+
+
+def _literal(path):
+    return "op('%s')" % path
+
+
+def _expression(par, expression):
+    """Bind a parameter to an expression and make sure it stays bound.
+
+    Assigning par.val anywhere later drops the parameter back to CONSTANT and
+    freezes whatever it happened to hold - which is exactly how the lit button
+    ended up marking the side that was NOT running.
+    """
+
+    par.expr = expression
+    # ParMode is a TouchDesigner global that is not always in the exec scope a
+    # builder is run from; the enum on the parameter itself always is.
+    par.mode = par.mode.__class__.EXPRESSION
+    return par
 
 
 def _set(node, name, value):
@@ -54,15 +106,14 @@ def build():
         button = _get_or_create(panel, buttonCOMP, name)
         for par, value in (("hmode", "fixed"), ("vmode", "fixed"), ("x", x), ("y", 20),
                            ("w", 180), ("h", 44), ("display", True), ("layer", 60),
-                           ("buttontype", "momentary"), ("label", label), ("fontsize", 13),
-                           ("fontcolorr", 0.92), ("fontcolorg", 0.95), ("fontcolorb", 0.98),
+                           ("buttontype", "momentary"), ("fontsize", 13),
                            ("fontalpha", 1), ("bgalpha", 1), ("cursor", "pointer")):
             _set(button, par, value)
-        for channel, active, idle in (("bgcolorr", ACTIVE[0], IDLE[0]),
-                                      ("bgcolorg", ACTIVE[1], IDLE[1]),
-                                      ("bgcolorb", ACTIVE[2], IDLE[2])):
-            par = getattr(button.par, channel)
-            par.expr = "%s if (%s) else %s" % (active, lit_when, idle)
+        _paint(button, lit_when)
+        # The running side also says so in words, for anyone who cannot rely on
+        # the colour alone.
+        _expression(button.par.label,
+                    "'%s  *' if (%s) else '%s'" % (label, lit_when, label))
         click = controls.op("click_" + name)
         if click is not None and click.type != "panelexec":
             click.destroy()
@@ -93,7 +144,7 @@ def build():
                        ("bgcolorg", 0.025), ("bgcolorb", 0.038), ("alignx", "left"),
                        ("aligny", "center"), ("textpaddingl", 10), ("clickthrough", True)):
         _set(label, par, value)
-    label.par.text.expr = label_expr
+    _expression(label.par.text, label_expr)
 
     stale = controls.op("player_source_change")
     if stale is not None:
@@ -106,8 +157,6 @@ def build():
 SOURCE_SWITCH_RUNTIME = '''# MATERIAL / SHOW switch for the Material Player panel.
 CONTROLS = op('/project1/madmapper_player_controls')
 PANEL = CONTROLS.op('ui_panel')
-ACTIVE = (0.09, 0.42, 0.34)
-IDLE = (0.05, 0.09, 0.13)
 
 
 def material_source():
@@ -132,27 +181,20 @@ def material_source():
 
 
 def choose(target):
+    """Flip the player. The buttons repaint themselves.
+
+    Their colours and labels hang off expressions on Source, so writing them
+    here would only turn those expressions back into frozen constants - and
+    then the panel would light whichever side happened to be lit at the time,
+    forever.
+    """
+
     CONTROLS.par.Source = 'show' if target == 'show' else material_source()
-    repaint()
     return str(CONTROLS.par.Source.eval())
 
 
 def repaint():
-    current = str(CONTROLS.par.Source.eval())
-    showing = current == 'show'
-    for name, lit in (('player_source_material', not showing), ('player_source_show', showing)):
-        button = PANEL.op(name)
-        if button is None:
-            continue
-        colour = ACTIVE if lit else IDLE
-        button.par.bgcolorr, button.par.bgcolorg, button.par.bgcolorb = colour
-    label = PANEL.op('player_source_label')
-    if label is not None:
-        if showing:
-            text = 'Die Show laeuft auf der Wand.\\nMaterial-Regler wirken erst wieder auf MATERIAL.'
-        else:
-            text = 'Das eingestellte Material laeuft auf der Wand.\\nSHOW spielt stattdessen den Cue-Ablauf.'
-        if str(label.par.text.eval()) != text:
-            label.par.text = text
-    return current
+    """Kept for callers; the switch is expression-driven and needs no repaint."""
+
+    return str(CONTROLS.par.Source.eval())
 '''

@@ -46,6 +46,35 @@ def _set(node, name, value):
         par.val = value
 
 
+def paint_button(node, color, ink=(0.90, 0.94, 0.98)):
+    """Give a buttonCOMP the colour it was asked for.
+
+    A buttonCOMP ignores its own Bgcolor: the inner `text` child draws the
+    button, and its stock expressions derive the fill from the parent's text
+    Color, scaled to 40%. Every coloured button in this panel was therefore
+    the same grey - the record button included, which is the one that is
+    supposed to shout. Writing the inner text is what actually paints it; the
+    rollover brightening stays.
+    """
+
+    text = node.op("text")
+    if text is None:
+        return node
+    rollover = "op('%s').panel.rollover" % node.path
+    for channel, value in (("bgcolorr", color[0]), ("bgcolorg", color[1]), ("bgcolorb", color[2])):
+        par = getattr(text.par, channel, None)
+        if par is None:
+            continue
+        par.expr = "%s + 0.07 * %s" % (round(float(value), 4), rollover)
+        par.mode = par.mode.__class__.EXPRESSION
+    for channel, value in (("fontcolorr", ink[0]), ("fontcolorg", ink[1]), ("fontcolorb", ink[2])):
+        par = getattr(text.par, channel, None)
+        if par is not None:
+            par.mode = par.mode.__class__.CONSTANT
+            par.val = value
+    return node
+
+
 def _place(node, x, y, width, height, layer=50):
     for name, value in (("hmode", "fixed"), ("vmode", "fixed"), ("x", x), ("y", y),
                         ("w", width), ("h", height), ("display", True), ("layer", layer)):
@@ -88,10 +117,10 @@ def build():
         node = _get_or_create(canvas, buttonCOMP, name)
         _place(node, x, y, width, height, 60)
         for par, item in (("buttontype", "momentary"), ("label", label), ("fontsize", size),
-                          ("fontcolorr", 0.90), ("fontcolorg", 0.94), ("fontcolorb", 0.98),
                           ("fontalpha", 1), ("bgalpha", 1), ("bgcolorr", color[0]),
                           ("bgcolorg", color[1]), ("bgcolorb", color[2]), ("cursor", "pointer")):
             _set(node, par, item)
+        paint_button(node, color)
         return node
 
     def field(name, x, y, width, height=34):
@@ -310,6 +339,36 @@ from pixelblaze_mapper.show_sequencer import ShowValidationError
 OWNER = op('/project1/show_control')
 PANEL = OWNER.op('control_panel')
 ROW_COUNT = 10
+
+
+def _paint(node, colour, ink=None):
+    """Colour a panel button for real.
+
+    A buttonCOMP ignores its own Bgcolor: the inner `text` child draws it, and
+    its stock expressions derive the fill from the parent's text Color scaled
+    to 40%. Writing Bgcolor from outside changed nothing, which is why the
+    selected row never looked selected and the record button never went red.
+    """
+
+    if node is None:
+        return node
+    text = node.op('text')
+    if text is None:
+        return node
+    for channel, value in zip(('bgcolorr', 'bgcolorg', 'bgcolorb'), colour):
+        par = getattr(text.par, channel, None)
+        if par is None:
+            continue
+        par.mode = par.mode.__class__.CONSTANT
+        par.val = value
+    if ink is None:
+        return node
+    for channel, value in zip(('fontcolorr', 'fontcolorg', 'fontcolorb'), ink):
+        par = getattr(text.par, channel, None)
+        if par is not None:
+            par.mode = par.mode.__class__.CONSTANT
+            par.val = value
+    return node
 
 
 def _state(key, fallback=''):
@@ -543,6 +602,17 @@ def material_hint():
 def repaint():
     document = show()
     rows = editor.summary_rows(document)
+    total = editor.total_duration(document)
+    if _state('recording', '0') == '1':
+        # While a take runs, the cue carries the ceiling, not its length. Showing
+        # that number invited the obvious question of why a cue is five minutes
+        # long; the answer is that nobody knows yet - so neither the row, the
+        # field, nor the running total repeats it.
+        recorded = _state('record_cue', '')
+        for position, cue in enumerate(document.get('cues', ())):
+            if cue['id'] == recorded and position < len(rows):
+                rows[position]['timing'] = 'Aufnahme...'
+                total -= float(cue['duration'])
     page = max(0, int(float(_state('page', '0') or 0)))
     pages = max(1, (len(rows) + ROW_COUNT - 1) // ROW_COUNT)
     page = min(page, pages - 1)
@@ -559,15 +629,14 @@ def repaint():
                 row['position'], row['name'][:24], row['effect'][:18], row['timing'],
                 row['transition'], row['coordinate_mode'], row['gradient'])
             chosen = position == index
-            node.par.bgcolorr = 0.05 if chosen else 0.022
-            node.par.bgcolorg = 0.14 if chosen else 0.034
-            node.par.bgcolorb = 0.20 if chosen else 0.049
+            _paint(node, (0.10, 0.26, 0.36) if chosen else (0.022, 0.034, 0.049),
+                   (0.97, 0.98, 1.0) if chosen else (0.62, 0.68, 0.74))
         else:
             node.par.label = ''
-            node.par.bgcolorr, node.par.bgcolorg, node.par.bgcolorb = 0.012, 0.018, 0.026
+            _paint(node, (0.012, 0.018, 0.026))
     _set_text('ed_page_info', 'Seite %d / %d' % (page + 1, pages))
     _set_field('ed_show_name', document.get('name', ''))
-    _set_text('ed_show_info', '%d Cues\\n%.0f s' % (len(rows), editor.total_duration(document)))
+    _set_text('ed_show_info', '%d Cues\\n%.0f s' % (len(rows), max(0.0, total)))
     loop = PANEL.op('ed_btn_loop')
     if loop is not None:
         loop.par.label = 'LOOP: AN' if document.get('loop') else 'LOOP: AUS'
@@ -575,7 +644,10 @@ def repaint():
     if 0 <= index < len(rows):
         cue = document['cues'][index]
         _set_field('ed_cue_name', cue['name'])
-        _set_field('ed_cue_duration', '%.1f' % cue['duration'])
+        _set_field('ed_cue_duration',
+                   'AUFNAHME' if (_state('recording', '0') == '1'
+                                  and _state('record_cue', '') == cue['id'])
+                   else '%.1f' % cue['duration'])
         _set_field('ed_cue_transdur', '%.1f' % cue['transition_duration'])
         _set_field('ed_cue_brightness', '%.2f' % cue['brightness'])
         _set_text('ed_cue_trans', '%s  -  %s' % (cue['transition'],
@@ -600,16 +672,18 @@ def repaint():
     # recording_new survives a failed arming or a DAT reload; on its own it
     # would light the button red with no take behind it.
     new_take = recording and _state('recording_new', '0') == '1'
+    live = (0.78, 0.13, 0.16)
     record = PANEL.op('ed_btn_record')
     if record is not None:
-        record.par.label = ('AUFNAHME LAEUFT' if recording and not new_take else 'AUFNAHME')
-        record.par.bgcolorr = 0.60 if recording and not new_take else 0.22
-        record.par.bgcolorg = 0.12 if recording and not new_take else 0.07
+        armed = recording and not new_take
+        record.par.label = ('AUFNAHME LAEUFT' if armed else 'AUFNAHME')
+        _paint(record, live if armed else (0.22, 0.07, 0.09),
+               (1.0, 0.96, 0.96) if armed else (0.90, 0.94, 0.98))
     record_new = PANEL.op('ed_btn_record_new')
     if record_new is not None:
         record_new.par.label = ('AUFNAHME LAEUFT' if new_take else 'AUFNAHME -> NEUE CUE')
-        record_new.par.bgcolorr = 0.60 if new_take else 0.16
-        record_new.par.bgcolorg = 0.12 if new_take else 0.08
+        _paint(record_new, live if new_take else (0.16, 0.08, 0.20),
+               (1.0, 0.96, 0.96) if new_take else (0.90, 0.94, 0.98))
 
 
 def _cycle(values, current, delta):
@@ -810,9 +884,13 @@ def _apply(command):
 
 TAKE_KEY = 'record_take'
 STATE_KEY = 'record_start_state'
-# Long enough that no live performance runs into it, short enough to stay an
-# obviously temporary value if a take is ever abandoned mid-flight.
-OPEN_ENDED_DURATION = 900.0
+# The length a cue carries WHILE it is being recorded, before the take sets the
+# real one. It cannot grow during the take - writing the show mid-take rebuilds
+# the transport, and the rebuild pauses a running show, which would freeze the
+# cue clock the samples are stamped with. So it is a ceiling, not a guess: five
+# minutes is longer than any cue anyone performs, and short enough to look like
+# a number rather than a bug. The panel shows "AUFNAHME" instead of it anyway.
+RECORD_LIMIT = 300.0
 
 
 def _take():
@@ -864,7 +942,7 @@ def start_recording(as_new_cue=False):
         # Open-ended while performing: a cue created at the default length
         # would cut the take off at 15 seconds. The real length is set from
         # the take when recording stops.
-        document = editor.update_cue(document, index, 'duration', OPEN_ENDED_DURATION)
+        document = editor.update_cue(document, index, 'duration', RECORD_LIMIT)
         write(document)
         _set_state('recording_new', '1')
     else:
@@ -940,20 +1018,32 @@ def _disarm(created_id=None):
     _set_state('recording', '0')
     _set_state('recording_new', '0')
     _set_state('record_cue', '')
-    if not created_id:
-        return
+    _remove_cue(created_id, resync=False)
+
+
+def _remove_cue(cue_id, resync=True):
+    """Take back a cue that only ever existed to hold a take."""
+
+    if not cue_id:
+        return False
     document = show()
-    index = next((i for i, cue in enumerate(document['cues']) if cue['id'] == created_id), None)
+    index = next((i for i, cue in enumerate(document['cues']) if cue['id'] == cue_id), None)
     if index is None or len(document['cues']) <= 1:
-        return
+        return False
     data = imported_data()
-    if created_id in data:
-        del data[created_id]
+    if cue_id in data:
+        del data[cue_id]
         _write_imported(data)
-    node = OWNER.op('show_json')
-    node.clear()
-    node.write(json.dumps(editor.delete_cue(document, index), indent=2))
+    document = editor.delete_cue(document, index)
     _set_state('selected', max(0, index - 1))
+    _set_state('page', max(0, index - 1) // ROW_COUNT)
+    if resync:
+        write(document)
+    else:
+        node = OWNER.op('show_json')
+        node.clear()
+        node.write(json.dumps(document, indent=2))
+    return True
 
 
 def _trim_new_cue(cue_id, span):
@@ -969,8 +1059,8 @@ def _trim_new_cue(cue_id, span):
     if index is None:
         return
     duration = max(1.0, round(float(span) + 0.5, 1))
-    if duration >= OPEN_ENDED_DURATION:
-        duration = 15.0
+    if duration >= RECORD_LIMIT:
+        duration = RECORD_LIMIT
     document = editor.update_cue(document, index, 'duration', duration)
     _set_state('selected', index)
     _set_state('page', index // ROW_COUNT)
@@ -1047,6 +1137,12 @@ def stop_recording(reason=''):
     OWNER.unstore(STATE_KEY)
     if _state('recording_new', '0') == '1':
         _set_state('recording_new', '0')
+        # The cue was created by pressing record and holds nothing that was
+        # performed. Leaving it behind is how a show collects empty cues that
+        # are as long as the recording ceiling.
+        if _remove_cue(cue_id):
+            _message('Nichts aufgenommen - die neue Cue wurde wieder entfernt')
+            return
     if reason == 'cue-ended':
         # Truthful cause: the cue simply ran out first. Saying "kein Regler
         # bewegt" sent the operator looking for a fault in the recorder.

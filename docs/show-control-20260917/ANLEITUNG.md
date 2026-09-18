@@ -181,9 +181,15 @@ darauf aufnehmen willst, ohne vorher eine Cue anzulegen:
 1. Material im Browser auswählen und einstellen.
 2. **AUFNAHME → NEUE CUE** drücken. Es entsteht sofort eine neue Cue am Ende
    der Liste, die dieses Material spielt, und die Aufnahme läuft.
-3. Regler bewegen, so lange du willst – diese Aufnahme hat **kein Zeitlimit**.
+3. Regler bewegen, so lange du willst – bis zu **5 Minuten** am Stück. Solange
+   die Aufnahme läuft, steht bei DAUER **AUFNAHME** und in der Liste
+   **Aufnahme...** statt einer Zahl: die richtige Länge kennt noch niemand.
 4. Denselben Knopf erneut drücken. Die Cue bekommt jetzt genau die **Länge
    deiner Aufnahme**, und die Bewegung hängt daran.
+
+Wird dabei **nichts** bewegt, verschwindet die neue Cue wieder – sie war nur
+das Gefäß für die Aufnahme. Früher blieb sie mit der vollen Reservelänge in der
+Show stehen.
 
 Danach im Material Player auf **SHOW** umschalten: die Cue spielt die
 aufgenommene Bewegung ab.
@@ -232,6 +238,18 @@ Die Aufnahme haengt an drei Dingen, und der Editor sagt jetzt jeweils, welches f
 **+ AKTUELLES MATERIAL** legt nur noch eine Cue an, wenn wirklich ein spielbares
 Material aktiv ist. Frueher entstand sonst eine Cue ohne Material, die die Show
 komplett blockierte. Rechts neben den Knoepfen steht immer, was gerade aktiv ist.
+
+### Was die Farben sagen
+
+| Element | Bedeutung |
+|---|---|
+| **MATERIAL / SHOW** im Material Player | Die laufende Seite ist **weiß mit dunkler Schrift** und trägt ein `*`, die andere bleibt dunkel. |
+| **AUFNAHME** / **AUFNAHME → NEUE CUE** | Leuchtet **rot**, solange aufgenommen wird. |
+| Cue-Zeile | Die ausgewählte Cue ist blau hinterlegt. |
+
+(Ein TouchDesigner-Button zeichnet sich nicht aus seiner eigenen Hintergrundfarbe,
+sondern aus seinem inneren `text`-Knoten. Deshalb sahen vorher alle Knöpfe gleich
+grau aus, obwohl im Code Farben standen.)
 
 ### Sonstiges
 

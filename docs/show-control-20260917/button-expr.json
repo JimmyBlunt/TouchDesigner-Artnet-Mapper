@@ -1,0 +1,6 @@
+{
+ "bgcolorr": "[c/.5 for c in [.2, .4, .15, .35]][parent().par.value0 + 2*(r:=parent().panel.rollover)] * parent().par.colorr + r * 0.1",
+ "fontcolorr": "[c/.5 for c in [.1, .3]][parent().par.value0] * parent().par.colorr + .5",
+ "value0": false,
+ "rollover": 0.0
+}

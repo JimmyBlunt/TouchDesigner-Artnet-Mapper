@@ -1,0 +1,66 @@
+{
+ "cues": [
+  [
+   "c1-aurora",
+   "Aurora Opening",
+   "Aurora"
+  ],
+  [
+   "c2-plasma",
+   "Plasma Drift",
+   "Plasma"
+  ],
+  [
+   "c3-ripple",
+   "Ripple Rings",
+   "Ripple Rings"
+  ],
+  [
+   "c4-tunnel",
+   "Tunnel Pull",
+   "Tunnel"
+  ],
+  [
+   "c5-matrix",
+   "Matrix Rain",
+   "Matrix Rain"
+  ],
+  [
+   "c6-comet",
+   "Comet Tails",
+   "Comet Tails"
+  ],
+  [
+   "ocean-waves",
+   "Ocean Waves",
+   "Ocean Waves"
+  ],
+  [
+   "ocean-waves-2",
+   "Ocean Waves",
+   "Ocean Waves"
+  ],
+  [
+   "crumpled",
+   "Crumpled",
+   "madmapper:mat_3de7fe0ae226a8eb5028"
+  ]
+ ],
+ "imported": {
+  "crumpled": {
+   "material_id": "mat_3de7fe0ae226a8eb5028",
+   "label": "Crumpled"
+  },
+  "crumpled-2": {
+   "material_id": "mat_3de7fe0ae226a8eb5028",
+   "label": "Crumpled"
+  },
+  "smoothvoronicontours-3": {
+   "material_id": "mat_f5afcd38b0f7ff071973",
+   "label": "Smoothvoronicontours"
+  }
+ },
+ "automation_keys": [
+  "crumpled"
+ ]
+}

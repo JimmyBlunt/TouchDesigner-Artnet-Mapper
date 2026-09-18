@@ -1,0 +1,31 @@
+{
+ "source": "show",
+ "material": {
+  "label": "MATERIAL",
+  "bg": [
+   0.07,
+   0.1,
+   0.14
+  ],
+  "font": [
+   0.48,
+   0.56,
+   0.64
+  ],
+  "mode": "EXPRESSION"
+ },
+ "show": {
+  "label": "SHOW  *",
+  "bg": [
+   0.94,
+   0.96,
+   0.98
+  ],
+  "font": [
+   0.03,
+   0.05,
+   0.07
+  ],
+  "mode": "EXPRESSION"
+ }
+}
