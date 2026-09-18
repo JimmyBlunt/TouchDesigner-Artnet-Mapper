@@ -210,6 +210,27 @@ Seed und mehrteilige Regler wie Farben – eine Automationsspur ist eine Zahl
 über die Zeit, und eine Farbe in Komponenten zu zerlegen würde etwas
 aufzeichnen, das du als einen Regler siehst.
 
+### Warum die Player-Regler bei importiertem Material nichts aufnehmen
+
+Das ist der häufigste Stolperstein. Bei einer **importierten** Cue rendert die
+Show das Material mit dessen **eigenem Shader** – der Material Player liegt
+dabei gar nicht im Signalweg:
+
+- **Scale** wirkt nur in der Live-Ansicht (MATERIAL), nicht auf eine importierte Cue.
+- **Intensity** ist im Show-Betrieb fest auf 1.0 – der Regler tut dort nichts.
+- **Contrast** liegt als **globaler** Effekt hinter der ganzen Show, gehört also
+  keiner einzelnen Cue und kann darum auch nicht für eine aufgenommen werden.
+
+Dass sich in der MATERIAL-Ansicht trotzdem sichtbar etwas ändert, macht es so
+verwirrend – auf der Wand einer laufenden Show passiert davon nichts.
+
+**Also:** Bei importiertem Material die Regler des Materials selbst nehmen – im
+Material Browser unter **NATIVE PARAMS** (`UV / Scale`, `Animation / Speed`,
+`Brightness`, `Contrast`, `Saturation` …). Die nimmt die Aufnahme auf, und die
+Show fährt sie auch wieder ab. Der Editor sagt das jetzt schon beim Start der
+Aufnahme, und wenn eine Aufnahme leer bleibt, weil nur die Player-Regler bewegt
+wurden, nennt die Meldung genau diesen Grund.
+
 ### Der Startzustand wird mitgenommen
 
 Früher stellte die Aufnahme die Regler erst auf die gespeicherten Werte der Cue

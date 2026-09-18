@@ -1,0 +1,42 @@
+[
+ {
+  "d": 0,
+  "path": "/project1/res1",
+  "type": "resolutionTOP"
+ },
+ {
+  "d": 1,
+  "path": "/project1/material_gradient_player",
+  "type": "glslTOP"
+ },
+ {
+  "d": 2,
+  "path": "/project1/visual_source_switch",
+  "type": "switchTOP"
+ },
+ {
+  "d": 3,
+  "path": "/project1/moviefilein1",
+  "type": "moviefileinTOP"
+ },
+ {
+  "d": 3,
+  "path": "/project1/madmapper_material_player",
+  "type": "glslTOP"
+ },
+ {
+  "d": 3,
+  "path": "/project1/show_control_out",
+  "type": "selectTOP"
+ },
+ {
+  "d": 3,
+  "path": "/project1/madmapper_library/imported_material_out",
+  "type": "outTOP"
+ },
+ {
+  "d": 4,
+  "path": "/project1/madmapper_library/live_preview",
+  "type": "glslmultiTOP"
+ }
+]

@@ -221,7 +221,8 @@ def build():
 
     state = _get_or_create(owner, tableDAT, "editor_state")
     defaults = (("selected", "0"), ("page", "0"), ("recording", "0"),
-                ("record_cue", ""), ("recording_new", "0"), ("message", ""))
+                ("record_cue", ""), ("recording_new", "0"), ("core_moved", "0"),
+                ("message", ""))
     if state.numRows < 2 or str(state[0, 0]) != "key":
         state.clear()
         state.appendRow(["key", "value"])
@@ -960,10 +961,18 @@ def start_recording(as_new_cue=False):
         # worse, a 900-second cue nobody asked for sitting in the show.
         _disarm(created_id)
         raise
-    if as_new_cue:
-        _message('Aufnahme laeuft - neue Cue %02d, Laenge folgt der Aufnahme' % (index + 1))
+    if editor.is_imported(cue):
+        # The single most common way to end up with an empty take: turning the
+        # Material Player while an imported cue records. Those sliders are not
+        # in an imported cue's signal path at all, so say it before the take,
+        # not after it.
+        where = ' - dafuer die Regler im MATERIAL BROWSER nehmen, die Player-Regler wirken hier nicht'
     else:
-        _message('Aufnahme laeuft - Cue %02d spielt von vorn' % (index + 1))
+        where = ''
+    if as_new_cue:
+        _message('Aufnahme laeuft - neue Cue %02d, Laenge folgt der Aufnahme%s' % (index + 1, where))
+    else:
+        _message('Aufnahme laeuft - Cue %02d spielt von vorn%s' % (index + 1, where))
 
 
 def _require_matching_material(index, cue):
@@ -1007,6 +1016,7 @@ def _arm(index, cue_id):
     OWNER.store(STATE_KEY, _live_state())
     OWNER.store(TAKE_KEY, automation.new_take(cue_id))
     _set_state('recording', '1')
+    _set_state('core_moved', '0')
     _set_state('record_cue', cue_id)
 
 
@@ -1017,6 +1027,7 @@ def _disarm(created_id=None):
     OWNER.unstore(STATE_KEY)
     _set_state('recording', '0')
     _set_state('recording_new', '0')
+    _set_state('core_moved', '0')
     _set_state('record_cue', '')
     _remove_cue(created_id, resync=False)
 
@@ -1141,7 +1152,7 @@ def stop_recording(reason=''):
         # performed. Leaving it behind is how a show collects empty cues that
         # are as long as the recording ceiling.
         if _remove_cue(cue_id):
-            _message('Nichts aufgenommen - die neue Cue wurde wieder entfernt')
+            _message(_empty_reason() + ' - die neue Cue wurde wieder entfernt')
             return
     if reason == 'cue-ended':
         # Truthful cause: the cue simply ran out first. Saying "kein Regler
@@ -1152,7 +1163,18 @@ def stop_recording(reason=''):
     reason = recorder.diagnosis() if recorder is not None else 'no-movement'
     _message({'no-time': 'Nichts aufgenommen - die Show lief nicht, die Cue-Zeit stand still',
               'too-short': 'Nichts aufgenommen - die Bewegung war zu kurz',
-              }.get(reason, 'Nichts aufgenommen - kein Regler bewegt'))
+              }.get(reason, _empty_reason()))
+
+
+def _empty_reason():
+    """Why a take came back empty, in the operator's terms."""
+
+    if _state('core_moved', '0') == '1':
+        _set_state('core_moved', '0')
+        return ('Nichts aufgenommen - bewegt wurden die PLAYER-Regler, die bei '
+                'importiertem Material nichts tun. Im MATERIAL BROWSER unter '
+                'NATIVE PARAMS aufnehmen')
+    return 'Nichts aufgenommen - kein Regler bewegt'
 
 
 def record_tick(elapsed):
@@ -1192,6 +1214,7 @@ def record_tick(elapsed):
         # which would litter the take with tracks nobody moved.
         if editor.is_imported(cues[index]):
             sample = live_imported_values()
+            _watch_core_movement()
         else:
             values = player_values()
             sample = {}
@@ -1211,6 +1234,27 @@ def record_tick(elapsed):
 
 IMPORT_PREFIX = editor.IMPORT_PREFIX
 _slot_signature = {}
+
+
+def _watch_core_movement():
+    """Notice the Material Player being turned during an imported take.
+
+    Nothing comes of it - an imported cue is rendered by the material's own
+    shader, with the player's sliders nowhere in that path - but knowing it
+    happened is the difference between "nichts aufgenommen" and an answer.
+    """
+
+    if _state('core_moved', '0') == '1':
+        return
+    start = (OWNER.fetch(STATE_KEY, None) or {}).get('player') or {}
+    if not start:
+        return
+    values = player_values()
+    for name, was in start.items():
+        now = values.get(name)
+        if isinstance(now, (int, float)) and abs(float(now) - float(was)) > 1e-4:
+            _set_state('core_moved', '1')
+            return
 
 
 def _library():

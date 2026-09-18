@@ -1,0 +1,16 @@
+{
+ "n_expr": 11,
+ "sample": {
+  "vec0valuex": "op('/project1/madmapper_player_controls').par.Colorr",
+  "vec0valuey": "op('/project1/madmapper_player_controls').par.Colorg",
+  "vec0valuez": "op('/project1/madmapper_player_controls').par.Colorb",
+  "vec0valuew": "op('/project1/madmapper_player_controls').par.Gradientstrength if op('/project1/madmapper_player_controls').par.Source.eval() in ('materials', 'imported') and op('/project1/madmapper_player_controls').par.Colormode.eval() != 'original' else 0.0",
+  "vec1valuex": "op('/project1/madmapper_player_controls').par.Color2r",
+  "vec1valuey": "op('/project1/madmapper_player_controls').par.Color2g",
+  "vec1valuez": "op('/project1/madmapper_player_controls').par.Color2b",
+  "vec2valuex": "op('/project1/madmapper_player_controls').par.Intensity if op('/project1/madmapper_player_controls').par.Source.eval() in ('materials', 'imported') else 1.0",
+  "vec2valuey": "op('/project1/madmapper_player_controls').par.Contrast",
+  "vec2valuez": "1.0 if op('/project1/madmapper_player_controls').par.Source.eval() == 'imported' else 0.0",
+  "vec2valuew": "op('/project1/madmapper_player_controls').par.Colormode.menuIndex"
+ }
+}
