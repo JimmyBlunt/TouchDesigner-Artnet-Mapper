@@ -218,6 +218,21 @@ Das tut sie nicht mehr. Stattdessen gilt:
 - Aufgezeichnet wird trotzdem nur, was sich bewegt: der Zustand kommt in die
   Cue, die Bewegung in die Aufnahme.
 
+### Wenn die Aufnahme nicht startet
+
+Die Aufnahme haengt an drei Dingen, und der Editor sagt jetzt jeweils, welches fehlt:
+
+| Meldung | Was zu tun ist |
+|---|---|
+| Kein spielbares Material aktiv (show) | Der Material Player steht auf **SHOW**. Auf **MATERIAL** schalten, dann ist wieder ein Material aktiv, das man als Cue anlegen oder aufnehmen kann. |
+| Cue 09 spielt "Crumpled" - dieses Material erst im Browser aktivieren | Eine importierte Cue wird mit **ihrem eigenen** Material aufgenommen. Es gibt nur einen Satz Regler, also muss im Browser genau dieses Material aktiv sein - sonst landen die Regler des falschen Materials in der Cue. |
+| Aufnahme nicht moeglich - Cue 11 "..." hat kein Material | Eine Cue der Show zeigt auf ein Material, das es nicht mehr gibt. Der Transport verweigert dann die **ganze** Show. Diese Cue loeschen (oder das Material importieren), dann laeuft alles wieder. |
+| Cue war zu Ende, bevor ein Regler bewegt wurde | Die Cue ist kuerzer als gedacht. **DAUER** hochsetzen oder **AUFNAHME -> NEUE CUE** nehmen, die hat kein Zeitlimit. |
+
+**+ AKTUELLES MATERIAL** legt nur noch eine Cue an, wenn wirklich ein spielbares
+Material aktiv ist. Frueher entstand sonst eine Cue ohne Material, die die Show
+komplett blockierte. Rechts neben den Knoepfen steht immer, was gerade aktiv ist.
+
 ### Sonstiges
 
 Die Aufnahme für eine **vorhandene** Cue endet von selbst, wenn die Cue zu Ende ist – die Meldung sagt

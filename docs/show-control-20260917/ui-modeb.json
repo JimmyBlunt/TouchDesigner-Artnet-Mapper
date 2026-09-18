@@ -1,0 +1,25 @@
+{
+ "cue": {
+  "id": "ripple-noise",
+  "name": "Ripple Noise",
+  "effect": "madmapper:mat_552af5019bc3bcb6f44f",
+  "duration": 104.8
+ },
+ "tracks": {
+  "mat_scale": [
+   8,
+   [
+    0.03333333333284827,
+    1.0
+   ],
+   [
+    95.8166666666657,
+    1.828698553948832
+   ]
+  ]
+ },
+ "core_leak": [],
+ "imported_values_scale": 1.0,
+ "imported_material": "mat_552af5019bc3bcb6f44f",
+ "live_scale": 1.828698553948832
+}

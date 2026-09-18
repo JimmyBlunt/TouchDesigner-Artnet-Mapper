@@ -1,0 +1,25 @@
+{
+ "block": 3,
+ "samples": [
+  {
+   "t": 21.08,
+   "uniform": 1.3279,
+   "expected": 1.3279
+  },
+  {
+   "t": 21.08,
+   "uniform": 1.3279,
+   "expected": 1.3279
+  },
+  {
+   "t": 21.08,
+   "uniform": 1.3279,
+   "expected": 1.3279
+  },
+  {
+   "t": 21.08,
+   "uniform": 1.3279,
+   "expected": 1.3279
+  }
+ ]
+}

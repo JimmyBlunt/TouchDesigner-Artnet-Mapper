@@ -1,0 +1,104 @@
+{
+ "editor_state": {
+  "selected": "11",
+  "page": "1",
+  "recording": "0",
+  "record_cue": "nested-cube",
+  "message": "RuntimeError: Unresolved Show cue/effect: [('default', 'Default')] (not in the Core catalog or the MadMapper library)",
+  "recording_new": "1"
+ },
+ "transport": {
+  "cue_index": "11",
+  "elapsed": "0.0",
+  "playing": "",
+  "outgoing_slot": "A",
+  "incoming_slot": "B"
+ },
+ "take": null,
+ "cues": [
+  {
+   "i": 0,
+   "id": "c1-aurora",
+   "name": "Aurora Opening",
+   "effect": "Aurora",
+   "dur": 18.0
+  },
+  {
+   "i": 1,
+   "id": "c2-plasma",
+   "name": "Plasma Drift",
+   "effect": "Plasma",
+   "dur": 16.0
+  },
+  {
+   "i": 2,
+   "id": "c3-ripple",
+   "name": "Ripple Rings",
+   "effect": "Ripple Rings",
+   "dur": 16.0
+  },
+  {
+   "i": 3,
+   "id": "c4-tunnel",
+   "name": "Tunnel Pull",
+   "effect": "Tunnel",
+   "dur": 15.0
+  },
+  {
+   "i": 4,
+   "id": "c5-matrix",
+   "name": "Matrix Rain",
+   "effect": "Matrix Rain",
+   "dur": 14.0
+  },
+  {
+   "i": 5,
+   "id": "c6-comet",
+   "name": "Comet Tails",
+   "effect": "Comet Tails",
+   "dur": 14.0
+  },
+  {
+   "i": 6,
+   "id": "ocean-waves",
+   "name": "Ocean Waves",
+   "effect": "Ocean Waves",
+   "dur": 15.0
+  },
+  {
+   "i": 7,
+   "id": "ocean-waves-2",
+   "name": "Ocean Waves",
+   "effect": "Ocean Waves",
+   "dur": 15.0
+  },
+  {
+   "i": 8,
+   "id": "crumpled",
+   "name": "Crumpled",
+   "effect": "madmapper:mat_3de7fe0ae226a8eb5028",
+   "dur": 15.0
+  },
+  {
+   "i": 9,
+   "id": "sinepuke",
+   "name": "Sinepuke",
+   "effect": "madmapper:mat_d668a7041938ba21f532",
+   "dur": 15.0
+  },
+  {
+   "i": 10,
+   "id": "default",
+   "name": "Defaultroippl",
+   "effect": "Default",
+   "dur": 15.0
+  },
+  {
+   "i": 11,
+   "id": "ripple-noise",
+   "name": "Ripple Noise",
+   "effect": "madmapper:mat_552af5019bc3bcb6f44f",
+   "dur": 900.0
+  }
+ ]
+}

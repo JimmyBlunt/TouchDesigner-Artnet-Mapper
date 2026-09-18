@@ -383,6 +383,16 @@ def write(document):
     node.clear()
     node.write(json.dumps(document, indent=2))
     _refresh_cue_table(document)
+    broken = unresolved(document)
+    if broken:
+        # The transport refuses the whole show over one unplayable cue, and
+        # its RuntimeError names an id nobody recognises. The edit itself is
+        # saved; say which cue is at fault and what to do about it.
+        repaint()
+        raise ShowValidationError(
+            'Gespeichert, aber nicht abspielbar - Cue %s hat kein Material. '
+            'Cue loeschen oder Material importieren.'
+            % ', '.join('%02d "%s"' % entry for entry in broken))
     _sync_transport()
     repaint()
 
@@ -481,6 +491,38 @@ def _effect_label(identifier):
     return identifier.replace('_', ' ').title()
 
 
+def _catalog():
+    sync = OWNER.op('render_sync')
+    return getattr(sync.module, 'CATALOG', {}) if sync is not None else {}
+
+
+def _resolvable(effect):
+    """Whether a cue effect can actually be played.
+
+    The transport refuses to start a show that holds an effect it cannot
+    resolve, and it refuses for the WHOLE show - so one bad cue stops
+    everything, including recording. The editor therefore checks before it
+    writes a cue, rather than leaving the operator with a show that will not
+    roll and a raw RuntimeError in the message line.
+    """
+
+    effect = str(effect)
+    if effect.startswith(IMPORT_PREFIX):
+        try:
+            return any(item['id'] == effect[len(IMPORT_PREFIX):] for item in _library()._items)
+        except Exception:
+            return False
+    return effect in _catalog()
+
+
+def unresolved(document):
+    """Every cue in the show whose material is gone, as (number, name)."""
+
+    return [(index + 1, str(cue.get('name') or cue['id']))
+            for index, cue in enumerate(document.get('cues', ()))
+            if not _resolvable(cue.get('effect'))]
+
+
 def material_hint():
     kind, identifier = current_material()
     if kind == 'core':
@@ -490,7 +532,12 @@ def material_hint():
             return 'Aktuell: ' + str(_library().parameter_snapshot().get('label') or 'importiert')
         except Exception:
             return 'Aktuell: importiertes Material'
-    return 'Aktuell: unbekannt'
+    # Neither kind means nothing addable is loaded - almost always because the
+    # player is showing the show itself. Saying "unbekannt" left the operator
+    # pressing + AKTUELLES MATERIAL anyway; say what to do instead.
+    if str(player_values().get('Source', '')).strip().lower() == 'show':
+        return 'Player auf SHOW - fuer neue Cues auf MATERIAL schalten'
+    return 'Kein spielbares Material aktiv'
 
 
 def repaint():
@@ -550,7 +597,9 @@ def repaint():
         _set_text('ed_record_info', '')
     _set_text('ed_hint', material_hint())
     recording = _state('recording', '0') == '1'
-    new_take = _state('recording_new', '0') == '1'
+    # recording_new survives a failed arming or a DAT reload; on its own it
+    # would light the button red with no take behind it.
+    new_take = recording and _state('recording_new', '0') == '1'
     record = PANEL.op('ed_btn_record')
     if record is not None:
         record.par.label = ('AUFNAHME LAEUFT' if recording and not new_take else 'AUFNAHME')
@@ -603,6 +652,14 @@ def _apply(command):
         return
     if command == 'add_material':
         kind, identifier = current_material()
+        if kind not in ('core', 'madmapper'):
+            # Anything else (a movie, an empty store, a half-initialised
+            # state) has no effect the transport could resolve. Writing it
+            # anyway produced a cue named after nothing that stopped the
+            # whole show from starting - recording included.
+            raise ShowValidationError(
+                'Kein spielbares Material aktiv (%s) - im Material Browser eines waehlen'
+                % (kind or 'leer'))
         values = player_values()
         parameters = editor.parameters_from_player(values)
         mode = editor.PLAYER_COORDINATE_MODES.get(str(values.get('Coordinatemode', 'global')), 'global')
@@ -624,6 +681,9 @@ def _apply(command):
             _write_imported(data)
         else:
             label = _effect_label(identifier)
+            if not _resolvable(label):
+                raise ShowValidationError(
+                    'Core-Effekt "%s" steht nicht im Katalog - Cue nicht angelegt' % label)
             document = editor.append_cue(document, editor.new_cue(
                 label, parameters, name=label, coordinate_mode=mode,
                 preset=str(values.get('Gradientpreset', ''))))
@@ -785,6 +845,14 @@ def start_recording(as_new_cue=False):
     """
 
     document = show()
+    blocked = unresolved(document)
+    if blocked:
+        # The transport refuses to roll while any cue is unplayable, so
+        # recording would fail on a cue that has nothing to do with it.
+        raise ShowValidationError(
+            'Aufnahme nicht moeglich - Cue %s hat kein Material. Erst loeschen.'
+            % ', '.join('%02d "%s"' % entry for entry in blocked))
+    created_id = None
     if as_new_cue:
         # Record straight from the browser: the cue is created first so the
         # take has something to attach to and the slot can already play the
@@ -792,6 +860,7 @@ def start_recording(as_new_cue=False):
         _apply('add_material')
         document = show()
         index = len(document['cues']) - 1
+        created_id = document['cues'][index]['id']
         # Open-ended while performing: a cue created at the default length
         # would cut the take off at 15 seconds. The real length is set from
         # the take when recording stops.
@@ -803,7 +872,48 @@ def start_recording(as_new_cue=False):
         _set_state('recording_new', '0')
     if index < 0:
         raise ShowValidationError('Keine Cue ausgewaehlt')
-    cue_id = document['cues'][index]['id']
+    cue = document['cues'][index]
+    _require_matching_material(index, cue)
+    cue_id = cue['id']
+    try:
+        _arm(index, cue_id)
+    except Exception:
+        # Whatever went wrong, do not leave a half-armed recorder behind or,
+        # worse, a 900-second cue nobody asked for sitting in the show.
+        _disarm(created_id)
+        raise
+    if as_new_cue:
+        _message('Aufnahme laeuft - neue Cue %02d, Laenge folgt der Aufnahme' % (index + 1))
+    else:
+        _message('Aufnahme laeuft - Cue %02d spielt von vorn' % (index + 1))
+
+
+def _require_matching_material(index, cue):
+    """Refuse to overdub an imported cue while a different material is loaded.
+
+    A take on an imported cue records the controls of whatever the browser has
+    active - there is only one set of sliders. With the wrong material loaded
+    that writes one material's controls into another material's cue, and the
+    cue quietly stops looking like itself. Better to say so.
+    """
+
+    if not editor.is_imported(cue):
+        return
+    wanted = editor.material_id(cue)
+    kind, active = current_material()
+    if kind == 'madmapper' and active == wanted:
+        return
+    try:
+        label = str(_library_item(wanted).get('label') or wanted)
+    except Exception:
+        label = wanted
+    raise ShowValidationError(
+        'Cue %02d spielt "%s" - dieses Material erst im Browser aktivieren' % (index + 1, label))
+
+
+def _arm(index, cue_id):
+    """Roll the transport to the top of the cue and open a take on it."""
+
     transport = OWNER.op('callbacks').module
     for key, value in (('cue_index', index), ('elapsed', '0'),
                        ('outgoing_slot', 'A'), ('incoming_slot', '')):
@@ -820,10 +930,30 @@ def start_recording(as_new_cue=False):
     OWNER.store(TAKE_KEY, automation.new_take(cue_id))
     _set_state('recording', '1')
     _set_state('record_cue', cue_id)
-    if as_new_cue:
-        _message('Aufnahme laeuft - neue Cue %02d, Laenge folgt der Aufnahme' % (index + 1))
-    else:
-        _message('Aufnahme laeuft - Cue %02d spielt von vorn' % (index + 1))
+
+
+def _disarm(created_id=None):
+    """Undo an arming that failed, including the cue it had just created."""
+
+    OWNER.unstore(TAKE_KEY)
+    OWNER.unstore(STATE_KEY)
+    _set_state('recording', '0')
+    _set_state('recording_new', '0')
+    _set_state('record_cue', '')
+    if not created_id:
+        return
+    document = show()
+    index = next((i for i, cue in enumerate(document['cues']) if cue['id'] == created_id), None)
+    if index is None or len(document['cues']) <= 1:
+        return
+    data = imported_data()
+    if created_id in data:
+        del data[created_id]
+        _write_imported(data)
+    node = OWNER.op('show_json')
+    node.clear()
+    node.write(json.dumps(editor.delete_cue(document, index), indent=2))
+    _set_state('selected', max(0, index - 1))
 
 
 def _trim_new_cue(cue_id, span):
@@ -917,6 +1047,12 @@ def stop_recording(reason=''):
     OWNER.unstore(STATE_KEY)
     if _state('recording_new', '0') == '1':
         _set_state('recording_new', '0')
+    if reason == 'cue-ended':
+        # Truthful cause: the cue simply ran out first. Saying "kein Regler
+        # bewegt" sent the operator looking for a fault in the recorder.
+        _message('Cue war zu Ende, bevor ein Regler bewegt wurde - '
+                 'Cue verlaengern oder AUFNAHME -> NEUE CUE nehmen')
+        return
     reason = recorder.diagnosis() if recorder is not None else 'no-movement'
     _message({'no-time': 'Nichts aufgenommen - die Show lief nicht, die Cue-Zeit stand still',
               'too-short': 'Nichts aufgenommen - die Bewegung war zu kurz',
