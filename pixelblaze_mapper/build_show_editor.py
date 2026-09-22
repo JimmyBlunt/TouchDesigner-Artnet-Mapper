@@ -966,7 +966,8 @@ def start_recording(as_new_cue=False):
         # Material Player while an imported cue records. Those sliders are not
         # in an imported cue's signal path at all, so say it before the take,
         # not after it.
-        where = ' - dafuer die Regler im MATERIAL BROWSER nehmen, die Player-Regler wirken hier nicht'
+        where = (' - importiert: Scale, Width, Frame Zoom, Focus X/Y wirken, '
+                 'alles Weitere im MATERIAL BROWSER unter NATIVE PARAMS')
     else:
         where = ''
     if as_new_cue:
@@ -1101,25 +1102,29 @@ def _store_state_in_cue(cue_id):
     if index is None:
         return
     cue = document['cues'][index]
-    if editor.is_imported(cue):
+    imported = editor.is_imported(cue)
+    if imported:
         values = state.get('imported') or {}
-        if not values:
-            return
-        data = imported_data()
-        record = dict(data.get(cue_id) or {})
-        record.setdefault('material_id', editor.material_id(cue))
-        record.setdefault('label', cue.get('preset') or cue['name'])
-        merged = dict(record.get('values') or {})
-        merged.update(values)
-        record['values'] = merged
-        data[cue_id] = record
-        _write_imported(data)
-        return
+        if values:
+            data = imported_data()
+            record = dict(data.get(cue_id) or {})
+            record.setdefault('material_id', editor.material_id(cue))
+            record.setdefault('label', cue.get('preset') or cue['name'])
+            merged = dict(record.get('values') or {})
+            merged.update(values)
+            record['values'] = merged
+            data[cue_id] = record
+            _write_imported(data)
     player = state.get('player') or {}
     if not player:
         return
     parameters = dict(cue['parameters'])
     for player_name, parameter in editor.PLAYER_PARAMETERS.items():
+        # An imported cue reads only the handful of core controls that reach
+        # its system uniforms; folding the rest in would write numbers its
+        # shader never looks at.
+        if imported and parameter not in IMPORTED_CORE:
+            continue
         if player_name in player and parameter in parameters:
             parameters[parameter] = float(player[player_name])
     cues = [dict(entry) for entry in document['cues']]
@@ -1171,9 +1176,9 @@ def _empty_reason():
 
     if _state('core_moved', '0') == '1':
         _set_state('core_moved', '0')
-        return ('Nichts aufgenommen - bewegt wurden die PLAYER-Regler, die bei '
-                'importiertem Material nichts tun. Im MATERIAL BROWSER unter '
-                'NATIVE PARAMS aufnehmen')
+        return ('Nichts aufgenommen - diese Player-Regler liest importiertes '
+                'Material nicht. Es hoert auf Scale, Width, Frame Zoom und '
+                'Focus X/Y - alles andere im MATERIAL BROWSER unter NATIVE PARAMS')
     return 'Nichts aufgenommen - kein Regler bewegt'
 
 
@@ -1212,18 +1217,23 @@ def record_tick(elapsed):
         # what the operator turns. The core sliders are ignored there: touching
         # a mat_ control writes back through the material state and nudges them,
         # which would litter the take with tracks nobody moved.
-        if editor.is_imported(cues[index]):
-            sample = live_imported_values()
+        imported = editor.is_imported(cues[index])
+        values = player_values()
+        sample = {}
+        for player_name, parameter in editor.PLAYER_PARAMETERS.items():
+            # An imported material is driven by its own shader: of the core
+            # controls only the few that reach its system uniforms do anything,
+            # and recording the others would replay moves nothing reads.
+            if imported and parameter not in IMPORTED_CORE:
+                continue
+            if parameter in automation.RECORDABLE and player_name in values:
+                try:
+                    sample[parameter] = float(values[player_name])
+                except (TypeError, ValueError):
+                    continue
+        if imported:
+            sample.update(live_imported_values())
             _watch_core_movement()
-        else:
-            values = player_values()
-            sample = {}
-            for player_name, parameter in editor.PLAYER_PARAMETERS.items():
-                if parameter in automation.RECORDABLE and player_name in values:
-                    try:
-                        sample[parameter] = float(values[player_name])
-                    except (TypeError, ValueError):
-                        continue
         if sample:
             recorder.sample(moment, sample)
     except Exception as error:
@@ -1251,6 +1261,8 @@ def _watch_core_movement():
         return
     values = player_values()
     for name, was in start.items():
+        if editor.PLAYER_PARAMETERS.get(name) in IMPORTED_CORE:
+            continue
         now = values.get(name)
         if isinstance(now, (int, float)) and abs(float(now) - float(was)) > 1e-4:
             _set_state('core_moved', '1')
@@ -1406,8 +1418,10 @@ def route_slot(player_name, request_path, effect):
     adaptation, defaults = _library()._parameter_context(item)
     index = _slot_cue_index(slot)
     cue_id = ''
+    cue = None
     if index is not None:
-        cue_id = show()['cues'][index]['id']
+        cue = show()['cues'][index]
+        cue_id = cue['id']
     values = imported_values(cue_id, material_id, defaults)
     signature = (material_id, tuple(sorted((k, repr(v)) for k, v in values.items())))
     if _slot_signature.get(slot) != signature:
@@ -1427,9 +1441,79 @@ def route_slot(player_name, request_path, effect):
     live = _imported_overrides(slot, cue_id)
     if live:
         _write_uniforms(OWNER.op('slot_%s_import' % slot), adaptation, live)
+    if cue is not None:
+        # The adapted shader expects the same three leading blocks the library
+        # preview gives it. Without them the material renders with a frozen
+        # clock and a zero scale - a hugely magnified, flickering slice of
+        # itself - which is exactly what an imported cue looked like.
+        _write_system_uniforms(OWNER.op('slot_%s_import' % slot),
+                               overlay(player_name, cue['parameters']),
+                               cue.get('coordinate_mode', 'global'))
     if int(mux.par.index.eval()) != 1:
         mux.par.index = 1
     return (item['label'], material_id, _request_value(request_path, 'target_groups', 'all'))
+
+
+SYSTEM_BLOCKS = ('uTDMaterial0', 'uTDMaterial1', 'uTDCoordinate')
+# The core parameters that reach an imported material, through those blocks.
+# The rest of the Material Player (intensity, contrast, trail, ...) belongs to
+# the core effect shader, which an imported cue never runs.
+IMPORTED_CORE = ('scale', 'width', 'zoom', 'focus_x', 'focus_y', 'hybrid_mix')
+# The cue stores the mode by name; the shader wants the menu index the player
+# would have had.
+COORDINATE_INDEX = {'global': 0.0, 'panel_local': 1.0, 'hybrid': 2.0}
+
+
+def _material_phase():
+    runtime = op('/project1/material_state_runtime')
+    if runtime is None:
+        return 0.0
+    try:
+        return float(runtime.module.phase())
+    except Exception:
+        return 0.0
+
+
+def _write_system_uniforms(renderer, parameters, coordinate_mode):
+    """Feed an imported slot the blocks every adapted shader reads.
+
+    uTDMaterial0 carries the clock and the geometry (scale, width, zoom),
+    uTDMaterial1 the focus, uTDCoordinate the panel mapping - the same three
+    the Material Browser's preview fills from the player. Here they come from
+    the CUE, so two cues on one material can look different, and a recorded
+    move on those controls plays back.
+    """
+
+    if renderer is None:
+        return
+    # A material with no parameters of its own leaves the sequence too short
+    # for the three system blocks, and the whole write would be skipped.
+    blocks_par = renderer.par.vec.sequence
+    if int(blocks_par.numBlocks) < 3:
+        blocks_par.numBlocks = 3
+    def number(key, fallback):
+        try:
+            return float(parameters.get(key, fallback))
+        except (TypeError, ValueError):
+            return float(fallback)
+    blocks = ((_material_phase(), number('scale', 1.0), number('width', 0.5), number('zoom', 1.0)),
+              (number('focus_x', 0.5), number('focus_y', 0.5), 0.0, 0.0),
+              (COORDINATE_INDEX.get(str(coordinate_mode), 0.0), number('panel_columns', 1.0),
+               number('panel_rows', 1.0), number('hybrid_mix', 0.5)))
+    for position, (name, values) in enumerate(zip(SYSTEM_BLOCKS, blocks)):
+        name_par = getattr(renderer.par, 'vec%dname' % position, None)
+        if name_par is None:
+            return
+        if str(name_par.eval()) != name:
+            name_par.val = name
+        for suffix, value in zip('xyzw', values):
+            par = getattr(renderer.par, 'vec%dvalue%s' % (position, suffix), None)
+            if par is None:
+                continue
+            if par.mode.name != 'CONSTANT':
+                par.mode = par.mode.__class__.CONSTANT
+            if abs(float(par.eval()) - value) > 1e-6:
+                par.val = value
 
 
 def _imported_overrides(slot, cue_id):

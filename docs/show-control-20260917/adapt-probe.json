@@ -1,0 +1,37 @@
+{
+ "adaptation_attrs": [
+  "adaptable",
+  "bindings",
+  "metadata",
+  "reasons",
+  "schema",
+  "shader",
+  "status",
+  "textures",
+  "warnings"
+ ],
+ "preview_type": "glslmultiTOP",
+ "slot_type": "glslTOP",
+ "preview_inputs": [],
+ "slot_inputs": [
+  "/project1/show_control/show_source"
+ ],
+ "preview_pars": {
+  "vertexdat": "None",
+  "pixeldat": "/project1/madmapper_library/preview_shad",
+  "outputresolution": "custom",
+  "resolutionw": "512",
+  "resolutionh": "512",
+  "npasses": "1",
+  "format": "useinput"
+ },
+ "slot_pars": {
+  "vertexdat": "None",
+  "pixeldat": "/project1/show_control/slot_a_import_fs",
+  "outputresolution": "custom",
+  "resolutionw": "512",
+  "resolutionh": "512",
+  "npasses": "1",
+  "format": "useinput"
+ }
+}

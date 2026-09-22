@@ -1,0 +1,97 @@
+{
+ "type": "glslTOP",
+ "pixeldat": "/project1/madmapper_material_fs",
+ "numBlocks": 5,
+ "0": {
+  "name": "uParams0",
+  "x": {
+   "val": 15.0,
+   "mode": "CONSTANT",
+   "expr": ""
+  },
+  "y": {
+   "val": 0.0,
+   "mode": "CONSTANT",
+   "expr": "absTime.seconds * 0.45"
+  },
+  "z": {
+   "val": 3.0,
+   "mode": "CONSTANT",
+   "expr": ""
+  },
+  "w": {
+   "val": 0.45,
+   "mode": "CONSTANT",
+   "expr": ""
+  }
+ },
+ "1": {
+  "name": "uParams1",
+  "x": {
+   "val": 0.0,
+   "mode": "CONSTANT",
+   "expr": ""
+  },
+  "y": {
+   "val": 1.0,
+   "mode": "CONSTANT",
+   "expr": ""
+  },
+  "z": {
+   "val": 1.25,
+   "mode": "CONSTANT",
+   "expr": ""
+  },
+  "w": {
+   "val": 0.6,
+   "mode": "CONSTANT",
+   "expr": ""
+  }
+ },
+ "2": {
+  "name": "uParams2",
+  "x": {
+   "val": 0.125,
+   "mode": "CONSTANT",
+   "expr": ""
+  },
+  "y": {
+   "val": 0.0,
+   "mode": "CONSTANT",
+   "expr": ""
+  },
+  "z": {
+   "val": 0.0,
+   "mode": "CONSTANT",
+   "expr": ""
+  },
+  "w": {
+   "val": 0.5,
+   "mode": "CONSTANT",
+   "expr": ""
+  }
+ },
+ "3": {
+  "name": "uParams3",
+  "x": {
+   "val": 2.0,
+   "mode": "CONSTANT",
+   "expr": ""
+  },
+  "y": {
+   "val": 5.0,
+   "mode": "CONSTANT",
+   "expr": ""
+  },
+  "z": {
+   "val": 0.5,
+   "mode": "CONSTANT",
+   "expr": ""
+  },
+  "w": {
+   "val": 1.0,
+   "mode": "CONSTANT",
+   "expr": ""
+  }
+ }
+}

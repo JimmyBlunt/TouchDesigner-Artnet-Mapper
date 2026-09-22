@@ -1,0 +1,83 @@
+{
+ "0": {
+  "name": {
+   "val": "uTDMaterial0",
+   "expr": null,
+   "mode": "CONSTANT"
+  },
+  "x": {
+   "val": 2736.7833,
+   "expr": "op('/project1/material_state_runtime').module.phase() if op('/project1/material_state_runtime') is not None else absTime.seconds",
+   "mode": "CONSTANT"
+  },
+  "y": {
+   "val": 4.0,
+   "expr": "op('/project1/madmapper_player_controls').par.Scale",
+   "mode": "EXPRESSION"
+  },
+  "z": {
+   "val": 0.5,
+   "expr": "op('/project1/madmapper_player_controls').par.Width",
+   "mode": "EXPRESSION"
+  },
+  "w": {
+   "val": 1.0,
+   "expr": "op('/project1/madmapper_player_controls').par.Framezoom",
+   "mode": "EXPRESSION"
+  }
+ },
+ "1": {
+  "name": {
+   "val": "uTDMaterial1",
+   "expr": null,
+   "mode": "CONSTANT"
+  },
+  "x": {
+   "val": 0.5,
+   "expr": "op('/project1/madmapper_player_controls').par.Focusx",
+   "mode": "EXPRESSION"
+  },
+  "y": {
+   "val": 0.5,
+   "expr": "op('/project1/madmapper_player_controls').par.Focusy",
+   "mode": "EXPRESSION"
+  },
+  "z": {
+   "val": 0.0,
+   "expr": null,
+   "mode": "CONSTANT"
+  },
+  "w": {
+   "val": 0.0,
+   "expr": null,
+   "mode": "CONSTANT"
+  }
+ },
+ "2": {
+  "name": {
+   "val": "uTDCoordinate",
+   "expr": null,
+   "mode": "CONSTANT"
+  },
+  "x": {
+   "val": 0.0,
+   "expr": "parent().par.Coordinatemode.menuIndex",
+   "mode": "EXPRESSION"
+  },
+  "y": {
+   "val": 2.0,
+   "expr": "parent().par.Panelcolumns",
+   "mode": "EXPRESSION"
+  },
+  "z": {
+   "val": 5.0,
+   "expr": "parent().par.Panelrows",
+   "mode": "EXPRESSION"
+  },
+  "w": {
+   "val": 0.5,
+   "expr": "parent().par.Hybridmix",
+   "mode": "EXPRESSION"
+  }
+ }
+}

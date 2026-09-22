@@ -1,0 +1,26 @@
+{
+ "show": "FirstOne",
+ "cue_index": 0,
+ "cue": {
+  "id": "sinepuke-chindogu",
+  "name": "Sinepuke Chindogu",
+  "effect": "madmapper:mat_d8fb51216461b485cc2b"
+ },
+ "cues": [
+  [
+   "sinepuke-chindogu",
+   "Sinepuke Chindogu",
+   "madmapper:mat_d8fb51216461b485cc2b"
+  ]
+ ],
+ "slot_res": [
+  512,
+  512
+ ],
+ "preview_res": [
+  512,
+  512
+ ],
+ "mux_index": 1.0,
+ "source": "imported"
+}

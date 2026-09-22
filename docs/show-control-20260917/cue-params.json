@@ -1,0 +1,73 @@
+{
+ "PLAYER_PARAMETERS": {
+  "Speed": "speed",
+  "Scale": "scale",
+  "Width": "width",
+  "Focusx": "focus_x",
+  "Focusy": "focus_y",
+  "Framezoom": "zoom",
+  "Gradientpreset": "gradient",
+  "Intensity": "intensity",
+  "Contrast": "contrast",
+  "Trail": "trail",
+  "Direction": "direction",
+  "Rotation": "rotation_degrees",
+  "Seed": "seed",
+  "Transition": "effect_transition",
+  "Panelcolumns": "panel_columns",
+  "Panelrows": "panel_rows",
+  "Hybridmix": "hybrid_mix",
+  "Density": "density"
+ },
+ "cue_parameters": {
+  "speed": 1.0,
+  "scale": 4.0,
+  "width": 0.5,
+  "focus_x": 0.5,
+  "focus_y": 0.5,
+  "zoom": 1.0,
+  "gradient": "neon_cyan_magenta",
+  "color_a": [
+   0.91,
+   0.0,
+   1.0,
+   1.0
+  ],
+  "color_b": [
+   0.0,
+   0.72,
+   0.86,
+   1.0
+  ],
+  "intensity": 1.0,
+  "contrast": 1.25,
+  "trail": 0.55,
+  "direction": 0.125,
+  "rotation_degrees": 0.0,
+  "seed": 0.0,
+  "effect_transition": 0.5,
+  "panel_columns": 2.0,
+  "panel_rows": 5.0,
+  "hybrid_mix": 0.5,
+  "density": 1.0
+ },
+ "cue_mode": "global",
+ "player_pars": {
+  "Scale": 4.0,
+  "Width": 0.5,
+  "Framezoom": 1.0,
+  "Focusx": 0.5,
+  "Focusy": 0.5,
+  "Coordinatemode": "global",
+  "Panelcolumns": 2,
+  "Panelrows": 5,
+  "Hybridmix": 0.5,
+  "Speed": 1.0
+ },
+ "phase": 2788.9500000000116,
+ "coordmode_menu": [
+  "global",
+  "panel",
+  "hybrid"
+ ]
+}

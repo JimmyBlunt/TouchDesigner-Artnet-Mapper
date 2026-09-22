@@ -1,0 +1,18 @@
+{
+ "textures": [],
+ "uses_inputs": 0,
+ "slot_stored_sig": "()",
+ "prev_stored_sig": "()",
+ "slot_inputs": [
+  "/project1/show_control/show_source"
+ ],
+ "prev_inputs": [],
+ "slot_format": "useinput",
+ "prev_format": "useinput",
+ "prev_dat": "/project1/madmapper_library/preview_shader",
+ "shader_same": true,
+ "shader_len": [
+  75943,
+  75943
+ ]
+}
