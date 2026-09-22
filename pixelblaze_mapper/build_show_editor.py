@@ -1190,6 +1190,12 @@ def record_tick(elapsed):
     panel instead.
     """
 
+    # The frame callback is the one thing that runs unconditionally every
+    # frame, so the imported slots are driven from here too.
+    try:
+        drive_imported_slots()
+    except Exception as error:
+        _message('Importiertes Material: %s' % error)
     if _state('recording', '0') != '1':
         return
     recorder = _take()
@@ -1540,37 +1546,133 @@ def _imported_overrides(slot, cue_id):
 PLAYER_BY_PARAMETER = {value: key for key, value in editor.PLAYER_PARAMETERS.items()}
 
 
+_show_cache = {}
+
+
+def _cached_show():
+    """The show, parsed at most once per edit.
+
+    overlay() runs for every slot on every frame; parsing a few thousand lines
+    of JSON sixty times a second to find out whether the on-air cue is
+    imported is a cost the render loop should not carry.
+    """
+
+    text = OWNER.op('show_json').text
+    if _show_cache.get('text') != text:
+        _show_cache['text'] = text
+        _show_cache['document'] = json.loads(text)
+    return _show_cache['document']
+
+
+_automation_cache = {}
+
+
+def _cached_automation():
+    """The recordings, parsed at most once per edit - see _cached_show()."""
+
+    text = OWNER.op('automation_json').text
+    if _automation_cache.get('text') != text:
+        _automation_cache['text'] = text
+        try:
+            _automation_cache['data'] = automation.validate(json.loads(text))
+        except Exception:
+            _automation_cache['data'] = automation.empty()
+    return _automation_cache['data']
+
+
+def _effective_parameters(cue, on_air):
+    """A cue's parameters as they should be right now.
+
+    While its own take is running that is the operator's hands; otherwise it is
+    the recording at this moment of the cue. A slot holding the NEXT cue of a
+    transition gets the stored values - its own clock has not started.
+    """
+
+    parameters = cue['parameters']
+    if not on_air:
+        return parameters
+    cue_id = cue['id']
+    if _state('recording', '0') == '1' and _state('record_cue', '') == cue_id:
+        return _live_monitor(parameters)
+    data = _cached_automation()
+    if cue_id not in (data.get('tracks') or {}):
+        return parameters
+    transport = OWNER.op('callbacks').module
+    values = automation.values_at(data, cue_id, float(transport._get('elapsed', '0') or 0))
+    result = dict(parameters)
+    for name, value in values.items():
+        if name in result:
+            result[name] = float(value)
+    return result
+
+
+def drive_imported_slots():
+    """Keep every imported slot's uniforms current, once per frame.
+
+    The render sync hands a slot to route_slot and returns there, so an
+    imported cue never reaches the automation hook the core player uses - and
+    the slot itself is only re-applied when its request changes. Everything
+    written at cue assignment therefore stood still for the whole cue: the
+    material's clock, and any recorded move on it. This runs from the frame
+    callback, which is the only thing here that really happens every frame.
+    """
+
+    document = _cached_show()
+    cues = document.get('cues', ())
+    if not cues:
+        return
+    transport = OWNER.op('callbacks').module
+    outgoing = str(transport._get('outgoing_slot', 'A')).strip().lower()
+    for slot in ('a', 'b'):
+        renderer = OWNER.op('slot_%s_import' % slot)
+        if renderer is None:
+            continue
+        index = _slot_cue_index(slot)
+        if index is None or not 0 <= index < len(cues):
+            continue
+        cue = cues[index]
+        if not editor.is_imported(cue):
+            continue
+        on_air = slot == outgoing
+        _write_system_uniforms(renderer, _effective_parameters(cue, on_air),
+                               cue.get('coordinate_mode', 'global'))
+        if not on_air:
+            continue
+        overrides = _imported_overrides(slot, cue['id'])
+        if not overrides:
+            continue
+        try:
+            item = _library_item(editor.material_id(cue))
+            adaptation, _defaults = _library()._parameter_context(item)
+        except Exception:
+            continue
+        _write_uniforms(renderer, adaptation, overrides)
+
+
 def overlay(player_name, parameters):
     """Apply the recording of the on-air cue to one slot's parameters.
 
     Called from the render sync for each slot every frame. Only the slot that
     currently carries the cue is touched; the incoming slot of a transition
     keeps the next cue's own values.
+
+    For an imported cue this is also where its renderer gets the values: its
+    uniforms are otherwise written only when the cue is assigned to the slot,
+    which would leave the material's own clock standing still for the length
+    of the cue and freeze any recorded move at the value it started from.
     """
 
-    data = automation_data()
-    tracks = data.get('tracks') or {}
-    if not tracks and _state('recording', '0') != '1':
-        return parameters
     transport = OWNER.op('callbacks').module
     slot = str(transport._get('outgoing_slot', 'A')).strip().upper() or 'A'
     if not str(player_name).endswith('slot_%s_player' % slot.lower()):
         return parameters
-    document = show()
+    document = _cached_show()
     index = int(float(transport._get('cue_index', '0') or 0))
     if not 0 <= index < len(document['cues']):
         return parameters
-    cue_id = document['cues'][index]['id']
-    if _state('recording', '0') == '1' and _state('record_cue', '') == cue_id:
-        return _live_monitor(parameters)
-    if cue_id not in tracks:
-        return parameters
-    values = automation.values_at(data, cue_id, float(transport._get('elapsed', '0') or 0))
-    result = dict(parameters)
-    for parameter, value in values.items():
-        if parameter in result:
-            result[parameter] = float(value)
-    return result
+    # Imported cues never arrive here - the render sync returns at route_slot
+    # for those - so they are driven from drive_imported_slots() instead.
+    return _effective_parameters(document['cues'][index], True)
 
 
 def _live_monitor(parameters):

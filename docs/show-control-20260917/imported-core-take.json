@@ -1,0 +1,20 @@
+{
+ "message": "Neue Cue aufgenommen: 2 Regler, 15.3 s",
+ "cue": "Nested Cube",
+ "dur": 15.8,
+ "core_tracks": {
+  "scale": [
+   3,
+   2.899,
+   3.6
+  ],
+  "focus_x": [
+   3,
+   0.5,
+   0.75
+  ]
+ },
+ "n_mat_tracks": 0,
+ "cue_scale": 2.8989445910290237,
+ "cue_focus": 0.5
+}

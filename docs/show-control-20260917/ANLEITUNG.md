@@ -231,11 +231,14 @@ Alles Weitere sind die Regler des Materials selbst – im Material Browser unter
 Bewegst du während einer Aufnahme nur Regler aus der rechten Spalte, sagt die
 Meldung am Ende genau das, statt „kein Regler bewegt".
 
-> Früher fehlten einer importierten Cue im Show-Betrieb diese fünf Uniforms
-> ganz: die Material-Uhr stand auf 0 und die Skalierung auf 0. Das Material kam
-> deshalb als extrem hineingezoomter, flackernder Streifen auf die Wand, statt
-> so auszusehen wie in der Vorschau. Seit das behoben ist, sieht eine
-> importierte Cue wie ihre Vorschau aus – und diese Regler sind aufnehmbar.
+> Zwei Fehler steckten hier übereinander. Erstens fehlten einer importierten
+> Cue im Show-Betrieb diese Uniforms ganz: Material-Uhr 0, Skalierung 0 – das
+> Material kam als extrem hineingezoomter, flackernder Streifen auf die Wand.
+> Zweitens wurden sie danach nur beim **Cue-Wechsel** geschrieben, weil der
+> Render-Sync importierte Cues früher abzweigt als den Automations-Pfad der
+> Core-Materialien: die Uhr stand dann für die ganze Cue still und eine
+> Aufnahme blieb auf ihrem Startwert hängen. Beides ist behoben – die Slots
+> werden jetzt aus dem Frame-Callback versorgt, also in jedem Bild.
 
 ### Der Startzustand wird mitgenommen
 
