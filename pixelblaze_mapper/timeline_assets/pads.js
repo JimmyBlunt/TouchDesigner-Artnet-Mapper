@@ -1,6 +1,18 @@
 'use strict';
 let padCatalog=[],padViewKey='',padFrameKey='',padEditIndex=-1,padEditVersion=-1;
 const padOrder=[12,13,14,15,8,9,10,11,4,5,6,7,0,1,2,3];
+function padPreviewImage(imageId){
+  const source='/api/pad_image?id='+encodeURIComponent(imageId);
+  const image=node('img',{src:source,alt:'',loading:'lazy'});
+  let retried=false;
+  image.onload=()=>{image.onload=null;image.onerror=null;};
+  image.onerror=()=>{
+    if(!retried){retried=true;image.src=source+'&retry=1';return;}
+    image.onload=null;image.onerror=null;
+    image.replaceWith(node('span',{class:'padPlaceholder',role:'img','aria-label':'Kein Vorschaubild verfügbar'},'Kein Bild'));
+  };
+  return image;
+}
 function padTargets(){
   const kind=$('padKind').value,search=$('padSearch').value.toLocaleLowerCase();
   const current=state.pads.config.pads[state.pads.selected];
@@ -31,7 +43,7 @@ function padsStatus(){
     $('padGrid').replaceChildren(...padOrder.map(index=>{
       const card=pads.cards[index],button=node('button',{class:'materialPad'+(index===pads.selected?' chosen':''),'aria-label':`Pad ${index+1}: ${card.label}`,'aria-pressed':String(index===pads.selected)});
       button.append(node('span',{class:'padBadge'},String(index+1).padStart(2,'0')));
-      if(card.image) button.append(node('img',{src:'/api/pad_image?id='+encodeURIComponent(card.image),alt:'',loading:'lazy'}));
+      if(card.image) button.append(padPreviewImage(card.image));
       else button.append(node('span',{class:'padPlaceholder'},card.target?'?':'+'));
       button.append(node('span',{class:'padLabel'},card.label));
       button.onclick=()=>command({action:'pad_select',index});
