@@ -107,9 +107,9 @@ def _install_gradient_postprocess(controls):
     )
     player.par.vec1valuew = 1.0
     player.par.vec2name = 'uMaterialTone'
-    _set_expression(player.par.vec2valuex, "op(%r).par.Intensity if op(%r).par.Source.eval() in ('materials', 'imported') else 1.0" % (CONTROLS, CONTROLS))
-    _set_expression(player.par.vec2valuey, "op(%r).par.Contrast" % CONTROLS)
-    _set_expression(player.par.vec2valuez, "1.0 if op(%r).par.Source.eval() == 'imported' else 0.0" % CONTROLS)
+    _set_expression(player.par.vec2valuex, "__import__('pixelblaze_mapper.mk2_td', fromlist=['show_value']).show_value('intensity', op(%r).par.Intensity.eval() if op(%r).par.Source.eval() in ('materials', 'imported') else 1.0)" % (CONTROLS, CONTROLS))
+    _set_expression(player.par.vec2valuey, "__import__('pixelblaze_mapper.mk2_td', fromlist=['show_value']).show_value('contrast', op(%r).par.Contrast.eval())" % CONTROLS)
+    _set_expression(player.par.vec2valuez, "__import__('pixelblaze_mapper.mk2_td', fromlist=['show_import_tone']).show_import_tone(1.0 if op(%r).par.Source.eval() == 'imported' else 0.0)" % CONTROLS)
     _set_expression(player.par.vec2valuew, "op(%r).par.Colormode.menuIndex" % CONTROLS)
 
     if not player.inputs or player.inputs[0] != source:

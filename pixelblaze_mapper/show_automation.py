@@ -20,6 +20,7 @@ SCHEMA_VERSION = 1
 # Parameters a recording may touch. Anything else is refused so a stray UI
 # control cannot write a field the renderer will not read back.
 RECORDABLE = (
+    "global_master_speed",
     "speed", "scale", "width", "focus_x", "focus_y", "zoom", "intensity",
     "contrast", "trail", "direction", "rotation_degrees", "effect_transition",
     "hybrid_mix", "density", "brightness",
@@ -54,6 +55,11 @@ def recordable(name: str) -> bool:
     return bool(rest) and rest.replace("_", "").isalnum()
 
 
+def imported_track_name(name):
+    """Keep existing mat_* identities; namespace other imported uniforms."""
+    return name if name.startswith(IMPORT_PARAMETER_PREFIX) else 'mat__' + name
+
+
 def empty() -> dict:
     return {"schema": SCHEMA, "version": SCHEMA_VERSION, "tracks": {}}
 
@@ -86,7 +92,59 @@ def validate(automation: Mapping[str, Any]) -> dict:
             clean[name] = _clean_samples(samples, name)
         if clean:
             result[cue_id] = clean
-    return {"schema": SCHEMA, "version": SCHEMA_VERSION, "tracks": result}
+    document = {"schema": SCHEMA, "version": SCHEMA_VERSION, "tracks": result}
+    # Optional, non-destructive editor layers. Version-one recordings stay valid.
+    for section in ('edits', 'transitions'):
+        if section not in automation:
+            continue
+        entries = automation[section]
+        if not isinstance(entries, Mapping):
+            raise AutomationError(section + ' must be an object')
+        layers = {}
+        for cue_id, entry in entries.items():
+            if not isinstance(cue_id, str) or not cue_id.strip() or not isinstance(entry, Mapping):
+                raise AutomationError('invalid editor layer')
+            if section == 'transitions':
+                layers[cue_id] = _clean_curve(entry, transition=True)
+            else:
+                layers[cue_id] = {}
+                for name, curve in entry.items():
+                    if not recordable(name):
+                        raise AutomationError('parameter not recordable: ' + str(name))
+                    layers[cue_id][name] = _clean_curve(curve)
+        document[section] = layers
+    if 'loop_region' in automation:
+        region = automation['loop_region']
+        start, end = _number(region['start'], 'loop start'), _number(region['end'], 'loop end')
+        if start < 0 or end <= start or not isinstance(region.get('enabled'), bool):
+            raise AutomationError('invalid loop region')
+        document['loop_region'] = dict(start=start, end=end, enabled=region['enabled'])
+    return document
+
+
+INTERPOLATIONS = ('linear', 'step', 'smooth', 'ease_in', 'ease_out')
+
+
+def _clean_curve(curve, transition=False):
+    if not isinstance(curve, Mapping):
+        raise AutomationError('curve must be an object')
+    mode = curve.get('mode', 'linear')
+    if mode not in INTERPOLATIONS:
+        raise AutomationError('unknown interpolation')
+    points = _clean_samples(curve.get('points'), 'curve')
+    if any(a[0] >= b[0] for a, b in zip(points, points[1:])):
+        raise AutomationError('curve times must be unique')
+    enabled = curve.get('enabled', True)
+    if not isinstance(enabled, bool):
+        raise AutomationError('enabled must be boolean')
+    if transition:
+        if points[0] != [0., 0.] or points[-1] != [1., 1.]:
+            raise AutomationError('transition endpoints must be [0,0] and [1,1]')
+        if any(not 0 <= t <= 1 or not 0 <= v <= 1 for t, v in points):
+            raise AutomationError('transition curve must be normalized')
+        if any(a[1] > b[1] for a, b in zip(points, points[1:])):
+            raise AutomationError('transition curve must move forwards')
+    return dict(points=points, mode=mode, enabled=enabled)
 
 
 def _clean_samples(samples: Any, name: str) -> list:
@@ -110,7 +168,7 @@ def _clean_samples(samples: Any, name: str) -> list:
     return cleaned
 
 
-def value_at(samples: Iterable[Any], elapsed: float) -> float:
+def value_at(samples: Iterable[Any], elapsed: float, mode: str = 'linear') -> float:
     """Linear interpolation with held ends."""
 
     track = list(samples)
@@ -134,6 +192,14 @@ def value_at(samples: Iterable[Any], elapsed: float) -> float:
     if span <= 0.0:
         return float(end_value)
     ratio = (time - start_time) / span
+    if mode == 'step':
+        ratio = 0.0
+    elif mode == 'smooth':
+        ratio = ratio * ratio * (3.0 - 2.0 * ratio)
+    elif mode == 'ease_in':
+        ratio = ratio * ratio
+    elif mode == 'ease_out':
+        ratio = 1.0 - (1.0 - ratio) ** 2
     return float(start_value) + (float(end_value) - float(start_value)) * ratio
 
 
@@ -141,9 +207,45 @@ def values_at(automation: Mapping[str, Any], cue_id: str, elapsed: float) -> dic
     """Every automated parameter of one cue at one moment."""
 
     tracks = automation.get("tracks", {}).get(str(cue_id))
-    if not tracks:
-        return {}
-    return {name: value_at(samples, elapsed) for name, samples in tracks.items()}
+    values = {name: value_at(samples, elapsed) for name, samples in (tracks or {}).items()}
+    for name, curve in automation.get('edits', {}).get(str(cue_id), {}).items():
+        if curve.get('enabled', True):
+            values[name] = value_at(curve['points'], elapsed, curve['mode'])
+    return values
+
+
+def transition_plan(plan, automation, cue_id):
+    """Shape the existing A/B plan, keeping the sequencer as the only clock."""
+    from dataclasses import replace
+    curve = automation.get('transitions', {}).get(cue_id)
+    if not curve or not curve.get('enabled', True) or plan.transition == 'cut' or not plan.incoming_slot:
+        return plan
+    progress = value_at(curve['points'], plan.progress, curve['mode'])
+    return replace(plan, progress=progress,
+                   output_b_mix=progress if plan.outgoing_slot == 'A' else 1.0-progress)
+
+
+def playback_plan(plan, data, cue_id, elapsed):
+    from dataclasses import replace
+    plan = transition_plan(plan, data, cue_id)
+    recorded = data.get('tracks', {}).get(cue_id, {}).get('brightness')
+    curve = data.get('edits', {}).get(cue_id, {}).get('brightness')
+    brightness = value_at(recorded, elapsed) if recorded else None
+    if curve and curve.get('enabled', True):
+        brightness = value_at(curve['points'], elapsed, curve['mode'])
+    if brightness is not None:
+        plan = replace(plan, brightness=0.0 if plan.blackout else max(0., min(1., brightness)))
+    return plan
+
+
+def copy_cue(data, source_id, target_id):
+    """Duplicate original and edited lanes together without moving the source."""
+    from copy import deepcopy
+    result = validate(data)
+    for section in ('tracks', 'edits', 'transitions'):
+        if source_id in result.get(section, {}):
+            result[section][target_id] = deepcopy(result[section][source_id])
+    return result
 
 
 def cue_ids(automation: Mapping[str, Any]) -> tuple:
@@ -158,6 +260,8 @@ def track_length(automation: Mapping[str, Any], cue_id: str) -> float:
 def clear_cue(automation: Mapping[str, Any], cue_id: str) -> dict:
     result = validate(automation)
     result["tracks"].pop(str(cue_id), None)
+    for section in ('edits', 'transitions'):
+        result.get(section, {}).pop(str(cue_id), None)
     return result
 
 
@@ -168,6 +272,10 @@ def rename_cue(automation: Mapping[str, Any], old_id: str, new_id: str) -> dict:
     track = result["tracks"].pop(str(old_id), None)
     if track:
         result["tracks"][str(new_id)] = track
+    for section in ('edits', 'transitions'):
+        layer = result.get(section, {}).pop(str(old_id), None)
+        if layer is not None:
+            result[section][str(new_id)] = layer
     return result
 
 
