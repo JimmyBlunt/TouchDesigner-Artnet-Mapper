@@ -137,13 +137,50 @@ class InputAcceptanceTests(unittest.TestCase):
         self.assertEqual(decoder.read(report(wheel=15)), [])
 
     def test_eight_absolute_encoder_counters_with_wrap(self):
-        decoder = ControlEdges()
+        decoder = ControlEdges(encoder_quantum=1, encoder_hysteresis=0)
         self.assertEqual(decoder.read(report(knobs=[999]*8)), [])
         self.assertEqual(decoder.read(report(knobs=[0]*8)),
                          [dict(type='encoder', index=i, delta=1) for i in range(8)])
         self.assertEqual(decoder.read(report(knobs=[998]*8)),
                          [dict(type='encoder', index=i, delta=-2) for i in range(8)])
         self.assertEqual(decoder.read(report(knobs=[998]*8)), [])
+
+    def test_observed_stationary_mk2_trace_emits_no_parameter_changes(self):
+        # Captured on real hardware while untouched, encoder4 report bytes15/16.
+        # Quiet-time debounce alone fails: excursions also persist >1 second.
+        trace = [715,710,715,710,715,710,715,710,715,710,715,710,
+                 715,710,715,710,705,710,705,710,715,710,705,710,
+                 705,710,705,710,705,710,705,710,705,710,705]
+        decoder = ControlEdges()
+        for value in trace:
+            knobs = [265,78,754,value,944,930,103,318]
+            self.assertEqual(decoder.read(report(knobs=knobs)), [])
+
+    def test_slow_one_count_turn_accumulates_and_reversal_has_hysteresis(self):
+        decoder = ControlEdges()
+        decoder.read(report(knobs=[500]*8))
+        events = []
+        for value in range(501,546):
+            knobs = [500]*8; knobs[2] = value
+            events.extend(decoder.read(report(knobs=knobs)))
+        self.assertEqual(events, [dict(type='encoder',index=2,delta=1)]*4)
+        # Stopped just after a step: an idle five-count oscillation is suppressed.
+        for value in [540,545,540,545]:
+            knobs[2] = value
+            self.assertEqual(decoder.read(report(knobs=knobs)), [])
+        events = []
+        for value in range(544,524,-1):
+            knobs[2] = value
+            events.extend(decoder.read(report(knobs=knobs)))
+        self.assertEqual(events, [dict(type='encoder',index=2,delta=-1)])
+
+    def test_quantized_rollover_both_directions_and_wheel_remains_one_step(self):
+        decoder = ControlEdges()
+        decoder.read(report(wheel=15, knobs=[995]*8))
+        self.assertEqual(decoder.read(report(wheel=0,knobs=[10]+[995]*7)),
+                         [dict(type='wheel',delta=1),dict(type='encoder',index=0,delta=1)])
+        self.assertEqual(decoder.read(report(wheel=15,knobs=[990]+[995]*7)),
+                         [dict(type='wheel',delta=-1),dict(type='encoder',index=0,delta=-1)])
 
     def test_initial_pressed_report_is_baseline_and_invalid_ignored(self):
         decoder = ControlEdges()

@@ -28,7 +28,15 @@ BUTTONS.update({(2, 1): ('step', None), (2, 2): ('browse', None),
 
 class ControlEdges:
     """Decode absolute counters and button edges; reconnect establishes baseline."""
-    def __init__(self):
+    def __init__(self, encoder_quantum=10, encoder_hysteresis=5):
+        # The small knobs report 1000 absolute counts per turn, not detents.
+        # Actual idle MK2 reports oscillate 705/710/715 on a stationary knob.
+        # Ten counts = one UI step; a five-count Schmitt margin rejects this
+        # noise. Retain residual travel so arbitrarily slow movement accumulates
+        # instead of discarding small deltas. The 16-detent wheel is unaffected.
+        self.encoder_quantum = max(1, int(encoder_quantum))
+        self.encoder_hysteresis = max(0, int(encoder_hysteresis))
+        self.encoder_residual = [0]*8
         self.previous = None
 
     def read(self, report):
@@ -58,6 +66,12 @@ class ControlEdges:
             if value >= modulus or previous >= modulus:
                 continue
             delta = (value-previous+modulus//2) % modulus-modulus//2
+            if index >= 0:
+                self.encoder_residual[index] += delta
+                residual = self.encoder_residual[index]
+                steps = max(0, (abs(residual)-self.encoder_hysteresis)//self.encoder_quantum)
+                delta = steps if residual > 0 else -steps
+                self.encoder_residual[index] -= delta*self.encoder_quantum
             if delta:
                 event = dict(type='wheel' if index < 0 else 'encoder', delta=delta)
                 if index >= 0:
