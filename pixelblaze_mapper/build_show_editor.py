@@ -249,6 +249,8 @@ def build():
         _set(preview, "resolutionw", PANEL_WIDTH)
         _set(preview, "resolutionh", PANEL_HEIGHT)
 
+    from pixelblaze_mapper.show_timeline_ui import install as install_timeline
+    install_timeline()
     callbacks.module.repaint()
     print({"owner": canvas.path, "rows": ROW_COUNT, "height": PANEL_HEIGHT,
            "productionTouched": False, "outputEnabled": False, "projectSaved": False})

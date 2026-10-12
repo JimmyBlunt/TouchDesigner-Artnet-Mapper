@@ -1,0 +1,3 @@
+# Optional direct MASCHINE MK2 surface; install for the Python version in TouchDesigner.
+hidapi==0.15.0
+Pillow==12.3.0

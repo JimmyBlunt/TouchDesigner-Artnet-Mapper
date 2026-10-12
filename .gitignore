@@ -3,6 +3,7 @@ Backup/
 tmp/
 
 # Local caches and generated files
+.controller-runtime/
 __pycache__/
 *.py[cod]
 *.log

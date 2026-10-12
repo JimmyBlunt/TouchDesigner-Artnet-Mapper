@@ -118,6 +118,14 @@ Arbeitsänderungen werden nicht mitgenommen. Es wird kein Remote-Push ausgeführ
   zusätzlichen Umfang kenntlich machen; keine stillschweigende falsche Zuordnung.
 - Wiederverbinden darf weder einen gehaltenen Knopf als neuen Druck interpretieren
   noch alte Warteschlangeneingaben ausführen.
+- Auch Transporttasten einschließlich ERASE haben feste LED-Farben. Die Aufnahme
+  wird durch Blinken der vorhandenen Beleuchtung angezeigt.
+- Native Bool-Werte und einzelne Vektorkomponenten sind aufnehmbar. Compile-Time-
+  Schalter sind nur im Material Mode editierbar; Ereignisparameter werden als
+  nicht editierbar angezeigt.
+- Bei importierten Materialien wirken Intensity und Contrast während einer
+  Überblendung auf das gemeinsame Mischbild. Getrennte Tonwertkorrektur beider
+  Übergangspartner benötigt einen späteren Umbau der Render-Pipeline.
 
 ## Dauerhafte Abnahme
 
