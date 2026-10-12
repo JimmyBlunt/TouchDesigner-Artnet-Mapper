@@ -5,6 +5,10 @@ MARKER = '# MK2_EDITOR_V020'
 
 def install_editor_source(source):
     if MARKER in source:
+        # A live v0.2 editor can be upgraded without stacking its wrappers.
+        if '# MK2_SOURCE_IDENTITY_V021' not in source:
+            source += IDENTITY_HOOK
+            compile(source,'<mk2 source identity>','exec')
         return source
     for name in ('record_tick','stop_recording','_store_state_in_cue','_effective_parameters','_write_uniforms','_material_phase'):
         if ('def '+name+'(') not in source:
@@ -79,8 +83,20 @@ _mk2_phase = _material_phase
 def _material_phase():
     return _mk2.show_phase(_mk2_phase())
 '''
+    source += IDENTITY_HOOK
     compile(source,'<mk2 editor>','exec')
     return source
+
+
+IDENTITY_HOOK = '''
+# MK2_SOURCE_IDENTITY_V021
+_mk2_current_material = current_material
+def current_material():
+    kind, identifier = _mk2_current_material()
+    if _mk2._host is not None:
+        return _mk2._host.material_identity(kind, identifier)
+    return kind, identifier
+'''
 
 
 def install_transport_source(source):

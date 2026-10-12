@@ -75,7 +75,9 @@ def _parameter(source, i):
     step = p.get('step', 1 if kind in ('int', 'integer', 'enum', 'bool', 'boolean') else (maximum-minimum)/100 if numeric else 0)
     if not _finite(step) or step <= 0:
         step = .01
-    p.update(id=key, label=label, name=label, abbreviation=str(p.get('abbreviation', label[:7])),
+    short = {'global_master_speed': 'Speed', 'focus_x': 'Focus X', 'focus_y': 'Focus Y',
+             'zoom': 'Zoom', 'intensity': 'Intens', 'contrast': 'Contr'}.get(key, label[:7])
+    p.update(id=key, label=label, name=label, abbreviation=str(p.get('abbreviation', short)),
              type=kind, min=minimum if numeric else 0, max=maximum if numeric else 1,
              value=value if numeric else 0, step=step,
              editable=bool(p.get('editable', True)) and numeric and kind in EDITABLE_TYPES,

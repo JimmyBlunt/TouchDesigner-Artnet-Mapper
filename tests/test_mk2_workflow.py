@@ -99,6 +99,14 @@ class ConfigurationTests(WorkflowCase):
 
 
 class MaterialAcceptanceTests(WorkflowCase):
+    def test_master_speed_is_identifiable_on_compact_td_display(self):
+        active = material(0)
+        active['parameters'][0].update(id='global_master_speed', label='Master speed')
+        self.c.set_context(dict(active_material=active))
+        displayed = self.c.snapshot()['parameter_pages'][0]['parameters'][0]
+        self.assertEqual(displayed['abbreviation'], 'Speed')
+        self.assertEqual(displayed['label'], 'Master speed')
+
     def test_default_active_material_and_td_native_eight_parameter_pages(self):
         state = self.c.snapshot()
         self.assertEqual((state['mode'], state['screen'], state['material']['id']), ('material', 'home', 'm0'))

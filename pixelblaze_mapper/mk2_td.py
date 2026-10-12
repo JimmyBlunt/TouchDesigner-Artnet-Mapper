@@ -109,6 +109,7 @@ class Host:
         self._catalog_source = None
         self._catalog = []
         self._phase = None
+        self._last_material_id = ''
         _host = self
 
     @property
@@ -137,6 +138,28 @@ class Host:
             self._catalog.sort(key=lambda p: p['label'].casefold())
         return self._catalog
 
+    def material_identity(self, kind, identifier):
+        """Separate the browser's loaded material from the Source selector.
+
+        The legacy material-state runtime returns ``show:default`` while Show
+        is selected. It is a source sentinel, never a material catalog ID.
+        """
+        if kind in ('core','madmapper') and identifier and identifier != 'default':
+            self._last_material_id = 'core:'+identifier if kind=='core' else identifier
+            return kind,identifier
+        previous = self._last_material_id
+        if previous:
+            return ('core',previous[5:]) if previous.startswith('core:') else ('madmapper',previous)
+        library = self.editor._library()
+        loaded = library._state('active_id','') or library._state('live_preview_id','')
+        if loaded and any(p['id']==loaded for p in library._items):
+            return 'madmapper',loaded
+        par = getattr(self.controls.par,'Material',None)
+        core = str(par.eval()) if par is not None else ''
+        if core and core in getattr(self.editor,'_catalog',lambda:{})():
+            return 'core',core
+        return '', ''
+
     def material(self, identifier):
         base = next((dict(p) for p in self._catalog_items() if p['id'] == identifier), None)
         if base is None:
@@ -145,7 +168,7 @@ class Host:
             else:
                 raise ValueError('Material nicht verfügbar: ' + str(identifier))
         player = self.editor.player_values()
-        kind, active = self.editor.current_material()
+        kind, active = self.material_identity(*self.editor.current_material())
         active = 'core:'+active if kind == 'core' else active
         stored = {}
         if identifier != active:
@@ -182,7 +205,7 @@ class Host:
 
     def context(self, material_id=None):
         e = self.editor
-        kind, identifier = e.current_material()
+        kind, identifier = self.material_identity(*e.current_material())
         active_id = 'core:'+identifier if kind == 'core' else identifier
         active = self.material(active_id) if active_id else dict(id='',label='Kein Material',image=None,parameters=[])
         source = str(self.controls.par.Source.eval())
@@ -285,21 +308,28 @@ class Host:
                     raise ValueError('Material-Zustandsverwaltung fehlt')
                 runtime.module.activate('madmapper:'+identifier)
             published = True
+            self._last_material_id = identifier
             for key,value in clean.items():
                 self._set_parameter(identifier,key,value,explicit_load=True)
         except Exception:
-            if published and previous_active['id']:
-                old = previous_active['id']
-                if not old.startswith('core:'):
-                    library._set_state('selected_id',old)
-                    if not library.activate_selected():
-                        raise RuntimeError('Materialwechsel fehlgeschlagen; vorheriges Material konnte nicht wiederhergestellt werden')
-                runtime.module.activate(old if old.startswith('core:') else 'madmapper:'+old)
-                for p in previous_active['parameters']:
-                    if p['editable']:
-                        self._set_parameter(old,p['id'],p['value'],explicit_load=True)
-            library._set_state('selected_id',previous)
-            self.controls.par.Source.val = source
+            try:
+                if published and previous_active['id']:
+                    old = previous_active['id']
+                    if not old.startswith('core:'):
+                        library._set_state('selected_id',old)
+                        if not library.activate_selected():
+                            raise RuntimeError('Materialwechsel fehlgeschlagen; vorheriges Material konnte nicht wiederhergestellt werden')
+                    runtime.module.activate(old if old.startswith('core:') else 'madmapper:'+old)
+                    self._last_material_id = old
+                    for p in previous_active['parameters']:
+                        if p['editable']:
+                            self._set_parameter(old,p['id'],p['value'],explicit_load=True)
+            finally:
+                # Source=show reports only a sentinel, so the identity cache is
+                # part of the transaction, including failures during rollback.
+                self._last_material_id = previous_active['id']
+                library._set_state('selected_id',previous)
+                self.controls.par.Source.val = source
             raise
         if source == 'show':
             self.controls.par.Source.val = source
@@ -371,7 +401,7 @@ class Host:
         if not context['show']:
             raise ValueError('Keine Cue verfügbar')
         material_id = context['show']['material_id'] if context['mode']=='show' else context['active_material']['id']
-        if context['active_material']['id'] != material_id:
+        if context['mode']=='show' or context['active_material']['id'] != material_id:
             self._load(material_id)
         sequence = self.transport.runtime()
         self.editor._set_state('selected',sequence.cue_index)

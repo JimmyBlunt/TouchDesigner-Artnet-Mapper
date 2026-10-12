@@ -134,12 +134,52 @@ class TDAdapterTests(unittest.TestCase):
         with self.assertRaises(ValueError):self.h.execute(dict(action='load_material',material_id='one'))
         self.assertEqual(self.f.active,'two');self.assertEqual(self.f.library_state['selected_id'],'two')
 
+    def test_failed_preset_restores_identity_and_controls_before_show_source(self):
+        self.h.context()
+        self.f.controls.par.Source.val='show'
+        self.f.editor.current_material=lambda:('show','default') if self.f.controls.par.Source.eval()=='show' else ('madmapper',self.f.active)
+        failed=[False]
+        def native(name,component,value):
+            if self.f.active=='two' and not failed[0]:
+                failed[0]=True
+                raise ValueError('shader rejected value')
+            return self.f.set_native(name,component,value)
+        self.f.library.set_material_parameter.side_effect=native
+        with self.assertRaisesRegex(ValueError,'shader rejected'):
+            self.h.execute(dict(action='load_material',material_id='two',values={'scale':3,'mat_gain':2}))
+        self.assertEqual(self.f.controls.par.Source.eval(),'show')
+        self.assertEqual(self.h._last_material_id,'one')
+        self.assertEqual(self.f.active,'one')
+        self.assertEqual(self.f.controls.par.Scale.eval(),1)
+        self.assertEqual(self.h.context()['active_material']['id'],'one')
+
     def test_step_routes_actual_source_and_recording_blocks_mode_and_load(self):
         self.h.execute(dict(action='set_mode',mode='show'))
         self.assertEqual(self.h.context()['mode'],'show')
         self.h.execute(dict(action='record_start',kind='automation'))
         for command in (dict(action='set_mode',mode='material'),dict(action='load_material',material_id='two')):
             with self.assertRaises(ValueError):self.h.execute(command)
+
+    def test_show_source_sentinel_preserves_loaded_identity_and_browse(self):
+        self.h.context() # remember the actual material before STEP
+        self.f.controls.par.Source.val='show'
+        self.f.editor.current_material=lambda:('show','default')
+        snapshot=self.h.context('two')
+        self.assertEqual(snapshot['mode'],'show')
+        self.assertEqual(snapshot['active_material']['id'],'one')
+        self.assertEqual(snapshot['materials']['two']['id'],'two')
+        self.h.execute(dict(action='record_start',kind='automation'))
+        self.assertTrue(self.h.recording)
+        self.assertEqual(self.f.controls.par.Source.eval(),'show')
+
+    def test_first_context_already_show_uses_loaded_library_without_changing_source(self):
+        self.f.controls.par.Source.val='show'
+        self.f.editor.current_material=lambda:('show','default')
+        snapshot=self.h.context()
+        self.assertEqual(snapshot['mode'],'show')
+        self.assertEqual(snapshot['active_material']['id'],'one')
+        self.f.library.activate_selected.assert_not_called()
+        self.assertEqual(self.f.controls.par.Source.eval(),'show')
 
     def test_show_encoder_locked_without_recording_and_compile_time_locked_during(self):
         self.f.controls.par.Source.val='show'
@@ -265,6 +305,7 @@ class TDAdapterTests(unittest.TestCase):
                 functions.setdefault(node.name,node)
         owner=NS(op=self.f.owner.op,unstore=Mock())
         scope=dict(automation=auto,editor=editor,OWNER=owner,TAKE_KEY='take',STATE_KEY='state',
+            current_material=lambda:('show','default'),
             _state=self.f.editor._state,_set_state=self.f.editor._set_state,_take=self.f.editor._take,
             _write_automation=self.f.write_automation,automation_data=self.f.editor.automation_data,
             _cached_automation=self.f.editor.automation_data,_cached_show=self.f.editor.show,
@@ -274,6 +315,8 @@ class TDAdapterTests(unittest.TestCase):
             live_imported_values=lambda:{},_live_monitor=lambda values:values)
         exec(compile(ast.Module(body=list(functions.values()),type_ignores=[]),'<actual TD callbacks>','exec'),scope)
         exec(compile(tail,'<installed MK2 callbacks>','exec'),scope)
+        self.f.editor.current_material=scope['current_material']
+        self.assertEqual(scope['current_material'](),('madmapper','one'))
         self.f.editor.stop_recording=scope['stop_recording']
         self.f.controls.par.Source.val='show'
         cue=self.f.sequence.cue.id
@@ -301,7 +344,7 @@ class TDAdapterTests(unittest.TestCase):
         self.assertEqual(scope['_effective_parameters'](self.f.document['cues'][0],False)['scale'],1)
 
     def test_hook_idempotence_and_missing_interface_refused(self):
-        names=('record_tick','stop_recording','_store_state_in_cue','_effective_parameters','_write_uniforms','_material_phase')
+        names=('record_tick','stop_recording','_store_state_in_cue','_effective_parameters','_write_uniforms','_material_phase','current_material')
         source='\n'.join('def '+name+'(*args,**kwargs): pass' for name in names)
         result=mk2_hooks.install_editor_source(source)
         self.assertEqual(mk2_hooks.install_editor_source(result),result)
