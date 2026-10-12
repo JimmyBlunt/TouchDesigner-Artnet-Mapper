@@ -1,0 +1,10 @@
+{
+  "version": "0.2.0",
+  "tests": 273,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "software_passed": true,
+  "physical_acceptance": "pending",
+  "specification": "docs/MK2_CONTROL_SPEC_DE.md"
+}
