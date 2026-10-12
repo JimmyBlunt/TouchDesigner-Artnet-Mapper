@@ -149,3 +149,6 @@ Arbeitsänderungen werden nicht mitgenommen. Es wird kein Remote-Push ausgeführ
 
 H1/H2 bleiben offen, bis am physischen Controller geprüft. Die Prüfergebnisse,
 Testbefehle, Commit-IDs und offene Abweichungen werden im Abschlussprotokoll ergänzt.
+
+Die zusammenhängende Software-Simulation wurde für Version 0.2.1 durchgeführt:
+[308 erfolgreiche Tests, Anforderungsmatrix und gefundene Fehler](mk2-v0.2.0/SIMULATION_DE.md).

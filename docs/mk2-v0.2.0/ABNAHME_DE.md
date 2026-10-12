@@ -1,5 +1,9 @@
 # MK2 0.2.0 – Implementierung und Abnahme
 
+Nachfolgender Stand: [Simulation aller beschriebenen Abläufe mit Version 0.2.1](SIMULATION_DE.md),
+308 erfolgreiche Tests und fünf zusätzliche Fehlerkorrekturen. Dieses Dokument
+bewahrt die ursprüngliche 0.2.0-Abnahme.
+
 Stand: 12. Oktober 2026. Die Bedienung ist in TouchDesigner integriert. Die
 Softwareprüfungen und USB-Übertragung sind nachgewiesen; die vollständige
 Bedienungsabnahme am physischen MK2 ist noch offen.
