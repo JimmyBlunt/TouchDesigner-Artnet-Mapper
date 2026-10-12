@@ -8,7 +8,7 @@ from copy import deepcopy
 import math
 from time import monotonic
 
-VERSION = '0.2.0'
+VERSION = '0.2.1'
 SCHEMA_VERSION = 2
 EDIT_IDLE_SECONDS = 20.0
 SHOW_FIELDS = ('duration', 'transition', 'transition_duration')
@@ -509,6 +509,9 @@ class Controller:
                      material_id=self._material().get('id'))]
 
     def _record_start(self, kind):
+        if self._guard_edit():
+            self.error = 'Speicherung abwarten.' if self._pending_config is not None else 'Zuerst den Pad-Entwurf speichern oder verwerfen.'
+            return []
         if self.mode != 'show':
             self.error = 'Aufnahme ist im Show Mode verfügbar.'
             return []

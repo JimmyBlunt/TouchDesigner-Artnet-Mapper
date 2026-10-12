@@ -209,6 +209,33 @@ class RuntimeTests(unittest.TestCase):
         self.assertFalse(self.manager.controller.held)
         self.assertIsNone(self.manager.worker)
 
+    def test_disconnect_clears_held_rec_and_discards_queued_actions_before_release(self):
+        self.enable()
+        self.button('step')
+        self.manager.dispatch(dict(type='button', name='rec', down=True))
+        self.manager.post_event(dict(type='button', name='rec', down=False), self.manager.version)
+        self.manager.post_event(dict(type='connection_reset'), self.manager.version-1)
+        self.assertEqual(self.manager.events.qsize(), 1)
+        self.manager.tick()
+        self.assertFalse(self.manager.controller.held)
+        self.assertFalse(self.manager.controller.rec_pending)
+        self.manager.dispatch(dict(type='button', name='rec', down=False))
+        self.assertFalse(any(c['action']=='record_start' for c in self.manager.host.commands))
+        self.button('rec')
+        self.assertEqual(self.manager.host.commands[-1], dict(action='record_start',kind='new_cue'))
+
+    def test_connection_reset_has_priority_over_full_queue_and_keeps_existing_take(self):
+        self.enable()
+        self.button('step')
+        self.button('rec')
+        for _ in range(128):
+            self.manager.post_event(dict(type='wheel',delta=1), self.manager.version)
+        self.manager.post_event(dict(type='connection_reset'), self.manager.version)
+        self.assertEqual(self.manager.events.qsize(), 1)
+        self.manager.tick()
+        self.assertEqual(self.manager.host.state['recording'], 'new_cue')
+        self.assertFalse(any(c['action']=='record_stop' for c in self.manager.host.commands))
+
 
 if __name__ == '__main__':
     unittest.main()

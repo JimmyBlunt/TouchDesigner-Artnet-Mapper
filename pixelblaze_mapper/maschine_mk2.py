@@ -524,17 +524,28 @@ class Surface:
             return
         while not self.halt.is_set():
             device = None
+            device_opened = False
             try:
                 devices = [d for d in hid.enumerate(0x17cc, 0x1140) if d['interface_number']==2]
                 if not devices:
                     raise OSError('MASCHINE MK2 nicht gefunden')
                 device = hid.device()
                 device.open_path(devices[0]['path'])
+                device_opened = True
                 device.set_nonblocking(True)
                 edges, controls, sent, next_render = PadEdges(), ControlEdges(), {}, 0
                 flashes = {}
+                reset_pending = True
                 while not self.halt.is_set():
                     snapshot = self.snapshot
+                    if reset_pending and snapshot is not None:
+                        # A new USB session invalidates held keys/chord state in
+                        # the main-thread workflow. In particular, a held REC
+                        # baseline followed by release must not finish an old
+                        # pending REC press from the disconnected session.
+                        if self.event_callback:
+                            self.event_callback(dict(type='connection_reset'), snapshot['version'])
+                        reset_pending = False
                     for _ in range(64):
                         report = device.read(256)
                         if not report:
@@ -577,8 +588,19 @@ class Surface:
                     self.halt.wait(.01)
             except Exception as error:
                 self.status = 'MK2: '+str(error)
+                # Clear queued/held input immediately on loss, even if USB will
+                # stay unavailable indefinitely. Failed enumeration alone must
+                # not emit endless resets while no controller is connected.
+                snapshot = self.snapshot
+                if device_opened and self.event_callback and snapshot is not None:
+                    self.event_callback(dict(type='connection_reset'), snapshot['version'])
             finally:
                 if device:
-                    device.close()
+                    try:
+                        device.close()
+                    except Exception as error:
+                        # Some backends raise when closing an already-unplugged
+                        # handle. Retain the retry loop and its one-second delay.
+                        self.status = 'MK2: USB-Verbindung nicht geschlossen: '+str(error)
             self.halt.wait(1)
         self.status = 'Direkte MK2-Anbindung aus'

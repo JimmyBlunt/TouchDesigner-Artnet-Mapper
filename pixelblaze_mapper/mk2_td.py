@@ -9,7 +9,8 @@ import time
 
 from . import show_automation as automation, show_editor, show_timeline
 
-VERSION = '0.2.0'
+from .mk2_workflow import VERSION
+TAKE_STORAGE_KEY = 'mk2_recording_context_v1'
 _host = None
 CORE = (
     ('global_master_speed', 'Globalmasterspeed', 'Master speed', 0., 4.),
@@ -110,6 +111,7 @@ class Host:
         self._catalog = []
         self._phase = None
         self._last_material_id = ''
+        self._restore_take()
         _host = self
 
     @property
@@ -127,6 +129,40 @@ class Host:
     @property
     def recording(self):
         return self.editor._state('recording', '0') == '1'
+
+    def _save_take(self):
+        """Persist primitives alongside the editor's COMP-backed Recorder."""
+        store = getattr(self.owner,'store',None)
+        if self.take is not None and callable(store):
+            document = dict(self.take)
+            document['touched'] = sorted(self.take['touched'])
+            store(TAKE_STORAGE_KEY,dict(version=1,take=document,values=dict(self.values),
+                                       material_id=self._last_material_id))
+
+    def _restore_take(self):
+        fetch = getattr(self.owner,'fetch',None)
+        if not callable(fetch):
+            return
+        saved = fetch(TAKE_STORAGE_KEY,None)
+        if not isinstance(saved,dict) or saved.get('version') != 1:
+            return
+        take = saved.get('take',{})
+        if not self.recording or take.get('cue_id') != self.editor._state('record_cue',''):
+            unstore = getattr(self.owner,'unstore',None)
+            if callable(unstore):
+                unstore(TAKE_STORAGE_KEY)
+            return
+        if take.get('kind') not in ('new_cue','automation'):
+            raise ValueError('Gespeicherter MK2-Aufnahmekontext ist ungültig')
+        restored = deepcopy(take)
+        restored['before'] = automation.validate(restored['before'])
+        restored['touched'] = set(restored['touched'])
+        for mapping in (restored['baseline'],saved.get('values',{})):
+            if any(not automation.recordable(key) or not math.isfinite(float(value)) for key,value in mapping.items()):
+                raise ValueError('Gespeicherte MK2-Aufnahmewerte sind ungültig')
+        self.take = restored
+        self.values = dict(saved.get('values',{}))
+        self._last_material_id = str(saved.get('material_id',''))
 
     def _catalog_items(self):
         items = self.editor._library()._items
@@ -267,6 +303,7 @@ class Host:
                 raise ValueError('Dieser Parameter ist nicht aufnehmbar')
             self.values[parameter_id] = checked_value(descriptor, value)
             self.take['touched'].add(parameter_id)
+            self._save_take()
             return
         if material_id != context['active_material']['id']:
             raise ValueError('Entwurf ist nicht das aktive Material')
@@ -414,6 +451,7 @@ class Host:
         self.take = dict(kind=kind,cue_id=cue_id,before=old,touched=set())
         parameters = self.context()['show']['parameters']
         self.take['baseline'] = {p['id']:p['value'] for p in parameters if p['recordable']}
+        self._save_take()
         # Seed before the first encoder movement, even when events share a frame.
         self.sample(0.)
 
@@ -468,6 +506,9 @@ class Host:
                 e._write_automation(automation.validate(current))
         self.take = None
         self.values.clear()
+        unstore = getattr(self.owner,'unstore',None)
+        if callable(unstore):
+            unstore(TAKE_STORAGE_KEY)
 
 
 def show_value(parameter, fallback):

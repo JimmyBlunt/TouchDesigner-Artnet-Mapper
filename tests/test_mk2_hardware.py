@@ -88,7 +88,8 @@ class InputAcceptanceTests(unittest.TestCase):
         with patch.dict('sys.modules', {'hid':fake_hid}), patch('pixelblaze_mapper.maschine_mk2.dependencies'), patch('pixelblaze_mapper.maschine_mk2.time.monotonic', side_effect=lambda:now[0]):
             surface.run()
         self.assertEqual(posts, [(0,1)])
-        self.assertEqual(events, [(dict(type='button',name='step',down=True),1)])
+        self.assertEqual(events, [(dict(type='connection_reset'),1),
+                                 (dict(type='button',name='step',down=True),1)])
         self.assertEqual(surface.frame_version, 2)
         self.assertTrue(device.closed)
         self.assertEqual(sum(p[0] == 0xe0 for p in writes), 8)  # unchanged left LCD not resent

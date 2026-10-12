@@ -305,6 +305,25 @@ class PadEditingAcceptanceTests(WorkflowCase):
         self.ack(command)
         self.assertEqual((self.c.mode, self.c.screen), ('show', 'home'))
 
+    def test_recording_cannot_start_with_dirty_draft_confirmation_or_pending_save(self):
+        self.edit()
+        self.encoder()
+        self.assertEqual(self.button('rec'), [])
+        self.assertEqual(self.c.screen, 'confirm_edit')
+        self.c.set_context(dict(mode='show'))
+        for pending in (False, True):
+            if pending:
+                save = self.press()[0]
+                self.assertTrue(self.c.snapshot()['saving'])
+            self.assertEqual(self.button('rec'), [])
+            self.c.dispatch(dict(type='button', name='erase', down=True))
+            self.assertEqual(self.button('rec'), [])
+            self.c.dispatch(dict(type='button', name='erase', down=False))
+            self.assertTrue(self.c.snapshot()['dirty'])
+            self.assertFalse(self.c.snapshot()['recording'])
+        self.ack(save)
+        self.assertEqual(self.button('rec'), [dict(action='record_start', kind='new_cue')])
+
     def test_concurrent_reassignment_cannot_receive_old_material_draft(self):
         self.edit()
         self.encoder()

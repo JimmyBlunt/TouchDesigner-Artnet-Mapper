@@ -121,6 +121,14 @@ class Manager:
         self.post_event(dict(type='button',name='pad',index=index,down=False),version)
 
     def post_event(self,event,version):
+        if event.get('type') == 'connection_reset':
+            # Only queue operations on the USB thread. Drop pre-disconnect
+            # actions, then clear key latches on the TD main thread below.
+            while True:
+                try:
+                    self.events.get_nowait()
+                except Empty:
+                    break
         try:
             self.events.put_nowait((deepcopy(event),version,time.monotonic()))
         except Full:
@@ -143,13 +151,23 @@ class Manager:
                 self.host.execute(command)
 
     def dispatch(self,event):
+        activity = event.get('type') != 'button' or event.get('down', True)
+        if activity:
+            self.controller.error = ''
         self._refresh_context()
         previous_bank = self.controller.bank
-        self._execute(self.controller.dispatch(event))
+        try:
+            commands = self.controller.dispatch(event)
+            self._execute(commands)
+        except Exception as error:
+            self.error = str(error)
+            self.controller.dispatch(dict(type='command_result', success=False, error=self.error))
+            raise
         if self.controller.bank != previous_bank:
             self.version += 1
         self._refresh_context()
-        self.error = ''
+        if activity or commands:
+            self.error = ''
         self.update_surface()
 
     def trigger(self,index,load=True):
@@ -235,6 +253,11 @@ class Manager:
                 event,version,when = self.events.get_nowait()
             except Empty:
                 break
+            if event.get('type') == 'connection_reset':
+                self.controller.held.clear()
+                self.controller.rec_pending = self.controller.rec_chord = False
+                self.controller.flash_until.clear()
+                continue
             if not enabled or version!=self.version or time.monotonic()-when>1:
                 # Release stale keys so a dropped release cannot latch REC/ERASE.
                 if event.get('type')=='button' and event.get('down') is False:
