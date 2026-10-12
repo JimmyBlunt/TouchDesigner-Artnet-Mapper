@@ -8,7 +8,7 @@ from copy import deepcopy
 import math
 from time import monotonic
 
-VERSION = '0.2.1'
+VERSION = '0.2.2'
 SCHEMA_VERSION = 2
 EDIT_IDLE_SECONDS = 20.0
 SHOW_FIELDS = ('duration', 'transition', 'transition_duration')

@@ -12,7 +12,7 @@ import math
 import threading
 import time
 
-__version__ = '0.2.0'
+__version__ = '0.2.2'
 
 # Report offsets include the report ID. Top and transport buttons have fixed
 # colour LEDs; only the groups and pads support RGB. Protocol facts verified
@@ -309,22 +309,28 @@ def render(snapshot):
     """Render immutable workflow state; no TouchDesigner calls or state mutation."""
     if not snapshot.get('controller'):
         return _legacy_render(snapshot)
-    from PIL import Image, ImageDraw, ImageFont
+    from PIL import Image, ImageDraw
+    from .mk2_pixel_font import NORMAL, LARGE
     c = snapshot['controller']
     images = [Image.new('1', (256, 64)) for _ in range(2)]
     draws = [ImageDraw.Draw(img) for img in images]
-    font = ImageFont.load_default(size=9)
-    small = ImageFont.load_default(size=8)
-    big = ImageFont.load_default(size=15)
+    font = small = NORMAL
+    big = LARGE
 
     def text(side, x, y, value, width=256, selected=False, f=font):
         d = draws[side]
         value = str(value)
+        # Reserve the footer for errors instead of leaving half a text row.
+        if side == 0 and c.get('error') and y < 53 and y+7*f.scale > 53:
+            return
+        clipped = d.textlength(value, font=f) > width
         while value and d.textlength(value, font=f) > width:
             value = value[:-1]
+        if clipped and value:
+            value = value[:-1]+'…'
         if selected:
-            d.rectangle((x, y, min(255, x+width), y+10), fill=1)
-        d.text((x, y-1), value, fill=0 if selected else 1, font=f)
+            d.rectangle((x, y-1, min(255, x+width), y+7), fill=1)
+        d.text((x, y), value, fill=0 if selected else 1, font=f)
 
     def picture(side, material, xy, size):
         image = material.get('image') or material.get('id')
@@ -335,7 +341,8 @@ def render(snapshot):
             images[side].paste(thumb, xy)
         else:
             draws[side].rectangle((x, y, x+size[0]-1, y+size[1]-1), outline=1)
-            text(side, x+3, y+size[1]//2-4, 'Kein Bild', size[0]-5, f=small)
+            text(side, x+13, y+size[1]//2-9, 'Kein', size[0]-16, f=small)
+            text(side, x+13, y+size[1]//2+2, 'Bild', size[0]-16, f=small)
 
     def bar(side, box, fraction, marker=False):
         d = draws[side]
@@ -365,7 +372,8 @@ def render(snapshot):
             label = str(p.get('label', 'MM'))
             if base+i == len(pages)-1 and c.get('parameter_overflow', 0):
                 label += ' +%d' % c['parameter_overflow']
-            draws[side].text((x+3, -1), label[:12], font=small, fill=0 if base+i == page_index else 1)
+            draws[side].text((x+3, 1), label[:9], font=small,
+                             fill=0 if base+i == page_index else 1)
 
     def parameters():
         params = page.get('parameters', [])[:8]
@@ -405,15 +413,15 @@ def render(snapshot):
     if screen == 'browse':
         items = c.get('browse_items', [])
         index = max(0, min(c.get('browse_index', 0), len(items)-1))
-        text(0, 2, 0, 'Materialien', 180)
-        text(0, 198, 0, '%d/%d' % (index+1 if items else 0, len(items)), 57)
+        text(0, 2, 2, 'Materialien', 180)
+        text(0, 198, 2, '%d/%d' % (index+1 if items else 0, len(items)), 57)
         start = max(0, min(index-2, len(items)-5))
         for row, item in enumerate(items[start:start+5]):
             text(0, 2, 12+row*10, '%03d %s' % (start+row+1, item.get('label', '')), 250, start+row == index)
         if items:
             item = items[index]
             picture(1, item, (0, 12), (50, 50))
-            text(1, 0, 0, 'BROWSE  %03d' % (index+1), 250)
+            text(1, 2, 2, 'BROWSE  %03d' % (index+1), 250)
             text(1, 57, 13, item.get('label', ''), 198)
             text(1, 57, 25, item.get('category') or 'Material', 198)
             assignment = item.get('assignment') or item.get('pad_label')
