@@ -1,0 +1,375 @@
+{
+  "resolution": [
+    256,
+    256
+  ],
+  "times": [
+    0,
+    8,
+    20
+  ],
+  "warning": "Supplementary visual review; not substituted for the full audit.",
+  "results": [
+    {
+      "id": "mat_2e490d5e1eb4eb713229",
+      "name": "Causticmutant",
+      "probe": {
+        "errors": [],
+        "info": "Vertex Shader Compile Results:\n\nCompiled Successfully\n\n=============\nPixel Shader Compile Results:\n\nCompiled Successfully\n",
+        "samples": [
+          {
+            "time": 0.0,
+            "shape": [
+              256,
+              256,
+              4
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "rgb_min": -2208.153564453125,
+            "rgb_max": 759.9015502929688,
+            "rgb_mean": -0.6803745126999274,
+            "rgb_variance": 172.41796418036927,
+            "spatial_variance": 172.41796418036955,
+            "alpha_min": 1.0,
+            "alpha_max": 1.0,
+            "alpha_mean": 1.0
+          },
+          {
+            "time": 8.0,
+            "shape": [
+              256,
+              256,
+              4
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "rgb_min": -1655.182861328125,
+            "rgb_max": 20459.39453125,
+            "rgb_mean": -0.41314477180821996,
+            "rgb_variance": 13817.548100488768,
+            "spatial_variance": 13817.548100489079,
+            "alpha_min": 1.0,
+            "alpha_max": 1.0,
+            "alpha_mean": 1.0
+          },
+          {
+            "time": 20.0,
+            "shape": [
+              256,
+              256,
+              4
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "rgb_min": -1234.243896484375,
+            "rgb_max": 2355.725341796875,
+            "rgb_mean": -0.8636678638758895,
+            "rgb_variance": 834.623767907216,
+            "spatial_variance": 834.6237679072129,
+            "alpha_min": 1.0,
+            "alpha_max": 1.0,
+            "alpha_mean": 1.0
+          }
+        ],
+        "temporal_mean_abs_delta": [
+          3.9049586109158554,
+          6.622843214372551
+        ],
+        "texture_count": 0,
+        "thumbnail": "E:\\Daten\\Dokumente\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\docs\\material-audit-20261013\\visual-recheck\\thumbnails\\mat_2e490d5e1eb4eb713229.png",
+        "pixel_format": "rgba32float"
+      },
+      "visual_review": "Pattern changes strongly with time, with high-contrast triangular structures; catalog reference equivalence remains unverified."
+    },
+    {
+      "id": "mat_a6d6be3154c86c977fea",
+      "name": "Chakanaballoon",
+      "probe": {
+        "errors": [],
+        "info": "Vertex Shader Compile Results:\n\nCompiled Successfully\n\n=============\nPixel Shader Compile Results:\n\nCompiled Successfully\n",
+        "samples": [
+          {
+            "time": 0.0,
+            "shape": [
+              256,
+              256,
+              4
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "rgb_min": 0.0,
+            "rgb_max": 23.679780960083008,
+            "rgb_mean": 0.41288839350193407,
+            "rgb_variance": 0.18047035649291002,
+            "spatial_variance": 0.13913620974515967,
+            "alpha_min": 1.0,
+            "alpha_max": 1.0,
+            "alpha_mean": 1.0
+          },
+          {
+            "time": 8.0,
+            "shape": [
+              256,
+              256,
+              4
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "rgb_min": 0.0,
+            "rgb_max": 70.05548095703125,
+            "rgb_mean": 0.25989990990068884,
+            "rgb_variance": 0.22075910839084903,
+            "spatial_variance": 0.22487913591581518,
+            "alpha_min": 1.0,
+            "alpha_max": 1.0,
+            "alpha_mean": 1.0
+          },
+          {
+            "time": 20.0,
+            "shape": [
+              256,
+              256,
+              4
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "rgb_min": 0.0,
+            "rgb_max": 21.05547523498535,
+            "rgb_mean": 0.3415018564503072,
+            "rgb_variance": 0.1212100096033187,
+            "spatial_variance": 0.0914279488735794,
+            "alpha_min": 1.0,
+            "alpha_max": 1.0,
+            "alpha_mean": 1.0
+          }
+        ],
+        "temporal_mean_abs_delta": [
+          0.2320802473581091,
+          0.19152716225466535
+        ],
+        "texture_count": 0,
+        "thumbnail": "E:\\Daten\\Dokumente\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\docs\\material-audit-20261013\\visual-recheck\\thumbnails\\mat_a6d6be3154c86c977fea.png",
+        "pixel_format": "rgba32float"
+      },
+      "visual_review": "Higher resolution reveals a rotating, shaded stepped cross; catalog image equivalence remains unverified."
+    },
+    {
+      "id": "mat_8542a7bbfb2650ea5854",
+      "name": "Cloudy Moonlight",
+      "probe": {
+        "errors": [],
+        "info": "Vertex Shader Compile Results:\n\nCompiled Successfully\n\n=============\nPixel Shader Compile Results:\n\nCompiled Successfully\n",
+        "samples": [
+          {
+            "time": 0.0,
+            "shape": [
+              256,
+              256,
+              4
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "rgb_min": 0.06651337444782257,
+            "rgb_max": 1.3231412172317505,
+            "rgb_mean": 0.18731400216290695,
+            "rgb_variance": 0.05940227997536283,
+            "spatial_variance": 0.059402279975362834,
+            "alpha_min": 1.0,
+            "alpha_max": 1.0,
+            "alpha_mean": 1.0
+          },
+          {
+            "time": 8.0,
+            "shape": [
+              256,
+              256,
+              4
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "rgb_min": 0.06754274666309357,
+            "rgb_max": 1.2408785820007324,
+            "rgb_mean": 0.16171078905972536,
+            "rgb_variance": 0.04610012483992345,
+            "spatial_variance": 0.046100124839923255,
+            "alpha_min": 1.0,
+            "alpha_max": 1.0,
+            "alpha_mean": 1.0
+          },
+          {
+            "time": 20.0,
+            "shape": [
+              256,
+              256,
+              4
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "rgb_min": 0.06651337444782257,
+            "rgb_max": 1.2439452409744263,
+            "rgb_mean": 0.14883408646642238,
+            "rgb_variance": 0.04659698539332638,
+            "spatial_variance": 0.0465969853933261,
+            "alpha_min": 1.0,
+            "alpha_max": 1.0,
+            "alpha_mean": 1.0
+          }
+        ],
+        "temporal_mean_abs_delta": [
+          0.050069079833178876,
+          0.01454513145290548
+        ],
+        "texture_count": 1,
+        "thumbnail": "E:\\Daten\\Dokumente\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\docs\\material-audit-20261013\\visual-recheck\\thumbnails\\mat_8542a7bbfb2650ea5854.png",
+        "pixel_format": "rgba32float"
+      },
+      "visual_review": "Moon and soft moving gray structures remain visible at higher resolution; exact cloud/reference equivalence remains unverified."
+    },
+    {
+      "id": "mat_38ac1e34ded8229790b7",
+      "name": "Day 84",
+      "probe": {
+        "errors": [],
+        "info": "Vertex Shader Compile Results:\n\nCompiled Successfully\n\n=============\nPixel Shader Compile Results:\n\nCompiled Successfully\n",
+        "samples": [
+          {
+            "time": 0.0,
+            "shape": [
+              256,
+              256,
+              4
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "rgb_min": 0.00038385819061659276,
+            "rgb_max": 2.961120843887329,
+            "rgb_mean": 0.02155839987581561,
+            "rgb_variance": 0.001260168585631248,
+            "spatial_variance": 0.001579505585774117,
+            "alpha_min": 1.0,
+            "alpha_max": 1.0,
+            "alpha_mean": 1.0
+          },
+          {
+            "time": 8.0,
+            "shape": [
+              256,
+              256,
+              4
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "rgb_min": 0.0002165536570828408,
+            "rgb_max": 3.87202787399292,
+            "rgb_mean": 0.028265955193406356,
+            "rgb_variance": 0.0054006320945548915,
+            "spatial_variance": 0.006300077373607539,
+            "alpha_min": 1.0,
+            "alpha_max": 1.0,
+            "alpha_mean": 1.0
+          },
+          {
+            "time": 20.0,
+            "shape": [
+              256,
+              256,
+              4
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "rgb_min": 0.0002166742051485926,
+            "rgb_max": 1.2279717922210693,
+            "rgb_mean": 0.019338855001716688,
+            "rgb_variance": 0.0005310188607292061,
+            "spatial_variance": 0.0006389253255157343,
+            "alpha_min": 1.0,
+            "alpha_max": 1.0,
+            "alpha_mean": 1.0
+          }
+        ],
+        "temporal_mean_abs_delta": [
+          0.02204686984541408,
+          0.023841275824479553
+        ],
+        "texture_count": 1,
+        "thumbnail": "E:\\Daten\\Dokumente\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\docs\\material-audit-20261013\\visual-recheck\\thumbnails\\mat_38ac1e34ded8229790b7.png",
+        "pixel_format": "rgba32float"
+      },
+      "visual_review": "Higher resolution reveals the dark reflective geometry; no nonfinite pixels at tested times."
+    },
+    {
+      "id": "mat_9023587be44bdf837cc8",
+      "name": "Organic Glass",
+      "probe": {
+        "errors": [],
+        "info": "Vertex Shader Compile Results:\n\nCompiled Successfully\n\n=============\nPixel Shader Compile Results:\n\nCompiled Successfully\n",
+        "samples": [
+          {
+            "time": 0.0,
+            "shape": [
+              256,
+              256,
+              4
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "rgb_min": -1.5318715572357178,
+            "rgb_max": 0.3267361521720886,
+            "rgb_mean": -0.6755382259818058,
+            "rgb_variance": 0.07838208247547536,
+            "spatial_variance": 0.11244495301587157,
+            "alpha_min": 1.0,
+            "alpha_max": 1.0,
+            "alpha_mean": 1.0
+          },
+          {
+            "time": 8.0,
+            "shape": [
+              256,
+              256,
+              4
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "rgb_min": -3.0756442546844482,
+            "rgb_max": 0.931860625743866,
+            "rgb_mean": -0.5005978074160945,
+            "rgb_variance": 0.2712899288260885,
+            "spatial_variance": 0.4440980251375816,
+            "alpha_min": 1.0,
+            "alpha_max": 1.0,
+            "alpha_mean": 1.0
+          },
+          {
+            "time": 20.0,
+            "shape": [
+              256,
+              256,
+              4
+            ],
+            "finite": true,
+            "nonfinite_count": 0,
+            "rgb_min": -1.707679271697998,
+            "rgb_max": 2.1318795680999756,
+            "rgb_mean": 0.4447791124230207,
+            "rgb_variance": 0.15723004805661903,
+            "spatial_variance": 0.19223413842588813,
+            "alpha_min": 1.0,
+            "alpha_max": 1.0,
+            "alpha_mean": 1.0
+          }
+        ],
+        "temporal_mean_abs_delta": [
+          0.4880860905129036,
+          0.9615837692516228
+        ],
+        "texture_count": 0,
+        "thumbnail": "E:\\Daten\\Dokumente\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\docs\\material-audit-20261013\\visual-recheck\\thumbnails\\mat_9023587be44bdf837cc8.png",
+        "pixel_format": "rgba32float"
+      },
+      "visual_review": "Structure becomes clearly visible at t=8 and t=20; the initially dark preview is time-dependent."
+    }
+  ],
+  "review_limit": "All five render finite at 256x256 and t=0,8,20. Matched MadMapper reference captures and settings are required to claim visual equivalence."
+}

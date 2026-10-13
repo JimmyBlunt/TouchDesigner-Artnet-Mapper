@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "review_kind": "visual_triage",
+  "basis": "results-before-fixes.json and baseline contact-sheets/page-01.png through page-16.png",
+  "warning": "BASELINE, NOT FINAL: these observations precede the full rerun with corrected render dimensions, generators and audio binding. Catalog thumbnails may use different parameters, times, resolution and aspect ratio. Candidates are not proven conversion bugs. Reassess against the completed rerun and matched settings.",
+  "reviewed_contact_sheets": 16,
+  "live_state_changed": false,
+  "candidates": [
+    {
+      "id": "mat_a6d6be3154c86c977fea",
+      "name": "Chakanaballoon",
+      "baseline_status": "passed",
+      "page": 3,
+      "observed": "Cyan block shapes on black.",
+      "reference": "Soft colored structure with diffuse shading.",
+      "source_review": {
+        "source_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\ChakanaBalloon\\ChakanaBalloon.fs",
+        "parameter_count": 8,
+        "adapted_status": "adaptable",
+        "default_mapping_mismatches": []
+      }
+    },
+    {
+      "id": "mat_8542a7bbfb2650ea5854",
+      "name": "Cloudy Moonlight",
+      "baseline_status": "passed",
+      "page": 4,
+      "observed": "Broad geometric gray bands with isolated lights; limited cloud detail.",
+      "reference": "Wispy cloud structure around a bright moon.",
+      "source_review": {
+        "source_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Cloudy Moonlight\\Cloudy Moonlight.fs",
+        "parameter_count": 47,
+        "adapted_status": "adaptable",
+        "default_mapping_mismatches": []
+      }
+    },
+    {
+      "id": "mat_9023587be44bdf837cc8",
+      "name": "Organic Glass",
+      "baseline_status": "passed",
+      "page": 10,
+      "observed": "Mostly black with sparse blue detail; baseline t=0 raw RGB mean is approximately -0.676.",
+      "reference": "Visible blue glass structure.",
+      "source_review": {
+        "source_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Organic Glass\\Organic Glass.fs",
+        "parameter_count": 16,
+        "adapted_status": "adaptable",
+        "default_mapping_mismatches": []
+      }
+    },
+    {
+      "id": "mat_38ac1e34ded8229790b7",
+      "name": "Day 84",
+      "baseline_status": "passed",
+      "page": 4,
+      "observed": "Very dark with small cyan highlights.",
+      "reference": "Visible cyan reflective polygonal structure.",
+      "source_review": {
+        "source_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Day 84\\Day 84.fs",
+        "parameter_count": 4,
+        "adapted_status": "adaptable",
+        "default_mapping_mismatches": []
+      }
+    },
+    {
+      "id": "mat_466839ded9440c107861",
+      "name": "Carnaval Mask",
+      "baseline_status": "passed",
+      "page": 3,
+      "observed": "Black field with one white strip along the bottom.",
+      "reference": "Gray banded thumbnail; weak evidence of intended full appearance.",
+      "source_review": {
+        "source_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Carnaval mask\\Carnaval mask.fs",
+        "parameter_count": 6,
+        "adapted_status": "adaptable",
+        "default_mapping_mismatches": [],
+        "finding": "Source lines 28-33 divide y into six bands; only mat_shapeA defaults to 1, B-F default to 0. One white 1/6-height band is expected from these defaults, not evidence of broken rendering."
+      }
+    },
+    {
+      "id": "mat_2e490d5e1eb4eb713229",
+      "name": "Causticmutant (Caustic Fract)",
+      "baseline_status": "passed",
+      "page": 3,
+      "observed": "Isolated inverted triangular shape on black.",
+      "reference": "Textured caustic pattern.",
+      "source_review": {
+        "source_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Caustic Fract\\causticMutant.fs",
+        "parameter_count": 5,
+        "adapted_status": "adaptable",
+        "default_mapping_mismatches": []
+      }
+    },
+    {
+      "id": "mat_3c3a5eba98f58695836e",
+      "name": "Sdffuglycompositionexample",
+      "baseline_status": "passed",
+      "page": 13,
+      "observed": "Almost uniform midgray with tiny specks.",
+      "reference": "Tiled shaded spheres.",
+      "source_review": {
+        "source_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Demos\\SDF\\SDFFuglyCompositionExample\\SDFFuglyCompositionExample.fs",
+        "parameter_count": 6,
+        "adapted_status": "adaptable",
+        "default_mapping_mismatches": [],
+        "finding": "Source line 27 uses cellSize=0.015*scale (default 0.5), and lines 43-48 use a 0.025 cell grid with circle radius 0.00625. Probe pixels span 0.0104167 x 0.015625 UV: circle diameter is only 1.2 x 0.8 pixels. Tiny sparsely sampled features are expected; higher resolution is needed before judging this demo."
+      }
+    },
+    {
+      "id": "mat_933e019910322038fea5",
+      "name": "Psrdnoise",
+      "baseline_status": "passed",
+      "page": 12,
+      "observed": "Regular blurred rectangular lattice.",
+      "reference": "Irregular grayscale noise.",
+      "source_review": {
+        "source_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\PsrdNoise\\PsrdNoise.fs",
+        "parameter_count": 3,
+        "adapted_status": "adaptable",
+        "default_mapping_mismatches": [],
+        "finding": "Source lines 308-311 samples psrdnoise over UV -1..1 with period vec3(mat_scale), where mat_scale defaults to 1 and alpha to 0. A short-period repeating lattice is consistent with source defaults; catalog noise scale is not established."
+      }
+    },
+    {
+      "id": "mat_8d6244c90dccdf076cbb",
+      "name": "Line Pattern Pro",
+      "baseline_status": "passed",
+      "page": 8,
+      "observed": "Largely one white edge stripe beside a black field.",
+      "reference": "Multiple curved white lines.",
+      "source_review": {
+        "source_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Line Pattern Pro\\Line Pattern Pro.fs",
+        "parameter_count": 42,
+        "adapted_status": "adaptable",
+        "default_mapping_mismatches": [],
+        "finding": "Source defaults cells_x=1, cells_y=1, repeat=1, width=0.1; adapter preserves all four. Thus the catalog multiple-line appearance does not establish a scaling bug."
+      }
+    },
+    {
+      "id": "mat_e1ecb2cfe05798a4b143",
+      "name": "Line Patterns",
+      "baseline_status": "passed",
+      "page": 8,
+      "observed": "Largely one white edge stripe beside a black field.",
+      "reference": "Multiple narrow vertical lines.",
+      "source_review": {
+        "source_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Factory\\Line Patterns\\Line Patterns.fs",
+        "parameter_count": 40,
+        "adapted_status": "adaptable",
+        "default_mapping_mismatches": [],
+        "finding": "Source defaults cells_x=1, cells_y=1, repeat=1, width=0.1; lines 178-193 use this one-cell/repeat directly. A single band follows these settings, rather than the catalog multiple-line configuration."
+      }
+    },
+    {
+      "id": "mat_ec375955172f72f0ae24",
+      "name": "Line Scale",
+      "baseline_status": "passed",
+      "page": 8,
+      "observed": "Largely one white edge stripe beside a black field.",
+      "reference": "Multiple narrow vertical lines.",
+      "source_review": {
+        "source_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Line Scale\\Line Scale.fs",
+        "parameter_count": 44,
+        "adapted_status": "adaptable",
+        "default_mapping_mismatches": [],
+        "finding": "Source defaults cells_x=1, cells_y=1, repeat=1, width=0.1; adapter preserves them. The catalog multiple-line configuration is not the demonstrated source default."
+      }
+    },
+    {
+      "id": "mat_2e8c7c2302d1a4a84680",
+      "name": "Lines Scaled",
+      "baseline_status": "passed",
+      "page": 8,
+      "observed": "Largely one white edge stripe beside a black field.",
+      "reference": "Multiple angled lines.",
+      "source_review": {
+        "source_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Lines Scaled\\Lines Scaled.fs",
+        "parameter_count": 41,
+        "adapted_status": "adaptable",
+        "default_mapping_mismatches": [],
+        "finding": "Source defaults cells_x=1, cells_y=1, line_count=1, repeat=1, width=0.1; adapter preserves them. The catalog angled multiple-line configuration is not the demonstrated source default."
+      }
+    },
+    {
+      "id": "mat_9b450a18bb42e28e058f",
+      "name": "3D Led Shapes (3D LED Setup Draft)",
+      "baseline_status": "passed",
+      "page": 1,
+      "observed": "Tiny white dashes; material may require voxel-specific spatial context rather than a generic 2D preview.",
+      "reference": "Shaded white spheres; catalog thumbnail alone does not establish the expected 2D result.",
+      "source_review": {
+        "source_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\3D LED Setup Draft\\3D-LED-Shapes.fs",
+        "parameter_count": 19,
+        "adapted_status": "adaptable",
+        "default_mapping_mismatches": [],
+        "finding": "Source lines 63-64 encode 16 z-slices across x. Default radius 0.25, smoothing 0, and a 96-pixel-wide probe leave only 6 pixels per slice; sparse white dashes are consistent with a voxel atlas, not a perspective sphere preview."
+      }
+    }
+  ],
+  "source_review_summary": {
+    "parameter_count": 281,
+    "method": "Read original INPUTS, compare parameter defaults and uniform_vector values with the current adapter schema. No GPU calls. Runtime default bindings in the audit use uniform_vector(parameter, parameter.default).",
+    "default_mapping_mismatch_count": 0,
+    "conclusion": "No shared default-value mapping mismatch established in this shortlist. Several visual differences are directly explained by source defaults or geometry below probe pixel size; see source findings."
+  }
+}

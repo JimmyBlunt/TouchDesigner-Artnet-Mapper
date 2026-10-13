@@ -78,6 +78,14 @@ class SourceRepairScopeTests(unittest.TestCase):
                 self.assertNotIn('clamp(out_color', new)
         self.assertNotIn('nan_to_num', repairs._HELPERS)
 
+    def test_scalar_waveform_lookup_keeps_position_and_real_audio_sampler(self):
+        source, rule = reduced_fixture('Splotch Theory.fs')
+        with patch.dict(repairs.REPAIRS, {'Splotch Theory.fs':rule}):
+            changed, _ = repairs.repair_source('Splotch Theory.fs', source)
+        self.assertIn('IMG_NORM_PIXEL(mat_audio, vec2(i, 0.5))', changed)
+        self.assertNotIn('IMG_NORM_PIXEL(mat_audio, i)', changed)
+        self.assertNotIn('vec4(1.)', changed)
+
 
 class DomainRegressionTests(unittest.TestCase):
     def test_starfield_ratio_cancellation_retains_both_modes(self):

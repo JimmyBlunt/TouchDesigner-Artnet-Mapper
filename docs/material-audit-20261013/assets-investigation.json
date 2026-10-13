@@ -1,0 +1,656 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-10-13",
+  "scope": "Offline only. Read assets and official upstream; no catalog, adapter, shader or live-project mutation.",
+  "catalog": "material_library/catalogs/madmapper-official-d7ff211.json",
+  "summary": {
+    "genuine_assets_recovered": 0,
+    "missing_palette_files": 11,
+    "cube_materials": 4,
+    "cube_declared_bindings": 6,
+    "cube_active_bindings": 5,
+    "cube_face_files_present": 36,
+    "cube_conclusion": "Files exist. Adapter/sampler support is missing; flat 2D substitution is not equivalent."
+  },
+  "face_order_evidence": {
+    "order": [
+      "+X",
+      "-X",
+      "+Y",
+      "-Y",
+      "+Z",
+      "-Z"
+    ],
+    "source": "https://github.com/madmappersoftware/MadMapper-Materials/blob/d7ff211281f1878feeccd8ead05ce855c0eac5ee/MaterialsDoc.md#L200"
+  },
+  "palette": {
+    "id": "mat_9675383528a6f7e76841",
+    "name": "Cellidexample03",
+    "source_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Demos\\SDF\\CellIdExample03\\CellIdExample03.fs",
+    "source_sha256": "16e2a38a0b4a61669f212aad1eddfc905568dd8f30d680280c89afd581a574aa",
+    "missing": [
+      {
+        "binding": "palette01",
+        "declared_path": "../textures/palette01.png",
+        "expected_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Demos\\SDF\\textures\\palette01.png",
+        "exists": false
+      },
+      {
+        "binding": "palette02",
+        "declared_path": "../textures/palette02.png",
+        "expected_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Demos\\SDF\\textures\\palette02.png",
+        "exists": false
+      },
+      {
+        "binding": "palette03",
+        "declared_path": "../textures/palette03.png",
+        "expected_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Demos\\SDF\\textures\\palette03.png",
+        "exists": false
+      },
+      {
+        "binding": "palette04",
+        "declared_path": "../textures/palette04.png",
+        "expected_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Demos\\SDF\\textures\\palette04.png",
+        "exists": false
+      },
+      {
+        "binding": "palette05",
+        "declared_path": "../textures/palette05.png",
+        "expected_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Demos\\SDF\\textures\\palette05.png",
+        "exists": false
+      },
+      {
+        "binding": "palette06",
+        "declared_path": "../textures/palette06.png",
+        "expected_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Demos\\SDF\\textures\\palette06.png",
+        "exists": false
+      },
+      {
+        "binding": "palette07",
+        "declared_path": "../textures/palette07.png",
+        "expected_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Demos\\SDF\\textures\\palette07.png",
+        "exists": false
+      },
+      {
+        "binding": "palette08",
+        "declared_path": "../textures/palette08.png",
+        "expected_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Demos\\SDF\\textures\\palette08.png",
+        "exists": false
+      },
+      {
+        "binding": "palette09",
+        "declared_path": "../textures/palette09.png",
+        "expected_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Demos\\SDF\\textures\\palette09.png",
+        "exists": false
+      },
+      {
+        "binding": "palette10",
+        "declared_path": "../textures/palette10.png",
+        "expected_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Demos\\SDF\\textures\\palette10.png",
+        "exists": false
+      },
+      {
+        "binding": "palette11",
+        "declared_path": "../textures/palette11.png",
+        "expected_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Demos\\SDF\\textures\\palette11.png",
+        "exists": false
+      }
+    ],
+    "searched_local_roots": [
+      "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1",
+      "E:\\Daten\\Dokumente\\ChatGPT\\LED-Touchdesigner-Controller\\Archiv"
+    ],
+    "exact_name_matches": [],
+    "upstream_evidence": "assets-upstream-trees.json",
+    "upstream_result": "No palette-named path in any of the ten complete reachable official commit trees. Main equals the pinned commit. No genuine recovery found.",
+    "impact": "Default Palette01 and ten other selectable palettes need absent files. Manufactured gradients would not establish visual equivalence."
+  },
+  "cubemaps": [
+    {
+      "id": "mat_aa7adbc93c3cafd7c5c3",
+      "name": "Crystalline Sphere",
+      "source_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Crystalline Sphere\\Crystalline Sphere.fs",
+      "source_sha256": "29efba6692170ae63f7880557421e34e5ea5771a04d7338afd0ea844e19436f0",
+      "binding": "iChannel0",
+      "texture_type": "cube",
+      "faces": [
+        {
+          "index": 0,
+          "axis": "+X",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Crystalline Sphere\\488bd40303a2e2b9a71987e48c66ef41f5e937174bf316d3ed0e86410784b919.jpg",
+          "sha256": "e9076f35b0e33f5d6215f9a878c11a646be3a3e401fe5437e183b66bca4ba39b",
+          "size": [
+            256,
+            256
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 1,
+          "axis": "-X",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Crystalline Sphere\\488bd40303a2e2b9a71987e48c66ef41f5e937174bf316d3ed0e86410784b919_1.jpg",
+          "sha256": "ab37d04a7f97227d96fdbab73bb2877e0296ec288b73e9a02646af34f91a713b",
+          "size": [
+            256,
+            256
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 2,
+          "axis": "+Y",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Crystalline Sphere\\488bd40303a2e2b9a71987e48c66ef41f5e937174bf316d3ed0e86410784b919_2.jpg",
+          "sha256": "dc572cd71cbfbdbcde703215f1af737452e81220eeefffd6e8bc6e6dc1b85013",
+          "size": [
+            256,
+            256
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 3,
+          "axis": "-Y",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Crystalline Sphere\\488bd40303a2e2b9a71987e48c66ef41f5e937174bf316d3ed0e86410784b919_3.jpg",
+          "sha256": "7e062ead89179b3635bbf70b40ccf9ef45e62c5b7ca109dafccd1812952929ce",
+          "size": [
+            256,
+            256
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 4,
+          "axis": "+Z",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Crystalline Sphere\\488bd40303a2e2b9a71987e48c66ef41f5e937174bf316d3ed0e86410784b919_4.jpg",
+          "sha256": "68eb5aa93b9d2b63a5975da761931e48cbc11276f8236c31784ae6e7d4b72dcb",
+          "size": [
+            256,
+            256
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 5,
+          "axis": "-Z",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Crystalline Sphere\\488bd40303a2e2b9a71987e48c66ef41f5e937174bf316d3ed0e86410784b919_5.jpg",
+          "sha256": "e4d42f270bf56bfe4ab00b319c809b786fcaca7d53d24b8099509db1b4e65e2b",
+          "size": [
+            256,
+            256
+          ],
+          "mode": "RGB"
+        }
+      ],
+      "used_in_shader_body": true,
+      "six_equal_square_faces": true
+    },
+    {
+      "id": "mat_aa7adbc93c3cafd7c5c3",
+      "name": "Crystalline Sphere",
+      "source_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Crystalline Sphere\\Crystalline Sphere.fs",
+      "source_sha256": "29efba6692170ae63f7880557421e34e5ea5771a04d7338afd0ea844e19436f0",
+      "binding": "iChannel1",
+      "texture_type": "cube",
+      "faces": [
+        {
+          "index": 0,
+          "axis": "+X",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Crystalline Sphere\\550a8cce1bf403869fde66dddf6028dd171f1852f4a704a465e1b80d23955663.png",
+          "sha256": "5fb0149e905143e41796d99c3c404e72cb2f1b5723c521902541fd085efa939a",
+          "size": [
+            64,
+            64
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 1,
+          "axis": "-X",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Crystalline Sphere\\550a8cce1bf403869fde66dddf6028dd171f1852f4a704a465e1b80d23955663_1.png",
+          "sha256": "1fa062f6a34ade26dcc3209cf2306b1eb54f0ec69d24a9724e3d9cdcd0d1f454",
+          "size": [
+            64,
+            64
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 2,
+          "axis": "+Y",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Crystalline Sphere\\550a8cce1bf403869fde66dddf6028dd171f1852f4a704a465e1b80d23955663_2.png",
+          "sha256": "2b6fd90594c48860b213db1793c8cba3760c657f80319ab44c38870460a83e8c",
+          "size": [
+            64,
+            64
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 3,
+          "axis": "-Y",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Crystalline Sphere\\550a8cce1bf403869fde66dddf6028dd171f1852f4a704a465e1b80d23955663_3.png",
+          "sha256": "a1e2905e28acb458439a41f702278d015773088eba547d65b1f9e2f53c723009",
+          "size": [
+            64,
+            64
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 4,
+          "axis": "+Z",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Crystalline Sphere\\550a8cce1bf403869fde66dddf6028dd171f1852f4a704a465e1b80d23955663_4.png",
+          "sha256": "ca797d9a906fca2990ddcc4c58f7d0ddf67e2a0ccc93a37912742b968e0bf82c",
+          "size": [
+            64,
+            64
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 5,
+          "axis": "-Z",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Crystalline Sphere\\550a8cce1bf403869fde66dddf6028dd171f1852f4a704a465e1b80d23955663_5.png",
+          "sha256": "21c872bd45210dcf0252ffa56cbc01d8fb2ebe575cbbc3fe8f8e418af3277d2c",
+          "size": [
+            64,
+            64
+          ],
+          "mode": "RGB"
+        }
+      ],
+      "used_in_shader_body": true,
+      "six_equal_square_faces": true
+    },
+    {
+      "id": "mat_88ae2a55cb81705d0b93",
+      "name": "Escher Dream",
+      "source_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Escher Dream\\Escher Dream.fs",
+      "source_sha256": "4a9103ef491c70505a9207abb448cb19ddda74d1f1faae174d9bc1f6004ba9f2",
+      "binding": "iChannel0",
+      "texture_type": "cube",
+      "faces": [
+        {
+          "index": 0,
+          "axis": "+X",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Escher Dream\\793a105653fbdadabdc1325ca08675e1ce48ae5f12e37973829c87bea4be3232.png",
+          "sha256": "d6cb1784b0fd52ead5a41f5edb18ca0d1caf38bfbec9ea628e1983e22269dae9",
+          "size": [
+            64,
+            64
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 1,
+          "axis": "-X",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Escher Dream\\793a105653fbdadabdc1325ca08675e1ce48ae5f12e37973829c87bea4be3232_1.png",
+          "sha256": "32342c8606af700babce26c2a0f13cbb6288401f1fda3b2937b8a0b3b8a4a2cc",
+          "size": [
+            64,
+            64
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 2,
+          "axis": "+Y",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Escher Dream\\793a105653fbdadabdc1325ca08675e1ce48ae5f12e37973829c87bea4be3232_2.png",
+          "sha256": "87044edb2c2912cb9cdee7d9a3be5c13b1ed8e2b2f91a7180e618a67c4a6e189",
+          "size": [
+            64,
+            64
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 3,
+          "axis": "-Y",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Escher Dream\\793a105653fbdadabdc1325ca08675e1ce48ae5f12e37973829c87bea4be3232_3.png",
+          "sha256": "61679f93ac5f06d4554b4387f64ca20148005d91396165c3648a8fcde9833d56",
+          "size": [
+            64,
+            64
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 4,
+          "axis": "+Z",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Escher Dream\\793a105653fbdadabdc1325ca08675e1ce48ae5f12e37973829c87bea4be3232_4.png",
+          "sha256": "f54ab56b0d0e22c692e1f81be95334046fa8a14aea9ba6425fc1184953bc7f13",
+          "size": [
+            64,
+            64
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 5,
+          "axis": "-Z",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Escher Dream\\793a105653fbdadabdc1325ca08675e1ce48ae5f12e37973829c87bea4be3232_5.png",
+          "sha256": "20169cde6c5b793cb98839b441e068ae9320b59d0767a35c768e2a7ca4be3bfa",
+          "size": [
+            64,
+            64
+          ],
+          "mode": "RGB"
+        }
+      ],
+      "used_in_shader_body": true,
+      "six_equal_square_faces": true
+    },
+    {
+      "id": "mat_e1bddddb3bc1e9a028be",
+      "name": "Noise Ball",
+      "source_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Noise Ball\\Noise Ball.fs",
+      "source_sha256": "bef3898e2135c0ec27cc65d4b48307d895792aedc0f05372b92e9ef648c77d79",
+      "binding": "mat_cube_1",
+      "texture_type": "cube",
+      "faces": [
+        {
+          "index": 0,
+          "axis": "+X",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Noise Ball\\94284d43be78f00eb6b298e6d78656a1b34e2b91b34940d02f1ca8b22310e8a0.png",
+          "sha256": "117ea4d5652bb7867ef3f5a6311ea78c1760b13d180df65e7ed2b7e646d02da9",
+          "size": [
+            256,
+            256
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 1,
+          "axis": "-X",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Noise Ball\\94284d43be78f00eb6b298e6d78656a1b34e2b91b34940d02f1ca8b22310e8a0_1.png",
+          "sha256": "181fd58b637881b5a5eba88d6eb569f058953c7b689ecf74f86e75d9f1b10831",
+          "size": [
+            256,
+            256
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 2,
+          "axis": "+Y",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Noise Ball\\94284d43be78f00eb6b298e6d78656a1b34e2b91b34940d02f1ca8b22310e8a0_2.png",
+          "sha256": "b8e21704bd1568789a62e71ff30a003d3795623a6a815d2c2c3d92f22be003cb",
+          "size": [
+            256,
+            256
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 3,
+          "axis": "-Y",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Noise Ball\\94284d43be78f00eb6b298e6d78656a1b34e2b91b34940d02f1ca8b22310e8a0_3.png",
+          "sha256": "ba45d8661d4a5fc6101edbc0a20c0ddfbd4340412b7db7f4b0e309eeaa0e377d",
+          "size": [
+            256,
+            256
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 4,
+          "axis": "+Z",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Noise Ball\\94284d43be78f00eb6b298e6d78656a1b34e2b91b34940d02f1ca8b22310e8a0_4.png",
+          "sha256": "f8e609f4b6d943c519d4d3ab8b4733c70ea4f262d1e1bb959127c061a2f68fe3",
+          "size": [
+            256,
+            256
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 5,
+          "axis": "-Z",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Noise Ball\\94284d43be78f00eb6b298e6d78656a1b34e2b91b34940d02f1ca8b22310e8a0_5.png",
+          "sha256": "4fc0efb7e74c0e67cb2b4d65b9968ee689f1107dadc7fbf8964538569694a8ba",
+          "size": [
+            256,
+            256
+          ],
+          "mode": "RGB"
+        }
+      ],
+      "used_in_shader_body": true,
+      "six_equal_square_faces": true
+    },
+    {
+      "id": "mat_e1bddddb3bc1e9a028be",
+      "name": "Noise Ball",
+      "source_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Noise Ball\\Noise Ball.fs",
+      "source_sha256": "bef3898e2135c0ec27cc65d4b48307d895792aedc0f05372b92e9ef648c77d79",
+      "binding": "mat_cube_2",
+      "texture_type": "cube",
+      "faces": [
+        {
+          "index": 0,
+          "axis": "+X",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Noise Ball\\793a105653fbdadabdc1325ca08675e1ce48ae5f12e37973829c87bea4be3232.png",
+          "sha256": "d6cb1784b0fd52ead5a41f5edb18ca0d1caf38bfbec9ea628e1983e22269dae9",
+          "size": [
+            64,
+            64
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 1,
+          "axis": "-X",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Noise Ball\\793a105653fbdadabdc1325ca08675e1ce48ae5f12e37973829c87bea4be3232_1.png",
+          "sha256": "32342c8606af700babce26c2a0f13cbb6288401f1fda3b2937b8a0b3b8a4a2cc",
+          "size": [
+            64,
+            64
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 2,
+          "axis": "+Y",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Noise Ball\\793a105653fbdadabdc1325ca08675e1ce48ae5f12e37973829c87bea4be3232_2.png",
+          "sha256": "87044edb2c2912cb9cdee7d9a3be5c13b1ed8e2b2f91a7180e618a67c4a6e189",
+          "size": [
+            64,
+            64
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 3,
+          "axis": "-Y",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Noise Ball\\793a105653fbdadabdc1325ca08675e1ce48ae5f12e37973829c87bea4be3232_3.png",
+          "sha256": "61679f93ac5f06d4554b4387f64ca20148005d91396165c3648a8fcde9833d56",
+          "size": [
+            64,
+            64
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 4,
+          "axis": "+Z",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Noise Ball\\793a105653fbdadabdc1325ca08675e1ce48ae5f12e37973829c87bea4be3232_4.png",
+          "sha256": "f54ab56b0d0e22c692e1f81be95334046fa8a14aea9ba6425fc1184953bc7f13",
+          "size": [
+            64,
+            64
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 5,
+          "axis": "-Z",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Noise Ball\\793a105653fbdadabdc1325ca08675e1ce48ae5f12e37973829c87bea4be3232_5.png",
+          "sha256": "20169cde6c5b793cb98839b441e068ae9320b59d0767a35c768e2a7ca4be3bfa",
+          "size": [
+            64,
+            64
+          ],
+          "mode": "RGB"
+        }
+      ],
+      "used_in_shader_body": false,
+      "six_equal_square_faces": true
+    },
+    {
+      "id": "mat_049e560bd949ede49dba",
+      "name": "Rock Layers",
+      "source_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Rock Layers\\Rock Layers.fs",
+      "source_sha256": "4fa08836a18c0bdb65aea2a49e9abbcca4db505bb834159a047627dbda565414",
+      "binding": "mat_cube_map",
+      "texture_type": "cube",
+      "faces": [
+        {
+          "index": 0,
+          "axis": "+X",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Rock Layers\\0681c014f6c88c356cf9c0394ffe015acc94ec1474924855f45d22c3e70b5785.png",
+          "sha256": "1032b4f5ce9a5a6d60c5f2a96c15bb83a9a49f38e2cadf0b60d157dd56aed05d",
+          "size": [
+            64,
+            64
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 1,
+          "axis": "-X",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Rock Layers\\0681c014f6c88c356cf9c0394ffe015acc94ec1474924855f45d22c3e70b5785_1.png",
+          "sha256": "2a02e4cfd6c5831448b8aa72f28e41666c0e38a6ab33c411a4157badf3c9fc9a",
+          "size": [
+            64,
+            64
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 2,
+          "axis": "+Y",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Rock Layers\\0681c014f6c88c356cf9c0394ffe015acc94ec1474924855f45d22c3e70b5785_2.png",
+          "sha256": "81f65a5a351094cb01c516e0564d277360027da4f93310f761ea669af7925c68",
+          "size": [
+            64,
+            64
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 3,
+          "axis": "-Y",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Rock Layers\\0681c014f6c88c356cf9c0394ffe015acc94ec1474924855f45d22c3e70b5785_3.png",
+          "sha256": "214510704ec60f8ce79448a42e40767f91aec4cc13224b2816445791e636f674",
+          "size": [
+            64,
+            64
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 4,
+          "axis": "+Z",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Rock Layers\\0681c014f6c88c356cf9c0394ffe015acc94ec1474924855f45d22c3e70b5785_4.png",
+          "sha256": "a7a344e17b6a4b5270d4131a1c53fe4315ca34ab17abbb72ecce67496f69964e",
+          "size": [
+            64,
+            64
+          ],
+          "mode": "RGB"
+        },
+        {
+          "index": 5,
+          "axis": "-Z",
+          "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Rock Layers\\0681c014f6c88c356cf9c0394ffe015acc94ec1474924855f45d22c3e70b5785_5.png",
+          "sha256": "9d3cfda971008059e0b65c4b920b1634d40d1274b06518a7124fe18e10e5c49c",
+          "size": [
+            64,
+            64
+          ],
+          "mode": "RGB"
+        }
+      ],
+      "used_in_shader_body": true,
+      "six_equal_square_faces": true
+    }
+  ],
+  "twisted_tunnel": {
+    "id": "mat_7749659f346c2dc8e596",
+    "name": "Twisted Tunnel",
+    "source_path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Twisted Tunnel\\Twisted Tunnel.fs",
+    "source_sha256": "6821e0d899f028df4df97e9c3a4d2682be6f62a0e9b95491c1bdc795d5ef3d46",
+    "imported_texture_count": 0,
+    "local_copies": [
+      {
+        "path": "C:\\Users\\jbhtz\\TouchDesignerLocal\\PixelblazeMapper\\material_library\\sources\\madmapper-materials-d7ff211281f1\\Materials\\Online Library\\Twisted Tunnel\\Twisted Tunnel.fs",
+        "sha256": "6821e0d899f028df4df97e9c3a4d2682be6f62a0e9b95491c1bdc795d5ef3d46",
+        "equal_after_newline_normalization": true
+      },
+      {
+        "path": "E:\\Daten\\Dokumente\\ChatGPT\\LED-Touchdesigner-Controller\\Archiv\\Effekte_2026-08-17\\work\\MadMapper-Regular-Materials-2\\Online Library\\Twisted Tunnel\\Twisted Tunnel.fs",
+        "sha256": "915f25c9f7563e70ea630892ac439b3a1c7fed1bb71c3962124abf48059076d8",
+        "equal_after_newline_normalization": true
+      },
+      {
+        "path": "E:\\Daten\\Dokumente\\ChatGPT\\LED-Touchdesigner-Controller\\Archiv\\OneDrive_Projects\\Touchdesigner mpc\\MadMapper-Materials\\Materials\\Online Library\\Twisted Tunnel\\Twisted Tunnel.fs",
+        "sha256": "6821e0d899f028df4df97e9c3a4d2682be6f62a0e9b95491c1bdc795d5ef3d46",
+        "equal_after_newline_normalization": true
+      }
+    ],
+    "prior_evidence": {
+      "path": "docs/material-repair-20260915/REPARATURBERICHT.md",
+      "outcome": "TouchDesigner exited during the previous GPU probe",
+      "limit": "Observed process exit does not establish shader or driver root cause."
+    },
+    "static_findings": [
+      {
+        "classification": "confirmed_domain_hazard",
+        "lines": [
+          109,
+          111,
+          113,
+          365
+        ],
+        "detail": "mat_p2 MIN=0 DEFAULT=1. spiral divides by pow(mat_p2,0.25); permitted zero endpoint creates a zero denominator. Default is not zero."
+      },
+      {
+        "classification": "confirmed_domain_hazard",
+        "lines": [
+          72,
+          74,
+          76,
+          346,
+          534
+        ],
+        "detail": "mat_depth MIN=0 DEFAULT=1; MDIST=60*mat_depth; final blend pow(dO/MDIST,2.5) divides by zero at permitted zero endpoint. Default is not zero."
+      },
+      {
+        "classification": "unproven_performance_hypothesis",
+        "lines": [
+          118,
+          120,
+          121,
+          122,
+          471,
+          491,
+          495,
+          502,
+          508
+        ],
+        "detail": "Raymarch has 178 default steps, 300 maximum, plus repeated map calls for shading. The dynamic float loop remains finite for declared finite parameters. No watchdog evidence or crash attribution established."
+      },
+      {
+        "classification": "translation_review_item",
+        "lines": [
+          332,
+          333,
+          346
+        ],
+        "detail": "Uniform-dependent global initializers require correct adapter handling; not independently demonstrated as crash cause."
+      }
+    ],
+    "recommendation": "Keep quarantine. Domain guards would not establish default GPU stability. Any future reproduction needs an isolated process and bounded diagnostic procedure, never the active project.",
+    "gpu_compile_or_render_performed": false
+  }
+}

@@ -11,7 +11,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 ROOT = Path(__file__).resolve().parents[1]
 LABELS = {'passed':'Bildtest bestanden', 'review':'Bild nachprüfen',
-          'compile_error':'Shaderfehler', 'unsupported':'Zusatzfunktion fehlt',
+          'compile_error':'Shaderfehler', 'unsupported':'Eingaben oder Funktionen fehlen',
           'quarantined':'GPU-Test ausgesetzt', 'probe_error':'Prüfung fehlgeschlagen'}
 
 
@@ -73,6 +73,9 @@ def main():
     document = document.replace('</style>', '@media(max-width:500px){body{margin:12px}main{grid-template-columns:minmax(0,1fr)}.images{flex-wrap:wrap}.gpu{max-width:100%;height:auto}input,select{max-width:100%;box-sizing:border-box;margin-bottom:6px}}</style>')
     for status,label in LABELS.items():
         document = document.replace('<option>'+status+'</option>', '<option value="'+status+'">'+label+'</option>')
+    invalid = sum(any(not s.get('finite',False) for s in item.get('probe',{}).get('samples',[])) for item in report['results'])
+    if invalid:
+        document = document.replace('</h1>', '</h1><p><strong>'+str(invalid)+' Material mit ungültigen Pixelwerten ist in den Nachkontrollen enthalten und bleibt gesperrt.</strong></p>',1)
     (out/'galerie.html').write_text(document,encoding='utf-8')
     print(json.dumps(dict(materials=len(cards),rendered=len(rendered),sheets=(len(rendered)+35)//36)))
 

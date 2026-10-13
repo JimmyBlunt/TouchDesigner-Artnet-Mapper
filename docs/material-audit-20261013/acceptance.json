@@ -1,0 +1,510 @@
+{
+  "adapter_version": 6,
+  "total": 638,
+  "imported": 638,
+  "baseline_imports": {
+    "existing": 87,
+    "imported": 551
+  },
+  "gpu_compiled": 586,
+  "gpu_finite": 585,
+  "publication_outcomes": {
+    "passed": 556,
+    "review": 29,
+    "unsupported": 51,
+    "nonfinite": 1,
+    "quarantined": 1
+  },
+  "newly_finite": 42,
+  "zero_compile_errors": true,
+  "audio_source": "User-confirmed Mashup, configured locally in config/material_audio.json",
+  "audio_duration_seconds": 185.232,
+  "audio_speakers": false,
+  "active_material": "Shadednoise",
+  "active_and_parameters_preserved": true,
+  "mk2_status": "MK2 verbunden Â· Displays Ã¼bertragen",
+  "mk2_madmapper_materials": 585,
+  "visual_review_candidates": 13,
+  "limitations": [
+    "Default parameters at t=0,1,2 and 96x64; not exhaustive parameter-domain or MadMapper-equivalence verification.",
+    "Five selected materials additionally checked at 256x256 and t=0,8,20.",
+    "29 finite visual reviews remain; monochrome or black defaults can be intentional.",
+    "Dithered Lensing remains nonfinite; Twisted Tunnel remains quarantined after prior crash.",
+    "51 materials need additional functions, input images/video, feedback, external channels or missing palette assets.",
+    "Audio FFT/ADR parity with MadMapper remains approximate; real selected audio is used."
+  ],
+  "open_materials": [
+    {
+      "id": "mat_99e61cb7dd166bf2c2b7",
+      "name": "[Recode] Kraftwerk",
+      "status": "unsupported",
+      "reasons": [
+        "unsupported generator: incrementer"
+      ]
+    },
+    {
+      "id": "mat_cb92d51e3ce1a66cf456",
+      "name": "All Widgets Template",
+      "status": "unsupported",
+      "reasons": [
+        "requires previous-frame feedback",
+        "unsupported input type curve: mat_curve",
+        "unsupported generator: incrementer"
+      ]
+    },
+    {
+      "id": "mat_aff9681b80193dc8e41e",
+      "name": "Badtv",
+      "status": "unsupported",
+      "reasons": [
+        "requires image input: inputImage",
+        "unsupported generator: animator"
+      ]
+    },
+    {
+      "id": "mat_611a946d385cabcbd13c",
+      "name": "Bioorganic Wall",
+      "status": "unsupported",
+      "reasons": [
+        "requires image input: mat_tex",
+        "requires image input: mat_shape"
+      ]
+    },
+    {
+      "id": "mat_b9caf554f4f2f59dffb9",
+      "name": "Blurrycubes",
+      "status": "unsupported",
+      "reasons": [
+        "unsupported generator: animator"
+      ]
+    },
+    {
+      "id": "mat_254c207859d0ec1c50c8",
+      "name": "Bumped Sinusoidal",
+      "status": "unsupported",
+      "reasons": [
+        "requires image input: mat_custom_texture"
+      ]
+    },
+    {
+      "id": "mat_0879e09450ba9539d0f0",
+      "name": "Carnaval Sequencer",
+      "status": "unsupported",
+      "reasons": [
+        "requires previous-frame feedback",
+        "requires external channel: /custom/BPM/bpm"
+      ]
+    },
+    {
+      "id": "mat_9675383528a6f7e76841",
+      "name": "Cellidexample03",
+      "status": "unsupported",
+      "reasons": [
+        "missing texture: ../textures/palette01.png",
+        "missing texture: ../textures/palette02.png",
+        "missing texture: ../textures/palette03.png",
+        "missing texture: ../textures/palette04.png",
+        "missing texture: ../textures/palette05.png",
+        "missing texture: ../textures/palette06.png",
+        "missing texture: ../textures/palette07.png",
+        "missing texture: ../textures/palette08.png",
+        "missing texture: ../textures/palette09.png",
+        "missing texture: ../textures/palette10.png",
+        "missing texture: ../textures/palette11.png"
+      ]
+    },
+    {
+      "id": "mat_f9ca98574a87c80a66da",
+      "name": "Chromaticabberation",
+      "status": "unsupported",
+      "reasons": [
+        "requires image input: mat_input_image",
+        "unsupported generator: animator"
+      ]
+    },
+    {
+      "id": "mat_2398b45289c8ce44c874",
+      "name": "Demo Filters",
+      "status": "unsupported",
+      "reasons": [
+        "unsupported generator: animator",
+        "unsupported generator: damper",
+        "unsupported generator: adsr",
+        "unsupported generator: linear_filter",
+        "unsupported generator: ease_filter",
+        "unsupported generator: incrementer"
+      ]
+    },
+    {
+      "id": "mat_d7930b257ce14985e158",
+      "name": "Dilatedeluxe",
+      "status": "unsupported",
+      "reasons": [
+        "requires image input: mat_inputImage",
+        "unsupported generator: animator"
+      ]
+    },
+    {
+      "id": "mat_a6cacdefcc5d7c89cf49",
+      "name": "Distancefielddance",
+      "status": "unsupported",
+      "reasons": [
+        "unsupported generator: animator"
+      ]
+    },
+    {
+      "id": "mat_fd6e81e118f465c4eb17",
+      "name": "Distorted Circles",
+      "status": "unsupported",
+      "reasons": [
+        "requires image input: mat_tex"
+      ]
+    },
+    {
+      "id": "mat_bb0a7429b58d266c496c",
+      "name": "Dithered Lensing",
+      "status": "review",
+      "reasons": [
+        "t=0.0: nonfinite pixel values; inspect the shader/default parameters.",
+        "t=1.0: nonfinite pixel values; inspect the shader/default parameters.",
+        "t=2.0: nonfinite pixel values; inspect the shader/default parameters."
+      ]
+    },
+    {
+      "id": "mat_4ec4fe91e991c784b1f6",
+      "name": "Doctor Pimple",
+      "status": "unsupported",
+      "reasons": [
+        "requires image input: mat_tex"
+      ]
+    },
+    {
+      "id": "mat_42c15c664d1e1b48932a",
+      "name": "Eiffel",
+      "status": "unsupported",
+      "reasons": [
+        "requires previous-frame feedback"
+      ]
+    },
+    {
+      "id": "mat_840969bd0e56452fc18c",
+      "name": "Feedback Grid",
+      "status": "unsupported",
+      "reasons": [
+        "requires previous-frame feedback"
+      ]
+    },
+    {
+      "id": "mat_6e6a106d9c9186dd2dfa",
+      "name": "Glitchcoloreddeluxe",
+      "status": "unsupported",
+      "reasons": [
+        "requires image input: mat_input_image",
+        "unsupported generator: animator"
+      ]
+    },
+    {
+      "id": "mat_5d2b6a70a1e7de87308b",
+      "name": "Glitchdeluxe",
+      "status": "unsupported",
+      "reasons": [
+        "requires image input: mat_input_image",
+        "unsupported generator: animator"
+      ]
+    },
+    {
+      "id": "mat_12e180f77db2473af40b",
+      "name": "Glitchrgbdeluxe",
+      "status": "unsupported",
+      "reasons": [
+        "requires image input: mat_input_image",
+        "unsupported generator: animator"
+      ]
+    },
+    {
+      "id": "mat_1b372844dda6683d0b50",
+      "name": "Glitchshakedeluxe",
+      "status": "unsupported",
+      "reasons": [
+        "requires image input: mat_input_image",
+        "unsupported generator: animator"
+      ]
+    },
+    {
+      "id": "mat_d86a09e7b1debb773e9a",
+      "name": "Glitchshifterdeluxe",
+      "status": "unsupported",
+      "reasons": [
+        "requires image input: mat_input_image",
+        "unsupported generator: animator"
+      ]
+    },
+    {
+      "id": "mat_264552f80e1d86c39a5e",
+      "name": "Gradient Color",
+      "status": "unsupported",
+      "reasons": [
+        "unsupported generator: animator"
+      ]
+    },
+    {
+      "id": "mat_9fcf7accec04024a8b0c",
+      "name": "Gradient Color",
+      "status": "unsupported",
+      "reasons": [
+        "unsupported generator: animator"
+      ]
+    },
+    {
+      "id": "mat_90f909c2a3bc2aa2d405",
+      "name": "Gradient Scale",
+      "status": "unsupported",
+      "reasons": [
+        "unsupported generator: animator"
+      ]
+    },
+    {
+      "id": "mat_480787919abad96b6413",
+      "name": "Gum",
+      "status": "unsupported",
+      "reasons": [
+        "requires image input: mat_input_image"
+      ]
+    },
+    {
+      "id": "mat_ac5e0f95b951e6865e50",
+      "name": "Layered Extrusion",
+      "status": "unsupported",
+      "reasons": [
+        "requires image input: mat_texture"
+      ]
+    },
+    {
+      "id": "mat_41cfb5da38ef9d059793",
+      "name": "Line Patterns + Manual",
+      "status": "unsupported",
+      "reasons": [
+        "unsupported generator: incrementer"
+      ]
+    },
+    {
+      "id": "mat_f5b735d9468cb6c67303",
+      "name": "Liquid Gradient Scale",
+      "status": "unsupported",
+      "reasons": [
+        "unsupported generator: animator"
+      ]
+    },
+    {
+      "id": "mat_76459785f18aab74e650",
+      "name": "Mirror",
+      "status": "unsupported",
+      "reasons": [
+        "requires image input: cam"
+      ]
+    },
+    {
+      "id": "mat_cca72fcfb1719cbf7880",
+      "name": "Particles",
+      "status": "unsupported",
+      "reasons": [
+        "requires a MadMapper vertex shader",
+        "requires MadMapper-specific vertex/surface varyings",
+        "uses MadMapper surface-specific branches"
+      ]
+    },
+    {
+      "id": "mat_76bd0abb6ef8c4199b71",
+      "name": "Random Shapes",
+      "status": "unsupported",
+      "reasons": [
+        "unsupported generator: animator"
+      ]
+    },
+    {
+      "id": "mat_02002ef2858c25661957",
+      "name": "Raymarching Template",
+      "status": "unsupported",
+      "reasons": [
+        "requires a MadMapper vertex shader",
+        "requires MadMapper-specific vertex/surface varyings"
+      ]
+    },
+    {
+      "id": "mat_049e560bd949ede49dba",
+      "name": "Rock Layers",
+      "status": "unsupported",
+      "reasons": [
+        "requires image input: mat_tex"
+      ]
+    },
+    {
+      "id": "mat_9a6103be8aef4c44a625",
+      "name": "Shadows Fx",
+      "status": "unsupported",
+      "reasons": [
+        "requires image input: input_image"
+      ]
+    },
+    {
+      "id": "mat_5946a7f7f4bd371e91c1",
+      "name": "Shape Borders",
+      "status": "unsupported",
+      "reasons": [
+        "unsupported generator: shaper"
+      ]
+    },
+    {
+      "id": "mat_7b6543ca04c7ed0ed826",
+      "name": "Shape Repeat",
+      "status": "unsupported",
+      "reasons": [
+        "unsupported generator: shaper"
+      ]
+    },
+    {
+      "id": "mat_a26d240b8b0075fab138",
+      "name": "Shiny Spiral",
+      "status": "unsupported",
+      "reasons": [
+        "requires image input: mat_tex_in"
+      ]
+    },
+    {
+      "id": "mat_c3bfecf52ac80f011f1e",
+      "name": "Skyboxtest",
+      "status": "unsupported",
+      "reasons": [
+        "requires a MadMapper vertex shader",
+        "requires MadMapper-specific vertex/surface varyings"
+      ]
+    },
+    {
+      "id": "mat_712c715bf2ab31e9b0dc",
+      "name": "Solid Color",
+      "status": "unsupported",
+      "reasons": [
+        "unsupported generator: animator"
+      ]
+    },
+    {
+      "id": "mat_7ec8ea44022b3c0b8a09",
+      "name": "Spinningsquares",
+      "status": "unsupported",
+      "reasons": [
+        "unsupported generator: animator"
+      ]
+    },
+    {
+      "id": "mat_fccbfdc3dec93f0b1643",
+      "name": "Test Text",
+      "status": "unsupported",
+      "reasons": [
+        "requires image input: mat_tex",
+        "requires image input: mat_shape"
+      ]
+    },
+    {
+      "id": "mat_d2ef8977bad08338c438",
+      "name": "Texture Transform",
+      "status": "unsupported",
+      "reasons": [
+        "requires image input: mat_tex1"
+      ]
+    },
+    {
+      "id": "mat_8ef741c7b1cd600b06b9",
+      "name": "Tuto Adr Filter",
+      "status": "unsupported",
+      "reasons": [
+        "requires external channel: /audioin/MadMapper/amplitude",
+        "unsupported generator: adsr"
+      ]
+    },
+    {
+      "id": "mat_0313a3231730a7c448bb",
+      "name": "Tuto Adr Filter",
+      "status": "unsupported",
+      "reasons": [
+        "requires external channel: /audioin/MadMapper/amplitude",
+        "unsupported generator: adsr"
+      ]
+    },
+    {
+      "id": "mat_7f1622d29799b88a8bf9",
+      "name": "Tuto Damper",
+      "status": "unsupported",
+      "reasons": [
+        "unsupported generator: damper"
+      ]
+    },
+    {
+      "id": "mat_d8d285424d1951823978",
+      "name": "Tuto Damper",
+      "status": "unsupported",
+      "reasons": [
+        "unsupported generator: damper"
+      ]
+    },
+    {
+      "id": "mat_e1b065ec411fa2d17132",
+      "name": "Tuto Filters",
+      "status": "unsupported",
+      "reasons": [
+        "unsupported generator: animator",
+        "unsupported generator: damper",
+        "unsupported generator: adsr",
+        "unsupported generator: linear_filter",
+        "unsupported generator: incrementer",
+        "unsupported generator: ease_filter"
+      ]
+    },
+    {
+      "id": "mat_550d5c58f124fd6d2762",
+      "name": "Tuto Linear Filter",
+      "status": "unsupported",
+      "reasons": [
+        "unsupported generator: linear_filter"
+      ]
+    },
+    {
+      "id": "mat_7749659f346c2dc8e596",
+      "name": "Twisted Tunnel",
+      "status": "quarantined",
+      "reasons": [
+        "Catalog _TD_VALIDATION.status is quarantined: GPU-Pruefung ausgesetzt: TouchDesigner wurde beim vorherigen Test beendet. Ursache noch ungeklÃ¤rt."
+      ]
+    },
+    {
+      "id": "mat_dd1df4424c91f1c8b085",
+      "name": "Video Wall 2X2",
+      "status": "unsupported",
+      "reasons": [
+        "requires image input: mat_tex1",
+        "requires image input: mat_tex2",
+        "requires image input: mat_tex3",
+        "requires image input: mat_tex4",
+        "requires image input: mat_tex_mask",
+        "requires image input: mat_tex_overlay"
+      ]
+    },
+    {
+      "id": "mat_412a440550bd9f162aaa",
+      "name": "Videoglitchdeluxe",
+      "status": "unsupported",
+      "reasons": [
+        "requires image input: mat_input_image",
+        "unsupported generator: animator"
+      ]
+    },
+    {
+      "id": "mat_a0e52c4a830aa222e328",
+      "name": "Wks 2022 Cube",
+      "status": "unsupported",
+      "reasons": [
+        "requires a MadMapper vertex shader",
+        "requires MadMapper-specific vertex/surface varyings"
+      ]
+    }
+  ]
+}

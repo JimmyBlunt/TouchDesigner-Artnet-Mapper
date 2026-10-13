@@ -1,0 +1,66 @@
+{
+  "repository": "madmappersoftware/MadMapper-Materials",
+  "inspected_on": "2026-10-13",
+  "trees": [
+    {
+      "sha": "d7ff211281f1878feeccd8ead05ce855c0eac5ee",
+      "entries": 3186,
+      "truncated": false,
+      "palette_paths": []
+    },
+    {
+      "sha": "bf96bb26996dfc0cb6bafeae26f634c9b64deb7b",
+      "entries": 3177,
+      "truncated": false,
+      "palette_paths": []
+    },
+    {
+      "sha": "9b718c6c2512c1b33e47f756e2bf4f3bf10fe31a",
+      "entries": 3177,
+      "truncated": false,
+      "palette_paths": []
+    },
+    {
+      "sha": "5bb7b382d67f37c5a8bfee29fdfa030a721f7ec6",
+      "entries": 3177,
+      "truncated": false,
+      "palette_paths": []
+    },
+    {
+      "sha": "6290ca4f7ac1fcf8142a8ec701bbe9cb26292a6e",
+      "entries": 3179,
+      "truncated": false,
+      "palette_paths": []
+    },
+    {
+      "sha": "4d5440a04a78b5e9057e8808da4610671610eb2d",
+      "entries": 378,
+      "truncated": false,
+      "palette_paths": []
+    },
+    {
+      "sha": "77b4ebc17313b8403e57594b5b957b4235e8b5fa",
+      "entries": 378,
+      "truncated": false,
+      "palette_paths": []
+    },
+    {
+      "sha": "8ae8765d3af51cb9e0139ece744904816d518541",
+      "entries": 378,
+      "truncated": false,
+      "palette_paths": []
+    },
+    {
+      "sha": "eecfc0d43bc9d7bf3611116f374d8c627238e51e",
+      "entries": 378,
+      "truncated": false,
+      "palette_paths": []
+    },
+    {
+      "sha": "e70b979eebc3b2ac59447489f0053ad695e61e11",
+      "entries": 378,
+      "truncated": false,
+      "palette_paths": []
+    }
+  ]
+}

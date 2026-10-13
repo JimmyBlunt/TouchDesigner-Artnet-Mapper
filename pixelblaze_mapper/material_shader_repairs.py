@@ -163,6 +163,11 @@ REPAIRS = {
              'float sphereDepth = 1.-dot(uv.xy,U);\n    if (sphereDepth < 0.0) return vec4(0.0);\n    float zVal = sqrt(sphereDepth);'),
             ('col = pow(col,vec3(2.2 / mat_power));', 'col = pow(max(col,vec3(0.0)),vec3(2.2 / mat_power));'),
         )),
+    'Splotch Theory.fs': SourceRepair(
+        'ce71059b78568a54ba7e037b7a57bbe100a8fd7f4308baceb68cde0ddd48c5b1',
+        'sample the one-row waveform at its scalar horizontal coordinate and row center', (
+            ('IMG_NORM_PIXEL(mat_audio, i)', 'IMG_NORM_PIXEL(mat_audio, vec2(i, 0.5))'),
+        )),
     'warp.fs': SourceRepair(
         '4031fc1e9b37ca7f0a2c4be723a38d39c67a69a5af6b69975296b573bc63152e',
         'analytically cancel radDist in the starfield ratio, including its zero limit', (

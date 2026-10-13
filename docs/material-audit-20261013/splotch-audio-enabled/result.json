@@ -1,0 +1,67 @@
+{
+  "errors": [],
+  "info": "Vertex Shader Compile Results:\n\nCompiled Successfully\n\n=============\nPixel Shader Compile Results:\n\nCompiled Successfully\n",
+  "samples": [
+    {
+      "time": 0.0,
+      "shape": [
+        64,
+        96,
+        4
+      ],
+      "finite": true,
+      "nonfinite_count": 0,
+      "rgb_min": 0.0,
+      "rgb_max": 1.0,
+      "rgb_mean": 0.22135416666666666,
+      "rgb_variance": 0.1723564995659722,
+      "spatial_variance": 0.17235649956596363,
+      "alpha_min": 1.0,
+      "alpha_max": 1.0,
+      "alpha_mean": 1.0
+    },
+    {
+      "time": 1.0,
+      "shape": [
+        64,
+        96,
+        4
+      ],
+      "finite": true,
+      "nonfinite_count": 0,
+      "rgb_min": 0.0,
+      "rgb_max": 1.0,
+      "rgb_mean": 0.7335611979166666,
+      "rgb_variance": 0.19544916682773167,
+      "spatial_variance": 0.19544916682774457,
+      "alpha_min": 1.0,
+      "alpha_max": 1.0,
+      "alpha_mean": 1.0
+    },
+    {
+      "time": 2.0,
+      "shape": [
+        64,
+        96,
+        4
+      ],
+      "finite": true,
+      "nonfinite_count": 0,
+      "rgb_min": 0.0,
+      "rgb_max": 1.0,
+      "rgb_mean": 0.7840169270833334,
+      "rgb_variance": 0.1693343851301405,
+      "spatial_variance": 0.16933438513013452,
+      "alpha_min": 1.0,
+      "alpha_max": 1.0,
+      "alpha_mean": 1.0
+    }
+  ],
+  "temporal_mean_abs_delta": [
+    0.5489908854166666,
+    0.4456380208333333
+  ],
+  "texture_count": 1,
+  "thumbnail": "E:\\Daten\\Dokumente\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\docs\\material-audit-20261013\\splotch-audio-enabled\\thumbnails\\mat_724aec30a74548aea820.png",
+  "pixel_format": "rgba32float"
+}

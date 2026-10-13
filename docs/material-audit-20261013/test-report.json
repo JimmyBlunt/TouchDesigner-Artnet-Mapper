@@ -1,0 +1,29 @@
+{
+  "version": "adapter-v6",
+  "implementation_commit": "51adc1c",
+  "checks": [
+    {
+      "passed": true,
+      "suite": "Material tests",
+      "tests": 169
+    },
+    {
+      "passed": true,
+      "suite": "MK2 regression tests",
+      "tests": 147
+    },
+    {
+      "passed": true,
+      "suite": "Adapter, audio, repairs, audit and publication focused suite (overlaps material tests)",
+      "tests": 115
+    },
+    {
+      "suite": "Final shader repairs, publication and evidence revalidation",
+      "tests": 38,
+      "passed": true
+    }
+  ],
+  "hardware_audio_evidence": "audio-runtime-acceptance.json",
+  "test_sources": "Permanent unittest suites in tests/",
+  "limitation": "GPU image acceptance is recorded separately per material in results.json."
+}

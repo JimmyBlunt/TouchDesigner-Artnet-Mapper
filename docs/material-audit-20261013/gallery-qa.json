@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "materials": 638,
+  "viewports": [
+    "1440x1000",
+    "390x844"
+  ],
+  "checks": [
+    "page identity",
+    "content",
+    "all images loaded",
+    "name search",
+    "status filter",
+    "no horizontal overflow",
+    "no console errors"
+  ],
+  "browser": "Playwright Chromium; Browser plugin not available"
+}

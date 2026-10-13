@@ -1,0 +1,31 @@
+{
+  "before": {
+    "active": "mat_6256a1b809797ccb1168",
+    "values": {
+      "scale": 0.35,
+      "speedx": 1.0,
+      "speedy": 1.0,
+      "factor": 10.0,
+      "brightness": -0.5,
+      "contrast": 2.0
+    },
+    "uv": "f8c186d11f07ad1b48ad684da8b2a4e54d97d5cd5a750adda4b3efb66b4055a4"
+  },
+  "after": {
+    "active": "mat_6256a1b809797ccb1168",
+    "values": {
+      "scale": 0.35,
+      "speedx": 1.0,
+      "speedy": 1.0,
+      "factor": 10.0,
+      "brightness": -0.5,
+      "contrast": 2.0
+    },
+    "uv": "f8c186d11f07ad1b48ad684da8b2a4e54d97d5cd5a750adda4b3efb66b4055a4"
+  },
+  "adapter_version": 6,
+  "active_label": "Shadednoise",
+  "mk2_materials": 635,
+  "mk2_status": "MK2 verbunden · Displays übertragen",
+  "errors": []
+}
