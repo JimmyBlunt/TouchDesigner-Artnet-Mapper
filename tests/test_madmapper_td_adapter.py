@@ -1,6 +1,7 @@
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from pixelblaze_mapper.madmapper_td_adapter import (
     ADAPTER_MARKER,
@@ -23,6 +24,11 @@ vec4 materialColorForPixel(vec2 uv) { return color * (0.5 + 0.5*sin(phase + uv.x
 
 
 class AdapterTests(unittest.TestCase):
+    def setUp(self):
+        # Audio availability is explicit runtime configuration, never a test
+        # fixture inherited from whichever project is open on this machine.
+        self.enterContext(patch('pixelblaze_mapper.madmapper_td_adapter._audio_texture_path',return_value=None))
+
     def _material(self, root: Path, text: str = SIMPLE, name: str = "sample.fs") -> Path:
         path = root / name
         path.write_text(text, encoding="utf-8")
@@ -155,7 +161,7 @@ class AdapterTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             shader = self._material(root)
-            (root / "sample.vs").write_text("void materialVsFunc(vec2 uv){}", encoding="utf-8")
+            (root / "sample.vs").write_text("out vec2 position;\nvoid materialVsFunc(vec2 uv){position=uv;}", encoding="utf-8")
             result = adapt_material(shader)
         self.assertIn("requires a MadMapper vertex shader", result.reasons)
 
