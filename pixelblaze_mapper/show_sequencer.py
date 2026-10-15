@@ -18,6 +18,8 @@ from typing import Any, Mapping
 SCHEMA_VERSION = 2
 COORDINATE_MODES = frozenset({"global", "panel_local", "hybrid"})
 TARGET_GROUPS = frozenset({"all", "middle", "upper", "lower", "rear"})
+TIMING_MODES = frozenset({"legacy", "overlap"})
+FADE_CURVES = frozenset({"linear", "smooth", "ease_in", "ease_out"})
 # Kept in step with pixelblaze_mapper.show_renderer.TRANSITIONS by
 # tests/test_show_transitions.py; this module stays import-free on purpose.
 TRANSITION_TYPES = frozenset({
@@ -144,6 +146,10 @@ class Cue:
     transition_duration: float
     brightness: float
     target_groups: tuple[str, ...]
+    fade_in: float = 0.0
+    fade_out: float = 0.0
+    fade_in_curve: str = "linear"
+    fade_out_curve: str = "linear"
 
     def __post_init__(self) -> None:
         _text(self.id, "cue.id")
@@ -157,6 +163,11 @@ class Cue:
                 "cue.coordinate_mode must be global, panel_local, or hybrid"
             )
         duration = _number(self.duration, "cue.duration", minimum=0.001)
+        _number(self.fade_in, "cue.fade_in", minimum=0.0)
+        _number(self.fade_out, "cue.fade_out", minimum=0.0)
+        for field in ("fade_in_curve", "fade_out_curve"):
+            if not isinstance(getattr(self, field), str) or getattr(self, field) not in FADE_CURVES:
+                raise ShowValidationError(f"cue.{field} must be linear, smooth, ease_in, or ease_out")
         if self.transition not in TRANSITION_TYPES:
             raise ShowValidationError(
                 "cue.transition must be one of: " + ", ".join(sorted(TRANSITION_TYPES))
@@ -192,7 +203,8 @@ class Cue:
             "id", "name", "effect", "preset", "parameters", "coordinate_mode", "duration",
             "transition", "transition_duration", "brightness", "target_groups",
         }
-        missing, extra = expected - set(data), set(data) - expected
+        optional = {"fade_in", "fade_out", "fade_in_curve", "fade_out_curve"}
+        missing, extra = expected - set(data), set(data) - expected - optional
         if missing or extra:
             raise ShowValidationError(
                 f"cue fields invalid; missing={sorted(missing)}, extra={sorted(extra)}"
@@ -207,9 +219,12 @@ class Cue:
             duration=data["duration"], transition=data["transition"],
             transition_duration=data["transition_duration"],
             brightness=data["brightness"], target_groups=tuple(groups),
+            fade_in=data.get("fade_in", 0.0), fade_out=data.get("fade_out", 0.0),
+            fade_in_curve=data.get("fade_in_curve", "linear"),
+            fade_out_curve=data.get("fade_out_curve", "linear"),
         )
     def to_dict(self) -> dict[str, Any]:
-        return {
+        result = {
             "id": self.id,
             "name": self.name,
             "effect": self.effect,
@@ -222,6 +237,12 @@ class Cue:
             "brightness": self.brightness,
             "target_groups": list(self.target_groups),
         }
+        # Existing schema-2 documents round-trip byte-for-byte structurally.
+        for field, default in (("fade_in", 0.0), ("fade_out", 0.0),
+                               ("fade_in_curve", "linear"), ("fade_out_curve", "linear")):
+            if getattr(self, field) != default:
+                result[field] = getattr(self, field)
+        return result
 
 
 @dataclass(frozen=True)
@@ -230,9 +251,12 @@ class Show:
     cues: tuple[Cue, ...]
     loop: bool = False
     schema_version: int = SCHEMA_VERSION
+    timing_mode: str = "legacy"
 
     def __post_init__(self) -> None:
         _text(self.name, "show.name")
+        if not isinstance(self.timing_mode, str) or self.timing_mode not in TIMING_MODES:
+            raise ShowValidationError("show.timing_mode must be legacy or overlap")
         if isinstance(self.schema_version, bool) or self.schema_version != SCHEMA_VERSION:
             raise ShowValidationError(f"schema_version must be {SCHEMA_VERSION}")
         if not isinstance(self.loop, bool):
@@ -250,7 +274,7 @@ class Show:
         if not isinstance(data, Mapping):
             raise ShowValidationError("show must be an object")
         expected = {"schema_version", "name", "loop", "cues"}
-        missing, extra = expected - set(data), set(data) - expected
+        missing, extra = expected - set(data), set(data) - expected - {"timing_mode"}
         if missing or extra:
             raise ShowValidationError(
                 f"show fields invalid; missing={sorted(missing)}, extra={sorted(extra)}"
@@ -263,15 +287,94 @@ class Show:
             cues=tuple(Cue.from_dict(item) for item in raw_cues),
             loop=data["loop"],
             schema_version=data["schema_version"],
+            timing_mode=data.get("timing_mode", "legacy"),
         )
 
     def to_dict(self) -> dict[str, Any]:
-        return {
+        result = {
             "schema_version": self.schema_version,
             "name": self.name,
             "loop": self.loop,
             "cues": [cue.to_dict() for cue in self.cues],
         }
+        if self.timing_mode != "legacy":
+            result["timing_mode"] = self.timing_mode
+        return result
+
+
+def _effective_overlaps(show: Show) -> tuple[float, ...]:
+    if not isinstance(show, Show):
+        raise ShowValidationError("timeline requires a validated Show")
+    if show.timing_mode == "legacy":
+        return tuple(cue.transition_duration for cue in show.cues)
+    result = []
+    incoming = 0.0
+    for index, cue in enumerate(show.cues):
+        outgoing = 0.0
+        if index+1 < len(show.cues) and cue.transition != "cut":
+            # A positive solo margin prevents three simultaneous clips and
+            # ensures an incoming clip cannot finish before its predecessor.
+            outgoing = max(0.0, min(cue.transition_duration,
+                                   cue.duration-incoming-.001,
+                                   show.cues[index+1].duration-.001))
+        result.append(outgoing)
+        incoming = outgoing
+    return tuple(result)
+
+
+def overlap_duration(show: Show, index: int) -> float:
+    """Effective outgoing overlap; legacy retains its historic preroll length."""
+    values = _effective_overlaps(show)
+    if isinstance(index, bool) or not isinstance(index, int) or not 0 <= index < len(values):
+        raise ShowValidationError("overlap index is out of range")
+    return values[index]
+
+
+def timeline_rows(show: Show) -> list[dict[str, Any]]:
+    """Canonical clip intervals. The overlap loop seam is always a hard restart."""
+    overlaps = _effective_overlaps(show)
+    start = 0.0
+    rows = []
+    for index, cue in enumerate(show.cues):
+        end = start+cue.duration
+        rows.append(dict(id=cue.id, start=start, end=end,
+                         fade_start=end-overlaps[index],
+                         overlap_in=overlaps[index-1] if index and show.timing_mode == "overlap" else 0.0,
+                         overlap_out=overlaps[index]))
+        start = end-overlaps[index] if show.timing_mode == "overlap" else end
+    return rows
+
+
+def _fade_curve(value: float, kind: str) -> float:
+    if kind == "smooth":
+        return value*value*(3-2*value)
+    if kind == "ease_in":
+        return value*value
+    if kind == "ease_out":
+        return 1-(1-value)*(1-value)
+    return value
+
+
+def cue_envelope(cue: Cue, localtime: float) -> float:
+    """Independent clip fade gain; fade-out is 1-curve(normalized fade progress).
+
+    Long requested fades are bounded to the clip duration. If fades intersect,
+    their gains multiply, without renormalizing or changing the transition mix.
+    """
+    if not isinstance(cue, Cue):
+        raise ShowValidationError("cue_envelope requires a validated Cue")
+    if isinstance(localtime, bool) or not isinstance(localtime, (int, float)) or not isfinite(localtime):
+        raise ShowValidationError("envelope time must be finite")
+    if localtime < 0 or localtime > cue.duration:
+        return 0.0
+    gain = 1.0
+    fade_in, fade_out = min(cue.fade_in, cue.duration), min(cue.fade_out, cue.duration)
+    if fade_in:
+        gain *= _fade_curve(min(1.0, localtime/fade_in), cue.fade_in_curve)
+    if fade_out:
+        progress = max(0.0, (localtime-(cue.duration-fade_out))/fade_out)
+        gain *= 1-_fade_curve(min(1.0, progress), cue.fade_out_curve)
+    return max(0.0, min(1.0, gain))
 
 
 @dataclass(frozen=True)
@@ -290,6 +393,11 @@ class ABSlotPlan:
     blackout: bool
     slot_a_time: float = 0.0
     slot_b_time: float = 0.0
+    timing_mode: str = "legacy"
+    slot_a_gain: float = 1.0
+    slot_b_gain: float = 1.0
+    slot_a_brightness: float = 1.0
+    slot_b_brightness: float = 1.0
 
 
 def load_show(path: str | Path) -> Show:
@@ -329,6 +437,9 @@ class ShowSequencer:
         self.blackout = False
         self._current_slot = "A"
         self._current_time_offset = 0.0
+        # Transient only: distinguish explicit seeks from ordinary elapsed
+        # advancement when integrating live per-slot speed overrides.
+        self.position_revision = 0
 
     @property
     def cue(self) -> Cue:
@@ -338,6 +449,7 @@ class ShowSequencer:
         if self.state is TransportState.STOPPED and self.elapsed >= self.cue.duration:
             self.cue_index, self.elapsed, self._current_slot = 0, 0.0, "A"
             self._current_time_offset = 0.0
+            self.position_revision += 1
         self.state = TransportState.PLAYING
 
     def pause(self) -> None:
@@ -348,6 +460,7 @@ class ShowSequencer:
         self.state = TransportState.STOPPED
         self.cue_index, self.elapsed, self._current_slot = 0, 0.0, "A"
         self._current_time_offset = 0.0
+        self.position_revision += 1
 
     def set_loop(self, enabled: bool) -> None:
         if not isinstance(enabled, bool):
@@ -355,6 +468,7 @@ class ShowSequencer:
         self.show = Show(
             name=self.show.name, cues=self.show.cues, loop=enabled,
             schema_version=self.show.schema_version,
+            timing_mode=self.show.timing_mode,
         )
 
     def set_blackout(self, enabled: bool) -> None:
@@ -378,6 +492,7 @@ class ShowSequencer:
         self.cue_index, self.elapsed = target, 0.0
         self._current_slot = "B" if self._current_slot == "A" else "A"
         self._current_time_offset = 0.0  # Explicit manual jumps restart the cue.
+        self.position_revision += 1
         return True
 
     def go(self) -> bool:
@@ -393,6 +508,7 @@ class ShowSequencer:
         self.cue_index, self.elapsed = target, 0.0
         self._current_slot = "B" if self._current_slot == "A" else "A"
         self._current_time_offset = 0.0
+        self.position_revision += 1
         return True
 
     def seek(self, cue: int | str, elapsed: float = 0.0) -> None:
@@ -413,6 +529,7 @@ class ShowSequencer:
         self.cue_index, self.elapsed = index, position
         self._current_slot = "A" if index % 2 == 0 else "B"
         self._current_time_offset = 0.0
+        self.position_revision += 1
 
     def advance(self, seconds: float) -> None:
         delta = _number(seconds, "advance seconds", minimum=0.0)
@@ -432,25 +549,33 @@ class ShowSequencer:
                 return
             # Incoming material started at the beginning of this transition.
             # Retain that preroll when it becomes the outgoing/current slot.
-            preroll = self.cue.transition_duration if self.cue.transition != 'cut' else 0.0
-            self.cue_index, self.elapsed = target, 0.0
-            self._current_time_offset = preroll
+            if self.show.timing_mode == "overlap":
+                preroll = overlap_duration(self.show, self.cue_index)
+                self.cue_index, self.elapsed = target, preroll
+                self._current_time_offset = 0.0
+            else:
+                preroll = self.cue.transition_duration if self.cue.transition != 'cut' else 0.0
+                self.cue_index, self.elapsed = target, 0.0
+                self._current_time_offset = preroll
             self._current_slot = "B" if self._current_slot == "A" else "A"
 
     def plan(self) -> ABSlotPlan:
         current = self.cue
         next_index = self._next_index()
+        if self.show.timing_mode == "overlap" and self.cue_index == len(self.show.cues)-1:
+            next_index = None  # No last-to-first transition, even for a loop.
         incoming = self.show.cues[next_index] if next_index is not None else None
         incoming_slot = "B" if self._current_slot == "A" else "A"
         progress = 0.0
         transition = current.transition
-        if incoming is not None and current.transition_duration > 0:
-            start = current.duration - current.transition_duration
-            progress = min(1.0, max(0.0, (self.elapsed - start) / current.transition_duration))
+        overlap = overlap_duration(self.show, self.cue_index)
+        if incoming is not None and overlap > 0:
+            start = current.duration - overlap
+            progress = min(1.0, max(0.0, (self.elapsed - start) / overlap))
         slot_a = current if self._current_slot == "A" else incoming
         slot_b = current if self._current_slot == "B" else incoming
         current_time = getattr(self, '_current_time_offset', 0.0) + self.elapsed
-        incoming_time = max(0.0, self.elapsed - (current.duration - current.transition_duration)) if incoming is not None and transition != 'cut' else 0.0
+        incoming_time = max(0.0, self.elapsed - (current.duration - overlap)) if incoming is not None and transition != 'cut' else 0.0
         output_b_mix = progress if self._current_slot == "A" else 1.0 - progress
         if incoming is None or current.transition == "cut":
             progress = 0.0
@@ -458,6 +583,11 @@ class ShowSequencer:
             incoming_slot_value: str | None = None if incoming is None else incoming_slot
         else:
             incoming_slot_value = incoming_slot
+        current_gain = incoming_gain = 1.0
+        if self.show.timing_mode == "overlap":
+            current_gain = cue_envelope(current, current_time)
+            incoming_active = incoming is not None and overlap > 0 and self.elapsed >= current.duration-overlap
+            incoming_gain = cue_envelope(incoming, incoming_time) if incoming_active else 0.0
         return ABSlotPlan(
             slot_a=slot_a,
             slot_b=slot_b,
@@ -471,4 +601,9 @@ class ShowSequencer:
             blackout=self.blackout,
             slot_a_time=current_time if self._current_slot == 'A' else incoming_time,
             slot_b_time=current_time if self._current_slot == 'B' else incoming_time,
+            timing_mode=self.show.timing_mode,
+            slot_a_gain=current_gain if self._current_slot == 'A' else incoming_gain,
+            slot_b_gain=current_gain if self._current_slot == 'B' else incoming_gain,
+            slot_a_brightness=slot_a.brightness if slot_a else 0.0,
+            slot_b_brightness=slot_b.brightness if slot_b else 0.0,
         )

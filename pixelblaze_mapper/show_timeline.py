@@ -20,6 +20,11 @@ def finite(value):
 
 
 def layout(show):
+    if not show.get('cues'):
+        return []
+    if show.get('timing_mode') == 'overlap':
+        from .show_sequencer import Show, timeline_rows
+        return timeline_rows(Show.from_dict(show))
     start = 0.0
     rows = []
     for cue in show.get('cues', []):
@@ -53,8 +58,36 @@ def lane(data, cue_id, name):
 def edit(show, data, command):
     """Return validated copies, so failed changes cannot damage the live show."""
     show, data = deepcopy(show), automation.validate(data)
+    if command['action'] == 'enable_overlap':
+        if show.get('timing_mode') != 'overlap':
+            old_rows = layout(show)
+            show['timing_mode'] = 'overlap'
+            rows = layout(show)
+            for index, cue in enumerate(show['cues']):
+                cue.setdefault('fade_in', rows[index]['overlap_in'])
+                cue.setdefault('fade_out', rows[index]['overlap_out'] if index+1 < len(rows)
+                               else cue['transition_duration'])
+                cue.setdefault('fade_in_curve', 'linear')
+                cue.setdefault('fade_out_curve', 'linear')
+            # Preserve loop endpoints by original cue/local-time identity.
+            # A range can invert at an overlapped boundary; disable that range
+            # rather than silently enabling a different portion of the show.
+            region = data.get('loop_region')
+            if region and rows:
+                def remap(moment):
+                    if moment >= old_rows[-1]['end']:
+                        return rows[-1]['end']
+                    index = next((i for i, row in enumerate(old_rows) if moment < row['end']), len(rows)-1)
+                    return max(0., min(rows[-1]['end'], rows[index]['start']+moment-old_rows[index]['start']))
+                start, end = remap(region['start']), remap(region['end'])
+                if start < end:
+                    region.update(start=start, end=end)
+                else:
+                    region.update(start=0., end=rows[-1]['end'], enabled=False)
+        return editor._validated(show), automation.validate(data)
     if command['action'] == 'loop':
-        total = sum(c['duration'] for c in show['cues'])
+        rows = layout(show)
+        total = rows[-1]['end'] if rows else 0.
         start, end = finite(command['start']), finite(command['end'])
         if not 0 <= start < end <= total:
             raise ValueError('Loop muss innerhalb der Show liegen; Ende muss nach dem Start liegen.')
@@ -66,7 +99,21 @@ def edit(show, data, command):
         raise ValueError('Clip nicht mehr vorhanden; Ansicht neu laden')
     cue = show['cues'][index]
     action = command['action']
-    if action == 'resize':
+    if action == 'clip_fades':
+        if show.get('timing_mode') != 'overlap':
+            raise ValueError('Zuerst echte Clip-Überlappungen aktivieren.')
+        for name in ('fade_in', 'fade_out'):
+            if name in command:
+                value = finite(command[name])
+                if not 0 <= value <= cue['duration']:
+                    raise ValueError('Ein-/Ausblendzeit muss zwischen 0 und der Clip-Dauer liegen.')
+                cue[name] = value
+        for name in ('fade_in_curve', 'fade_out_curve'):
+            if name in command:
+                if command[name] not in ('linear', 'smooth', 'ease_in', 'ease_out'):
+                    raise ValueError('Unbekannte Ein-/Ausblendkurve.')
+                cue[name] = command[name]
+    elif action == 'resize':
         show = editor.update_cue(show, index, 'duration', finite(command['duration']))
     elif action == 'move':
         seconds = max(0., finite(command['time']))
@@ -84,9 +131,13 @@ def edit(show, data, command):
                 start = max(0., min(moment, cue['duration'] - .1))
                 cue['transition_duration'] = cue['duration'] - start
             elif command['edge'] == 'end':
-                start = cue['duration'] - cue['transition_duration']
+                row = layout(show)[index]
+                start = row['fade_start'] - row['start']
                 cue['duration'] = max(start + .1, moment)
                 cue['transition_duration'] = cue['duration'] - start
+                for name in ('fade_in', 'fade_out'):
+                    if name in cue:
+                        cue[name] = min(cue[name], cue['duration'])
             else:
                 raise ValueError('Unbekannter Überblendungsgriff.')
             # Move the boundary atomically; normalized curve points and original
@@ -161,18 +212,6 @@ def install_sync_source(source):
     data = editor._cached_automation() if editor._state('recording', '0') != '1' else {}
     advance_with_loop(sequence, seconds, data)
 ''')
-    if '# SHOW_TIMELINE_MIDI_V1' not in source:
-        anchor = '    plan = sequence.plan()\n'
-        source = source.replace(anchor, anchor + '''    # SHOW_TIMELINE_MIDI_V1
-    from pixelblaze_mapper.show_midi import apply_plan
-''', 1)
-        # Brightness override must be applied after recorded automation.
-        anchor = '        plan = playback_plan(plan, editor_node.module._cached_automation(), sequence.cue.id, sequence.elapsed)\n'
-        if anchor in source:
-            source = source.replace(anchor, anchor + '    plan = apply_plan(plan, sequence.cue.id)\n', 1)
-    if SYNC_MARKER in source:
-        compile(source, '<timeline transport>', 'exec')
-        return source
     anchor = '    plan = sequence.plan()\n'
     if source.count(anchor) != 1:
         raise ValueError('Unbekannte Transport-Version; Timeline-Hook nicht installiert')
@@ -182,9 +221,21 @@ def install_sync_source(source):
     if editor_node is not None:
         plan = playback_plan(plan, editor_node.module._cached_automation(), sequence.cue.id, sequence.elapsed)
 '''
-    patched = source.replace(anchor, replacement + '    plan = apply_plan(plan, sequence.cue.id)\n', 1)
-    compile(patched, '<timeline transport>', 'exec')
-    return patched
+    if SYNC_MARKER not in source:
+        source = source.replace(anchor, replacement, 1)
+    # Canonicalize both fresh and previously installed callbacks: importing
+    # after the automation/apply block made apply_plan a not-yet-bound local.
+    midi_import = ('    # SHOW_TIMELINE_MIDI_V1\n'
+                   '    from pixelblaze_mapper.show_midi import apply_plan\n')
+    midi_apply = '    plan = apply_plan(plan, sequence.cue.id)\n'
+    source = source.replace(midi_import, '').replace(midi_apply, '')
+    source = source.replace(anchor, anchor + midi_import, 1)
+    playback = '        plan = playback_plan(plan, editor_node.module._cached_automation(), sequence.cue.id, sequence.elapsed)\n'
+    if source.count(playback) != 1:
+        raise ValueError('Unbekannte Transport-Version; MIDI-Hook nicht installiert')
+    source = source.replace(playback, playback + midi_apply, 1)
+    compile(source, '<timeline transport>', 'exec')
+    return source
 
 
 def install_editor_source(source):
@@ -238,6 +289,8 @@ def _imported_overrides(slot, cue_id):
 '''
     from .mk2_hooks import install_editor_source as install_mk2
     source = install_mk2(source)
+    from .show_overlap_runtime import install_editor_source as install_overlap
+    source = install_overlap(source)
     compile(source, '<timeline editor>', 'exec')
     return source
 
@@ -251,19 +304,15 @@ def advance_with_loop(sequence, seconds, data):
     region = data.get('loop_region', {})
     if not region.get('enabled') or sequence.state is not TransportState.PLAYING or delta == 0:
         return sequence.advance(delta)
-    durations = [c.duration for c in sequence.show.cues]
-    end = min(region['end'], sum(durations))
+    rows = layout(sequence.show.to_dict())
+    end = min(region['end'], rows[-1]['end'])
     start = min(region['start'], end)
     if end <= start:
         return sequence.advance(delta)
-    position = sum(durations[:sequence.cue_index]) + sequence.elapsed
+    position = rows[sequence.cue_index]['start'] + sequence.elapsed
     if start <= position and position + delta < end:
         return sequence.advance(delta)
     if not start <= position < end:
         position = start
     target = start + (position - start + delta) % (end - start)
-    for index, duration in enumerate(durations):
-        if target < duration:
-            sequence.seek(index, target)
-            return
-        target -= duration
+    sequence.seek(*locate(sequence.show.to_dict(), target))

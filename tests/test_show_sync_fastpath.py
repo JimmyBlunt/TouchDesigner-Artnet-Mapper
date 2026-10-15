@@ -154,8 +154,12 @@ class SourceAndFeedbackTests(unittest.TestCase):
 
     def test_idle_feedback_keeps_quarter_second_rate_without_reapplying_slots(self):
         state = Table([['key','value'],['transport','paused']])
+        mixer_pars = {'vec': NS(sequence=NS(numBlocks=5))}
+        for index in range(1, 5):
+            for suffix in ('name', 'valuex', 'valuey', 'valuez', 'valuew'):
+                mixer_pars['vec%d%s' % (index, suffix)] = NS(val=None)
         nodes = {'state_table':state, 'cue_table':Table([['id','name'],['first','Cue One']]),
-                 'show_transition_mixer':NS(),
+                 'show_transition_mixer':NS(par=NS(**mixer_pars)),
                  'transition_adapter/mixer_request':Table([['key','value']]),
                  'control_panel/btn_loop':NS(), 'control_panel/btn_blackout':NS()}
         scope = {'op':nodes.get}

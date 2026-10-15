@@ -285,6 +285,10 @@ class Host:
                 transition_out=cue['transition_duration'],
                 parameters=material['parameters'], automated_ids=list(data.get('tracks',{}).get(cue['id'],{})),
                 modified_ids=list(data.get('edits',{}).get(cue['id'],{})))
+            if document.get('timing_mode', 'legacy') == 'overlap':
+                from .show_sequencer import overlap_duration
+                show.update(transition_duration=overlap_duration(sequence.show, sequence.cue_index),
+                            transition_in=cue.get('fade_in', 0.), transition_out=cue.get('fade_out', 0.))
         materials = {active_id:active}
         if material_id and material_id not in materials:
             materials[material_id] = self.material(material_id)
@@ -516,6 +520,10 @@ def show_value(parameter, fallback):
     if _host is None or str(_host.controls.par.Source.eval()) != 'show':
         return fallback
     sequence = _host.transport.runtime()
+    if getattr(sequence.show, 'timing_mode', 'legacy') == 'overlap':
+        # Overlap applies recorded speed/tone independently to each slot.
+        # Never reapply the outgoing cue's tone to the already mixed image.
+        return fallback
     if parameter in ('intensity','contrast'):
         cue = next((c for c in _host.editor.show()['cues'] if c['id']==sequence.cue.id),None)
         if cue is None or not show_editor.is_imported(cue):
@@ -552,6 +560,8 @@ def show_import_tone(fallback):
     """Enable the existing imported-material tone stage only for an explicit show override."""
     if _host is None or str(_host.controls.par.Source.eval()) != 'show':
         return fallback
+    if getattr(_host.transport.runtime().show, 'timing_mode', 'legacy') == 'overlap':
+        return 0.
     if show_value('intensity',None) is not None or show_value('contrast',None) is not None:
         return 1.
     return fallback

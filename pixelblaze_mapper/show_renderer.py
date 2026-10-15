@@ -239,6 +239,13 @@ def render_frame(
     targets_a: Iterable[str],
     targets_b: Iterable[str],
     source_groups: Sequence[str | None] | None = None,
+    timing_mode: str = 'legacy',
+    slot_a_gain: float = 1.0,
+    slot_b_gain: float = 1.0,
+    slot_a_brightness: float = 1.0,
+    slot_b_brightness: float = 1.0,
+    slot_a_tone=None,
+    slot_b_tone=None,
 ) -> tuple[list[float], ...]:
     """Render all canonical LEDs without per-pixel validation/function calls.
 
@@ -277,7 +284,13 @@ def render_frame(
             raise ValueError("Source groups must match the UV count and use canonical group names or None")
         mask_a = _explicit_target_mask(selected_a, source_groups)
         mask_b = _explicit_target_mask(selected_b, source_groups)
-    gain = 0.0 if blackout else level * transition_gain_scale(transition, mix)
+    overlap = timing_mode == 'overlap'
+    if timing_mode not in ('legacy', 'overlap'):
+        raise ValueError('Unknown Show timing mode')
+    levels = (slot_a_gain, slot_b_gain, slot_a_brightness, slot_b_brightness)
+    if overlap and any(not isfinite(float(x)) or not 0 <= float(x) <= 1 for x in levels):
+        raise ValueError('Slot envelopes and brightness must be finite inside 0..1')
+    gain = 0.0 if blackout else (1.0 if overlap else level) * transition_gain_scale(transition, mix)
     if gain == 0.0:
         return tuple([0.0] * count for _ in slot_a)
 
@@ -314,10 +327,29 @@ def render_frame(
         salt = float(int(mix * 30.0))
         weights_b = tuple(float(_hash(index // 16, salt) <= mix) for index in range(count))
 
-    gains_b = [weight * mask * gain for weight, mask in zip(weights_b, mask_b)]
-    gains_a = [(1.0 - weight) * mask * gain for weight, mask in zip(weights_b, mask_a)]
+    if overlap and transition == 'crossfade':
+        # The clip envelopes ARE the crossfade. Applying mix again would
+        # square matched fades and create a dark midpoint. Normalize only
+        # excess opacity; intentionally unmatched fades may dip to black.
+        denominator = max(1.0, slot_a_gain + slot_b_gain)
+        gains_a = [mask * gain * slot_a_gain * slot_a_brightness / denominator for mask in mask_a]
+        gains_b = [mask * gain * slot_b_gain * slot_b_brightness / denominator for mask in mask_b]
+    else:
+        a_level = slot_a_gain * slot_a_brightness if overlap else 1.0
+        b_level = slot_b_gain * slot_b_brightness if overlap else 1.0
+        gains_b = [weight * mask * gain * b_level for weight, mask in zip(weights_b, mask_b)]
+        gains_a = [(1.0 - weight) * mask * gain * a_level for weight, mask in zip(weights_b, mask_a)]
+    def tone(value, settings):
+        if not overlap or settings is None:
+            return float(value)
+        intensity, contrast = map(float, settings)
+        if not isfinite(intensity) or not isfinite(contrast) or intensity < 0 or contrast < 0:
+            raise ValueError('Invalid slot tone')
+        # TOP-to-CHOP samplers use rgbaunit=u256 (0..255); GPU textures use
+        # normalized RGB. Convert only for tone, preserving the LED units.
+        return _clamp((float(value) / 255.0 - .5) * contrast + .5) * intensity * 255.0
     return tuple(
-        [float(a) * gain_a + float(b) * gain_b
+        [tone(a, slot_a_tone) * gain_a + tone(b, slot_b_tone) * gain_b
          for a, b, gain_a, gain_b in zip(channel_a, channel_b, gains_a, gains_b)]
         for channel_a, channel_b in zip(slot_a, slot_b)
     )

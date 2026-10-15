@@ -22,6 +22,8 @@ PORT = 9991
 ROOT = Path(__file__).with_name('timeline_assets')
 _bridge = None
 _last_tick = 0.
+_overlap_ready = False
+_overlap_last_try = -1.
 
 
 class Bridge:
@@ -75,7 +77,8 @@ class Bridge:
             self.refresh()
             return self.state
         if action in ('play', 'pause', 'stop', 'seek', 'save', 'undo', 'redo',
-                      'resize', 'move', 'transition', 'lane', 'reset_lane', 'loop'):
+                      'resize', 'move', 'transition', 'lane', 'reset_lane', 'loop',
+                      'enable_overlap', 'clip_fades'):
             if self.state['transport'].get('recording'):
                 raise ValueError('Aufnahme läuft. Zuerst Aufnahme im Show-Editor beenden.')
         else:
@@ -309,6 +312,8 @@ class TDHost:
         sequence = t.runtime() if old_show['cues'] else None
         cue_id = sequence.cue.id if sequence else None
         selected_id = old_show['cues'][e.selected()]['id'] if old_show['cues'] else None
+        if old_show.get('timing_mode', 'legacy') != show.get('timing_mode', 'legacy'):
+            self.backup_timing_change()
         try:
             e._write_automation(data)
             if show != old_show:
@@ -316,11 +321,7 @@ class TDHost:
                 e.write(show)
                 if sequence:
                     new = t.runtime()
-                    new.cue_index = next((i for i, c in enumerate(new.show.cues) if c.id == cue_id), 0)
-                    new.elapsed = min(sequence.elapsed, new.cue.duration-1e-6)
-                    new.state = sequence.state
-                    new._current_slot = sequence._current_slot
-                    new._current_time_offset = sequence._current_time_offset
+                    preserve_transport(sequence, new)
                 if selected_id:
                     index = next((i for i, c in enumerate(show['cues']) if c['id'] == selected_id), 0)
                     e._set_state('selected', index)
@@ -335,6 +336,16 @@ class TDHost:
                     t._runtime_record = (self.owner.op('show_json').text, sequence)
                     t.sync()
             raise
+
+    def backup_timing_change(self):
+        """Keep all three source documents before a timeline-model migration."""
+        import td
+        from uuid import uuid4
+        folder = Path(td.project.folder)/'.controller-runtime'/'timing-backups'
+        folder.mkdir(parents=True, exist_ok=True)
+        target = folder/('show-'+uuid4().hex+'.json')
+        payload = {name: self.owner.op(name).text for name in ('show_json', 'automation_json', 'imported_json')}
+        target.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding='utf-8')
 
     def control(self, command):
         t = self.transport_module
@@ -360,18 +371,38 @@ class TDHost:
             return None
 
 
+def preserve_transport(previous, current):
+    """Preserve selected cue and visible local time across edits/model changes."""
+    current.cue_index = next((i for i, cue in enumerate(current.show.cues) if cue.id == previous.cue.id), 0)
+    old_mode = getattr(previous.show, 'timing_mode', 'legacy')
+    new_mode = getattr(current.show, 'timing_mode', 'legacy')
+    local = previous.elapsed
+    if old_mode == 'legacy' and new_mode == 'overlap':
+        local += getattr(previous, '_current_time_offset', 0.)
+    finished = previous.state.value == 'stopped' and previous.elapsed >= previous.cue.duration
+    current.elapsed = current.cue.duration if finished else min(local, current.cue.duration-1e-6)
+    current.state, current.blackout = previous.state, previous.blackout
+    current._current_slot = previous._current_slot
+    current._current_time_offset = getattr(previous, '_current_time_offset', 0.) if new_mode == 'legacy' else 0.
+
+
 def tick():
-    global _last_tick
+    global _last_tick, _overlap_ready, _overlap_last_try
+    import td
+    if not _overlap_ready and time.monotonic()-_overlap_last_try >= 1.:
+        _overlap_last_try = time.monotonic()
+        from .show_overlap_runtime import install as install_overlap
+        owner = td.op('/project1/show_control')
+        if owner is not None:
+            _overlap_ready = install_overlap(owner)['installed']
     from . import show_midi
     if show_midi._manager is None:
-        import td
         show_midi.install(td.op('/project1/show_control'))
     show_midi.tick()
     if time.monotonic()-_last_tick < .1:
         return
     _last_tick = time.monotonic()
     from . import show_pads
-    import td
     show_pads.tick(td.op('/project1/show_control'))
     if _bridge is not None:
         _bridge.tick()

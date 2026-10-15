@@ -831,7 +831,7 @@ def _apply(command):
     if command == 'new_show':
         _set_state('selected', 0)
         _set_state('page', 0)
-        write(dict(editor.EMPTY_SHOW))
+        write(editor.empty_show())
         return
     if command == 'save_show':
         name = _field('ed_show_name').strip() or document.get('name', 'show')

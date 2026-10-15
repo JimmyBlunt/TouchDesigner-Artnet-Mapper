@@ -13,6 +13,10 @@ const clamp = (x, lo, hi) => Math.min(hi, Math.max(lo, x));
 const labelWidth = () => parseInt(getComputedStyle(document.documentElement).getPropertyValue('--label'));
 const cueFor = id => state.show.cues.find(c => c.id === id);
 const rowFor = id => state.rows.find(c => c.id === id);
+const overlapMode = () => state?.show.timing_mode === 'overlap';
+const transitionSeconds = cue => cue._preview_transition_duration ??
+  (overlapMode() ? rowFor(cue.id)?.overlap_out || 0 : cue.transition_duration);
+const durationOnlyTransition = cue => overlapMode() && cue.transition==='crossfade';
 const snap = t => {const step = Number($('snap').value); return step ? Math.round(t/step)*step : t;};
 function format(t) {return `${String(Math.floor(t/60)).padStart(2,'0')}:${(t%60).toFixed(2).padStart(5,'0')}`;}
 function node(tag, attrs={}, text='') {
@@ -76,13 +80,14 @@ function transport() {
   $('pause').disabled=!connected || t.state!=='playing' || t.recording;
   $('stop').disabled=!connected || t.recording;
   $('save').disabled=!connected || t.recording;
+  $('enableOverlap').disabled=!connected || t.recording || overlapMode();
   if($('follow').checked && t.state==='playing' && !dragging) {
     const viewport=$('scroll'), x=time*zoom;
     if(x<viewport.scrollLeft || x>viewport.scrollLeft+viewport.clientWidth-labelWidth()-40) viewport.scrollLeft=Math.max(0,x-80);
   }
 }
 function curveFor(cue, name) {
-  if(name==='@transition') return clone(state.automation.transitions?.[cue.id] || {points:[[0,0],[1,1]],mode:'linear',enabled:true});
+  if(name==='@transition') return durationOnlyTransition(cue) ? {points:[[0,.5],[1,.5]],mode:'linear',enabled:true} : clone(state.automation.transitions?.[cue.id] || {points:[[0,0],[1,1]],mode:'linear',enabled:true});
   const edit=state.automation.edits?.[cue.id]?.[name];
   if(edit) return clone(edit);
   const points=state.automation.tracks[cue.id]?.[name];
@@ -109,7 +114,7 @@ function geometry(cue, name, curve) {
   let min=Math.min(0,...values), max=Math.max(1,...values);
   if(transition) {min=0; max=1;}
   else if(max-min<.001) max=min+1;
-  const width=Math.max(1,(transition ? cue.transition_duration : cue.duration)*zoom);
+  const width=Math.max(1,(transition ? transitionSeconds(cue) : cue.duration)*zoom);
   const height=heightFor(cue,name), bottom=height-12, span=height-24;
   return {duration,width,min,max,height,bottom,span,x:t=>t/duration*width,y:v=>bottom-(v-min)/(max-min)*span};
 }
@@ -128,6 +133,8 @@ function select(cue, name=null, point=null) {selected={cue,name,point}; render()
 function render() {
   if(!state) return;
   $('showName').textContent=state.show.name;
+  $('timingMode').textContent=overlapMode()?'Clips überlappen':'Clips nacheinander';
+  $('enableOverlap').hidden=overlapMode();
   const total=state.rows.at(-1)?.end||0;
   $('summary').textContent=`${state.show.cues.length} Clips · ${format(total)}`;
   const width=Math.max(400,total*zoom+180,$('scroll').clientWidth-labelWidth());
@@ -151,9 +158,25 @@ function render() {
     const grid=node('div',{class:'grid'});grid.style.width=width+'px';
     const clip=node('div',{class:'clip'+(selected?.cue===cue.id?' selected':''),tabindex:'0',role:'button','aria-label':`${cue.name} Clip ${index+1}, ${cue.duration.toFixed(1)} Sekunden`});
     clip.style.left=row.start*zoom+'px';clip.style.width=Math.max(8,cue.duration*zoom)+'px';
-    const fade=node('div',{class:'fade-region'});fade.style.width=cue.transition_duration*zoom+'px';
+    const fade=node('div',{class:'fade-region',title:overlapMode()?'Tatsächliche Überlappung':'Übergangsbereich'});fade.style.width=transitionSeconds(cue)*zoom+'px';
     const handle=node('div',{class:'resize',title:'Clip-Länge ändern'});
     clip.append(fade,node('span',{class:'clip-caption'},cue.name),handle);
+    if(overlapMode()) {
+      for(const kind of ['in','out']) {
+        const seconds=cue['fade_'+kind]||0;
+        const region=node('div',{class:'clip-envelope fade-'+kind});
+        region.style.width=seconds*zoom+'px';
+        const grip=node('span',{class:'clip-fade-handle fade-'+kind,role:'slider',tabindex:'0',
+          'aria-label':`${cue.name}: ${kind==='in'?'Einblendung':'Ausblendung'} ändern`,
+          'aria-valuemin':'0','aria-valuemax':cue.duration,'aria-valuenow':seconds});
+        grip.style[kind==='in'?'left':'right']=Math.max(0,seconds*zoom-4)+'px';
+        grip.onpointerdown=e=>clipEnvelopeDrag(e,cue,kind,clip,grip,region);
+        grip.onkeydown=e=>{if(['ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();e.stopPropagation();
+          const sign=(e.key==='ArrowRight'?1:-1)*(kind==='in'?1:-1);
+          command({action:'clip_fades',cue:cue.id,['fade_'+kind]:clamp(seconds+sign*.1,0,cue.duration)});}};
+        clip.append(region,grip);
+      }
+    }
     clip.onpointerdown=event=>clipDrag(event,cue,clip,event.target===handle);
     clip.onkeydown=e=>{if(e.key==='Enter'){expanded.add(cue.id);select(cue.id);}};
     grid.append(clip);head.append(grid);track.append(head);
@@ -161,7 +184,7 @@ function render() {
     if(expanded.has(cue.id)) {
       const names=[...new Set([...Object.keys(state.automation.tracks[cue.id]||{}),...Object.keys(state.automation.edits?.[cue.id]||{})])];
       for(const name of names) track.append(laneRow(cue,name,width));
-      if(cue.transition!=='cut') track.append(laneRow(cue,'@transition',width));
+      if(cue.transition!=='cut' && transitionSeconds(cue)>0) track.append(laneRow(cue,'@transition',width));
       const add=node('div',{class:'row add-row'}), addLabel=node('div',{class:'track-label'}), dropdown=node('select',{'aria-label':`Parameter hinzufügen Spur ${index+1}`});
       dropdown.append(node('option',{value:''},'+ Parameter hinzufügen'));
       for(const name of Object.keys(state.parameters[cue.id]).filter(n=>!names.includes(n))) dropdown.append(node('option',{value:name},name));
@@ -174,14 +197,15 @@ function render() {
 }
 function laneRow(cue,name,width) {
   const curve=curveFor(cue,name), g=geometry(cue,name,curve), row=rowFor(cue.id), isTransition=name==='@transition';
+  const durationOnly=isTransition && durationOnlyTransition(cue);
   const active=selected?.cue===cue.id && selected.name===name;
   const container=node('div',{class:'row lane'+(active?' selected':'')+(!curve.enabled?' disabled':'')});
   container.style.setProperty('--height',g.height+'px');
-  const label=node('div',{class:'track-label'}), title=node('span',{},isTransition?'Übergang · '+cue.transition:name);
-  label.append(title,node('small',{},isTransition?`${cue.transition_duration.toFixed(2)} s · ${curve.mode}`:`${g.min.toFixed(2)} … ${g.max.toFixed(2)} · ${state.automation.edits?.[cue.id]?.[name]?'bearbeitet':'aufgenommen'}`));
+  const label=node('div',{class:'track-label'}), title=node('span',{},durationOnly?'Überlappungsdauer':isTransition?'Übergang · '+cue.transition:name);
+  label.append(title,node('small',{},durationOnly?`${transitionSeconds(cue).toFixed(2)} s · zwei Zeitgriffe`:isTransition?`${transitionSeconds(cue).toFixed(2)} s · ${curve.mode}`:`${g.min.toFixed(2)} … ${g.max.toFixed(2)} · ${state.automation.edits?.[cue.id]?.[name]?'bearbeitet':'aufgenommen'}`));
   label.onclick=()=>select(cue.id,name);container.append(label);
   const grid=node('div',{class:'grid'});grid.style.width=width+'px';grid.style.overflow='hidden';
-  const svg=svgNode('svg',{class:'curve',width:g.width,height:g.height,role:'img','aria-label':`${cue.name}: ${isTransition?'Übergang':name} Automationskurve`});
+  const svg=svgNode('svg',{class:'curve',width:g.width,height:g.height,role:'img','aria-label':durationOnly?`${cue.name}: Überlappungsdauer, zwei Zeitgriffe`:`${cue.name}: ${isTransition?'Übergang':name} Automationskurve`});
   svg.style.left=(isTransition?row.fade_start:row.start)*zoom+'px';
   svg.append(svgNode('path',{class:'baseline',d:`M0,${g.bottom} H${g.width}`}));
   const original=state.automation.tracks[cue.id]?.[name];
@@ -190,7 +214,7 @@ function laneRow(cue,name,width) {
   curve.points.forEach(([time,value],i)=>{
     if(time>g.duration) return;
     const point=svgNode('circle',{class:'point'+(active&&selected.point===i?' active':''),cx:g.x(time),cy:g.y(value),r:active&&selected.point===i?5:3.5});
-    const title=svgNode('title',{});title.textContent=`${isTransition?(time*cue.transition_duration).toFixed(2):time.toFixed(2)} s · ${value.toFixed(3)}`;point.append(title);
+    const title=svgNode('title',{});title.textContent=`${isTransition?(time*transitionSeconds(cue)).toFixed(2):time.toFixed(2)} s · ${value.toFixed(3)}`;point.append(title);
     if(isTransition && (i===0 || i===curve.points.length-1)) {
       const edge=i===0?'start':'end';
       point.dataset.fadeEdge=edge;point.style.cursor='ew-resize';
@@ -201,10 +225,10 @@ function laneRow(cue,name,width) {
     svg.append(point);
   });
   svg.ondblclick=async event=>{
-    if(event.target.closest('circle') || busy) return;
+    if(durationOnly || event.target.closest('circle') || busy) return;
     const rect=svg.getBoundingClientRect();
     let time=clamp((event.clientX-rect.left)/g.width*g.duration,0,g.duration);
-    if(isTransition) time=clamp(snap(time*cue.transition_duration)/cue.transition_duration,.0001,.9999);else time=clamp(snap(time),0,cue.duration);
+    if(isTransition) time=clamp(snap(time*transitionSeconds(cue))/transitionSeconds(cue),.0001,.9999);else time=clamp(snap(time),0,cue.duration);
     let value=g.min+(g.bottom-(event.clientY-rect.top))/g.span*(g.max-g.min);
     value=clamp(value,g.min,g.max);
     const copy=clone(curve);copy.points=copy.points.filter(p=>Math.abs(p[0]-time)>1e-6);copy.points.push([time,value]);copy.points.sort((a,b)=>a[0]-b[0]);
@@ -244,7 +268,7 @@ function pointDrag(event,cue,name,index,svg,point,line,g,curve) {
   const rect=svg.getBoundingClientRect(), copy=clone(curve), original=copy.points[index].slice();
   gesture(event,e=>{
     let time=(e.clientX-rect.left)/g.width*g.duration;
-    time=name==='@transition'?snap(time*cue.transition_duration)/cue.transition_duration:snap(time);
+    time=name==='@transition'?snap(time*transitionSeconds(cue))/transitionSeconds(cue):snap(time);
     const lower=index>0?copy.points[index-1][0]+1e-5:0;
     const upper=index+1<copy.points.length?copy.points[index+1][0]-1e-5:g.duration;
     time=clamp(time,lower,Math.min(g.duration,upper));
@@ -252,12 +276,12 @@ function pointDrag(event,cue,name,index,svg,point,line,g,curve) {
     if(name==='@transition') value=clamp(value,copy.points[index-1][1],copy.points[index+1][1]);
     copy.points[index]=[time,value];
     point.setAttribute('cx',g.x(time));point.setAttribute('cy',g.y(value));line.setAttribute('d',pathFor(copy.points,copy.mode,g));
-    $('pointTime').value=(name==='@transition'?time*cue.transition_duration:time).toFixed(3);$('pointValue').value=value.toFixed(4);
+    $('pointTime').value=(name==='@transition'?time*transitionSeconds(cue):time).toFixed(3);$('pointValue').value=value.toFixed(4);
   },async()=>{if(JSON.stringify(original)!==JSON.stringify(copy.points[index])) await setCurve(cue,name,copy);render();});
 }
 function fadeEdgeDrag(event,cue,edge,svg,line,curve) {
   const startX=event.clientX, scrollStart=$('scroll').scrollLeft, row=rowFor(cue.id);
-  const fadeStart=cue.duration-cue.transition_duration;
+  const fadeStart=cue.duration-transitionSeconds(cue);
   const initial=edge==='start'?fadeStart:cue.duration;
   let moment=initial, distance=0;
   gesture(event,e=>{
@@ -265,7 +289,7 @@ function fadeEdgeDrag(event,cue,edge,svg,line,curve) {
     moment=snap(initial+distance/zoom);
     moment=edge==='start'?clamp(moment,0,cue.duration-.1):Math.max(fadeStart+.1,moment);
     const start=edge==='start'?moment:fadeStart, end=edge==='end'?moment:cue.duration;
-    const preview={...cue,duration:end,transition_duration:end-start}, shape=geometry(preview,'@transition',curve);
+    const preview={...cue,duration:end,transition_duration:end-start,_preview_transition_duration:end-start}, shape=geometry(preview,'@transition',curve);
     svg.style.left=(row.start+start)*zoom+'px';svg.setAttribute('width',shape.width);
     line.setAttribute('d',pathFor(curve.points,curve.mode,shape));
     svg.querySelector('.baseline').setAttribute('d',`M0,${shape.bottom} H${shape.width}`);
@@ -282,23 +306,52 @@ function fadeEdgeDrag(event,cue,edge,svg,line,curve) {
     render();
   });
 }
+function clipEnvelopeDrag(event,cue,kind,clip,grip,region) {
+  if(event.button!==0 || busy) return;
+  event.stopPropagation();
+  const startX=event.clientX, scrollStart=$('scroll').scrollLeft, initial=cue['fade_'+kind]||0;
+  let value=initial, distance=0;
+  selected={cue:cue.id,name:null,point:null};inspector();
+  gesture(event,e=>{
+    distance=e.clientX-startX+$('scroll').scrollLeft-scrollStart;
+    value=clamp(snap(initial+(kind==='in'?1:-1)*distance/zoom),0,cue.duration);
+    region.style.width=value*zoom+'px';grip.style[kind==='in'?'left':'right']=Math.max(0,value*zoom-4)+'px';
+    grip.setAttribute('aria-valuenow',value);$('clipFade'+(kind==='in'?'In':'Out')).value=value.toFixed(3);
+    message(`${kind==='in'?'Einblendung':'Ausblendung'}: ${value.toFixed(2)} s`);
+  },async()=>{
+    if(Math.abs(distance)>3 && Math.abs(value-initial)>1e-7)
+      await command({action:'clip_fades',cue:cue.id,['fade_'+kind]:value});
+    render();
+  });
+}
 async function setCurve(cue,name,curve) {
+  if(name==='@transition' && durationOnlyTransition(cue)) return;
   return command(name==='@transition'?{action:'transition',cue:cue.id,curve}:{action:'lane',cue:cue.id,parameter:name,curve});
 }
 function inspector() {
   const cue=selected && cueFor(selected.cue);
-  $('clipForm').hidden=!cue;$('pointForm').hidden=!cue || !selected.name;
+  const durationOnly=cue && selected.name==='@transition' && durationOnlyTransition(cue);
+  $('clipForm').hidden=!cue;$('pointForm').hidden=!cue || !selected.name || durationOnly;
   $('selectionTitle').textContent=cue?.name||'Clip auswählen';
   $('selectionHint').textContent=cue ? `${format(rowFor(cue.id).start)} – ${format(rowFor(cue.id).end)}` : 'Eine Spur öffnen, um aufgezeichnete Parameter und Übergänge zu bearbeiten.';
   if(!cue) return;
   $('duration').value=cue.duration;
   $('transitionKind').replaceChildren(...state.transitions.map(item=>node('option',{value:item.value},item.label)));
   $('transitionKind').value=cue.transition;$('fadeDuration').value=cue.transition_duration;
-  if(!selected.name) return;
+  $('overlapLabel').textContent=overlapMode()?'Überlappung zum nächsten Clip (s)':'Überblendung (s)';
+  $('overlapActual').hidden=!overlapMode();
+  $('overlapActual').textContent=overlapMode()?`Tatsächlich: ${transitionSeconds(cue).toFixed(2)} s · höchstens zwei Clips gleichzeitig` : '';
+  $('clipFades').hidden=!overlapMode();
+  for(const kind of ['In','Out']) {
+    $('clipFade'+kind).value=cue['fade_'+kind.toLowerCase()]||0;
+    $('clipFade'+kind).max=cue.duration;
+    $('clipFade'+kind+'Curve').value=cue['fade_'+kind.toLowerCase()+'_curve']||'linear';
+  }
+  if(!selected.name || durationOnly) return;
   const curve=curveFor(cue,selected.name), point=curve.points[selected.point], transition=selected.name==='@transition';
   $('interpolation').value=curve.mode;$('override').checked=curve.enabled;
   $('pointFields').hidden=!point;
-  if(point) {$('pointTime').value=transition?point[0]*cue.transition_duration:point[0];$('pointValue').value=point[1];}
+  if(point) {$('pointTime').value=transition?point[0]*transitionSeconds(cue):point[0];$('pointValue').value=point[1];}
   const endpoint=transition && (selected.point===0 || selected.point===curve.points.length-1);
   $('pointTime').disabled=endpoint;$('pointValue').disabled=endpoint;
   $('deletePoint').disabled=endpoint || curve.points.length<=1;
@@ -316,9 +369,16 @@ $('fit').onclick=()=>{zoom=clamp(($('scroll').clientWidth-labelWidth()-30)/(stat
 $('ticks').onclick=e=>command({action:'seek',time:Math.max(0,snap((e.clientX-$('ticks').getBoundingClientRect().left)/zoom))});
 $('clipForm').onsubmit=e=>{e.preventDefault();command({action:'resize',cue:selected.cue,duration:Number($('duration').value)});};
 $('applyFade').onclick=()=>command({action:'transition',cue:selected.cue,kind:$('transitionKind').value,duration:Number($('fadeDuration').value)});
+$('applyClipFades').onclick=()=>command({action:'clip_fades',cue:selected.cue,
+  fade_in:Number($('clipFadeIn').value),fade_out:Number($('clipFadeOut').value),
+  fade_in_curve:$('clipFadeInCurve').value,fade_out_curve:$('clipFadeOutCurve').value});
+$('enableOverlap').onclick=()=>{
+  if(window.confirm('Echte Überlappungen aktivieren? Die Show wird kürzer. Clip-Dauern und Aufnahmen bleiben erhalten; Ein-/Ausblendungen werden aus den bisherigen Übergängen übernommen. Mit „Zurück“ kannst du die Änderung rückgängig machen.'))
+    command({action:'enable_overlap'});
+};
 $('pointForm').onsubmit=async e=>{
   e.preventDefault(); const cue=cueFor(selected.cue), curve=curveFor(cue,selected.name), transition=selected.name==='@transition';
-  let time=Number($('pointTime').value)/(transition?cue.transition_duration:1), value=Number($('pointValue').value);
+  let time=Number($('pointTime').value)/(transition?transitionSeconds(cue):1), value=Number($('pointValue').value);
   if(time<0 || time>(transition?1:cue.duration)) return message('Punktzeit muss innerhalb des Clips liegen.',true);
   if(curve.points.some((p,i)=>i!==selected.point&&Math.abs(p[0]-time)<1e-7)) return message('An dieser Zeit existiert bereits ein Punkt.',true);
   curve.points[selected.point]=[time,value];curve.points.sort((a,b)=>a[0]-b[0]);selected.point=curve.points.findIndex(p=>p[0]===time);await setCurve(cue,selected.name,curve);

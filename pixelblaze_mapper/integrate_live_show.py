@@ -19,6 +19,10 @@ MANIFEST = REPO_ROOT / "effects/effects_manifest.json"
 
 TRANSITION_SHADER = r'''out vec4 fragColor;
 uniform vec4 uTransition;
+uniform vec4 uOverlap; // envelope A/B, brightness A/B
+uniform vec4 uOverlapMode; // x enables opt-in clip-local rendering
+uniform vec4 uSlotToneA; // intensity, contrast, imported flag
+uniform vec4 uSlotToneB;
 
 // Mode numbers follow pixelblaze_mapper.show_renderer.TRANSITION_INFO order.
 // tests/test_show_transitions.py keeps the LED path and this preview in step.
@@ -78,8 +82,22 @@ void main()
         weight = step(reveal, progress);
     }
 
-    vec4 result = mix(colorA, colorB, weight);
-    result.rgb *= blackout ? 0.0 : brightness * gain;
+    vec4 result;
+    if (uOverlapMode.x > 0.5) {
+        if (uSlotToneA.z > 0.5)
+            colorA.rgb = clamp((colorA.rgb - 0.5) * uSlotToneA.y + 0.5, 0.0, 1.0) * max(0.0, uSlotToneA.x);
+        if (uSlotToneB.z > 0.5)
+            colorB.rgb = clamp((colorB.rgb - 0.5) * uSlotToneB.y + 0.5, 0.0, 1.0) * max(0.0, uSlotToneB.x);
+        vec2 envelope = clamp(uOverlap.xy, 0.0, 1.0);
+        vec2 levels = clamp(uOverlap.zw, 0.0, 1.0);
+        vec2 weights = mode == 1 ? envelope / max(1.0, envelope.x + envelope.y)
+                                : vec2(1.0 - weight, weight) * envelope;
+        result = colorA * weights.x * levels.x + colorB * weights.y * levels.y;
+        result.rgb *= blackout ? 0.0 : gain;
+    } else {
+        result = mix(colorA, colorB, weight);
+        result.rgb *= blackout ? 0.0 : brightness * gain;
+    }
     fragColor = TDOutputSwizzle(result);
 }
 '''
@@ -161,6 +179,7 @@ def onCook(scriptOp):
         transition=transition, output_b_mix=b_mix,
         brightness=brightness, blackout=blackout,
         targets_a=targets_a, targets_b=targets_b, source_groups=source_groups,
+        **__import__('pixelblaze_mapper.show_overlap_runtime', fromlist=['render_options']).render_options(op),
     )
     scriptOp.clear()
     scriptOp.numSamples = count
@@ -400,6 +419,9 @@ def _apply_slot(player_name, request_path):
         vec4valuex=parameters['focus_x'], vec4valuey=parameters['focus_y'], vec4valuez=parameters['zoom'])
     for name, value in values.items():
         _set_parameter(player, name, value)
+    if editor is not None and hasattr(editor.module, '_overlap_enabled') and editor.module._overlap_enabled():
+        slot = 'a' if player_name == 'slot_a_player' else 'b'
+        _set_parameter(player, 'vec0valuey', editor.module.overlap_slot_phase(slot))
     for index, component in enumerate(('r', 'g', 'b')):
         _set_parameter(player, 'color0rgb' + component, parameters['color_a'][index])
         _set_parameter(player, 'color1rgb' + component, parameters['color_b'][index])
@@ -420,6 +442,8 @@ def sync_render():
     for name, value in (('vec0valuex', TRANSITIONS.get(mode, 0)), ('vec0valuey', output_b_mix),
                         ('vec0valuez', brightness), ('vec0valuew', blackout)):
         _set_parameter(mixer, name, value)
+    from pixelblaze_mapper.show_overlap_runtime import sync_mixer
+    sync_mixer(mixer, op)
     now = time.monotonic()
     if now - _last_feedback < 0.25:
         return
@@ -480,8 +504,10 @@ def integrate():
     mixer.par.outputresolution = "custom"
     mixer.par.resolutionw = 512
     mixer.par.resolutionh = 512
-    mixer.par.vec.sequence.numBlocks = 1
+    mixer.par.vec.sequence.numBlocks = 5
     mixer.par.vec0name = "uTransition"
+    for index, name in enumerate(('uOverlap', 'uOverlapMode', 'uSlotToneA', 'uSlotToneB'), 1):
+        getattr(mixer.par, 'vec%dname' % index).val = name
     for connector in mixer.inputConnectors:
         connector.disconnect()
     _connect(player_a, mixer, 0)
@@ -515,6 +541,8 @@ def integrate():
         _connect(slot_uv, sampler, 0)
     led_callback = _get_or_create(owner, textDAT, "show_led_renderer_callbacks")
     led_callback.text = LED_RENDER_CALLBACK
+    from pixelblaze_mapper.show_overlap_runtime import install_led_source
+    led_callback.text = install_led_source(led_callback.text)
     led_renderer = _get_or_create(owner, scriptCHOP, "show_led_renderer")
     led_renderer.par.callbacks = led_callback.path
     for connector in led_renderer.inputConnectors:

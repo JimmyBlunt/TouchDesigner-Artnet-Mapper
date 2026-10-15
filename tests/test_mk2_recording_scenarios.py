@@ -52,6 +52,9 @@ class ConnectedRig:
         """Re-execute shipped callbacks against the same simulated COMP storage."""
         source=install_editor_source(EDITOR_RUNTIME)
         before,tail=source.split(mk2_hooks.MARKER,1)
+        # Exercise the MK2 recording wrappers in this deliberately partial
+        # fixture; the overlap suite executes the full editor hook chain.
+        tail=tail.split('# SHOW_OVERLAP_EDITOR_V1',1)[0]
         selected={'_apply','start_recording','_arm','_disarm','_require_matching_material','_take',
                   'stop_recording','_store_state_in_cue','_live_state','_trim_new_cue','_remove_cue',
                   '_write_uniforms','_effective_parameters','_imported_overrides'}

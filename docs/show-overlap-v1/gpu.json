@@ -1,0 +1,385 @@
+{
+  "passed": true,
+  "cases": 42,
+  "maximum_error": 0.001960784569382666,
+  "results": [
+    {
+      "mode": "crossfade",
+      "gains": [
+        1,
+        0
+      ],
+      "blackout": false,
+      "max_error": 0.0007843166589736883
+    },
+    {
+      "mode": "crossfade",
+      "gains": [
+        0.5,
+        0.5
+      ],
+      "blackout": false,
+      "max_error": 0.0013725459575653076
+    },
+    {
+      "mode": "crossfade",
+      "gains": [
+        0,
+        1
+      ],
+      "blackout": false,
+      "max_error": 0.001960784569382666
+    },
+    {
+      "mode": "crossfade",
+      "gains": [
+        1,
+        1
+      ],
+      "blackout": false,
+      "max_error": 0.0013725459575653076
+    },
+    {
+      "mode": "crossfade",
+      "gains": [
+        0.2,
+        0.3
+      ],
+      "blackout": false,
+      "max_error": 0.0015294137597084145
+    },
+    {
+      "mode": "crossfade",
+      "gains": [
+        0.5,
+        0.5
+      ],
+      "blackout": true,
+      "max_error": 0.0
+    },
+    {
+      "mode": "cut",
+      "gains": [
+        1,
+        0
+      ],
+      "blackout": false,
+      "max_error": 0.0007843166589736883
+    },
+    {
+      "mode": "cut",
+      "gains": [
+        0.5,
+        0.5
+      ],
+      "blackout": false,
+      "max_error": 0.0015686333179473766
+    },
+    {
+      "mode": "cut",
+      "gains": [
+        0,
+        1
+      ],
+      "blackout": false,
+      "max_error": 0.0
+    },
+    {
+      "mode": "cut",
+      "gains": [
+        1,
+        1
+      ],
+      "blackout": false,
+      "max_error": 0.0007843166589736883
+    },
+    {
+      "mode": "cut",
+      "gains": [
+        0.2,
+        0.3
+      ],
+      "blackout": false,
+      "max_error": 0.0016407844424247975
+    },
+    {
+      "mode": "cut",
+      "gains": [
+        0.5,
+        0.5
+      ],
+      "blackout": true,
+      "max_error": 0.0
+    },
+    {
+      "mode": "fade_black",
+      "gains": [
+        1,
+        0
+      ],
+      "blackout": false,
+      "max_error": 0.0014117699861526944
+    },
+    {
+      "mode": "fade_black",
+      "gains": [
+        0.5,
+        0.5
+      ],
+      "blackout": false,
+      "max_error": 0.0012548992037772905
+    },
+    {
+      "mode": "fade_black",
+      "gains": [
+        0,
+        1
+      ],
+      "blackout": false,
+      "max_error": 0.0
+    },
+    {
+      "mode": "fade_black",
+      "gains": [
+        1,
+        1
+      ],
+      "blackout": false,
+      "max_error": 0.0014117699861526944
+    },
+    {
+      "mode": "fade_black",
+      "gains": [
+        0.2,
+        0.3
+      ],
+      "blackout": false,
+      "max_error": 0.0014575687725842
+    },
+    {
+      "mode": "fade_black",
+      "gains": [
+        0.5,
+        0.5
+      ],
+      "blackout": true,
+      "max_error": 0.0
+    },
+    {
+      "mode": "wipe",
+      "gains": [
+        1,
+        0
+      ],
+      "blackout": false,
+      "max_error": 0.0
+    },
+    {
+      "mode": "wipe",
+      "gains": [
+        0.5,
+        0.5
+      ],
+      "blackout": false,
+      "max_error": 0.00137254297733308
+    },
+    {
+      "mode": "wipe",
+      "gains": [
+        0,
+        1
+      ],
+      "blackout": false,
+      "max_error": 0.001960784569382666
+    },
+    {
+      "mode": "wipe",
+      "gains": [
+        1,
+        1
+      ],
+      "blackout": false,
+      "max_error": 0.001960784569382666
+    },
+    {
+      "mode": "wipe",
+      "gains": [
+        0.2,
+        0.3
+      ],
+      "blackout": false,
+      "max_error": 0.0015294137597084145
+    },
+    {
+      "mode": "wipe",
+      "gains": [
+        0.5,
+        0.5
+      ],
+      "blackout": true,
+      "max_error": 0.0
+    },
+    {
+      "mode": "wipe_left",
+      "gains": [
+        1,
+        0
+      ],
+      "blackout": false,
+      "max_error": 0.0007843166589736883
+    },
+    {
+      "mode": "wipe_left",
+      "gains": [
+        0.5,
+        0.5
+      ],
+      "blackout": false,
+      "max_error": 0.0015686333179473766
+    },
+    {
+      "mode": "wipe_left",
+      "gains": [
+        0,
+        1
+      ],
+      "blackout": false,
+      "max_error": 0.0
+    },
+    {
+      "mode": "wipe_left",
+      "gains": [
+        1,
+        1
+      ],
+      "blackout": false,
+      "max_error": 0.0007843166589736883
+    },
+    {
+      "mode": "wipe_left",
+      "gains": [
+        0.2,
+        0.3
+      ],
+      "blackout": false,
+      "max_error": 0.0016407844424247975
+    },
+    {
+      "mode": "wipe_left",
+      "gains": [
+        0.5,
+        0.5
+      ],
+      "blackout": true,
+      "max_error": 0.0
+    },
+    {
+      "mode": "wipe_up",
+      "gains": [
+        1,
+        0
+      ],
+      "blackout": false,
+      "max_error": 0.0007843166589736883
+    },
+    {
+      "mode": "wipe_up",
+      "gains": [
+        0.5,
+        0.5
+      ],
+      "blackout": false,
+      "max_error": 0.0015686333179473766
+    },
+    {
+      "mode": "wipe_up",
+      "gains": [
+        0,
+        1
+      ],
+      "blackout": false,
+      "max_error": 0.0
+    },
+    {
+      "mode": "wipe_up",
+      "gains": [
+        1,
+        1
+      ],
+      "blackout": false,
+      "max_error": 0.0007843166589736883
+    },
+    {
+      "mode": "wipe_up",
+      "gains": [
+        0.2,
+        0.3
+      ],
+      "blackout": false,
+      "max_error": 0.0016407844424247975
+    },
+    {
+      "mode": "wipe_up",
+      "gains": [
+        0.5,
+        0.5
+      ],
+      "blackout": true,
+      "max_error": 0.0
+    },
+    {
+      "mode": "wipe_down",
+      "gains": [
+        1,
+        0
+      ],
+      "blackout": false,
+      "max_error": 0.0
+    },
+    {
+      "mode": "wipe_down",
+      "gains": [
+        0.5,
+        0.5
+      ],
+      "blackout": false,
+      "max_error": 0.00137254297733308
+    },
+    {
+      "mode": "wipe_down",
+      "gains": [
+        0,
+        1
+      ],
+      "blackout": false,
+      "max_error": 0.001960784569382666
+    },
+    {
+      "mode": "wipe_down",
+      "gains": [
+        1,
+        1
+      ],
+      "blackout": false,
+      "max_error": 0.001960784569382666
+    },
+    {
+      "mode": "wipe_down",
+      "gains": [
+        0.2,
+        0.3
+      ],
+      "blackout": false,
+      "max_error": 0.0015294137597084145
+    },
+    {
+      "mode": "wipe_down",
+      "gains": [
+        0.5,
+        0.5
+      ],
+      "blackout": true,
+      "max_error": 0.0
+    }
+  ]
+}

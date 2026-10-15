@@ -1,0 +1,17 @@
+{
+  "timing_mode": "overlap",
+  "clips": 15,
+  "tracks_unchanged": true,
+  "imported_unchanged": true,
+  "errors": {},
+  "saved": "E:\\Daten\\Dokumente\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\shows\\test1.json",
+  "file_backup": "E:\\Daten\\Dokumente\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\.controller-runtime\\timing-backups\\files-20261016-003053",
+  "dirty": false,
+  "transport": "playing",
+  "installer_idempotent": {
+    "status": "ready",
+    "installed": true,
+    "changed": []
+  },
+  "mode": "material"
+}

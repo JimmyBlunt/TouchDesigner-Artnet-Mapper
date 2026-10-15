@@ -228,6 +228,14 @@ def transition_plan(plan, automation, cue_id):
 def playback_plan(plan, data, cue_id, elapsed):
     from dataclasses import replace
     plan = transition_plan(plan, data, cue_id)
+    if getattr(plan, 'timing_mode', 'legacy') == 'overlap':
+        levels = {}
+        for slot in ('a', 'b'):
+            cue = getattr(plan, 'slot_' + slot)
+            moment = getattr(plan, 'slot_' + slot + '_time')
+            value = values_at(data, cue.id, moment).get('brightness', cue.brightness) if cue else 0.0
+            levels['slot_' + slot + '_brightness'] = max(0., min(1., float(value)))
+        return replace(plan, **levels)
     recorded = data.get('tracks', {}).get(cue_id, {}).get('brightness')
     curve = data.get('edits', {}).get(cue_id, {}).get('brightness')
     brightness = value_at(recorded, elapsed) if recorded else None

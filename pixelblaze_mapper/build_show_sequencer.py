@@ -343,6 +343,9 @@ def sync():
         _put(path, 'target_groups', ','.join(slot.target_groups) if slot else 'all')
         _put(path, 'coordinate_mode', slot.coordinate_mode if slot else '')
         _put(path, 'animation_time', slot_time)
+        _put(path, 'cue_id', slot.id if slot else '')
+        _put(path, 'local_time', slot_time)
+        _put(path, 'timing_mode', getattr(plan, 'timing_mode', 'legacy'))
         uv_path = path.replace('material_request', 'coordinate_request')
         _put(uv_path, 'mode', slot.coordinate_mode if slot else 'global')
         _put(uv_path, 'hybrid_mix', slot.parameters.hybrid_mix if slot else 0.5)
@@ -350,6 +353,11 @@ def sync():
     _put('transition_adapter/mixer_request', 'progress', plan.progress)
     _put('transition_adapter/mixer_request', 'output_b_mix', plan.output_b_mix)
     _put('transition_adapter/mixer_request', 'brightness', plan.brightness)
+    _put('transition_adapter/mixer_request', 'timing_mode', getattr(plan, 'timing_mode', 'legacy'))
+    for slot_name in ('a', 'b'):
+        for suffix in ('gain', 'brightness'):
+            key = 'slot_' + slot_name + '_' + suffix
+            _put('transition_adapter/mixer_request', key, getattr(plan, key, 1.0))
     _put('transition_adapter/mixer_request', 'blackout', int(plan.blackout))
     _put('transition_adapter/mixer_request', 'outgoing_slot', plan.outgoing_slot)
     _put('transition_adapter/mixer_request', 'incoming_slot', plan.incoming_slot or '')

@@ -3,13 +3,13 @@
 Im Show-Editor oben rechts **TIMELINE** anklicken. Der Editor öffnet ein separates Browserfenster unter `http://127.0.0.1:9991/`. TouchDesigner muss geöffnet sein und Frames ausführen.
 
 - Eine Spur pro Cue/Materialaufnahme. Spur anklicken, um Automation und Übergang aufzuklappen.
-- Clip horizontal ziehen: in der bestehenden Show-Reihenfolge umordnen. Clips bleiben lückenlos; es gibt keine frei überlappenden Material-Layer.
+- Clip horizontal ziehen: in der bestehenden Show-Reihenfolge umordnen. Die Reihenfolge bleibt sequenziell; im Überlappungsmodus beginnt der nächste Clip bereits vor dem Ende seines Vorgängers. Freie Lücken oder mehr als zwei gleichzeitige Material-Layer sind nicht vorgesehen.
 - Rechten Cliprand ziehen oder im Inspector die Dauer eingeben. Nachfolgende Clips rücken mit. Original-Samples jenseits einer gekürzten Dauer bleiben erhalten und werden beim Verlängern wieder sichtbar.
 - Kurve doppelklicken: neuen Punkt setzen. Punkt ziehen oder Zeit/Wert im Inspector eingeben. **Entf** löscht den gewählten Punkt.
 - Über das Dropdown am Spuranfang einen zusätzlichen Parameter hinzufügen. Unterstützt werden die vom Player verwendeten numerischen Parameter; Farben/Vektoren und Compile-Time-Schalter sind ausgeschlossen.
 - Interpolation: Linear, Step, Smooth/S-Kurve, Ease In, Ease Out. Smooth ist eine interpolierte S-Kurve ohne separate Bézier-Tangenten.
 - **Bearbeitung aktiv** schaltet die manuelle Ebene an/aus. **Original wiederherstellen** entfernt die manuelle Parameterkurve. Aufzeichnungen bleiben unverändert und erscheinen gestrichelt hinter der Bearbeitung.
-- Übergänge: Typ und Dauer im Inspector, Verlauf in der Übergangsspur. Den unteren Startgriff horizontal ziehen: Übergangsdauer ändern, Clip-Ende bleibt fest. Den oberen Endgriff ziehen: Übergang und Clip gemeinsam verlängern/verkürzen, Übergangsstart bleibt fest. Die normierten Endwerte bleiben 0 und 1; Zwischenpunkte formen den Verlauf. Bei einem Schnitt entfällt die Übergangsspur.
+- Übergänge: Typ und Dauer im Inspector, Verlauf in der Übergangsspur. Den unteren Startgriff horizontal ziehen: Übergangsdauer ändern, Clip-Ende bleibt fest. Den oberen Endgriff ziehen: Übergang und Clip gemeinsam verlängern/verkürzen, Übergangsstart bleibt fest. Bei alten Shows und räumlichen Übergängen formen Zwischenpunkte den Verlauf zwischen 0 und 1. Beim neuen Crossfade zeigt diese Spur nur die Überlappungsdauer; den Helligkeitsverlauf bestimmen die eigenen Clip-Blenden. Bei einem Schnitt entfällt die Übergangsspur.
 - Zeitlineal anklicken: Wiedergabeposition setzen. Die Transporttasten steuern den vorhandenen Show-Player; die Timeline verwendet dessen Uhr.
 - **Gesamte Show**, Zoom, Raster, horizontaler/vertikaler Scrollbalken und **Playhead folgen** helfen bei langen Shows.
 - Mausrad über Zeitlineal oder Bereichsbalken: Zoom um die Mausposition. Es ist keine Zusatztaste nötig.
@@ -20,16 +20,54 @@ Im Show-Editor oben rechts **TIMELINE** anklicken. Der Editor öffnet ein separa
 
 ## Daten und Wiedergabe
 
-Der Übergang gehört zum Ende des ausgehenden Clips. Beispiel: A dauert 10 Sekunden,
-sein Crossfade 3 Sekunden. B wird ab Show-Sekunde 7 eingeblendet und übernimmt bei
-Sekunde 10 vollständig. Die Materialzeit von B läuft dabei ohne Neustart weiter;
-seine eigene Clip-Uhr beginnt bei der vollständigen Übernahme. Zwei Clips à 10
-Sekunden ergeben deshalb weiterhin 20 Sekunden Show. Die Timeline zeigt diese
-Vorab-Wiedergabe noch nicht als überlappende Clip-Blöcke.
+### Echte Überlappungen und eigene Clip-Blenden (Version 1)
 
-Separate Fade-in-/Fade-out-Hüllkurven und frei platzierbare, überlappende Clips sind
-derzeit nicht Teil dieses Zeitmodells. Auch ein erster Clip blendet nicht automatisch
-aus Schwarz ein; ohne Folgeclip ist der letzte Übergang keine Ausblendung nach Schwarz.
+Neue Shows verwenden automatisch `timing_mode="overlap"`. Alte Shows bleiben beim
+Laden unverändert und zeigen **Echte Überlappungen aktivieren**. Die Umstellung ist
+rückgängig machbar; der TouchDesigner-Host sichert zuvor Show, Aufnahmen und
+Materialparameter unter `.controller-runtime/timing-backups/`. Erst **Speichern**
+übernimmt die neuen Daten in die vorhandenen Show-Dateien.
+
+Die Clip-Dauer umfasst nun die gesamte sichtbare Zeit einschließlich Ein- und
+Ausblendung. Zwei Clips mit je 10 Sekunden und 3 Sekunden Überlappung laufen
+insgesamt 17 Sekunden. Der nächste Clip beginnt bei Sekunde 7; seine Animation
+und Automation laufen ab dann mit eigener lokaler Zeit 0. Beim vollständigen
+Übernehmen bei Sekunde 10 springen Zeit und Parameter nicht zurück.
+
+Im Inspector sind **Einblendung**, **Ausblendung** und ihre Kurven unabhängig
+wählbar: Linear, Smooth, Ease In und Ease Out. Die beiden farbigen Griffe im Clip
+ändern die Blendzeiten auch direkt mit der Maus. Null Sekunden bedeutet keine
+jeweilige Clip-Blende. Eine Ausblendung des letzten Clips führt zu Schwarz;
+die erste Einblendung beginnt aus Schwarz. Bei sich innerhalb eines sehr kurzen
+Clips überschneidenden Ein-/Ausblendungen multiplizieren sich beide Hüllkurven.
+
+**Überlappung zum nächsten Clip** bestimmt separat, wann der nächste Clip startet.
+Die versetzten Clip-Blöcke und die markierte Überlappungsfläche zeigen das echte
+Zeitintervall. Der Inspector zeigt neben dem gewünschten Wert die tatsächlich
+verwendete Dauer: Sie wird begrenzt, falls sonst drei Clips gleichzeitig laufen
+oder der Folgeclip bereits vor dem Vorgänger enden würde. Am letzten Clip gibt
+es keinen Überlappungsbereich. Beim Show-Loop wird nach dem letzten Clip wieder
+am ersten begonnen; eine zusätzliche Überlappung über die Loop-Naht gibt es nicht.
+
+Ein Crossfade verwendet die Clip-Hüllkurven genau einmal. Passende lineare
+Ein-/Ausblendungen bleiben deshalb ohne zusätzliche Verdunklung. Übersteigt die
+Summe beider Hüllkurven 1, wird sie normalisiert; kürzere oder unterschiedlich
+geformte Blenden können absichtlich dunklere Abschnitte erzeugen. Ohne beide
+Blenden werden zwei überlappende Crossfade-Clips gleichgewichtet gemischt.
+Räumliche Übergänge (z. B. Wipe) behalten zusätzlich ihre räumliche Maske.
+Die Übergangsspur zeigt beim neuen Crossfade deshalb nur die Überlappungsdauer
+mit zwei Zeitgriffen. Die Helligkeitsverläufe bearbeitet man an den eigenen
+Ein-/Ausblendungen. Bei räumlichen Übergängen und alten Shows bleibt die
+bearbeitbare Übergangskurve verfügbar.
+
+Bei der Umstellung alter Shows bleiben Clip-Dauern, originale Aufnahmen und
+Materialwerte unverändert. Die Gesamtdauer verkürzt sich um die Überlappungen.
+Einblendungen werden aus der vorherigen effektiven Überlappung, Ausblendungen
+aus der eigenen abgeleitet. Die erste Einblendung bleibt zunächst 0; die letzte
+Ausblendung übernimmt die bisher eingestellte Übergangsdauer. Vorhandene
+Loop-Bereiche werden auf Clip und lokale Zeit übertragen; ein dadurch ungültig
+werdender Bereich wird deaktiviert. Legacy-Shows behalten weiterhin die bisherige
+Preroll-Zeitführung und den Übergang am Ende des vorherigen Clips.
 
 Abnahme der Griffkorrektur vom 15.10.2026: 33 Timeline-Softwaretests bestanden.
 `tools/test_timeline_crossfade.cjs` prüft echte Mausbewegungen gegen einen isolierten
@@ -57,7 +95,7 @@ Parameter wirken auf den **laufenden Clip** und überschreiben seine Automation 
 
 Das Mapping wird getrennt von der Show unter `config/timeline_midi.json` gespeichert. Es enthält keine Show-Automation und gehört nicht zur Timeline-Undo-Historie. Beim Projektöffnen wird es wieder geladen. Ohne vorhandenen, gewählten MIDI-Eingang bleibt der Empfänger deaktiviert.
 
-Importierte Materialparameter ohne `mat_`-Präfix werden als `mat__<Originalname>` gespeichert und beim Schreiben der Uniforms zurückzugeordnet. Bestehende `mat_*`-Aufnahmen behalten ihre Identität. Parameterautomation folgt wie bisher der Cue-Zeit des aktiven Slots; der eingehende Slot startet mit seinen gespeicherten Werten.
+Importierte Materialparameter ohne `mat_`-Präfix werden als `mat__<Originalname>` gespeichert und beim Schreiben der Uniforms zurückzugeordnet. Bestehende `mat_*`-Aufnahmen behalten ihre Identität. Im Überlappungsmodus läuft die Automation beider Clips ab ihrem jeweiligen sichtbaren Beginn; beim Wechsel des aktiven Slots startet sie nicht erneut. Alte Shows behalten ihre bisherige Zeitführung.
 
 Der lokale HTTP-Server bindet ausschließlich an `127.0.0.1`. Schreibbefehle benötigen einen Sitzungstoken, werden gegen die aktuelle Dokumentrevision geprüft und auf dem TouchDesigner-Hauptthread ausgeführt. Es gibt keine zweite Wiedergabe-Engine. Beim Öffnen werden keine Transportbefehle ausgelöst.
 
@@ -72,7 +110,22 @@ install()
 
 Die Projektdatei muss anschließend gespeichert werden, damit Knopf und Frame-Callback nach dem Wiederöffnen erhalten bleiben. Die Quellmodule und `pixelblaze_mapper/timeline_assets/` müssen mit dem Projekt verfügbar bleiben. Der HTTP-Server startet erst beim Öffnen der Timeline. Undo/Redo wird nicht in der TOE gespeichert.
 
+Bei bereits installierter Timeline aktualisiert ihr Frame-Callback nach einem Neustart automatisch die gespeicherten Show-Callbacks für den Überlappungsmodus. Eine laufende Aufnahme verschiebt diese Aktualisierung bis zum Aufnahmeende. Vorhandene Shows werden dadurch nicht automatisch umgestellt; neue Shows verwenden das neue Modell.
+
 ## Prüfung
+
+Abnahme **Überlappungen v1, 16.10.2026**:
+
+- 486 Softwaretests bestanden, ohne Fehler oder übersprungene Tests. Enthalten sind Wiedergabe, Zeitwechsel, Aufnahme, Automationen, MIDI, MK2, alte Shows und die Installation nach einem Neustart.
+- Der isolierte Commit-Stand besteht zusätzlich alle 433 dort enthaltenen Softwaretests. Die Differenz stammt aus anderen, bereits vorhandenen lokalen MK2-/Projektänderungen; diese gehören nicht zu diesem Commit.
+- 14 Browser-Abläufe für Migration, beide Fade-Griffe, wirksame Kurveneditoren, Überlappungsgrenzen, Undo, Abbruch, Tastatur, kleine Ansicht und Speichern/Neuladen bestanden. Zusätzlich bestehen die 9 bisherigen Crossfade-Grifftests.
+- 42 echte GPU-Fälle gegen die LED-Berechnung geprüft; größte Abweichung 0,001961 (8-Bit-Farbauflösung).
+- Laufende TouchDesigner-Installation aktualisiert. Show **Test1** mit 15 Clips umgestellt und gespeichert; ursprüngliche Show und Dateien unter `.controller-runtime/timing-backups/` gesichert. Aufnahmekurven und gespeicherte Materialwerte unverändert, keine Operatorfehler. Aktives Material, Material-Modus und UV-Zuordnung beim Installieren erhalten.
+- Keine erneute physische MK2-Abnahme behauptet. Die Browserrad-Beschleunigung wurde nicht geändert. Die sichtbaren Fade-Griffe bedient man in der Timeline; maximal zwei Clips können gleichzeitig laufen.
+
+Einzelergebnisse: [Software](show-overlap-v1/acceptance.json), [Browser](show-overlap-v1/browser.json), [GPU](show-overlap-v1/gpu.json), [Live-Installation](show-overlap-v1/live-install.json), [Show-Umstellung](show-overlap-v1/live-migration.json). Der Bericht zur gesamten MK2-Abnahme führt die gesonderte physische Geräteprüfung weiterhin als offen.
+
+[Isolierter Commit-Test](show-overlap-v1/staged-acceptance.json) · [Desktop-Vorschau](show-overlap-v1/timeline.png) · [Kleine Ansicht](show-overlap-v1/timeline-small.png)
 
 ```powershell
 python -m unittest discover -s tests -p 'test_show*.py'

@@ -65,6 +65,11 @@ PLAYER_COORDINATE_MODES = {"global": "global", "panel": "panel_local", "hybrid":
 EMPTY_SHOW = {"schema_version": 2, "name": "Neue Show", "loop": True, "cues": []}
 
 
+def empty_show():
+    """New projects use visible clip-local time; old documents remain legacy."""
+    return dict(EMPTY_SHOW, timing_mode='overlap', cues=[])
+
+
 def _validated(show: Mapping[str, Any]) -> dict:
     """Round-trip through the sequencer so only runnable shows escape."""
 
@@ -167,7 +172,14 @@ def append_cue(show: Mapping[str, Any], cue: Mapping[str, Any]) -> dict:
     result = deepcopy(dict(show))
     entry = deepcopy(dict(cue))
     entry["id"] = unique_cue_id(result, entry.get("id") or entry.get("name", "cue"))
+    if result.get('timing_mode') == 'overlap':
+        fade = min(float(entry['duration']), float(entry['transition_duration']))
+        entry.setdefault('fade_out', fade)
     result["cues"] = list(result.get("cues", ())) + [entry]
+    if result.get('timing_mode') == 'overlap':
+        from .show_sequencer import overlap_duration
+        incoming = overlap_duration(Show.from_dict(result), len(result['cues'])-2) if len(result['cues']) > 1 else fade
+        entry.setdefault('fade_in', incoming)
     return _validated(result)
 
 
@@ -214,6 +226,9 @@ def update_cue(show: Mapping[str, Any], index: int, field: str, value: Any) -> d
         cue["duration"] = max(0.1, float(value))
         # A shorter cue must not keep a transition longer than itself.
         cue["transition_duration"] = min(cue["transition_duration"], cue["duration"])
+        for fade in ('fade_in', 'fade_out'):
+            if fade in cue:
+                cue[fade] = min(cue[fade], cue['duration'])
     elif field == "transition":
         if value not in TRANSITION_TYPES:
             raise ShowValidationError("Unbekannter Uebergang: %s" % value)

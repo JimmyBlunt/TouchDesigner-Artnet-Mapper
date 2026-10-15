@@ -76,6 +76,14 @@ def live_values(cue_id):
 
 
 def apply_plan(plan, cue_id):
+    if getattr(plan, 'timing_mode', 'legacy') == 'overlap':
+        levels = {}
+        for slot in ('a', 'b'):
+            cue = getattr(plan, 'slot_' + slot)
+            value = live_values(cue.id).get('brightness') if cue else None
+            if value is not None:
+                levels['slot_' + slot + '_brightness'] = max(0., min(1., float(value)))
+        return replace(plan, **levels) if levels else plan
     value = live_values(cue_id).get('brightness')
     return plan if value is None else replace(plan, brightness=0. if plan.blackout else max(0., min(1., value)))
 

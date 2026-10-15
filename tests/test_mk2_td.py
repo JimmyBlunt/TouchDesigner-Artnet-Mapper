@@ -296,6 +296,9 @@ class TDAdapterTests(unittest.TestCase):
         from pixelblaze_mapper.show_timeline import install_editor_source
         source=install_editor_source(EDITOR_RUNTIME)
         before,tail=source.split(mk2_hooks.MARKER,1)
+        # This fixture intentionally executes only MK2's recording wrappers.
+        # Full overlap callback integration has its own connected test suite.
+        tail=tail.split('# SHOW_OVERLAP_EDITOR_V1',1)[0]
         wanted={'stop_recording','_write_uniforms','_effective_parameters','_imported_overrides'}
         # Use the actual original implementation of each; the outer MIDI layer
         # is tested separately and mk2_td's overrides bypass the MIDI gate.
