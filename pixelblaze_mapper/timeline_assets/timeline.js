@@ -191,6 +191,12 @@ function laneRow(cue,name,width) {
     if(time>g.duration) return;
     const point=svgNode('circle',{class:'point'+(active&&selected.point===i?' active':''),cx:g.x(time),cy:g.y(value),r:active&&selected.point===i?5:3.5});
     const title=svgNode('title',{});title.textContent=`${isTransition?(time*cue.transition_duration).toFixed(2):time.toFixed(2)} s · ${value.toFixed(3)}`;point.append(title);
+    if(isTransition && (i===0 || i===curve.points.length-1)) {
+      const edge=i===0?'start':'end';
+      point.dataset.fadeEdge=edge;point.style.cursor='ew-resize';
+      point.setAttribute('aria-label',edge==='start'?'Überblendungsstart ziehen':'Überblendungsende und Clip-Ende ziehen');
+      title.textContent=edge==='start'?'Überblendungsstart ziehen; Clip-Ende bleibt fest':'Überblendungsende ziehen; Clip-Länge wird angepasst';
+    }
     point.onpointerdown=e=>pointDrag(e,cue,name,i,svg,point,line,g,curve);
     svg.append(point);
   });
@@ -232,9 +238,11 @@ function pointDrag(event,cue,name,index,svg,point,line,g,curve) {
   if(event.button!==0 || busy) return;
   event.stopPropagation();
   selected={cue:cue.id,name,point:index};inspector();
+  if(name==='@transition' && (index===0 || index===curve.points.length-1)) {
+    return fadeEdgeDrag(event,cue,index===0?'start':'end',svg,line,curve);
+  }
   const rect=svg.getBoundingClientRect(), copy=clone(curve), original=copy.points[index].slice();
   gesture(event,e=>{
-    if(name==='@transition' && (index===0 || index===copy.points.length-1)) return;
     let time=(e.clientX-rect.left)/g.width*g.duration;
     time=name==='@transition'?snap(time*cue.transition_duration)/cue.transition_duration:snap(time);
     const lower=index>0?copy.points[index-1][0]+1e-5:0;
@@ -246,6 +254,33 @@ function pointDrag(event,cue,name,index,svg,point,line,g,curve) {
     point.setAttribute('cx',g.x(time));point.setAttribute('cy',g.y(value));line.setAttribute('d',pathFor(copy.points,copy.mode,g));
     $('pointTime').value=(name==='@transition'?time*cue.transition_duration:time).toFixed(3);$('pointValue').value=value.toFixed(4);
   },async()=>{if(JSON.stringify(original)!==JSON.stringify(copy.points[index])) await setCurve(cue,name,copy);render();});
+}
+function fadeEdgeDrag(event,cue,edge,svg,line,curve) {
+  const startX=event.clientX, scrollStart=$('scroll').scrollLeft, row=rowFor(cue.id);
+  const fadeStart=cue.duration-cue.transition_duration;
+  const initial=edge==='start'?fadeStart:cue.duration;
+  let moment=initial, distance=0;
+  gesture(event,e=>{
+    distance=e.clientX-startX+$('scroll').scrollLeft-scrollStart;
+    moment=snap(initial+distance/zoom);
+    moment=edge==='start'?clamp(moment,0,cue.duration-.1):Math.max(fadeStart+.1,moment);
+    const start=edge==='start'?moment:fadeStart, end=edge==='end'?moment:cue.duration;
+    const preview={...cue,duration:end,transition_duration:end-start}, shape=geometry(preview,'@transition',curve);
+    svg.style.left=(row.start+start)*zoom+'px';svg.setAttribute('width',shape.width);
+    line.setAttribute('d',pathFor(curve.points,curve.mode,shape));
+    svg.querySelector('.baseline').setAttribute('d',`M0,${shape.bottom} H${shape.width}`);
+    svg.querySelectorAll('circle').forEach((circle,i)=>circle.setAttribute('cx',shape.x(curve.points[i][0])));
+    const clip=svg.closest('.track').querySelector('.clip');
+    clip.style.width=Math.max(8,end*zoom)+'px';
+    clip.querySelector('.fade-region').style.width=(end-start)*zoom+'px';
+    $('fadeDuration').value=(end-start).toFixed(3);$('duration').value=end.toFixed(3);
+    message(`Überblendung: ${(end-start).toFixed(2)} s · Clip: ${end.toFixed(2)} s`);
+  },async()=>{
+    if(Math.abs(distance)>3 && Math.abs(moment-initial)>1e-7) {
+      await command({action:'transition',cue:cue.id,edge,time:moment});
+    }
+    render();
+  });
 }
 async function setCurve(cue,name,curve) {
   return command(name==='@transition'?{action:'transition',cue:cue.id,curve}:{action:'lane',cue:cue.id,parameter:name,curve});

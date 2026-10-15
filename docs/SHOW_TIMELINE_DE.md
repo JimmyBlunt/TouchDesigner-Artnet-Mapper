@@ -9,7 +9,7 @@ Im Show-Editor oben rechts **TIMELINE** anklicken. Der Editor öffnet ein separa
 - Über das Dropdown am Spuranfang einen zusätzlichen Parameter hinzufügen. Unterstützt werden die vom Player verwendeten numerischen Parameter; Farben/Vektoren und Compile-Time-Schalter sind ausgeschlossen.
 - Interpolation: Linear, Step, Smooth/S-Kurve, Ease In, Ease Out. Smooth ist eine interpolierte S-Kurve ohne separate Bézier-Tangenten.
 - **Bearbeitung aktiv** schaltet die manuelle Ebene an/aus. **Original wiederherstellen** entfernt die manuelle Parameterkurve. Aufzeichnungen bleiben unverändert und erscheinen gestrichelt hinter der Bearbeitung.
-- Übergänge: Typ und Dauer im Inspector, Verlauf in der Übergangsspur. Die Endpunkte bleiben bei 0 und 1; Zwischenpunkte dürfen den Verlauf nicht rückwärts laufen lassen. Bei einem Schnitt entfällt die Übergangsspur.
+- Übergänge: Typ und Dauer im Inspector, Verlauf in der Übergangsspur. Den unteren Startgriff horizontal ziehen: Übergangsdauer ändern, Clip-Ende bleibt fest. Den oberen Endgriff ziehen: Übergang und Clip gemeinsam verlängern/verkürzen, Übergangsstart bleibt fest. Die normierten Endwerte bleiben 0 und 1; Zwischenpunkte formen den Verlauf. Bei einem Schnitt entfällt die Übergangsspur.
 - Zeitlineal anklicken: Wiedergabeposition setzen. Die Transporttasten steuern den vorhandenen Show-Player; die Timeline verwendet dessen Uhr.
 - **Gesamte Show**, Zoom, Raster, horizontaler/vertikaler Scrollbalken und **Playhead folgen** helfen bei langen Shows.
 - Mausrad über Zeitlineal oder Bereichsbalken: Zoom um die Mausposition. Es ist keine Zusatztaste nötig.
@@ -19,6 +19,26 @@ Im Show-Editor oben rechts **TIMELINE** anklicken. Der Editor öffnet ein separa
 - **Speichern** verwendet die bestehenden Show-Dateien unter `shows/`: `.json`, `.automation.json` und `.materials.json`. Während einer Aufnahme sind Timeline-Schreibbefehle gesperrt.
 
 ## Daten und Wiedergabe
+
+Der Übergang gehört zum Ende des ausgehenden Clips. Beispiel: A dauert 10 Sekunden,
+sein Crossfade 3 Sekunden. B wird ab Show-Sekunde 7 eingeblendet und übernimmt bei
+Sekunde 10 vollständig. Die Materialzeit von B läuft dabei ohne Neustart weiter;
+seine eigene Clip-Uhr beginnt bei der vollständigen Übernahme. Zwei Clips à 10
+Sekunden ergeben deshalb weiterhin 20 Sekunden Show. Die Timeline zeigt diese
+Vorab-Wiedergabe noch nicht als überlappende Clip-Blöcke.
+
+Separate Fade-in-/Fade-out-Hüllkurven und frei platzierbare, überlappende Clips sind
+derzeit nicht Teil dieses Zeitmodells. Auch ein erster Clip blendet nicht automatisch
+aus Schwarz ein; ohne Folgeclip ist der letzte Übergang keine Ausblendung nach Schwarz.
+
+Abnahme der Griffkorrektur vom 15.10.2026: 33 Timeline-Softwaretests bestanden.
+`tools/test_timeline_crossfade.cjs` prüft echte Mausbewegungen gegen einen isolierten
+Python-HTTP-Backend: beide Griffe, Undo, Abbruch, Klick ohne Änderung, Grenzen,
+Mindestdauer, Zoom/Scroll und Neuladen. Edge/Playwright, 1440×1000 und 900×850;
+keine Anwendungsfehler, lediglich die separat ausgewiesene fehlende favicon.ico.
+Start mit Node, Playwright in NODE_PATH und Python als erstem Skriptargument;
+optionales zweites Argument ist der Screenshot-Ordner. Der Test verändert keine
+laufende TouchDesigner-Show. Browser plugin not available; daher Playwright.
 
 `tracks` enthält die Originalaufnahmen. Optionale `edits`, `transitions` und `loop_region` in derselben Automationsdatei speichern die manuellen Ebenen, Übergangskurven und Bereichsgrenzen. Bestehende Dateien bleiben lesbar. Ältere Programmversionen ohne Timeline unterstützen diese neuen Ebenen nicht.
 

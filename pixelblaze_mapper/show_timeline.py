@@ -76,6 +76,21 @@ def edit(show, data, command):
         show['cues'].pop(index)
         show['cues'].insert(target, cue)
     elif action == 'transition':
+        if 'edge' in command:
+            if cue['transition'] == 'cut':
+                raise ValueError('Ein harter Schnitt hat keine Überblendungsgriffe.')
+            moment = finite(command['time'])
+            if command['edge'] == 'start':
+                start = max(0., min(moment, cue['duration'] - .1))
+                cue['transition_duration'] = cue['duration'] - start
+            elif command['edge'] == 'end':
+                start = cue['duration'] - cue['transition_duration']
+                cue['duration'] = max(start + .1, moment)
+                cue['transition_duration'] = cue['duration'] - start
+            else:
+                raise ValueError('Unbekannter Überblendungsgriff.')
+            # Move the boundary atomically; normalized curve points and original
+            # parameter recordings are retained, including samples past the end.
         if 'kind' in command:
             show = editor.update_cue(show, index, 'transition', command['kind'])
         if 'duration' in command:
