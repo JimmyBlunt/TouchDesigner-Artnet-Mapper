@@ -142,8 +142,16 @@ def button_lights(snapshot, now=None):
     buttons[1] = 80 if c.get('mode', 'material') == 'material' else 15
     buttons[2] = 100 if c.get('mode') == 'show' else 0
     buttons[3] = 100 if c.get('screen') == 'browse' else 15
-    for i in range(min(8, len(c.get('parameter_pages', [])))):
-        buttons[9+i] = 100 if i == c.get('page', 0) % 8 else 20
+    if c.get('screen') == 'browse':
+        favorites = c.get('browse_filter') == 'favorites'
+        buttons[9], buttons[10] = (20, 100) if favorites else (100, 20)
+        items = c.get('browse_items', [])
+        if items:
+            selected = max(0, min(c.get('browse_index', 0), len(items)-1))
+            buttons[16] = 100 if items[selected].get('favorite') else 20
+    else:
+        for i in range(min(8, len(c.get('parameter_pages', [])))):
+            buttons[9+i] = 100 if i == c.get('page', 0) % 8 else 20
     buttons[17] = 100 if c.get('screen', '').startswith('pad_') else 15
     return bytes(groups), bytes(buttons)
 
@@ -413,24 +421,42 @@ def render(snapshot):
     if screen == 'browse':
         items = c.get('browse_items', [])
         index = max(0, min(c.get('browse_index', 0), len(items)-1))
-        text(0, 2, 2, 'Materialien', 180)
-        text(0, 198, 2, '%d/%d' % (index+1 if items else 0, len(items)), 57)
-        start = max(0, min(index-2, len(items)-5))
-        for row, item in enumerate(items[start:start+5]):
-            text(0, 2, 12+row*10, '%03d %s' % (start+row+1, item.get('label', '')), 250, start+row == index)
+        favorites = c.get('browse_filter') == 'favorites'
+        selected_item = items[index] if items else {}
+        assign = c.get('browse_purpose') == 'assign'
+        # Four physical buttons sit above each LCD. Browse actions replace the
+        # parameter tabs, so labels and fixed-colour button brightness agree.
+        for side, x, label, active in (
+            (0, 0, 'ALLE', not favorites), (0, 64, 'FAV', favorites),
+            (1, 192, '-FAV' if selected_item.get('favorite') else '+FAV', bool(selected_item.get('favorite'))),
+        ):
+            draws[side].rectangle((x, 0, x+62, 9), outline=1, fill=int(active))
+            draws[side].text((x+3, 1), label, font=small, fill=0 if active else 1)
+        count = c.get('favorites_count', len(items) if favorites else 0)
+        text(0, 2, 12, 'Favoriten %d' % count if favorites else 'Alle Materialien', 190)
+        text(0, 198, 12, '%d/%d' % (index+1 if items else 0, len(items)), 57)
+        heading = 'PAD %s%02d ZUORDNEN' % (chr(65+c.get('bank', 0)), c.get('pad_index', 0)+1) if assign else 'BROWSE  %03d' % (index+1 if items else 0)
+        text(1, 2, 12, heading, 250)
+        start = max(0, min(index-2, len(items)-4))
+        for row, item in enumerate(items[start:start+4]):
+            text(0, 2, 22+row*10, '%03d %s%s' % (start+row+1, '* ' if item.get('favorite') else '  ', item.get('label', '')), 250, start+row == index)
         if items:
             item = items[index]
-            picture(1, item, (0, 12), (50, 50))
-            text(1, 2, 2, 'BROWSE  %03d' % (index+1), 250)
-            text(1, 57, 13, item.get('label', ''), 198)
-            text(1, 57, 25, item.get('category') or 'Material', 198)
+            picture(1, item, (0, 23), (40, 40))
+            text(1, 47, 24, item.get('label', ''), 208)
+            text(1, 47, 34, item.get('category') or 'Material', 208)
             assignment = item.get('assignment') or item.get('pad_label')
             if not assignment and item.get('assignments'):
                 assignment = ', '.join('%s/%02d' % (chr(65+a['group']), a['pad']+1) for a in item['assignments'])
             if not assignment and item.get('bank') is not None:
                 assignment = '%s / Pad %02d' % (chr(65+item['bank']), item.get('pad_index', 0)+1)
-            text(1, 57, 37, assignment or 'Keinem Pad zugeteilt', 198, f=small)
-            text(1, 57, 51, 'Druecken: auswaehlen', 198, f=small)
+            text(1, 47, 44, assignment or 'Keinem Pad zugeteilt', 208, f=small)
+            text(1, 47, 54, 'Druecken: zuordnen' if assign else 'Druecken: auswaehlen', 208, f=small)
+        else:
+            text(0, 3, 26, 'Noch keine Favoriten' if favorites else 'Keine Materialien', 249)
+            text(0, 3, 41, 'Mit +FAV markieren' if favorites else 'Materialliste ist leer', 249)
+            text(1, 3, 28, 'ALLE: Material waehlen', 249)
+            text(1, 3, 42, '+FAV: Favorit merken', 249)
     elif screen == 'pad_grid':
         cards = c.get('cards', snapshot.get('cards', []))
         for i in range(16):

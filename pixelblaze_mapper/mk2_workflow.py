@@ -8,7 +8,7 @@ from copy import deepcopy
 import math
 from time import monotonic
 
-VERSION = '0.2.2'
+VERSION = '0.2.3'
 SCHEMA_VERSION = 2
 EDIT_IDLE_SECONDS = 20.0
 SHOW_FIELDS = ('duration', 'transition', 'transition_duration')
@@ -56,7 +56,12 @@ def validate_config(config=None):
                 raise ValueError('Pad-Parameter müssen endliche Zahlen oder Wahrheitswerte sein.')
             bank.append(dict(kind=kind, target=target, values=deepcopy(values)))
         clean.append(dict(name=chr(65+i), pads=bank))
-    return dict(schema_version=SCHEMA_VERSION, hardware=bool(config.get('hardware', False)), groups=clean)
+    favorites = config.get('favorites', [])
+    if (not isinstance(favorites, list) or len(favorites) > 10000 or
+            any(not isinstance(key, str) or not key or len(key) > 200 for key in favorites)):
+        raise ValueError('Ungültige Materialfavoriten.')
+    return dict(schema_version=SCHEMA_VERSION, hardware=bool(config.get('hardware', False)),
+                groups=clean, favorites=list(dict.fromkeys(favorites)))
 
 
 def _parameter(source, i):
@@ -98,6 +103,7 @@ class Controller:
         self.show_focus = 0
         self.show_editing = False
         self.browse_purpose = 'load'
+        self.browse_filter = 'all'
         self.assign_target = None
         self.edit_original = self.edit_values = None
         self.edit_material = None
@@ -116,6 +122,7 @@ class Controller:
         if not isinstance(context, dict):
             raise ValueError('Controller-Kontext muss ein Objekt sein.')
         incoming = deepcopy(context)
+        selected = self.browse_selected_id()
         if 'config' in incoming:
             self.config = validate_config(incoming.pop('config'))
             self._pending_config = None
@@ -140,13 +147,44 @@ class Controller:
         parameters = self._parameters()
         self.parameter_group = min(self.parameter_group, max(0, (len(parameters)-1)//8), 7)
         self.parameter_index = min(self.parameter_index, max(0, len(parameters)-1))
-        self.browse_index = min(self.browse_index, max(0, len(self._catalog())-1))
+        self._restore_browse_selection(selected)
 
     def export_config(self):
         return deepcopy(self.config)
 
     def _catalog(self):
         return [item for item in self.context.get('catalog', []) if isinstance(item, dict)]
+
+    def browse_catalog(self):
+        favorites = set(self.config['favorites'])
+        return [item for item in self._catalog()
+                if self.browse_filter == 'all' or item.get('id') in favorites]
+
+    def browse_selected_id(self):
+        items = self.browse_catalog()
+        return items[min(self.browse_index, len(items)-1)].get('id') if items else None
+
+    def _restore_browse_selection(self, target):
+        items = self.browse_catalog()
+        fallback = max(0, min(self.browse_index, len(items)-1))
+        self.browse_index = next((i for i, item in enumerate(items) if item.get('id') == target), fallback)
+
+    def _browse_top(self, index):
+        if self._pending_config is not None:
+            return []
+        target = self.browse_selected_id()
+        if index in (0, 1):
+            self.browse_filter = 'all' if index == 0 else 'favorites'
+            self._restore_browse_selection(target)
+            self.error = ''
+        elif index == 7 and target:
+            candidate = self.export_config()
+            if target in candidate['favorites']:
+                candidate['favorites'].remove(target)
+            else:
+                candidate['favorites'].append(target)
+            return self._persist(candidate, purpose='favorites')
+        return []
 
     def _lookup(self, target):
         item = next((item for item in self._catalog() if item.get('id') == target), None)
@@ -224,12 +262,13 @@ class Controller:
             return True
         return self.screen.startswith('confirm_') or self._pending_config is not None
 
-    def _persist(self, candidate):
+    def _persist(self, candidate, purpose='pad'):
         if self._pending_config is not None:
             self.error = 'Speicherung läuft bereits.'
             return []
         self._request_id += 1
-        command = dict(action='persist_config', request_id=self._request_id, config=validate_config(candidate))
+        command = dict(action='persist_config', request_id=self._request_id,
+                       config=validate_config(candidate), purpose=purpose)
         self._pending_config = deepcopy(command)
         return [command]
 
@@ -237,10 +276,14 @@ class Controller:
         pending = self._pending_config
         if pending is not None and event.get('request_id') == pending['request_id']:
             if event.get('success') is True:
+                selected = self.browse_selected_id()
                 self.config = pending['config']
                 self.error = ''
-                self.screen = 'home' if self.mode == 'show' else 'pad_grid'
-                self._discard_edit()
+                if pending.get('purpose') == 'favorites':
+                    self._restore_browse_selection(selected)
+                else:
+                    self.screen = 'home' if self.mode == 'show' else 'pad_grid'
+                    self._discard_edit()
             else:
                 self.error = str(event.get('error') or 'Zuweisung konnte nicht gespeichert werden.')
             self._pending_config = None
@@ -319,6 +362,8 @@ class Controller:
             if not isinstance(index, int) or isinstance(index, bool) or not 0 <= index < limit:
                 return []
             if name == 'top':
+                if self.screen == 'browse':
+                    return self._browse_top(index)
                 if self.screen in ('home', 'pad_edit') and index < len(self._pages()):
                     self.page = index
                     self.parameter_focused = False
@@ -350,7 +395,7 @@ class Controller:
 
     def _select_active_browse(self):
         target = self._material().get('id')
-        self.browse_index = next((i for i, item in enumerate(self._catalog()) if item.get('id') == target), 0)
+        self.browse_index = next((i for i, item in enumerate(self.browse_catalog()) if item.get('id') == target), 0)
 
     def _load_pad(self):
         pad = self._pad()
@@ -369,7 +414,7 @@ class Controller:
         direction = 1 if delta > 0 else -1
         steps = int(delta) or direction
         if self.screen == 'browse':
-            self.browse_index = max(0, min(len(self._catalog())-1, self.browse_index+steps))
+            self.browse_index = max(0, min(len(self.browse_catalog())-1, self.browse_index+steps))
         elif self.screen == 'pad_grid':
             self.pad_index = max(0, min(15, self.pad_index+steps))
         elif self.screen == 'pad_menu':
@@ -409,7 +454,7 @@ class Controller:
         if self._pending_config is not None:
             return []
         if self.screen == 'browse':
-            items = self._catalog()
+            items = self.browse_catalog()
             if not items:
                 self.error = 'Keine Materialien verfügbar.'
                 return []
@@ -545,7 +590,7 @@ class Controller:
         return []
 
     def snapshot(self):
-        catalog = self._catalog()
+        catalog = self.browse_catalog()
         cards = []
         assignments = {}
         for group_index, group in enumerate(self.config['groups']):
@@ -560,7 +605,8 @@ class Controller:
         browse = []
         for i, item in enumerate(catalog):
             entry = deepcopy(item)
-            entry.update(number=i+1, assignments=assignments.get(item.get('id'), []))
+            entry.update(number=i+1, assignments=assignments.get(item.get('id'), []),
+                         favorite=item.get('id') in self.config['favorites'])
             browse.append(entry)
         parameters = self._parameters()
         focused = parameters[self.parameter_index] if self.parameter_focused and self.parameter_index < len(parameters) else None
@@ -582,6 +628,7 @@ class Controller:
         result = dict(version=VERSION, mode=self.mode, screen=self.screen, material=deepcopy(self._material()),
                       parameter_pages=self._pages(), page=self.page, bank=self.bank, pad_index=self.pad_index,
                       cards=cards, browse_items=browse, browse_index=self.browse_index, browse_purpose=self.browse_purpose,
+                      browse_filter=self.browse_filter, favorites_count=len(self.config['favorites']),
                       menu=self._menu(), options=self._menu(), choice=self.choice, confirm=confirm,
                       show=show, recording=self._recording(), rec_pending=self.rec_pending,
                       parameter_group=self.parameter_group, parameter_index=self.parameter_index,

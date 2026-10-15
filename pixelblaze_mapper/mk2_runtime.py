@@ -69,9 +69,10 @@ class Manager:
 
     def _refresh_context(self):
         controller = self.controller
+        controller.set_context(dict(catalog=self.catalog))
         target = controller.edit_material.get('id') if controller.edit_material else None
-        if not target and controller.screen == 'browse' and self.catalog:
-            target = self.catalog[min(controller.browse_index,len(self.catalog)-1)]['id']
+        if not target and controller.screen == 'browse':
+            target = controller.browse_selected_id()
         if not target and controller.screen in ('pad_menu','confirm_assign'):
             target = controller.assign_target or controller.config['groups'][controller.bank]['pads'][controller.pad_index]['target']
         context = self.host.context(target)
@@ -144,7 +145,7 @@ class Manager:
                     raise
                 self.controller.dispatch(dict(type='command_result',request_id=command['request_id'],success=True))
                 self.version += 1
-                self.last = 'Pad-Preset gespeichert.'
+                self.last = 'Favoriten gespeichert.' if command.get('purpose') == 'favorites' else 'Pad-Preset gespeichert.'
             elif command['action']=='flash_pad':
                 pass  # Flash deadline is part of the immutable controller snapshot.
             else:

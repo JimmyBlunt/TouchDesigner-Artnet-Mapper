@@ -129,6 +129,55 @@ Arbeitsänderungen werden nicht mitgenommen. Es wird kein Remote-Push ausgeführ
 
 ## Dauerhafte Abnahme
 
+### Erweiterung 0.2.3: Materialfavoriten
+
+- Die Favoritenliste startet leer. Markierungen werden unabhängig von Pad-Zuweisungen
+  und Presets dauerhaft in der Controller-Konfiguration gespeichert.
+- Im Material Mode öffnet BROWSE die Materialliste. Obere Taste 1 **ALLE** zeigt
+  die Bibliothek, Taste 2 **FAV** ausschließlich die verfügbaren Favoriten.
+  Taste 8 **+FAV / -FAV** markiert oder entfernt das mit dem Rad ausgewählte Material.
+- Markieren und Filtern verändern das laufende Material nicht. Erst Druck auf das
+  große Rad lädt. Auch die Materialauswahl zur Pad-Zuweisung bietet dieselben Filter;
+  dort bleibt die Zuweisungsbestätigung erforderlich.
+- Ein Stern kennzeichnet Favoriten. Aktive Filtertaste und Markierungszustand werden
+  durch die vorhandene Beleuchtung und eindeutige Displaybeschriftung angezeigt.
+- Leere Favoriten, Entfernen des letzten Eintrags, fehlende Materialien und
+  Schreibfehler dürfen keine falschen Materialien laden oder andere Daten verlieren.
+  Vorübergehend fehlende Materialien behalten ihre gespeicherte Markierung.
+- Außerhalb des Browsers bleiben obere Tasten, Gruppen, Pads, STEP, SCENE und
+  Aufnahmebedienung unverändert. Im Show Mode öffnet BROWSE weiterhin keine Materialliste.
+
+### Noch notwendige Materialabnahme (Prüfstand 13.10.2026)
+
+Der Bericht `material-audit-20261013/acceptance.json` umfasst alle 638 Materialien.
+585 erzeugen endliche Bilder; darunter sind 29 statistisch auffällige Ausgaben noch
+visuell zu beurteilen. Für diese Kandidaten: Originalvorschau/Originaldarstellung,
+Standardparameter, spätere Zeitpunkte und sinnvolle Parameteränderungen vergleichen.
+Schwarz oder einfarbig allein ist kein nachgewiesener Fehler.
+
+53 Einträge bleiben gesperrt: 51 benötigen zusätzliche Funktionen, Quellen oder
+Assets, Dithered Lensing erzeugt ungültige Zahlen und Twisted Tunnel bleibt wegen
+eines früheren Absturzes in Quarantäne. Diese müssen repariert und erneut geprüft
+oder ausdrücklich aus dem freigegebenen Umfang ausgeschlossen werden. Der
+Gesamtauftrag „alle 638 funktionieren“ ist damit noch nicht abgeschlossen.
+
+Vor Freigabe außerdem representative Materialien auf der tatsächlichen LED-Ausgabe
+mit Parametern, längerer Wiedergabe, Übergängen und dem bestätigten Mashup prüfen.
+Die bisherigen Bildmessungen beweisen keine vollständige Übereinstimmung mit MadMapper.
+
+Für Favoriten am echten MK2: BROWSE → Material wählen → +FAV → FAV → Rad drücken;
+danach aus FAV einem freien Pad zuweisen, mit -FAV entfernen (Pad bleibt belegt),
+leere Liste prüfen und einen erneut gesetzten Favoriten nach TouchDesigner-Neustart
+wiederfinden. Dabei Beschriftung, LEDs und die tatsächlich geladene Auswahl prüfen.
+Softwaretests simulieren diese Abläufe, ersetzen aber diese Geräteabnahme nicht.
+
+Prüfstand 15.10.2026, Version 0.2.3: **343 Tests bestanden**, keine Fehler oder
+übersprungenen Fälle (`mk2-v0.2.3/acceptance.json`). Der Live-Test in TouchDesigner
+bestätigt Markieren, Filtern, Speichern und Wiederherstellung der leeren Liste;
+die MK2 hat die neuen Displaydaten erhalten (`mk2-v0.2.3/live-smoke.json`).
+Aktives Material, Parameter, Pad-Zuweisungen und UV-Daten blieben erhalten.
+Die physische Tastenabnahme durch den Benutzer ist weiterhin offen.
+
 | Testgruppe | Nachzuweisen |
 |---|---|
 | A1 | Modusmatrix, acht Standardparameter, Seitenauswahl, Bankmigration A–H |

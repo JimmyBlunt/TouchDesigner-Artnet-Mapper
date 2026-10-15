@@ -1,0 +1,1729 @@
+{
+  "version": "0.2.3",
+  "tests": 343,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "expected_failures": 0,
+  "software_passed": true,
+  "physical_acceptance": "pending",
+  "specification": "docs/MK2_CONTROL_SPEC_DE.md",
+  "finished_at": "2026-10-15T04:15:12.123119+00:00",
+  "cases": [
+    {
+      "id": "test_mk2_device_simulation.DeviceSimulationTests.test_browse_via_raw_button_runs_real_controller_and_changes_hardware_frame",
+      "status": "passed",
+      "seconds": 0.0501
+    },
+    {
+      "id": "test_mk2_device_simulation.DeviceSimulationTests.test_close_failure_after_unplug_does_not_kill_worker_or_skip_retry",
+      "status": "passed",
+      "seconds": 0.0092
+    },
+    {
+      "id": "test_mk2_device_simulation.DeviceSimulationTests.test_disconnect_reconnect_held_keys_pads_and_absolute_positions_are_baselines",
+      "status": "passed",
+      "seconds": 0.0133
+    },
+    {
+      "id": "test_mk2_device_simulation.DeviceSimulationTests.test_missing_device_does_not_flood_connection_reset_events",
+      "status": "passed",
+      "seconds": 0.0059
+    },
+    {
+      "id": "test_mk2_device_simulation.DeviceSimulationTests.test_reconnect_marker_clears_pending_rec_before_held_baseline_release",
+      "status": "passed",
+      "seconds": 0.0099
+    },
+    {
+      "id": "test_mk2_device_simulation.DeviceSimulationTests.test_short_write_reports_failure_closes_handle_and_retries_complete_frame",
+      "status": "passed",
+      "seconds": 0.0076
+    },
+    {
+      "id": "test_mk2_device_simulation.DeviceSimulationTests.test_snapshot_version_is_read_per_batch_and_never_relabels_queued_events",
+      "status": "passed",
+      "seconds": 0.0143
+    },
+    {
+      "id": "test_mk2_device_simulation.DeviceSimulationTests.test_worker_thread_input_to_versioned_events_and_complete_lcd_led_output",
+      "status": "passed",
+      "seconds": 0.0123
+    },
+    {
+      "id": "test_mk2_device_simulation.RenderBoundarySimulationTests.test_all_views_accept_finite_zero_and_large_ranges_and_missing_images",
+      "status": "passed",
+      "seconds": 0.1314
+    },
+    {
+      "id": "test_mk2_device_simulation.RenderBoundarySimulationTests.test_empty_catalog_empty_parameter_list_and_unavailable_pad_views",
+      "status": "passed",
+      "seconds": 0.0126
+    },
+    {
+      "id": "test_mk2_favorites.FavoritesManagerTests.test_catalog_tick_reorder_retains_filtered_selection_and_hydrates_same_id",
+      "status": "passed",
+      "seconds": 0.0486
+    },
+    {
+      "id": "test_mk2_favorites.FavoritesManagerTests.test_disk_save_restart_core_id_and_version_then_web_edit_preserves_favorites",
+      "status": "passed",
+      "seconds": 0.0957
+    },
+    {
+      "id": "test_mk2_favorites.FavoritesManagerTests.test_failed_write_release_then_retry_persists_once",
+      "status": "passed",
+      "seconds": 0.0642
+    },
+    {
+      "id": "test_mk2_favorites.FavoritesManagerTests.test_filtered_assignment_saves_correct_descriptor_without_activation",
+      "status": "passed",
+      "seconds": 0.1051
+    },
+    {
+      "id": "test_mk2_favorites.FavoritesManagerTests.test_filtered_hydration_and_load_use_selected_id_not_unfiltered_index",
+      "status": "passed",
+      "seconds": 0.0581
+    },
+    {
+      "id": "test_mk2_favorites.FavoritesManagerTests.test_queued_save_version_change_drops_duplicate_but_releases_key",
+      "status": "passed",
+      "seconds": 0.0931
+    },
+    {
+      "id": "test_mk2_favorites.FavoritesWorkflowTests.test_assignment_from_favorites_requires_confirm_and_preserves_other_presets",
+      "status": "passed",
+      "seconds": 0.0206
+    },
+    {
+      "id": "test_mk2_favorites.FavoritesWorkflowTests.test_catalog_reorder_rename_and_temporary_removal_keep_ids_stable",
+      "status": "passed",
+      "seconds": 0.0268
+    },
+    {
+      "id": "test_mk2_favorites.FavoritesWorkflowTests.test_core_favorite_load_and_filters_retain_selected_id",
+      "status": "passed",
+      "seconds": 0.0087
+    },
+    {
+      "id": "test_mk2_favorites.FavoritesWorkflowTests.test_duplicate_down_and_pending_toggle_cannot_double_toggle",
+      "status": "passed",
+      "seconds": 0.0098
+    },
+    {
+      "id": "test_mk2_favorites.FavoritesWorkflowTests.test_empty_favorites_and_removing_last_are_safe",
+      "status": "passed",
+      "seconds": 0.0394
+    },
+    {
+      "id": "test_mk2_favorites.FavoritesWorkflowTests.test_failed_save_retry_retains_selection_and_original_config",
+      "status": "passed",
+      "seconds": 0.0281
+    },
+    {
+      "id": "test_mk2_favorites.FavoritesWorkflowTests.test_favorite_ids_validate_deduplicate_and_preserve_core_and_missing_ids",
+      "status": "passed",
+      "seconds": 0.008
+    },
+    {
+      "id": "test_mk2_favorites.FavoritesWorkflowTests.test_legacy_migration_starts_empty_preserves_presets_and_cue",
+      "status": "passed",
+      "seconds": 0.0052
+    },
+    {
+      "id": "test_mk2_favorites.FavoritesWorkflowTests.test_toggle_only_persists_after_matching_ack_and_never_loads",
+      "status": "passed",
+      "seconds": 0.048
+    },
+    {
+      "id": "test_mk2_favorites.FavoritesWorkflowTests.test_top_buttons_do_not_toggle_favorites_in_pad_grid_or_preset_editor",
+      "status": "passed",
+      "seconds": 0.0235
+    },
+    {
+      "id": "test_mk2_favorites.FavoritesWorkflowTests.test_top_keys_remain_parameter_pages_outside_browser_and_show_rejects_browse",
+      "status": "passed",
+      "seconds": 0.0201
+    },
+    {
+      "id": "test_mk2_hardware.DisplayAcceptanceTests.test_actual_active_name_not_selected_pad_and_menu_correct_target",
+      "status": "passed",
+      "seconds": 0.0037
+    },
+    {
+      "id": "test_mk2_hardware.DisplayAcceptanceTests.test_all_supported_transitions_have_distinct_icons_and_fill_progress",
+      "status": "passed",
+      "seconds": 0.0028
+    },
+    {
+      "id": "test_mk2_hardware.DisplayAcceptanceTests.test_browser_favorite_action_and_selection_are_display_only",
+      "status": "passed",
+      "seconds": 0.0054
+    },
+    {
+      "id": "test_mk2_hardware.DisplayAcceptanceTests.test_dynamic_parameter_changes_update_right_lcd",
+      "status": "passed",
+      "seconds": 0.0022
+    },
+    {
+      "id": "test_mk2_hardware.DisplayAcceptanceTests.test_each_workflow_screen_renders_and_selection_changes_frame",
+      "status": "passed",
+      "seconds": 0.0195
+    },
+    {
+      "id": "test_mk2_hardware.DisplayAcceptanceTests.test_empty_favorites_and_assignment_context_are_explicit",
+      "status": "passed",
+      "seconds": 0.0056
+    },
+    {
+      "id": "test_mk2_hardware.DisplayAcceptanceTests.test_progress_transition_and_focused_parameter_update",
+      "status": "passed",
+      "seconds": 0.005
+    },
+    {
+      "id": "test_mk2_hardware.DisplayAcceptanceTests.test_real_thumbnail_cached_across_dynamic_repaints",
+      "status": "passed",
+      "seconds": 0.0132
+    },
+    {
+      "id": "test_mk2_hardware.DisplayAcceptanceTests.test_real_workflow_default_overview_then_pad_focus_then_top_overview",
+      "status": "passed",
+      "seconds": 0.0092
+    },
+    {
+      "id": "test_mk2_hardware.DisplayAcceptanceTests.test_top_page_boxes_follow_eight_physical_button_positions",
+      "status": "passed",
+      "seconds": 0.0023
+    },
+    {
+      "id": "test_mk2_hardware.DisplayAcceptanceTests.test_unsupported_parameter_overflow_and_paused_are_visible",
+      "status": "passed",
+      "seconds": 0.0038
+    },
+    {
+      "id": "test_mk2_hardware.InputAcceptanceTests.test_all_named_button_addresses_and_edges",
+      "status": "passed",
+      "seconds": 0.0041
+    },
+    {
+      "id": "test_mk2_hardware.InputAcceptanceTests.test_eight_absolute_encoder_counters_with_wrap",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_mk2_hardware.InputAcceptanceTests.test_initial_pressed_report_is_baseline_and_invalid_ignored",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_mk2_hardware.InputAcceptanceTests.test_observed_stationary_mk2_trace_emits_no_parameter_changes",
+      "status": "passed",
+      "seconds": 0.0019
+    },
+    {
+      "id": "test_mk2_hardware.InputAcceptanceTests.test_quantized_rollover_both_directions_and_wheel_remains_one_step",
+      "status": "passed",
+      "seconds": 0.0005
+    },
+    {
+      "id": "test_mk2_hardware.InputAcceptanceTests.test_rec_erase_chord_keeps_both_edges",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_mk2_hardware.InputAcceptanceTests.test_reconnect_held_pad_requires_release_then_new_hit",
+      "status": "passed",
+      "seconds": 0.0053
+    },
+    {
+      "id": "test_mk2_hardware.InputAcceptanceTests.test_slow_one_count_turn_accumulates_and_reversal_has_hysteresis",
+      "status": "passed",
+      "seconds": 0.0026
+    },
+    {
+      "id": "test_mk2_hardware.InputAcceptanceTests.test_surface_retains_legacy_callback_and_accepts_event_callback",
+      "status": "passed",
+      "seconds": 0.0002
+    },
+    {
+      "id": "test_mk2_hardware.InputAcceptanceTests.test_wheel_press_and_modulo_16_movement",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_mk2_hardware.InputAcceptanceTests.test_worker_routes_events_and_refreshes_value_without_version_change",
+      "status": "passed",
+      "seconds": 0.0064
+    },
+    {
+      "id": "test_mk2_hardware.LightAcceptanceTests.test_automated_parameters_use_first_eight_pads",
+      "status": "passed",
+      "seconds": 0.0002
+    },
+    {
+      "id": "test_mk2_hardware.LightAcceptanceTests.test_browser_filter_leds_replace_parameter_pages_and_mark_favorite",
+      "status": "passed",
+      "seconds": 0.0005
+    },
+    {
+      "id": "test_mk2_hardware.LightAcceptanceTests.test_groups_duplicate_rgb_and_fixed_colour_top_brightness",
+      "status": "passed",
+      "seconds": 0.0002
+    },
+    {
+      "id": "test_mk2_hardware.LightAcceptanceTests.test_pad_hit_is_red_then_returns_to_assignment_colour",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_mk2_hardware.LightAcceptanceTests.test_record_and_erase_blink_without_changing_snapshot",
+      "status": "passed",
+      "seconds": 0.0004
+    },
+    {
+      "id": "test_mk2_pixel_font.DisplayLegibilityTests.test_all_view_text_uses_pixel_font_and_fits_inside_each_lcd",
+      "status": "passed",
+      "seconds": 0.0331
+    },
+    {
+      "id": "test_mk2_pixel_font.DisplayLegibilityTests.test_error_footer_and_large_focused_value_have_unclipped_pixel_bounds",
+      "status": "passed",
+      "seconds": 0.0047
+    },
+    {
+      "id": "test_mk2_pixel_font.DisplayLegibilityTests.test_error_footer_replaces_intersecting_rows_completely_and_keeps_right_display",
+      "status": "passed",
+      "seconds": 0.0097
+    },
+    {
+      "id": "test_mk2_pixel_font.DisplayLegibilityTests.test_favorites_browser_tabs_align_with_physical_buttons_and_all_text_fits",
+      "status": "passed",
+      "seconds": 0.0118
+    },
+    {
+      "id": "test_mk2_pixel_font.DisplayLegibilityTests.test_long_name_clipping_is_visible_and_missing_image_caption_is_complete",
+      "status": "passed",
+      "seconds": 0.0023
+    },
+    {
+      "id": "test_mk2_pixel_font.DisplayLegibilityTests.test_pad_names_stay_inside_boxes_and_leave_separator_rows_empty",
+      "status": "passed",
+      "seconds": 0.004
+    },
+    {
+      "id": "test_mk2_pixel_font.DisplayLegibilityTests.test_parameter_text_has_blank_row_before_bar_and_separate_columns",
+      "status": "passed",
+      "seconds": 0.0044
+    },
+    {
+      "id": "test_mk2_pixel_font.DisplayLegibilityTests.test_selected_browse_row_does_not_touch_next_row",
+      "status": "passed",
+      "seconds": 0.0012
+    },
+    {
+      "id": "test_mk2_pixel_font.DisplayLegibilityTests.test_top_tabs_fit_their_own_button_cell_without_touching_border",
+      "status": "passed",
+      "seconds": 0.0019
+    },
+    {
+      "id": "test_mk2_pixel_font.PixelGlyphTests.test_accent_fallback_and_unknown_unicode_stay_visible",
+      "status": "passed",
+      "seconds": 0.0005
+    },
+    {
+      "id": "test_mk2_pixel_font.PixelGlyphTests.test_empty_text_masks_work_at_both_integer_scales",
+      "status": "passed",
+      "seconds": 0.0002
+    },
+    {
+      "id": "test_mk2_pixel_font.PixelGlyphTests.test_fixed_advance_leaves_a_full_blank_column_between_glyphs",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_mk2_pixel_font.PixelGlyphTests.test_large_font_is_exact_integer_pixel_expansion",
+      "status": "passed",
+      "seconds": 0.0012
+    },
+    {
+      "id": "test_mk2_pixel_font.PixelGlyphTests.test_masks_are_native_one_bit_and_numeric_glyphs_are_distinct",
+      "status": "passed",
+      "seconds": 0.0009
+    },
+    {
+      "id": "test_mk2_pixel_font.PixelGlyphTests.test_umlats_and_sharp_s_have_visible_distinct_shapes",
+      "status": "passed",
+      "seconds": 0.0014
+    },
+    {
+      "id": "test_mk2_preview.PreviewTests.test_initial_success_keeps_image_without_retry_or_fallback",
+      "status": "passed",
+      "seconds": 0.167
+    },
+    {
+      "id": "test_mk2_preview.PreviewTests.test_one_cache_busted_retry_then_success_preserves_image",
+      "status": "passed",
+      "seconds": 0.1455
+    },
+    {
+      "id": "test_mk2_preview.PreviewTests.test_retries_are_per_image_and_preserve_approved_backend_route",
+      "status": "passed",
+      "seconds": 0.1255
+    },
+    {
+      "id": "test_mk2_preview.PreviewTests.test_second_failure_replaces_broken_image_with_accessible_placeholder",
+      "status": "passed",
+      "seconds": 0.1337
+    },
+    {
+      "id": "test_mk2_recording_scenarios.RecordingWorkflowScenarios.test_g01_g02_m03_step_external_source_and_browser_activation",
+      "status": "passed",
+      "seconds": 0.1327
+    },
+    {
+      "id": "test_mk2_recording_scenarios.RecordingWorkflowScenarios.test_g07_callback_reload_preserves_active_take_and_runtime_values",
+      "status": "passed",
+      "seconds": 0.227
+    },
+    {
+      "id": "test_mk2_recording_scenarios.RecordingWorkflowScenarios.test_g07_full_host_recreation_preserves_new_cue_length_and_native_take",
+      "status": "passed",
+      "seconds": 0.1433
+    },
+    {
+      "id": "test_mk2_recording_scenarios.RecordingWorkflowScenarios.test_g07_full_host_recreation_preserves_overdub_and_untouched_tracks",
+      "status": "passed",
+      "seconds": 0.1292
+    },
+    {
+      "id": "test_mk2_recording_scenarios.RecordingWorkflowScenarios.test_g08_native_load_failure_rolls_back_source_cache_and_parameters",
+      "status": "passed",
+      "seconds": 0.109
+    },
+    {
+      "id": "test_mk2_recording_scenarios.RecordingWorkflowScenarios.test_s04_show_wheel_changes_immediately_before_edit_exit",
+      "status": "passed",
+      "seconds": 0.1332
+    },
+    {
+      "id": "test_mk2_recording_scenarios.RecordingWorkflowScenarios.test_s06_s07_s09_encoder_lock_and_new_cue_full_record_stop_replay",
+      "status": "passed",
+      "seconds": 0.1434
+    },
+    {
+      "id": "test_mk2_recording_scenarios.RecordingWorkflowScenarios.test_s07_empty_new_cue_removed_and_unrelated_automation_preserved",
+      "status": "passed",
+      "seconds": 0.1246
+    },
+    {
+      "id": "test_mk2_recording_scenarios.RecordingWorkflowScenarios.test_s08_overdub_both_chord_orders_only_touched_parameter_curves",
+      "status": "passed",
+      "seconds": 0.1755
+    },
+    {
+      "id": "test_mk2_recording_scenarios.RecordingWorkflowScenarios.test_s09_automatic_end_keeps_take_bound_to_original_cue",
+      "status": "passed",
+      "seconds": 0.1243
+    },
+    {
+      "id": "test_mk2_recording_scenarios.RecordingWorkflowScenarios.test_s09_callback_sampling_error_disarms_without_erasing_untouched_curve",
+      "status": "passed",
+      "seconds": 0.1271
+    },
+    {
+      "id": "test_mk2_recording_scenarios.RecordingWorkflowScenarios.test_s10_transport_and_mode_navigation_locked_only_during_recording",
+      "status": "passed",
+      "seconds": 0.2086
+    },
+    {
+      "id": "test_mk2_runtime.RuntimeTests.test_browser_legacy_assignment_preserves_other_banks_and_same_target_preset",
+      "status": "passed",
+      "seconds": 0.0617
+    },
+    {
+      "id": "test_mk2_runtime.RuntimeTests.test_connection_reset_has_priority_over_full_queue_and_keeps_existing_take",
+      "status": "passed",
+      "seconds": 0.0562
+    },
+    {
+      "id": "test_mk2_runtime.RuntimeTests.test_disabled_hardware_drops_events_and_releases_held_buttons",
+      "status": "passed",
+      "seconds": 0.0408
+    },
+    {
+      "id": "test_mk2_runtime.RuntimeTests.test_disconnect_clears_held_rec_and_discards_queued_actions_before_release",
+      "status": "passed",
+      "seconds": 0.0717
+    },
+    {
+      "id": "test_mk2_runtime.RuntimeTests.test_encoder_changes_accumulate_from_refreshed_host_values",
+      "status": "passed",
+      "seconds": 0.0387
+    },
+    {
+      "id": "test_mk2_runtime.RuntimeTests.test_failed_config_write_preserves_previous_assignment_and_enables_retry",
+      "status": "passed",
+      "seconds": 0.0948
+    },
+    {
+      "id": "test_mk2_runtime.RuntimeTests.test_held_rec_chord_starts_once_and_release_does_not_stop_or_newcue",
+      "status": "passed",
+      "seconds": 0.0938
+    },
+    {
+      "id": "test_mk2_runtime.RuntimeTests.test_physical_assignment_writes_schema_and_commits_ack",
+      "status": "passed",
+      "seconds": 0.0867
+    },
+    {
+      "id": "test_mk2_runtime.RuntimeTests.test_physical_bank_change_invalidates_old_browser_assignment",
+      "status": "passed",
+      "seconds": 0.0238
+    },
+    {
+      "id": "test_mk2_runtime.RuntimeTests.test_stale_device_pad_events_do_not_activate_current_bank",
+      "status": "passed",
+      "seconds": 0.0529
+    },
+    {
+      "id": "test_mk2_runtime.RuntimeTests.test_stale_release_without_index_clears_latch_and_pending_rec_without_starting",
+      "status": "passed",
+      "seconds": 0.0634
+    },
+    {
+      "id": "test_mk2_runtime.RuntimeTests.test_web_bank_change_and_stale_assignment_version",
+      "status": "passed",
+      "seconds": 0.0469
+    },
+    {
+      "id": "test_mk2_scenarios.ConnectedScenarios.test_all_eight_banks_and_sixteen_physical_pad_positions_route_correctly",
+      "status": "passed",
+      "seconds": 5.277
+    },
+    {
+      "id": "test_mk2_scenarios.ConnectedScenarios.test_all_eight_encoders_native_page_and_idle_noise_route_only_intended_parameter",
+      "status": "passed",
+      "seconds": 0.3816
+    },
+    {
+      "id": "test_mk2_scenarios.ConnectedScenarios.test_bank_assignment_confirmation_preset_select_delete_and_restart",
+      "status": "passed",
+      "seconds": 0.9537
+    },
+    {
+      "id": "test_mk2_scenarios.ConnectedScenarios.test_both_recording_workflows_lock_transport_and_restore_encoder_policy",
+      "status": "passed",
+      "seconds": 0.6061
+    },
+    {
+      "id": "test_mk2_scenarios.ConnectedScenarios.test_edit_idle_clean_dirty_cancel_save_and_external_mode",
+      "status": "passed",
+      "seconds": 0.756
+    },
+    {
+      "id": "test_mk2_scenarios.ConnectedScenarios.test_failed_assignment_retry_load_failure_and_pressure_hold",
+      "status": "passed",
+      "seconds": 0.2839
+    },
+    {
+      "id": "test_mk2_scenarios.ConnectedScenarios.test_material_browse_load_native_pages_and_encoder_images",
+      "status": "passed",
+      "seconds": 0.2007
+    },
+    {
+      "id": "test_mk2_scenarios.ConnectedScenarios.test_show_metadata_transport_focus_activity_and_inert_encoders",
+      "status": "passed",
+      "seconds": 0.5802
+    },
+    {
+      "id": "test_mk2_stress.MixedWorkflowSimulationTests.test_empty_library_and_empty_show_stay_navigable",
+      "status": "passed",
+      "seconds": 0.0168
+    },
+    {
+      "id": "test_mk2_stress.MixedWorkflowSimulationTests.test_reproducible_mixed_navigation_and_external_changes",
+      "status": "passed",
+      "seconds": 63.5952
+    },
+    {
+      "id": "test_mk2_td.TDAdapterTests.test_clip_changes_validate_and_use_transport_preserving_writer",
+      "status": "passed",
+      "seconds": 0.002
+    },
+    {
+      "id": "test_mk2_td.TDAdapterTests.test_core_cue_label_resolves_to_real_player_menu_identity",
+      "status": "passed",
+      "seconds": 0.002
+    },
+    {
+      "id": "test_mk2_td.TDAdapterTests.test_failed_preset_restores_identity_and_controls_before_show_source",
+      "status": "passed",
+      "seconds": 0.0085
+    },
+    {
+      "id": "test_mk2_td.TDAdapterTests.test_first_context_already_show_uses_loaded_library_without_changing_source",
+      "status": "passed",
+      "seconds": 0.0014
+    },
+    {
+      "id": "test_mk2_td.TDAdapterTests.test_first_eight_bind_real_master_not_material_speed",
+      "status": "passed",
+      "seconds": 0.0015
+    },
+    {
+      "id": "test_mk2_td.TDAdapterTests.test_generated_editor_records_stops_and_replays_native_vector_and_core",
+      "status": "passed",
+      "seconds": 0.0756
+    },
+    {
+      "id": "test_mk2_td.TDAdapterTests.test_hook_idempotence_and_missing_interface_refused",
+      "status": "passed",
+      "seconds": 0.0028
+    },
+    {
+      "id": "test_mk2_td.TDAdapterTests.test_invalid_preset_never_publishes_or_mutates",
+      "status": "passed",
+      "seconds": 0.0015
+    },
+    {
+      "id": "test_mk2_td.TDAdapterTests.test_live_show_context_is_automated_not_editor_controls",
+      "status": "passed",
+      "seconds": 0.0016
+    },
+    {
+      "id": "test_mk2_td.TDAdapterTests.test_load_changes_shader_and_active_identity_and_restores_on_failure",
+      "status": "passed",
+      "seconds": 0.0029
+    },
+    {
+      "id": "test_mk2_td.TDAdapterTests.test_master_phase_is_continuous_and_does_not_write_player",
+      "status": "passed",
+      "seconds": 0.002
+    },
+    {
+      "id": "test_mk2_td.TDAdapterTests.test_new_cue_uses_existing_recorder_and_all_eight_recordable",
+      "status": "passed",
+      "seconds": 0.0078
+    },
+    {
+      "id": "test_mk2_td.TDAdapterTests.test_on_air_material_identity_does_not_follow_browser_selection",
+      "status": "passed",
+      "seconds": 0.0017
+    },
+    {
+      "id": "test_mk2_td.TDAdapterTests.test_one_recorded_tone_control_preserves_other_cue_value_not_browser",
+      "status": "passed",
+      "seconds": 0.0014
+    },
+    {
+      "id": "test_mk2_td.TDAdapterTests.test_overdub_replaces_only_touched_tracks_and_removes_only_their_edit",
+      "status": "passed",
+      "seconds": 0.0034
+    },
+    {
+      "id": "test_mk2_td.TDAdapterTests.test_show_encoder_locked_without_recording_and_compile_time_locked_during",
+      "status": "passed",
+      "seconds": 0.0034
+    },
+    {
+      "id": "test_mk2_td.TDAdapterTests.test_show_source_sentinel_preserves_loaded_identity_and_browse",
+      "status": "passed",
+      "seconds": 0.0031
+    },
+    {
+      "id": "test_mk2_td.TDAdapterTests.test_step_routes_actual_source_and_recording_blocks_mode_and_load",
+      "status": "passed",
+      "seconds": 0.0026
+    },
+    {
+      "id": "test_mk2_td.TDAdapterTests.test_typed_native_components_and_confirmed_only_load",
+      "status": "passed",
+      "seconds": 0.0027
+    },
+    {
+      "id": "test_mk2_td.TDAdapterTests.test_unclamped_factory_normal_range_does_not_limit_scale",
+      "status": "passed",
+      "seconds": 0.0016
+    },
+    {
+      "id": "test_mk2_td.TDAdapterTests.test_vector_bool_round_trip_and_show_tone_no_double_core_application",
+      "status": "passed",
+      "seconds": 0.001
+    },
+    {
+      "id": "test_mk2_workflow.ConfigurationTests.test_config_and_snapshot_are_deep_copies",
+      "status": "passed",
+      "seconds": 0.0134
+    },
+    {
+      "id": "test_mk2_workflow.ConfigurationTests.test_json_round_trip_preserves_eight_banks_and_presets",
+      "status": "passed",
+      "seconds": 0.0072
+    },
+    {
+      "id": "test_mk2_workflow.ConfigurationTests.test_migrate_legacy_bank_without_losing_cue_or_hardware",
+      "status": "passed",
+      "seconds": 0.0027
+    },
+    {
+      "id": "test_mk2_workflow.ConfigurationTests.test_reject_future_schema_bad_sizes_and_nonfinite_values",
+      "status": "passed",
+      "seconds": 0.0033
+    },
+    {
+      "id": "test_mk2_workflow.MaterialAcceptanceTests.test_browse_clamps_empty_and_missing_or_unsupported_material",
+      "status": "passed",
+      "seconds": 0.0044
+    },
+    {
+      "id": "test_mk2_workflow.MaterialAcceptanceTests.test_browse_wheel_does_not_load_until_press_and_displays_assignments",
+      "status": "passed",
+      "seconds": 0.0137
+    },
+    {
+      "id": "test_mk2_workflow.MaterialAcceptanceTests.test_default_active_material_and_td_native_eight_parameter_pages",
+      "status": "passed",
+      "seconds": 0.0076
+    },
+    {
+      "id": "test_mk2_workflow.MaterialAcceptanceTests.test_eight_groups_and_physical_pads_load_presets_flash_red",
+      "status": "passed",
+      "seconds": 0.019
+    },
+    {
+      "id": "test_mk2_workflow.MaterialAcceptanceTests.test_empty_pad_and_missing_material_never_load",
+      "status": "passed",
+      "seconds": 0.0091
+    },
+    {
+      "id": "test_mk2_workflow.MaterialAcceptanceTests.test_encoder_bounds_type_steps_and_unsupported_type",
+      "status": "passed",
+      "seconds": 0.0059
+    },
+    {
+      "id": "test_mk2_workflow.MaterialAcceptanceTests.test_legacy_cue_assignment_remains_callable",
+      "status": "passed",
+      "seconds": 0.0058
+    },
+    {
+      "id": "test_mk2_workflow.MaterialAcceptanceTests.test_master_speed_is_identifiable_on_compact_td_display",
+      "status": "passed",
+      "seconds": 0.0058
+    },
+    {
+      "id": "test_mk2_workflow.MaterialAcceptanceTests.test_more_than_sixtyfour_parameters_reports_inaccessible_overflow",
+      "status": "passed",
+      "seconds": 0.0166
+    },
+    {
+      "id": "test_mk2_workflow.MaterialAcceptanceTests.test_runtime_parameter_waits_for_host_confirmation",
+      "status": "passed",
+      "seconds": 0.0088
+    },
+    {
+      "id": "test_mk2_workflow.MaterialAcceptanceTests.test_td_only_material_has_one_page_and_unused_top_buttons_do_nothing",
+      "status": "passed",
+      "seconds": 0.005
+    },
+    {
+      "id": "test_mk2_workflow.PadEditingAcceptanceTests.test_assignment_cancel_leaves_all_banks_untouched",
+      "status": "passed",
+      "seconds": 0.0112
+    },
+    {
+      "id": "test_mk2_workflow.PadEditingAcceptanceTests.test_assignment_requires_confirm_then_successful_persistence",
+      "status": "passed",
+      "seconds": 0.0163
+    },
+    {
+      "id": "test_mk2_workflow.PadEditingAcceptanceTests.test_catalog_removal_during_confirmation_does_not_assign",
+      "status": "passed",
+      "seconds": 0.0137
+    },
+    {
+      "id": "test_mk2_workflow.PadEditingAcceptanceTests.test_clean_edit_idle_returns_exactly_after_twenty_seconds",
+      "status": "passed",
+      "seconds": 0.0069
+    },
+    {
+      "id": "test_mk2_workflow.PadEditingAcceptanceTests.test_concurrent_reassignment_cannot_receive_old_material_draft",
+      "status": "passed",
+      "seconds": 0.0153
+    },
+    {
+      "id": "test_mk2_workflow.PadEditingAcceptanceTests.test_delete_is_confirmed_and_can_be_cancelled",
+      "status": "passed",
+      "seconds": 0.0078
+    },
+    {
+      "id": "test_mk2_workflow.PadEditingAcceptanceTests.test_dirty_edit_navigation_does_not_lose_values_or_switch_group",
+      "status": "passed",
+      "seconds": 0.0067
+    },
+    {
+      "id": "test_mk2_workflow.PadEditingAcceptanceTests.test_dirty_idle_requests_save_cancel_and_cancel_discards",
+      "status": "passed",
+      "seconds": 0.0134
+    },
+    {
+      "id": "test_mk2_workflow.PadEditingAcceptanceTests.test_edit_never_activates_material_and_requires_save",
+      "status": "passed",
+      "seconds": 0.0155
+    },
+    {
+      "id": "test_mk2_workflow.PadEditingAcceptanceTests.test_edit_returned_to_original_value_counts_clean",
+      "status": "passed",
+      "seconds": 0.0125
+    },
+    {
+      "id": "test_mk2_workflow.PadEditingAcceptanceTests.test_external_mode_change_preserves_dirty_draft_for_save_or_cancel",
+      "status": "passed",
+      "seconds": 0.0203
+    },
+    {
+      "id": "test_mk2_workflow.PadEditingAcceptanceTests.test_failed_save_keeps_config_and_allows_retry",
+      "status": "passed",
+      "seconds": 0.0225
+    },
+    {
+      "id": "test_mk2_workflow.PadEditingAcceptanceTests.test_lazy_descriptor_hydrates_pad_editor",
+      "status": "passed",
+      "seconds": 0.0107
+    },
+    {
+      "id": "test_mk2_workflow.PadEditingAcceptanceTests.test_recording_cannot_start_with_dirty_draft_confirmation_or_pending_save",
+      "status": "passed",
+      "seconds": 0.0386
+    },
+    {
+      "id": "test_mk2_workflow.ShowAcceptanceTests.test_explicit_host_recording_disabled_keeps_existing_automation",
+      "status": "passed",
+      "seconds": 0.0043
+    },
+    {
+      "id": "test_mk2_workflow.ShowAcceptanceTests.test_normal_show_encoders_are_inert",
+      "status": "passed",
+      "seconds": 0.0035
+    },
+    {
+      "id": "test_mk2_workflow.ShowAcceptanceTests.test_play_previous_next_restart_forward_transport_intent",
+      "status": "passed",
+      "seconds": 0.0032
+    },
+    {
+      "id": "test_mk2_workflow.ShowAcceptanceTests.test_rec_erase_chord_in_both_orders_never_starts_new_cue",
+      "status": "passed",
+      "seconds": 0.0088
+    },
+    {
+      "id": "test_mk2_workflow.ShowAcceptanceTests.test_rec_single_press_starts_new_cue_on_release",
+      "status": "passed",
+      "seconds": 0.0101
+    },
+    {
+      "id": "test_mk2_workflow.ShowAcceptanceTests.test_recording_blocks_mode_clip_browser_and_clip_metadata_changes",
+      "status": "passed",
+      "seconds": 0.0037
+    },
+    {
+      "id": "test_mk2_workflow.ShowAcceptanceTests.test_show_progress_remaining_and_parameter_activity",
+      "status": "passed",
+      "seconds": 0.0207
+    },
+    {
+      "id": "test_mk2_workflow.ShowAcceptanceTests.test_show_wheel_focus_edit_changes_immediately_without_exit_commit",
+      "status": "passed",
+      "seconds": 0.0081
+    },
+    {
+      "id": "test_mk2_workflow.ShowAcceptanceTests.test_step_latches_only_after_host_mode_confirmation_and_debounces",
+      "status": "passed",
+      "seconds": 0.0044
+    },
+    {
+      "id": "test_mk2_workflow.ShowAcceptanceTests.test_transition_duration_bounds_and_no_numeric_nan_commands",
+      "status": "passed",
+      "seconds": 0.0039
+    },
+    {
+      "id": "test_mk2_workflow.ShowAcceptanceTests.test_unknown_and_invalid_events_are_ignored",
+      "status": "passed",
+      "seconds": 0.0025
+    },
+    {
+      "id": "test_show_automation.DiagnosisTests.test_a_good_take_has_no_diagnosis",
+      "status": "passed",
+      "seconds": 0.0002
+    },
+    {
+      "id": "test_show_automation.DiagnosisTests.test_a_standing_clock_is_reported_separately",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_automation.DiagnosisTests.test_untouched_controls_report_no_movement",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_automation.ImportedParameterTests.test_a_rejected_name_cannot_reach_the_renderer",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_show_automation.ImportedParameterTests.test_an_imported_track_round_trips",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_show_automation.ImportedParameterTests.test_anything_else_is_refused",
+      "status": "passed",
+      "seconds": 0.0002
+    },
+    {
+      "id": "test_show_automation.ImportedParameterTests.test_core_and_imported_tracks_coexist",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_automation.ImportedParameterTests.test_core_names_still_pass",
+      "status": "passed",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_show_automation.ImportedParameterTests.test_mat_prefixed_names_are_admitted",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_automation.PlaybackTests.test_empty_track_is_refused",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_show_automation.PlaybackTests.test_ends_are_held_not_extrapolated",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_automation.PlaybackTests.test_linear_interpolation_between_samples",
+      "status": "passed",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_show_automation.PlaybackTests.test_lookup_matches_a_linear_recording",
+      "status": "passed",
+      "seconds": 0.0002
+    },
+    {
+      "id": "test_show_automation.PlaybackTests.test_unknown_cue_returns_nothing",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_automation.RecordingTests.test_negative_time_is_refused",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_automation.RecordingTests.test_non_recordable_parameters_are_ignored",
+      "status": "passed",
+      "seconds": 0.0002
+    },
+    {
+      "id": "test_show_automation.RecordingTests.test_recorder_needs_a_cue_id",
+      "status": "passed",
+      "seconds": 0.0002
+    },
+    {
+      "id": "test_show_automation.RecordingTests.test_repeated_values_collapse",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_show_automation.RecordingTests.test_sample_cap_is_enforced",
+      "status": "passed",
+      "seconds": 0.0005
+    },
+    {
+      "id": "test_show_automation.RecordingTests.test_samples_inside_one_frame_replace_instead_of_stacking",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_automation.RecordingTests.test_untouched_parameters_are_not_recorded",
+      "status": "passed",
+      "seconds": 0.0007
+    },
+    {
+      "id": "test_show_automation.StorageTests.test_clear_and_rename",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_show_automation.StorageTests.test_malformed_input_is_refused",
+      "status": "passed",
+      "seconds": 0.0004
+    },
+    {
+      "id": "test_show_automation.StorageTests.test_merge_leaves_other_cues_alone",
+      "status": "passed",
+      "seconds": 0.0008
+    },
+    {
+      "id": "test_show_automation.StorageTests.test_merging_nothing_clears_the_cue",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_show_automation.StorageTests.test_round_trip_through_validate",
+      "status": "passed",
+      "seconds": 0.0009
+    },
+    {
+      "id": "test_show_automation.StorageTests.test_track_length_reports_the_last_sample",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_show_automation.StorageTests.test_unordered_or_negative_samples_are_refused",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_show_automation.StorageTests.test_unrecordable_parameter_is_refused_on_merge",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_automation.SurvivalTests.test_blank_take_helper",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_automation.SurvivalTests.test_incomplete_state_is_refused",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_automation.SurvivalTests.test_mutating_through_one_view_is_seen_by_the_other",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_automation.SurvivalTests.test_state_is_plain_data",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_automation.SurvivalTests.test_take_resumes_from_its_stored_state",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_show_catalog.SavedShowCatalogTests.test_lists_valid_shows_and_empty_drafts_but_not_sidecars",
+      "status": "passed",
+      "seconds": 0.0395
+    },
+    {
+      "id": "test_show_catalog.SavedShowCatalogTests.test_missing_folder_has_no_choices",
+      "status": "passed",
+      "seconds": 0.0019
+    },
+    {
+      "id": "test_show_control_dialog_regression.ShowControlDialogContractTests.test_all_visible_transport_buttons_have_callback_commands",
+      "status": "passed",
+      "seconds": 0.0004
+    },
+    {
+      "id": "test_show_control_dialog_regression.ShowControlDialogContractTests.test_alternating_slots_require_mix_direction_independent_of_progress",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_show_control_dialog_regression.ShowControlDialogContractTests.test_cue_preset_changes_live_renderer",
+      "status": "passed",
+      "seconds": 0.0002
+    },
+    {
+      "id": "test_show_control_dialog_regression.ShowControlDialogContractTests.test_dialog_builder_has_no_network_enable_or_project_save",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_control_dialog_regression.ShowControlDialogContractTests.test_live_mixer_consumes_output_b_mix_for_slot_direction",
+      "status": "passed",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_show_control_dialog_regression.ShowControlDialogContractTests.test_live_status_uses_dynamic_outgoing_slot_and_label",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_control_dialog_regression.ShowControlDialogContractTests.test_loop_and_blackout_have_dynamic_visible_state",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_control_dialog_regression.ShowControlDialogContractTests.test_show_renderer_is_bound_after_canonical_sampling_without_output_enable",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_show_control_dialog_regression.ShowControlDialogContractTests.test_target_groups_reach_live_renderer",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_editor.EditingTests.test_cut_forces_zero_transition_duration",
+      "status": "passed",
+      "seconds": 0.0025
+    },
+    {
+      "id": "test_show_editor.EditingTests.test_empty_show_stays_editable",
+      "status": "passed",
+      "seconds": 0.0011
+    },
+    {
+      "id": "test_show_editor.EditingTests.test_every_mutation_returns_a_runnable_show",
+      "status": "passed",
+      "seconds": 0.0054
+    },
+    {
+      "id": "test_show_editor.EditingTests.test_gradient_change_moves_both_colours",
+      "status": "passed",
+      "seconds": 0.0025
+    },
+    {
+      "id": "test_show_editor.EditingTests.test_ids_stay_unique_through_duplication",
+      "status": "passed",
+      "seconds": 0.0029
+    },
+    {
+      "id": "test_show_editor.EditingTests.test_index_outside_the_show_is_refused",
+      "status": "passed",
+      "seconds": 0.0017
+    },
+    {
+      "id": "test_show_editor.EditingTests.test_leaving_cut_restores_a_usable_transition_duration",
+      "status": "passed",
+      "seconds": 0.003
+    },
+    {
+      "id": "test_show_editor.EditingTests.test_move_at_the_edges_is_a_no_op",
+      "status": "passed",
+      "seconds": 0.0021
+    },
+    {
+      "id": "test_show_editor.EditingTests.test_mutations_do_not_touch_the_input",
+      "status": "passed",
+      "seconds": 0.0025
+    },
+    {
+      "id": "test_show_editor.EditingTests.test_shortening_a_cue_clamps_its_transition",
+      "status": "passed",
+      "seconds": 0.0027
+    },
+    {
+      "id": "test_show_editor.EditingTests.test_unknown_values_are_refused",
+      "status": "passed",
+      "seconds": 0.002
+    },
+    {
+      "id": "test_show_editor.MenuTests.test_menu_orders_cover_the_validated_sets",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_editor.PlayerCaptureTests.test_explicit_player_colours_win",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_editor.PlayerCaptureTests.test_gradient_supplies_the_colours_when_the_player_omits_them",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_editor.PlayerCaptureTests.test_missing_player_controls_fall_back_to_defaults",
+      "status": "passed",
+      "seconds": 0.0002
+    },
+    {
+      "id": "test_show_editor.PlayerCaptureTests.test_out_of_range_colours_are_clamped",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_editor.PlayerCaptureTests.test_player_coordinate_names_map_to_schema_names",
+      "status": "passed",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_show_editor.PlayerCaptureTests.test_player_values_land_in_the_matching_fields",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_p1_regression.ShowP1RegressionTests.test_automatic_handoff_keeps_incoming_slot_time_continuous",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_show_p1_regression.ShowP1RegressionTests.test_automatic_reverse_slot_and_loop_keep_preroll",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_show_p1_regression.ShowP1RegressionTests.test_bulk_endpoint_never_leaks_incoming_panel",
+      "status": "passed",
+      "seconds": 0.0093
+    },
+    {
+      "id": "test_show_p1_regression.ShowP1RegressionTests.test_cut_handoff_does_not_apply_preroll",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_show_p1_regression.ShowP1RegressionTests.test_every_transition_has_exact_endpoint_masks",
+      "status": "passed",
+      "seconds": 0.0004
+    },
+    {
+      "id": "test_show_p1_regression.ShowP1RegressionTests.test_generated_renderer_rejects_missing_effect_and_uses_slot_phase",
+      "status": "passed",
+      "seconds": 0.0106
+    },
+    {
+      "id": "test_show_p1_regression.ShowP1RegressionTests.test_generated_runtime_restores_state_and_every_toggle_click",
+      "status": "passed",
+      "seconds": 0.0138
+    },
+    {
+      "id": "test_show_p1_regression.ShowP1RegressionTests.test_generated_uv_callback_samples_each_slot_and_rejects_reordered_indices",
+      "status": "passed",
+      "seconds": 0.0023
+    },
+    {
+      "id": "test_show_p1_regression.ShowP1RegressionTests.test_manual_go_resets_new_current_slot_clock",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_show_p1_regression.ShowP1RegressionTests.test_sender_badge_reports_observed_state_without_enabling_output",
+      "status": "passed",
+      "seconds": 0.0108
+    },
+    {
+      "id": "test_show_p1_regression.ShowP1RegressionTests.test_slot_coordinate_modes_do_not_share_external_player_state",
+      "status": "passed",
+      "seconds": 0.0002
+    },
+    {
+      "id": "test_show_pads.HardwareProtocolTests.test_full_frame_roundtrip_and_band_addresses",
+      "status": "passed",
+      "seconds": 0.0002
+    },
+    {
+      "id": "test_show_pads.HardwareProtocolTests.test_pad_order_matches_bottom_left_one",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_pads.HardwareProtocolTests.test_press_hold_release_repress_and_noise",
+      "status": "passed",
+      "seconds": 0.0006
+    },
+    {
+      "id": "test_show_pads.HardwareProtocolTests.test_render_real_monochrome_frames_and_missing_image",
+      "status": "passed",
+      "seconds": 0.0158
+    },
+    {
+      "id": "test_show_pads.PadManagerTests.test_failed_material_restores_selection",
+      "status": "passed",
+      "seconds": 0.001
+    },
+    {
+      "id": "test_show_pads.PadManagerTests.test_failed_save_does_not_change_mapping_or_version",
+      "status": "passed",
+      "seconds": 0.0005
+    },
+    {
+      "id": "test_show_pads.PadManagerTests.test_invalid_config_and_unavailable_target",
+      "status": "passed",
+      "seconds": 0.0005
+    },
+    {
+      "id": "test_show_pads.PadManagerTests.test_selection_does_not_activate_and_recording_blocks_load",
+      "status": "passed",
+      "seconds": 0.0004
+    },
+    {
+      "id": "test_show_pads.PadManagerTests.test_stale_assignment_and_activation_rejected",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_show_pads.PadManagerTests.test_successful_material_and_cue_actions",
+      "status": "passed",
+      "seconds": 0.0018
+    },
+    {
+      "id": "test_show_performance.ShowPerformanceTests.test_all_transitions_masks_brightness_and_blackout_match_reference",
+      "status": "passed",
+      "seconds": 0.6959
+    },
+    {
+      "id": "test_show_performance.ShowPerformanceTests.test_bulk_writer_keeps_explicit_channel_names",
+      "status": "passed",
+      "seconds": 0.0012
+    },
+    {
+      "id": "test_show_performance.ShowPerformanceTests.test_rejects_invalid_source_group_and_mix",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_show_performance.ShowPerformanceTests.test_uv_cache_invalidates_on_edit_even_in_same_frame",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_show_placeholders.ShowPlaceholderTests.test_existing_wiring_preserved_and_second_run_is_noop",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_show_placeholders.ShowPlaceholderTests.test_five_known_empty_placeholders_get_three_shared_black_sources",
+      "status": "passed",
+      "seconds": 0.0002
+    },
+    {
+      "id": "test_show_placeholders.ShowPlaceholderTests.test_modified_owned_black_source_is_not_silently_reset",
+      "status": "passed",
+      "seconds": 0.0004
+    },
+    {
+      "id": "test_show_placeholders.ShowPlaceholderTests.test_source_name_collision_fails_before_any_graph_write",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_show_placeholders.ShowPlaceholderTests.test_user_replacement_node_type_is_not_touched",
+      "status": "passed",
+      "seconds": 0.0002
+    },
+    {
+      "id": "test_show_placeholders.ShowPlaceholderTests.test_wrong_owner_is_rejected",
+      "status": "passed",
+      "seconds": 0.0005
+    },
+    {
+      "id": "test_show_renderer.ShowRendererContractTests.test_all_and_combined_groups_validate",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_renderer.ShowRendererContractTests.test_alternating_b_direction_is_independent_of_progress",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_renderer.ShowRendererContractTests.test_blackout_is_final_gain_and_does_not_change_mix",
+      "status": "passed",
+      "seconds": 0.0005
+    },
+    {
+      "id": "test_show_renderer.ShowRendererContractTests.test_bulk_crossfade_hot_path_has_large_performance_margin",
+      "status": "passed",
+      "seconds": 0.0436
+    },
+    {
+      "id": "test_show_renderer.ShowRendererContractTests.test_bulk_frame_matches_reference_for_every_transition",
+      "status": "passed",
+      "seconds": 0.0412
+    },
+    {
+      "id": "test_show_renderer.ShowRendererContractTests.test_each_slot_is_masked_before_transition",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_renderer.ShowRendererContractTests.test_exact_canonical_panel_boundaries",
+      "status": "passed",
+      "seconds": 0.006
+    },
+    {
+      "id": "test_show_sequencer.PersistenceAndBuilderTests.test_builder_is_import_safe_and_declares_isolation",
+      "status": "passed",
+      "seconds": 0.0023
+    },
+    {
+      "id": "test_show_sequencer.PersistenceAndBuilderTests.test_demo_show_loads_and_round_trips_exactly",
+      "status": "passed",
+      "seconds": 0.0343
+    },
+    {
+      "id": "test_show_sequencer.PersistenceAndBuilderTests.test_invalid_json_and_wrong_schema_fail_closed",
+      "status": "passed",
+      "seconds": 0.0333
+    },
+    {
+      "id": "test_show_sequencer.TransportTests.test_ab_plan_has_slots_mix_and_targets",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_show_sequencer.TransportTests.test_bad_advance_values_are_rejected",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_show_sequencer.TransportTests.test_blackout_does_not_interrupt_transport",
+      "status": "passed",
+      "seconds": 0.0002
+    },
+    {
+      "id": "test_show_sequencer.TransportTests.test_exact_transition_and_cue_boundaries",
+      "status": "passed",
+      "seconds": 0.0002
+    },
+    {
+      "id": "test_show_sequencer.TransportTests.test_multi_boundary_advance_and_loop",
+      "status": "passed",
+      "seconds": 0.0002
+    },
+    {
+      "id": "test_show_sequencer.TransportTests.test_next_previous_go_seek_and_loop_toggle",
+      "status": "passed",
+      "seconds": 0.0002
+    },
+    {
+      "id": "test_show_sequencer.TransportTests.test_pause_resume_preserves_exact_position",
+      "status": "passed",
+      "seconds": 0.0002
+    },
+    {
+      "id": "test_show_sequencer.TransportTests.test_stop_resets_and_natural_end_stops_on_final_frame",
+      "status": "passed",
+      "seconds": 0.0002
+    },
+    {
+      "id": "test_show_sequencer.ValidationTests.test_all_transition_and_coordinate_modes_are_accepted",
+      "status": "passed",
+      "seconds": 0.0008
+    },
+    {
+      "id": "test_show_sequencer.ValidationTests.test_complete_material_parameters_round_trip_and_validate",
+      "status": "passed",
+      "seconds": 0.0005
+    },
+    {
+      "id": "test_show_sequencer.ValidationTests.test_cut_and_animated_transition_duration_rules",
+      "status": "passed",
+      "seconds": 0.0003
+    },
+    {
+      "id": "test_show_sequencer.ValidationTests.test_rejects_invalid_cue_values",
+      "status": "passed",
+      "seconds": 0.0012
+    },
+    {
+      "id": "test_show_sequencer.ValidationTests.test_strict_json_fields_and_unique_ids",
+      "status": "passed",
+      "seconds": 0.0007
+    },
+    {
+      "id": "test_show_storage.ShowStorageTests.test_explicit_play_runs_but_reopen_requires_play_again",
+      "status": "passed",
+      "seconds": 0.0093
+    },
+    {
+      "id": "test_show_storage.ShowStorageTests.test_legacy_object_is_removed_even_if_show_json_is_invalid",
+      "status": "passed",
+      "seconds": 0.0035
+    },
+    {
+      "id": "test_show_storage.ShowStorageTests.test_runtime_class_replacement_discards_transient_old_instance",
+      "status": "passed",
+      "seconds": 0.0046
+    },
+    {
+      "id": "test_show_storage.ShowStorageTests.test_stale_unpicklable_legacy_object_is_replaced_by_plain_data",
+      "status": "passed",
+      "seconds": 0.0039
+    },
+    {
+      "id": "test_show_sync_fastpath.IdleSyncTests.test_failed_sync_cannot_reuse_previous_success_record",
+      "status": "passed",
+      "seconds": 0.008
+    },
+    {
+      "id": "test_show_sync_fastpath.IdleSyncTests.test_invalid_show_cannot_hide_behind_idle_cache",
+      "status": "passed",
+      "seconds": 0.008
+    },
+    {
+      "id": "test_show_sync_fastpath.IdleSyncTests.test_paused_unchanged_skips_serialization_and_full_renderer",
+      "status": "passed",
+      "seconds": 0.0094
+    },
+    {
+      "id": "test_show_sync_fastpath.IdleSyncTests.test_playing_progresses_in_background_and_keeps_full_sync",
+      "status": "passed",
+      "seconds": 0.0085
+    },
+    {
+      "id": "test_show_sync_fastpath.IdleSyncTests.test_reloaded_playing_show_still_requires_explicit_play",
+      "status": "passed",
+      "seconds": 0.0138
+    },
+    {
+      "id": "test_show_sync_fastpath.IdleSyncTests.test_render_module_reload_on_same_dat_requires_full_sync",
+      "status": "passed",
+      "seconds": 0.0081
+    },
+    {
+      "id": "test_show_sync_fastpath.IdleSyncTests.test_same_frame_request_and_state_edits_invalidate_skip",
+      "status": "passed",
+      "seconds": 0.009
+    },
+    {
+      "id": "test_show_sync_fastpath.IdleSyncTests.test_same_module_context_reset_also_requires_full_sync",
+      "status": "passed",
+      "seconds": 0.0071
+    },
+    {
+      "id": "test_show_sync_fastpath.IdleSyncTests.test_show_json_change_is_applied_during_pause",
+      "status": "passed",
+      "seconds": 0.0076
+    },
+    {
+      "id": "test_show_sync_fastpath.IdleSyncTests.test_stop_and_ui_commands_apply_immediately",
+      "status": "passed",
+      "seconds": 0.0084
+    },
+    {
+      "id": "test_show_sync_fastpath.SourceAndFeedbackTests.test_callback_and_render_patches_are_reversible_and_fail_closed",
+      "status": "passed",
+      "seconds": 0.0159
+    },
+    {
+      "id": "test_show_sync_fastpath.SourceAndFeedbackTests.test_idle_feedback_keeps_quarter_second_rate_without_reapplying_slots",
+      "status": "passed",
+      "seconds": 0.0082
+    },
+    {
+      "id": "test_show_timeline.BridgeTests.test_expired_command_cannot_run_later",
+      "status": "passed",
+      "seconds": 0.0039
+    },
+    {
+      "id": "test_show_timeline.BridgeTests.test_http_serves_ui_and_refuses_cross_origin_or_missing_token",
+      "status": "passed",
+      "seconds": 0.6635
+    },
+    {
+      "id": "test_show_timeline.BridgeTests.test_recording_rejects_edit_and_transport",
+      "status": "passed",
+      "seconds": 0.0021
+    },
+    {
+      "id": "test_show_timeline.BridgeTests.test_undo_redo_save_and_external_edit_conflict",
+      "status": "passed",
+      "seconds": 0.0087
+    },
+    {
+      "id": "test_show_timeline.EditingTests.test_duplicate_delete_keep_layers_consistent",
+      "status": "passed",
+      "seconds": 0.0021
+    },
+    {
+      "id": "test_show_timeline.EditingTests.test_edit_does_not_change_original_recording_or_input",
+      "status": "passed",
+      "seconds": 0.0021
+    },
+    {
+      "id": "test_show_timeline.EditingTests.test_generated_player_uses_new_lane_without_original_recording",
+      "status": "passed",
+      "seconds": 0.0676
+    },
+    {
+      "id": "test_show_timeline.EditingTests.test_imported_uniforms_reset_to_capture_when_override_is_removed",
+      "status": "passed",
+      "seconds": 0.0702
+    },
+    {
+      "id": "test_show_timeline.EditingTests.test_invalid_edit_is_atomic",
+      "status": "passed",
+      "seconds": 0.0037
+    },
+    {
+      "id": "test_show_timeline.EditingTests.test_modes_have_expected_value",
+      "status": "passed",
+      "seconds": 0.0015
+    },
+    {
+      "id": "test_show_timeline.EditingTests.test_move_uses_cue_identity_and_sequential_time",
+      "status": "passed",
+      "seconds": 0.0021
+    },
+    {
+      "id": "test_show_timeline.EditingTests.test_new_parameter_without_recording_plays_and_roundtrips",
+      "status": "passed",
+      "seconds": 0.0025
+    },
+    {
+      "id": "test_show_timeline.EditingTests.test_runtime_patches_idempotent_and_keep_performance_patches",
+      "status": "passed",
+      "seconds": 0.0869
+    },
+    {
+      "id": "test_show_timeline.EditingTests.test_seek_boundaries_and_end",
+      "status": "passed",
+      "seconds": 0.0023
+    },
+    {
+      "id": "test_show_timeline.EditingTests.test_shortening_holds_original_samples_for_restoration",
+      "status": "passed",
+      "seconds": 0.0039
+    },
+    {
+      "id": "test_show_timeline.EditingTests.test_transition_curves_match_both_ab_slots_and_blackout",
+      "status": "passed",
+      "seconds": 0.0031
+    },
+    {
+      "id": "test_show_timeline.EditingTests.test_transition_rejects_backwards_and_missing_endpoints",
+      "status": "passed",
+      "seconds": 0.0025
+    },
+    {
+      "id": "test_show_timeline_controls.LoopTests.test_boundary_wrap_multi_cue_and_large_delta",
+      "status": "passed",
+      "seconds": 0.0021
+    },
+    {
+      "id": "test_show_timeline_controls.LoopTests.test_end_of_nonlooping_show_still_wraps_region",
+      "status": "passed",
+      "seconds": 0.0023
+    },
+    {
+      "id": "test_show_timeline_controls.LoopTests.test_paused_and_disabled_keep_normal_transport",
+      "status": "passed",
+      "seconds": 0.0027
+    },
+    {
+      "id": "test_show_timeline_controls.LoopTests.test_seek_outside_region_and_shortened_show",
+      "status": "passed",
+      "seconds": 0.0023
+    },
+    {
+      "id": "test_show_timeline_controls.LoopTests.test_validation_undo_and_persistence",
+      "status": "passed",
+      "seconds": 0.0082
+    },
+    {
+      "id": "test_show_timeline_controls.MidiTests.test_absolute_relative_and_bounds",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_timeline_controls.MidiTests.test_generated_live_overlay_only_applies_to_on_air_slot",
+      "status": "passed",
+      "seconds": 0.0723
+    },
+    {
+      "id": "test_show_timeline_controls.MidiTests.test_generated_recording_samples_live_midi_values",
+      "status": "passed",
+      "seconds": 0.0764
+    },
+    {
+      "id": "test_show_timeline_controls.MidiTests.test_learning_consumes_event_and_unbinds_conflict",
+      "status": "passed",
+      "seconds": 0.0002
+    },
+    {
+      "id": "test_show_timeline_controls.MidiTests.test_live_values_do_not_leak_to_other_cues_or_blackout",
+      "status": "passed",
+      "seconds": 0.0018
+    },
+    {
+      "id": "test_show_timeline_controls.MidiTests.test_raw_addresses_and_release_messages",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_timeline_controls.MidiTests.test_validation_and_no_preset_addresses",
+      "status": "passed",
+      "seconds": 0.0002
+    },
+    {
+      "id": "test_show_transitions.TransitionSetTests.test_burn_has_a_soft_edge",
+      "status": "passed",
+      "seconds": 0.0007
+    },
+    {
+      "id": "test_show_transitions.TransitionSetTests.test_endpoints_are_pure_a_and_pure_b",
+      "status": "passed",
+      "seconds": 0.0104
+    },
+    {
+      "id": "test_show_transitions.TransitionSetTests.test_every_transition_actually_moves",
+      "status": "passed",
+      "seconds": 0.0189
+    },
+    {
+      "id": "test_show_transitions.TransitionSetTests.test_fade_black_dips_and_recovers",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_transitions.TransitionSetTests.test_info_table_is_complete_and_unique",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_transitions.TransitionSetTests.test_per_led_helper_matches_frame_renderer",
+      "status": "passed",
+      "seconds": 0.0326
+    },
+    {
+      "id": "test_show_transitions.TransitionSetTests.test_preview_shader_map_matches_renderer_order",
+      "status": "passed",
+      "seconds": 0.0019
+    },
+    {
+      "id": "test_show_transitions.TransitionSetTests.test_reveals_are_monotone_in_mix",
+      "status": "passed",
+      "seconds": 0.0529
+    },
+    {
+      "id": "test_show_transitions.TransitionSetTests.test_sequencer_and_renderer_agree",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_show_transitions.TransitionSetTests.test_unknown_transition_is_refused",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_live_show_integration.LiveShowIntegrationContractTests.test_exposes_show_as_third_visual_source",
+      "status": "passed",
+      "seconds": 0.0001
+    },
+    {
+      "id": "test_live_show_integration.LiveShowIntegrationContractTests.test_has_two_players_mixer_and_six_transitions",
+      "status": "passed",
+      "seconds": 0.0002
+    },
+    {
+      "id": "test_live_show_integration.LiveShowIntegrationContractTests.test_visual_only_and_network_safe",
+      "status": "passed",
+      "seconds": 0.0004
+    }
+  ]
+}

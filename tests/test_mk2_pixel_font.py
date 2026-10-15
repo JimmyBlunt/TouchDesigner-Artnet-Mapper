@@ -130,7 +130,7 @@ class DisplayLegibilityTests(unittest.TestCase):
     def test_selected_browse_row_does_not_touch_next_row(self):
         s=snapshot();c=s['controller'];c.update(screen='browse',browse_index=2)
         left=render(s)[0]
-        selected_top=12+2*10
+        selected_top=22+2*10
         # Highlight occupies nine rows including padding, leaving the tenth clear.
         self.assertFalse(any(left.getpixel((x,selected_top+9)) for x in range(2,253)))
         self.assertTrue(any(left.getpixel((x,selected_top+10)) for x in range(2,253)))
@@ -186,7 +186,28 @@ class DisplayLegibilityTests(unittest.TestCase):
                 if screen in ('pad_menu','confirm_assign'):
                     self.assertNotIn('Drehen: waehlen / Druecken: OK',texts)
                 if screen=='browse':
-                    self.assertFalse(any(text.startswith('005 ') for text in texts))
+                    self.assertFalse(any(text.startswith('004 ') for text in texts))
+
+    def test_favorites_browser_tabs_align_with_physical_buttons_and_all_text_fits(self):
+        for favorites, empty, assign in ((False,False,False),(True,False,False),(True,True,False),(True,True,True)):
+            s=snapshot();c=s['controller']
+            c.update(screen='browse',browse_filter='favorites' if favorites else 'all',favorites_count=0 if empty else 20,
+                     browse_purpose='assign' if assign else 'load',bank=1,pad_index=5)
+            for item in c['browse_items']:
+                item.update(favorite=True,label='Sehr langer Favoritenname '+('X'*80))
+            if empty:c['browse_items']=[]
+            with self.subTest(favorites=favorites,empty=empty,assign=assign):
+                _,records=self.draw_with_text_positions(s)
+                tabs=[r for r in records if r[0][1]==1]
+                self.assertEqual([(r[0][0],r[1]) for r in tabs],[(3,'ALLE'),(67,'FAV'),(195,'+FAV' if empty else '-FAV')])
+                for (x,y),text,font,(_,_,right,bottom) in records:
+                    self.assertLessEqual(x+right,256,msg=text)
+                    self.assertLessEqual(y+bottom,64,msg=text)
+                texts=[r[1] for r in records]
+                if empty:
+                    self.assertIn('Noch keine Favoriten',texts)
+                    self.assertIn('Mit +FAV markieren',texts)
+                if assign:self.assertIn('PAD B06 ZUORDNEN',texts)
 
     def test_long_name_clipping_is_visible_and_missing_image_caption_is_complete(self):
         s=snapshot();s['controller']['material']['label']='Material '+('X'*90)

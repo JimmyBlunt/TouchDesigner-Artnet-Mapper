@@ -205,6 +205,19 @@ class InputAcceptanceTests(unittest.TestCase):
 
 
 class LightAcceptanceTests(unittest.TestCase):
+    def test_browser_filter_leds_replace_parameter_pages_and_mark_favorite(self):
+        s=state();c=s['controller'];c.update(screen='browse',browse_filter='all',browse_index=0,
+                                          browse_items=[dict(id='a',favorite=False)])
+        c['parameter_pages']=[dict(label='MM',parameters=[]) for _ in range(8)]
+        c['page']=3
+        before=deepcopy(s)
+        self.assertEqual(button_lights(s,now=0)[1][9:17],bytes([100,20,0,0,0,0,0,20]))
+        self.assertEqual(s,before)
+        c['browse_filter']='favorites';c['browse_items'][0]['favorite']=True
+        self.assertEqual(button_lights(s,now=0)[1][9:17],bytes([20,100,0,0,0,0,0,100]))
+        c['browse_items']=[]
+        self.assertEqual(button_lights(s,now=0)[1][9:17],bytes([20,100,0,0,0,0,0,0]))
+
     def test_groups_duplicate_rgb_and_fixed_colour_top_brightness(self):
         groups, top = button_lights(state(), now=0)
         self.assertEqual(len(groups), 57); self.assertEqual(groups[0], 0x81)
@@ -262,6 +275,32 @@ class DisplayAcceptanceTests(unittest.TestCase):
         labels = self.captured_labels(s)
         self.assertIn('Material 1', labels)
         self.assertNotIn('Active material', labels)
+
+    def test_browser_favorite_action_and_selection_are_display_only(self):
+        s=state();c=s['controller'];c.update(screen='browse',browse_filter='all',favorites_count=1,
+            browse_index=0,browse_items=[dict(id='a',label='Favorite material',favorite=True),
+                                        dict(id='b',label='Other material',favorite=False)])
+        before=deepcopy(s)
+        labels=self.captured_labels(s)
+        self.assertIn('-FAV',labels)
+        self.assertIn('001 * Favorite material',labels)
+        self.assertEqual(s,before)
+        first=render(s)
+        c['browse_index']=1
+        labels=self.captured_labels(s)
+        self.assertIn('+FAV',labels)
+        self.assertNotEqual(first[1].tobytes(),render(s)[1].tobytes())
+        self.assertEqual(c['material']['label'],'Active material')
+
+    def test_empty_favorites_and_assignment_context_are_explicit(self):
+        s=state();c=s['controller'];c.update(screen='browse',browse_filter='favorites',favorites_count=0,
+                                          browse_items=[],browse_index=12,browse_purpose='assign',bank=2,pad_index=8)
+        labels=self.captured_labels(s)
+        for expected in ('ALLE','FAV','+FAV','Favoriten 0','0/0','Noch keine Favoriten','PAD C09 ZUORDNEN'):
+            self.assertIn(expected,labels)
+        c['browse_items']=[dict(id='a',label='Assignable favorite',favorite=True)]
+        c['favorites_count']=1
+        self.assertIn('Druecken: zuordnen',self.captured_labels(s))
 
     def test_unsupported_parameter_overflow_and_paused_are_visible(self):
         s = state(); c = s['controller']

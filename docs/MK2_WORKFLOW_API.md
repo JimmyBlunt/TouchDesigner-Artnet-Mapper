@@ -1,4 +1,4 @@
-# MK2 workflow contract — 0.2.0
+# MK2 workflow contract — 0.2.3
 
 `pixelblaze_mapper.mk2_workflow.Controller` is the pure interaction layer. It never
 opens USB devices, writes files, loads materials, changes TouchDesigner parameters,
@@ -117,6 +117,23 @@ group A without losing saved cue assignments; groups B–H start empty. Saved
 values must be finite numbers or booleans. Unknown future schema versions fail
 validation instead of discarding assignments.
 
+Since 0.2.3, the additive `favorites` field contains unique stable material IDs,
+including `core:` IDs. Existing configurations default to an empty list. Missing
+catalog entries retain their saved IDs so a temporary absence does not delete a
+favorite. The browser shows only currently available catalog entries. Pad banks,
+presets and the running material are independent of favorite membership.
+
+In `browse`, top button indices 0/1 select `all`/`favorites`; index 7 toggles the
+selected material's membership. All other top buttons are inert in this screen.
+Wheel press still loads, or opens assignment confirmation for `browse_purpose=assign`.
+Favorite toggles emit `persist_config` with `purpose='favorites'`; only a successful
+acknowledgement updates membership. They keep the browser open and never load a
+material. A failed write retains membership and permits retry. Removing the last
+favorite leaves an empty list; pressing the wheel cannot load a hidden item.
+Filtering is session-local; favorite membership survives application restarts.
+`browse_catalog()` and `browse_selected_id()` expose the filtered selection for
+host detail hydration. Catalog refreshes preserve selection by stable ID when possible.
+
 SCENE opens `pad_grid`. Wheel selects one of 16 pads; press opens `pad_menu`.
 Filled material pads expose select/edit/browse/delete; empty pads only browse.
 Assignment browsing leads to `confirm_assign`, default Confirm, without loading.
@@ -148,3 +165,7 @@ Browse records include a one-based `number` plus zero-based `assignments` record
 label, group, pad, options and choice. `show.focus` is duration/transition/
 transition_duration and `show.editing` marks wheel value entry. Display colors and
 HID capabilities remain the hardware adapter's responsibility.
+
+Favorite display fields: `browse_filter` (`all`/`favorites`), `favorites_count`
+(all saved IDs, including temporarily unavailable ones), and `favorite` on every
+`browse_items` entry. The entries and their numbering refer to the filtered list.

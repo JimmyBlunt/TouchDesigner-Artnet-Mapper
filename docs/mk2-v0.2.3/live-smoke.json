@@ -1,0 +1,17 @@
+{
+  "release": "0.2.3",
+  "favorites": [],
+  "catalog": 635,
+  "active_material": "Shadednoise",
+  "active_material_and_parameters_preserved": true,
+  "pads_preserved": true,
+  "uv_preserved": true,
+  "live_toggle_filter_save_restore": true,
+  "screen": "browse",
+  "worker": "MK2 verbunden \u00b7 Displays \u00fcbertragen",
+  "writes": 623,
+  "checked_at": "2026-10-15T04:14:46.205522+00:00",
+  "writes_after": 642,
+  "display_updated": true,
+  "physical_button_acceptance": "pending"
+}
