@@ -40,6 +40,16 @@ def state():
 
 
 class InputAcceptanceTests(unittest.TestCase):
+    def test_physical_select_report_bit_emits_only_press_and_release_edges(self):
+        # Ardour m2_dev_mk2.h payload bit45 = report byte6 mask0x20.
+        decoder=ControlEdges();decoder.read(report())
+        down=report();down[6]=0x20
+        self.assertEqual(decoder.read(down),[dict(type='button',name='select',down=True)])
+        self.assertEqual(decoder.read(down),[])
+        self.assertEqual(decoder.read(report()),[dict(type='button',name='select',down=False)])
+        reconnect=ControlEdges()
+        self.assertEqual(reconnect.read(down),[])
+
     def test_worker_routes_events_and_refreshes_value_without_version_change(self):
         now = [0.]
         posts, events, writes = [], [], []
@@ -211,12 +221,26 @@ class LightAcceptanceTests(unittest.TestCase):
         c['parameter_pages']=[dict(label='MM',parameters=[]) for _ in range(8)]
         c['page']=3
         before=deepcopy(s)
-        self.assertEqual(button_lights(s,now=0)[1][9:17],bytes([100,20,0,0,0,0,0,20]))
+        self.assertEqual(button_lights(s,now=0)[1][9:17],bytes([100,20,20,0,0,0,0,20]))
         self.assertEqual(s,before)
         c['browse_filter']='favorites';c['browse_items'][0]['favorite']=True
-        self.assertEqual(button_lights(s,now=0)[1][9:17],bytes([20,100,0,0,0,0,0,100]))
+        self.assertEqual(button_lights(s,now=0)[1][9:17],bytes([20,100,20,0,0,0,0,100]))
         c['browse_items']=[]
-        self.assertEqual(button_lights(s,now=0)[1][9:17],bytes([20,100,0,0,0,0,0,0]))
+        self.assertEqual(button_lights(s,now=0)[1][9:17],bytes([20,100,20,0,0,0,0,0]))
+
+    def test_category_and_select_led_offsets_and_assignment_bank_in_show_mode(self):
+        s=state();c=s['controller'];c.update(screen='categories',browse_filter='favorites')
+        self.assertEqual(button_lights(s,now=0)[1][9:12],bytes([20,20,100]))
+        c.update(screen='browse',browse_filter='category')
+        self.assertEqual(button_lights(s,now=0)[1][11],100)
+        self.assertEqual(button_lights(s,now=0)[1][22],20)
+        c.update(screen='browse_assign',mode='show',bank=1,parameter_group=4,pad_index=0)
+        groups,buttons=button_lights(s,now=0)
+        self.assertEqual(buttons[22],100)  # 0x82 b[21]+report ID, fixed-colour.
+        self.assertEqual(buttons[9:17],bytes(8))
+        self.assertEqual(groups[7:13],bytes([85,75,0])*2)
+        self.assertEqual(pad_lights(s,now=0)[37:40],bytes([75,75,75]))
+
 
     def test_groups_duplicate_rgb_and_fixed_colour_top_brightness(self):
         groups, top = button_lights(state(), now=0)
@@ -254,6 +278,22 @@ class LightAcceptanceTests(unittest.TestCase):
 
 
 class DisplayAcceptanceTests(unittest.TestCase):
+    def test_categories_and_direct_assignment_show_their_targets_and_actions(self):
+        s=state();c=s['controller'];c.update(screen='categories',category_items=[dict(label='Geometrie',count=28)],category_index=0)
+        labels=self.captured_labels(s)
+        for expected in ('KAT','Geometrie (28)','28 Materialien','Druecken: uebernehmen'):
+            self.assertIn(expected,labels)
+        c.update(screen='browse',browse_filter='category',browse_category='Geometrie',browse_items=[])
+        self.assertIn('Geometrie',self.captured_labels(s))
+        c.update(screen='browse_assign',direct_material=dict(label='Incoming'),bank=1,pad_index=0)
+        before=deepcopy(s);labels=self.captured_labels(s)
+        for expected in ('Incoming','Pad: zuweisen','SELECT: zurueck','Bank B - Gruppen A-H'):
+            self.assertIn(expected,labels)
+        self.assertEqual(s,before)
+        c['screen']='confirm_overwrite';labels=self.captured_labels(s)
+        for expected in ('PAD B01 ERSETZEN?','Bisher: Material 1','Neu: Incoming','SELECT: ersetzen','BROWSE: zurueck'):
+            self.assertIn(expected,labels)
+
     def captured_labels(self, s):
         from PIL import ImageDraw
         labels = []

@@ -8,7 +8,7 @@ from copy import deepcopy
 import math
 from time import monotonic
 
-VERSION = '0.2.3'
+VERSION = '0.2.4'
 SCHEMA_VERSION = 2
 EDIT_IDLE_SECONDS = 20.0
 SHOW_FIELDS = ('duration', 'transition', 'transition_duration')
@@ -21,6 +21,25 @@ def _finite(value):
 
 def _empty_pad():
     return dict(kind='material', target='', values={})
+
+
+def material_categories(item):
+    """Preserve real category memberships, excluding import-status labels."""
+    found = {}
+    for field in ('groups', 'categories', 'category'):
+        values = item.get(field, [])
+        if isinstance(values, str):
+            values = values.split(' / ')
+        if not isinstance(values, (list, tuple)):
+            continue
+        for value in values:
+            if not isinstance(value, str):
+                continue
+            label = ' '.join(value.split())
+            key = label.casefold()
+            if key and key not in ('all', 'imported'):
+                found.setdefault(key, label)
+    return list(found.values()) or ['Ohne Kategorie']
 
 
 def validate_config(config=None):
@@ -104,6 +123,11 @@ class Controller:
         self.show_editing = False
         self.browse_purpose = 'load'
         self.browse_filter = 'all'
+        self.browse_category = ''
+        self.category_index = 0
+        self.direct_target = None
+        self.direct_base = None
+        self.reset_browse_motion()
         self.assign_target = None
         self.edit_original = self.edit_values = None
         self.edit_material = None
@@ -148,6 +172,7 @@ class Controller:
         self.parameter_group = min(self.parameter_group, max(0, (len(parameters)-1)//8), 7)
         self.parameter_index = min(self.parameter_index, max(0, len(parameters)-1))
         self._restore_browse_selection(selected)
+        self.category_index = min(self.category_index, max(0, len(self.category_items())-1))
 
     def export_config(self):
         return deepcopy(self.config)
@@ -158,7 +183,38 @@ class Controller:
     def browse_catalog(self):
         favorites = set(self.config['favorites'])
         return [item for item in self._catalog()
-                if self.browse_filter == 'all' or item.get('id') in favorites]
+                if self.browse_filter == 'all'
+                or self.browse_filter == 'favorites' and item.get('id') in favorites
+                or self.browse_filter == 'category' and self.browse_category.casefold()
+                in [name.casefold() for name in material_categories(item)]]
+
+    def category_items(self):
+        categories = {}
+        for item in self._catalog():
+            for label in material_categories(item):
+                entry = categories.setdefault(label.casefold(), dict(label=label, count=0))
+                entry['count'] += 1
+        return sorted(categories.values(), key=lambda item: item['label'].casefold())
+
+    def reset_browse_motion(self):
+        self._wheel_time = None
+        self._wheel_direction = 0
+        self._wheel_fast_streak = 0
+
+    def _browse_steps(self, steps, timestamp):
+        now = timestamp if _finite(timestamp) else self.clock()
+        direction = 1 if steps > 0 else -1
+        interval = now-self._wheel_time if self._wheel_time is not None else None
+        multiplier = 1
+        if interval is not None and 0 < interval < .16 and direction == self._wheel_direction:
+            self._wheel_fast_streak += 1
+            if self._wheel_fast_streak >= 2:
+                rate = abs(steps)/interval
+                multiplier = 8 if rate >= 25 else 3 if rate >= 12 else 1
+        else:
+            self._wheel_fast_streak = 0
+        self._wheel_time, self._wheel_direction = now, direction
+        return steps*multiplier
 
     def browse_selected_id(self):
         items = self.browse_catalog()
@@ -184,7 +240,42 @@ class Controller:
             else:
                 candidate['favorites'].append(target)
             return self._persist(candidate, purpose='favorites')
+        elif index == 2:
+            self.screen = 'categories'
+            self.category_index = next((i for i, item in enumerate(self.category_items())
+                                        if item['label'] == self.browse_category), 0)
         return []
+
+    def _direct_assign_pad(self):
+        item = self._lookup(self.direct_target)
+        if not item or item.get('available', True) is False or item.get('compatibility') == 'unsupported':
+            self.error = 'Dieses Material ist nicht mehr verfügbar.'
+            return []
+        self.direct_base = deepcopy(self._pad())
+        if self.direct_base['target']:
+            self.screen = 'confirm_overwrite'
+            return []
+        return self._save_direct_assignment()
+
+    def _save_direct_assignment(self):
+        item = self._lookup(self.direct_target)
+        if not item or item.get('available', True) is False or item.get('compatibility') == 'unsupported':
+            self.error = 'Dieses Material ist nicht mehr verfügbar.'
+            return []
+        if self._pad() != self.direct_base:
+            self.error = 'Pad wurde inzwischen geändert. Pad erneut auswählen.'
+            return []
+        candidate = self.export_config()
+        candidate['groups'][self.bank]['pads'][self.pad_index] = dict(kind='material', target=self.direct_target, values={})
+        return self._persist(candidate, purpose='direct_assign')
+
+    def _close_direct_assignment(self):
+        self.screen = 'browse'
+        self.direct_target = self.direct_base = None
+        # SELECT starts a separate assignment flow. Never resume a prior SCENE
+        # assignment with its old draft but the newly selected bank/pad.
+        self.browse_purpose = 'load'
+        self.assign_target = self._draft_base = None
 
     def _lookup(self, target):
         item = next((item for item in self._catalog() if item.get('id') == target), None)
@@ -281,6 +372,8 @@ class Controller:
                 self.error = ''
                 if pending.get('purpose') == 'favorites':
                     self._restore_browse_selection(selected)
+                elif pending.get('purpose') == 'direct_assign':
+                    self._close_direct_assignment()
                 else:
                     self.screen = 'home' if self.mode == 'show' else 'pad_grid'
                     self._discard_edit()
@@ -312,10 +405,12 @@ class Controller:
             if key in self.held:
                 return []
             self.held.add(key)
+            self.reset_browse_motion()
             if name in ('wheel', 'wheel_press'):
                 return self._wheel_press()
             return self._button(name, index)
         if kind == 'wheel_press':
+            self.reset_browse_motion()
             return self._wheel_press()
         if kind in ('encoder', 'wheel'):
             delta = event.get('delta', 0)
@@ -324,10 +419,37 @@ class Controller:
             delta = max(-127, min(127, delta))
             if kind == 'encoder':
                 return self._encoder(event.get('index'), delta)
-            return self._wheel(delta)
+            return self._wheel(delta, event.get('timestamp'))
         return []
 
     def _button(self, name, index):
+        if self.screen in ('browse_assign', 'confirm_overwrite'):
+            if self._pending_config is not None:
+                return []
+            if name == 'browse' or name == 'select' and self.screen == 'browse_assign':
+                self._close_direct_assignment()
+            elif name == 'select':
+                return self._save_direct_assignment()
+            elif name == 'group' and type(index) is int and 0 <= index < 8:
+                self.bank, self.screen = index, 'browse_assign'
+            elif name == 'pad' and type(index) is int and 0 <= index < 16:
+                self.pad_index = index
+                return self._direct_assign_pad()
+            return []
+        if name == 'select' and self.screen == 'browse':
+            if self._pending_config is not None or self._blocked_recording():
+                return []
+            self.direct_target = self.browse_selected_id()
+            if self.direct_target:
+                self.screen = 'browse_assign'
+            return []
+        if self.screen == 'categories':
+            if name == 'browse':
+                self.screen = 'browse'
+            elif name == 'top' and index in (0, 1):
+                self.screen = 'browse'
+                return self._browse_top(index)
+            return []
         if name == 'rec':
             return self._rec_down()
         if name == 'erase':
@@ -410,11 +532,18 @@ class Controller:
             return []
         return [dict(action='load_material', material_id=pad['target'], values=deepcopy(pad['values']))]
 
-    def _wheel(self, delta):
+    def _wheel(self, delta, timestamp=None):
         direction = 1 if delta > 0 else -1
         steps = int(delta) or direction
         if self.screen == 'browse':
+            steps = self._browse_steps(steps, timestamp)
             self.browse_index = max(0, min(len(self.browse_catalog())-1, self.browse_index+steps))
+        elif self.screen == 'categories':
+            self.category_index = max(0, min(len(self.category_items())-1, self.category_index+steps))
+        elif self.screen in ('browse_assign', 'confirm_overwrite'):
+            if self._pending_config is None:
+                self.pad_index = max(0, min(15, self.pad_index+steps))
+                self.screen = 'browse_assign'
         elif self.screen == 'pad_grid':
             self.pad_index = max(0, min(15, self.pad_index+steps))
         elif self.screen == 'pad_menu':
@@ -453,6 +582,18 @@ class Controller:
     def _wheel_press(self):
         if self._pending_config is not None:
             return []
+        if self.screen == 'categories':
+            items = self.category_items()
+            if items:
+                self.browse_category = items[self.category_index]['label']
+                self.browse_filter = 'category'
+                self.browse_index = 0
+                self.screen = 'browse'
+            return []
+        if self.screen == 'browse_assign':
+            return self._direct_assign_pad()
+        if self.screen == 'confirm_overwrite':
+            return []  # Only SELECT confirms replacing an occupied pad.
         if self.screen == 'browse':
             items = self.browse_catalog()
             if not items:
@@ -617,7 +758,7 @@ class Controller:
         show.update(progress=max(0, min(1, elapsed/duration)) if duration else 0,
                     remaining=max(0, duration-elapsed), focus=SHOW_FIELDS[self.show_focus], editing=self.show_editing)
         confirm = None
-        if self.screen.startswith('confirm_'):
+        if self.screen.startswith('confirm_') and self.screen != 'confirm_overwrite':
             item = self._lookup(self.assign_target) if self.screen == 'confirm_assign' else self._lookup(self._pad()['target'])
             confirm = dict(kind=self.screen[8:], label=item.get('label', item.get('name', '')) if item else '',
                            group=self.bank, pad=self.pad_index,
@@ -629,6 +770,8 @@ class Controller:
                       parameter_pages=self._pages(), page=self.page, bank=self.bank, pad_index=self.pad_index,
                       cards=cards, browse_items=browse, browse_index=self.browse_index, browse_purpose=self.browse_purpose,
                       browse_filter=self.browse_filter, favorites_count=len(self.config['favorites']),
+                      browse_category=self.browse_category, category_items=self.category_items(), category_index=self.category_index,
+                      direct_material=deepcopy(self._lookup(self.direct_target)) if self.direct_target else None,
                       menu=self._menu(), options=self._menu(), choice=self.choice, confirm=confirm,
                       show=show, recording=self._recording(), rec_pending=self.rec_pending,
                       parameter_group=self.parameter_group, parameter_index=self.parameter_index,

@@ -1,0 +1,19 @@
+{
+  "release": "0.2.4",
+  "checked_at": "2026-10-15T11:34:42.556699+00:00",
+  "catalog": 635,
+  "categories": 14,
+  "category_selection_passed": "audio_reactive",
+  "isolated_config_live_host_assignment_tests": true,
+  "empty_pad_save_passed": true,
+  "occupied_pad_requires_select": true,
+  "active_material_and_parameters_preserved": true,
+  "user_pad_file_unchanged": true,
+  "uv_preserved": true,
+  "worker": "MK2 verbunden \u00b7 Displays \u00fcbertragen",
+  "writes": 8582,
+  "physical_acceptance": "pending",
+  "writes_after": 9099,
+  "display_transmission_active": true,
+  "current_mode": "show"
+}

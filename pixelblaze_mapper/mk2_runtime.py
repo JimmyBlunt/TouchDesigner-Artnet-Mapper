@@ -5,7 +5,7 @@ from pathlib import Path
 from queue import Queue, Empty, Full
 import time
 
-from .mk2_workflow import Controller, validate_config, VERSION
+from .mk2_workflow import Controller, validate_config, VERSION, material_categories
 
 
 class Manager:
@@ -49,13 +49,15 @@ class Manager:
                     images[key] = str(path)
             except (OSError,ValueError):
                 pass
-            categories = item.get('groups') or item.get('categories') or item.get('category','')
-            category = ' / '.join(str(c) for c in categories) if isinstance(categories,list) else str(categories)
+            categories = material_categories(item)
+            category = ' / '.join(categories)
             catalog.append(dict(id=key,label=item['label'],kind='material',category=category,
+                                categories=categories,
                                 image=key if key in images else None))
         for key,entry in getattr(self.editor,'_catalog',lambda:{})().items():
             label = entry.get('label',key) if isinstance(entry,dict) else key
-            catalog.append(dict(id='core:'+key,label=label,kind='material',category='TouchDesigner',image=None))
+            catalog.append(dict(id='core:'+key,label=label,kind='material',category='TouchDesigner',
+                                categories=['TouchDesigner'],image=None))
         self.catalog = sorted(catalog,key=lambda x:x['label'].casefold())
         self.images = images
         self.catalog_source = library._items
@@ -258,6 +260,7 @@ class Manager:
                 self.controller.held.clear()
                 self.controller.rec_pending = self.controller.rec_chord = False
                 self.controller.flash_until.clear()
+                self.controller.reset_browse_motion()
                 continue
             if not enabled or version!=self.version or time.monotonic()-when>1:
                 # Release stale keys so a dropped release cannot latch REC/ERASE.
@@ -267,6 +270,8 @@ class Manager:
                         self.controller.rec_pending = self.controller.rec_chord = False
                 continue
             try:
+                if event.get('type') == 'wheel':
+                    event = dict(event,timestamp=when)
                 self.dispatch(event)
             except Exception as error:
                 self.error = str(error)

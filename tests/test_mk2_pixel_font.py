@@ -98,7 +98,7 @@ class DisplayLegibilityTests(unittest.TestCase):
 
     def test_all_view_text_uses_pixel_font_and_fits_inside_each_lcd(self):
         for mode in ('material','show'):
-            for screen in ('home','browse','pad_grid','pad_menu','pad_edit',
+            for screen in ('home','browse','categories','browse_assign','confirm_overwrite','pad_grid','pad_menu','pad_edit',
                            'confirm_assign','confirm_delete','confirm_edit'):
                 s=snapshot();c=s['controller'];c.update(mode=mode,screen=screen)
                 c['material']['label']='Sehr langer Materialname ÄÖÜ '+('W'*80)
@@ -172,7 +172,7 @@ class DisplayLegibilityTests(unittest.TestCase):
     def test_error_footer_replaces_intersecting_rows_completely_and_keeps_right_display(self):
         expected=Image.new('1',(256,11))
         ImageDraw.Draw(expected).text((2,1),'Fehlerhinweis',font=PixelFont(),fill=1)
-        for screen in ('home','browse','pad_grid','pad_menu','pad_edit','confirm_assign'):
+        for screen in ('home','browse','categories','browse_assign','confirm_overwrite','pad_grid','pad_menu','pad_edit','confirm_assign'):
             s=snapshot();c=s['controller'];c['screen']=screen
             if screen=='confirm_assign':
                 c['confirm']=dict(label='Zuweisung',options=['Confirm','Cancel'],choice=0)
@@ -199,7 +199,7 @@ class DisplayLegibilityTests(unittest.TestCase):
             with self.subTest(favorites=favorites,empty=empty,assign=assign):
                 _,records=self.draw_with_text_positions(s)
                 tabs=[r for r in records if r[0][1]==1]
-                self.assertEqual([(r[0][0],r[1]) for r in tabs],[(3,'ALLE'),(67,'FAV'),(195,'+FAV' if empty else '-FAV')])
+                self.assertEqual([(r[0][0],r[1]) for r in tabs],[(3,'ALLE'),(67,'FAV'),(131,'KAT'),(195,'+FAV' if empty else '-FAV')])
                 for (x,y),text,font,(_,_,right,bottom) in records:
                     self.assertLessEqual(x+right,256,msg=text)
                     self.assertLessEqual(y+bottom,64,msg=text)
@@ -208,6 +208,36 @@ class DisplayLegibilityTests(unittest.TestCase):
                     self.assertIn('Noch keine Favoriten',texts)
                     self.assertIn('Mit +FAV markieren',texts)
                 if assign:self.assertIn('PAD B06 ZUORDNEN',texts)
+
+    def test_direct_assignment_pad_grid_has_sixteen_separate_cells_and_long_labels_fit(self):
+        s=snapshot();c=s['controller'];c.update(screen='browse_assign',direct_material=dict(label='Ziel '+('X'*90)))
+        for card in c['cards']:card['label']='Padname '+('W'*50)
+        frames,records=self.draw_with_text_positions(s)
+        pad_labels=[r for r in records if r[0][1] in (16,28,40,52) and r[0][0] in (2,66,130,194)]
+        self.assertEqual(len(pad_labels),16)
+        self.assertEqual([r[1][:2] for r in pad_labels],['13','14','15','16','09','10','11','12','05','06','07','08','01','02','03','04'])
+        for (x,y),text,font,(_,_,right,bottom) in pad_labels:
+            self.assertLessEqual(x+right,(x//64)*64+62)
+            self.assertLessEqual(y+bottom,61)
+        for x in (63,127,191,255):
+            self.assertFalse(any(frames[1].getpixel((x,y)) for y in range(14,64)))
+
+    def test_category_list_long_labels_keep_selected_row_and_filter_tabs_separate(self):
+        s=snapshot();c=s['controller']
+        c.update(screen='categories',browse_filter='favorites',category_index=7,
+                 category_items=[dict(label='Kategorie %02d '%i+('W'*70),count=i+1) for i in range(10)])
+        frames,records=self.draw_with_text_positions(s)
+        rows=[r for r in records if r[0][0]==2 and r[0][1] in (22,32,42,52)]
+        self.assertEqual(len(rows),4)
+        self.assertEqual([r[1][10:12] for r in rows],['05','06','07','08'])
+        self.assertTrue(all(r[1].endswith('…') for r in rows))
+        for (x,y),value,font,(_,_,right,bottom) in records:
+            self.assertLessEqual(x+right,256,msg=value)
+            self.assertLessEqual(y+bottom,64,msg=value)
+        # Only KAT is selected even when entered from the favorites filter.
+        self.assertEqual([bool(frames[0].getpixel((x,8))) for x in (30,94,158)],[False,False,True])
+        for y in (30,40,50,60):
+            self.assertFalse(any(frames[0].getpixel((x,y)) for x in range(256)))
 
     def test_long_name_clipping_is_visible_and_missing_image_caption_is_complete(self):
         s=snapshot();s['controller']['material']['label']='Material '+('X'*90)

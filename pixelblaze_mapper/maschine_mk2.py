@@ -12,7 +12,7 @@ import math
 import threading
 import time
 
-__version__ = '0.2.2'
+__version__ = '0.2.4'
 
 # Report offsets include the report ID. Top and transport buttons have fixed
 # colour LEDs; only the groups and pads support RGB. Protocol facts verified
@@ -21,6 +21,8 @@ BUTTONS = {(1, i): ('top', i) for i in range(8)}
 BUTTONS.update({(4, i): ('group', i) for i in range(8)})
 BUTTONS.update({(2, 1): ('step', None), (2, 2): ('browse', None),
                 (3, 7): ('wheel', None), (6, 0): ('scene', None),
+                # Ardour m2_dev_mk2.h: pads_select is payload bit 45.
+                (6, 5): ('select', None),
                 (5, 0): ('restart', None), (5, 1): ('previous', None),
                 (5, 2): ('next', None), (5, 4): ('play', None),
                 (5, 5): ('rec', None), (5, 6): ('erase', None)})
@@ -111,7 +113,7 @@ def pad_lights(snapshot, now=None):
         index = physical_pad(usb_index)
         assigned = index < len(cards) and cards[index].get('available', False)
         colour = (75, 75, 75) if index == selected else (0, 35, 55) if assigned else (0, 0, 0)
-        if controller.get('mode') == 'show' and not controller.get('recording'):
+        if controller.get('mode') == 'show' and not controller.get('recording') and controller.get('screen') not in ('browse_assign', 'confirm_overwrite'):
             parameters = [p for page in controller.get('parameter_pages', []) for p in page.get('parameters', [])]
             parameter = controller.get('parameter_group', 0)*8+index
             changed = parameter < len(parameters) and (parameters[parameter].get('automated') or parameters[parameter].get('modified'))
@@ -129,8 +131,9 @@ def button_lights(snapshot, now=None):
     blink = 100 if int(now*4) % 2 == 0 else 0
     groups, buttons = bytearray(57), bytearray(32)
     groups[0], buttons[0] = 0x81, 0x82
-    content = c.get('group_activity', [False]*8) if c.get('mode') == 'show' and not c.get('recording') else c.get('group_has_content', [False]*8)
-    active = c.get('parameter_group', 0) if c.get('mode') == 'show' and not c.get('recording') else c.get('bank', 0)
+    parameter_mode = c.get('mode') == 'show' and not c.get('recording') and c.get('screen') not in ('browse_assign', 'confirm_overwrite')
+    content = c.get('group_activity', [False]*8) if parameter_mode else c.get('group_has_content', [False]*8)
+    active = c.get('parameter_group', 0) if parameter_mode else c.get('bank', 0)
     for i in range(8):
         rgb = (85, 75, 0) if i == active else (0, 15, 30) if i < len(content) and content[i] else (0, 0, 0)
         groups[1+6*i:7+6*i] = bytes(rgb)*2
@@ -141,18 +144,22 @@ def button_lights(snapshot, now=None):
     groups[55] = blink if recording == 'automation' else 10
     buttons[1] = 80 if c.get('mode', 'material') == 'material' else 15
     buttons[2] = 100 if c.get('mode') == 'show' else 0
-    buttons[3] = 100 if c.get('screen') == 'browse' else 15
-    if c.get('screen') == 'browse':
+    buttons[3] = 100 if c.get('screen') in ('browse', 'categories', 'browse_assign', 'confirm_overwrite') else 15
+    if c.get('screen') in ('browse', 'categories'):
         favorites = c.get('browse_filter') == 'favorites'
-        buttons[9], buttons[10] = (20, 100) if favorites else (100, 20)
+        category = c.get('screen') == 'categories' or c.get('browse_filter') == 'category'
+        buttons[9:12] = bytes([100 if not favorites and not category else 20,
+                               100 if favorites and not category else 20, 100 if category else 20])
         items = c.get('browse_items', [])
-        if items:
+        if items and c.get('screen') == 'browse':
             selected = max(0, min(c.get('browse_index', 0), len(items)-1))
             buttons[16] = 100 if items[selected].get('favorite') else 20
-    else:
+    elif c.get('screen') not in ('browse_assign', 'confirm_overwrite'):
         for i in range(min(8, len(c.get('parameter_pages', [])))):
             buttons[9+i] = 100 if i == c.get('page', 0) % 8 else 20
     buttons[17] = 100 if c.get('screen', '').startswith('pad_') else 15
+    # Ardour set_colors82: BtnSelect b[21], plus report-ID byte.
+    buttons[22] = 100 if c.get('screen') in ('browse_assign', 'confirm_overwrite') else 20 if c.get('screen') == 'browse' else 0
     return bytes(groups), bytes(buttons)
 
 
@@ -418,22 +425,69 @@ def render(snapshot):
         if not params:
             text(1, 5, 27, 'Keine Parameter', 245)
 
-    if screen == 'browse':
+    def browse_tabs(selected_item=None):
+        selected_item = selected_item or {}
+        favorites = c.get('browse_filter') == 'favorites'
+        category = screen == 'categories' or c.get('browse_filter') == 'category'
+        entries = [(0, 0, 'ALLE', not favorites and not category),
+                   (0, 64, 'FAV', favorites and not category), (0, 128, 'KAT', category)]
+        if screen == 'browse':
+            entries.append((1, 192, '-FAV' if selected_item.get('favorite') else '+FAV', bool(selected_item.get('favorite'))))
+        for side, x, label, active in entries:
+            draws[side].rectangle((x, 0, x+62, 9), outline=1, fill=int(active))
+            draws[side].text((x+3, 1), label, font=small, fill=0 if active else 1)
+
+    if screen == 'categories':
+        browse_tabs()
+        items = c.get('category_items', [])
+        index = max(0, min(c.get('category_index', 0), len(items)-1))
+        text(0, 2, 12, 'Kategorien', 190)
+        text(0, 198, 12, '%d/%d' % (index+1 if items else 0, len(items)), 57)
+        start = max(0, min(index-2, len(items)-4))
+        for row, item in enumerate(items[start:start+4]):
+            text(0, 2, 22+row*10, '%s (%s)' % (item.get('label', ''), item.get('count', 0)), 250, start+row == index)
+        text(1, 3, 13, items[index].get('label', '') if items else 'Keine Kategorien', 249)
+        if items:
+            text(1, 3, 27, '%s Materialien' % items[index].get('count', 0), 249)
+        text(1, 3, 41, 'Rad: waehlen', 249)
+        text(1, 3, 54, 'Druecken: uebernehmen', 249)
+    elif screen == 'browse_assign':
+        direct = c.get('direct_material') or {}
+        text(0, 2, 2, 'MATERIAL ZUWEISEN', 250)
+        text(0, 2, 14, direct.get('label') or 'Kein Material', 250)
+        picture(0, direct, (0, 26), (40, 36))
+        text(0, 44, 30, 'Pad: zuweisen', 210)
+        text(0, 44, 44, 'SELECT: zurueck', 210)
+        text(1, 2, 2, 'Bank %s - Gruppen A-H' % chr(65+c.get('bank', 0)), 250)
+        cards = c.get('cards', snapshot.get('cards', []))
+        for physical in range(16):
+            index = physical_pad(physical)
+            card = cards[index] if index < len(cards) else {}
+            x, y = (physical%4)*64, 14+(physical//4)*12
+            selected = index == c.get('pad_index', 0)
+            draws[1].rectangle((x, y, x+62, y+10), outline=1, fill=int(selected))
+            text(1, x+2, y+2, '%02d %s' % (index+1, card.get('label') or 'Leer'), 58, selected)
+    elif screen == 'confirm_overwrite':
+        direct = c.get('direct_material') or {}
+        cards = c.get('cards', snapshot.get('cards', []))
+        index = c.get('pad_index', 0)
+        card = cards[index] if 0 <= index < len(cards) else {}
+        text(0, 2, 2, 'PAD %s%02d ERSETZEN?' % (chr(65+c.get('bank', 0)), index+1), 250)
+        text(0, 2, 17, 'Bisher: '+(card.get('label') or 'Leer'), 250)
+        text(0, 2, 33, 'Neu: '+(direct.get('label') or 'Kein Material'), 250)
+        text(1, 3, 4, 'Zuweisung bestaetigen', 249)
+        text(1, 3, 26, 'SELECT: ersetzen', 249)
+        text(1, 3, 45, 'BROWSE: zurueck', 249)
+    elif screen == 'browse':
         items = c.get('browse_items', [])
         index = max(0, min(c.get('browse_index', 0), len(items)-1))
         favorites = c.get('browse_filter') == 'favorites'
         selected_item = items[index] if items else {}
         assign = c.get('browse_purpose') == 'assign'
-        # Four physical buttons sit above each LCD. Browse actions replace the
-        # parameter tabs, so labels and fixed-colour button brightness agree.
-        for side, x, label, active in (
-            (0, 0, 'ALLE', not favorites), (0, 64, 'FAV', favorites),
-            (1, 192, '-FAV' if selected_item.get('favorite') else '+FAV', bool(selected_item.get('favorite'))),
-        ):
-            draws[side].rectangle((x, 0, x+62, 9), outline=1, fill=int(active))
-            draws[side].text((x+3, 1), label, font=small, fill=0 if active else 1)
+        browse_tabs(selected_item)
         count = c.get('favorites_count', len(items) if favorites else 0)
-        text(0, 2, 12, 'Favoriten %d' % count if favorites else 'Alle Materialien', 190)
+        heading_filter = (c.get('browse_category') or 'Kategorie') if c.get('browse_filter') == 'category' else ('Favoriten %d' % count if favorites else 'Alle Materialien')
+        text(0, 2, 12, heading_filter, 190)
         text(0, 198, 12, '%d/%d' % (index+1 if items else 0, len(items)), 57)
         heading = 'PAD %s%02d ZUORDNEN' % (chr(65+c.get('bank', 0)), c.get('pad_index', 0)+1) if assign else 'BROWSE  %03d' % (index+1 if items else 0)
         text(1, 2, 12, heading, 250)

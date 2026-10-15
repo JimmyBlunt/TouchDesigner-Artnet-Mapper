@@ -147,6 +147,43 @@ Arbeitsänderungen werden nicht mitgenommen. Es wird kein Remote-Push ausgeführ
 - Außerhalb des Browsers bleiben obere Tasten, Gruppen, Pads, STEP, SCENE und
   Aufnahmebedienung unverändert. Im Show Mode öffnet BROWSE weiterhin keine Materialliste.
 
+### Erweiterung 0.2.4: Browserrad, Kategorien und direkte Zuweisung
+
+- Das Browserrad blättert beim langsamen Drehen in Einzelschritten. Bei fortgesetztem
+  schnellem Drehen beschleunigt es auf drei bzw. acht Einträge pro Rastung.
+  Pause, Richtungswechsel oder Tastendruck stellen die präzise Bedienung wieder her.
+  Parameterwerte, Kategorienauswahl und Pad-Ziele bleiben ohne Beschleunigung.
+- Obere Taste 3 **KAT** öffnet die Liste aller verfügbaren Kategorien mit Anzahl
+  zugeordneter Materialien. Rad drehen wählt, Rad drücken übernimmt die Kategorie.
+  **ALLE** und **FAV** wechseln wieder zu diesen Listen. Materialien dürfen in
+  mehreren Kategorien erscheinen; fehlende Metadaten erscheinen unter **Ohne Kategorie**.
+- **SELECT** im Browser merkt sich das angezeigte Material und öffnet die Pad-Auswahl.
+  Mit A–H die Gruppe und per Pad-Druck das Ziel wählen. Leere Pads werden sofort
+  gespeichert. Bei belegten Pads zeigt die Bestätigung das alte und neue Material;
+  erst ein weiterer **SELECT**-Druck ersetzt die Zuordnung. Rad-Druck ersetzt nie
+  eine vorhandene Zuordnung. Ein anderes Pad darf stattdessen gewählt werden.
+- **BROWSE** bricht die Zuweisung ab; **SELECT** ohne ausgewähltes Ersatzziel kehrt
+  ebenfalls zurück. Zuweisen startet das Material nicht. Schreibfehler behalten
+  die vorherige Zuordnung und erlauben Wiederholung.
+- Nach direkter Zuweisung oder Abbruch ist wieder der normale Materialbrowser aktiv;
+  eine vorher über SCENE begonnene Zuweisung wird dabei beendet.
+- Geräteabnahme: langsam/schnell/vor/zurück blättern; KAT inklusive Mehrfachzuordnung
+  und FAV prüfen; SELECT auf leeres Pad, belegtes Pad mit Abbruch und anschließend
+  mit Bestätigung testen. Nach Neustart müssen die Zuordnungen noch vorhanden sein.
+
+Kategorienprüfung vom 15.10.2026: alle 638 Bibliothekseinträge haben vorhandene
+Zuordnungen, 529 mehrere. Alle 635 browsbaren Einträge (585 Bibliotheksmaterialien
+und 50 bestehende Core-Alias-Einträge) sind über Kategorien erreichbar.
+Nachweis mit Zuordnungen je Material: `mk2-v0.2.4/categories.json`.
+
+Abnahme 0.2.4 vom 15.10.2026: **376 Softwaretests bestanden**, keine Fehler oder
+übersprungenen Fälle (`mk2-v0.2.4/acceptance.json`). Kategorien und direkte
+Zuweisung wurden zusätzlich gegen den laufenden TouchDesigner-Host mit separater
+Testkonfigurationsdatei geprüft (`mk2-v0.2.4/live-smoke.json`). Die Benutzerdatei
+mit Pad-Zuweisungen blieb unverändert; aktive Parameter und UV-Daten ebenfalls.
+Der neue Stand läuft auf der verbundenen MK2. Die physische Abnahme von
+Geschwindigkeitsgefühl, KAT-Navigation und SELECT-Tastenfolge bleibt offen.
+
 ### Noch notwendige Materialabnahme (Prüfstand 13.10.2026)
 
 Der Bericht `material-audit-20261013/acceptance.json` umfasst alle 638 Materialien.

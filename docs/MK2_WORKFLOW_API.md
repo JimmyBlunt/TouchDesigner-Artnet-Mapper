@@ -1,4 +1,4 @@
-# MK2 workflow contract — 0.2.3
+# MK2 workflow contract — 0.2.4
 
 `pixelblaze_mapper.mk2_workflow.Controller` is the pure interaction layer. It never
 opens USB devices, writes files, loads materials, changes TouchDesigner parameters,
@@ -133,6 +133,37 @@ favorite leaves an empty list; pressing the wheel cannot load a hidden item.
 Filtering is session-local; favorite membership survives application restarts.
 `browse_catalog()` and `browse_selected_id()` expose the filtered selection for
 host detail hydration. Catalog refreshes preserve selection by stable ID when possible.
+
+Since 0.2.4, top index 2 opens `categories`. The wheel selects `category_index`
+from `category_items:[{label,count}]`; press applies `browse_filter='category'`
+and `browse_category`. ALL/FAV replaces that filter. Membership combines groups,
+categories and category fields, normalizes whitespace, and deduplicates ignoring
+case. Import status labels `All`/`imported` are excluded; missing metadata gets
+the explicit `Ohne Kategorie` bucket. Multiple memberships are retained.
+
+Browse wheel acceleration uses the event's monotonic `timestamp` (queue receipt
+time), falling back to the controller clock in simulations. The first two steps
+remain precise; sustained movement at 12/25 detents per second uses 3x/8x steps.
+Intervals of 160ms or more, direction changes, button presses and reconnect reset
+acceleration. It only applies to material rows, never parameter values or pad targets.
+
+`select` in browse captures the selected material ID and opens `browse_assign`.
+Group buttons choose the bank. Pressing a pad (or selecting it with the wheel and
+pressing the wheel) immediately persists an empty destination. An occupied pad
+opens `confirm_overwrite`; only a fresh SELECT confirms replacement. Wheel press
+cannot confirm it. BROWSE cancels either screen; SELECT cancels `browse_assign`.
+Pressing a different pad selects that destination. Replacement rechecks both the
+material's availability and the exact previously displayed pad assignment.
+Successful persistence with purpose `direct_assign` returns to browse; failed
+writes retain the old assignment and allow retry. This operation never loads a
+material. Snapshot `direct_material` identifies the captured source independently
+of subsequent catalog refreshes. The existing pad-presets and favorites of other
+destinations are retained.
+Both success and cancellation return to ordinary `browse_purpose='load'`, clearing
+any earlier SCENE assignment draft. Otherwise a bank selected in the direct flow
+could incorrectly inherit the earlier flow's destination or conflict snapshot.
+SELECT input is MK2 report byte 6 mask `0x20`; fixed-colour LED is `0x82` byte 22
+(Ardour `m2_dev_mk2.h` payload `pads_select` bit 45 and `m2_dev_mk2.cc` LIGHT(21, BtnSelect)).
 
 SCENE opens `pad_grid`. Wheel selects one of 16 pads; press opens `pad_menu`.
 Filled material pads expose select/edit/browse/delete; empty pads only browse.
