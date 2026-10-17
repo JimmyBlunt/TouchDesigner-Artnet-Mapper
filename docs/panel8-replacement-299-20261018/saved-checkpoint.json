@@ -1,0 +1,16 @@
+{
+  "project": "PixelblazeMapper_PANEL8_299_REPLACED_20261018.2.toe",
+  "bytes": 14035788,
+  "sha256": "ca11bb60dc31f8334ba7f52598b7aac1e0613f32191ce43151c7134c7f3f5a91",
+  "panel": 8,
+  "configured_leds": 299,
+  "measured_positions": 296,
+  "missing_local_ids": [
+    1,
+    61,
+    93
+  ],
+  "orientation": "Triangle down; short edge left toward cabinet center",
+  "verification": "docs/panel8-replacement-299-20261018/verification.json",
+  "saved_in_touchdesigner": true
+}

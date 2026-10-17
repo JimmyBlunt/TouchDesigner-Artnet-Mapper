@@ -1,0 +1,61 @@
+{
+  "state": "complete",
+  "processed": 299,
+  "detected": 248,
+  "total": 299,
+  "current_index": null,
+  "current_source_index": null,
+  "blackout_sent": true,
+  "blackout_confirmed": false,
+  "optical_blackout_confirmed": false,
+  "transport": {
+    "packets_sent": 13895,
+    "batches_sent": 1985,
+    "send_errors": 0,
+    "packet_gap_ms": 0.4,
+    "elapsed_seconds": 128.813
+  },
+  "timing": {
+    "completed_samples": 299,
+    "last_completed": true,
+    "last": {
+      "dark_before_ms": 47.0,
+      "send_on_ms": 16.0,
+      "detect_ms": 265.0,
+      "send_off_ms": 32.0,
+      "dark_after_ms": 15.0,
+      "camera_read_ms": 297.0,
+      "camera_frames": 9,
+      "cycle_ms": 375.0
+    },
+    "mean": {
+      "dark_before_ms": 39.181,
+      "send_on_ms": 30.11,
+      "detect_ms": 161.05,
+      "send_off_ms": 29.873,
+      "dark_after_ms": 111.388,
+      "camera_read_ms": 283.221,
+      "camera_frames": 9.294,
+      "cycle_ms": 371.602
+    },
+    "recent_mean": {
+      "dark_before_ms": 37.5,
+      "send_on_ms": 29.75,
+      "detect_ms": 144.4,
+      "send_off_ms": 24.2,
+      "dark_after_ms": 126.65,
+      "camera_read_ms": 278.8,
+      "camera_frames": 9.05,
+      "cycle_ms": 362.5
+    },
+    "search_timeout_ms": 234.0,
+    "search_timeout_used_ms": 234.0
+  },
+  "camera_cleanup_attempted": true,
+  "camera_cleanup_errors": [],
+  "camera_cleanup_confirmed": true,
+  "blackout_errors": [],
+  "supervisor_cleanup_errors": [],
+  "last_source_index": null,
+  "view_csv": "E:\\Daten\\Dokumente\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\Scans\\Panel8_OUT1_299_20261018\\capture-11da755d-b0e9-4b81-8d6c-bf2ebe5b722f\\view.csv"
+}

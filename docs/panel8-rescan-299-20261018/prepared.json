@@ -1,0 +1,50 @@
+{
+  "intent": {
+    "panel": 8,
+    "object_id": "99fa5b92-0a88-41a3-abe9-2903e536a17a",
+    "led_count": 299,
+    "controller": "10.0.0.251",
+    "physical_output": 1,
+    "start_universe": 156,
+    "end_universe": 157,
+    "source_start": 2720,
+    "source_end": 3018,
+    "scan_local_ids": [
+      0,
+      298
+    ],
+    "old_geometry_led_count": 256,
+    "geometry_status": "old_reference_only_pending_rescan",
+    "workspace": "E:\\Daten\\Dokumente\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\Scans\\Panel8_OUT1_299_20261018",
+    "state": "scan_plan_ready_camera_check_pending",
+    "scan_started": false
+  },
+  "settings": {
+    "name": "PANEL8_OUT1_299_20261018",
+    "target": "10.0.0.251",
+    "interface": "10.0.0.125",
+    "universe": 156,
+    "count": 299,
+    "rate": 30,
+    "order": "BGR",
+    "frame_start_universe": 156,
+    "frame_universe_count": 7
+  },
+  "routing_summary": "SEPARATE CAPTURE | 299 LEDs | scan 9.9% | packet gap 0.4 ms\nPANEL8_OUT1_299_20261018 10.0.0.251 | PANEL U156-U157 | SEND U156-U162; other slots BLACK",
+  "backup": "E:\\Daten\\Dokumente\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\PixelblazeMapper_BEFORE_PANEL8_299_20261018.toe",
+  "saved_project": "E:\\Daten\\Dokumente\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\PixelblazeMapper_PANEL8_299_SCAN_READY_20261018.toe",
+  "output_enabled": false,
+  "verified_led_addresses": 299,
+  "other_panels_unchanged": true,
+  "coordinates_preserved": true,
+  "extra_43_live_sources_masked_black": true,
+  "camera_settings": {
+    "camera": "0",
+    "exposure": "-10",
+    "threshold": "160",
+    "brightness": "9.9",
+    "packet_gap": "0.4"
+  },
+  "hardware_changed": false,
+  "project_errors": ""
+}

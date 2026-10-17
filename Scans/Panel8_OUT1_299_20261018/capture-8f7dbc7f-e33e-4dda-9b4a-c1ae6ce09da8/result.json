@@ -1,0 +1,58 @@
+{
+  "state": "failed",
+  "processed": 299,
+  "detected": 293,
+  "total": 299,
+  "current_index": null,
+  "current_source_index": null,
+  "blackout_sent": true,
+  "blackout_confirmed": false,
+  "optical_blackout_confirmed": false,
+  "transport": {
+    "packets_sent": 11816,
+    "batches_sent": 1688,
+    "send_errors": 0,
+    "packet_gap_ms": 0.4,
+    "elapsed_seconds": 108.969
+  },
+  "timing": {
+    "completed_samples": 299,
+    "last_completed": true,
+    "last": {
+      "dark_before_ms": 31.0,
+      "send_on_ms": 15.0,
+      "detect_ms": 110.0,
+      "send_off_ms": 15.0,
+      "dark_after_ms": 110.0,
+      "camera_read_ms": 203.0,
+      "camera_frames": 7,
+      "cycle_ms": 281.0
+    },
+    "mean": {
+      "dark_before_ms": 39.696,
+      "send_on_ms": 34.381,
+      "detect_ms": 135.137,
+      "send_off_ms": 25.171,
+      "dark_after_ms": 117.465,
+      "camera_read_ms": 262.983,
+      "camera_frames": 8.799,
+      "cycle_ms": 351.849
+    },
+    "recent_mean": {
+      "dark_before_ms": 39.05,
+      "send_on_ms": 37.4,
+      "detect_ms": 119.5,
+      "send_off_ms": 21.2,
+      "dark_after_ms": 118.8,
+      "camera_read_ms": 248.35,
+      "camera_frames": 8.4,
+      "cycle_ms": 335.95
+    },
+    "search_timeout_ms": 210.15,
+    "search_timeout_used_ms": 210.15
+  },
+  "error": "Movement check failed or unverified; view rejected",
+  "blackout_errors": [],
+  "supervisor_cleanup_errors": [],
+  "last_source_index": null
+}

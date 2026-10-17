@@ -1,0 +1,20 @@
+{
+  "panel": 8,
+  "object_id": "99fa5b92-0a88-41a3-abe9-2903e536a17a",
+  "led_count": 299,
+  "controller": "10.0.0.251",
+  "physical_output": 1,
+  "start_universe": 156,
+  "end_universe": 157,
+  "source_start": 2720,
+  "source_end": 3018,
+  "scan_local_ids": [
+    0,
+    298
+  ],
+  "old_geometry_led_count": 256,
+  "geometry_status": "old_reference_only_pending_rescan",
+  "workspace": "E:\\Daten\\Dokumente\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\Scans\\Panel8_OUT1_299_20261018",
+  "state": "scan_plan_ready_camera_check_pending",
+  "scan_started": false
+}

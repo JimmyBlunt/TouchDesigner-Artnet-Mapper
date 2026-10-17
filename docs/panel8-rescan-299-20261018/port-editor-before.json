@@ -1,0 +1,56 @@
+{
+  "draft": {
+    "controller": {
+      "name": "PANEL8_251",
+      "target_address": "10.0.0.251",
+      "local_interface": "10.0.0.125",
+      "enabled": true,
+      "port": 6454,
+      "start_universe": 156,
+      "color_order": "BGR",
+      "brightness": 0.7,
+      "rate": 30,
+      "art_sync": false,
+      "reserved_universes": 6
+    },
+    "profile": "independent",
+    "ports": [
+      {
+        "number": 1,
+        "label": "PORT_PANEL8_251_1",
+        "enabled": true,
+        "source_start": 2720,
+        "pixel_count": 256,
+        "reserved_universes": 2,
+        "reverse": false,
+        "color_order": "BGR",
+        "destination_start": 0
+      },
+      {
+        "number": 2,
+        "label": "PORT_PANEL8_251_2",
+        "enabled": true,
+        "source_start": 9223,
+        "pixel_count": 553,
+        "reserved_universes": 4,
+        "reverse": false,
+        "color_order": "BGR",
+        "destination_start": 340
+      }
+    ]
+  },
+  "baseline": "[[[\"enabled\", \"name\", \"target_ip\", \"local_interface\", \"port\", \"start_universe\", \"color_order\", \"brightness\", \"rate\", \"art_sync\", \"reserved_universes\"], [\"1\", \"WS2812_NODE\", \"10.0.0.244\", \"10.0.0.125\", \"6454\", \"0\", \"GRB\", \"0.7\", \"60\", \"0\", \"24\"], [\"0\", \"APA102_ESP\", \"10.0.0.251\", \"10.0.0.125\", \"6454\", \"0\", \"RGB\", \"0.8\", \"30\", \"0\", \"0\"], [\"1\", \"PANEL8_251\", \"10.0.0.251\", \"10.0.0.125\", \"6454\", \"156\", \"BGR\", \"0.7\", \"30\", \"0\", \"6\"], [\"1\", \"BACK_PANEL_249\", \"10.0.0.253\", \"10.0.0.125\", \"6454\", \"120\", \"RGB\", \"0.3\", \"30\", \"0\", \"37\"]], [[\"name\", \"source_start\", \"count\", \"controller\", \"destination_start\", \"reverse\", \"color_override\"], [\"APA102\", \"1187\", \"1167\", \"APA102_ESP\", \"512\", \"0\", \"\"], [\"GICO_PORT_1_MIDDLE\", \"0\", \"517\", \"WS2812_NODE\", \"0\", \"0\", \"GRB\"], [\"GICO_PORT_2_UPPER\", \"517\", \"269\", \"WS2812_NODE\", \"1020\", \"0\", \"GRB\"], [\"GICO_PORT_3_LOWER\", \"786\", \"398\", \"WS2812_NODE\", \"2040\", \"0\", \"GRB\"], [\"PORT_PANEL8_251_1\", \"2720\", \"256\", \"PANEL8_251\", \"0\", \"0\", \"BGR\"], [\"PORT_PANEL8_251_2\", \"9223\", \"553\", \"PANEL8_251\", \"340\", \"0\", \"BGR\"], [\"PORT_BACK_PANEL_249_1\", \"1440\", \"203\", \"BACK_PANEL_249\", \"0\", \"0\", \"RGB\"], [\"PORT_BACK_PANEL_249_2\", \"3744\", \"738\", \"BACK_PANEL_249\", \"340\", \"0\", \"RGB\"], [\"PORT_BACK_PANEL_249_3\", \"4482\", \"880\", \"BACK_PANEL_249\", \"1190\", \"0\", \"RGB\"], [\"PORT_BACK_PANEL_249_4\", \"5362\", \"810\", \"BACK_PANEL_249\", \"2210\", \"0\", \"RGB\"], [\"PORT_BACK_PANEL_249_5\", \"9776\", \"554\", \"BACK_PANEL_249\", \"5610\", \"0\", \"RGB\"], [\"PORT_BACK_PANEL_249_6\", \"6524\", \"610\", \"BACK_PANEL_249\", \"3740\", \"0\", \"RGB\"], [\"PORT_BACK_PANEL_249_7\", \"7134\", \"512\", \"BACK_PANEL_249\", \"4420\", \"0\", \"RGB\"], [\"PORT_BACK_PANEL_249_8\", \"8195\", \"488\", \"BACK_PANEL_249\", \"5100\", \"0\", \"RGB\"]]]",
+  "page": 0,
+  "delete": false,
+  "message": "LOADED live controller; draft only",
+  "local_interfaces": [
+    {
+      "address": "10.0.0.125",
+      "name": "Ethernet 3"
+    },
+    {
+      "address": "127.0.0.1",
+      "name": "Loopback Pseudo-Interface 1"
+    }
+  ]
+}

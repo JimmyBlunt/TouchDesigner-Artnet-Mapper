@@ -1,0 +1,66 @@
+{
+  "object_id": "99fa5b92-0a88-41a3-abe9-2903e536a17a",
+  "expected": 299,
+  "measured": 296,
+  "missing": [
+    1,
+    61,
+    93
+  ],
+  "views": 5,
+  "transform": {
+    "translation": [
+      0.3257265914961168,
+      0.7518401323497346,
+      0.4450715827284754
+    ],
+    "rotation_degrees": [
+      -103.210738333014,
+      9.214589433811403,
+      0.46658040008870066
+    ],
+    "scale": [
+      0.03701036166059581,
+      0.03701036166059581,
+      0.03701036166059581
+    ],
+    "pivot": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "center": [
+    0.29999999999999966,
+    1.0,
+    0.3999999999999997
+  ],
+  "bounds": [
+    [
+      0.22391572453291572,
+      0.9969872398408184,
+      0.31562499999999993
+    ],
+    [
+      0.37608427546708373,
+      1.0030127601591816,
+      0.4843749999999999
+    ]
+  ],
+  "source_range": [
+    2720,
+    3018
+  ],
+  "orientation": "triangle down; shorter leg left/inward as seen from front",
+  "triangle_landmarks": {
+    "tip": 0,
+    "short_leg_end": 92,
+    "long_leg_end": 77
+  },
+  "short_leg_length": 0.07443941004022454,
+  "long_leg_length": 0.1338403401078413,
+  "scale_policy": "uniform fit to previous panel maximum span; previous center retained; no new physical dimensions supplied",
+  "plane_rms": 0.000720696191402733,
+  "candidate_sha256": "c66c4e15abdf1a3205f7305f8994fb4b13ac98db650fe2d227cea2935e0213c8",
+  "other_geometry_and_routing_unchanged": true
+}
