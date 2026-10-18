@@ -1,0 +1,76 @@
+{
+  "fps": 10,
+  "gap_ms": 1.0,
+  "seconds": 30,
+  "color": [
+    0,
+    0,
+    0
+  ],
+  "source": "independent UDP, ephemeral source port",
+  "isolation": {
+    "isolated": true
+  },
+  "before": {
+    "pixelCount": 852,
+    "universeCount": 7,
+    "packets": 1417,
+    "rxPackets": 1417,
+    "rxQueueDrops": 0,
+    "rxOversizedPackets": 0,
+    "rxSocketErrors": 0,
+    "framesComplete": 199,
+    "framesIncomplete": 4,
+    "fps": 0,
+    "packetsPerSecond": 0,
+    "heapFree": 158400,
+    "heapMinFree": 84176,
+    "frameTimeUs": 13446,
+    "outputTimeUs": 13446,
+    "lastFrameLatencyMs": null,
+    "startUniverse": 0,
+    "outputFrames": 199,
+    "timeouts": 0,
+    "droppedPackets": 0,
+    "sequenceErrors": 0
+  },
+  "local_socket": [
+    "10.0.0.125",
+    59068
+  ],
+  "elapsed": 30.031264499993995,
+  "sent_frames": 299,
+  "after": {
+    "pixelCount": 852,
+    "universeCount": 7,
+    "packets": 3500,
+    "rxPackets": 3500,
+    "rxQueueDrops": 0,
+    "rxOversizedPackets": 0,
+    "rxSocketErrors": 0,
+    "framesComplete": 488,
+    "framesIncomplete": 14,
+    "fps": 9,
+    "packetsPerSecond": 69,
+    "heapFree": 153784,
+    "heapMinFree": 84176,
+    "frameTimeUs": 12814,
+    "outputTimeUs": 12814,
+    "lastFrameLatencyMs": null,
+    "startUniverse": 0,
+    "outputFrames": 488,
+    "timeouts": 0,
+    "droppedPackets": 0,
+    "sequenceErrors": 0
+  },
+  "delta": {
+    "rxPackets": 2083,
+    "framesComplete": 289,
+    "framesIncomplete": 10,
+    "outputFrames": 289,
+    "timeouts": 0,
+    "rxQueueDrops": 0,
+    "sequenceErrors": 0,
+    "rxSocketErrors": 0
+  }
+}
