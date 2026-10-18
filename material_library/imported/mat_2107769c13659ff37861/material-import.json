@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_2107769c13659ff37861",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Frame Strobo/Frame Strobo.fs",
+  "source_sha256": "66d53bbb9d5968b6f1604d367f83e01949a962f4691506cb8025bde8fa301475",
+  "imported_file": "Frame Strobo.fs",
+  "imported_files": {
+    ".info": "061480ab0022463096fc5fcb939d2678a594e74c15e1e19f3423b6adfb0a5dd2",
+    "Frame Strobo.fs": "66d53bbb9d5968b6f1604d367f83e01949a962f4691506cb8025bde8fa301475",
+    "thumbnail.jpg": "01e5967c1a5b0855f4dbc45a9acb332909390b189c73355ded2c10d582cb853c"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_de5173c8dbe24140a9a5",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/Gradient/Gradient.fs",
+  "source_sha256": "52690163d875e69015e75b00cd740a0479a9718f622133428f7d5834d5064fb7",
+  "imported_file": "Gradient.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "Gradient.fs": "52690163d875e69015e75b00cd740a0479a9718f622133428f7d5834d5064fb7",
+    "thumbnail.png": "14674d4f88af754afe431cf6863e1051b74bec1b6060f99c01b1c7354d538b07"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

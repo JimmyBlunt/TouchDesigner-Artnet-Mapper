@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_b141944a626c7fdadd06",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Hypno Rings/Hypno Rings.fs",
+  "source_sha256": "3671e5d271664c0bf1adfd0cd757777b8aa2a870e536020dbd3f8a8b68b3b4fe",
+  "imported_file": "Hypno Rings.fs",
+  "imported_files": {
+    ".info": "b8d82488241d681cf0e8287ca36f95007e94b71cf4a93992e6aa59af31f14b7b",
+    "Hypno Rings.fs": "3671e5d271664c0bf1adfd0cd757777b8aa2a870e536020dbd3f8a8b68b3b4fe",
+    "thumbnail.jpg": "595608ffb1a06f88df2470d75a45b8a191d5f6d5b72e139f2db068833fa26b78"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

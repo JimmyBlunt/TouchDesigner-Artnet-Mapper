@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_f774217677cff2afc414",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/IAUS/IAUS.fs",
+  "source_sha256": "a0e3d04c66f73b78308ec7e945e5442bd3106afe049fa87081071978d0ebad1a",
+  "imported_file": "IAUS.fs",
+  "imported_files": {
+    ".info": "0b3fddb8ba84fe31db6ed681de4891c302bd97c10d7121b844b1a74363747578",
+    "IAUS.fs": "a0e3d04c66f73b78308ec7e945e5442bd3106afe049fa87081071978d0ebad1a",
+    "thumbnail.jpg": "39fd3ecff432830e1c8d6b3b88e7e599287a5dd917a8c317210ef59ba6d65a24"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

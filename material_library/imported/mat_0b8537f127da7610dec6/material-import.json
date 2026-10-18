@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_0b8537f127da7610dec6",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/squareZoom/squareZoom.fs",
+  "source_sha256": "3b06d3aca8f828928fb32f6ec39b9d623221518315a8fceb74e4115a8029f333",
+  "imported_file": "squareZoom.fs",
+  "imported_files": {
+    ".info": "01f8bc28e737264f8b0536a489513989c75e1b767709caa97f107a811b91924b",
+    "squareZoom.fs": "3b06d3aca8f828928fb32f6ec39b9d623221518315a8fceb74e4115a8029f333",
+    "thumbnail.png": "bdcebbc48811dd65c468c70ff15b844760e780adcf30e8822f2c2a73168b699a"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

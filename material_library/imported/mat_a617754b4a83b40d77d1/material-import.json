@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_a617754b4a83b40d77d1",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Sine Dynamics/Sine Dynamics.fs",
+  "source_sha256": "a7531df617c41e080cf08c079f4849ea6b6b8d4c12ea67164973a889c0c0f8e5",
+  "imported_file": "Sine Dynamics.fs",
+  "imported_files": {
+    ".info": "8eeae592c6e4793957b88b6a1329629e2293684f1ae5a4378868437ae148fb09",
+    "Sine Dynamics.fs": "a7531df617c41e080cf08c079f4849ea6b6b8d4c12ea67164973a889c0c0f8e5",
+    "thumbnail.jpg": "f693a90993ba3fb57cc0da08abee375003b1d51550f65d3109b4f55f4ee995cb"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

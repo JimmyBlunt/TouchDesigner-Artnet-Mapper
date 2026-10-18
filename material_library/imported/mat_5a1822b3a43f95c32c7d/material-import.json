@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_5a1822b3a43f95c32c7d",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Abstract Deformation/Abstract Deformation.fs",
+  "source_sha256": "72bd3b35dde36f786d5d058eab94d0dc4a45c2a85abcbeefe28cef24415e8541",
+  "imported_file": "Abstract Deformation.fs",
+  "imported_files": {
+    ".info": "4392e4cb7e1e9c89060c5cd31e25271567a6b45be6292703bc1cfcae34fcb6e7",
+    "Abstract Deformation.fs": "72bd3b35dde36f786d5d058eab94d0dc4a45c2a85abcbeefe28cef24415e8541",
+    "thumbnail.jpg": "d97289e7f155c39ff9f72449708717cc46bf4f412007d783de2388599da71a92"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

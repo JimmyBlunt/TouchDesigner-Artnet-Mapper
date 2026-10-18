@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_3d05d8abb56fa3166d8f",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/[recode]_Joy_Division/[recode]_Joy_Division.fs",
+  "source_sha256": "0a9a049cd316b658cb7ba8c68f31b5cfa5214906b647b9d59342841e2ad70188",
+  "imported_file": "[recode]_Joy_Division.fs",
+  "imported_files": {
+    ".info": "ba6d296b3819face13376a09ca876dca06ccf4f83ffd00cec225e697512bac4e",
+    "[original]_Joy_Division_Unknown_Pleasures.jpg": "367eefd231ce2c22b237010349ac39b0388afae282110755729204f0f840964a",
+    "[recode]_Joy_Division.fs": "0a9a049cd316b658cb7ba8c68f31b5cfa5214906b647b9d59342841e2ad70188",
+    "thumbnail.jpg": "cd70fbda0ee1bb6cb38be071d14759dba3a93f7604b8aef57c815a09fd11dba8"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

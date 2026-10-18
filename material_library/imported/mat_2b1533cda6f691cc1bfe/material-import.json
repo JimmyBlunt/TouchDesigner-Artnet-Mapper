@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_2b1533cda6f691cc1bfe",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Ocean Crystal/Ocean Crystal.fs",
+  "source_sha256": "bd07a21b5c4a8c31e56a821052324a1a7d641f7e11a460eb0ccaa2c5a68ca19e",
+  "imported_file": "Ocean Crystal.fs",
+  "imported_files": {
+    ".info": "ae30f2ba67a50ade3057e0219edf0f58a1173fba588f0955eac61ccfa27c5898",
+    "Ocean Crystal.fs": "bd07a21b5c4a8c31e56a821052324a1a7d641f7e11a460eb0ccaa2c5a68ca19e",
+    "thumbnail.jpg": "49f3b0921484b6aff6e9b5e9d888128546747b142a19e73a245d034786a01937"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

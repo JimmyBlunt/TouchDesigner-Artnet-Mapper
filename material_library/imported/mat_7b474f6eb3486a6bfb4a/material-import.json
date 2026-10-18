@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_7b474f6eb3486a6bfb4a",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Flaring/Flaring.fs",
+  "source_sha256": "c76d0d158f5f8546ef6efc747b54e5512e0538ae5e4101debf24991ff0acd08c",
+  "imported_file": "Flaring.fs",
+  "imported_files": {
+    ".info": "931bfbfcd2c7314fe02210099e946e700d382fd90517a0b87ad4ded2c6d6ac85",
+    "Flaring.fs": "c76d0d158f5f8546ef6efc747b54e5512e0538ae5e4101debf24991ff0acd08c",
+    "Flaring.png": "b785bc13249f177f1a525653acf7e869278d5d741891bde411a07c4b126c3f10",
+    "thumbnail.jpg": "983f1553a50a8e14631f8c25cbf07bffd8f4e85f9c91b1857616b0e0172751cc"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

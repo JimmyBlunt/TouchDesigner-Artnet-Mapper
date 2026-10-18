@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_b1192fc4f346fbf00519",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Rainbow Circle/Rainbow Circle.fs",
+  "source_sha256": "4bc60589b6aa31bad1fa434508e643e011e11a2dc17b536979ad76481aa9c694",
+  "imported_file": "Rainbow Circle.fs",
+  "imported_files": {
+    ".info": "f319402f02155bcf28baa21487eb488ea40968b5ebd727f2e1f88e13ed6e0644",
+    "Rainbow Circle.fs": "4bc60589b6aa31bad1fa434508e643e011e11a2dc17b536979ad76481aa9c694",
+    "thumbnail.jpg": "66ab7ce64f4eb5b9ca653b8b64ee245133774c486d048ffe7ad22b9c4c423c3f"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

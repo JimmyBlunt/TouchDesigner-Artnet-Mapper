@@ -1,0 +1,61 @@
+{
+  "required_runtime_untracked": [
+    "config/material_audio.json",
+    "config/material_pads.json",
+    "config/timeline_midi.json",
+    "config/mk2_windows.json",
+    "tools/pxlblz_manager/service.mjs",
+    "tools/pxlblz_manager/manager.mjs",
+    "tools/pxlblz_manager/core.mjs",
+    "tools/pxlblz_manager/surface.mjs",
+    "tools/pxlblz_manager/selftest.mjs",
+    "tools/pxlblz_manager/snapshot.py",
+    "tools/pxlblz_manager/ui.html",
+    "tools/pxlblz_manager/settings.json",
+    "shows/firstone.json",
+    "shows/firstone.automation.json",
+    "shows/firstone.materials.json",
+    "shows/test1.json",
+    "shows/test1.automation.json",
+    "shows/test1.materials.json"
+  ],
+  "required_test_untracked": [
+    "tools/artnet_port_length_test.py"
+  ],
+  "optional_manager_entrypoints": [
+    "tools/pxlblz_manager/start.ps1",
+    "tools/pxlblz_manager/cli.mjs",
+    "tools/pxlblz_manager/.gitignore",
+    "tools/pxlblz_manager/core.test.mjs",
+    "tools/pxlblz_manager/surface.test.mjs"
+  ],
+  "optional_historical_maintenance_inputs": {
+    "mappings/sources/lower_side_scan_0_398_raw_2026-08-24.json": [
+      "pixelblaze_mapper/apply_lower_side_rewire.py"
+    ],
+    "mappings/sources/upper_side_scan_0_269_raw_2026-08-24.json": [
+      "pixelblaze_mapper/apply_upper_side_rewire.py"
+    ]
+  },
+  "machine_dependencies_exist": {
+    "E:/PXLBLZ-ArtNet/PXLBLZ-IDE": true,
+    "E:/PXLBLZ-ArtNet/artnet/pxlblz-router.exe": true,
+    "C:/Users/jbhtz/AppData/Roaming/uv/tools/marimapper/Scripts/python.exe": true
+  },
+  "portable_source_fixes": [
+    "build_shortcut_hub.LOCAL_ROOT",
+    "build_show_sequencer.DEMO_SHOW",
+    "build_show_sequencer generated LOCAL_ROOT",
+    "build_unified_material_browser generated material-control SOURCE and __file__"
+  ],
+  "excluded": [
+    "Historical Scans directories are not imported by source; retain local, no wholesale staging",
+    "tools/pxlblz_manager/data and *.log are generated and ignored",
+    "Expanded .toe.dir is a historical extraction, not a runtime dependency"
+  ],
+  "notes": [
+    "All pixelblaze_mapper source/assets and tests are release staged by parent agent.",
+    "External manager IDE/router software and camera interpreter remain host prerequisites; settings contain host-specific paths.",
+    "A token is read by manager from external IDE .dev.vars only at use time; that credential file is not a release asset."
+  ]
+}

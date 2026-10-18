@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_67a99c60e4c0797447fb",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Fractal Oil/Fractal Oil.fs",
+  "source_sha256": "836c81f753694fbbe82f39ab970c9c6db46b60690704163d013fbe53844aa32d",
+  "imported_file": "Fractal Oil.fs",
+  "imported_files": {
+    ".info": "b438011707607f1c3fba0c3805edf28860076a132356591a1437cdf64d3b0003",
+    "Fractal Oil.fs": "836c81f753694fbbe82f39ab970c9c6db46b60690704163d013fbe53844aa32d",
+    "thumbnail.jpg": "c8ce6a67656af32af19b4771466bacd18491042ed5141ef3ed091f5b9303869f"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

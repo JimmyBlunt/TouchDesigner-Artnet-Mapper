@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_d29f268d1f105a9f1e4d",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Rorschach/Rorschach.fs",
+  "source_sha256": "1e6700e689f1f63d657fcd3f4a67fb0d7569a8a67dc6e14c959a2e424845aff1",
+  "imported_file": "Rorschach.fs",
+  "imported_files": {
+    ".info": "34c6a7cd2c5474a4332304c447992aeb099c5baa6fcdfeda52cfdc6f27f4c538",
+    "Rorschach.fs": "1e6700e689f1f63d657fcd3f4a67fb0d7569a8a67dc6e14c959a2e424845aff1",
+    "thumbnail.jpg": "74d6ffc4bffa7e8f4157552c5053252295906f4bae3e505a4da4aa05fdb0ea5c"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

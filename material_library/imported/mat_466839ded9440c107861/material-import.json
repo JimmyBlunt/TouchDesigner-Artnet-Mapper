@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_466839ded9440c107861",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Carnaval mask/Carnaval mask.fs",
+  "source_sha256": "4b1f4a138797a79e682f2a78af1db709e0a0097e2c69a3bc6c495052fe59f6d8",
+  "imported_file": "Carnaval mask.fs",
+  "imported_files": {
+    ".info": "fe66814014026b77a4280e550170d863619aec6a1aa4d43fa4c9a7b5957c28a4",
+    "Carnaval mask.fs": "4b1f4a138797a79e682f2a78af1db709e0a0097e2c69a3bc6c495052fe59f6d8",
+    "thumbnail.jpg": "ffd3f910d512f588b2faf97c66e89d4d959b24e83855b27a59b4e2c4b369bf02"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

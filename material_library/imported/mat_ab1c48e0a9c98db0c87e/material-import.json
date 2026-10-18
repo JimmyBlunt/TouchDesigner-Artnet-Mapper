@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_ab1c48e0a9c98db0c87e",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/VectorWaves/VectorWaves.fs",
+  "source_sha256": "876097b5d82ef4123ce1a4eda619da4cc0363bd54e8a5e0dea414c9902973430",
+  "imported_file": "VectorWaves.fs",
+  "imported_files": {
+    ".info": "3425ec9a28d8131e06701a11d1ee8a10a47d17593948f87aff2df407a1f18fed",
+    "thumbnail.jpg": "4beb1917866a93153251ec8d7e45b683a23c48c6bc98792937ebc070722c80c8",
+    "VectorWaves.fs": "876097b5d82ef4123ce1a4eda619da4cc0363bd54e8a5e0dea414c9902973430"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

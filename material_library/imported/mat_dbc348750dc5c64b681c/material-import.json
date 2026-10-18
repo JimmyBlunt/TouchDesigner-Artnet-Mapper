@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_dbc348750dc5c64b681c",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Sparks/Sparks.fs",
+  "source_sha256": "34a37712316230142dab7c828de360ed863e84ab893246cecf7ea1495f4a49cf",
+  "imported_file": "Sparks.fs",
+  "imported_files": {
+    ".info": "90a034b87b77c2fd2296bcd160b9ffee25a9be0b0970e110be70ba51d3654c4d",
+    "Sparks.fs": "34a37712316230142dab7c828de360ed863e84ab893246cecf7ea1495f4a49cf",
+    "thumbnail.jpg": "0b1707c68582e91a250f93a6ee4662950ba0067b9a82264c70f96e591657fa88"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

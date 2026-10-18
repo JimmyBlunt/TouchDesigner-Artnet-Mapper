@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_0d8ba926ba797e42ce22",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/ProteanClouds/ProteanClouds.fs",
+  "source_sha256": "2092fde51a3c7d899fa75a6186d428f15b387be468af046e202fab4aa620a1ca",
+  "imported_file": "ProteanClouds.fs",
+  "imported_files": {
+    ".info": "aa1b9c614ddc6f27d3766ed4634ad04ee316f3967cb348c5cb26b070a78326bf",
+    "ProteanClouds.fs": "2092fde51a3c7d899fa75a6186d428f15b387be468af046e202fab4aa620a1ca",
+    "thumbnail.jpg": "84d7c6dc661ac223e779df101b020cfb4e8d365efad99968c760b7fc4c3d192f"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

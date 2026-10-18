@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_712c715bf2ab31e9b0dc",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Solid Color/Solid Color.fs",
+  "source_sha256": "4383ce56ddd5f2da551d328948f2de5ad5d2331126d84b4d34ff557cf9a9bac0",
+  "imported_file": "Solid Color.fs",
+  "imported_files": {
+    ".info": "8544da0045e60c2bc44c9e9db77f83116b258200e7c591598ec64de3a1addd19",
+    "Solid Color.fs": "4383ce56ddd5f2da551d328948f2de5ad5d2331126d84b4d34ff557cf9a9bac0",
+    "Solid Color.vs": "3fc0b31c5b5c2f6d5f5db200f46c5fd7edc46b16e41313ddd37ec7fd541c32fc",
+    "thumbnail.png": "a4b2172479944bd97f91fc8dec8376f78daaa0ac5353cf94e5f5947863afc2a4"
+  },
+  "kind": "madmapper_glsl",
+  "compatibility": "unsupported"
+}

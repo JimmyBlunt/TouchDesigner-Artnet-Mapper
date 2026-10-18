@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_22ef0cede1d46f11ebb2",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Wisps/Wisps.fs",
+  "source_sha256": "14a71db74fb0235f5fc83745d86248f243a0299e1416a48b937c424a5788d648",
+  "imported_file": "Wisps.fs",
+  "imported_files": {
+    ".info": "e50c3da94e2392fc86dd9901f16362cb08f1f17f0154ad777e8e0b548a16b362",
+    "thumbnail.png": "34c35c25582ba8129163935dcef598dc53437517cb441617f5e3608a7af7e5f7",
+    "Wisps.fs": "14a71db74fb0235f5fc83745d86248f243a0299e1416a48b937c424a5788d648"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

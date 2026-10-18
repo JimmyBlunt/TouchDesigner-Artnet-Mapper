@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_bd2bfd30e7d4fba912f4",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Dark Star/Dark Star.fs",
+  "source_sha256": "6d066f3c9bd9ad987a7a9fb0e20d3c61f4a2a6281ebc2ce9d8cbb1a1382e8567",
+  "imported_file": "Dark Star.fs",
+  "imported_files": {
+    ".info": "a33f46bb2a9b73db677de2a806c8ebee7192ae252a6a14e53b7099a25566d8c3",
+    "Dark Star.fs": "6d066f3c9bd9ad987a7a9fb0e20d3c61f4a2a6281ebc2ce9d8cbb1a1382e8567",
+    "thumbnail.jpg": "a5437ab877760ab7cb9d9ded03d1404903600ead5ea4f7e93ad18ff7b8c75cce"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

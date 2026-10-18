@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_07eb7e66fdecbf905a79",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/SolarVixzion/SolarVixzion.fs",
+  "source_sha256": "f099ad37fe215d852c2f89398256221dc256fc10af59ce9b79ed86cd84519db3",
+  "imported_file": "SolarVixzion.fs",
+  "imported_files": {
+    ".info": "937c60b9ae58c7b9285dab7ca634f5f0eee7b09770e702a7170525bbfcbe64de",
+    "SolarVixzion.fs": "f099ad37fe215d852c2f89398256221dc256fc10af59ce9b79ed86cd84519db3",
+    "thumbnail.jpg": "43fa40a37e0f19584e1f086e1466955b3bde71424768aca7ed1bbe6f45d99884"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

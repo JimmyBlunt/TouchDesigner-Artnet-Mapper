@@ -12,7 +12,7 @@ import math
 import threading
 import time
 
-__version__ = '0.2.4'
+__version__ = '0.2.5'
 
 # Report offsets include the report ID. Top and transport buttons have fixed
 # colour LEDs; only the groups and pads support RGB. Protocol facts verified

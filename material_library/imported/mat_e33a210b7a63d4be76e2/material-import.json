@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e33a210b7a63d4be76e2",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/FLOWW/FLOWW.fs",
+  "source_sha256": "1e65f405bd5b6406b8657055a57b7835a928ef9607b4644fdc89833c622720a0",
+  "imported_file": "FLOWW.fs",
+  "imported_files": {
+    ".info": "a05f75c729e63eb6599430afffcfaf0b80a62f48948ba1d50641af747e493330",
+    "FLOWW.fs": "1e65f405bd5b6406b8657055a57b7835a928ef9607b4644fdc89833c622720a0",
+    "thumbnail.jpg": "f62052d6fe14cf8f50b8ed12cffbb629d826b0b33fcfeffab9b8497d06b27c79"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

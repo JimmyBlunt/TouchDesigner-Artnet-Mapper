@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_50bd474f0bb140e729ba",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/(MB) Grid/Grid.fs",
+  "source_sha256": "ab6acf7f61d4fb9ac94011d125001e8ed38f85543b4f9cf02a941db3e8dccce5",
+  "imported_file": "Grid.fs",
+  "imported_files": {
+    ".info": "56106145f30cda99507f59f03dd668cdf577b0387256a5942a84bb34d227fb52",
+    "Grid.fs": "ab6acf7f61d4fb9ac94011d125001e8ed38f85543b4f9cf02a941db3e8dccce5",
+    "thumbnail.jpg": "8306a7e8cb042786de5a699e9283c61e310086000b313e8d7e017fce766b0581"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,18 @@
+✔ black holes keep source indices; brightness applies once; input stays immutable (5.1642ms)
+✔ map and routing invariants reject corrupt input (1.2858ms)
+✔ overlapping destination universes are rejected (0.2498ms)
+✔ route draft is independent and validates before mutation (4.7266ms)
+✔ drift detects unsafe frame mode, destinations and controller state (0.5889ms)
+✔ help serves guides, animations and the public catalog (2.3383ms)
+✔ help rejects traversal and private runtime reports (1.8507ms)
+✔ unfolding joins hinge continuously and keeps LED index order (3.9651ms)
+✔ inactive origin never expands map bounds or invents a remote dot (1.8469ms)
+✔ unknown tilted faces block automatic unwrap (1.3369ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 203.7336

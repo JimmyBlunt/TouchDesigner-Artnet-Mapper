@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_6e4c85a93c2f49e336f4",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Subtle Scales/Subtle Scales.fs",
+  "source_sha256": "d001e26a39037be5dfd978acf04e45d2fc29c7503aa4801b3a71fddb5efafbdc",
+  "imported_file": "Subtle Scales.fs",
+  "imported_files": {
+    ".info": "9f212e7c5433875cabc222efc6b0eb9735273b5c13526e46ebfba58c900089cf",
+    "Subtle Scales.fs": "d001e26a39037be5dfd978acf04e45d2fc29c7503aa4801b3a71fddb5efafbdc",
+    "thumbnail.jpg": "928b29646e8306304a595597152d9c4b90c3e16eb686e3dfb0e27a9afa7cbf3f"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

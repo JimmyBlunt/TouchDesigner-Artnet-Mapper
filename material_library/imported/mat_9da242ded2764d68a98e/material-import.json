@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_9da242ded2764d68a98e",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Strings instrument/alpha.fs",
+  "source_sha256": "7fdf86e03fe2a5e34b667dab1453ce3f10093f0bf68575284e01c329e5639724",
+  "imported_file": "alpha.fs",
+  "imported_files": {
+    ".info": "3e5f670ecaae2e2a92622ff19315bbc3d5491236035c6b383da3d2e356bbc750",
+    "alpha.fs": "7fdf86e03fe2a5e34b667dab1453ce3f10093f0bf68575284e01c329e5639724",
+    "thumbnail.png": "2f061d9e7283e17475418bf263fb2bb1a3d163de79d16d915489000621a2acdd"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_8fdba5a16d37def5bde5",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/LavaNoise_upflow/LavaNoise_upflow.fs",
+  "source_sha256": "84f322a12d89a4d9f499e99db09483c087961a2e7aa956c69f9b1779cd9807a1",
+  "imported_file": "LavaNoise_upflow.fs",
+  "imported_files": {
+    ".info": "471c9cf37739e69f475453ff8b41f2a57d0bf4c8258d589de0d7e989745e1cb1",
+    "LavaNoise_upflow.fs": "84f322a12d89a4d9f499e99db09483c087961a2e7aa956c69f9b1779cd9807a1",
+    "thumbnail.jpg": "af112d3e3ac025f43ff8c0a104c0e0326039892c24a9a0fdab1740e72c9bfdb8"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

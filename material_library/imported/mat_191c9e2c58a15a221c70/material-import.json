@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_191c9e2c58a15a221c70",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/SphereLit/SphereLit.fs",
+  "source_sha256": "abc27fc839610acf3ba5dedf3fd9308c6d1177f6959b977ce6a7d58e7ccd460b",
+  "imported_file": "SphereLit.fs",
+  "imported_files": {
+    ".info": "889be09582d9129d7fd41dd7d5da882ae318dd1ea490e12fdc95cd0b871ed19b",
+    "SphereLit.fs": "abc27fc839610acf3ba5dedf3fd9308c6d1177f6959b977ce6a7d58e7ccd460b",
+    "thumbnail.png": "b21ffed83f4f5d8d88304409826e6ec7a9b6f15b3fc6ef1b59c314912ec2fff6"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

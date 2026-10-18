@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_8d6244c90dccdf076cbb",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Line Pattern Pro/Line Pattern Pro.fs",
+  "source_sha256": "309e39f531912a9c02205d86dcd4335e1f794335cdbc6df22e035269ed627296",
+  "imported_file": "Line Pattern Pro.fs",
+  "imported_files": {
+    ".info": "80263f63dd72aca687d6030e38e960169c2a9c53d3534af5469c1df27d93f6a9",
+    "Line Pattern Pro.fs": "309e39f531912a9c02205d86dcd4335e1f794335cdbc6df22e035269ed627296",
+    "thumbnail.jpg": "a4f95bb7995eb636a45d98a35696136193cbf859a822991902e14d43c33a452f"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

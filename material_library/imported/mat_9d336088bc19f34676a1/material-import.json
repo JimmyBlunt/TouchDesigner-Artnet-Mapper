@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_9d336088bc19f34676a1",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Hue Wave2/Hue Wave2.fs",
+  "source_sha256": "2eb4468a61902fd1f18dd747cf88630ad300c2d079f4e77de9a0fa8887b30f51",
+  "imported_file": "Hue Wave2.fs",
+  "imported_files": {
+    ".info": "7490df1bec5cd6b2eab5447b6301a7c2fd634e7e6650d8429326f780d3d5b16a",
+    "Hue Wave2.fs": "2eb4468a61902fd1f18dd747cf88630ad300c2d079f4e77de9a0fa8887b30f51",
+    "thumbnail.jpg": "be8ae9fd6aad49f2cbf6122dda30c9df4e89caa18991acb11c3ddc31836ac787"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

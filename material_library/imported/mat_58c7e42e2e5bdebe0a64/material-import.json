@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_58c7e42e2e5bdebe0a64",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Twist/Twist.fs",
+  "source_sha256": "ed54ba596ef4a28e0619c7e097ec025c1b88ddbe0d23e363077cacdd091980ef",
+  "imported_file": "Twist.fs",
+  "imported_files": {
+    ".info": "8d26d793c0e726abc7eae6681e1bdb0847eba7e75293de56ea7e29c0e57c921c",
+    "thumbnail.jpg": "b06f7455870d8efaf742ec0f8d255d63493b3695c16265c25c121ea43b95525a",
+    "Twist.fs": "ed54ba596ef4a28e0619c7e097ec025c1b88ddbe0d23e363077cacdd091980ef"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -8,7 +8,7 @@ from copy import deepcopy
 import math
 from time import monotonic
 
-VERSION = '0.2.4'
+VERSION = '0.2.5'
 SCHEMA_VERSION = 2
 EDIT_IDLE_SECONDS = 20.0
 SHOW_FIELDS = ('duration', 'transition', 'transition_duration')
@@ -200,19 +200,27 @@ class Controller:
         self._wheel_time = None
         self._wheel_direction = 0
         self._wheel_fast_streak = 0
+        self._wheel_intervals = []
 
     def _browse_steps(self, steps, timestamp):
         now = timestamp if _finite(timestamp) else self.clock()
         direction = 1 if steps > 0 else -1
         interval = now-self._wheel_time if self._wheel_time is not None else None
         multiplier = 1
-        if interval is not None and 0 < interval < .16 and direction == self._wheel_direction:
+        # Actual MK2 bursts often arrive at 60-140 ms intervals, with USB/TD
+        # scheduling jitter between them. Measure a short rolling window rather
+        # than requiring every pair to exceed 12/25 detents/s. The first two
+        # detents and any slower movement stay precise, including reversals.
+        if interval is not None and 0 < interval < .3 and direction == self._wheel_direction:
             self._wheel_fast_streak += 1
-            if self._wheel_fast_streak >= 2:
-                rate = abs(steps)/interval
-                multiplier = 8 if rate >= 25 else 3 if rate >= 12 else 1
+            self._wheel_intervals.append((interval, abs(steps)))
+            self._wheel_intervals = self._wheel_intervals[-3:]
+            if self._wheel_fast_streak >= 2 and interval <= .2:
+                rate = sum(count for _, count in self._wheel_intervals)/sum(dt for dt, _ in self._wheel_intervals)
+                multiplier = 16 if rate >= 22 else 8 if rate >= 12 else 3 if rate >= 6 else 1
         else:
             self._wheel_fast_streak = 0
+            self._wheel_intervals = []
         self._wheel_time, self._wheel_direction = now, direction
         return steps*multiplier
 

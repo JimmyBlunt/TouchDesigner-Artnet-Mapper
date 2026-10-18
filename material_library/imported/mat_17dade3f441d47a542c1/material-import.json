@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_17dade3f441d47a542c1",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Manhattan Truchet/Manhattan Truchet.fs",
+  "source_sha256": "2a877492689b90724a137da0f6705328d75dcd5d676bb632daf7e97bcf0eaccf",
+  "imported_file": "Manhattan Truchet.fs",
+  "imported_files": {
+    ".info": "60f6ce05253e8c710870ad1978e25923d11bf2f67121be85b68c7a2e652291ff",
+    "Manhattan Truchet.fs": "2a877492689b90724a137da0f6705328d75dcd5d676bb632daf7e97bcf0eaccf",
+    "thumbnail.jpg": "064366e7e6dda9afb443736152a4305a4fc514b05bde6bc27f7221ae4bdc831f"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

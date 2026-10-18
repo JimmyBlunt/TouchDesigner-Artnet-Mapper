@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_38ac1e34ded8229790b7",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Day 84/Day 84.fs",
+  "source_sha256": "a132687aea681aab4b9fdbcb14dfad44a9e2331f17629061a3045efc3c96bdb1",
+  "imported_file": "Day 84.fs",
+  "imported_files": {
+    ".info": "84f78676d3d0bb5e642f0c6bb9ccb497897782e81bb1b574dab78c346baeb42b",
+    "Day 84.fs": "a132687aea681aab4b9fdbcb14dfad44a9e2331f17629061a3045efc3c96bdb1",
+    "noise.png": "6c43a9a9e21bfb8bea1c1b4454206c85651c0abda657ecd3535b1f9e4e4805b4",
+    "thumbnail.jpg": "fc014c12cc83aa37aa08b225dfec9677ddf11310a7de76069694a1df4546001d"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

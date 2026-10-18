@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_3c3a5eba98f58695836e",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Demos/SDF/SDFFuglyCompositionExample/SDFFuglyCompositionExample.fs",
+  "source_sha256": "ba0d8b32ccd645d53f593bc3dbd3d2abd13dc52637f24575015cfd52f8987190",
+  "imported_file": "SDFFuglyCompositionExample.fs",
+  "imported_files": {
+    "SDFFuglyCompositionExample.fs": "ba0d8b32ccd645d53f593bc3dbd3d2abd13dc52637f24575015cfd52f8987190",
+    "thumbnail.png": "94e028b3da86f00dac4fa2064ea8444b5a3b0ba80e6e764585381765218d20d3"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_b92e38ede6ee786617b4",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/PaddedWalls/PaddedWalls.fs",
+  "source_sha256": "a9894e4caf7c763532c3ef2ae0e99a9b8f20703889b199792cd8d3a19e57e44e",
+  "imported_file": "PaddedWalls.fs",
+  "imported_files": {
+    ".info": "f52110e5628a231a9054f8a6114d7ae8f10006e2ba0cf9f76a38f2e67d4fae44",
+    "PaddedWalls.fs": "a9894e4caf7c763532c3ef2ae0e99a9b8f20703889b199792cd8d3a19e57e44e",
+    "thumbnail.jpg": "26b187bc768b6e3abcb5997de00ca93def1b3e5fe5b3bbaa4c750fc4e936cb15"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

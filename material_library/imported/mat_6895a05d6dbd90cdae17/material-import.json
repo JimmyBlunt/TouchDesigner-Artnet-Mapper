@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_6895a05d6dbd90cdae17",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Refracting Gems/BigWingsRefract.fs",
+  "source_sha256": "fd97990945d4c57b34436700c549c5f4963ab0876415e74ffe1b31d41f505ca9",
+  "imported_file": "BigWingsRefract.fs",
+  "imported_files": {
+    ".info": "a62109e6d1c2e01eac9b726016ec69a827b41228799fe13a4f37a3974a89d6c7",
+    "BigWingsRefract.fs": "fd97990945d4c57b34436700c549c5f4963ab0876415e74ffe1b31d41f505ca9",
+    "studio.exr": "6daf92163498b9b640e66ca8ecfd9ff937d8b8f28b074c8370b80affd3b28e03",
+    "thumbnail.jpg": "3289e0542fc5eb7d0a2ecbb43b9e0bf61e3e877c2138117a24855a6747b5a752"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

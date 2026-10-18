@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_1bd9185382d1b005f7c7",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Funkadelic/Funkadelic.fs",
+  "source_sha256": "7f362f87ab379223275c240cf4e3091fedc902e450249d8f4b1ab4ef7e25901d",
+  "imported_file": "Funkadelic.fs",
+  "imported_files": {
+    ".info": "9f2a4d2c76351e7298546c090afdd681845c139351974226ac4b8360b9ef5cb4",
+    "Funkadelic.fs": "7f362f87ab379223275c240cf4e3091fedc902e450249d8f4b1ab4ef7e25901d",
+    "thumbnail.jpg": "b0876dcb0e703f2051dddf927d7d996f25157396287dd2be7748c4fb80832956"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

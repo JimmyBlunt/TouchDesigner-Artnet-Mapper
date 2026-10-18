@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_0cb20a888710e70405f2",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Bubble Circuit/Bubble Circuit.fs",
+  "source_sha256": "5b42df7142cf617783ccbaf3588ed4f12f0f1d714ca3a41f670b0e69809b8d1f",
+  "imported_file": "Bubble Circuit.fs",
+  "imported_files": {
+    ".info": "9058c6bab3ab2a00d4ef8cb53d53b47322842660cd0463725e19536ee6c62173",
+    "Bubble Circuit.fs": "5b42df7142cf617783ccbaf3588ed4f12f0f1d714ca3a41f670b0e69809b8d1f",
+    "thumbnail.jpg": "35724d4ca4cac93514d99b09d40cc9f8fc899f56428e25b7f0fa120b531e9ac9"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

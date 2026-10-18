@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_ab197f3d3cfd6220cf47",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Wire Tubes/Wire Tubes.fs",
+  "source_sha256": "4a81db2bc30c3c7139e092c7c3ff7910178297060788cfc7fb0bf525c2a53841",
+  "imported_file": "Wire Tubes.fs",
+  "imported_files": {
+    ".info": "2c234b2f6c527e14c8a7ad8f96a4d2f92cba1dd70ac5630395e45a71ef94d1f1",
+    "thumbnail.jpg": "f14281358bfbd6bf7a73091b25f0b6f76cee5fea81b1ec5123bf63a4276a7b39",
+    "Wire Tubes.fs": "4a81db2bc30c3c7139e092c7c3ff7910178297060788cfc7fb0bf525c2a53841"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_dcd72eeeb105061f0ce6",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Chaton's Material/Chaton's Material.fs",
+  "source_sha256": "87477a8437ad6d293099b79735706888129928fa8446de834077bf73670db812",
+  "imported_file": "Chaton's Material.fs",
+  "imported_files": {
+    ".info": "a156789da34e32e120fae439cdd8bedc8063f023abdde04dd7fa9a7a92ae2393",
+    "Chaton's Material.fs": "87477a8437ad6d293099b79735706888129928fa8446de834077bf73670db812",
+    "thumbnail.jpg": "2c2f0675ead56f17e7f850e7b422cb9c9485081bf62bad093485b995f5bb332a"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

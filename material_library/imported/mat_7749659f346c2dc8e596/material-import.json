@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_7749659f346c2dc8e596",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Twisted Tunnel/Twisted Tunnel.fs",
+  "source_sha256": "6821e0d899f028df4df97e9c3a4d2682be6f62a0e9b95491c1bdc795d5ef3d46",
+  "imported_file": "Twisted Tunnel.fs",
+  "imported_files": {
+    ".info": "ef7ca2a94bbada6b9f9c2f7d6981204205007d1d0d697e1d4a344601ef42d9db",
+    "thumbnail.jpg": "c89c56675c14f6f68e9e42eb6883fc827b6a019256eaf0f20a899f2743aa46d7",
+    "Twisted Tunnel.fs": "6821e0d899f028df4df97e9c3a4d2682be6f62a0e9b95491c1bdc795d5ef3d46"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

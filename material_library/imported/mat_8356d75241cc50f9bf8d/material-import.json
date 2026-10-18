@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_8356d75241cc50f9bf8d",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/ChocoWave/ChocoWave.fs",
+  "source_sha256": "11b02936b8fefa0c7af0c1b38ca530d9d594cde81fed6a1a405d84da4460c278",
+  "imported_file": "ChocoWave.fs",
+  "imported_files": {
+    ".info": "34c6a7cd2c5474a4332304c447992aeb099c5baa6fcdfeda52cfdc6f27f4c538",
+    "ChocoWave.fs": "11b02936b8fefa0c7af0c1b38ca530d9d594cde81fed6a1a405d84da4460c278",
+    "thumbnail.jpg": "c029c3ba9897094bb3654728fa350f107625e100dd7567eb862379735167c659"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

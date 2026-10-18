@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_558d1a8e7ca5d4219fef",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Lignettes/Lignettes.fs",
+  "source_sha256": "5e69769a1e0a08c3b2e5a871f8eef22a98db05ebfbf5ceb789b966e20ea71120",
+  "imported_file": "Lignettes.fs",
+  "imported_files": {
+    ".info": "a7f4f24340035692641e5a5dae1e8e1d9d1a18787095522553fc9e9e5ff774a3",
+    "Lignettes.fs": "5e69769a1e0a08c3b2e5a871f8eef22a98db05ebfbf5ceb789b966e20ea71120",
+    "thumbnail.jpg": "a43834f9f062c2a63272874511fe8b0b41d93cacac49ee9d148d64490d0d779b"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

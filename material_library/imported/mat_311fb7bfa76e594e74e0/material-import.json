@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_311fb7bfa76e594e74e0",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/AtmosphericScattering/AtmosphericScattering.fs",
+  "source_sha256": "4e263c7f9fcaa6aa00fb323628c3615aebd4b62d9708151765bf94a8bfc60e3b",
+  "imported_file": "AtmosphericScattering.fs",
+  "imported_files": {
+    ".info": "bc9b0c4f11a4a79b24d919bbc2c9b28fb348bdf750db25cdba98475f98cf5bc9",
+    "AtmosphericScattering.fs": "4e263c7f9fcaa6aa00fb323628c3615aebd4b62d9708151765bf94a8bfc60e3b",
+    "thumbnail.jpg": "0f8fe78e69af156e02fad290211b3459ffda0d7410e550efc27e4e16a6fbc1bf"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

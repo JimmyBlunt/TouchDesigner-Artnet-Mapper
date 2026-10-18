@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_513569e75ffdd4073563",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/TwistedPillars/TwistedPillars.fs",
+  "source_sha256": "223daa083ebdfc95a32495bbf565f4a080d273b086c3eaca3f0da82a6d342956",
+  "imported_file": "TwistedPillars.fs",
+  "imported_files": {
+    ".info": "42399002fb5ec440d36313ceba882f7239ef73ffa61c0effb68c6c40e9649a75",
+    "thumbnail.jpg": "0766e06cd992ee1c3fe17e5898083b3b385db7c3f501f704933bb71f875c7329",
+    "TwistedPillars.fs": "223daa083ebdfc95a32495bbf565f4a080d273b086c3eaca3f0da82a6d342956"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

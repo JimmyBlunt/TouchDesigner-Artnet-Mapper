@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_a75fb4ea3f0048a5b03b",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Wild Circle/Wild Circle.fs",
+  "source_sha256": "29ed828e4163104dd9c60ebd61a7c69bfd65b3ebb3edb6cc9d9500f1f91b63ac",
+  "imported_file": "Wild Circle.fs",
+  "imported_files": {
+    ".info": "1a2f0eb81bb2eee0a5d7e65fa5d65d0b3b0df8119c407568c5c7ecb01d8c340b",
+    "thumbnail.jpg": "1a00923c168a164a72d26c23d63ce8b1d3c8b95ca99bfb053ea81b900df61314",
+    "Wild Circle.fs": "29ed828e4163104dd9c60ebd61a7c69bfd65b3ebb3edb6cc9d9500f1f91b63ac"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_75a8919b6bca4a8e7fa7",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Bit for Bit/Bit for Bit.fs",
+  "source_sha256": "07362cd6e07bc8c2c4daed62cb5210211da47df8decb530f64b0d3460d2bf970",
+  "imported_file": "Bit for Bit.fs",
+  "imported_files": {
+    ".info": "2038abcf0229694ea6bc21c5c63f66e04dcbfd679ea3867a6ffdbe2284c1719b",
+    "Bit for Bit.fs": "07362cd6e07bc8c2c4daed62cb5210211da47df8decb530f64b0d3460d2bf970",
+    "thumbnail.jpg": "67e58ca76deedb6401a3db2bbc1b07628859d71759e908a920edf4aec9e27adf"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

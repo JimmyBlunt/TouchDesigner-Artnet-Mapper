@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_dd3bc7fb8fa33f016c1d",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Marble/Marble.fs",
+  "source_sha256": "976b99b9aeae3cb99a25e95563fd7b9cab6833e604e2f93ce352beb4f513afac",
+  "imported_file": "Marble.fs",
+  "imported_files": {
+    ".info": "e6b856c1371ce3b6eb88fe99d623f1337ee9a6bc5b1925d25faa821391984871",
+    "Marble.fs": "976b99b9aeae3cb99a25e95563fd7b9cab6833e604e2f93ce352beb4f513afac",
+    "thumbnail.jpg": "101c59d2c75f052c2607b1f3a795fadfc6a8fc3de03135046bc4e678681df68b"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

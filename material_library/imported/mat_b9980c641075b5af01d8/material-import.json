@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_b9980c641075b5af01d8",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/ConcentricShapes/ConcentricShapes.fs",
+  "source_sha256": "0cee7ca7133fd3142c20b895654ffd63f8b2351e46d0b48fb15e77fe99e063a2",
+  "imported_file": "ConcentricShapes.fs",
+  "imported_files": {
+    ".info": "9029715cc91b9ad9be4c212deb108200599554cbb829cd0955e7be8dfd51feea",
+    "ConcentricShapes.fs": "0cee7ca7133fd3142c20b895654ffd63f8b2351e46d0b48fb15e77fe99e063a2",
+    "thumbnail.jpg": "b933c734ff72da61054915d5daa38af5a64cf7306d5d42f62cb4c67cb648314c"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

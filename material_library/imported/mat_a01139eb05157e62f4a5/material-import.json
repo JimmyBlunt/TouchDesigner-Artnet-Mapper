@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_a01139eb05157e62f4a5",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/HoopDreams/HoopDreams.fs",
+  "source_sha256": "85eade0da55b3be40cf60f89df4416da31a997803f9ea31c85b9820b633cd5b6",
+  "imported_file": "HoopDreams.fs",
+  "imported_files": {
+    ".info": "42399002fb5ec440d36313ceba882f7239ef73ffa61c0effb68c6c40e9649a75",
+    "HoopDreams.fs": "85eade0da55b3be40cf60f89df4416da31a997803f9ea31c85b9820b633cd5b6",
+    "thumbnail.jpg": "163cf6f8b02382e68fdfd504f56f32af23e5e54426ed494cd9a01fa58f849424"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

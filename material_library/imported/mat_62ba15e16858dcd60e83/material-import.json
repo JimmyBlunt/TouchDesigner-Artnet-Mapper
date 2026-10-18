@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_62ba15e16858dcd60e83",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Crazy Circle/Crazy Circle.fs",
+  "source_sha256": "18466f4d48a12e60a8251f0ef30585860b9eff385683e6841cfcaac01a41f473",
+  "imported_file": "Crazy Circle.fs",
+  "imported_files": {
+    ".info": "25e42bed218a9205c7610dca15151b66d6e36a3d6d37c2b5ebd956ab08e588bf",
+    "Crazy Circle.fs": "18466f4d48a12e60a8251f0ef30585860b9eff385683e6841cfcaac01a41f473",
+    "thumbnail.png": "0009e54750ec1feadbef864d92e6fc3b418a9f065df5f51a2097f0c989194730"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

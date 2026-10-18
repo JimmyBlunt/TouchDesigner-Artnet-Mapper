@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_79a9fbebdb3478444854",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/spermato/spermato.fs",
+  "source_sha256": "10ff9ce0228ea8c0ef86654e69a09e13cba1c8bb6a85312a69bb084b9ea4c3de",
+  "imported_file": "spermato.fs",
+  "imported_files": {
+    ".info": "afbac916766afc3a500590f8e9ece8d0f01542fbe0b1114433baa1b121a51429",
+    "spermato.fs": "10ff9ce0228ea8c0ef86654e69a09e13cba1c8bb6a85312a69bb084b9ea4c3de",
+    "thumbnail.jpg": "9f193819b73d280f5c6ba800b9802cd7d8d9e6c472061a98ffe3bf0bdad16f04"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,32 @@
+{
+  "packet_gap_ms": 1.0,
+  "neighbors": [
+    {
+      "IPAddress": "10.0.0.251",
+      "LinkLayerAddress": "00-00-00-00-00-00",
+      "State": 1,
+      "InterfaceAlias": "Ethernet 3"
+    },
+    {
+      "IPAddress": "10.0.0.251",
+      "LinkLayerAddress": "00-00-00-00-00-00",
+      "State": 0,
+      "InterfaceAlias": "WLAN"
+    }
+  ],
+  "target": "10.0.0.251",
+  "observed_at": "2026-10-18",
+  "universes": "156-162",
+  "ping_251": "failed",
+  "http_config_status": "timed out",
+  "conclusion": "Controller unavailable at network layer; no routing change made; physical link/power confirmation pending",
+  "output_counts": [
+    299,
+    357,
+    195
+  ],
+  "ping_253": "succeeded, 9 ms",
+  "sender_enabled": true,
+  "ethernet_address": "10.0.0.125",
+  "sender_error": ""
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_77d801175c7bc0e056fa",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Fractal Shapes/Fractal Shapes.fs",
+  "source_sha256": "ac47ba25fcc4a813dd95487687bb4c1505d5894ff6a07d9a73b0711b382280f8",
+  "imported_file": "Fractal Shapes.fs",
+  "imported_files": {
+    ".info": "475c511d6b7b05189590dc0bda325ce64b1616bfba4dc065694a58ba2ca455e3",
+    "debug.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "Fractal Shapes.fs": "ac47ba25fcc4a813dd95487687bb4c1505d5894ff6a07d9a73b0711b382280f8",
+    "thumbnail.jpg": "78975d591efc6308e29333e17f501a4364dbc60ecc6c6cc1d83bb11eddf6faa7"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

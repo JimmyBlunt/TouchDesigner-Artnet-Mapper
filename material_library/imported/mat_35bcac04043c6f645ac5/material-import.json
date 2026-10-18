@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_35bcac04043c6f645ac5",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/2D Clouds/2D_Clouds.fs",
+  "source_sha256": "a07997b7bbab0b738fa8a03e91ab71eb9fccc06e5549086c6f2a770c202f3ac2",
+  "imported_file": "2D_Clouds.fs",
+  "imported_files": {
+    ".info": "00f2cb3434abced0d3c0e794f2a4a6011c825c9dd0ef493eee00b8a56754cbe6",
+    "2D_Clouds.fs": "a07997b7bbab0b738fa8a03e91ab71eb9fccc06e5549086c6f2a770c202f3ac2",
+    "thumbnail.jpg": "4d3365ec0de876c8c6e7d38bec125c9b323a3e7755050c1079a4a96424672f66"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

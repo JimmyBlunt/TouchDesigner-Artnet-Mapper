@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_95743ac693d55621bf8d",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/PerlinNoiseFun/PerlinNoiseFun.fs",
+  "source_sha256": "5cbd85803ed9e5e5a60e89495315623687be9094c2bbbc6781c94e77fe849296",
+  "imported_file": "PerlinNoiseFun.fs",
+  "imported_files": {
+    ".info": "4a284b8fbbf55b373cc671a3e1d3cc0bd6c540cceaaac33a7d0c5018f5211048",
+    "PerlinNoiseFun.fs": "5cbd85803ed9e5e5a60e89495315623687be9094c2bbbc6781c94e77fe849296",
+    "thumbnail.jpg": "5b212d56e3172e4df74cddee386483341ffa1c5d1d544f4e67d8a9012e29d07a"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

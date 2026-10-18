@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_26f886028437d404b74a",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Tunnel_points/tunnel_points.fs",
+  "source_sha256": "e66cfa44507fba005c56cd81c8caf7bc01f15010dc1e6d3c3f0453ed555fc70e",
+  "imported_file": "tunnel_points.fs",
+  "imported_files": {
+    ".info": "410dce263ffc9ea6fb223a77c2287db6e9fc9456532aa4e47223e49dafd6b7d5",
+    "thumbnail.png": "8422ee88ead4854a7aab0e4be38a714ec00659bb2dfcd365b01c8c09933414d7",
+    "tunnel_points.fs": "e66cfa44507fba005c56cd81c8caf7bc01f15010dc1e6d3c3f0453ed555fc70e"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

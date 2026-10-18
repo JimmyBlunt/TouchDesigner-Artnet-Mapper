@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e28978f18c7f59cf8df6",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/Spectrum/spectrum.fs",
+  "source_sha256": "7d0c55f717d8705e1caffdf5057b766c6f277faf0f1ed11fc20c2c5e47393893",
+  "imported_file": "spectrum.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "hue_texture.png": "cfbf1492ebb1ffb834f6fe0823e391c69dd63c6e3ddc66d8da79a987a61781a0",
+    "spectrum.fs": "7d0c55f717d8705e1caffdf5057b766c6f277faf0f1ed11fc20c2c5e47393893",
+    "thumbnail.png": "65551772cd1fcb94f8fa121e334bee74f1322cdbaa0919eb8c3637c22da86efe",
+    "thumbnail_color.png": "c76123ddaeaf29e300f0f16371deeb2935d8b3a57d21e6e3997a47e1e8b884b0",
+    "white_texture.png": "8ea380a8ca8c7315b6f9b8c2fb64a9a47b7258e630e816a9cc30a7e23c722c4e"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

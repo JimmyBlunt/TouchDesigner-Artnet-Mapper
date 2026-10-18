@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_9981dda705811f1cc260",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Radiance/Radiance.fs",
+  "source_sha256": "909efc492ec68a660612fe82187e0871520588dfbe2c3bfff4d233fae6805891",
+  "imported_file": "Radiance.fs",
+  "imported_files": {
+    ".info": "e133917dd30f5f6646f30c007f54a15dd726c396f3ffdd2fcb27af637e9a1868",
+    "Radiance.fs": "909efc492ec68a660612fe82187e0871520588dfbe2c3bfff4d233fae6805891",
+    "thumbnail.jpg": "d590b9233fd8b777818cf38cbd9a7d14e3277a4ff3e3603809a428f2c342d220"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

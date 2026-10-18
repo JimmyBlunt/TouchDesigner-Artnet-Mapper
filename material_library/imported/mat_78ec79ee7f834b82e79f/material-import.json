@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_78ec79ee7f834b82e79f",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/BrokenBarcode/BrokenBarcode.fs",
+  "source_sha256": "c02b49f183f3c0d340f5922e2368759e9d7a2358428ec05406f564d492aab7c6",
+  "imported_file": "BrokenBarcode.fs",
+  "imported_files": {
+    ".info": "54e8ce2b494e205e389b682c8368b70aea6bd36958099271083f9992f1656c9f",
+    "BrokenBarcode.fs": "c02b49f183f3c0d340f5922e2368759e9d7a2358428ec05406f564d492aab7c6",
+    "thumbnail.jpg": "e714938e8b0328ddc761b1fff46b368a7adc132e64b09f2bb8de6c2a66e7b70e"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

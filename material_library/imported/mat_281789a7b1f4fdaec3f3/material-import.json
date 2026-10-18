@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_281789a7b1f4fdaec3f3",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Noise Mold/Noise Mold.fs",
+  "source_sha256": "ec05af312e82d6a07d653162611082b163dfd71482e883cb151a733c7d42f335",
+  "imported_file": "Noise Mold.fs",
+  "imported_files": {
+    ".info": "bde0b27bf293dba9cba9c7ffc2b465a8bdedf113198d2d231627f8ed72083d83",
+    "Noise Mold.fs": "ec05af312e82d6a07d653162611082b163dfd71482e883cb151a733c7d42f335",
+    "thumbnail.jpg": "79a321ef0cba45ef6d28fe37ed9e94f8545126b7eb74d7c3379c6d94378a5bd8"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

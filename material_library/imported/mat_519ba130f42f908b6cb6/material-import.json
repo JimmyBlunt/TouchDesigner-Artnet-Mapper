@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_519ba130f42f908b6cb6",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Fractal Warping/Fractal Warping.fs",
+  "source_sha256": "b44f38461a86cd7c1a8917aec2178cf96a5d12c0c5e6b1c70244bedc602900ca",
+  "imported_file": "Fractal Warping.fs",
+  "imported_files": {
+    ".info": "14ad3c6b3ac3bda7d3f39e29cd78c5332dd5b8c11675e9956a6872e121c1e247",
+    "Fractal Warping.fs": "b44f38461a86cd7c1a8917aec2178cf96a5d12c0c5e6b1c70244bedc602900ca",
+    "thumbnail.jpg": "ae6132a5fca39ced2dcec27cefd750d9b8423463e4b458671359d5f7c3c274d8"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

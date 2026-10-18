@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_fc0185ea7879b326d7cd",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Twisted Domain/Twisted Domain.fs",
+  "source_sha256": "db4842c025a21292cc42a0792d200b0e3bdfca15c4c2ef8a5202410967e4f7a3",
+  "imported_file": "Twisted Domain.fs",
+  "imported_files": {
+    ".info": "e405ce5347d9f45bafc311048acb1c65ff70fcac229ae7f908303de1107fcac6",
+    "thumbnail.jpg": "094a68fe0eaf26bf55553168b675cff98751945fe52c1a579e3d3ed6d92059fc",
+    "Twisted Domain.fs": "db4842c025a21292cc42a0792d200b0e3bdfca15c4c2ef8a5202410967e4f7a3"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

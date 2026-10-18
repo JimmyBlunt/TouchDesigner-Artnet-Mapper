@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_2f2c4007fd766043af3b",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/StringTheory/StringTheory.fs",
+  "source_sha256": "4349a6c3be7673e9fb08008b402ad5ec956c9aba7b8c2c9097997a19640cffcd",
+  "imported_file": "StringTheory.fs",
+  "imported_files": {
+    ".info": "88775538d57ab2c565fe4286003d6892fc921c5c6530b87f9dd76dffc01ee597",
+    "StringTheory.fs": "4349a6c3be7673e9fb08008b402ad5ec956c9aba7b8c2c9097997a19640cffcd",
+    "thumbnail.jpg": "56afd687da748c1a044546199b2fb8abb17110490d0298e8d0de5d354cf57fa9"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

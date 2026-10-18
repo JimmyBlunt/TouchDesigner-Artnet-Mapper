@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_feee7275e3cb65f87f71",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/HexaGlobe/HexaGlobe.fs",
+  "source_sha256": "96d60e17e0b5bddac2d86c49993150103d4aaf8bfb037717d0a7ecb806cc6a84",
+  "imported_file": "HexaGlobe.fs",
+  "imported_files": {
+    ".info": "8760454702fcda6616fd4bc8620468b9dbd877f898b951b85439205e28c78b39",
+    "HexaGlobe.fs": "96d60e17e0b5bddac2d86c49993150103d4aaf8bfb037717d0a7ecb806cc6a84",
+    "thumbnail.jpg": "b6c85bb511ea0ed36f925742b74cc6e8e3019b8ecc9ddfb56d6716fb63bd190e"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

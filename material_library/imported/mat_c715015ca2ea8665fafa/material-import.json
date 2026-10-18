@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_c715015ca2ea8665fafa",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Golden Apollian/Golden Apollian.fs",
+  "source_sha256": "b47f3fae5c0dbe488564ad6f3eafaa6175ac8718f1e0f9052497a2b05a40413f",
+  "imported_file": "Golden Apollian.fs",
+  "imported_files": {
+    ".info": "4a4b74ffb017de0bb1da2453d8d6e88bfa01dda53128cf2767148640ccb30748",
+    "Golden Apollian.fs": "b47f3fae5c0dbe488564ad6f3eafaa6175ac8718f1e0f9052497a2b05a40413f",
+    "thumbnail.jpg": "d34ad60de7db61080a15ce91c31fbd1074f61bd8e02152010fadd37a6c110071"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

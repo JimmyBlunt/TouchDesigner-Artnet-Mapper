@@ -18,7 +18,7 @@ import re
 
 
 OWNER = "/project1/show_control"
-DEMO_SHOW = Path(r"C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/shows/demo_show.json")
+DEMO_SHOW = Path(__file__).resolve().parents[1] / 'shows' / 'demo_show.json'
 
 
 def _get_or_create(parent, op_type, name):
@@ -248,7 +248,11 @@ def build():
     callbacks.text = '''# Isolated transport UI callbacks; adapters only, no production writes.
 import json
 import sys
-LOCAL_ROOT = r'C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper'
+from pathlib import Path
+try:
+    LOCAL_ROOT = str(Path(project.folder))
+except NameError:  # Offline tests/tools already import the package normally.
+    LOCAL_ROOT = str(Path(__import__('pixelblaze_mapper').__file__).resolve().parents[1])
 if LOCAL_ROOT not in sys.path:
     sys.path.insert(0, LOCAL_ROOT)
 from pixelblaze_mapper.show_sequencer import Show, ShowSequencer, TransportState
@@ -301,7 +305,15 @@ def runtime():
     signature = op('show_json').text
     if not _runtime_record or _runtime_record[0] != signature or not isinstance(_runtime_record[1], ShowSequencer):
         _persist_state()
-        sequence = ShowSequencer(Show.from_dict(json.loads(signature)))
+        document = json.loads(signature)
+        empty_document = not document.get('cues')
+        if empty_document:
+            # Editable empty shows still need a valid black renderer plan.
+            # This internal cue is never written into the user's document.
+            from pixelblaze_mapper.show_editor import _placeholder_cue
+            silent_cue = dict(_placeholder_cue(), brightness=0.0)
+            document = dict(document, cues=[silent_cue])
+        sequence = ShowSequencer(Show.from_dict(document))
         # Tables are the authoritative durable state; storage is plain backup.
         index = int(_get('cue_index', 0))
         if 0 <= index < len(sequence.show.cues):
@@ -315,6 +327,8 @@ def runtime():
         # Reopen/reload is never permission to resume the Show automatically.
         if sequence.state is TransportState.PLAYING:
             sequence.pause()
+        if empty_document:
+            sequence.stop()
         _set('transport', sequence.state.value)
         _persist_state()
         _runtime_record = (signature, sequence)
@@ -371,6 +385,11 @@ def sync():
 
 def command(name):
     sequence = runtime()
+    if not json.loads(op('show_json').text).get('cues') and name in ('play', 'go', 'next', 'previous'):
+        sequence.stop()
+        _set('transport_request', 'empty_show_add_cue')
+        sync()
+        return name
     render = op('render_sync')
     if name in ('play', 'go', 'next', 'previous') and render is not None and hasattr(render.module, 'preflight'):
         render.module.preflight()

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_6e6a106d9c9186dd2dfa",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/GlitchColoredDeluxe/GlitchColoredDeluxe.fs",
+  "source_sha256": "0b859cc9289b3e81be7628f7c016d5abcc802ee0bc7ed12190e51abb46a29f8f",
+  "imported_file": "GlitchColoredDeluxe.fs",
+  "imported_files": {
+    ".info": "42399002fb5ec440d36313ceba882f7239ef73ffa61c0effb68c6c40e9649a75",
+    "GlitchColoredDeluxe.fs": "0b859cc9289b3e81be7628f7c016d5abcc802ee0bc7ed12190e51abb46a29f8f",
+    "thumbnail.jpg": "dcaaeb1065b592567b956496ac4d7beb481e47eb697e93b24ef43b1f383507be"
+  },
+  "kind": "madmapper_glsl",
+  "compatibility": "unsupported"
+}

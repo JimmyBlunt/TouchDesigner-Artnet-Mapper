@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_883aedfcae6632ad75a1",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/StrangeSurface/StrangeSurface.fs",
+  "source_sha256": "25c7cccf9addb2eaa12e24d1fcc289877d143bf938f4b676f43f9da3d1e05164",
+  "imported_file": "StrangeSurface.fs",
+  "imported_files": {
+    ".info": "bbd34db8da8f4338cdfb296050255b1ba980010ec76705aed05e7de7ae37665b",
+    "StrangeSurface.fs": "25c7cccf9addb2eaa12e24d1fcc289877d143bf938f4b676f43f9da3d1e05164",
+    "thumbnail.jpg": "f3689ce500bb6f685a86a4258a01234488b1648416c3d95ec5b0ccc78368b540"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

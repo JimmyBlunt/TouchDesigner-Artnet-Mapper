@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_a9f9fb685f4f6c79fd8c",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Seigaiha Mandala/Seigaiha Mandala.fs",
+  "source_sha256": "fa4483a8440c9617875ad55a5551c8ba8d8f2d9fff3edd73631563f4cf670f81",
+  "imported_file": "Seigaiha Mandala.fs",
+  "imported_files": {
+    ".info": "c231fbbd95f98c23e6833c1226861518248c4a8eb2a0feaad4a3cde60be9792d",
+    "Seigaiha Mandala.fs": "fa4483a8440c9617875ad55a5551c8ba8d8f2d9fff3edd73631563f4cf670f81",
+    "thumbnail.jpg": "431cb89abcdf29d4d5888011f1a184df1c2510592ff9097240be31eb52d6fc5a"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

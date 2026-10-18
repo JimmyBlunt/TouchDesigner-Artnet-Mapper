@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_fa7de1a24af57424ba88",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Pen Patterns/Pen Patterns.fs",
+  "source_sha256": "204cbc01795d41ce13ea1199d98b9253ab7ebd454ab4ab6ea77d956246397810",
+  "imported_file": "Pen Patterns.fs",
+  "imported_files": {
+    ".info": "180bcb404eed0bea9c8aff86b25af1bb7bf0d59f38665bd95af6f50b39d5df52",
+    "Pen Patterns.fs": "204cbc01795d41ce13ea1199d98b9253ab7ebd454ab4ab6ea77d956246397810",
+    "thumbnail.jpg": "1b6a8251a9ec35249c5a92529d96e974b4ac5650067cbb485eeb5484248f1656"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_bf9623efabe9a1e20f31",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/GammaRayFeast/GammaRayFeast.fs",
+  "source_sha256": "57ec8a561742362b617608b460a4f78f789dd13e965c2e35730210418e14766a",
+  "imported_file": "GammaRayFeast.fs",
+  "imported_files": {
+    ".info": "cfbb045550b774ec628473a4525fb81a748eb13527938cb6317c3a008f93b123",
+    "GammaRayFeast.fs": "57ec8a561742362b617608b460a4f78f789dd13e965c2e35730210418e14766a",
+    "thumbnail.jpg": "85675b8454d7da6395da59644d76d92d47c1df606187245506c9e14617eda835"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

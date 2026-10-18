@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_eafdedc1c70f3287b3b5",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Deconstructive Cube/Deconstructive Cube.fs",
+  "source_sha256": "d357f784e9e0a784d99345ccac5a6d1a723cc6630844cc6829e8a23a7d5aead8",
+  "imported_file": "Deconstructive Cube.fs",
+  "imported_files": {
+    ".info": "7fe33a5a611f1f46c85050031b329a02fb370f2974caac6581ff49368c958d48",
+    "Deconstructive Cube.fs": "d357f784e9e0a784d99345ccac5a6d1a723cc6630844cc6829e8a23a7d5aead8",
+    "thumbnail.jpg": "b9e5fc329339615afd16de6e0d6c45ba29b7cabe5b8283cc00e059dea9bef791"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

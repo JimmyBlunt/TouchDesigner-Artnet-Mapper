@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_863bc77676b1867eb669",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Clouds+KaleidoV2/Clouds+KaleidoV2.fs",
+  "source_sha256": "4d3d3a8fecf66bfff5239b9018695aa59b3274dd109fa846c24127e27ddba009",
+  "imported_file": "Clouds+KaleidoV2.fs",
+  "imported_files": {
+    ".info": "696259bce79f6f002429cae69e0bb44ce74df23160804765576656a332c89b8e",
+    "Clouds+KaleidoV2.fs": "4d3d3a8fecf66bfff5239b9018695aa59b3274dd109fa846c24127e27ddba009",
+    "thumbnail.jpg": "458ddc52c3eafcb3fed2bd50de21e567111db9ba39930adb8cd5478d35b304e5"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_a6cacdefcc5d7c89cf49",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/DistanceFieldDance/DistanceFieldDance.fs",
+  "source_sha256": "7dba2590cb2d3662855a2cab8124fe85a85b33a993c5eba0e8ee7f3e4f132d83",
+  "imported_file": "DistanceFieldDance.fs",
+  "imported_files": {
+    ".info": "1fd46e35f851f7ddc5e03bf7f059888b6b586eda7ae28ee52bee8a95034a3f40",
+    "DistanceFieldDance.fs": "7dba2590cb2d3662855a2cab8124fe85a85b33a993c5eba0e8ee7f3e4f132d83",
+    "thumbnail.jpg": "3b4fc6ae6e1c668b582607d3d1d9d9b66e089e4c45cfd2f42cbe5c4f08e741b9"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

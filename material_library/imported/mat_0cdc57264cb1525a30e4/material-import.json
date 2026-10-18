@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_0cdc57264cb1525a30e4",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/[recode]_Warhol/[recode]_Warhol.fs",
+  "source_sha256": "b5b081b38f50ffa01262b51ab02bb344da3b04d132680ab9234e08b9168efcb0",
+  "imported_file": "[recode]_Warhol.fs",
+  "imported_files": {
+    ".info": "8ac59adf83d4554792d2a11311fd65e98d16a2c59a44b33de02496c1c24ef885",
+    "[original]_Andy_Warhol_Velvet_Underground.jpg": "d0047a940cac451cc7d1b1be18c416bebccb7d2feff68dfb388661337d7db4f2",
+    "[recode]_Warhol.fs": "b5b081b38f50ffa01262b51ab02bb344da3b04d132680ab9234e08b9168efcb0",
+    "thumbnail.jpg": "027b7f1da2bacee94e95e460c7e4feefb0946dd09f3298f681a4fce73dc5709f"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

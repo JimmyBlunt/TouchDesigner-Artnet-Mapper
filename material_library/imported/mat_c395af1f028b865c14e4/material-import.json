@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_c395af1f028b865c14e4",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Simple Spectrum/Simple Spectrum.fs",
+  "source_sha256": "069986b75d7b23f8e18ae2bd50b172aed6b6f52b5ddaabd2ff6ddf236a6efc0b",
+  "imported_file": "Simple Spectrum.fs",
+  "imported_files": {
+    ".info": "c35ac14ab0a38d9c122a313f4798b64a6e17e1bb4a0cf08db49ce3ef72d15410",
+    "Simple Spectrum.fs": "069986b75d7b23f8e18ae2bd50b172aed6b6f52b5ddaabd2ff6ddf236a6efc0b",
+    "thumbnail.jpg": "18639d70c3a544fe7e14d2d302b73e190dde31f6d0ff61400b6cd658024bc196"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

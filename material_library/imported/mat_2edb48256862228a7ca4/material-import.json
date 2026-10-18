@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_2edb48256862228a7ca4",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Fractal Orbit/Fractal Orbit.fs",
+  "source_sha256": "a1ab6d70682045aaf2da0d16e4383c5335ac2387200a3e601832597af5b82ca1",
+  "imported_file": "Fractal Orbit.fs",
+  "imported_files": {
+    ".info": "6f09c2386b439a47635ac47cc0d55b55032d497f2a185c501990ac93ba57aba5",
+    "Fractal Orbit.fs": "a1ab6d70682045aaf2da0d16e4383c5335ac2387200a3e601832597af5b82ca1",
+    "thumbnail.jpg": "ff74691fcc5e6623b8a51f3f780030445b2bc2672411d24fbe895c7837e059fd"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

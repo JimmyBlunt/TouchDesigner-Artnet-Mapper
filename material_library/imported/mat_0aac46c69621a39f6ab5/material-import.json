@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_0aac46c69621a39f6ab5",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Voronoi_Foggy/EmptyTemplate.fs",
+  "source_sha256": "bcf6198fae4919d586f5a47fffac2693cfc2f9fe0bed23474152c7d1f6cf5cf2",
+  "imported_file": "EmptyTemplate.fs",
+  "imported_files": {
+    ".info": "4971841b8c4e1c354d72e07dc9451f64fd8949341a3f33c725a92c000ff817ef",
+    "EmptyTemplate.fs": "bcf6198fae4919d586f5a47fffac2693cfc2f9fe0bed23474152c7d1f6cf5cf2",
+    "thumbnail.jpg": "1dc56ecde6aed39dcd80d57540c681f19f0eae6c7cfb367289f07da22860899f"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

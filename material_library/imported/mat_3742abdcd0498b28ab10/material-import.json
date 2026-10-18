@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_3742abdcd0498b28ab10",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Pyramides/Pyramides.fs",
+  "source_sha256": "67e20a9f415c5b75af946e78bfed1ce49bf664756bf14ea20d3b9d19c07562c3",
+  "imported_file": "Pyramides.fs",
+  "imported_files": {
+    ".info": "0846df3b90c9f9772444ffe0cc90b93672dc73d609170c2976ea73dbfc166e8c",
+    "Pyramides.fs": "67e20a9f415c5b75af946e78bfed1ce49bf664756bf14ea20d3b9d19c07562c3",
+    "thumbnail.jpg": "f75bd51212100ce2e7143094b97d8ef82c3c16845c2f4adad37ae692afd20f28"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

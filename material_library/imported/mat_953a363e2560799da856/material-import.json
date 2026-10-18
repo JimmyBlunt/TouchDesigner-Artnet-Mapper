@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_953a363e2560799da856",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Handy SDF/Handy SDF.fs",
+  "source_sha256": "c0d018aa9e695f29bfeeb2d0bb42d69cbe992661d8466f62776320317c10f669",
+  "imported_file": "Handy SDF.fs",
+  "imported_files": {
+    ".info": "00d3abfe8eb3216dc645b797f8565870a848af2e66666d1ed5f060aed4534f0a",
+    "Handy SDF.fs": "c0d018aa9e695f29bfeeb2d0bb42d69cbe992661d8466f62776320317c10f669",
+    "thumbnail.jpg": "d92e7f66b8e334ceed1e3910b137d2cc27b1c3598a36dadec11e54caed672870"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

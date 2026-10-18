@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_43cd682a14ace1f28ac3",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Glacial Melt/Glacial Melt.fs",
+  "source_sha256": "879052383418911e138ada67eae9dadc4a1daa72aed2ff9dcbf1263060c824f2",
+  "imported_file": "Glacial Melt.fs",
+  "imported_files": {
+    ".info": "6d61610e02f05287c1af74681b67a412780f1f7570abd6241ec03974e6baef56",
+    "Glacial Melt.fs": "879052383418911e138ada67eae9dadc4a1daa72aed2ff9dcbf1263060c824f2",
+    "thumbnail.jpg": "09b36e9d5751b26748ca635fbf62fa3072ff7c7e4d9c0eca6c2dba7020602e60"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

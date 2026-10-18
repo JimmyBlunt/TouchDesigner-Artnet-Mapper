@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_583024519f0a63f15612",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/HScan/fragment.fs",
+  "source_sha256": "a2c0e618070cb8468c7b983f6489550d0bb9445830f7bae6ef336cc858da69d8",
+  "imported_file": "fragment.fs",
+  "imported_files": {
+    ".info": "0656ae4b63b5d03a76dadaea44fe850ecdc8f1a215b1363ffcaed1ebcb2b67d2",
+    "fragment.fs": "a2c0e618070cb8468c7b983f6489550d0bb9445830f7bae6ef336cc858da69d8",
+    "thumbnail.jpg": "7f37f4d8298d67353a88bb60311c9b90765fecd0be052a1ff6a756ede8d54872"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

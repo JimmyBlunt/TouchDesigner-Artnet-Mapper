@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_9b076afde5210e9f3922",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Microwaves/Microwaves.fs",
+  "source_sha256": "0613dc7014ffff994359654cf59a9be31e507d877374c4359a39d7cdb6e95cfc",
+  "imported_file": "Microwaves.fs",
+  "imported_files": {
+    ".info": "7d21e0d43759a42e3d2c997a4838dd0fd29eee03c9851ceffede8e4dacd727e4",
+    "Microwaves.fs": "0613dc7014ffff994359654cf59a9be31e507d877374c4359a39d7cdb6e95cfc",
+    "thumbnail.jpg": "426adc2cdce9df040b37b72ec3a76d3e157eedbfb6327d9dd58a5aa155a486bd"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

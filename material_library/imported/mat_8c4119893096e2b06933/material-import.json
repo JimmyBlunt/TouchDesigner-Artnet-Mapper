@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_8c4119893096e2b06933",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Glass Cubes/Glass Cubes.fs",
+  "source_sha256": "f4b132fecd13b70eecce216501454db289e78611c056a787eb5e884b43e2f097",
+  "imported_file": "Glass Cubes.fs",
+  "imported_files": {
+    ".info": "eb061b2f56bb188d1e91ac1a8bf51c7a0a2dadaaac8d1bdab5ae3844de6844db",
+    "Glass Cubes.fs": "f4b132fecd13b70eecce216501454db289e78611c056a787eb5e884b43e2f097",
+    "thumbnail.jpg": "c1a4e084b03aa69b3117ea1ed5f26bf7ddb91e21e103f96a03cdcdbae13a6ca0"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

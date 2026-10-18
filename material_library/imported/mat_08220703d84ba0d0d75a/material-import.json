@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_08220703d84ba0d0d75a",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Asteroid Field/Asteroid Field.fs",
+  "source_sha256": "7d1d68136d9ca8b3c6348df0523a2fce653c3a8cec4d8444119fc530e4102779",
+  "imported_file": "Asteroid Field.fs",
+  "imported_files": {
+    ".info": "adde1f35c1600ec6b2ad679e14ed078c55859ba433c655557b5b7afa471c1ed9",
+    "Asteroid Field.fs": "7d1d68136d9ca8b3c6348df0523a2fce653c3a8cec4d8444119fc530e4102779",
+    "thumbnail.jpg": "6c3cbb9b996040ae35e0e86bbf238c4a68715a14b2c4be99e160706724aa8554"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_7b4348b438c1a343536c",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Flow V2/Flow V2.fs",
+  "source_sha256": "96c953a3e24c294e75a2b929df30c0b80da291b9bb5c9d09eb2c495978b4302a",
+  "imported_file": "Flow V2.fs",
+  "imported_files": {
+    ".info": "91e6db06a8647b567b0ec2696d9f5041b57f7e365fb85f99162ac0fd0678a649",
+    "Flow V2.fs": "96c953a3e24c294e75a2b929df30c0b80da291b9bb5c9d09eb2c495978b4302a",
+    "thumbnail.jpg": "402e1be98b110134d0d8be0d685ac383471f65ce6d9069130d28fd723dc50511"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

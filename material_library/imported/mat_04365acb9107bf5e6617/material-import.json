@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_04365acb9107bf5e6617",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Spectrum Fucker/spectrum_fucker.fs",
+  "source_sha256": "8a4d21c4184e51b7f92365273c980515725bfaa29537839deb20d5e117bc4f8e",
+  "imported_file": "spectrum_fucker.fs",
+  "imported_files": {
+    ".info": "cc946ce05b264cb1d7d980c9add8f614b366f6166a72f735f0e7ca2b869d3034",
+    "spectrum_fucker.fs": "8a4d21c4184e51b7f92365273c980515725bfaa29537839deb20d5e117bc4f8e",
+    "thumbnail.png": "6939531ece85f5ce4c54ddf26b23d07da04c4c9501f54a80db95e2e767a11610"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

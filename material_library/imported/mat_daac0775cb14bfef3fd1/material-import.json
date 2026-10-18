@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_daac0775cb14bfef3fd1",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Color Warp/Color Warp.fs",
+  "source_sha256": "787df24c064c9850b1ad0dd06e95b7483704df467222f3d8aa7235966de3e0b0",
+  "imported_file": "Color Warp.fs",
+  "imported_files": {
+    ".info": "4c42ab45519c9d67ed9145a23d995825b49f80a9b7e5c9c6eb1dd0dd752d93f9",
+    "Color Warp.fs": "787df24c064c9850b1ad0dd06e95b7483704df467222f3d8aa7235966de3e0b0",
+    "thumbnail.jpg": "d1c758aec9e7926a33ad15511c49fb8b35115c8a8208a9ddc672d7870c8749dc"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_61b886d8811e92339572",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Plasma_01/plasma_01.fs",
+  "source_sha256": "6ebf6aa10087c2085c2e79a5a2d5027aeef838936ad6cb82dc993007993487de",
+  "imported_file": "plasma_01.fs",
+  "imported_files": {
+    ".info": "59beed5a18d3ea72bb0e6559d26a0845c302e7f582fc848bea8404e1b73f9026",
+    "plasma_01.fs": "6ebf6aa10087c2085c2e79a5a2d5027aeef838936ad6cb82dc993007993487de",
+    "thumbnail.png": "13f07e9ee3b2f0ffe446321d6b308bc9eccf667baf31615a111838d93a524331"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

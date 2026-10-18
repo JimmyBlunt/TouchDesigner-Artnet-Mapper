@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_9214c21268d4bd0fa522",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Pop Spiral/Pop Spiral.fs",
+  "source_sha256": "e7af7a7623cb3e316f1df1a9d5610121e001ad268c0123cf847eac178f2e8d6a",
+  "imported_file": "Pop Spiral.fs",
+  "imported_files": {
+    ".info": "777ccf59966453a97d1d52fbb3569c981263ec6e73ecfd8287e92780d5f9ed28",
+    "Pop Spiral.fs": "e7af7a7623cb3e316f1df1a9d5610121e001ad268c0123cf847eac178f2e8d6a",
+    "thumbnail.jpg": "5d1b0e1475ca70de1f992547758d1a1bcac563742152d4b8e7c6b831138fe471"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

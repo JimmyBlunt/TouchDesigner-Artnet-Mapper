@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_c0d79b2e454ddb8cc353",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/CircularPulse/CircularPulse.fs",
+  "source_sha256": "33dec6f15f02d86ea8a50800a215804fa5adf0c4d10808de2f533ba853eb635d",
+  "imported_file": "CircularPulse.fs",
+  "imported_files": {
+    ".info": "54e8ce2b494e205e389b682c8368b70aea6bd36958099271083f9992f1656c9f",
+    "CircularPulse.fs": "33dec6f15f02d86ea8a50800a215804fa5adf0c4d10808de2f533ba853eb635d",
+    "thumbnail.jpg": "199004ef8eccf71a7f8045f571413ed2a5b2c29cce14abad04f5450529355c12"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_b9620e233abbfffe14f2",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Anaglyph/Anaglyph.fs",
+  "source_sha256": "32612437a899d6463283355a3391f8ce696d6eb0e09df438df5b6ba8a30543a2",
+  "imported_file": "Anaglyph.fs",
+  "imported_files": {
+    ".info": "4e80da620ba8c1c7180c96c290798fe483399fc7cbe208bd6061bf459754636f",
+    "Anaglyph.fs": "32612437a899d6463283355a3391f8ce696d6eb0e09df438df5b6ba8a30543a2",
+    "thumbnail.jpg": "c3a7c30f4886fd91e3e3a264fe3e8d6fa940c3caa0eb143e127498f2fc62ee49"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

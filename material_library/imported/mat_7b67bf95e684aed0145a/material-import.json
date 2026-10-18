@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_7b67bf95e684aed0145a",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Countdown Clock/Countdown Clock.fs",
+  "source_sha256": "ae3931e4db13689de927ad57710daa07cd76631da08f1fba09e6baeb7c6d2b5f",
+  "imported_file": "Countdown Clock.fs",
+  "imported_files": {
+    ".info": "51088eb06973ab574b5d9fdb25acb7cf655675fb1e9696f011e3be7c39bf85e2",
+    "Countdown Clock.fs": "ae3931e4db13689de927ad57710daa07cd76631da08f1fba09e6baeb7c6d2b5f",
+    "thumbnail.jpg": "1256215ad80fdff9f0ba2c2dc33b9d4101a4a243460f557f0b3c7f02c6a1094c"
+  },
+  "kind": "madmapper_glsl",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_128b6281e7f3fda432c2",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Flower Dance/Flower Dance.fs",
+  "source_sha256": "6b52568598aafad4c7709a12ba5c6ef24abc703d6737dae22877fece0bd4e295",
+  "imported_file": "Flower Dance.fs",
+  "imported_files": {
+    ".info": "202c3d94ab295d6d8fe02d9c75ce6e1edba6e92d6f6b0154119616645763767d",
+    "Flower Dance.fs": "6b52568598aafad4c7709a12ba5c6ef24abc703d6737dae22877fece0bd4e295",
+    "thumbnail.jpg": "1b589fd5ad25b047f94592af7223b66c5a10ea0725c7f5c222d1a5eb18813d05"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

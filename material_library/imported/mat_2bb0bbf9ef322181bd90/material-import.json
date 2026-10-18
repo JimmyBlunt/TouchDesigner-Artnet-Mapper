@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_2bb0bbf9ef322181bd90",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/[recode]_New_Order/[recode]_New_Order.fs",
+  "source_sha256": "58edcaad9d3b1c8cf53c56ab9c9c4e32f02320d8ebeb612924632c7af2baa173",
+  "imported_file": "[recode]_New_Order.fs",
+  "imported_files": {
+    ".info": "a0a2d99e1b0a4a793aab3a190fb2c51a1caed06c8ec38882dcb8228dcdc778cd",
+    "[original]_New_Order_Blue_Monday.jpg": "da3287b772570bb1c384f9b2113bb40b0b82e853b3dd0c0eca4520c444cc9cae",
+    "[recode]_New_Order.fs": "58edcaad9d3b1c8cf53c56ab9c9c4e32f02320d8ebeb612924632c7af2baa173",
+    "thumbnail.jpg": "bfb27dcad651d592772f56a4e1d4a2aef2331fb26f579f60e1bb270760317e96"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

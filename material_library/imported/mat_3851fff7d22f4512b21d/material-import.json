@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_3851fff7d22f4512b21d",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Marble Swirl/Marble Swirl.fs",
+  "source_sha256": "05adae7fb1a6c46b670c48e321b494394a6f27961378c5697d10f2a10938dc12",
+  "imported_file": "Marble Swirl.fs",
+  "imported_files": {
+    ".info": "d150cf9be3696299444cfac5e3f89b9974d2675bc1fb7256b1e9eb4d083cd78c",
+    "Marble Swirl.fs": "05adae7fb1a6c46b670c48e321b494394a6f27961378c5697d10f2a10938dc12",
+    "thumbnail.jpg": "7f12b742673c0d07cbf1cda5c4578a48ebd7e1050c99ab32af5f42a870e2ed63"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

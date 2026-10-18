@@ -5,8 +5,8 @@ import unittest
 from dataclasses import asdict
 from types import SimpleNamespace
 
-from pixelblaze_mapper.multi_controller import ControllerConfig, controller_rows, default_router_config, segment_rows
-from pixelblaze_mapper.port_topology import ControllerDraft, PortDraft
+from pixelblaze_mapper.multi_controller import ControllerConfig, RouterConfig, SegmentConfig, controller_rows, default_router_config, segment_rows
+from pixelblaze_mapper.port_topology import ControllerDraft, PortDraft, build_topology
 from tests.test_routing_apply_regression import Table, embedded
 
 
@@ -119,6 +119,19 @@ class PortTopologyUIRuntimeTests(unittest.TestCase):
         self.assertEqual(self.snapshot(), before)
         self.assertTrue(self.enabled)
 
+    def test_load_preserves_physical_ports_when_universe_order_changes(self):
+        controller = ControllerConfig('BACK_NODE', '10.0.0.253', '10.0.0.125', reserved_universes=3)
+        routes = (SegmentConfig('PORT_BACK_NODE_1', 0, 10, 'BACK_NODE', 340, False, 'RGB'),
+                  SegmentConfig('PORT_BACK_NODE_2', 10, 10, 'BACK_NODE', 0, False, 'RGB'))
+        config = RouterConfig((controller,), routes, source_pixel_count=100)
+        self.tables['controller_config'] = Table(controller_rows(config))
+        self.tables['segment_config'] = Table(segment_rows(config))
+        draft = self.scope['_import_controller']('BACK_NODE')
+        self.assertEqual([(p.number, p.destination_start) for p in draft.ports], [(1, 340), (2, 0)])
+        plan = build_topology(draft, source_pixels=100)
+        self.assertEqual(plan.segments, routes)
+        self.assertEqual(plan.controller.reserved_universes, 3)
+
     def test_failed_builder_keeps_all_live_tables(self):
         self.new()
         before = self.snapshot()
@@ -129,6 +142,28 @@ class PortTopologyUIRuntimeTests(unittest.TestCase):
         self.assertEqual(self.snapshot(), before)
         self.assertFalse(self.enabled)
         self.assertIn('RECOVERY REQUIRED', self.owner.fetch('message'))
+
+    def test_dropdown_choice_loads_named_controller_without_applying(self):
+        before = self.snapshot()
+        class Field:
+            @property
+            def text(field):
+                return self.values['load_id']
+            @text.setter
+            def text(field, value):
+                self.values['load_id'] = value
+        self.owner.op = lambda path: Field() if path == 'ui_panel/load_id/string' else None
+        self.assertTrue(self.scope['choose_controller']('APA102_ESP'))
+        self.assertEqual(self.scope['_saved']().controller.name, 'APA102_ESP')
+        self.assertEqual(self.snapshot(), before)
+        self.assertTrue(self.enabled)
+
+    def test_dropdown_revalidates_controller_still_exists(self):
+        self.new()
+        before = (self.snapshot(), copy.deepcopy(self.owner.fetch('draft')))
+        self.assertFalse(self.scope['choose_controller']('REMOVED_NODE'))
+        self.assertEqual((self.snapshot(), self.owner.fetch('draft')), before)
+        self.assertTrue(self.enabled)
 
 
 if __name__ == '__main__':

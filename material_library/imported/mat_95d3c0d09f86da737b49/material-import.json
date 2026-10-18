@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_95d3c0d09f86da737b49",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Melting Point/Melting Point.fs",
+  "source_sha256": "258e229d85bc5512e91415d93b1c30d65a77332eed38c258359e75b1107f13aa",
+  "imported_file": "Melting Point.fs",
+  "imported_files": {
+    ".info": "bcb2b260d98245dc5a15c173da91a10a9db74012f2f5ca6f005fdfe6c95270b9",
+    "Melting Point.fs": "258e229d85bc5512e91415d93b1c30d65a77332eed38c258359e75b1107f13aa",
+    "thumbnail.jpg": "9ee6f5c960643deed5b037584a2bd1857bc18a508782f2daf21b33cbc4a811dd"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

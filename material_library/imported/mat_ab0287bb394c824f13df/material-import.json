@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_ab0287bb394c824f13df",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Bubble Rings/Bubble Rings.fs",
+  "source_sha256": "74cca4490313d04bbeb697d1d38e5db416515d91fabfe1fa1ba98d3fa0019f86",
+  "imported_file": "Bubble Rings.fs",
+  "imported_files": {
+    ".info": "3e14ddd4fe6ce42c0cc362ce31fa3f436a31ea13e52f6ecdd53155f2528d4d95",
+    "Bubble Rings.fs": "74cca4490313d04bbeb697d1d38e5db416515d91fabfe1fa1ba98d3fa0019f86",
+    "thumbnail.jpg": "6922983a02ac0d8c884b421e8f9be7be3c5f3120c7dd4e3ff01c65bdd9b30a09"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

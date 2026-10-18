@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_cca72fcfb1719cbf7880",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/Particles/Particles.fs",
+  "source_sha256": "c098205612a2c03122ba84230759a987f2943d57ae2f4378ce3f2ffda4a0361b",
+  "imported_file": "Particles.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "Particles.fs": "c098205612a2c03122ba84230759a987f2943d57ae2f4378ce3f2ffda4a0361b",
+    "Particles.vs": "69865d58f2a4017c08caf13403f06cc76a7b0cb8be7049c4e85305548dfd680c",
+    "thumbnail.png": "311495ec4b7fbfc9f721b15829d6f1339dd19d9a4bfaddbc313325fc6f00f2ce"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

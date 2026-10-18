@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_6f451d310c0d080bbb9c",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/ColorfulVoroni/ColorfulVoroni.fs",
+  "source_sha256": "e0d1900770646164eceac3ac59b9674eee7c2c73f93c7543d5875e616e0243a6",
+  "imported_file": "ColorfulVoroni.fs",
+  "imported_files": {
+    ".info": "8760454702fcda6616fd4bc8620468b9dbd877f898b951b85439205e28c78b39",
+    "ColorfulVoroni.fs": "e0d1900770646164eceac3ac59b9674eee7c2c73f93c7543d5875e616e0243a6",
+    "thumbnail.jpg": "b24d0857745bce7ce0e29bfb5890fee5880d384f6704c0b18c4e526dd9282872"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

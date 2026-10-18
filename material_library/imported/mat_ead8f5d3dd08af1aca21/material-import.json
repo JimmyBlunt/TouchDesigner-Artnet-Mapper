@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_ead8f5d3dd08af1aca21",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Swipe left right/Swipe left right.fs",
+  "source_sha256": "1cfaf4c4b982ef80abd58fde6abf159cb3412fe9d598072822a21bb22d6ba5f9",
+  "imported_file": "Swipe left right.fs",
+  "imported_files": {
+    ".info": "eecc3cefff5f8b745b968b367c5f69b05b6db2b93e8681ba91bd9d702c12a172",
+    "Swipe left right.fs": "1cfaf4c4b982ef80abd58fde6abf159cb3412fe9d598072822a21bb22d6ba5f9",
+    "thumbnail.jpg": "e0a40925d372457f42849f45807002209b407957dde39873e2e3c895455f569a"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

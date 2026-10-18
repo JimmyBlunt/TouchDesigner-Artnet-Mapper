@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_f94a50b75489796b9eb4",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Political Map/Political Map.fs",
+  "source_sha256": "cb7e2655241a6ea2a2a571ffb112fd888061d693cfffa94ec389ca89109d5226",
+  "imported_file": "Political Map.fs",
+  "imported_files": {
+    ".info": "7058cf166ebb58844acd380dd08dd128864b7bae3e69e473e6a61e6d10d74d4d",
+    "Political Map.fs": "cb7e2655241a6ea2a2a571ffb112fd888061d693cfffa94ec389ca89109d5226",
+    "thumbnail.jpg": "7a921efa7dc0daca8fd4bd86a4428ec6857eccb5a2f67b9eeac5370984da6b23"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

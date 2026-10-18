@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_f6ece7dc07e695b41ec7",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/RippleRingVortex/RippleRingVortex.fs",
+  "source_sha256": "d81085756d2ec8f31f6e6beba60fad7c64b8dc96c1bb71b1fe51a98ebdeae0e4",
+  "imported_file": "RippleRingVortex.fs",
+  "imported_files": {
+    ".info": "9e59a64463155bd6c782d52ba1a6008d80b0f35c96cd7f642ae20169509edc08",
+    "RippleRingVortex.fs": "d81085756d2ec8f31f6e6beba60fad7c64b8dc96c1bb71b1fe51a98ebdeae0e4",
+    "thumbnail.jpg": "12f3c7dc62540940092068a0b5bb87367e17be0fcf8c9412b0ee7254decd2276"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

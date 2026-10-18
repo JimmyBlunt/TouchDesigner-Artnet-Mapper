@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_5e0082aa082c684ecdb3",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/KaleidoFlower/KaleidoFlower.fs",
+  "source_sha256": "3a3bd0dd0cdbef3002053235db294fdffc34fa96ee367d2b338fbcf3904deb18",
+  "imported_file": "KaleidoFlower.fs",
+  "imported_files": {
+    ".info": "24b2397197a772477eccc0adf89fe7298df525e92adfe7cbfeb8b40544d04c95",
+    "KaleidoFlower.fs": "3a3bd0dd0cdbef3002053235db294fdffc34fa96ee367d2b338fbcf3904deb18",
+    "thumbnail.jpg": "87efeb07302b865fb23e400c8599979af1faf701898885e9f4e196d5d2fdb14c"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

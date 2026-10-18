@@ -2,6 +2,8 @@
 Scans/**/*.csv -text whitespace=cr-at-eol
 Scans/**/*.json -text whitespace=cr-at-eol
 *.toe -text
+# Material manifests retain source/shader fingerprints across Windows checkouts.
+material_library/** -text whitespace=cr-at-eol
 
 # Historical mapping evidence adopted for reproducible checkout.
 mappings/mapping_complete_new_0_1183_full_2026-08-24.json -text whitespace=cr-at-eol

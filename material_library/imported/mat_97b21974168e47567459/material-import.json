@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_97b21974168e47567459",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Multi Line/Multi Line.fs",
+  "source_sha256": "d1f2e8b2ed2338626a18c84645346b1bddf2310ad1386437d440065766c2adfb",
+  "imported_file": "Multi Line.fs",
+  "imported_files": {
+    ".info": "3c98a8cfe55ac7f65be82fc16874a2fa2b4ddd442f4e2d187ec13e91b9dd26ef",
+    "Multi Line.fs": "d1f2e8b2ed2338626a18c84645346b1bddf2310ad1386437d440065766c2adfb",
+    "thumbnail.png": "7257839832654a108f901737812e7f349a45ffd8b5889dfb17a598275cb861fc"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

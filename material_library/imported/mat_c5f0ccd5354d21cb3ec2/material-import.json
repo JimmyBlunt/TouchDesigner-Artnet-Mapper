@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_c5f0ccd5354d21cb3ec2",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Oil Edge/Oil Edge.fs",
+  "source_sha256": "8be146e7ca1b9cf7006581ce01b279d4b853ed7b04b523e30100c09ee2f9205a",
+  "imported_file": "Oil Edge.fs",
+  "imported_files": {
+    ".info": "6291d9965b0c56fa6e99afa0f5fbed91789cea07e93765d3a176046116c3bf3f",
+    "Oil Edge.fs": "8be146e7ca1b9cf7006581ce01b279d4b853ed7b04b523e30100c09ee2f9205a",
+    "thumbnail.jpg": "8424a7c33398e45efc2a1b142d6c55e7b5afe168276eba04fbd2890bc24ca7bd"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

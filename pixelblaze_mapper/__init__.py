@@ -1,5 +1,7 @@
 """Portable Pixelblaze/MariMapper mapping tools."""
 
+__version__ = "1.0.0"
+
 from .dmx_config import (
     ARTNET_MAX_LINEAR_UNIVERSE,
     DEFAULT_PAYLOAD_SLOTS,

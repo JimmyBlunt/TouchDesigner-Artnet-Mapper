@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_09b01aa9b9e47b181034",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/breizh_flag/breizh_flag.fs",
+  "source_sha256": "bb9d0c52f37752392958d3a509829b18f945d7aa578bca77af0891b71660a3a6",
+  "imported_file": "breizh_flag.fs",
+  "imported_files": {
+    ".info": "969c9d85bfc6579b666ab78a662b42807529e124107cc99a30b1ddbb49007936",
+    "breizh_flag.fs": "bb9d0c52f37752392958d3a509829b18f945d7aa578bca77af0891b71660a3a6",
+    "bzh.jpg": "09a43816b5b820237bddedb05c186d693532c739d53bec7e37841c0506979aaa",
+    "thumbnail.jpg": "e3a59299b7e9740191401f2e9aec1ec36a72544d971d0074dfc606b401d2d122"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

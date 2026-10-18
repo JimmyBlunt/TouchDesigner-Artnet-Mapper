@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_7b6543ca04c7ed0ed826",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Shape Repeat/Shape Repeat.fs",
+  "source_sha256": "85c85f9ca0e25a8e996a50c842e79e665d2fe1c6a19114e7114206a01c4118a3",
+  "imported_file": "Shape Repeat.fs",
+  "imported_files": {
+    ".info": "2e4ddc1747d8f4459ad521249eba6cdabbf20913960ba6b4740568d8b9e0c358",
+    "Shape Repeat.fs": "85c85f9ca0e25a8e996a50c842e79e665d2fe1c6a19114e7114206a01c4118a3",
+    "thumbnail.png": "eacb5f09f1eb4989fe577232b46001302d4078f5e812f618ebbde7e8f9d114f4"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

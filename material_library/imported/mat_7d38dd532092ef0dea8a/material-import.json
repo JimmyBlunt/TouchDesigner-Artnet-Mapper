@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_7d38dd532092ef0dea8a",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/TorusThingy/TorusThingy.fs",
+  "source_sha256": "cb713227ba28c7b3d4fabfb3fdd7019a0d7bb528dd1b62687978b11efcf0660e",
+  "imported_file": "TorusThingy.fs",
+  "imported_files": {
+    ".info": "050e6b3cc1ee1216bd3f2ca604884ff563144364406b027a3414f60c16a24a1e",
+    "thumbnail.jpg": "adb79f23de92b15049672bff1b58735f2534847db4fe28c21af51c11911d20b9",
+    "TorusThingy.fs": "cb713227ba28c7b3d4fabfb3fdd7019a0d7bb528dd1b62687978b11efcf0660e"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_84da2e3c8acd8aa1e94c",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Electrified/Electrified.fs",
+  "source_sha256": "e9a9988725bc80f5097f354fcc56e6ca4e60a5762cd363a4cea020e681b4df2a",
+  "imported_file": "Electrified.fs",
+  "imported_files": {
+    ".info": "1cd92187d6c38f23d5804863aa0430cf966fb9b1a9023d2cd296a888627587f0",
+    "Electrified.fs": "e9a9988725bc80f5097f354fcc56e6ca4e60a5762cd363a4cea020e681b4df2a",
+    "thumbnail.jpg": "518269027478332d9b2308f978fb533327569f691c9e57b4beccf1a44745356c"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

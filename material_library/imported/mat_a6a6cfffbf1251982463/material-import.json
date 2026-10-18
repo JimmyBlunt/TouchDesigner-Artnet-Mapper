@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_a6a6cfffbf1251982463",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Snow/Snow.fs",
+  "source_sha256": "fb65ae60335bbfa172dcabf7b5d3819bc2a31e403b13ad2c0849da4dc2c9ba8d",
+  "imported_file": "Snow.fs",
+  "imported_files": {
+    ".info": "e02ac596b34f5c98c1483089202b83292199bedef6ab5e214f1937d4f5c3cc36",
+    "Snow.fs": "fb65ae60335bbfa172dcabf7b5d3819bc2a31e403b13ad2c0849da4dc2c9ba8d",
+    "Snow.fs.autosave": "1d2d67f4be00d0c7a9584a2652f4484ce773379371902f7400924c69dce8817c",
+    "thumbnail.jpg": "a2ac05124b9c548d9ffabec1efe3f8cd6bc3c08b608172ebdfe659787be6264a"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

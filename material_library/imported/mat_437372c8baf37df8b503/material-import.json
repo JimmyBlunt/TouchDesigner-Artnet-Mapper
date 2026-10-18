@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_437372c8baf37df8b503",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/HeartBeat/HeartBeat.fs",
+  "source_sha256": "9018801bdae7b296ba86fddf2c3d87aba55ee1dd053735ee6d2fa269411d6a7e",
+  "imported_file": "HeartBeat.fs",
+  "imported_files": {
+    ".info": "1577c474a03a2af63bd9b09a6fe65259948851faf959e94cccb027e3cc111233",
+    "HeartBeat.fs": "9018801bdae7b296ba86fddf2c3d87aba55ee1dd053735ee6d2fa269411d6a7e",
+    "thumbnail.jpg": "8af2ebf4e5f4baa3409aac555c36d82b12a75e56b84ee4971708ed66a2f57764"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_cb690f55f4621ef9698b",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Noise Triangular/Noise Triangular.fs",
+  "source_sha256": "a1ce841caad18635ab7546db0ac0b428b820a9379ad867bd1e2e11704994514d",
+  "imported_file": "Noise Triangular.fs",
+  "imported_files": {
+    ".info": "c82f1ff137fd5c4439e81139f10cd61155106b729cce58aa281463fb5d88e053",
+    "Noise Triangular.fs": "a1ce841caad18635ab7546db0ac0b428b820a9379ad867bd1e2e11704994514d",
+    "thumbnail.jpg": "eadf7591b6b21b9d149095b29f495de455160d9319ecc5e20ca4c304adbe8212"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

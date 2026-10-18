@@ -1,0 +1,124 @@
+{
+  "results": [
+    {
+      "key": "launcher",
+      "target": "/project1/shortcut_hub/help_panel",
+      "target_exists": true,
+      "missing_fields": []
+    },
+    {
+      "key": "materials",
+      "target": "/project1/material_browser",
+      "target_exists": true,
+      "missing_fields": []
+    },
+    {
+      "key": "library",
+      "target": "/project1/madmapper_library/ui_panel",
+      "target_exists": true,
+      "missing_fields": []
+    },
+    {
+      "key": "player",
+      "target": "/project1/madmapper_player_controls/ui_panel",
+      "target_exists": true,
+      "missing_fields": []
+    },
+    {
+      "key": "mapper",
+      "target": "/project1/pixelblaze_mapper/ui/canvas",
+      "target_exists": true,
+      "missing_fields": []
+    },
+    {
+      "key": "router",
+      "target": "/project1/multi_controller_output/ui_panel",
+      "target_exists": true,
+      "missing_fields": []
+    },
+    {
+      "key": "output",
+      "target": "/project1/pixelblaze_mapper/output_config/ui_panel",
+      "target_exists": true,
+      "missing_fields": []
+    },
+    {
+      "key": "show",
+      "target": "/project1/show_control/control_panel",
+      "target_exists": true,
+      "missing_fields": []
+    },
+    {
+      "key": "gico",
+      "target": "/project1/multi_controller_output/gico_port_config/ui_panel",
+      "target_exists": true,
+      "missing_fields": []
+    },
+    {
+      "key": "layout",
+      "target": "/project1/layout_scene_editor/ui_panel",
+      "target_exists": true,
+      "missing_fields": []
+    },
+    {
+      "key": "scan",
+      "target": "/project1/guided_scan/ui_panel",
+      "target_exists": true,
+      "missing_fields": []
+    },
+    {
+      "key": "new_capture",
+      "target": "/project1/guided_scan/new_capture_panel",
+      "target_exists": true,
+      "missing_fields": []
+    },
+    {
+      "key": "review",
+      "target": "/project1/guided_scan/review_panel",
+      "target_exists": true,
+      "missing_fields": []
+    },
+    {
+      "key": "led_search",
+      "target": "/project1/guided_scan/led_search_panel",
+      "target_exists": true,
+      "missing_fields": []
+    },
+    {
+      "key": "ports",
+      "target": "/project1/multi_controller_output/gico_port_config/controller_ports/ui_panel",
+      "target_exists": true,
+      "missing_fields": []
+    },
+    {
+      "key": "scan_library",
+      "target": "/project1/guided_scan/library_panel",
+      "target_exists": true,
+      "missing_fields": []
+    },
+    {
+      "key": "coverage",
+      "target": "/project1/guided_scan/coverage_visual_panel",
+      "target_exists": true,
+      "missing_fields": []
+    },
+    {
+      "key": "registration",
+      "target": "/project1/guided_scan/registration_panel",
+      "target_exists": true,
+      "missing_fields": []
+    },
+    {
+      "key": "native_params",
+      "target": "/project1/material_browser/native_parameter_drawer",
+      "target_exists": true,
+      "missing_fields": []
+    },
+    {
+      "key": "mk2_preview",
+      "target": "/project1/mk2_windows/preview_panel",
+      "target_exists": true,
+      "missing_fields": []
+    }
+  ]
+}

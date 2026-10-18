@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_933e019910322038fea5",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/PsrdNoise/PsrdNoise.fs",
+  "source_sha256": "35a19419978d85040eaf786f0c580057d1d3a539cc63563184a0847725c820de",
+  "imported_file": "PsrdNoise.fs",
+  "imported_files": {
+    ".info": "838906b7ee943465b28200df41947eb0f2711532feca53d825a823ea56b93b37",
+    "PsrdNoise.fs": "35a19419978d85040eaf786f0c580057d1d3a539cc63563184a0847725c820de",
+    "thumbnail.jpg": "9175376c18bd6ef444fc2d9107687b42ae5c69a844c2c32b72bc4e95c66954af"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_c3bfecf52ac80f011f1e",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/SkyBox/SkyBoxTest.fs",
+  "source_sha256": "22d172c865193feba13bdfb7f2141e82a1f645a1d64ea19a4f2df81f5b89907c",
+  "imported_file": "SkyBoxTest.fs",
+  "imported_files": {
+    ".info": "66524b51cdbabf6e08065c04fc07305d96bfc5f3da6dffcb2e53da883d2522d9",
+    "1.png": "1032b4f5ce9a5a6d60c5f2a96c15bb83a9a49f38e2cadf0b60d157dd56aed05d",
+    "2.png": "2a02e4cfd6c5831448b8aa72f28e41666c0e38a6ab33c411a4157badf3c9fc9a",
+    "3.png": "81f65a5a351094cb01c516e0564d277360027da4f93310f761ea669af7925c68",
+    "4.png": "214510704ec60f8ce79448a42e40767f91aec4cc13224b2816445791e636f674",
+    "5.png": "a7a344e17b6a4b5270d4131a1c53fe4315ca34ab17abbb72ecce67496f69964e",
+    "6.png": "9d3cfda971008059e0b65c4b920b1634d40d1274b06518a7124fe18e10e5c49c",
+    "graffiti.jpg": "f7fe1301811175bc493fdfdd8bcf0809e88607000901817399a22306a9d0544a",
+    "SkyBoxTest.fs": "22d172c865193feba13bdfb7f2141e82a1f645a1d64ea19a4f2df81f5b89907c",
+    "SkyBoxTest.vs": "5b27edf54087ffb0d558f273c048acb5a8fb48d407511f9bd62025d1ee445de7",
+    "thumbnail.jpg": "0c2ed8890bf3c4e2f61bdf4e27000f309f27db9f6146f6dbcb9c5e92f88a7a87"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

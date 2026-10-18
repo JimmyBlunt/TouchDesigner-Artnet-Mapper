@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_9d44692958becbfd7152",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Cinematic Shapes/Cinematic Shapes.fs",
+  "source_sha256": "186d98dc0d7cb5e75271e90326a4a0a599b122f15b94415263efae98b5196ea0",
+  "imported_file": "Cinematic Shapes.fs",
+  "imported_files": {
+    ".info": "25e42bed218a9205c7610dca15151b66d6e36a3d6d37c2b5ebd956ab08e588bf",
+    "Cinematic Shapes.fs": "186d98dc0d7cb5e75271e90326a4a0a599b122f15b94415263efae98b5196ea0",
+    "thumbnail.png": "b5741ef4f74e58a4c336509e274fc40b389e70540207c31dab366c9954b4c14a"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

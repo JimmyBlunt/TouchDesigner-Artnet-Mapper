@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_3417adf67832e8b3e4de",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Candy Core/Candy Core.fs",
+  "source_sha256": "ae3224fc80860060b56bedd1b8e18aa3be62f7b2f450f734ee329019af2cf89e",
+  "imported_file": "Candy Core.fs",
+  "imported_files": {
+    ".info": "3c9afd9cd33e28c71cdea7eabf4370c1dfefd6b307f1e0512ec743084adc02bb",
+    "Candy Core.fs": "ae3224fc80860060b56bedd1b8e18aa3be62f7b2f450f734ee329019af2cf89e",
+    "thumbnail.jpg": "891ea4669ad172159a8c5bd6604bfbc3d641003aa69eb5d48fbdfa71c39f641e"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

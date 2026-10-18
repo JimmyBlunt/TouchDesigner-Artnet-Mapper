@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_2398b45289c8ce44c874",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Demos/Filters/Demo Filters/Demo Filters.fs",
+  "source_sha256": "db974a11731d4efbc998abe4e4d300db1e1697d072d3c3ec4e6409678f20b717",
+  "imported_file": "Demo Filters.fs",
+  "imported_files": {
+    "Demo Filters.fs": "db974a11731d4efbc998abe4e4d300db1e1697d072d3c3ec4e6409678f20b717",
+    "thumbnail.png": "1d0e422de3d031cbef77955b553910ba02d5f6047a835ec0cb72defd38aafed8"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

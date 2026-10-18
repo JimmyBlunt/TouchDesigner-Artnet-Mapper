@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e993e26d4a5dc495c187",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Pearls of Magma/Pearls of Magma.fs",
+  "source_sha256": "41c8788a36436e2258703cad88a0f31639d8652e9e817939785764cb8aef5e8d",
+  "imported_file": "Pearls of Magma.fs",
+  "imported_files": {
+    ".info": "ae25102be5ed37c33a336b90b606bd82fc1a59fdfe7fcc000e64865cecad3b2f",
+    "Pearls of Magma.fs": "41c8788a36436e2258703cad88a0f31639d8652e9e817939785764cb8aef5e8d",
+    "thumbnail.jpg": "60f55cf983eadee10b4fb8a0089f16cbfecd216ef1758863d7a8fc3fc8eb957b"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

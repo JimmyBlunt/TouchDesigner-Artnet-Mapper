@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_a77cad09901f622a3c4b",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/OilStainNoise/OilStainNoise.fs",
+  "source_sha256": "56778aed2976088af7b07865b0f9d6efecae61ed8f8375ed227ee22f0187188b",
+  "imported_file": "OilStainNoise.fs",
+  "imported_files": {
+    ".info": "b6d19f9534dee519eec60d63d079a6970875d3f92448ce3df5ae17fe5a4b95c9",
+    "OilStainNoise.fs": "56778aed2976088af7b07865b0f9d6efecae61ed8f8375ed227ee22f0187188b",
+    "thumbnail.jpg": "0ef6b7b4fc849d50fcb6f502a7e9e6b2c230afe8fe903c485c240d5818db4ebc"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

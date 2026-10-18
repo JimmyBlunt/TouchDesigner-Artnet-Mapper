@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_adc2c91724df5190d110",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/Radial Spectrum/RadiaSpectrum.fs",
+  "source_sha256": "32c47fa2b026d489739a0ace9f4a57bc15c67d38191cb0a38f38e16984bc9132",
+  "imported_file": "RadiaSpectrum.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "RadiaSpectrum.fs": "32c47fa2b026d489739a0ace9f4a57bc15c67d38191cb0a38f38e16984bc9132",
+    "thumbnail.png": "c6e8643c3c03a83e136b5f37ccb6dbd39b9db234a168974964fae5d39fd793d4"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

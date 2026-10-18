@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_19580a76412e1e5dd0b5",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Holy Fractal/Holy Fractal.fs",
+  "source_sha256": "152a750c438c4819ec1afc213702fd472e748600b1c718ce1cb63204cbdee235",
+  "imported_file": "Holy Fractal.fs",
+  "imported_files": {
+    ".info": "e87d9e2e1b523867e1202dd1389dc12c5b62793436d8898ec814dd12cff372fa",
+    "Holy Fractal.fs": "152a750c438c4819ec1afc213702fd472e748600b1c718ce1cb63204cbdee235",
+    "thumbnail.jpg": "f5cdff88c04af3ed65234844a3a4ffa238b4890f406f7ea2de0e7ba069086bbe"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

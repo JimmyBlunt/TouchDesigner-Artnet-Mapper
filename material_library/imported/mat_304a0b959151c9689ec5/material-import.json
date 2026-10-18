@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_304a0b959151c9689ec5",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Atom Supernova/Atom Supernova.fs",
+  "source_sha256": "039d461854a79a90e6a6b1120df36b30af181bcc1a7e13f23046db7a8634394d",
+  "imported_file": "Atom Supernova.fs",
+  "imported_files": {
+    ".info": "939e2bfe2c4438a0dca8a29fb9543cf883cd6d5e192711b812f1087c87051905",
+    "Atom Supernova.fs": "039d461854a79a90e6a6b1120df36b30af181bcc1a7e13f23046db7a8634394d",
+    "thumbnail.jpg": "0a2653d89a8dbda2c49bad8eb27b9bb94c09ec7dc0e4f245e228c310c613aea0"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

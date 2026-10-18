@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_0893f317d8940c577f3a",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Liquid Camo/camo.fs",
+  "source_sha256": "fb7e31919e63e0ba08a75b4737c2217b1ac872054f89398e8f98c710b4be3587",
+  "imported_file": "camo.fs",
+  "imported_files": {
+    ".info": "9ffa143e0a7fec8ab5f50656ebcd6cedeb6d015ab0119e1dc9074b8a3cc214f8",
+    "camo.fs": "fb7e31919e63e0ba08a75b4737c2217b1ac872054f89398e8f98c710b4be3587",
+    "thumbnail.png": "76dc06c170d550d6d5e3fd4bac60f9da6ae0aa1707b3b8eb1c370c8eeb62c6a7"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

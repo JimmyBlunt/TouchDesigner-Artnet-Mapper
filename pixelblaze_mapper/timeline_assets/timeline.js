@@ -1,4 +1,7 @@
 'use strict';
+if (new URLSearchParams(location.search).get('mk2_window') === 'sequencer') {
+  document.title = 'MK2 Sequencer';
+}
 const $ = id => document.getElementById(id);
 const NS = 'http://www.w3.org/2000/svg';
 const colors = ['#62cecd','#9aadeb','#d9ae76','#bf96d7','#8bc696'];

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_96cd461b96361c526089",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/InfiniFlesh/infiniFlesh.fs",
+  "source_sha256": "bc9f5291eea2c19dd1c358ee4a43be36a47e24cb811ee9feb84f6e229ce8f1b2",
+  "imported_file": "infiniFlesh.fs",
+  "imported_files": {
+    ".info": "a0ecb6f5dd0fd6726c7df18d8a3b105dd84526ad0d01811397188cb646a48ad5",
+    "infiniFlesh.fs": "bc9f5291eea2c19dd1c358ee4a43be36a47e24cb811ee9feb84f6e229ce8f1b2",
+    "thumbnail.png": "9735edbbf689e649b060d666ea2422c8332f3d689c9946dd11247eaaca34b070"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

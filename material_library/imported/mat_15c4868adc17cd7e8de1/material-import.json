@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_15c4868adc17cd7e8de1",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/FlipMaze/FlipMaze.fs",
+  "source_sha256": "4329cb6e87b65aefba011530ee203730e979e79aab752625dea3ec8edda86cf6",
+  "imported_file": "FlipMaze.fs",
+  "imported_files": {
+    ".info": "0b3fddb8ba84fe31db6ed681de4891c302bd97c10d7121b844b1a74363747578",
+    "FlipMaze.fs": "4329cb6e87b65aefba011530ee203730e979e79aab752625dea3ec8edda86cf6",
+    "thumbnail.jpg": "8e09642109d92b61f009b33ae46f7df39bcccd5a94924a1e994ecefb0495a6c0"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

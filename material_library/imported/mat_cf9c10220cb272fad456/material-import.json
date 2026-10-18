@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_cf9c10220cb272fad456",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Spirals/Spirals.fs",
+  "source_sha256": "f9e82e920c5ab9d90c23041ae34633fdff4e5d0883f6953a404e0a65de9ae4b8",
+  "imported_file": "Spirals.fs",
+  "imported_files": {
+    ".info": "b69e89080ac2e7ba39d6027b10ce39c575b3da0cd3902f4abd147a5837d93540",
+    "Spirals.fs": "f9e82e920c5ab9d90c23041ae34633fdff4e5d0883f6953a404e0a65de9ae4b8",
+    "thumbnail.jpg": "7d0e0169c6aad9533bcc83e29039910a31cb3a3c48b18f6b6ca41074b6f8f072"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

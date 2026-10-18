@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_3bb7faf24c92db5e7b0f",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Cartoon Fire/Cartoon Fire.fs",
+  "source_sha256": "56f04432f1d5d89b437dfaebf7c6fb32c47a99072f0dab3fd336ed1bcf6a9128",
+  "imported_file": "Cartoon Fire.fs",
+  "imported_files": {
+    ".info": "1e0b610a25c40d91931e5e1e3e7362d4eeeac8ffc564c16a82ffc4a0c25b518f",
+    "Cartoon Fire.fs": "56f04432f1d5d89b437dfaebf7c6fb32c47a99072f0dab3fd336ed1bcf6a9128",
+    "thumbnail.png": "fc03dd70b7a090acfb69f5cb56154bc85ded8bd888767382bce0df800f0cf287"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_11cdb57c36c928d45d46",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Puse Circles/Puse Circles.fs",
+  "source_sha256": "5b94752e5c1327476e67a8ca34e693d4e508a51149d2eb11dcef40910ed079a3",
+  "imported_file": "Puse Circles.fs",
+  "imported_files": {
+    ".info": "94fd96b084e4ca0de6e7074dfe5af8e281f8972e298a0a07280cfea5e27fa28d",
+    "Puse Circles.fs": "5b94752e5c1327476e67a8ca34e693d4e508a51149d2eb11dcef40910ed079a3",
+    "thumbnail.jpg": "8d8cd661d9235b043bcac3d461019b7c9cdeb6c5bd62f5d26209965affbec367"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,5 @@
+{
+  "sequencer_monitor": "\\\\.\\DISPLAY2",
+  "workspace_monitor": "\\\\.\\DISPLAY1",
+  "show_view": "control"
+}

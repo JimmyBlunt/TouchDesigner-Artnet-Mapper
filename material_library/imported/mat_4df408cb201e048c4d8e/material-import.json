@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_4df408cb201e048c4d8e",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Twisted/twisted.fs",
+  "source_sha256": "d189b06a11f1f48367a753f4d1353351116be606e65673a2c821023c8a7876a3",
+  "imported_file": "twisted.fs",
+  "imported_files": {
+    ".info": "b0ee40dfa4ba030a99c3f4c0cdd4757d325dee0cd84b2af73590b09dd17b2155",
+    "thumbnail.png": "df01c86e68cb0c4268300ef885b57828407ebcf69c659c475e51a3bc379be8c3",
+    "twisted.fs": "d189b06a11f1f48367a753f4d1353351116be606e65673a2c821023c8a7876a3"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

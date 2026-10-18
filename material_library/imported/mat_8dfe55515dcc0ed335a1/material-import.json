@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_8dfe55515dcc0ed335a1",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/Diagonals/Diagonals.fs",
+  "source_sha256": "330e5636310305e1eb0bfd1c0bc47597a8ad6cb611c501c14a3d19d2ebe329f3",
+  "imported_file": "Diagonals.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "Diagonals.fs": "330e5636310305e1eb0bfd1c0bc47597a8ad6cb611c501c14a3d19d2ebe329f3",
+    "thumbnail.png": "4d1e2aa0d2e5343401bf307ae23c66ebd576a13ba5fbd31b4331303dc0f3afdf"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

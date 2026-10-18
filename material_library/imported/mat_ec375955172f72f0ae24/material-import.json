@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_ec375955172f72f0ae24",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Line Scale/Line Scale.fs",
+  "source_sha256": "099e1dbadf0ce8e3d6e4b3c1a91863246bdce7562740b147683e9d482d4d398f",
+  "imported_file": "Line Scale.fs",
+  "imported_files": {
+    ".info": "1fd56609865678d4e155bfe287334bd8d784c629370b06ef0b97a4e24ec80f79",
+    "Line Scale.fs": "099e1dbadf0ce8e3d6e4b3c1a91863246bdce7562740b147683e9d482d4d398f",
+    "thumbnail.png": "1d0e422de3d031cbef77955b553910ba02d5f6047a835ec0cb72defd38aafed8"
+  },
+  "kind": "madmapper_glsl",
+  "compatibility": "adaptable"
+}

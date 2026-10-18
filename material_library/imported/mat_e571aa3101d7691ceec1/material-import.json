@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e571aa3101d7691ceec1",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Flowers/Flowers.fs",
+  "source_sha256": "93e5cf927cef672215510b7b47638aa0f765b6f8f8671e3d31d59d7c81e7ab05",
+  "imported_file": "Flowers.fs",
+  "imported_files": {
+    ".info": "6fdc7853e84ef3571daa1b2d799a4b1db485ea21b164d26755b2f0035e367aa1",
+    "Flowers.fs": "93e5cf927cef672215510b7b47638aa0f765b6f8f8671e3d31d59d7c81e7ab05",
+    "thumbnail.jpg": "ea79ff954a5fca9c32ae7ced11717a6f6fa2363a2f1d2fcd1f5b1e083dc0e29e"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

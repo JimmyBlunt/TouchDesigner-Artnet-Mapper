@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_ad6acfdd6f1b6f698417",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Noise_4dVoronoi/Noise_4dVoronoi.fs",
+  "source_sha256": "21a94092deb412121b3910605ec5fbd894576e4d30dfbbc8aa7f4c4a36eb6eb5",
+  "imported_file": "Noise_4dVoronoi.fs",
+  "imported_files": {
+    ".info": "0c01eed2a595f13cfbfd87c53b97e924f37f2ce50b10c8cc445e5d5bf31fba29",
+    "Noise_4dVoronoi.fs": "21a94092deb412121b3910605ec5fbd894576e4d30dfbbc8aa7f4c4a36eb6eb5",
+    "thumbnail.jpg": "1cf39e50995c0a14ccb5aa5d240e7e97567727c0486967aa7e41963de6517bd0"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

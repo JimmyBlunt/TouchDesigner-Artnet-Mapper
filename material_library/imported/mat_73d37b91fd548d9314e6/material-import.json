@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_73d37b91fd548d9314e6",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/ParametricCircle/ParametricCircle.fs",
+  "source_sha256": "0dbe807cd2878d175ebe14483be52d4a19f3756ffe97d4a6ec92e5b4028c8c5a",
+  "imported_file": "ParametricCircle.fs",
+  "imported_files": {
+    ".info": "63f5c3d199b4efbf83a5ace6e04024e021daba132478b3b51cdba9e81b126943",
+    "ParametricCircle.fs": "0dbe807cd2878d175ebe14483be52d4a19f3756ffe97d4a6ec92e5b4028c8c5a",
+    "thumbnail.jpg": "7cc6e0e7438ce9df27e49b7c64c627d860df9f5bc4b45baf8162ede480225367"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

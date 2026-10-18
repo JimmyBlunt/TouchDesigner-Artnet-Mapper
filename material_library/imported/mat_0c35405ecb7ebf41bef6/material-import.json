@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_0c35405ecb7ebf41bef6",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Kali Circuit/Kali Circuit.fs",
+  "source_sha256": "9f8fea90fc89801d694251a7e0593a23cf5c74e5cae559f2fb7d14141f78955a",
+  "imported_file": "Kali Circuit.fs",
+  "imported_files": {
+    ".info": "6effbd6449901e62eaa74215f2bcf71d0caf5c66d873616539f44092c0a8de36",
+    "Kali Circuit.fs": "9f8fea90fc89801d694251a7e0593a23cf5c74e5cae559f2fb7d14141f78955a",
+    "thumbnail.jpg": "65e33504c6be3a815dd1211726c203a9435e81793cdd7b3f77e0ee99b2f4dc73"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

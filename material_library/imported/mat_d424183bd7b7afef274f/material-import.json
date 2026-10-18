@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_d424183bd7b7afef274f",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Pentagon Wave/Pentagon Wave.fs",
+  "source_sha256": "ac8c50e1bfd212c37567d95564187ec2c52eb7bafb6c0d5a581dff6d3d778d1f",
+  "imported_file": "Pentagon Wave.fs",
+  "imported_files": {
+    ".info": "3e3db8c4fd78725c7e867792dfcc193ecbded876ef7a20b59afb86ca57fe07ff",
+    "Pentagon Wave.fs": "ac8c50e1bfd212c37567d95564187ec2c52eb7bafb6c0d5a581dff6d3d778d1f",
+    "thumbnail.jpg": "8adefbfac4d498c2cd704e646db30d8049ec119fb985cd1ad237c33686266ecc"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

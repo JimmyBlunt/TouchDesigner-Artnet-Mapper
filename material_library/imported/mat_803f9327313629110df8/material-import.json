@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_803f9327313629110df8",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/ActiveGrid/ActiveGrid.fs",
+  "source_sha256": "efe5aed2f74843902675cb1914ed780cbd5c530e6d6167eec8d77a5d90cd4f4b",
+  "imported_file": "ActiveGrid.fs",
+  "imported_files": {
+    ".info": "54e8ce2b494e205e389b682c8368b70aea6bd36958099271083f9992f1656c9f",
+    "ActiveGrid.fs": "efe5aed2f74843902675cb1914ed780cbd5c530e6d6167eec8d77a5d90cd4f4b",
+    "thumbnail.jpg": "051bfb2b2932e1e85c29ea78064542f50bfba422edfa9f2d0d2e57e99b40a61b"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

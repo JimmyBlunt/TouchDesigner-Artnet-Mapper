@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e20bde6b63d32ef4fb88",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/Billowed Noise/BillowedNoise.fs",
+  "source_sha256": "3c63d66b7e8663cfc7b7580273d2affa81ab02327b177bdf56d507112ed902c0",
+  "imported_file": "BillowedNoise.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "BillowedNoise.fs": "3c63d66b7e8663cfc7b7580273d2affa81ab02327b177bdf56d507112ed902c0",
+    "thumbnail.png": "320e126d668bced8161d36e3f4ff8a2e8ecd939de63469dfc7c41f444ae115a8"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

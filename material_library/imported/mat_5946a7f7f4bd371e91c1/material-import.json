@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_5946a7f7f4bd371e91c1",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Shape Borders/Shape Borders.fs",
+  "source_sha256": "5b3d312b1e0f5daa33505edeefa133fdd81081c04ff20854f077c50ffa501a49",
+  "imported_file": "Shape Borders.fs",
+  "imported_files": {
+    ".info": "204e0fde7e1e7815933b181f74d3a90bfb1a9b85f3fc8414117114179c2e4a3e",
+    "Shape Borders.fs": "5b3d312b1e0f5daa33505edeefa133fdd81081c04ff20854f077c50ffa501a49",
+    "thumbnail.png": "ed4f448ac70a207114a9b963f53689b0038b0bddb70ddbd759d0cc9794a2e272"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

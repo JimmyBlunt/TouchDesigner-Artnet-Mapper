@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_6f42446d4eb3f9b9f7a4",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Advanced Starfield/Advanced Starfield.fs",
+  "source_sha256": "37666ef87fa1996eba21f1bbf73976d8563e6c83abd94e653d861cf3102cf5a5",
+  "imported_file": "Advanced Starfield.fs",
+  "imported_files": {
+    ".info": "6a768885ffbee873ed850cd48e3c5cfcc515dedda74c9129a613bc0e34446fcc",
+    "Advanced Starfield.fs": "37666ef87fa1996eba21f1bbf73976d8563e6c83abd94e653d861cf3102cf5a5",
+    "thumbnail.jpg": "5e4ab99e72dc184dd299fccdc95f8b7fa107e3ed98838f7de7b4a3a0cd5284c9"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

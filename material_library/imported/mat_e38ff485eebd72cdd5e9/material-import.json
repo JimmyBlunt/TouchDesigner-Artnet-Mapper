@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e38ff485eebd72cdd5e9",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/Simplex Gradient/SimplexGradient.fs",
+  "source_sha256": "c11a05a50130f166dd88d3a8516072804c492fc6787e366e47a0e4af3b387494",
+  "imported_file": "SimplexGradient.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "gradientBWBars.jpg": "c7f53fb8e7023ca8c714049f6c77ee5370365cb49cb0f448c456b34bda00ecdc",
+    "gradientBWPattern.jpg": "4efe92dd176c037ad9b9ba6ed9434ed4e6367eaa698cff2dcb75e465619d3f09",
+    "gradientColorCut.jpg": "d3005bfd7e7fa61e11783060d15790b4884c0935580a7207a881892cd0c02030",
+    "gradientGrayNoise.jpg": "6a604a67bf0a0bc7e68efc6797dad9d6ad47385f622ce5e110f3d1d90d4f3b27",
+    "gradientGrayPattern.jpg": "b8178fffe6642ca74e49e6a2a0c3feba3589fd83d66eb5cbc806f93acfc50ec9",
+    "linearGradient.jpg": "28b76f54305d16eaf830aa59258f12a6adbd58bd6383574b933d1af7b84ce2aa",
+    "SimplexGradient.fs": "c11a05a50130f166dd88d3a8516072804c492fc6787e366e47a0e4af3b387494",
+    "thumbnail.png": "ee41d4f501bd3efcb7100228f84f7c48530f22e39c4a46b01c653ae9ffb7316d"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

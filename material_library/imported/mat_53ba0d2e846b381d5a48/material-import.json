@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_53ba0d2e846b381d5a48",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Glow Boundary/Glow Boundary.fs",
+  "source_sha256": "b62374be6bdfb17b952261e7b17aeb6130a516e77df5240f91950edc0fa6ae34",
+  "imported_file": "Glow Boundary.fs",
+  "imported_files": {
+    ".info": "61b4286bb5a5518afab74b757178c6e725ad3259bbdb76f29c7ac96cbd999ad7",
+    "Glow Boundary.fs": "b62374be6bdfb17b952261e7b17aeb6130a516e77df5240f91950edc0fa6ae34",
+    "thumbnail.jpg": "f4438308dddde9326fd539582cb3db25bb38ca29043a8db9218f7e57a22be632"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

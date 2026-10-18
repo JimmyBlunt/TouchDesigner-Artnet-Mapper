@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_6782ccba7e734e369d94",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Matrix/Matrix.fs",
+  "source_sha256": "f967af85ead38d9d52a41e419382ff866c9ee59ca8c232dbe8f6283e0df5957b",
+  "imported_file": "Matrix.fs",
+  "imported_files": {
+    ".info": "afa56da96b3d8ed2e3470c38f5754f0195b1843a0570bab27b6955bf6d8cd056",
+    "letters.png": "8595ce0bb0e1250633a0e6ca78620e49a618fc7c703d1cc5f291b668cc570b93",
+    "Matrix.fs": "f967af85ead38d9d52a41e419382ff866c9ee59ca8c232dbe8f6283e0df5957b",
+    "thumbnail.jpg": "a0509ba8447f2043116392dc81dda2f9ca57270cf84d9003e7d06095745903c3"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

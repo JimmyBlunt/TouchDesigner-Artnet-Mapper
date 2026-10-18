@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_c9ca8e2a9c13f99fe7db",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Poison Kaleidoscope/Poison Kaleidoscope.fs",
+  "source_sha256": "a1932f3263082debc80bf6647ab0bc6dbe17f3e343bf27ecdb7724ac8450a177",
+  "imported_file": "Poison Kaleidoscope.fs",
+  "imported_files": {
+    ".info": "fe8b1d5236e86c932a68e20a627d30521e60642b61a78383febc9a474a178da5",
+    "Poison Kaleidoscope.fs": "a1932f3263082debc80bf6647ab0bc6dbe17f3e343bf27ecdb7724ac8450a177",
+    "thumbnail.jpg": "ce1e4b018667f9a297df60a595dbaaebe88f3df0fc034d740a9de28132ea2b50"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

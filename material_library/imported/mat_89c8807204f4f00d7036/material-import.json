@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_89c8807204f4f00d7036",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Crosses/Crosses.fs",
+  "source_sha256": "ef2198666e6b210fa61778e8c1a0a3ab0e11dd7d793f25e496b17f15e97d2d77",
+  "imported_file": "Crosses.fs",
+  "imported_files": {
+    ".info": "54e8ce2b494e205e389b682c8368b70aea6bd36958099271083f9992f1656c9f",
+    "Crosses.fs": "ef2198666e6b210fa61778e8c1a0a3ab0e11dd7d793f25e496b17f15e97d2d77",
+    "thumbnail.jpg": "580c01c737d273157d0dfc87454844824eaebc28b6fd2c87f0e5053e0dbf7533"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

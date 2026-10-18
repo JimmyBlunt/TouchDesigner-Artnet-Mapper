@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_a65f8e2ffc246bf3fbb2",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Sine Cosine/Sine Cosine.fs",
+  "source_sha256": "36d3e55f9d603bb94edc16a9295bcc0813b7af11e8006d62a0276f8298074271",
+  "imported_file": "Sine Cosine.fs",
+  "imported_files": {
+    ".info": "c713a344a1f508b1df5a17196003a378ec1795db07da41d2651099a9655cb79f",
+    "Sine Cosine.fs": "36d3e55f9d603bb94edc16a9295bcc0813b7af11e8006d62a0276f8298074271",
+    "thumbnail.jpg": "5c9ff7649c3a11805ebcc66ea3145906ac558bb17f57c275e950ffee8ea407a8"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

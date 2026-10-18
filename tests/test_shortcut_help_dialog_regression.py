@@ -19,10 +19,10 @@ USER_DOC = ROOT / "docs" / "TOUCHDESIGNER_SHORTCUTS_DE.md"
 
 
 class ShortcutHelpDialogRegressionTests(unittest.TestCase):
-    def test_legacy_digits_preserved_and_three_unique_shortcuts_added(self):
+    def test_legacy_digits_preserved_and_four_unique_shortcuts_added(self):
         self.assertEqual(validate_shortcuts(), ())
-        self.assertEqual([item.key for item in SHORTCUTS], list("1234567890lgc"))
-        self.assertEqual(len({item.target for item in SHORTCUTS}), 13)
+        self.assertEqual([item.key for item in SHORTCUTS], list("1234567890lgsc"))
+        self.assertEqual(len({item.target for item in SHORTCUTS}), 14)
 
     def test_help_rows_match_all_dialog_contracts_exactly(self):
         # The original audit contract remains the ten numbered dialogs.

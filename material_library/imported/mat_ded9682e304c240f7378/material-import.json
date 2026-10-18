@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_ded9682e304c240f7378",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Bump Noise/Bump Noise.fs",
+  "source_sha256": "e4a61247166441f4b78a24043c9062a9f5d932e596e3061b866a0367a9cd8151",
+  "imported_file": "Bump Noise.fs",
+  "imported_files": {
+    ".info": "ace826639b922b25126d8553b97a317b219a6cf9b6b27787ec4221da530bfc32",
+    "Bump Noise.fs": "e4a61247166441f4b78a24043c9062a9f5d932e596e3061b866a0367a9cd8151",
+    "thumbnail.jpg": "c82c314a9b71cbf40d937a586e9b60bce0e424faf136f4e73d8d3373dbf2994d"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

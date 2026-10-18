@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_34cbc4a24bdf9c7c67fb",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Scrolling Polka Dots/Scrolling Polka Dots.fs",
+  "source_sha256": "d63119691bb98109eea53a7a9deb4aa62e91935320822b2f546402ec25a8765c",
+  "imported_file": "Scrolling Polka Dots.fs",
+  "imported_files": {
+    ".info": "89facd5e5a1269be51c753627df213d625ae0e6c3bce919950a1ed5829600fa7",
+    "Scrolling Polka Dots.fs": "d63119691bb98109eea53a7a9deb4aa62e91935320822b2f546402ec25a8765c",
+    "thumbnail.jpg": "51b795da91fb336aebc8be9f31e2fa45669007ca85cf944531080e79196d8573"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

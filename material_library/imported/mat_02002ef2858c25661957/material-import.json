@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_02002ef2858c25661957",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/Raymarching Template/Raymarching Template.fs",
+  "source_sha256": "c89a91d8a23fbd807de131c93f740204eb874fdb7c6e5af762647eb1906f4fbc",
+  "imported_file": "Raymarching Template.fs",
+  "imported_files": {
+    "Raymarching Template.fs": "c89a91d8a23fbd807de131c93f740204eb874fdb7c6e5af762647eb1906f4fbc",
+    "Raymarching Template.vs": "18630ebc8ec4cb9909003d029d09d7599ae4688c2da385419a9a88f5b5b40884",
+    "thumbnail.jpg": "5a68037dbfc4e44549b083a7fb60ff16de7c9d4718f15c11a08d6bd074ef9dd2"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

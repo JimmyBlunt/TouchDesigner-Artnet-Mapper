@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_1087370ec4de73139c3c",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Parametric Circle HD Ratio/Parametric Circle HD Ratio.fs",
+  "source_sha256": "824942078dcd258ed56c5d7eff123fce12c562008439d51d646007001369cec5",
+  "imported_file": "Parametric Circle HD Ratio.fs",
+  "imported_files": {
+    ".info": "d7a756c08baa51c22fc3e1fd5b821b705d69a1705f842c45a26f8d1d989f4dfe",
+    "Parametric Circle HD Ratio.fs": "824942078dcd258ed56c5d7eff123fce12c562008439d51d646007001369cec5",
+    "thumbnail.jpg": "7cc6e0e7438ce9df27e49b7c64c627d860df9f5bc4b45baf8162ede480225367"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_a3762e81d300eef51b58",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Noisy Dots/Noisy Dots.fs",
+  "source_sha256": "bc178204fac7597a95e2621d73e3330e2260389e2091bacaefdb6811e7f97d65",
+  "imported_file": "Noisy Dots.fs",
+  "imported_files": {
+    ".info": "5bfd8fd78e06bbb2988008226ac9b3e1b28de8d8c05230d9e58d6f733c3b8128",
+    "Noisy Dots.fs": "bc178204fac7597a95e2621d73e3330e2260389e2091bacaefdb6811e7f97d65",
+    "thumbnail.jpg": "6156f74402affff5dc6ba3115834be525b62915dd7e42ee5e33090e4779c5a1f"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_5c17dac080741da4e0a7",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Nebula Crawler/Nebula Crawler.fs",
+  "source_sha256": "1603503c4272891e58c910047a232ac712b29700c22b025e7d9bb3504fabdaf0",
+  "imported_file": "Nebula Crawler.fs",
+  "imported_files": {
+    ".info": "8748ad2e188dc033bad3c319153eb9b3c3d00e0a5990a72da4f5940e89a3ba4c",
+    "Nebula Crawler.fs": "1603503c4272891e58c910047a232ac712b29700c22b025e7d9bb3504fabdaf0",
+    "thumbnail.jpg": "748ac5cf716dc5dcff5a9ecc0c1193989cb268691739dee2d255475c5117cc07"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

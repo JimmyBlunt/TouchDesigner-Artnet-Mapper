@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_8542a7bbfb2650ea5854",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Cloudy Moonlight/Cloudy Moonlight.fs",
+  "source_sha256": "dea12da55ff6bc9f81d005bb7158cdc773fad8e30959e813360d52f23d538edd",
+  "imported_file": "Cloudy Moonlight.fs",
+  "imported_files": {
+    ".info": "bf303389084b278c950b10e5ee82b993b9fd10c053a79ce592c4cffa665b4ede",
+    "Cloudy Moonlight.fs": "dea12da55ff6bc9f81d005bb7158cdc773fad8e30959e813360d52f23d538edd",
+    "f735bee5b64ef98879dc618b016ecf7939a5756040c2cde21ccb15e69a6e1cfb.png": "e59217a8eecc2e90bfbe7bb163dfcdd90de155bb35e4e904484ede91b8c0f36d",
+    "thumbnail.jpg": "254c4a2b2a63355375c11cbb4ad3c431d45ef24ddec2eaa14603e8e940ecc331"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

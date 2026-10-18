@@ -1,0 +1,14 @@
+{
+  "checks": {
+    "files_and_expressions_preserved": true,
+    "selection_preserved": true,
+    "thumbnail_warnings_removed": true,
+    "output_off": true
+  },
+  "image_count": 65,
+  "previously_oversize_image": {
+    "width": 512,
+    "height": 512,
+    "warning": ""
+  }
+}

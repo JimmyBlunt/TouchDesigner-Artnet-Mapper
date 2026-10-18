@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_c2ba6df44efcb35452e4",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/LaserStruckt/LaserStruckt.fs",
+  "source_sha256": "df1fcdfa823086e6730a68679c54c1ef487ccd1b098e1e33b1fe2f4cb7500f05",
+  "imported_file": "LaserStruckt.fs",
+  "imported_files": {
+    ".info": "295dec0c6b381f16a3897f51fe8a5011c4a603f597da325e96a2254a3c106f12",
+    "LaserStruckt.fs": "df1fcdfa823086e6730a68679c54c1ef487ccd1b098e1e33b1fe2f4cb7500f05",
+    "thumbnail.jpg": "d53e964b0ae0a5fdbbbb248f56b107f5d98fc1ea640d97752eb9ca4b205ada8b"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_45e683d6275aa6b3614b",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/InnerDimensionalMatrix/InnerDimensionalMatrix.fs",
+  "source_sha256": "366c833f4cd19c770914e65396af564f25e0aee2c655fed31f109bd0dea55b71",
+  "imported_file": "InnerDimensionalMatrix.fs",
+  "imported_files": {
+    ".info": "37f917f66f620abb6f9324afd3a772633d2567372fa5e1153f4118e6b82bcfdf",
+    "InnerDimensionalMatrix.fs": "366c833f4cd19c770914e65396af564f25e0aee2c655fed31f109bd0dea55b71",
+    "thumbnail.jpg": "ddcf3637f6f3ea48beca7ca178d72ac53e6bff80abc13c1005baaf31e5a3aaa5"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

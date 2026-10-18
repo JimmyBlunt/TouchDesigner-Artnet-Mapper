@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_a26d240b8b0075fab138",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Shiny Spiral/Shiny Spiral.fs",
+  "source_sha256": "e54716610d471d8cc5eee7dc9948c1392fcb9f3d337017517511e4336ba58fa6",
+  "imported_file": "Shiny Spiral.fs",
+  "imported_files": {
+    ".info": "bb5ea5c4592ed7e1834e98565509bb4b1f368798808c8ebc56a90b5873a917bf",
+    "52d2a8f514c4fd2d9866587f4d7b2a5bfa1a11a0e772077d7682deb8b3b517e5.jpg": "1eae2aea7054b1aeaeb0d4f6f3bda7ec4f1c84ae24f1d08cd534fcbd0f96ec78",
+    "Shiny Spiral.fs": "e54716610d471d8cc5eee7dc9948c1392fcb9f3d337017517511e4336ba58fa6",
+    "thumbnail.jpg": "eed74f0cc6d7cd28e422c92a40e67d36b1891d987ad364b0645cdd0426cc95d3"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

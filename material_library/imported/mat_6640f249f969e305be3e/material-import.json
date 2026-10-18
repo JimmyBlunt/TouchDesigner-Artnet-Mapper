@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_6640f249f969e305be3e",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/SpaceGif/SpaceGif.fs",
+  "source_sha256": "95eb210be2af7e8f464ca7fdfc52889385112d2e44f40d636a0aaaf6b3d2d704",
+  "imported_file": "SpaceGif.fs",
+  "imported_files": {
+    ".info": "54e8ce2b494e205e389b682c8368b70aea6bd36958099271083f9992f1656c9f",
+    "SpaceGif.fs": "95eb210be2af7e8f464ca7fdfc52889385112d2e44f40d636a0aaaf6b3d2d704",
+    "thumbnail.jpg": "38011e0661f1273408b499caa375b076cda44dbfd4dd81594dc33cef72853e5f"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

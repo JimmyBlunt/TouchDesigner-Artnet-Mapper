@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_780be3c956b27416c385",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Cyber Skin/Cyber Skin.fs",
+  "source_sha256": "569941c43ca0a71fa7e01dbed9820c338eaeeb295beb3948c40d7f91bb8ec181",
+  "imported_file": "Cyber Skin.fs",
+  "imported_files": {
+    ".info": "a4386c172eca823f3aabf0cffe02993f51c3905f069a1c87b1a49dd3809052c2",
+    "Cyber Skin.fs": "569941c43ca0a71fa7e01dbed9820c338eaeeb295beb3948c40d7f91bb8ec181",
+    "thumbnail.jpg": "b0983f7d6e5293f89b34b0e6ed0b171216547d563660ee83e160c7b1053716c4"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

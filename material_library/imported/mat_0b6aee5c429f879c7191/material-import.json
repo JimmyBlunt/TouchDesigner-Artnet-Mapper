@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_0b6aee5c429f879c7191",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Shape Generator/Shape Generator.fs",
+  "source_sha256": "884c6faaf4f7f4e07620035e92ca7b229bf818c3ad7f2de4296f0f2f68eeec67",
+  "imported_file": "Shape Generator.fs",
+  "imported_files": {
+    ".info": "25e42bed218a9205c7610dca15151b66d6e36a3d6d37c2b5ebd956ab08e588bf",
+    "Shape Generator.fs": "884c6faaf4f7f4e07620035e92ca7b229bf818c3ad7f2de4296f0f2f68eeec67",
+    "thumbnail.png": "72e94e42c09f3ba985a2f9d781d52d646a94443a52a4af3e8e291ce53e700c95"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

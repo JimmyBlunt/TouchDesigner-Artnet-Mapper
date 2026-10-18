@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_bb0fb9d5325a3c3ade74",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/GridZoomSandwich/GridZoomSandwich.fs",
+  "source_sha256": "e88e1cafb138f258cff8c8fbb0b3b53d5c12fd2bf0bac05c6c3bc0fa50564d4d",
+  "imported_file": "GridZoomSandwich.fs",
+  "imported_files": {
+    ".info": "77139d3eca5827966af4c3344c057cd7a60550ca15fa5cbd4fe91fd44402f2e2",
+    "GridZoomSandwich.fs": "e88e1cafb138f258cff8c8fbb0b3b53d5c12fd2bf0bac05c6c3bc0fa50564d4d",
+    "thumbnail.png": "2b62223134cf5bf9c1d8f8f3ba28a67e6365393b0c3fe1d27587a41c2454fded"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

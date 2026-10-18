@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_9340f529b06e80557d83",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/FlowyWarp/FlowyWarp.fs",
+  "source_sha256": "8d4bcd7bdb5b99e3c2db8939e0cbd4d0a649ee55046506f6691cb28706b6b9eb",
+  "imported_file": "FlowyWarp.fs",
+  "imported_files": {
+    ".info": "54e8ce2b494e205e389b682c8368b70aea6bd36958099271083f9992f1656c9f",
+    "FlowyWarp.fs": "8d4bcd7bdb5b99e3c2db8939e0cbd4d0a649ee55046506f6691cb28706b6b9eb",
+    "thumbnail.jpg": "25e0b3ec9426a1b910ed91b2b770dcf7c0a1f9035efc5c265a4f06e5e4899e87"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

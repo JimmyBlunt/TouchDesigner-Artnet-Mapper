@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_0c92a06ff041c553174b",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Zebre/Zebre.fs",
+  "source_sha256": "c60ab5238117e63b927520a57fa4f6ed0d0dfb7f29d348c86eef305bb993abcd",
+  "imported_file": "Zebre.fs",
+  "imported_files": {
+    ".info": "28c2a6d993cbde2cb32ba288aaf65ed68e39b3593585ebba4731fac1eafda13f",
+    "thumbnail.jpg": "f66e01408f63b411dcfa4678836ac1ad9e549b353b70b9fb51622fe410174b02",
+    "Zebre.fs": "c60ab5238117e63b927520a57fa4f6ed0d0dfb7f29d348c86eef305bb993abcd"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

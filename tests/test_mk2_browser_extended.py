@@ -39,7 +39,7 @@ class ExtendedBrowserTests(unittest.TestCase):
         self.assertEqual(self.c.screen, 'browse_assign')
 
     def test_browser_first_two_steps_precise_then_medium_and_fast_thresholds(self):
-        for interval, expected in ((.1, 3), (1/12, 5), (.04, 10), (.02, 10)):
+        for interval, expected in ((.25, 3), (.14, 5), (.1, 5), (1/12, 10), (.04, 18), (.02, 18)):
             with self.subTest(interval=interval):
                 self.c.reset_browse_motion()
                 self.c.screen, self.c.browse_index = 'browse', 0
@@ -67,17 +67,17 @@ class ExtendedBrowserTests(unittest.TestCase):
                 self.c.reset_browse_motion()
                 for t in (0, .02, .04):
                     self.move(t)
-                self.assertEqual(self.c.browse_index, 50)
+                self.assertEqual(self.c.browse_index, 58)
                 if action == 'pause':
-                    self.move(.20)
-                    self.assertEqual(self.c.browse_index, 51)
+                    self.move(.40)
+                    self.assertEqual(self.c.browse_index, 59)
                 elif action == 'reverse':
                     self.move(.06, -1)
-                    self.assertEqual(self.c.browse_index, 49)
+                    self.assertEqual(self.c.browse_index, 57)
                 else:
                     button(self.c, 'top', 0) if action == 'button' else press(self.c)
                     self.move(.06)
-                    self.assertEqual(self.c.browse_index, 51)
+                    self.assertEqual(self.c.browse_index, 59)
 
     def test_duplicate_or_backwards_timestamps_never_accelerate(self):
         self.browse()
@@ -343,11 +343,11 @@ class BrowserConnectionResetTests(unittest.TestCase):
         button(manager, 'browse')
         for t in (0, .02, .04):
             manager.dispatch(dict(type='wheel', delta=1, timestamp=t))
-        self.assertEqual(manager.controller.browse_index, 10)
+        self.assertEqual(manager.controller.browse_index, 18)
         manager.post_event(dict(type='connection_reset'), manager.version)
         manager.tick()
         manager.dispatch(dict(type='wheel', delta=1, timestamp=.06))
-        self.assertEqual(manager.controller.browse_index, 11)
+        self.assertEqual(manager.controller.browse_index, 19)
 
 
 if __name__ == '__main__':

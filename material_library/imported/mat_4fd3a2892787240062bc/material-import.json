@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_4fd3a2892787240062bc",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/BasicRingTunnel/BasicRingTunnel.fs",
+  "source_sha256": "2a028ebd770bb56689ef5885b008ed799186a07b707a1b9adbdbb7e39c889645",
+  "imported_file": "BasicRingTunnel.fs",
+  "imported_files": {
+    ".info": "54e8ce2b494e205e389b682c8368b70aea6bd36958099271083f9992f1656c9f",
+    "BasicRingTunnel.fs": "2a028ebd770bb56689ef5885b008ed799186a07b707a1b9adbdbb7e39c889645",
+    "thumbnail.jpg": "6cc14a4cfb2c4cd5e557f74f96fdad0054784f6135ed4fe2c43528883ba8b309"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

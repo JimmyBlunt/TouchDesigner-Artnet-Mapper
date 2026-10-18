@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e93bb6a59ca25af327bf",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/CosmicRipples/CosmicRipples.fs",
+  "source_sha256": "9a9b7e74b482ff081b979018db7176a7e0bf8d71ec18bb46a362460bff4c69e6",
+  "imported_file": "CosmicRipples.fs",
+  "imported_files": {
+    ".info": "8760454702fcda6616fd4bc8620468b9dbd877f898b951b85439205e28c78b39",
+    "CosmicRipples.fs": "9a9b7e74b482ff081b979018db7176a7e0bf8d71ec18bb46a362460bff4c69e6",
+    "thumbnail.jpg": "d447ea34cf66162b0124b876335a3654ce7e8341ad4bcdf19fc9b50d4b01411b"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

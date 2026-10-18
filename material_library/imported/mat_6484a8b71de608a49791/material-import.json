@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_6484a8b71de608a49791",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Ripple/Ripples.fs",
+  "source_sha256": "8616b3743e575371d3b4800dc94ef54b1eb2025eeaed6f2490127c60ffb420c2",
+  "imported_file": "Ripples.fs",
+  "imported_files": {
+    ".info": "e7499c26c2a73ef842838413fe78eefddbd0ae25511817b455f7f3a5506f99ba",
+    "Ripples.fs": "8616b3743e575371d3b4800dc94ef54b1eb2025eeaed6f2490127c60ffb420c2",
+    "thumbnail.jpg": "eebeaef5fdc4e1bdc7d7e10f9aa942e67d60db0b2f61881c79b7f0fbd473721f"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

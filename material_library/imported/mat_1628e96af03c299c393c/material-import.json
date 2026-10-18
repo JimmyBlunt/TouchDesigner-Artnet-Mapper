@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_1628e96af03c299c393c",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/KaleidoElegance/KaleidoElegance.fs",
+  "source_sha256": "7ac9c0e73bcaa9cd77d5e9c1e0a047103d887c114ea3fafff34135b314fec3fa",
+  "imported_file": "KaleidoElegance.fs",
+  "imported_files": {
+    ".info": "2736d409a14354a76216bb552dc36323b318834791ba65156621169a813b4889",
+    "KaleidoElegance.fs": "7ac9c0e73bcaa9cd77d5e9c1e0a047103d887c114ea3fafff34135b314fec3fa",
+    "thumbnail.jpg": "dbcb67ebfd200411cc49c2c9aadd083445a4eb76fd554483f4db29a9926dfecf"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

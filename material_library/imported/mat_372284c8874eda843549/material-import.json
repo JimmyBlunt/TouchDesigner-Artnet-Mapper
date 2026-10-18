@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_372284c8874eda843549",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/LEDVoxel-Plasma/3D-LED-Shapes.fs",
+  "source_sha256": "daed22f1194a4f418441359de9a9b928c9641e464e942c8ee6dc74f06a0d38f8",
+  "imported_file": "3D-LED-Shapes.fs",
+  "imported_files": {
+    ".info": "4e95367bc22fe9b37f5f2bbde08bf53af1ac7e35fe6e19df5ccc612a451cea19",
+    "3D-LED-Shapes.fs": "daed22f1194a4f418441359de9a9b928c9641e464e942c8ee6dc74f06a0d38f8",
+    "thumbnail.png": "87b55d677f95ef0fdc9e38a21190f6eb9a2e947534f52180382b50a5ff6ecc2a"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

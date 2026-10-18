@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_ee008ff9d01f294dca2f",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/SDF_Blob/SDF_Blob.fs",
+  "source_sha256": "2f8d30a5278acfba29552948697065e9043f565fc1f15312ab9fc9434f5c39c1",
+  "imported_file": "SDF_Blob.fs",
+  "imported_files": {
+    ".info": "4a6789f1fe86c7c25b24b40676e789697cfa621000c6e1cd0fe5493f3d0a0351",
+    "SDF_Blob.fs": "2f8d30a5278acfba29552948697065e9043f565fc1f15312ab9fc9434f5c39c1",
+    "thumbnail.jpg": "cea26950e4d02f27827a1c92664bef4e0045a4ee6405a3edc0b3f8b518648a40"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

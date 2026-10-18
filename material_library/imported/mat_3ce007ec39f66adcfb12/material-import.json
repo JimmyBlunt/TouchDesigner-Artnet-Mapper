@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_3ce007ec39f66adcfb12",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Abstract Cobblestone/Abstract Cobblestone.fs",
+  "source_sha256": "0742b3611bacfbd5b1da78cde5114a518c4d023abd4ef8ef3f98dc3e22a70c48",
+  "imported_file": "Abstract Cobblestone.fs",
+  "imported_files": {
+    ".info": "da303d611c776f20dcf3f0928f6c673a87b11d374494c8e6d4cd901598528eb1",
+    "Abstract Cobblestone.fs": "0742b3611bacfbd5b1da78cde5114a518c4d023abd4ef8ef3f98dc3e22a70c48",
+    "thumbnail.jpg": "0fcbe8df273fba11c89f07c39a4cfc0ab43e9d9ca7c4837f37599314969403fd"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

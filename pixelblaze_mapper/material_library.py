@@ -666,9 +666,10 @@ def write_catalog(catalog: MaterialCatalog, path: str | Path) -> Path:
 
 
 def load_catalog(path: str | Path) -> MaterialCatalog:
+    from .material_paths import load_catalog_document
     source = Path(path)
     try:
-        data = json.loads(source.read_text(encoding="utf-8"))
+        data = load_catalog_document(source)
     except (OSError, json.JSONDecodeError) as exc:
         raise MaterialLibraryError(f"cannot load catalog {source}: {exc}") from exc
     return MaterialCatalog.from_dict(data)

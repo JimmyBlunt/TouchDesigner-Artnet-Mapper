@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_615bdaf4b84781e28714",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/OpArt_Pipes/opart_pipes.fs",
+  "source_sha256": "0e956750c16b201637e69d93b33fb4313d8100608b09fe202a5e94b7b3015437",
+  "imported_file": "opart_pipes.fs",
+  "imported_files": {
+    ".info": "cb0309f3162842d8b201aa679aaf8b6f7f7267f6eff5f8f51e82573d5f4eb81f",
+    "opart_pipes.fs": "0e956750c16b201637e69d93b33fb4313d8100608b09fe202a5e94b7b3015437",
+    "thumbnail.png": "ebdcf0d7bcad64fb338cc5c01a0e807b749781c1cf36dabad6e70e9d149d0dfc"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

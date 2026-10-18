@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_35079c13e3bbfe351478",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/Plane Deform/PlaneDeform.fs",
+  "source_sha256": "50978c8d31fed4c0a6f40b8ad7fe030c8c700e5530c6ce03a74730b80183358f",
+  "imported_file": "PlaneDeform.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "PlaneDeform.fs": "50978c8d31fed4c0a6f40b8ad7fe030c8c700e5530c6ce03a74730b80183358f",
+    "thumbnail.png": "28984a4087f9c2329728fcf27c43508a0a77a164d5f6716a649d9de679d08348"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

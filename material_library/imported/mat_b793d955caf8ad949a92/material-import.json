@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_b793d955caf8ad949a92",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Nested Cube/Nested Cube.fs",
+  "source_sha256": "361964971b98ccd313e85a2cbd5188b947fc8a5ecb8a70bfde796de1a38bbb57",
+  "imported_file": "Nested Cube.fs",
+  "imported_files": {
+    ".info": "15ba5618da183a1f9d267c27c2ee0b321219ad331f6f88f7901a8a2303a55a95",
+    "Nested Cube.fs": "361964971b98ccd313e85a2cbd5188b947fc8a5ecb8a70bfde796de1a38bbb57",
+    "thumbnail.jpg": "5be0d8dcb59f4e71af2a6bb9afe94a5d8a76f61ba3659e9a1952b955c39ee054"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

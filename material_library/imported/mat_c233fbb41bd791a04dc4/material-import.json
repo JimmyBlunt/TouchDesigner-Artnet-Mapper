@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_c233fbb41bd791a04dc4",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Saturn Rings/Saturn Rings.fs",
+  "source_sha256": "deb4436f189ff538e9c1996996685b7525fee260489fc70fc59558003950f2ae",
+  "imported_file": "Saturn Rings.fs",
+  "imported_files": {
+    ".info": "ec173b8c63888d294168b164ad0ab4d561907157b54d1d86d2072c3dc9f9e00f",
+    "Saturn Rings.fs": "deb4436f189ff538e9c1996996685b7525fee260489fc70fc59558003950f2ae",
+    "thumbnail.jpg": "09d3c5934bc8253896c33f1520a9c3c905175925f382ee6d32ffc2a7b2f4668e"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

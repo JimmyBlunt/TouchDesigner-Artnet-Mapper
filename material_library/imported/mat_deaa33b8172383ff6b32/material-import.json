@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_deaa33b8172383ff6b32",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/PillarWarp/PillarWarp.fs",
+  "source_sha256": "ba0b06592cefd3c19d0f5f85720fdbf444b3c94e310ca86ce7ec48a918d7a894",
+  "imported_file": "PillarWarp.fs",
+  "imported_files": {
+    ".info": "cb90be431f2b67e0781c5bfa9ed10998d1f0ace1f8f2e499fbb58001925b7359",
+    "PillarWarp.fs": "ba0b06592cefd3c19d0f5f85720fdbf444b3c94e310ca86ce7ec48a918d7a894",
+    "thumbnail.jpg": "8c1a984c95354e3f4488ee73beff8029b40da96f096d13fbf2d53732e5bb09bb"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

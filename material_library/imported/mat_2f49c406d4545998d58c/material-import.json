@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_2f49c406d4545998d58c",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Noise Tube/NoiseTube.fs",
+  "source_sha256": "4abe504e29ced5801c9455cadfa95358fcc6b568b030868f5e4df49bc16a956f",
+  "imported_file": "NoiseTube.fs",
+  "imported_files": {
+    ".info": "c8960b00bfb81013ac590ce4072d987f794da0d30d9233628d40e9f5e50e2556",
+    "NoiseTube.fs": "4abe504e29ced5801c9455cadfa95358fcc6b568b030868f5e4df49bc16a956f",
+    "thumbnail.png": "181d2854cc29deb455c896ce7db1bb9d11f125094352f5e3d435b16fc6962119"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

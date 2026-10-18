@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_5b39d3735d0479465c2d",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/[recode]_Molnár/[recode]_Molnár.fs",
+  "source_sha256": "4d3f0e9b750148bfff457117be62dea89821cd1b53bd7f00140896cb9ee7a28d",
+  "imported_file": "[recode]_Molnár.fs",
+  "imported_files": {
+    ".info": "598b04fa65588da23515586b17c7a136f06ebc16a23fc6059a77a5ac942edba8",
+    "[original]_Vera_Molnár_No_Title.jpg": "d743f2d06ff178df4329d7658329764b441e9c4103c1a2f3db53fde7b2e04ca1",
+    "[recode]_Molnár.fs": "4d3f0e9b750148bfff457117be62dea89821cd1b53bd7f00140896cb9ee7a28d",
+    "thumbnail.jpg": "5a0af98e6df56ae4268f9a40be6e1463904b65297b50d0ff05ec4ae830ac7fbb"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

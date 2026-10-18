@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_4d4459d24b3d14ea4b61",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/LED Test/LED Test.fs",
+  "source_sha256": "e7aa325306de6d3a0c1b915a33358c3455e52710733cf16a32d47552ba83aa3b",
+  "imported_file": "LED Test.fs",
+  "imported_files": {
+    ".info": "653f65dfb21b4fe2a4475eb621a058d698cf9423233787c7028952c4fd58cebb",
+    "LED Test.fs": "e7aa325306de6d3a0c1b915a33358c3455e52710733cf16a32d47552ba83aa3b",
+    "thumbnail.jpg": "b4454bb45d1161f0d59848297f500749037016866fcf50ac6e65798d95caebbc"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

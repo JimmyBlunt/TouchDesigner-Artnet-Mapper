@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_1d24b0c6b7c29eeeb347",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/[recode]_Vasarely/[recode]_Vasarely.fs",
+  "source_sha256": "d8ac247224b498c13c21b625429ecccfafe129106fb5e5ef342645710688c0f5",
+  "imported_file": "[recode]_Vasarely.fs",
+  "imported_files": {
+    ".info": "722d30042e61e7a173eece1485e15930dcf783c51909147eeee604b52e16c6d4",
+    "[original]_Vasarely_Desillusion.jpg": "175920af6f31f61eb18f0d3d434d208c279484e5f443b121e99a98dfc3d6d2b2",
+    "[recode]_Vasarely.fs": "d8ac247224b498c13c21b625429ecccfafe129106fb5e5ef342645710688c0f5",
+    "thumbnail.jpg": "df6226ef1085f672f6fae30b7021fb5f9853b8321cc54c62a8f0a7da58b7138d"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

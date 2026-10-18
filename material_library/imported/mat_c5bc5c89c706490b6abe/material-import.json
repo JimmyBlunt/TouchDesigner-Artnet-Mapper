@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_c5bc5c89c706490b6abe",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/LensFocus/LensFocus.fs",
+  "source_sha256": "0d70d23b66a56d692260634155cd5d6fdc0fa24d32a4ddee9bee088f45ef7bdd",
+  "imported_file": "LensFocus.fs",
+  "imported_files": {
+    ".info": "54e8ce2b494e205e389b682c8368b70aea6bd36958099271083f9992f1656c9f",
+    "LensFocus.fs": "0d70d23b66a56d692260634155cd5d6fdc0fa24d32a4ddee9bee088f45ef7bdd",
+    "thumbnail.jpg": "5954ae6a00dcadc6eaf535d74f00db9e8c4a943ec757f3e752c93ff247024d73"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

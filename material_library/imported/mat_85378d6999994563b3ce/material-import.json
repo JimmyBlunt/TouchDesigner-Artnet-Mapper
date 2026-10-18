@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_85378d6999994563b3ce",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Fractal Swirl/Fractal Swirl.fs",
+  "source_sha256": "e4c1b1ae070a2a85ee9bdf912b9e3c35b93df4c746178c33e556774ed32f5fbf",
+  "imported_file": "Fractal Swirl.fs",
+  "imported_files": {
+    ".info": "6edd6275ab0adc0f858459b7f695584c9a47321c88423aaee6741ace51f84396",
+    "Fractal Swirl.fs": "e4c1b1ae070a2a85ee9bdf912b9e3c35b93df4c746178c33e556774ed32f5fbf",
+    "thumbnail.jpg": "ca9c5043fa63ab98316b0e031890dd5c69dc40f367a8d4d172475a074f6adadc"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

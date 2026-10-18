@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_6b81eea1c8dcbe99aac7",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/PatternCycle/PatternCycle.fs",
+  "source_sha256": "b6367e5f3c27601d8eaefaa1b89a7998ff27925b086a9a3d8929b3cc35d69653",
+  "imported_file": "PatternCycle.fs",
+  "imported_files": {
+    ".info": "54e8ce2b494e205e389b682c8368b70aea6bd36958099271083f9992f1656c9f",
+    "PatternCycle.fs": "b6367e5f3c27601d8eaefaa1b89a7998ff27925b086a9a3d8929b3cc35d69653",
+    "thumbnail.jpg": "cfbde5683fa830469d1978fb4a1e48a7209603db0cccafbe6225d81f0b8e5947"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

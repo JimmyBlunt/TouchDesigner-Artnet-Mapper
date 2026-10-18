@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e9be737372dd01c4001f",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/CirclesAndCrosses/CirclesAndCrosses.fs",
+  "source_sha256": "96d2d4a1d9e988f3bf7a336fa76898020bb927a1e43228b749d0a53aa0649ece",
+  "imported_file": "CirclesAndCrosses.fs",
+  "imported_files": {
+    ".info": "5db25758b117ddc21675b88d3dbc010b6e541498b4e8c995c2991ccd9ce5fe0b",
+    "CirclesAndCrosses.fs": "96d2d4a1d9e988f3bf7a336fa76898020bb927a1e43228b749d0a53aa0649ece",
+    "thumbnail.jpg": "4a1d3c69e506d82346a5a89683c47271a9d20ef618bd420ee12a925cf009efbb"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

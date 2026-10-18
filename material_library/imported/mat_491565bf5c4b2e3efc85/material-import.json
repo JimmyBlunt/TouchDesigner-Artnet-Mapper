@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_491565bf5c4b2e3efc85",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/PixelExplotion/Pixel.fs",
+  "source_sha256": "b652001032ea3997e8ce6612eb50d3e99f3c0944217ea05309d8d4e0575f63e9",
+  "imported_file": "Pixel.fs",
+  "imported_files": {
+    ".info": "1e0b610a25c40d91931e5e1e3e7362d4eeeac8ffc564c16a82ffc4a0c25b518f",
+    "Pixel.fs": "b652001032ea3997e8ce6612eb50d3e99f3c0944217ea05309d8d4e0575f63e9",
+    "thumbnail.png": "31cd4daa79c4d8b18f62eab24ed51dd950f31de499ff4b27a477abdb742b0195"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

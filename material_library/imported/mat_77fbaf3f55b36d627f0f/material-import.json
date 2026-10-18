@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_77fbaf3f55b36d627f0f",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/BitStreamer/BitStreamer.fs",
+  "source_sha256": "b9e930e5097259c0c86c3c52d607c4e5d12bd2e75409841900bbd86e1dbe1bb6",
+  "imported_file": "BitStreamer.fs",
+  "imported_files": {
+    ".info": "77139d3eca5827966af4c3344c057cd7a60550ca15fa5cbd4fe91fd44402f2e2",
+    "BitStreamer.fs": "b9e930e5097259c0c86c3c52d607c4e5d12bd2e75409841900bbd86e1dbe1bb6",
+    "thumbnail.png": "521188eb41077f01a500733a57a4a97fde9e61845ce5d4fbba48c22251813a5e"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

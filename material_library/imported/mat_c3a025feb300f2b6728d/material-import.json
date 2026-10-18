@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_c3a025feb300f2b6728d",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Blobiscope/Blobiscope.fs",
+  "source_sha256": "b60e1867590a22362aa65519779f9860d49a8eac5f231b35fd5d410031781d7a",
+  "imported_file": "Blobiscope.fs",
+  "imported_files": {
+    ".info": "535b20bc93b21ccda40d80f948be810df1c1b32fe822df1d65977604f24112aa",
+    "Blobiscope.fs": "b60e1867590a22362aa65519779f9860d49a8eac5f231b35fd5d410031781d7a",
+    "thumbnail.jpg": "92f33b576402e70404c5f73e135e586b85eebdde5ebbda12cb94d1c71969c724"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

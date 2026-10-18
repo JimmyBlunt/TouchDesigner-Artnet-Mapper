@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_9524553333749170d9d2",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Sine Interference/Sine Interference.fs",
+  "source_sha256": "d9559985dfa2f5158179acd99d4800f2782e9a1aefa1f89027abe4f4794b3e04",
+  "imported_file": "Sine Interference.fs",
+  "imported_files": {
+    ".info": "f2d1ebe4ce6fed77493fbfb60d6d76a7113ba54132cca18a8d9039852165861c",
+    "Sine Interference.fs": "d9559985dfa2f5158179acd99d4800f2782e9a1aefa1f89027abe4f4794b3e04",
+    "thumbnail.jpg": "22545d630d2ff066ec5ac84c300c231da756c3452deeca24165414fe6ba4a251"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

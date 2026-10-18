@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_dd1df4424c91f1c8b085",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Video Wall 2x2/Video Wall 2x2.fs",
+  "source_sha256": "783de57ce2d465bcb3e2b95ab19277cdc7bd2c2402ac9939422c30145a02b601",
+  "imported_file": "Video Wall 2x2.fs",
+  "imported_files": {
+    ".info": "6fb3845afa34e0628a971b369fe3fc539e28c4a4b609e3999cecada6f7aba3b2",
+    "thumbnail.jpg": "7c09fb361c0c9b7714bb6b84663f180cd9581dcee6a259d64577b550282ddeb4",
+    "Video Wall 2x2.fs": "783de57ce2d465bcb3e2b95ab19277cdc7bd2c2402ac9939422c30145a02b601"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

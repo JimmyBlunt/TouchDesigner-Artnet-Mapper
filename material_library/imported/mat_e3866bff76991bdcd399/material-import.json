@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e3866bff76991bdcd399",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Blob Cluster/Blob Cluster.fs",
+  "source_sha256": "d749738a42cd1707d960a56dcc8e5710078672bd27dfc6895e9aad46845e8c7b",
+  "imported_file": "Blob Cluster.fs",
+  "imported_files": {
+    ".info": "2b6eff165d541ec990f9681ec9d686f626b22c3777a9892def0ed6a90dc8641a",
+    "Blob Cluster.fs": "d749738a42cd1707d960a56dcc8e5710078672bd27dfc6895e9aad46845e8c7b",
+    "thumbnail.jpg": "fcee2eaf98d273d17ce557abf50ed5dca9461fe1d247a45a2feff56a182d78e9"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

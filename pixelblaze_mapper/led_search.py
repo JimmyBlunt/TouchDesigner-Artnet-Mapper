@@ -207,13 +207,20 @@ def act(op,action,delta=0):
         p=op(OWNER+'/led_search_panel')
         if action=='open' and p.op('controller') is not None:
             from .led_search_ui import action as ui_action, render
-            if not op(OWNER).fetch('led_search_device',None):
-                ui_action(op,'load')
+            if not ui_action(op,'load'):
+                return False
             render(op)
             p.openViewer()
             return True
         if action not in ('open','show','chase'):
             raise ValueError('Unknown LED search action')
+        if action in ('show','chase') and p.op('controller') is not None:
+            # Persisted output lists can predate a controller reconfiguration.
+            # Refresh before building frames so every required universe is sent.
+            stop()
+            from .led_search_ui import action as ui_action
+            if not ui_action(op,'load'):
+                return False
         settings=settings_from_ui(op)
         capacity=math.ceil(settings['count']/170)*170
         limit=settings['count'] if p.op('controller') is not None else capacity

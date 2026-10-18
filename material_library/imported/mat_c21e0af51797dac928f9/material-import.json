@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_c21e0af51797dac928f9",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/[recode]_Wonder/[recode]_Wonder.fs",
+  "source_sha256": "2e33c3a9a9b7dd0e68a965cb4d50ad309215e47a6b7a1b86799cf88c5010123c",
+  "imported_file": "[recode]_Wonder.fs",
+  "imported_files": {
+    ".info": "127fd18b613ddeb9ebc5f6cc8ab93f910161ccf741290b7a72d80eb61b757caa",
+    "[original]_Stevie_Wonder_Songs_In_The_Key_Of_Life.jpg": "2056b97606f34fa859dc6e4ca678d79718477148c45e41e142961ea4d932fbd3",
+    "[recode]_Wonder.fs": "2e33c3a9a9b7dd0e68a965cb4d50ad309215e47a6b7a1b86799cf88c5010123c",
+    "lut.png": "f268aa0f45aa08a4c457279e4e243ee0d443243b7a94fb33d0f066de1855ca0a",
+    "thumbnail.jpg": "9b87bdf7c1749f76bae241826ae8e5e470c189c9e24b066c4c06e5a8f31263e5",
+    "wonder_face.jpg": "dcbc5c34c0afdb57b60b99fad901924ad299f94b20d5f6627611e78d55b41169"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

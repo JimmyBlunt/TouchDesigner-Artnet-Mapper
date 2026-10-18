@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_9a6103be8aef4c44a625",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Shadows FX/Shadows FX.fs",
+  "source_sha256": "8b4fa204e166e533510af05bb40e68d103bd3e19fcde16ecb68df8ade0ac4359",
+  "imported_file": "Shadows FX.fs",
+  "imported_files": {
+    ".info": "982f5b9c901593bb22cb5ee3811dbb06b5dc7e8747e72160b4fd9f46f3d876a0",
+    "bricks.jpg": "5b168deb8f00cf8d63a502eca4f557213daf9ceff1e41647034e914f0010a237",
+    "depth map face#2.jpg": "9c9f1cda0eec7a1b26ce91b8adf4789f624d13c5f40b4f961c86cc37b089a677",
+    "human depth #2.jpg": "770aa47d1f960356b2aadee29c2af2bd85c1d6e9ac0670d70c3b1b32a08ed8a5",
+    "noise_6.jpg": "eba5d2fda949a5637db62d06ff0498380d1ac61f6a29fa6ac620c51d4095eea1",
+    "relief_noise.jpg": "caab814cd1eed60517cbe785c3ec52197a8f7b86da9b81f57ba3b59ae65b6569",
+    "Shadows FX.fs": "8b4fa204e166e533510af05bb40e68d103bd3e19fcde16ecb68df8ade0ac4359",
+    "text test.jpg": "07f6f295caf7306d4c54d6cd3a0f583683ef897351ffe5bffc953308764e3926",
+    "thumbnail.jpg": "dd3865bf0253893320ae4025fdb4bc2a8f6525983c5d89c4cf607d23345d9323"
+  },
+  "kind": "madmapper_glsl",
+  "compatibility": "unsupported"
+}

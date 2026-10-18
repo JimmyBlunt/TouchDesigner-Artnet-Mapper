@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_1149a011ba23367289b5",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Kaleido Star/Kaleido Star.fs",
+  "source_sha256": "c227b2f33504480897871d33481aaddbbf44c097a15dd845afe76c775a122aa9",
+  "imported_file": "Kaleido Star.fs",
+  "imported_files": {
+    ".info": "a135416a145eaab9a2852c28e40369d00dcb7d2c0ed212a94062145f4d9ca148",
+    "Kaleido Star.fs": "c227b2f33504480897871d33481aaddbbf44c097a15dd845afe76c775a122aa9",
+    "thumbnail.jpg": "83eea36420be52c95afea3c12de316311dbb137371163a618b4a35a272260d73"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

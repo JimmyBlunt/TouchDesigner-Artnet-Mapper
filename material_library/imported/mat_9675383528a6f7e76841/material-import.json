@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_9675383528a6f7e76841",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Demos/SDF/CellIdExample03/CellIdExample03.fs",
+  "source_sha256": "16e2a38a0b4a61669f212aad1eddfc905568dd8f30d680280c89afd581a574aa",
+  "imported_file": "CellIdExample03.fs",
+  "imported_files": {
+    "CellIdExample03.fs": "16e2a38a0b4a61669f212aad1eddfc905568dd8f30d680280c89afd581a574aa",
+    "thumbnail.png": "6e8c451cb4ff1924bb1a1e70db9adf2816b41acc7980932118f1c662bab9face"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

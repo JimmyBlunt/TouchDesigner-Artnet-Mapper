@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_b2ad694ed6fd5b0f7d1f",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/CraterNoise/CraterNoise.fs",
+  "source_sha256": "245ec47b88ae52d29537b536aedcb961ac5182728deb2f4818d175a24fed281a",
+  "imported_file": "CraterNoise.fs",
+  "imported_files": {
+    ".info": "af693c5aedc18591261cf02f66df95ed7a6456d0fa735f6d470ba78a6acbdcb3",
+    "CraterNoise.fs": "245ec47b88ae52d29537b536aedcb961ac5182728deb2f4818d175a24fed281a",
+    "thumbnail.jpg": "581b1b32907a849c9d4cb4b6b1bb0f66575a21ef20c80c5b7541abbb7c85c1f4"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_369ce21699d36b7962bf",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Pyramid Pattern/Pyramid Pattern.fs",
+  "source_sha256": "32f84893842a76272aaf2ab1e4b133641caf0c181656346a7305d6ce784d389f",
+  "imported_file": "Pyramid Pattern.fs",
+  "imported_files": {
+    ".info": "34c91ebd83b8a05639daf300caddb1c1ac13ae59668be646e2da58698fac1917",
+    "Pyramid Pattern.fs": "32f84893842a76272aaf2ab1e4b133641caf0c181656346a7305d6ce784d389f",
+    "thumbnail.jpg": "e904adbb67030b1049529e614ab4c625e580d6873369adbaf68e6f27610c0219"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

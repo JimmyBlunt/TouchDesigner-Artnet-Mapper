@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_da614eed1325d1421246",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Filling Tiles/Filling Tiles.fs",
+  "source_sha256": "9abe6fe1b5d1c3d3ee06f3bf9a60ea6c46a80d8b4f3697b65f14d7ddc71a4df3",
+  "imported_file": "Filling Tiles.fs",
+  "imported_files": {
+    ".info": "1181245d4bd10cc78d3fd88532150349b4c481f741a2c0e6a1c418c514675447",
+    "Filling Tiles.fs": "9abe6fe1b5d1c3d3ee06f3bf9a60ea6c46a80d8b4f3697b65f14d7ddc71a4df3",
+    "thumbnail.jpg": "5a237aafea06d6d6b1944199cfdfc38e8ddbd302cdb60d25a3c0cd73dccecc8e"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

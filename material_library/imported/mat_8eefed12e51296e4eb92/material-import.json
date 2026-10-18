@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_8eefed12e51296e4eb92",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Damask Rose/Damask Rose.fs",
+  "source_sha256": "ab737115a3825e4be6d1e92bef492af810d294f997c626072a9bedee5d3660d2",
+  "imported_file": "Damask Rose.fs",
+  "imported_files": {
+    ".info": "69bf17b53f7ab6b98035ab06a4f4d81f0052eba1ca82266118575f66011462d2",
+    "Damask Rose.fs": "ab737115a3825e4be6d1e92bef492af810d294f997c626072a9bedee5d3660d2",
+    "thumbnail.jpg": "446e32f3c9b17ecc35589c5b4d3b0781f68342d9a90cbe83a79ae280c429fb2c"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

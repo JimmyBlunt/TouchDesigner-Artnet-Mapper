@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_4bfe22e2766103e20117",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Runny Ink/Runny Ink.fs",
+  "source_sha256": "ecda3589e4597c67ecb25933ce9ca2ae380539aad22d2f30ba66893eaba63024",
+  "imported_file": "Runny Ink.fs",
+  "imported_files": {
+    ".info": "ee1c7079566faaec5c65fbd4c1a543962e52f66ad8a93e2e60f49bf3aaf69e03",
+    "Runny Ink.fs": "ecda3589e4597c67ecb25933ce9ca2ae380539aad22d2f30ba66893eaba63024",
+    "thumbnail.jpg": "687559f736b76b4c4e2b5e30b0135f6bff3fa3dc9d17e226bc2829462a8836a0"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

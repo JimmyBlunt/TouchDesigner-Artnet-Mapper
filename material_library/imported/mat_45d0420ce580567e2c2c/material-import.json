@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_45d0420ce580567e2c2c",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Rainbow Ribbon/Rainbow Ribbon.fs",
+  "source_sha256": "5af12b6d2c820377c55fea456bfd211a38cf779e26f7dcfe90f6816749bc00ad",
+  "imported_file": "Rainbow Ribbon.fs",
+  "imported_files": {
+    ".info": "9a7e115b31445b62fdcb897c3dc6e586a6748587ffcc8656308cd5e8f4c42372",
+    "Rainbow Ribbon.fs": "5af12b6d2c820377c55fea456bfd211a38cf779e26f7dcfe90f6816749bc00ad",
+    "thumbnail.jpg": "963485fa30261cde0a2f806e64173caa845204a775013551279f7a319590400a"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

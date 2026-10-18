@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_1a9623af68a53294cd7e",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Concentrique/fragment.fs",
+  "source_sha256": "e6a0765fee2de1ff3ecfd74f71b1a092a4f50311afd775d044bb403b58f3915e",
+  "imported_file": "fragment.fs",
+  "imported_files": {
+    ".info": "25e42bed218a9205c7610dca15151b66d6e36a3d6d37c2b5ebd956ab08e588bf",
+    "fragment.fs": "e6a0765fee2de1ff3ecfd74f71b1a092a4f50311afd775d044bb403b58f3915e",
+    "thumbnail.png": "d2b1648e01189afc7e35da698cf1ef27bc257c731831eea516a68ab5e21c30c7"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

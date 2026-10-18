@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_c546331d01215c483bf0",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Fractal Doodle/Fractal Doodle.fs",
+  "source_sha256": "da12f04de3faf93dfd9e5c41e1d98c9e732bd057f974b070dffb1ae6696d966a",
+  "imported_file": "Fractal Doodle.fs",
+  "imported_files": {
+    ".info": "454369b3932a16a399d046990ecaecbdfe6e09ac69b05dd97945d08330751695",
+    "Fractal Doodle.fs": "da12f04de3faf93dfd9e5c41e1d98c9e732bd057f974b070dffb1ae6696d966a",
+    "thumbnail.jpg": "b10d833e4198dcf9919452e31eb5a2cbc3fccab7d407ded0ffc0bfcb7c4bb84f"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

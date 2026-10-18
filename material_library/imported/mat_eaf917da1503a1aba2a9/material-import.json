@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_eaf917da1503a1aba2a9",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Ribbons/Ribbons.fs",
+  "source_sha256": "5f7f3a2a2017db2253318eb618004529be572e1ebf36d8cf22ac27323597033c",
+  "imported_file": "Ribbons.fs",
+  "imported_files": {
+    ".info": "892498735184d1fa60e93f7ef4c3a476f3cb7413075a2b914bea981838d0d7e7",
+    "Ribbons.fs": "5f7f3a2a2017db2253318eb618004529be572e1ebf36d8cf22ac27323597033c",
+    "thumbnail.jpg": "684bcfa87e0796d1989fd9c073b29bdf2fae95061120f5bcff6f37271eba5f90"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

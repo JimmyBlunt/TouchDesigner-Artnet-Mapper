@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_fcb806ba84dbfaf701da",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Noise Wavelet/Noise Wavelet.fs",
+  "source_sha256": "97de96b1e87ebe13765e043a661b67bc744dd73c682af5d6a18fb3c3cc1bb986",
+  "imported_file": "Noise Wavelet.fs",
+  "imported_files": {
+    ".info": "060aa048867fb6396ca0b86fd15f3518be58c3ffadb8369345f341c6582433a0",
+    "Noise Wavelet.fs": "97de96b1e87ebe13765e043a661b67bc744dd73c682af5d6a18fb3c3cc1bb986",
+    "thumbnail.jpg": "1b96244922cfd023aca91c48ea3af9f169e87ba45911642bda8911592f0474a9"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

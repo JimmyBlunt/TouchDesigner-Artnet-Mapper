@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_8483cb3fbbd59c88f936",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Warp Drive/warp.fs",
+  "source_sha256": "4031fc1e9b37ca7f0a2c4be723a38d39c67a69a5af6b69975296b573bc63152e",
+  "imported_file": "warp.fs",
+  "imported_files": {
+    ".info": "9107121f311282427c230eeec478c666b08e39e3ff57a62f6dd5cd89e04c19c4",
+    "thumbnail.png": "bbf8a5d96e3a2c5ba0a3adf64d6124ec6eebbdba86d411d644848497b15e3b51",
+    "warp.fs": "4031fc1e9b37ca7f0a2c4be723a38d39c67a69a5af6b69975296b573bc63152e"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e74c735d8d87f2ec254c",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/PolkaDots2/PolkaDots2.fs",
+  "source_sha256": "1106c3b355a08ae00fdde8e82bb81e5de0e13aba208f1f0afd9a01f9706957e3",
+  "imported_file": "PolkaDots2.fs",
+  "imported_files": {
+    ".info": "54e8ce2b494e205e389b682c8368b70aea6bd36958099271083f9992f1656c9f",
+    "PolkaDots2.fs": "1106c3b355a08ae00fdde8e82bb81e5de0e13aba208f1f0afd9a01f9706957e3",
+    "thumbnail.jpg": "a37f1a8aa687098cb397421db17f07d233440da11fae2debb37cd86bcc4c0879"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

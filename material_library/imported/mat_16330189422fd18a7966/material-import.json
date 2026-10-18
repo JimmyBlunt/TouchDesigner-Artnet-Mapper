@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_16330189422fd18a7966",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Python Swirl/Python Swirl.fs",
+  "source_sha256": "4674bb01a0a24516f6055ddfca99884c21498b116bd65faf4a70eed77b638dbb",
+  "imported_file": "Python Swirl.fs",
+  "imported_files": {
+    ".info": "37a2fdac3ef77189f65ac48e10aa3b6b35624645154a5c927b837ff764f2d577",
+    "Python Swirl.fs": "4674bb01a0a24516f6055ddfca99884c21498b116bd65faf4a70eed77b638dbb",
+    "thumbnail.jpg": "65863fdedbddb126b80ea75d4fb547dfce7a455b08a8c5f2b9fcc196ff6b2e3b"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

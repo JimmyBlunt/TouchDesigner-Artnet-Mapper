@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_73772c6025e1eec152c0",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/Bricks/Bricks.fs",
+  "source_sha256": "b41bfe069a2d84f34e03259ab7598a522d83918b70aac8e727ea2f9d611cb538",
+  "imported_file": "Bricks.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "Bricks.fs": "b41bfe069a2d84f34e03259ab7598a522d83918b70aac8e727ea2f9d611cb538",
+    "thumbnail.png": "e7a980ac6ca64aba5f9c0f399bc9336cc3701b8669f1dbf845cca30e2e5a7b37"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

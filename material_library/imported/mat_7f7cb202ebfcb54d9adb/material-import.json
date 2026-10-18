@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_7f7cb202ebfcb54d9adb",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/PNoiseWave/PNoiseWave.fs",
+  "source_sha256": "8efc4f1f454702c82927b9a8785a5a3861e57931efe05bea7b14cee51a0c77cd",
+  "imported_file": "PNoiseWave.fs",
+  "imported_files": {
+    ".info": "d09e6912eeff9400ad15ca3331af4487dea764da9e3362e656728237e90d3529",
+    "PNoiseWave.fs": "8efc4f1f454702c82927b9a8785a5a3861e57931efe05bea7b14cee51a0c77cd",
+    "thumbnail.jpg": "9053f0b8fb0cef8852d30f05204f8ad8890a56763e8676df7b352c3cd59dc8f7"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_a414282855171c951390",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/PolygonVoronoi/polygonvoronoi.fs",
+  "source_sha256": "8d9600b4d0e6acc6ec7ac0c0557ef77e335fc567095ed2a24f15d930a3fbbd38",
+  "imported_file": "polygonvoronoi.fs",
+  "imported_files": {
+    ".info": "b5d3c9e8e31cadeb2a95d163d975f43dd26a98d217b1b071cfb4be9b3ac49af8",
+    "polygonvoronoi.fs": "8d9600b4d0e6acc6ec7ac0c0557ef77e335fc567095ed2a24f15d930a3fbbd38",
+    "thumbnail.png": "ed327ea4b472ba152d40d62568de4f26522afc8f54684d5d5f5fd0bcf3e950bf"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

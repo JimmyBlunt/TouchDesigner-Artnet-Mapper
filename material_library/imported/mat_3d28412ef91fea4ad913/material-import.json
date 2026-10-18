@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_3d28412ef91fea4ad913",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/NoiseRings/NoiseRings.fs",
+  "source_sha256": "ee0578426653bc53efff6cc240a58f3ff8d1b6baa7d5b388dc0c4a774ebd6fc2",
+  "imported_file": "NoiseRings.fs",
+  "imported_files": {
+    ".info": "a2bc044413e26a0edbe5ea4ae1bfeb69836a6eb1d51b5d87ab20c5bd7fd2e431",
+    "NoiseRings.fs": "ee0578426653bc53efff6cc240a58f3ff8d1b6baa7d5b388dc0c4a774ebd6fc2",
+    "thumbnail.jpg": "59e3b47f05e80f605cb6f369323392ba8adb1dab163e4233c108006f0eeb3d30"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

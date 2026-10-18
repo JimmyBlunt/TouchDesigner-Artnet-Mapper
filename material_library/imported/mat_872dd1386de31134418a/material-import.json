@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_872dd1386de31134418a",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/MadNoise/MadNoise.fs",
+  "source_sha256": "29d2c7bccc98892ff5c300a074b8baa0b1842f36668c524c5b61925790dcf2f8",
+  "imported_file": "MadNoise.fs",
+  "imported_files": {
+    "g_BW.png": "4d53078388e6a0e97023c6d529205651609c25226d538997e831488f01e6f976",
+    "g_camel.png": "92bcde04142e72ef828429f246721fa4e71fe9df33e349189e40a183b9fdc236",
+    "g_halfscales.png": "676b4bf476930ade5f6e22b7c7dbeab55a4ad23ca8bbd4d168871f6b332d722d",
+    "g_multi.png": "145e7e1edb535dd9b4d73541dd962f13cde4e695ae5e235d350ffdb8ff55b638",
+    "g_noised2.png": "cbececb0716920433f86a7e622582fe4ee92f5390290538322d998b5e4e16d69",
+    "g_reverse.png": "d1c535a937334c59e5b5780a23cf65ed4554c8b3e072b69dbf18dce94c5e1e85",
+    "g_scales.png": "e704df83cfc40e1966b432555fdbf5bda7c0de9819b278264050ff3b4e5e2f54",
+    "g_scales_dense.png": "5380359bca4482ce3f419e42ef6486d630c9ce68d8c5961b17a1d1b701b931f2",
+    "MadNoise.fs": "29d2c7bccc98892ff5c300a074b8baa0b1842f36668c524c5b61925790dcf2f8",
+    "thumbnail.jpg": "7aa6db3fa93da6e706defa15b5ac5143f939e39a0f230509d7861f1598e206f0"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_be6f2d93aaaedb71abc8",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/[recode]_Lewitt/[recode]_Lewitt.fs",
+  "source_sha256": "a9a33e692ed3b48db0a4d8b727a9ee8488612006d22adff2264a22eb79e5f5d0",
+  "imported_file": "[recode]_Lewitt.fs",
+  "imported_files": {
+    ".info": "c88892606100705b9c41ed1efdef8ef0e1b6a17121cc700ca561da9ba4628985",
+    "[original]_Sol_Lewitt_Wall_Drawing_NO_565.jpg": "0a5fd2d265ca85ce7da2eebcfe54604dda637cfb5d9f4483310e7fda91a1e79a",
+    "[recode]_Lewitt.fs": "a9a33e692ed3b48db0a4d8b727a9ee8488612006d22adff2264a22eb79e5f5d0",
+    "thumbnail.jpg": "ae0eaa59e281817658dead76ef9913d0f9b7dc4191f811eb62137eaa149ecec2"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_6dc1f92a18ceb88a8334",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Cross Zoom/Cross Zoom.fs",
+  "source_sha256": "1e1b6c1a11c89419947d3764d1070b6d90b8599b5e3637e9d081679646a7067c",
+  "imported_file": "Cross Zoom.fs",
+  "imported_files": {
+    ".info": "2388d6ab0aefa85b1d934bfeaa0653c8a2a295fb56876b9c2ebccd2feb8b45c9",
+    "Cross Zoom.fs": "1e1b6c1a11c89419947d3764d1070b6d90b8599b5e3637e9d081679646a7067c",
+    "thumbnail.jpg": "9b9e1b829fb940bc7c9d2b58e678fac239a829a6c7253c2325b8526221146d9a"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

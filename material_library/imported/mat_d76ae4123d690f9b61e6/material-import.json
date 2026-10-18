@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_d76ae4123d690f9b61e6",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/[recode]_Geo_Met_Me/[recode]_Geo_Met_Me.fs",
+  "source_sha256": "b07acc335e56d4fdfa9690e6b6756bdef1e00ad112725aa0502bfa789490dad3",
+  "imported_file": "[recode]_Geo_Met_Me.fs",
+  "imported_files": {
+    ".info": "2d1aff7a51b1dcffcb723e4746d9422bf4829ac8b6a165b876ae96ef03a3c550",
+    "[original]_Geo_Met_Me_Square_Spiral.jpg": "6bac47f39c345ff5efc8af8d352cb9a3293c6bb77775b3a9db06ab2f1c5cd4f1",
+    "[recode]_Geo_Met_Me.fs": "b07acc335e56d4fdfa9690e6b6756bdef1e00ad112725aa0502bfa789490dad3",
+    "thumbnail.jpg": "82fcc11cf39099b3784c4befeb00bb8fc6983d811143955ea59e1e8c5162542f"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

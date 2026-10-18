@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_5b33fbd95267862b22ef",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Disco Tunnel/Disco Tunnel.fs",
+  "source_sha256": "086dfdcfd99b84e1a1f3d92d810b5d072d91809487dccb91f5866b88deb6487a",
+  "imported_file": "Disco Tunnel.fs",
+  "imported_files": {
+    ".info": "360e2d819587e4901edce23e40acd5b6ec82abe14332042a51f09fe514d9c6e5",
+    "Disco Tunnel.fs": "086dfdcfd99b84e1a1f3d92d810b5d072d91809487dccb91f5866b88deb6487a",
+    "thumbnail.jpg": "9ffbb51ce9448bf283cb7f965f37929db474540d2072cd380f067d5b6deea73a"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

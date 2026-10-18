@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_d8fb51216461b485cc2b",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/SinePuke-Chindogu/SinePuke Chindogu.fs",
+  "source_sha256": "9886a752a880a50ab99377e6252e6f377893aa73e02fea0424cc465a14dc7048",
+  "imported_file": "SinePuke Chindogu.fs",
+  "imported_files": {
+    ".info": "35868bef43947156fa2820083a8527c4450a18fbe5baa3c3418d3ca515a7feb6",
+    "SinePuke Chindogu.fs": "9886a752a880a50ab99377e6252e6f377893aa73e02fea0424cc465a14dc7048",
+    "thumbnail.png": "39c5ab154138c21e9f54e13d2621bf592f66e7ce35b514a7be12d284abefa35c"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

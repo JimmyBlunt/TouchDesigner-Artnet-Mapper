@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_646ecf67a4493838537f",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Alien Hive/Alien Hive.fs",
+  "source_sha256": "6c3caf1cd83c01f93fc7b7d0ef264b259554a3b5e1b7f7d4b80dbc5fb039d961",
+  "imported_file": "Alien Hive.fs",
+  "imported_files": {
+    ".info": "dd4bab3098bdb4aebaaab90f2269eade08e6993d793c9060e5ca33c3cf0fbbc8",
+    "Alien Hive.fs": "6c3caf1cd83c01f93fc7b7d0ef264b259554a3b5e1b7f7d4b80dbc5fb039d961",
+    "thumbnail.jpg": "279f709e79d03488a52a4f0ab7a0893311a55fa208a53c58481ea276c5dd8103"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

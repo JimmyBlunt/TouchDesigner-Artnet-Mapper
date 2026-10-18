@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_b067628be07900520ca1",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/NoiseGrid/NoiseGrid.fs",
+  "source_sha256": "64b16fa2280baa30b01e66ee9f28dd06531bb79a1337f0e7ebf781996dd475df",
+  "imported_file": "NoiseGrid.fs",
+  "imported_files": {
+    ".info": "9238bf4e4c8b40cd9af96485ad266365a1035bb6084252b5fcec1a00e26c3e69",
+    "NoiseGrid.fs": "64b16fa2280baa30b01e66ee9f28dd06531bb79a1337f0e7ebf781996dd475df",
+    "thumbnail.jpg": "5248b4329bbc852a21a9762a92a2952c0cf5f30826c6bcdac24e81356c205df0"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

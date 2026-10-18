@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_45781a795c6af542a58f",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/AudioReactive/AudioReactive.fs",
+  "source_sha256": "2c99676255d06875e5b57c0746835814ddae774f941a626173b5c2bc3da4465d",
+  "imported_file": "AudioReactive.fs",
+  "imported_files": {
+    ".info": "51d7d8f4548edc33ae67e68864baf400c2b8cbc444a44e164a9cd43ce3eea6a7",
+    "AudioReactive.fs": "2c99676255d06875e5b57c0746835814ddae774f941a626173b5c2bc3da4465d",
+    "thumbnail.jpg": "ce4bd3d97d75a3fc5d890ff5340d4c4b1c1d5b6f6135e624c56fc6d3967587d7"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

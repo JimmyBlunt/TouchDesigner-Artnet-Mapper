@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_0e4907da45f842475dbe",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Abyss of Pixels/Abyss of Pixels.fs",
+  "source_sha256": "602ab19056c89de5acb7aea214acd17892b69814fa95a9eb652eac1c983ee174",
+  "imported_file": "Abyss of Pixels.fs",
+  "imported_files": {
+    ".info": "c4bead1c0949e6d0db04abd4391829c0e9a0fa12b181b988b7144af46cb5e5e0",
+    "Abyss of Pixels.fs": "602ab19056c89de5acb7aea214acd17892b69814fa95a9eb652eac1c983ee174",
+    "thumbnail.jpg": "cafd84e8a973c01292226eef86b23554ce8d758bd7f8eca23c142baa2bceaca1"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

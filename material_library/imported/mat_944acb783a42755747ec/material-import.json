@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_944acb783a42755747ec",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Simple Circles/Simple Circles.fs",
+  "source_sha256": "51878a19cae7c45942d1f79db5f75c88f72dbd892f5b4474622ef4b4cd92664c",
+  "imported_file": "Simple Circles.fs",
+  "imported_files": {
+    ".info": "7fa4f1923e515fde022cea8653d5e34ac644c1c01ca657af988f078cabd2d961",
+    "Simple Circles.fs": "51878a19cae7c45942d1f79db5f75c88f72dbd892f5b4474622ef4b4cd92664c",
+    "thumbnail.jpg": "4c63b7aad889e830f21575cf5f30b32c1d82a9d715b4477cf4774fe6cd8119b3"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

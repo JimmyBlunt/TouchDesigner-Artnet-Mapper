@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_906200885ef1b45d2821",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Fractal 62/Fractal 62.fs",
+  "source_sha256": "0e1f19261d91aa66c46bdd06aa9b0f174f2f4e662b0b4b7fb46d41eda8a7e4f7",
+  "imported_file": "Fractal 62.fs",
+  "imported_files": {
+    ".info": "7a0268d32f7a9aab19e2b9b75508cf88a2de92750ab9ad434083dd9ddeeff45e",
+    "Fractal 62.fs": "0e1f19261d91aa66c46bdd06aa9b0f174f2f4e662b0b4b7fb46d41eda8a7e4f7",
+    "thumbnail.jpg": "da58dddc6b7b5176b8f9476248a615421fe89aaadfd5c625ac3880df9054dc85"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

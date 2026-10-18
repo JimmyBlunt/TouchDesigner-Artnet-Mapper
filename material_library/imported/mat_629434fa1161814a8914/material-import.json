@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_629434fa1161814a8914",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Spacetime Fracture/Spacetime Fracture.fs",
+  "source_sha256": "d0d366f13652f7f881b7f56adb5b7f6699783edcdbc6e4e6c9dba4e803bfd7ff",
+  "imported_file": "Spacetime Fracture.fs",
+  "imported_files": {
+    ".info": "162a75b1defb075a4783c1c0e596b6cac8a565242b7ee5e1a0703ca7c8e9730d",
+    "Spacetime Fracture.fs": "d0d366f13652f7f881b7f56adb5b7f6699783edcdbc6e4e6c9dba4e803bfd7ff",
+    "thumbnail.jpg": "00127479b1802883a0dc248adab011854f2f756e997a793a756b200d5c7d717f"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

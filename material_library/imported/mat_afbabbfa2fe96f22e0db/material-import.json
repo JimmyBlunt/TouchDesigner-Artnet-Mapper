@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_afbabbfa2fe96f22e0db",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Akira Explosion Effect/AkiraExplosionEffect.fs",
+  "source_sha256": "5d2c8ff031322f5993e7dbe986c9449d4dc7ad808820abbdb58707f76776a6d7",
+  "imported_file": "AkiraExplosionEffect.fs",
+  "imported_files": {
+    ".info": "5e82b26dd25dfc47bf03dee21363a02b327a14bf19145d4ee2e71c8bc2416281",
+    "AkiraExplosionEffect.fs": "5d2c8ff031322f5993e7dbe986c9449d4dc7ad808820abbdb58707f76776a6d7",
+    "thumbnail.png": "e01f2920029db4fb6380807e22e83553013dd0579533272723ef6f1ce3e09b6c"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_7ec8ea44022b3c0b8a09",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/SpinningSquares/SpinningSquares.fs",
+  "source_sha256": "3bfcecdbc8eda84334087ecd33f63750c11b8858f475465c940d4b09a15523b1",
+  "imported_file": "SpinningSquares.fs",
+  "imported_files": {
+    ".info": "11cba8baf8b835a070c713048d4d681065da48ecf547fa1263d4481028e76b8e",
+    "SpinningSquares.fs": "3bfcecdbc8eda84334087ecd33f63750c11b8858f475465c940d4b09a15523b1",
+    "thumbnail.jpg": "c5ec5bce116e34d0bf40ea7e9443ec33a7743f59e90329dcf816da9493bdc6ae"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

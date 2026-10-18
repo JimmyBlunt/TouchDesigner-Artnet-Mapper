@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_183af79949060fe028a5",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Hip Squares/Hip Squares.fs",
+  "source_sha256": "8556a6d6c012f726819b52a5e81fca5dea6f9af572af9b4509007deb28131010",
+  "imported_file": "Hip Squares.fs",
+  "imported_files": {
+    ".info": "cb1e5330921dc75c55726a25db9c904b0a707072258ec0147230f930706ab25e",
+    "Hip Squares.fs": "8556a6d6c012f726819b52a5e81fca5dea6f9af572af9b4509007deb28131010",
+    "thumbnail.jpg": "b26542fbbd77ad0d319449df0ac53b375dc243bb485d500e71022a252a32c38f"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

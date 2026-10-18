@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_9f5f57be0d84eac83f0b",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Demos/SDF/_SDFGrid/_SDFGrid.fs",
+  "source_sha256": "91e27351ea62e70ab07ce96440059a098c7f0a68c1a4630a5beae92baa230118",
+  "imported_file": "_SDFGrid.fs",
+  "imported_files": {
+    "_SDFGrid.fs": "91e27351ea62e70ab07ce96440059a098c7f0a68c1a4630a5beae92baa230118",
+    "thumbnail.png": "2ab83a5fbc67f35353572db14566b70d8d4ce221a9cfc3dc950a9c58506ce097"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

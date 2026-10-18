@@ -1,5 +1,9 @@
 # TouchDesigner-Shortcuts
 
+Aktueller Stand: v1.0.0, 18. Oktober 2026. Das vollständige Bedienhandbuch mit
+Kurzinfos, Ablaufdiagrammen und Beispielen steht im
+[Release-Handbuch](release-v1.0.0/index.html).
+
 Diese Kürzel öffnen ausschließlich Bedienfelder und Vorschauen. Sie starten
 keine DMX-Ausgabe, wechseln keinen Effekt und speichern das Projekt nicht.
 
@@ -20,6 +24,7 @@ Während ein Textfeld aktiv ist, kann das Textfeld den Tastendruck abfangen.
 | `Strg+Umschalt+0` | GICO PORT CONFIG | Globale Universen pro Port sowie feste GICO-Portblöcke konfigurieren und vor dem sicheren Anwenden validieren. |
 | `Strg+Umschalt+L` | LAYOUT + 2D EDITOR | Gemeinsamen Layout- und 2D-Fixture-Editor öffnen. |
 | `Strg+Umschalt+G` | GUIDED SCAN | Geführten Scan vorbereiten und Messfortschritt prüfen. Das Öffnen startet keinen Scan. |
+| `Strg+Umschalt+S` | LED SEARCH | Controller-Ausgänge laden und eine lokale LED gezielt prüfen. Das Öffnen startet noch keinen Leuchttest. |
 | `Strg+Umschalt+C` | CONTROLLER PORTS | Generische Controller und individuelle Portkapazitäten als Entwurf bearbeiten. |
 
 Die Übersicht (`Strg+Umschalt+9`) bietet zusätzlich pro Zeile einen **OPEN**-Button.
@@ -30,7 +35,9 @@ mit dem Pfad; kein anderer Dialog und keine Ausgabe werden stattdessen gestartet
 Die neuen Ziele sind `/project1/layout_scene_editor/ui_panel`,
 `/project1/guided_scan/ui_panel` und
 `/project1/multi_controller_output/gico_port_config/controller_ports/ui_panel`.
-Die bisherige Ziffernbelegung 0–9 bleibt unverändert. L/G/C waren in der geprüften
+Die LED-Suche liegt unter `/project1/guided_scan/led_search_panel`.
+Die bisherige Ziffernbelegung 0–9 bleibt unverändert. L/G/S/C sind zusätzliche
+projektinterne Shortcuts. L/G/C waren in der früheren geprüften
 projektinternen Shortcut-/Keyboard-Inventur frei; native Tastatur-/Fokuskonflikte
 müssen bei der Live-Abnahme geprüft werden. Installation durch
 `pixelblaze_mapper/build_shortcut_hub.py`; der Builder speichert das Projekt nicht.
@@ -58,7 +65,16 @@ Rohvorschauen für Auswahl und Diagnose.
 Nach Änderungen das `.toe`-Projekt mit `Strg+S` speichern, damit Shortcuts und
 Bookmarks im Projekt erhalten bleiben.
 
-## Foto-Kalibrierung und Universen
+## Aktuelles Mapping und historische Foto-Kalibrierung
+
+Der aktuelle LED-Datenpfad umfasst **10.330 Quellplätze**. Das ist eine
+Adresskapazität mit erhaltenen Lücken, nicht die Anzahl neu vermessener Punkte.
+Panel 8 verwendet 299 Plätze und 296 gemessene Positionen; die lokalen IDs 1,
+61 und 93 bleiben schwarz. Die tatsächlich aktiven Routen stehen im Router.
+Panelbezeichnungen aus alten Messungen sind keine zuverlässigen Controller-IDs.
+
+Die folgenden Angaben beschreiben die historische Foto-Kalibrierung und sind
+keine Anleitung, den aktuellen Panelaufbau auf den damaligen Stand zurückzusetzen.
 
 Die vollständige Einzelpunkt-Kalibrierung stammt aus
 `PixelblazeMapper_WORKING_PHASE2_PHOTO.33.toe` vom 16.08.2026, 09:54 Uhr.
@@ -67,10 +83,10 @@ editierbare X-/Y-Werte. Die Werte liegen am COMP
 `/project1/pixelblaze_mapper/preview3d/phase2_interaction_background_prototype`
 auf der Parameterseite **Einzelfaecher**.
 
-Im aktuellen 3.740-Pixel-Mapping beginnen die zehn Rückwandfelder bei
-Quellpixel 1180. Ab dort folgen exakt zehn Blöcke mit je 256 Pixeln. Dieser
-Wert gehört zur Vorschau-/Koordinatenstruktur und darf nicht mit einem
-Art-Net-Startuniversum verwechselt werden.
+Im historischen Mapping von August 2026 lagen zehn gleich große Rückwandblöcke
+hintereinander. Diese frühere Gleichteilung gilt nicht für die inzwischen
+einzeln vermessenen Panels. Aktuelle Quellstarts und Anzahlen aus der
+Controller-/Segmentkonfiguration beziehungsweise dem Layout ablesen.
 
 Art-Net-Universen bestimmen ausschließlich, an welchen Empfänger die bereits
 berechneten RGB-Werte gesendet werden. Eine geänderte Universe-Nummer kann die

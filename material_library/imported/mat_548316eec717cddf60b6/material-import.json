@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_548316eec717cddf60b6",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Quad Borders/Borders.fs",
+  "source_sha256": "f84b7a503ebf9504ff1043d9a157d920c90d66602c022ade014b446e694f9818",
+  "imported_file": "Borders.fs",
+  "imported_files": {
+    ".info": "1101e05c03a84c8fa79afda858bc3b84a0ffc98fb884d7c6a21148abd7d8d008",
+    "Borders.fs": "f84b7a503ebf9504ff1043d9a157d920c90d66602c022ade014b446e694f9818",
+    "thumbnail.png": "3549a2fbbe6c3e1dbc11919846ea8b621c218f54f9f5bafbeab6e2e36286ebb8"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

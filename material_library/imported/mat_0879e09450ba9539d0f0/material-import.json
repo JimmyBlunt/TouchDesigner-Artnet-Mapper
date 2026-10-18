@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_0879e09450ba9539d0f0",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Carnaval sequencer/Carnaval sequencer.fs",
+  "source_sha256": "8f835fcc22adb8ccf8ba728dbbd0bb29b255a2fbf9d4200cdc769a09bc8ce151",
+  "imported_file": "Carnaval sequencer.fs",
+  "imported_files": {
+    ".info": "93876b7b8546c1003c3e7393fede5199f16766f4da5ae6b02ba1597f00f12194",
+    "Carnaval sequencer.fs": "8f835fcc22adb8ccf8ba728dbbd0bb29b255a2fbf9d4200cdc769a09bc8ce151",
+    "thumbnail.jpg": "ec6574b1083050d9fb7f671fe0e7369dfbfbd85cc2e78743df76b2a682b2cbdf"
+  },
+  "kind": "madmapper_glsl",
+  "compatibility": "unsupported"
+}

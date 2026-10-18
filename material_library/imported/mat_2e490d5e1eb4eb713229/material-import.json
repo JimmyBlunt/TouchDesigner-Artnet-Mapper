@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_2e490d5e1eb4eb713229",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Caustic Fract/causticMutant.fs",
+  "source_sha256": "1b455189438094757c1381b3675d1ca46a8aec5fb4ae688b701dde5192f5d49b",
+  "imported_file": "causticMutant.fs",
+  "imported_files": {
+    ".info": "c95cf194b74df64b748d47c9cd720b1d1447e197a45bb34364a4a8d42000e3df",
+    "causticMutant.fs": "1b455189438094757c1381b3675d1ca46a8aec5fb4ae688b701dde5192f5d49b",
+    "thumbnail.png": "d38c06089c26562b5bd3574eb1cb111a5928973249ecd36fe130ca87220b0116"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

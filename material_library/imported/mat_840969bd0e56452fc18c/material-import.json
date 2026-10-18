@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_840969bd0e56452fc18c",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Feedback Grid/Feedback Grid.fs",
+  "source_sha256": "aa3d57ca77cd9e413a64ef0f2a70bf02ca6bedc4b40b1360eb2691202fef61b9",
+  "imported_file": "Feedback Grid.fs",
+  "imported_files": {
+    ".info": "11a8c7949a9a1316a072f7bcf46a7da011df6c166099fff34af424719d7126d9",
+    "Feedback Grid.fs": "aa3d57ca77cd9e413a64ef0f2a70bf02ca6bedc4b40b1360eb2691202fef61b9",
+    "thumbnail.jpg": "cdc84e1a597d7f2151a624ba17964de11789700c3ead9c796b3f5db076fddb64"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

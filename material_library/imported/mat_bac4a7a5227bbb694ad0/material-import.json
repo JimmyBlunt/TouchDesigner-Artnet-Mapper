@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_bac4a7a5227bbb694ad0",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/AnimatedMandala/AnimatedMandala.fs",
+  "source_sha256": "3f7a490fd5fb5b70c9f02ada6be704119d642ae8978e4dd09b027fc489640e24",
+  "imported_file": "AnimatedMandala.fs",
+  "imported_files": {
+    ".info": "d9c1bebd70419283c5a2153bc0f1a5025104cc75a3516ff1033b07ab23c577c6",
+    "AnimatedMandala.fs": "3f7a490fd5fb5b70c9f02ada6be704119d642ae8978e4dd09b027fc489640e24",
+    "thumbnail.jpg": "c9ce57fe80c75531a275ad3bb6026315cfaa04e231b3f2c1b77aa7ac51ca71c5"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_f672060daf6eabb18947",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Silicon/Silicon.fs",
+  "source_sha256": "d9997b107de5754cd35aad74f0a400cebc1064891c4a52fb489e79a731c0d922",
+  "imported_file": "Silicon.fs",
+  "imported_files": {
+    ".info": "42b2e4e5e89009f7a6417b794badc910edab4bdcd2d710919d79a2c899b222cc",
+    "Silicon.fs": "d9997b107de5754cd35aad74f0a400cebc1064891c4a52fb489e79a731c0d922",
+    "thumbnail.jpg": "9cd012ca6f9cda488e19a6124db02731e7b9911bdafdbe0b48669845e64323c5"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

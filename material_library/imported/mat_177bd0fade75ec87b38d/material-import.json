@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_177bd0fade75ec87b38d",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Water/water.fs",
+  "source_sha256": "06c19a2442439d13412cc1820db49157f7611e85e19db7fab580f55e74958d1d",
+  "imported_file": "water.fs",
+  "imported_files": {
+    ".info": "d372ae280dc72c4a3ea2c06fcd52386e4e0b593af8611044d6fd5df4ee7e952f",
+    "thumbnail.png": "7b4be5dd4ecc86830e4d1f0479ad87eabb497a8d37944cff5063fd9bbb6c2ab2",
+    "water.fs": "06c19a2442439d13412cc1820db49157f7611e85e19db7fab580f55e74958d1d"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

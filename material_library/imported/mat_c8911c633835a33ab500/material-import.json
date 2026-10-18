@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_c8911c633835a33ab500",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Rayleigh/Rayleigh.fs",
+  "source_sha256": "0129cad6e0a50f5b9564a60bf26abb753726fd75570c2dd4cb67644ae6932c20",
+  "imported_file": "Rayleigh.fs",
+  "imported_files": {
+    ".info": "cb5e3c29d82c24318d8703303afd075131a7d37f58279e24167df935380110ca",
+    "Rayleigh.fs": "0129cad6e0a50f5b9564a60bf26abb753726fd75570c2dd4cb67644ae6932c20",
+    "thumbnail.png": "17616f81fafedfc84544e11da505f2b52be9b17b0dec40fd6504b8c500304606"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e1ecb2cfe05798a4b143",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/Line Patterns/Line Patterns.fs",
+  "source_sha256": "e5c64899cb46aaca32f2e83a1d985d516fd743810c82b90cdeda54a05d02f566",
+  "imported_file": "Line Patterns.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "Line Patterns.fs": "e5c64899cb46aaca32f2e83a1d985d516fd743810c82b90cdeda54a05d02f566",
+    "thumbnail.png": "681c1562322ea1bb5d6d4aebebb0f7c785f483e37a3711b4746775f070ea8e88"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

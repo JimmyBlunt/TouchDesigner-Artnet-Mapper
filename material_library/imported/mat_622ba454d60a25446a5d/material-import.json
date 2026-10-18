@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_622ba454d60a25446a5d",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/[recode]_The_Chemical_Brothers/[recode]_The_Chemical_Brothers.fs",
+  "source_sha256": "522612832904a49014e59ffb24dc83cadcdef7feb81d3fbd28ed512c361cb060",
+  "imported_file": "[recode]_The_Chemical_Brothers.fs",
+  "imported_files": {
+    ".info": "6f898549dcd6cd9ce39980bdd5ff4407eac9f83459238a9db8480355a604977d",
+    "[original]_The_Chemical_Brothers_Dig_Your_Own_Hole.jpg": "a8603c2808422791f6067dc4263f084bc9ec8815ce34e9cfda1d88e322d22b36",
+    "[recode]_The_Chemical_Brothers.fs": "522612832904a49014e59ffb24dc83cadcdef7feb81d3fbd28ed512c361cb060",
+    "thumbnail.jpg": "804505109f818745e80d626773e09c1631add4705c281c06115b816053119fab"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

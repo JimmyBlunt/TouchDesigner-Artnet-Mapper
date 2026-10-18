@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_b4f480d2f18a975d28ef",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/XORShiftNoise/XORShiftNoise.fs",
+  "source_sha256": "fad28c93468276c5919278f6e9bc51aa369c9031c852ebb0b09fec1f84635c5a",
+  "imported_file": "XORShiftNoise.fs",
+  "imported_files": {
+    ".info": "fed5c88a300595cc8d72b42e83fc4b41a778daabc7d75f00242801b36bc983be",
+    "thumbnail.jpg": "7c79185ba1175dd1242b469b983a0470dbf590bf5d5c757863ee6c88054e6151",
+    "XORShiftNoise.fs": "fad28c93468276c5919278f6e9bc51aa369c9031c852ebb0b09fec1f84635c5a"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

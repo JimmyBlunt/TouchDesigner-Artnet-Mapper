@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_3de7fe0ae226a8eb5028",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Crumpled/Crumpled.fs",
+  "source_sha256": "cb9593bcb28d89015e65950927b03de75e5197230119ea50a838d4724e39af73",
+  "imported_file": "Crumpled.fs",
+  "imported_files": {
+    ".info": "971cf016986e3d4ed3c9e745a6502f0183a6f9fdcdb56d2ab0be6b6e3cc66a2a",
+    "Crumpled.fs": "cb9593bcb28d89015e65950927b03de75e5197230119ea50a838d4724e39af73",
+    "thumbnail.jpg": "492bdc56c67987ebb1e74b3a43a44d578542d953f5e3dce0d1a300b288129a95"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

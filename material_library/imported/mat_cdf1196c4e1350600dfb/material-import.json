@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_cdf1196c4e1350600dfb",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/SuperSimplexNoise/SuperSimplexNoise.fs",
+  "source_sha256": "9a62e3a2a4953a92cdbfeab6744f7c16738232ba04188da03a859b8e209bdc9c",
+  "imported_file": "SuperSimplexNoise.fs",
+  "imported_files": {
+    ".info": "fa076b355e272abd4f708dc5d75d971f69556315765bd731c8c762b7606047a0",
+    "SuperSimplexNoise.fs": "9a62e3a2a4953a92cdbfeab6744f7c16738232ba04188da03a859b8e209bdc9c",
+    "thumbnail.jpg": "f3e24dd4bfb920a98af43b9c75ecbe9887951347b0259710b2c7f9a95439bbb8"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

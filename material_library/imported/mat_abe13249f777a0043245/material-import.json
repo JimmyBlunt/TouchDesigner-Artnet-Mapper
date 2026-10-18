@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_abe13249f777a0043245",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Rainbow Squares/Rainbow Squares.fs",
+  "source_sha256": "2244ebef43d1ec4fae137454f176f77c2d8c9bc9ccab16a00d59f4e72fbbf740",
+  "imported_file": "Rainbow Squares.fs",
+  "imported_files": {
+    ".info": "6e79a46b035ec02c48b95efaf34b52e583d39693dc64881f5a2bfe87ee60dae1",
+    "Rainbow Squares.fs": "2244ebef43d1ec4fae137454f176f77c2d8c9bc9ccab16a00d59f4e72fbbf740",
+    "thumbnail.jpg": "70d62e9a4a198d5d2f7448ee2428ce3d388f3b5d6ce2335e2fe7534d37f1fbc7"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

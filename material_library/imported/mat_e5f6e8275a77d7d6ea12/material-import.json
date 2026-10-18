@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e5f6e8275a77d7d6ea12",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/MovingHeadControl/MovingHeadControl.fs",
+  "source_sha256": "897e987a099b0916688e03c68153d8f75a6230b2f03d418471f022555942b4ac",
+  "imported_file": "MovingHeadControl.fs",
+  "imported_files": {
+    ".info": "269938005b61b2999b85de6f56460b780a261175890553a20749fa90b1796e0c",
+    "MovingHeadControl.fs": "897e987a099b0916688e03c68153d8f75a6230b2f03d418471f022555942b4ac",
+    "thumbnail.jpg": "c37a3f2cbd52f9e2a19d67cd861654823c3584071095f22e46f0787f07bc25aa"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

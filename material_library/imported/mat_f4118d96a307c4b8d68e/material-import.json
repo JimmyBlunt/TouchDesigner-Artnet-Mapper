@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_f4118d96a307c4b8d68e",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/Cellular/Cellular.fs",
+  "source_sha256": "33d2a5d957c84066c6cd9be32d7b85422b23a852d05c8f57cf1641c9abbdac16",
+  "imported_file": "Cellular.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "Cellular.fs": "33d2a5d957c84066c6cd9be32d7b85422b23a852d05c8f57cf1641c9abbdac16",
+    "thumbnail.png": "0dc2d5395005aa2a799e7919b0490dd77cdf6587c9aa70679f40dc9f86b3449b"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_0e3060e1885357ea93a9",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Lava Blobs/Lava Blobs.fs",
+  "source_sha256": "f3b0d77e5f1dedca25949ed1ff846d9e651f999c3782700e728f375d34c39cc0",
+  "imported_file": "Lava Blobs.fs",
+  "imported_files": {
+    ".info": "536e95117787d1433171e89f6011a83ebd6b419c398ed0186973e4952217bc2a",
+    "Lava Blobs.fs": "f3b0d77e5f1dedca25949ed1ff846d9e651f999c3782700e728f375d34c39cc0",
+    "thumbnail.jpg": "568264485ab3e334dda209089ddeb00b269e96ec788df96d18ee45f7431df6ac"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

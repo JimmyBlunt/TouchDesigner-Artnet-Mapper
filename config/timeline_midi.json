@@ -1,0 +1,134 @@
+{
+  "device": "",
+  "enabled": false,
+  "bindings": [
+    {
+      "label": "Regler 1",
+      "target": "brightness",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "mode": "absolute",
+      "source": null
+    },
+    {
+      "label": "Regler 2",
+      "target": "speed",
+      "minimum": 0.0,
+      "maximum": 4.0,
+      "mode": "absolute",
+      "source": null
+    },
+    {
+      "label": "Regler 3",
+      "target": "scale",
+      "minimum": 0.1,
+      "maximum": 4.0,
+      "mode": "absolute",
+      "source": null
+    },
+    {
+      "label": "Regler 4",
+      "target": "zoom",
+      "minimum": 0.1,
+      "maximum": 4.0,
+      "mode": "absolute",
+      "source": null
+    },
+    {
+      "label": "Regler 5",
+      "target": "intensity",
+      "minimum": 0.0,
+      "maximum": 2.0,
+      "mode": "absolute",
+      "source": null
+    },
+    {
+      "label": "Regler 6",
+      "target": "contrast",
+      "minimum": 0.0,
+      "maximum": 2.0,
+      "mode": "absolute",
+      "source": null
+    },
+    {
+      "label": "Regler 7",
+      "target": "trail",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "mode": "absolute",
+      "source": null
+    },
+    {
+      "label": "Regler 8",
+      "target": "rotation_degrees",
+      "minimum": 0.0,
+      "maximum": 360.0,
+      "mode": "absolute",
+      "source": null
+    },
+    {
+      "label": "Play",
+      "target": "@play",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "mode": "absolute",
+      "source": null
+    },
+    {
+      "label": "Pause",
+      "target": "@pause",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "mode": "absolute",
+      "source": null
+    },
+    {
+      "label": "Stopp",
+      "target": "@stop",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "mode": "absolute",
+      "source": null
+    },
+    {
+      "label": "Vorheriger Clip",
+      "target": "@previous",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "mode": "absolute",
+      "source": null
+    },
+    {
+      "label": "Nächster Clip",
+      "target": "@next",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "mode": "absolute",
+      "source": null
+    },
+    {
+      "label": "Aufnahme",
+      "target": "@record",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "mode": "absolute",
+      "source": null
+    },
+    {
+      "label": "Loop an/aus",
+      "target": "@loop",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "mode": "absolute",
+      "source": null
+    },
+    {
+      "label": "Live-Werte freigeben",
+      "target": "@release",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "mode": "absolute",
+      "source": null
+    }
+  ]
+}

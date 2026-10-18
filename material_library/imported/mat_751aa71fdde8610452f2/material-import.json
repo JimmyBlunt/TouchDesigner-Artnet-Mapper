@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_751aa71fdde8610452f2",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Glowing Cube/Glowing Cube.fs",
+  "source_sha256": "30bd212759e757037e702942d3273c57ebe424b4b57d39399a264e3b5a0c27dc",
+  "imported_file": "Glowing Cube.fs",
+  "imported_files": {
+    ".info": "1c1dd3b6ca1da75212ccd1d18bb309ba03f8c7d3e4401a8ef570f37e0dd0e6ab",
+    "Glowing Cube.fs": "30bd212759e757037e702942d3273c57ebe424b4b57d39399a264e3b5a0c27dc",
+    "thumbnail.jpg": "2d696ef03bb0b04405655bf4bf98d3f065c85bd4485f0261e4ae8f2b4712321e"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

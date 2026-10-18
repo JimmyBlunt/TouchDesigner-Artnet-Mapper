@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_792dc884564f03f8f5d8",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Noise 4D/Noise 4D.fs",
+  "source_sha256": "fd74f4d6310b796d6ae110c5cca665d8064ce0f406eab7796b30758db9c6b0b4",
+  "imported_file": "Noise 4D.fs",
+  "imported_files": {
+    ".info": "7c191ec9db34c977f9bac005551a76a154bc5b39e448af99f346183c70b81cc5",
+    "Noise 4D.fs": "fd74f4d6310b796d6ae110c5cca665d8064ce0f406eab7796b30758db9c6b0b4",
+    "thumbnail.jpg": "8e31e209008c24acc87d06aac7ab97258637077d9a46cc8681d80f9783b69841"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

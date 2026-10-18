@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_d20b7ecb1b7e97825fc9",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/DiffusedSmoke/DiffusedSmoke.fs",
+  "source_sha256": "be8502bc5520c321ca9343a774ac289eba8b4bf1682f752aad2bca757ada6461",
+  "imported_file": "DiffusedSmoke.fs",
+  "imported_files": {
+    ".info": "937c60b9ae58c7b9285dab7ca634f5f0eee7b09770e702a7170525bbfcbe64de",
+    "DiffusedSmoke.fs": "be8502bc5520c321ca9343a774ac289eba8b4bf1682f752aad2bca757ada6461",
+    "thumbnail.jpg": "5ae0b9258f9189ca3fb8a1678c1fb2d7bd747e5fae624ba261dad26ef13f42b3"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

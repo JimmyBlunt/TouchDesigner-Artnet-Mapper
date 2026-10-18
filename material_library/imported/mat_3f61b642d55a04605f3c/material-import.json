@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_3f61b642d55a04605f3c",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Techno Swirl/Techno Swirl.fs",
+  "source_sha256": "84f8b042822cac35435a3f9fa3ef6c310decc7d96bcb68588d78b4c3d068535b",
+  "imported_file": "Techno Swirl.fs",
+  "imported_files": {
+    ".info": "a6ced7a127d045c69d5ec5dcd57b2b1de8e7f8958a1d07929983368398084cd5",
+    "Techno Swirl.fs": "84f8b042822cac35435a3f9fa3ef6c310decc7d96bcb68588d78b4c3d068535b",
+    "thumbnail.jpg": "f1be4104a31a8e7d1458664e22872e06bbe6a708922d04ddbd55ae104f15e7fb"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

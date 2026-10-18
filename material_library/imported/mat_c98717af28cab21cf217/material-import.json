@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_c98717af28cab21cf217",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/ActivePlaid/ActivePlaid.fs",
+  "source_sha256": "de3f0e6f8ac3fc5274ab293ee551e538029e9db1f8efe3f4e57fa72beb8fd7d9",
+  "imported_file": "ActivePlaid.fs",
+  "imported_files": {
+    ".info": "54e8ce2b494e205e389b682c8368b70aea6bd36958099271083f9992f1656c9f",
+    "ActivePlaid.fs": "de3f0e6f8ac3fc5274ab293ee551e538029e9db1f8efe3f4e57fa72beb8fd7d9",
+    "thumbnail.jpg": "f8874db978b61d741745ac9f5d7cedecca99876e7c9516d81fdecffe82177c11"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

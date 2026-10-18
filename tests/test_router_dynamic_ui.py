@@ -8,6 +8,10 @@ from pixelblaze_mapper import router_dynamic_ui as ui
 class Field:
     def __init__(self, value): self.value = value
     def __getitem__(self, key): return self.value
+    @property
+    def text(self): return self.value
+    @text.setter
+    def text(self, value): self.value = value
 
 
 class Owner:
@@ -27,6 +31,37 @@ def controller(name='BACK_PANEL_249', enabled='1'):
 
 
 class RouterDynamicTests(unittest.TestCase):
+    def test_route_summary_remains_two_lines_with_many_segments(self):
+        routes=[dict(name='Long physical segment name '+str(i),count=100,source_start=i*100,destination_start=i*100) for i in range(20)]
+        item=SimpleNamespace(universe_count=37,local_interface='10.0.0.125',port=6454)
+        text=ui.route_summary(routes,item)
+        self.assertEqual(len(text.splitlines()),2)
+        self.assertIn('20 routes',text)
+        self.assertIn('2000 LED assignments',text)
+        self.assertIn('Ctrl+Shift+C',text)
+        self.assertTrue(all(len(line)<100 for line in text.splitlines()))
+        self.assertIn('No pixel routes assigned',ui.route_summary([],item))
+
+    def test_dropdown_selects_identity_and_retains_unsaved_drafts(self):
+        rows=[controller('one'),controller('two')]
+        owner=Owner(rows,'one')
+        owner.fields['brightness'].value='0.23'
+        original_op=owner.op
+        menu=SimpleNamespace(par=SimpleNamespace(display=True))
+        status=[]
+        callbacks=SimpleNamespace(module=SimpleNamespace(refresh_status=lambda **kw:None,_set_status=status.append))
+        owner.op=lambda path: callbacks if path=='ui_callbacks' else menu if path=='ui_panel/router_controller_menu' else original_op(path)
+        with patch.object(ui,'_entries',return_value=rows):
+            self.assertTrue(ui.select_name(owner,'two'))
+            self.assertEqual(owner.fetch('router_card_name'),'two')
+            self.assertFalse(menu.par.display)
+            self.assertEqual(owner.fetch('router_card_drafts')['one']['brightness'],'0.23')
+            self.assertTrue(ui.select_name(owner,'one'))
+            self.assertEqual(owner.fields['brightness'].value,'0.23')
+            self.assertFalse(ui.select_name(owner,'deleted'))
+            self.assertEqual(owner.fetch('router_card_name'),'one')
+            self.assertTrue(status)
+
     def test_panel_type_explicit_bridge_globals(self):
         kind = object()
         self.assertIs(ui._panel_execute_type({'panelexecuteDAT': kind}), kind)

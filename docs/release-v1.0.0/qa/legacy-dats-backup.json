@@ -1,0 +1,163 @@
+[
+  {
+    "name": "effect_sample_uv_callbacks1",
+    "type": "text",
+    "text": "\"\"\"\nScript CHOP Callbacks\n\nme - this DAT\n\nscriptOp - the OP which is cooking\n\"\"\"\n\nfrom typing import Any\n\n# press 'Setup Parameters' in the OP to call this function to re-create the\n# parameters.\ndef onSetupParameters(scriptOp: scriptCHOP):\n\t\"\"\"\n\tCalled to setup custom parameters for the Script CHOP.\n\t\"\"\"\n\tpage = scriptOp.appendCustomPage('Custom')\n\tp = page.appendFloat('Valuea', label='Value A')\n\tp = page.appendFloat('Valueb', label='Value B')\n\treturn\n\ndef onPulse(par: Any):\n\t\"\"\"\n\tCalled when a custom pulse parameter is pushed.\n\t\n\tArgs:\n\t\tpar: The parameter that was pulsed\n\t\"\"\"\n\treturn\n\ndef onCook(scriptOp: scriptCHOP):\n\t\"\"\"\n\tCalled when the Script CHOP needs to cook.\n\t\"\"\"\n\tscriptOp.clear()\n\treturn\n\ndef onGetCookLevel(scriptOp: scriptCHOP) -> CookLevel:\n\t\"\"\"\n\tSets the scriptOp's cook level, the conditions necessary to cause a cook.\n\n\tReturn one of the following:\n\t\tCookLevel.AUTOMATIC - inputs changed and output being used. TD default\n\t\t\t\t\t\t\t  behavior.\n\t\tCookLevel.ON_CHANGE - inputs changed, output used or not.\n\t\tCookLevel.WHEN_USED - every frame when output is being used\n\t\tCookLevel.ALWAYS - every frame\n\t\"\"\"\n\n\treturn CookLevel.AUTOMATIC\n",
+    "rows": [],
+    "position": [
+      0,
+      -120
+    ]
+  },
+  {
+    "name": "legacy_source_mask_callbacks1",
+    "type": "text",
+    "text": "\"\"\"\nScript CHOP Callbacks\n\nme - this DAT\n\nscriptOp - the OP which is cooking\n\"\"\"\n\nfrom typing import Any\n\n# press 'Setup Parameters' in the OP to call this function to re-create the\n# parameters.\ndef onSetupParameters(scriptOp: scriptCHOP):\n\t\"\"\"\n\tCalled to setup custom parameters for the Script CHOP.\n\t\"\"\"\n\tpage = scriptOp.appendCustomPage('Custom')\n\tp = page.appendFloat('Valuea', label='Value A')\n\tp = page.appendFloat('Valueb', label='Value B')\n\treturn\n\ndef onPulse(par: Any):\n\t\"\"\"\n\tCalled when a custom pulse parameter is pushed.\n\t\n\tArgs:\n\t\tpar: The parameter that was pulsed\n\t\"\"\"\n\treturn\n\ndef onCook(scriptOp: scriptCHOP):\n\t\"\"\"\n\tCalled when the Script CHOP needs to cook.\n\t\"\"\"\n\tscriptOp.clear()\n\treturn\n\ndef onGetCookLevel(scriptOp: scriptCHOP) -> CookLevel:\n\t\"\"\"\n\tSets the scriptOp's cook level, the conditions necessary to cause a cook.\n\n\tReturn one of the following:\n\t\tCookLevel.AUTOMATIC - inputs changed and output being used. TD default\n\t\t\t\t\t\t\t  behavior.\n\t\tCookLevel.ON_CHANGE - inputs changed, output used or not.\n\t\tCookLevel.WHEN_USED - every frame when output is being used\n\t\tCookLevel.ALWAYS - every frame\n\t\"\"\"\n\n\treturn CookLevel.AUTOMATIC\n",
+    "rows": [],
+    "position": [
+      0,
+      -120
+    ]
+  },
+  {
+    "name": "esp_artnet_live_pack_callbacks1",
+    "type": "text",
+    "text": "\"\"\"\nScript CHOP Callbacks\n\nme - this DAT\n\nscriptOp - the OP which is cooking\n\"\"\"\n\nfrom typing import Any\n\n# press 'Setup Parameters' in the OP to call this function to re-create the\n# parameters.\ndef onSetupParameters(scriptOp: scriptCHOP):\n\t\"\"\"\n\tCalled to setup custom parameters for the Script CHOP.\n\t\"\"\"\n\tpage = scriptOp.appendCustomPage('Custom')\n\tp = page.appendFloat('Valuea', label='Value A')\n\tp = page.appendFloat('Valueb', label='Value B')\n\treturn\n\ndef onPulse(par: Any):\n\t\"\"\"\n\tCalled when a custom pulse parameter is pushed.\n\t\n\tArgs:\n\t\tpar: The parameter that was pulsed\n\t\"\"\"\n\treturn\n\ndef onCook(scriptOp: scriptCHOP):\n\t\"\"\"\n\tCalled when the Script CHOP needs to cook.\n\t\"\"\"\n\tscriptOp.clear()\n\treturn\n\ndef onGetCookLevel(scriptOp: scriptCHOP) -> CookLevel:\n\t\"\"\"\n\tSets the scriptOp's cook level, the conditions necessary to cause a cook.\n\n\tReturn one of the following:\n\t\tCookLevel.AUTOMATIC - inputs changed and output being used. TD default\n\t\t\t\t\t\t\t  behavior.\n\t\tCookLevel.ON_CHANGE - inputs changed, output used or not.\n\t\tCookLevel.WHEN_USED - every frame when output is being used\n\t\tCookLevel.ALWAYS - every frame\n\t\"\"\"\n\n\treturn CookLevel.AUTOMATIC\n",
+    "rows": [],
+    "position": [
+      0,
+      -120
+    ]
+  },
+  {
+    "name": "esp_artnet_test_pattern_callbacks1",
+    "type": "text",
+    "text": "\"\"\"\nScript CHOP Callbacks\n\nme - this DAT\n\nscriptOp - the OP which is cooking\n\"\"\"\n\nfrom typing import Any\n\n# press 'Setup Parameters' in the OP to call this function to re-create the\n# parameters.\ndef onSetupParameters(scriptOp: scriptCHOP):\n\t\"\"\"\n\tCalled to setup custom parameters for the Script CHOP.\n\t\"\"\"\n\tpage = scriptOp.appendCustomPage('Custom')\n\tp = page.appendFloat('Valuea', label='Value A')\n\tp = page.appendFloat('Valueb', label='Value B')\n\treturn\n\ndef onPulse(par: Any):\n\t\"\"\"\n\tCalled when a custom pulse parameter is pushed.\n\t\n\tArgs:\n\t\tpar: The parameter that was pulsed\n\t\"\"\"\n\treturn\n\ndef onCook(scriptOp: scriptCHOP):\n\t\"\"\"\n\tCalled when the Script CHOP needs to cook.\n\t\"\"\"\n\tscriptOp.clear()\n\treturn\n\ndef onGetCookLevel(scriptOp: scriptCHOP) -> CookLevel:\n\t\"\"\"\n\tSets the scriptOp's cook level, the conditions necessary to cause a cook.\n\n\tReturn one of the following:\n\t\tCookLevel.AUTOMATIC - inputs changed and output being used. TD default\n\t\t\t\t\t\t\t  behavior.\n\t\tCookLevel.ON_CHANGE - inputs changed, output used or not.\n\t\tCookLevel.WHEN_USED - every frame when output is being used\n\t\tCookLevel.ALWAYS - every frame\n\t\"\"\"\n\n\treturn CookLevel.AUTOMATIC\n",
+    "rows": [],
+    "position": [
+      0,
+      -120
+    ]
+  },
+  {
+    "name": "DMX_Universes_backup_pre_panels",
+    "type": "table",
+    "text": "Universe\tindex\tpixel\r\n0\t0\t170\r\n1\t170\t170\r\n2\t340\t170\r\n3\t510\t170\r\n4\t680\t170\r\n5\t850\t170\r\n6\t1020\t170\r\n7\t1190\t170\r\n",
+    "rows": [
+      [
+        "Universe",
+        "index",
+        "pixel"
+      ],
+      [
+        "0",
+        "0",
+        "170"
+      ],
+      [
+        "1",
+        "170",
+        "170"
+      ],
+      [
+        "2",
+        "340",
+        "170"
+      ],
+      [
+        "3",
+        "510",
+        "170"
+      ],
+      [
+        "4",
+        "680",
+        "170"
+      ],
+      [
+        "5",
+        "850",
+        "170"
+      ],
+      [
+        "6",
+        "1020",
+        "170"
+      ],
+      [
+        "7",
+        "1190",
+        "170"
+      ]
+    ],
+    "position": [
+      -300,
+      125
+    ]
+  },
+  {
+    "name": "dmxout1_routingtable_backup_pre_panels",
+    "type": "table",
+    "text": "channel\tnet\tsubnet\tuniverse\r\nUniverse0\t0\t0\t0\r\nUniverse1\t0\t0\t1\r\nUniverse2\t0\t0\t2\r\nUniverse3\t0\t0\t3\r\nUniverse4\t0\t0\t4\r\nUniverse5\t0\t0\t5\r\nUniverse6\t0\t0\t6\r\nUniverse7\t0\t0\t7\r\n",
+    "rows": [
+      [
+        "channel",
+        "net",
+        "subnet",
+        "universe"
+      ],
+      [
+        "Universe0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "Universe1",
+        "0",
+        "0",
+        "1"
+      ],
+      [
+        "Universe2",
+        "0",
+        "0",
+        "2"
+      ],
+      [
+        "Universe3",
+        "0",
+        "0",
+        "3"
+      ],
+      [
+        "Universe4",
+        "0",
+        "0",
+        "4"
+      ],
+      [
+        "Universe5",
+        "0",
+        "0",
+        "5"
+      ],
+      [
+        "Universe6",
+        "0",
+        "0",
+        "6"
+      ],
+      [
+        "Universe7",
+        "0",
+        "0",
+        "7"
+      ]
+    ],
+    "position": [
+      -300,
+      25
+    ]
+  }
+]

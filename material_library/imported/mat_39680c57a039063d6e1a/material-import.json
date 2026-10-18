@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_39680c57a039063d6e1a",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/GainedGradientNoise/GainedGradientNoise.fs",
+  "source_sha256": "73b4bd80f6ddf96e936fd9de887a93e7e01da5565b21d6541b7b553a7d864175",
+  "imported_file": "GainedGradientNoise.fs",
+  "imported_files": {
+    ".info": "532a7ed95b0a7d1be5942fea3405ca9b64405c6842279cef11236b0e014c7d5e",
+    "GainedGradientNoise.fs": "73b4bd80f6ddf96e936fd9de887a93e7e01da5565b21d6541b7b553a7d864175",
+    "thumbnail.jpg": "cb29204be20367677759cdb334b6721da5019c1ae00f19b25d5db3b0523f8dbd"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e7a3500343a02c23c87e",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/PlasmaRainbow/PlasmaRainbow.fs",
+  "source_sha256": "c51cf33e457cd09a10f4fd2e52d6f045e38d99735cd2b16b31e7cbdf18aa5cfa",
+  "imported_file": "PlasmaRainbow.fs",
+  "imported_files": {
+    ".info": "ef16f759e542ea394d3971b5d4761ef200ba5bc643b35e3a221e1fb6100ffbf4",
+    "PlasmaRainbow.fs": "c51cf33e457cd09a10f4fd2e52d6f045e38d99735cd2b16b31e7cbdf18aa5cfa",
+    "thumbnail.jpg": "4d43b04f0ee209ca78a23563b745330f4174c8a97e644fcd2065fb4cec2abc90"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

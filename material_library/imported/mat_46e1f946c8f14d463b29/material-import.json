@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_46e1f946c8f14d463b29",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/BubbleEyes/BubbleEyes.fs",
+  "source_sha256": "3df582ba39588e329345492bd4de622f17fc6cece4515fe947579d3f0ccdf406",
+  "imported_file": "BubbleEyes.fs",
+  "imported_files": {
+    ".info": "a05f75c729e63eb6599430afffcfaf0b80a62f48948ba1d50641af747e493330",
+    "BubbleEyes.fs": "3df582ba39588e329345492bd4de622f17fc6cece4515fe947579d3f0ccdf406",
+    "thumbnail.jpg": "fb542296544eec00762f3d1fa849e383f434d77b2805b9d6a75806389970a70a"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

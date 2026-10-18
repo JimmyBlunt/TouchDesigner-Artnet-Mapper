@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_4965302e36b81208972e",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Twisted Menger/Twisted Menger.fs",
+  "source_sha256": "2debc49fec2a4a0e11bc0128a3a3de566b0e2547977e501375076c2edb2a1a4d",
+  "imported_file": "Twisted Menger.fs",
+  "imported_files": {
+    ".info": "c09fa8ba78c1d6ea30f927732737262fdac974443f30179be90cf302d5b6094d",
+    "thumbnail.jpg": "5f3ca13963c504dd247f08b2127eb9d0b91b804c61f07549fbfbad69751c7e5a",
+    "Twisted Menger.fs": "2debc49fec2a4a0e11bc0128a3a3de566b0e2547977e501375076c2edb2a1a4d"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

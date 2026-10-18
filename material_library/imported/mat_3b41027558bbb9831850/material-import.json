@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_3b41027558bbb9831850",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Torus Fog/Torus Fog.fs",
+  "source_sha256": "850dc5de24a58b815d4a0de935a6484b71b5e26ec0b784306cb7562a60f4f628",
+  "imported_file": "Torus Fog.fs",
+  "imported_files": {
+    ".info": "906b67e03b8c50c42e6611ad4ec4224de84ed79adc4407902ccfe94822b11829",
+    "thumbnail.jpg": "9722bb7ab78c7ac0fcc178694e30a4d8456e1313117ea3502ba22096c1c3bfa2",
+    "Torus Fog.fs": "850dc5de24a58b815d4a0de935a6484b71b5e26ec0b784306cb7562a60f4f628"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

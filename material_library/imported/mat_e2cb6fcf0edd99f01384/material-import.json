@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e2cb6fcf0edd99f01384",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Motion Loop 001/Motion Loop 001.fs",
+  "source_sha256": "ceea5bf303ce1bf7ef948a461c62cf167b94c0d4f6f5d7cd2f58ba3780630390",
+  "imported_file": "Motion Loop 001.fs",
+  "imported_files": {
+    ".info": "73de9570ed3a0e08fd2b493a424b8570785ead512a8a8b8197db280a28f14a21",
+    "Motion Loop 001.fs": "ceea5bf303ce1bf7ef948a461c62cf167b94c0d4f6f5d7cd2f58ba3780630390",
+    "thumbnail.jpg": "950ebca74911c9fd578e3ab20e133cd6738e7f653e204ba48de49ebd5137bd31"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

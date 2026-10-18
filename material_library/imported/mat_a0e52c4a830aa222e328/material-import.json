@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_a0e52c4a830aa222e328",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/WKS_2022_CUBE/WKS_2022_CUBE.fs",
+  "source_sha256": "56df19909ab279a6cf89b00b898aeb5f2a5ea125d36b805b17926d4d6bdb8547",
+  "imported_file": "WKS_2022_CUBE.fs",
+  "imported_files": {
+    ".info": "89029cb30fa862a493c2ef6111e86cdf403bde393014ad412efd517097a1a82c",
+    "thumbnail.jpg": "c8cab5509cfbdfa2af6884d9690a71e54ec1060d689974223eed8fdf49e1c35b",
+    "WKS_2022_CUBE.fs": "56df19909ab279a6cf89b00b898aeb5f2a5ea125d36b805b17926d4d6bdb8547",
+    "WKS_2022_CUBE.vs": "3c7c5febe56a84652a861306ca1db9618abde3a684d223af3dc76dab012b4b5a"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

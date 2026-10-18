@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_9bcf541a8f464a30199c",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/VoroFBM/VoroFBM.fs",
+  "source_sha256": "6e311b1799c84723e132bfa2dd8d07e881ada9069eb8472a83db23335cce2e52",
+  "imported_file": "VoroFBM.fs",
+  "imported_files": {
+    ".info": "d856f98e39041df392170d76f8b6fb2b447da4eb190cfac92f618b4349159008",
+    "thumbnail.jpg": "eb67dfe1b700db1d04436a5717a54d52b6e67794d620d8be07918fc60e876f0a",
+    "VoroFBM.fs": "6e311b1799c84723e132bfa2dd8d07e881ada9069eb8472a83db23335cce2e52"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

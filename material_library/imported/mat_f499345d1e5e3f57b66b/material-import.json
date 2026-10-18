@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_f499345d1e5e3f57b66b",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Liquid Metal/fBm.fs",
+  "source_sha256": "1df86d24a38e9be9bd44682d536b723bb941bf282188e2bb1eec92deefb25436",
+  "imported_file": "fBm.fs",
+  "imported_files": {
+    ".info": "db9d056febedc1f4ee9d78eb3146cd385f9ca7f9c7929d362959e59531acff2c",
+    "fBm.fs": "1df86d24a38e9be9bd44682d536b723bb941bf282188e2bb1eec92deefb25436",
+    "LiquidMetal.mad": "baab5fed8a0869b3f43d8d438e1cd3ba19f16d1581ed8a2efe9d556a07f6ccda",
+    "thumbnail.jpg": "ebba912f27024e9385a19d4fd650c2bec9c997ec65128e1d97905d7e9ac1e658"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

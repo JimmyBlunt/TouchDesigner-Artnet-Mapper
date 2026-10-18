@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_76b96e0b760ecf1889ae",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/NegativeSpace/NegativeSpace.fs",
+  "source_sha256": "c58eb3708afd8110ae9d871cbb632207fada8a2d87b7fbf314fcded2fb9926d7",
+  "imported_file": "NegativeSpace.fs",
+  "imported_files": {
+    ".info": "54e8ce2b494e205e389b682c8368b70aea6bd36958099271083f9992f1656c9f",
+    "NegativeSpace.fs": "c58eb3708afd8110ae9d871cbb632207fada8a2d87b7fbf314fcded2fb9926d7",
+    "thumbnail.jpg": "576559e142a272fdb4f8631e51d96d398ba7d340ba2cdf68f5b1d336494c4f7a"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

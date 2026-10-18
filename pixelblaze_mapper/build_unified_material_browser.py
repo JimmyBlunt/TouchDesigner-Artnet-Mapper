@@ -248,10 +248,14 @@ def _slider(parent, name, label, x, y, width, low, high, value, parameter):
 
 
 def _material_control_runtime_source():
-    return r'''SOURCE = r'C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper/pixelblaze_mapper/material_control_surface.py'
+    return r'''from pathlib import Path
+try:
+    SOURCE = str(Path(project.folder) / 'pixelblaze_mapper' / 'material_control_surface.py')
+except NameError:
+    SOURCE = str(Path(__import__('pixelblaze_mapper').__file__).resolve().parent / 'material_control_surface.py')
 def _module():
-    namespace = {'op': op}
-    exec(compile(open(SOURCE, encoding='utf-8').read(), SOURCE, 'exec'), namespace)
+    namespace = {'op': op, '__file__': SOURCE}
+    exec(compile(Path(SOURCE).read_text(encoding='utf-8'), SOURCE, 'exec'), namespace)
     return namespace
 def apply_gradient(key):
     return _module()['apply_gradient'](key)
@@ -922,7 +926,8 @@ def _core_items():
 
 def _imported_items():
     catalog_path, import_root = _library_paths()
-    data = json.loads(catalog_path.read_text(encoding='utf-8'))
+    from pixelblaze_mapper.material_paths import load_catalog_document
+    data = load_catalog_document(catalog_path)
     result = []
     for raw in data.get('materials', []):
         material_id = str(raw.get('id', ''))
@@ -1237,6 +1242,9 @@ def build():
 
     for slot in range(SLOT_COUNT):
         image = _get_or_create(browser, moviefileinTOP, "unified_image_%d" % slot)
+        _set(image, "outputresolution", "limit")
+        _set(image, "resolutionw", 512)
+        _set(image, "resolutionh", 512)
         image.nodeX, image.nodeY = 900 + (slot % 8) * 70, -500 - (slot // 8) * 80
         viewer = _viewer(browser, "unified_viewer_%d" % slot, fallback, 20, 100, 146, 108)
         button = _button(browser, "unified_card_%d" % slot, "MATERIAL", 20, 60, 146, 34)

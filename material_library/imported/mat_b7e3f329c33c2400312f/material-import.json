@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_b7e3f329c33c2400312f",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Starfield/starfield.fs",
+  "source_sha256": "eedb541373b607acf5281fe6af4afc9f27f4522a431eae01dc42a436336a58ee",
+  "imported_file": "starfield.fs",
+  "imported_files": {
+    ".info": "f869e5f062bfeb82aa1bc0638677e1be0cd2b5f7edda15280061115a5100ecf1",
+    "noise.jpg": "45b9cfda4d4ddc19174aaee73e1faeec48e2af54f692502fb07fcedc9f6126fc",
+    "starfield.fs": "eedb541373b607acf5281fe6af4afc9f27f4522a431eae01dc42a436336a58ee",
+    "thumbnail.png": "70433f70f638980dc91ea5da5b2c9a872dd68752c1ad58536094bfe2d81ca693"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

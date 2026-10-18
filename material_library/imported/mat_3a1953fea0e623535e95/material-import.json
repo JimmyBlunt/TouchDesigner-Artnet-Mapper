@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_3a1953fea0e623535e95",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Deviled Egg/Deviled Egg.fs",
+  "source_sha256": "3de7f068501250edcb3f2e6b2fae268db6cbdfab1989ba5645cd4a90875af2a7",
+  "imported_file": "Deviled Egg.fs",
+  "imported_files": {
+    ".info": "f5ec0b7344a88b15b33527339e964a3794802a8aaa39d4b9c0c0c8073eb65a5d",
+    "Deviled Egg.fs": "3de7f068501250edcb3f2e6b2fae268db6cbdfab1989ba5645cd4a90875af2a7",
+    "thumbnail.jpg": "ec35d656155a6aa27e94bb5de4729b78e39bcd99ab55157e632b2955a10b4338"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

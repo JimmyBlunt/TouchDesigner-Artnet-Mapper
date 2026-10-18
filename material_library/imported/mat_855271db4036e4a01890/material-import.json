@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_855271db4036e4a01890",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Glass Bricks/Glass Bricks.fs",
+  "source_sha256": "1abcb10b5995e03334401c79bfda4edbb2de9270ddc245b6ed6ebd73b556465d",
+  "imported_file": "Glass Bricks.fs",
+  "imported_files": {
+    ".info": "eabb436a5a6a4c54ef82f3fbbb529df3909bbaef5e432efc62faef27a86fa9d4",
+    "Glass Bricks.fs": "1abcb10b5995e03334401c79bfda4edbb2de9270ddc245b6ed6ebd73b556465d",
+    "thumbnail.jpg": "12b99657c590ae608f400d4179915fadec30fbddeb99c11dc458e5d422415e84"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

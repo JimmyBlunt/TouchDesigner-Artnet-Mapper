@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_9e27710fdf932a7d004b",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Infinite Cube/Infinite Cube.fs",
+  "source_sha256": "649ddbec28d5d69da89f42aa4d70691d0f101fb002287c61ce90cb385371be33",
+  "imported_file": "Infinite Cube.fs",
+  "imported_files": {
+    ".info": "e9f52d2ab0898b331ad9b79b4c6c4b60de0e67d061a6b33ea46ef57879dd1ff6",
+    "Infinite Cube.fs": "649ddbec28d5d69da89f42aa4d70691d0f101fb002287c61ce90cb385371be33",
+    "thumbnail.jpg": "3e552ef292cf302c810ff6397c559ed63d8f13d44abb113234b1c64720587593"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

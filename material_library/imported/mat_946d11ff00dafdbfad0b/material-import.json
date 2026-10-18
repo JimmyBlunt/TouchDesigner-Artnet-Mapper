@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_946d11ff00dafdbfad0b",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/IQ_ColoredGridThingy/IQ_ColoredGridThingy.fs",
+  "source_sha256": "d6b96507ac32c3a7cf69ea33b67c5bdb92e68dee0f4ad31b589af0b5f50ed96c",
+  "imported_file": "IQ_ColoredGridThingy.fs",
+  "imported_files": {
+    ".info": "46e586eb529d23ba80453ee13eb5e895ce6d5f8765c539249d83eccf5183d8dc",
+    "IQ_ColoredGridThingy.fs": "d6b96507ac32c3a7cf69ea33b67c5bdb92e68dee0f4ad31b589af0b5f50ed96c",
+    "thumbnail.jpg": "25afbb6b56f1158ef2215c755c629bc23b2c3fa966bff487192cbd35651523b2"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

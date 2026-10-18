@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_ceb4bc44af06082c8691",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Rainbow Pyramid/Rainbow Pyramid.fs",
+  "source_sha256": "722a23859ae0441fb22b9f87c0a11282029420a3b0a728c48ead118873e3d4d4",
+  "imported_file": "Rainbow Pyramid.fs",
+  "imported_files": {
+    ".info": "d1a8d4d5d52ea32f03eccac770c0f2189cae257226581f058081d392347a5201",
+    "Rainbow Pyramid.fs": "722a23859ae0441fb22b9f87c0a11282029420a3b0a728c48ead118873e3d4d4",
+    "thumbnail.jpg": "711291d5d097c9cf5400564f65ff3314a87625aed9a75b0fe3ca51f6cce57a19"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

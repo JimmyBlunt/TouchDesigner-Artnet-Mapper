@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_fd6e81e118f465c4eb17",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Distorted Circles/Distorted Circles.fs",
+  "source_sha256": "329e854c88e1e532fbb39ef1ead1a186bcbb99652d7eea84aa504f3d3f74bd7f",
+  "imported_file": "Distorted Circles.fs",
+  "imported_files": {
+    ".info": "1640356cc38bcb7d56964bba4933a1c09a63e3a8acfd8a242a81bbd0c7a69559",
+    "1f7dca9c22f324751f2a5a59c9b181dfe3b5564a04b724c657732d0bf09c99db.jpg": "5faab9d2dfa095128bd2b5a21b201635090447ba92f6806a4eb23c90cc7c9c83",
+    "Distorted Circles.fs": "329e854c88e1e532fbb39ef1ead1a186bcbb99652d7eea84aa504f3d3f74bd7f",
+    "thumbnail.jpg": "4572313680fc024a7a37147ad9d935b801a08316d2eb42f3dd75a9ccdf829758"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

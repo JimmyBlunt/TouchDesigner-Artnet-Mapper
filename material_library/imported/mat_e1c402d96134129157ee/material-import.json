@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e1c402d96134129157ee",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/GlossyFlows/GlossyFlows.fs",
+  "source_sha256": "e771cbcd09438c6cb6fc9516e87ad9c9f52c4e9bdaf59b4f3acf2d6580d901cd",
+  "imported_file": "GlossyFlows.fs",
+  "imported_files": {
+    ".info": "e6ac2d5e676b98f934860a2a6de4b34796a03173373f5d0eb7cd472c4bba7b6b",
+    "GlossyFlows.fs": "e771cbcd09438c6cb6fc9516e87ad9c9f52c4e9bdaf59b4f3acf2d6580d901cd",
+    "thumbnail.jpg": "53002f561d2e05bb8026a110009dea16f0733431f506aa0b6eda3bdb964a0e3a"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

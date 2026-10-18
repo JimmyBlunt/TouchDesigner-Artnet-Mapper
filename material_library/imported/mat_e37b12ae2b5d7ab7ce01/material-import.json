@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e37b12ae2b5d7ab7ce01",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/MorphingPlane/MorphingPlane.fs",
+  "source_sha256": "784c2e3c37b674faa60b6d3e9e1eed0ad75ffe053bfa9da4b871696b36ad993d",
+  "imported_file": "MorphingPlane.fs",
+  "imported_files": {
+    ".info": "615f51d33c806e5d2cdcb61c7c470713f41d1f7e51bea705d4fb231e4c8b6aff",
+    "MorphingPlane.fs": "784c2e3c37b674faa60b6d3e9e1eed0ad75ffe053bfa9da4b871696b36ad993d",
+    "thumbnail.jpg": "c21320e25c821591af5c66586a115fd511c1ecf5c463ca585a869eec5f9aaa89"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_9fcf7accec04024a8b0c",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/Gradient Color_Legacy3/Gradient Color.fs",
+  "source_sha256": "ffab66a61d161b605e3144573a3d0f7f621e36c88f0da35b9e54da81d9634d76",
+  "imported_file": "Gradient Color.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "Gradient Color.fs": "ffab66a61d161b605e3144573a3d0f7f621e36c88f0da35b9e54da81d9634d76",
+    "thumbnail.png": "e287d616feac494ec963e49b3a35680ea6d0de52472487af43a2dbad27ea7c41"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

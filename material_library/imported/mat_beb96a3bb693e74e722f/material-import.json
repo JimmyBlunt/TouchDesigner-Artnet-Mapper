@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_beb96a3bb693e74e722f",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/PolarNoise/PolarNoise.fs",
+  "source_sha256": "d3b63219bfc649eaec45143e4caa079c946a45a4289a09b6a73ec087b8cd1395",
+  "imported_file": "PolarNoise.fs",
+  "imported_files": {
+    ".info": "c419312bad22eabc301c62ed282262f512136e6c080cee288e9f189abce7c776",
+    "PolarNoise.fs": "d3b63219bfc649eaec45143e4caa079c946a45a4289a09b6a73ec087b8cd1395",
+    "thumbnail.png": "ee14e222afd19fa07902b649edcbb0fb031206f41a60e3104a4dfc8f3a3fdc1a"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

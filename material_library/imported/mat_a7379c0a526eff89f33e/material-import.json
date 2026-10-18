@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_a7379c0a526eff89f33e",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/ParallaxBlobs/parrallaxBlobs.fs",
+  "source_sha256": "d8b64b20a283d6b78fd06aa7ed8c7b5df934e86106711ba95eeb5cf587061131",
+  "imported_file": "parrallaxBlobs.fs",
+  "imported_files": {
+    ".info": "a0ecb6f5dd0fd6726c7df18d8a3b105dd84526ad0d01811397188cb646a48ad5",
+    "parrallaxBlobs.fs": "d8b64b20a283d6b78fd06aa7ed8c7b5df934e86106711ba95eeb5cf587061131",
+    "thumbnail.png": "309e0fe861a371af0fe2dfadd02f7fefef5dcc9b49eac398471fcca47497620a"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

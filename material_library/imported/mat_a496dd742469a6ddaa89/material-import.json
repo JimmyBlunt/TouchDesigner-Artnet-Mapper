@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_a496dd742469a6ddaa89",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Paisley/Paisley.fs",
+  "source_sha256": "1a722cce6e6f3c67a30de35385c3d1f75f237fce43605334cc6fcec1a558a325",
+  "imported_file": "Paisley.fs",
+  "imported_files": {
+    ".info": "c70f181822460d5cacac24138520852d0d30e3bf00dff766e79c75eacb734a20",
+    "Paisley.fs": "1a722cce6e6f3c67a30de35385c3d1f75f237fce43605334cc6fcec1a558a325",
+    "thumbnail.jpg": "668b1c7c31ad860035565af662ee2ff35b334b514a56622b1c17819123c3db67"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

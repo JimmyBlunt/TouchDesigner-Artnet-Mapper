@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e83e5e4dd381ad8f5bfa",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/CircularNoise/CircularNoise.fs",
+  "source_sha256": "e701781f5d00bd2dba890cbcaa709b007088f0582b55500a43901ab9ab1c49ba",
+  "imported_file": "CircularNoise.fs",
+  "imported_files": {
+    ".info": "31d5dcc913654cb976358309ff7957c7e162086d3f977e2e9361577419a8114c",
+    "CircularNoise.fs": "e701781f5d00bd2dba890cbcaa709b007088f0582b55500a43901ab9ab1c49ba",
+    "noise.png": "e59217a8eecc2e90bfbe7bb163dfcdd90de155bb35e4e904484ede91b8c0f36d",
+    "panther.jpg": "bf1c3488a84e8d13381bca53dff4cdeefff42d90cc375d0ff3d44bebc76864b1",
+    "thumbnail.jpg": "d3aa3736ab80ec87c2b255050d87f7e612f710f8b3d0c90152d44f6f88502bff"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

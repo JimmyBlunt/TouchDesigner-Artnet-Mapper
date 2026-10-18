@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-ROOT = Path(r'C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper')
+ROOT = Path(__file__).resolve().parents[1]
 OWNER = '/project1/multi_controller_output/gico_port_config/controller_ports'
 
 
@@ -14,7 +14,7 @@ from dataclasses import asdict, replace
 from math import ceil
 from pathlib import Path
 
-ROOT = Path(r'C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper')
+ROOT = Path(project.folder) if 'project' in globals() else Path(__import__('pixelblaze_mapper').__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 from pixelblaze_mapper.multi_controller import ControllerConfig, controller_rows, segment_rows
@@ -48,6 +48,25 @@ def interface_label():
     if address == '0.0.0.0': name = 'Automatische Schnittstelle'
     return address + ' | ' + name + '  v'
 
+def choose_controller(name):
+    if name not in {item.name for item in _router().controllers}:
+        _status('Controller nicht mehr vorhanden; Auswahl erneut oeffnen.')
+        return False
+    # A menu choice loads a draft only. Live configuration and output stay intact.
+    OWNER.op('ui_panel/load_id/string').text = name
+    return act('load')
+
+def toggle_controllers():
+    menu = OWNER.op('ui_panel/controller_menu')
+    if bool(menu.par.display):
+        menu.par.display = False
+        return
+    scope = dict(globals(), __name__='controller_menu_refresh', __file__=str(ROOT/'pixelblaze_mapper/build_port_topology_ui.py'))
+    path = ROOT/'pixelblaze_mapper/build_port_topology_ui.py'
+    exec(compile(path.read_text(encoding='utf-8'),str(path),'exec'),scope,scope)
+    scope['build_controller_menu'](OWNER)
+    menu.par.display = True
+
 def choose_interface(address):
     allowed = {'0.0.0.0'} | {row['address'] for row in OWNER.fetch('local_interfaces', [])}
     if address not in allowed:
@@ -73,6 +92,7 @@ def poll_interfaces():
     OWNER.store('local_interfaces', value['interfaces'])
     scope = dict(globals(), __name__='interface_menu_refresh')
     path = ROOT/'pixelblaze_mapper/build_port_topology_ui.py'
+    scope['__file__'] = str(path)
     exec(compile(path.read_text(encoding='utf-8'),str(path),'exec'),scope,scope)
     scope['build_interface_menu'](OWNER)
     OWNER.op('ui_panel/btn_interface').par.label = interface_label()
@@ -106,6 +126,7 @@ def _repaint():
     scope = dict(globals())
     scope['__name__'] = 'embedded_port_topology'
     path = ROOT / 'pixelblaze_mapper' / 'build_port_topology_ui.py'
+    scope['__file__'] = str(path)
     exec(compile(path.read_text(encoding='utf-8'), str(path), 'exec'), scope, scope)
     scope['build']()
 
@@ -113,6 +134,7 @@ def _rebuild_router():
     scope = dict(globals())
     scope['__name__'] = '__main__'
     path = ROOT / 'pixelblaze_mapper' / 'build_multi_controller_output.py'
+    scope['__file__'] = str(path)
     exec(compile(path.read_text(encoding='utf-8'), str(path), 'exec'), scope, scope)
 
 def _gico_tables(draft):
@@ -156,7 +178,12 @@ def _import_controller(name):
         if any(route.destination_start not in {item.number * reserve * 170 - reserve * 170 for item in ports} for route in routes):
             raise ValueError('GICO routes do not match its fixed hardware blocks; inspect original tables')
     else:
+        identities = [re.fullmatch(r'PORT_' + re.escape(name) + r'_([1-9][0-9]*)', route.name) for route in routes]
+        named_numbers = {route.name: int(match.group(1)) for route, match in zip(routes, identities) if match}
+        preserve_numbers = len(named_numbers) == len(routes) and len(set(named_numbers.values())) == len(routes)
         for number, route in enumerate(sorted(routes, key=lambda item: item.destination_start), 1):
+            if preserve_numbers:
+                number = named_numbers[route.name]
             reserve = ceil((route.destination_start % 170 + route.count) / 170)
             ports.append(PortDraft(number, route.name, True, route.source_start, route.count,
                 reserve, route.reverse, route.color_override or controller.color_order, route.destination_start))
@@ -165,6 +192,7 @@ def _import_controller(name):
             last = ports[-1]
             tail = controller.reserved_universes - (last.destination_start // 170)
             ports[-1] = replace(last, reserved_universes=max(last.reserved_universes, tail))
+        ports.sort(key=lambda item: item.number)
     draft = ControllerDraft(controller, profile, tuple(ports))
     build_topology(draft, source_pixels=_source_pixels())
     return draft
@@ -292,6 +320,58 @@ def build_interface_menu(owner):
     menu.par.display = visible
 
 
+def build_controller_menu(owner):
+    scope = dict(globals(), __name__='controller_widgets')
+    path = ROOT/'pixelblaze_mapper/build_gico_port_config_ui.py'
+    scope['__file__'] = str(path)
+    exec(compile(path.read_text(encoding='utf-8'), str(path), 'exec'), scope, scope)
+    canvas = owner.op('ui_panel')
+    menu = scope['_node'](canvas, containerCOMP, 'controller_menu')
+    rows = owner.op('runtime').module._router().controllers
+    height = min(380, max(38, 38 * len(rows)))
+    scope['_panel'](menu, 185, 717-height, 600, height, 220)
+    scope['_set'](menu, 'vscrollbar', 'on')
+    scope['_set'](menu, 'bgalpha', 1)
+    for child in menu.children:
+        child.par.display = False
+    for index, controller in enumerate(rows):
+        label = controller.name + ' | ' + controller.target_address
+        button = scope['_button'](menu, 'option_'+str(index), label, 0, height-38*(index+1), 600)
+        scope['_click'](owner, 'controller_option_'+str(index), button,
+                        "op('runtime').module.choose_controller(%r)" % controller.name)
+    if not rows:
+        scope['_text'](menu, 'empty', 'Keine Controller vorhanden. Neue ID eingeben und NEW DRAFT.', 0, 0, 600, 38, 11)
+    menu.par.display = False
+
+
+def install_controller_picker(scope):
+    """Update only the controller selection row and callback DAT, preserving drafts."""
+    globals().update({key: value for key, value in scope.items() if key in
+                      ('op', 'containerCOMP', 'buttonCOMP', 'textCOMP', 'fieldCOMP', 'panelexecuteDAT', 'tableDAT', 'textDAT', 'baseCOMP')})
+    owner = op(OWNER)
+    if owner is None:
+        raise RuntimeError('Controller Ports must exist before picker installation')
+    helpers = dict(globals(), __name__='controller_picker_widgets')
+    path = ROOT/'pixelblaze_mapper/build_gico_port_config_ui.py'
+    helpers['__file__'] = str(path)
+    exec(compile(path.read_text(encoding='utf-8'), str(path), 'exec'), helpers, helpers)
+    # Retain every field and OWNER storage entry; replacing code does not load or apply.
+    owner.op('runtime').text = _runtime_source()
+    canvas = owner.op('ui_panel')
+    current = owner.op('runtime').module._saved().controller.name
+    picker = helpers['_button'](canvas, 'btn_controller', current+'  v', 185, 721, 245)
+    helpers['_click'](owner, 'controller_menu_click', picker, "op('runtime').module.toggle_controllers()")
+    field = canvas.op('load_id')
+    helpers['_panel'](field, 600, 721, 170, 32, 50)
+    helpers['_text'](canvas, 'new_id_label', 'Neue Controller-ID:', 600, 753, 170, 22, 10)
+    for name, x, width in (('load',440,150), ('new',780,140), ('delete',930,140), ('back',1080,170)):
+        button = canvas.op('btn_'+name)
+        if button is not None:
+            button.par.x, button.par.w = x, width
+    build_controller_menu(owner)
+    return owner
+
+
 def build():
     scope = dict(globals())
     scope['__name__'] = 'port_topology_helpers'
@@ -315,9 +395,14 @@ def build():
     config = runtime.module._router()
     text(canvas, 'known', 'LIVE CONTROLLERS: ' + ', '.join(item.name for item in config.controllers), 20, 763, 1240, 30, 12)
     text(canvas, 'load_label', 'CONTROLLER ID', 20, 721, 160, 32)
-    field(canvas, 'load_id', draft.controller.name, 185, 721, 245)
-    controls = [('load', 'LOAD / REVERT', 440, 721, 190), ('new', 'NEW DRAFT', 640, 721, 180),
-                ('delete', 'STAGE DELETE', 830, 721, 190), ('back', 'BACK TO GICO', 1030, 721, 220)]
+    picker = button(canvas, 'btn_controller', draft.controller.name + '  v', 185, 721, 245)
+    click(owner, 'controller_menu_click', picker, "op('runtime').module.toggle_controllers()")
+    # Free text is only needed when creating a new controller ID.
+    field(canvas, 'load_id', draft.controller.name, 600, 721, 170)
+    text(canvas, 'new_id_label', 'Neue Controller-ID:', 600, 753, 170, 22, 10)
+    build_controller_menu(owner)
+    controls = [('load', 'LOAD / REVERT', 440, 721, 150), ('new', 'NEW DRAFT', 780, 721, 140),
+                ('delete', 'STAGE DELETE', 930, 721, 140), ('back', 'BACK TO GICO', 1080, 721, 170)]
     values = [('profile', draft.profile, 'PROFILE: gico_equal / independent'), ('target', draft.controller.target_address, 'TARGET IPv4'),
               ('interface', draft.controller.local_interface, 'LOCAL INTERFACE'), ('udp_port', draft.controller.port, 'UDP PORT'),
               ('first_ui', draft.controller.start_universe, 'START-UNIVERSE (ART-NET, AB 0)'),

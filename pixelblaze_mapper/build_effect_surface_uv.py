@@ -128,7 +128,8 @@ def build():
     if lookup.numRows != 3745:
         raise RuntimeError("Expected one panel UV row for every LED index")
 
-    callback.text = CALLBACK_SOURCE
+    from pixelblaze_mapper.show_performance import install_effect_uv_source
+    callback.text = install_effect_uv_source(CALLBACK_SOURCE)
     output.par.callbacks = callback.path
     output.cook(force=True)
     sampler.cook(force=True)

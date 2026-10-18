@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_9a2b2b0599f8dc9302d0",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/Fluid Noise/FluidNoise.fs",
+  "source_sha256": "7b07a1c2c959825973b54b7c6b9413fb3330883f1d58d5d8cbc3683618044f35",
+  "imported_file": "FluidNoise.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "FluidNoise.fs": "7b07a1c2c959825973b54b7c6b9413fb3330883f1d58d5d8cbc3683618044f35",
+    "thumbnail.png": "f01276277e2820f0647f5dd3b3cadddb5cf6f3cdf880437c18debdd583acd243"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

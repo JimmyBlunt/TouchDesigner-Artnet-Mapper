@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_76951414ee8234e904f5",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/Siren/Siren.fs",
+  "source_sha256": "8fb594b0461811b7939068d3c55d184c6f7a124871b003d5803575e08e6188a2",
+  "imported_file": "Siren.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "Siren.fs": "8fb594b0461811b7939068d3c55d184c6f7a124871b003d5803575e08e6188a2",
+    "thumbnail.png": "1a0d4912dfdb7206611de68b36019a22e91ba155b3cfcc3eb3e36db847edcf20"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

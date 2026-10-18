@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_b9cfb109d09dbf5e0784",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Magic Rug/Magic Rug.fs",
+  "source_sha256": "f84d8774463f1f27f4a450db00cb1194a7b4ba07e0e1498cf8615ea95cb985f8",
+  "imported_file": "Magic Rug.fs",
+  "imported_files": {
+    ".info": "91115094b0fc532e9b7825519d5651ebbe1f9f7e86ed5f2eee47eb28829ce24d",
+    "Magic Rug.fs": "f84d8774463f1f27f4a450db00cb1194a7b4ba07e0e1498cf8615ea95cb985f8",
+    "thumbnail.jpg": "42303963b2c27da5a7c32c0f4f73ce967d9dbeeef8c80ded8e3e39fb67f4cb2e"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_ef402b92460109e14fd4",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/[recode]_Orbital_Blue/[recode]_Orbital_Blue.fs",
+  "source_sha256": "06f3853306609913f928db1499c92df28b18a3d12179fd51eff3674f0114f2c7",
+  "imported_file": "[recode]_Orbital_Blue.fs",
+  "imported_files": {
+    ".info": "c728353ab00e59b9d038d2f4f38307d84ae5c233b0a12ba7a56bfde22dde4f48",
+    "[original]_Orbital_Blue.jpg": "c1e439dce006b32d0a3a84d71b18c9df83d28366a450c18e5612e823f9c0edb5",
+    "[recode]_Orbital_Blue.fs": "06f3853306609913f928db1499c92df28b18a3d12179fd51eff3674f0114f2c7",
+    "thumbnail.jpg": "83d9d6f7e390830c53f008870ae62e8da80427afaaf915b6626e90076065411e"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

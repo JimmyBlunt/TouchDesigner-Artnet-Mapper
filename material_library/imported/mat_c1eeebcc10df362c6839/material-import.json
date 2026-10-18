@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_c1eeebcc10df362c6839",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/PulsingRings2/PulsingRings2.fs",
+  "source_sha256": "57a4ea708198c20b8bc8f71e055e8be6f4533a813204fa65b2507b806e91f968",
+  "imported_file": "PulsingRings2.fs",
+  "imported_files": {
+    ".info": "54e8ce2b494e205e389b682c8368b70aea6bd36958099271083f9992f1656c9f",
+    "PulsingRings2.fs": "57a4ea708198c20b8bc8f71e055e8be6f4533a813204fa65b2507b806e91f968",
+    "thumbnail.jpg": "3146dfb60c55fa976d60d43d048eee46880e6cd7b5f454cfab4b9fb9e17f16ea"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

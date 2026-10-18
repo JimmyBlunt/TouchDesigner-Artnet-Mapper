@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_47fbee18d1f596babf2b",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Capsule/Capsule.fs",
+  "source_sha256": "31924be09fceb406133c8909f424650f435b8c49a126b6e152c61b41b4c980c2",
+  "imported_file": "Capsule.fs",
+  "imported_files": {
+    ".info": "f44246268716f6aac829d48b353fadf1dfb5c7b86e0e2057c27b71039857c3f1",
+    "Capsule.fs": "31924be09fceb406133c8909f424650f435b8c49a126b6e152c61b41b4c980c2",
+    "thumbnail.jpg": "c32658f44c3fdd1536d3e6e2260523c432965fcaafa9948c901f198a32539523"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

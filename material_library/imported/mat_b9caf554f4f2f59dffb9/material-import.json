@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_b9caf554f4f2f59dffb9",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/BlurryCubes/BlurryCubes.fs",
+  "source_sha256": "c7c4c3fecda16ad27c3a6abec453fff871af9df63e8af716dd10985bfb325858",
+  "imported_file": "BlurryCubes.fs",
+  "imported_files": {
+    ".info": "8521971d8d3b9b809064a65bd5902322842c221e538df2fd7afcaaf8e6ee3f2c",
+    "BlurryCubes.fs": "c7c4c3fecda16ad27c3a6abec453fff871af9df63e8af716dd10985bfb325858",
+    "thumbnail.jpg": "28fcb546796f59f8cdcd4ac1539524f8529bb4f65dd70092ecbec95047c88e7e"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

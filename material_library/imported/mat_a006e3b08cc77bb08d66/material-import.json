@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_a006e3b08cc77bb08d66",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Paint Archipelago/Paint Archipelago.fs",
+  "source_sha256": "8fc67b864d4a0f22a2f3778ec4d7240d59ea31b452972074fd7f7f64456e1c8d",
+  "imported_file": "Paint Archipelago.fs",
+  "imported_files": {
+    ".info": "4be9b673828a07cca59eecb57955d2107fa9144146eb42af363ad7f35d495ff0",
+    "Paint Archipelago.fs": "8fc67b864d4a0f22a2f3778ec4d7240d59ea31b452972074fd7f7f64456e1c8d",
+    "thumbnail.jpg": "176f9ea6214e24973bceb183d626d3857196785271e2f55c62264c6426226b66"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

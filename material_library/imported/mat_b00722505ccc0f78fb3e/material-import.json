@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_b00722505ccc0f78fb3e",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/PyramidTorsion/PyramidTorsion.fs",
+  "source_sha256": "8be03896c63eecc284e8ec9cfa5c459343fe80de507eb62b96e69b6c08147076",
+  "imported_file": "PyramidTorsion.fs",
+  "imported_files": {
+    ".info": "eba27f061a3018dd0c2b13bd53087ba4cccccaef982551de9b2c71147ef5d8a7",
+    "PyramidTorsion.fs": "8be03896c63eecc284e8ec9cfa5c459343fe80de507eb62b96e69b6c08147076",
+    "thumbnail.jpg": "710821f9a5a502c5251baa74b1b146037fde18883a693f50c23717bd81fdf53c"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

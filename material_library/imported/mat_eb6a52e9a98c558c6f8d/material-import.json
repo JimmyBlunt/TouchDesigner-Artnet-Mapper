@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_eb6a52e9a98c558c6f8d",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/OKLAB_mix_gradient/OKLAB_mix_gradient.fs",
+  "source_sha256": "f5217d091b32064c4bde4c88036b64f90c8aeba5e4ff6023c5caf10225b077b2",
+  "imported_file": "OKLAB_mix_gradient.fs",
+  "imported_files": {
+    ".info": "3472f22638f79268b1b9adf514fc591db8ad7e9863a4974b1d93efe3d578934a",
+    "OKLAB_mix_gradient.fs": "f5217d091b32064c4bde4c88036b64f90c8aeba5e4ff6023c5caf10225b077b2",
+    "thumbnail.jpg": "beed44342d717aa165548f344cefaba249a9eb729587592f1f11072ce129cfcf"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

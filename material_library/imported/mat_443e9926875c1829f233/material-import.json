@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_443e9926875c1829f233",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Viscous Dream/Viscous Dream.fs",
+  "source_sha256": "a2b0c331823b0fbc904bc3d47e32f75dee1ac255d8f66567b5d2453671544a1e",
+  "imported_file": "Viscous Dream.fs",
+  "imported_files": {
+    ".info": "9120779c2e23dfefe16eff1778067c4ec1c2a1095140d8b403440eae94847efc",
+    "thumbnail.jpg": "ae9b7aa76612d5af30aa35759f665009ab99bcb3c46896eaefebb3d05f47a9d2",
+    "Viscous Dream.fs": "a2b0c331823b0fbc904bc3d47e32f75dee1ac255d8f66567b5d2453671544a1e"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

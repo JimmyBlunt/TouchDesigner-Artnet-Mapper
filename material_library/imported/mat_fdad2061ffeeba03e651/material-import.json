@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_fdad2061ffeeba03e651",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/DiscoSpin/DiscoSpin.fs",
+  "source_sha256": "eaa06b54fa0c158b45e859e048349522914001fae209a43bdd7530965beb56af",
+  "imported_file": "DiscoSpin.fs",
+  "imported_files": {
+    ".info": "5fa1f24414d9ce81478522e81e6ec542b47acf8f672ae280ebf682affc00e82c",
+    "DiscoSpin.fs": "eaa06b54fa0c158b45e859e048349522914001fae209a43bdd7530965beb56af",
+    "thumbnail.jpg": "5eb4edce86c149b5e0cb07d334d562e466141ef44ad4b79da21f05841a406c28"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

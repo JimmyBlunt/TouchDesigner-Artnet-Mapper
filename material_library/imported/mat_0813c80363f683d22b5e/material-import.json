@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_0813c80363f683d22b5e",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/LadyBug/LadyBug.fs",
+  "source_sha256": "7bc40126a55a16d0122027837595e664d21cc4089d50e84484fab25a5fddaa9d",
+  "imported_file": "LadyBug.fs",
+  "imported_files": {
+    ".info": "323d619dee489ff0d3643c527478fc1ee232e2abf793dfeae792f5a418fb57cc",
+    "LadyBug.fs": "7bc40126a55a16d0122027837595e664d21cc4089d50e84484fab25a5fddaa9d",
+    "thumbnail.jpg": "0da04126d00b97b5991a77ef20e055685ba4a73ad0824b40e7fcd718e8ceccee"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

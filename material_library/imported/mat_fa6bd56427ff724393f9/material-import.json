@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_fa6bd56427ff724393f9",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Hypno Swirl/Hypno Swirl.fs",
+  "source_sha256": "3ec9f48209f02a0ec9bb49e657aa47deb41d1a4ac6dc51f25acc32390425931c",
+  "imported_file": "Hypno Swirl.fs",
+  "imported_files": {
+    ".info": "7c3bc7417415ea4f8f927d4b91f2e3a949af3db8d75d7767553c7fcd06d59f4d",
+    "Hypno Swirl.fs": "3ec9f48209f02a0ec9bb49e657aa47deb41d1a4ac6dc51f25acc32390425931c",
+    "thumbnail.jpg": "1bab4fb3078d7c39f76dae6637deb8b91cdf8637e8d0cc42455ed38258082474"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

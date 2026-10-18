@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_5ecd7b34908a8f97b7c6",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Sphere Lighting/Sphere Lighting.fs",
+  "source_sha256": "62782529ccd0eee3c60ed6af2cfad9d6ba287afb4b1b60c3a19773672e54bd96",
+  "imported_file": "Sphere Lighting.fs",
+  "imported_files": {
+    ".info": "1ff451b3dc0665bf33ecd2968520effd5e6ab62fbe091f179d679e7fd8949294",
+    "Sphere Lighting.fs": "62782529ccd0eee3c60ed6af2cfad9d6ba287afb4b1b60c3a19773672e54bd96",
+    "thumbnail.jpg": "116a95f69ea03b5805b601439b6fc171a5d1bc4de2cebfd4cb7bd0b069a7790d"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

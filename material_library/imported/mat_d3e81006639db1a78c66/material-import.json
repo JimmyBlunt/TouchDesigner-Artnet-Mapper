@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_d3e81006639db1a78c66",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/WobblyCircles/WobblyCircles.fs",
+  "source_sha256": "f1822ecf308f40a2f8d925f3653dfa80190e9d98125fea5fb153127f5dc4132e",
+  "imported_file": "WobblyCircles.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "thumbnail.png": "9c588a645640ab0b359b82e763811862302d14db6b815f41663314ccc5edce41",
+    "WobblyCircles.fs": "f1822ecf308f40a2f8d925f3653dfa80190e9d98125fea5fb153127f5dc4132e"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_dfb6ce22c84472f22d28",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/Abstract Ball/abstract_ball.fs",
+  "source_sha256": "5f4a06efe91c841cadb632c43992ab1d3a99e583448bf1e611a562bc299b1708",
+  "imported_file": "abstract_ball.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "abstract_ball.fs": "5f4a06efe91c841cadb632c43992ab1d3a99e583448bf1e611a562bc299b1708",
+    "abstract_ball.vs": "7d5d5516a60b39046952133724e425775897d767b641f4fb67b3f08414bcc5a0",
+    "thumbnail.png": "28e811eef8ace020ae259027c63c9d7679dc81da440d57e277e700d800483961"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

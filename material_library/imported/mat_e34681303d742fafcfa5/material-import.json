@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e34681303d742fafcfa5",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/Line Anim/LineAnimation.fs",
+  "source_sha256": "769cf8cb538457c8f81b858ad64d03621f32af31358fa6515b5ce93bf2f2df57",
+  "imported_file": "LineAnimation.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "LineAnimation.fs": "769cf8cb538457c8f81b858ad64d03621f32af31358fa6515b5ce93bf2f2df57",
+    "thumbnail.png": "44803f8ec53d907c8db406fc6f8b7891f4d8c08e0ce061b9eb73cd94c6aa535b"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

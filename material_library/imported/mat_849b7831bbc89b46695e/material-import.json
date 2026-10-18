@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_849b7831bbc89b46695e",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/Sphere/Sphere.fs",
+  "source_sha256": "2b748fda0f92926c6ff1eca345e4265a3584224d4c44dfe3b3a115467e93495f",
+  "imported_file": "Sphere.fs",
+  "imported_files": {
+    "Sphere.fs": "2b748fda0f92926c6ff1eca345e4265a3584224d4c44dfe3b3a115467e93495f",
+    "thumbnail.jpg": "5e17bd5fc74fcd70867fa5e45857ec7a313371737de2a676d9ae8e5689c34657"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

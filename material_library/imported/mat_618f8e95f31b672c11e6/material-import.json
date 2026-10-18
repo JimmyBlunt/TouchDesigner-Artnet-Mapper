@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_618f8e95f31b672c11e6",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Shape Control/ShapeControl.fs",
+  "source_sha256": "aa9cd53fb279ce6b3a77be56ade2acd6ea5af3d4813807c24af87d6b19825753",
+  "imported_file": "ShapeControl.fs",
+  "imported_files": {
+    ".info": "6ac13385413f02166d51cebb47594a462d13cd3744c3287e44729dc410090105",
+    "ShapeControl.fs": "aa9cd53fb279ce6b3a77be56ade2acd6ea5af3d4813807c24af87d6b19825753",
+    "thumbnail.png": "c3218ddb4dcac37aba32f782c11ecc0e8c479183b765ad97fb2613fd48de03eb"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_be3d7745e9773e4688f4",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/SpacePuppy/SpacePuppy.fs",
+  "source_sha256": "36a448d8849c1a9cd90b1325eccbc00a88a404a99118a19ace0470dfc706f97a",
+  "imported_file": "SpacePuppy.fs",
+  "imported_files": {
+    ".info": "dd2784b3524e54c64a2e8c5e6f7f864b104f5832e66dce71ed0fe7507eb6d512",
+    "SpacePuppy.fs": "36a448d8849c1a9cd90b1325eccbc00a88a404a99118a19ace0470dfc706f97a",
+    "thumbnail.jpg": "1e50a76be082e84cc921f866f5985a9139150675f86c53150cc40136573c6e50"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

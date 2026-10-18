@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_1db94eda200d3f497710",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Liquid Tail/Liquid Tail.fs",
+  "source_sha256": "fa58cc8a4e72c6d388231852ed1d632286fdb7a6a630e1e2cf86575c02d8d3bd",
+  "imported_file": "Liquid Tail.fs",
+  "imported_files": {
+    ".info": "534ca14e3bebada3bed50b3ab61d8c99aad9abcd5395ac678beed9fc01eac893",
+    "Liquid Tail.fs": "fa58cc8a4e72c6d388231852ed1d632286fdb7a6a630e1e2cf86575c02d8d3bd",
+    "thumbnail.jpg": "6deb074ce89d5cae4ab3a92af4077bccb024d6c286dacd5f82d67967be4e713a"
+  },
+  "kind": "madmapper_glsl",
+  "compatibility": "adaptable"
+}

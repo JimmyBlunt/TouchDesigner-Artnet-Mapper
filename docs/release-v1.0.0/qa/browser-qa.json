@@ -1,0 +1,25 @@
+{
+  "browser": "Playwright Chrome (Browser plugin not available)",
+  "checks": [
+    "live Test1 show rendered",
+    "timeline contextual info opens",
+    "snap and fit controls respond",
+    "mk2 dialog and contextual help open/close",
+    "midi dialog and contextual help open/close",
+    "compact desktop screenshot captured",
+    "detailed sequencer guide served",
+    "PXLBLZ Manager information opens/closes; output off"
+  ],
+  "errors": [],
+  "title": "Show Timeline · LED Controller",
+  "url": "http://127.0.0.1:9991/",
+  "style": {
+    "font": "Bahnschrift, sans-serif",
+    "background": "rgb(16, 24, 32)",
+    "color": "rgb(225, 229, 230)"
+  },
+  "manager": {
+    "output": false,
+    "lastError": "Lokaler Dienst http://127.0.0.1:9988 nicht erreichbar. Dienst starten und Einstellungen prüfen."
+  }
+}

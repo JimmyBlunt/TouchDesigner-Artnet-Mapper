@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_8ce319e82b7e2d6ecf7e",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Noise Square/NoiseSquare.fs",
+  "source_sha256": "6498a87e5fc6f93ffd935fcb453b63c896e0c618ad147b0e012e1f7d66090e1f",
+  "imported_file": "NoiseSquare.fs",
+  "imported_files": {
+    ".info": "01f8bc28e737264f8b0536a489513989c75e1b767709caa97f107a811b91924b",
+    "NoiseSquare.fs": "6498a87e5fc6f93ffd935fcb453b63c896e0c618ad147b0e012e1f7d66090e1f",
+    "thumbnail.png": "6ad13cd63b7f6ef47c4a764b818ceb29237ed5f909776cf4f8a385a93added92"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

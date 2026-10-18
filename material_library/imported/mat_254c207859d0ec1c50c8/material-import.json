@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_254c207859d0ec1c50c8",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Bumped Sinusoidal/Bumped Sinusoidal.fs",
+  "source_sha256": "b5ed195ca70890307b74c13d415e0de5fb3ee077a4932dd9a9c7b5eabf47fc6b",
+  "imported_file": "Bumped Sinusoidal.fs",
+  "imported_files": {
+    ".info": "b259a8163d30d260b99c109a4cb49571811c1a7d98f44a1dbcaefc525012a126",
+    "Bumped Sinusoidal.fs": "b5ed195ca70890307b74c13d415e0de5fb3ee077a4932dd9a9c7b5eabf47fc6b",
+    "texture.jpg": "ef063b8f751db77d2ca4ef8a7f28ba60096e58cc8250b30f32923f99b067c9aa",
+    "thumbnail.jpg": "eda4c3f4a151003a39d737ecf885e1bb9e83270c8d1731b3e3ce38c1f1dd5b55"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

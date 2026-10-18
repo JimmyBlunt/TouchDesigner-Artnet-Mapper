@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_bd65e902a7f19d70b8b2",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Fractal Petri Dish/Fractal Petri Dish.fs",
+  "source_sha256": "ec359b0b12cc94fdb4eed39d1de11ec0e61c16aca9abd53959938e4784d7dea9",
+  "imported_file": "Fractal Petri Dish.fs",
+  "imported_files": {
+    ".info": "d59a69d83c32f0f25cd813003def16ab069274650821f166c2bfab743ab05f16",
+    "Fractal Petri Dish.fs": "ec359b0b12cc94fdb4eed39d1de11ec0e61c16aca9abd53959938e4784d7dea9",
+    "thumbnail.jpg": "be367d09cd020be9ef64b003d86df8df934dc3a8b4366c433d4127d1453eb541"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_8aaa73f9e92f1312b0d1",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Fluid Circles/Fluid Circles.fs",
+  "source_sha256": "9329584c076b21491fecad7e06807a6a85e574ec24c310e69c3a4fd7ff48941a",
+  "imported_file": "Fluid Circles.fs",
+  "imported_files": {
+    ".info": "b5cd50914bb4d1eee054867d19676bce703ac680f90c8539eea44f69679d3671",
+    "Fluid Circles.fs": "9329584c076b21491fecad7e06807a6a85e574ec24c310e69c3a4fd7ff48941a",
+    "thumbnail.jpg": "e4d49668002861d3753e9c1cb9535c9e3c8ab6c02f47448aa1cd1f76342e4ad7"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

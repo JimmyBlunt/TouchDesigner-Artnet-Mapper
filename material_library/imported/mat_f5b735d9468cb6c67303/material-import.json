@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_f5b735d9468cb6c67303",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Liquid Gradient Scale/Liquid Gradient Scale.fs",
+  "source_sha256": "be4eaeb2a23bf6292abd9d37ed114b556896b653b31a109452ab57a60fe82873",
+  "imported_file": "Liquid Gradient Scale.fs",
+  "imported_files": {
+    ".info": "a7ea728378e85f65b48daa949652c17438d501351edb558ffd7f5b6602256191",
+    "Liquid Gradient Scale.fs": "be4eaeb2a23bf6292abd9d37ed114b556896b653b31a109452ab57a60fe82873",
+    "thumbnail.jpg": "7478cea8137777c6f35053712b3094b01a7e515884172dcfbe53c36500b847c8"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

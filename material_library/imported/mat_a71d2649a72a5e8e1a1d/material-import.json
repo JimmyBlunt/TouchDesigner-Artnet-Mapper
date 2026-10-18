@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_a71d2649a72a5e8e1a1d",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/LaserShape/LaserShape.fs",
+  "source_sha256": "d88c6857f3ecc6be1bfa97fd71bd8cee511e43e6423b5253bbec068b3fe9cc6a",
+  "imported_file": "LaserShape.fs",
+  "imported_files": {
+    ".info": "5a1d3d5bcd2c9cff7da876b333ce7f130502122a0563eb8334a39a9add80661c",
+    "LaserShape.fs": "d88c6857f3ecc6be1bfa97fd71bd8cee511e43e6423b5253bbec068b3fe9cc6a",
+    "thumbnail.jpg": "fe8adad672c445dd12640c22425ab369c5c5de753ca89b966f0de4be7540563a"
+  },
+  "kind": "madmapper_glsl",
+  "compatibility": "adaptable"
+}

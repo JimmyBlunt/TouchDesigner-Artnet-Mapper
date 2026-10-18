@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e307a8b47e31924c2b50",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Isolines/Isolines.fs",
+  "source_sha256": "977cc0e805283f6fa236a6d3b9e28cedbc3f9bd8d70ad3e003ee58e94a285787",
+  "imported_file": "Isolines.fs",
+  "imported_files": {
+    ".info": "174b47c573d04ba79c89c25b91733405f3dca58c20edc44eb6aa3e52ab5496ec",
+    "Isolines.fs": "977cc0e805283f6fa236a6d3b9e28cedbc3f9bd8d70ad3e003ee58e94a285787",
+    "thumbnail.jpg": "349e607591729dbb3d1a9684fc2d544865db97536d92c5226f3a4afe67b74504"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

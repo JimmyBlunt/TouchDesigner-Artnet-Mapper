@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_5b8137c640e8c1bbd99d",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/MechanicallyAlive/MechanicallyAlive.fs",
+  "source_sha256": "bd3482cfcc90811e7eedcf4ba7ed6b6026c5e43d5244615b6c10bcbe68febc66",
+  "imported_file": "MechanicallyAlive.fs",
+  "imported_files": {
+    ".info": "1e7e624faf8d48cb0ee67a331afb0f37242c4c9c9faa1df128194bc291923463",
+    "MechanicallyAlive.fs": "bd3482cfcc90811e7eedcf4ba7ed6b6026c5e43d5244615b6c10bcbe68febc66",
+    "thumbnail.jpg": "ccb4485d39bdbb692db5c0d3476ad429bc6fb9bd88bbab05ce2c66d8b9c36c5f"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

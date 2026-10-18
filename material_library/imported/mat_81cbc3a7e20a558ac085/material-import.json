@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_81cbc3a7e20a558ac085",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Rotating Squares V2/Rotating Squares V2.fs",
+  "source_sha256": "a4d05521f8e4e78941be33f942c33b1f6d89369e493391d63f1b8a5c12608b0d",
+  "imported_file": "Rotating Squares V2.fs",
+  "imported_files": {
+    ".info": "823f746103d22c0470c586b6465d512a0294991a38a4b4a42656c83d785306a3",
+    "Rotating Squares V2.fs": "a4d05521f8e4e78941be33f942c33b1f6d89369e493391d63f1b8a5c12608b0d",
+    "thumbnail.jpg": "8139b87e853313a93dd01b07b13e11b9a4fa4bf7e3a322fb07cedcd2ef759f83"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

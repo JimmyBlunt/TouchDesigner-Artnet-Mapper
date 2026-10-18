@@ -389,10 +389,11 @@ def _write_calibration():
 
 def _rebuild_router():
     # Preserve TouchDesigner's injected op and OP types.
+    from pathlib import Path
     scope = dict(globals())
     scope['__name__'] = '__main__'
     scope['__file__'] = BUILDER
-    exec(compile(open(BUILDER, encoding='utf-8').read(), BUILDER, 'exec'), scope, scope)
+    exec(compile(Path(BUILDER).read_text(encoding='utf-8'), BUILDER, 'exec'), scope, scope)
 
 def apply_safe():
     try:
@@ -415,8 +416,13 @@ def apply_safe():
         return False
 
 def all_off():
-    stop_outputs(op('/project1/multi_controller_output'))
-    _set_status('SAFE - all Art-Net outputs are OFF')
+    from pixelblaze_mapper.router_blackout import all_off as blackout
+    try:
+        blackout(op('/project1/multi_controller_output'))
+        _set_status('OFF - senders stopped; complete black frames sent')
+    except Exception as error:
+        _set_status('OFF - ' + str(error), (0.98, 0.38, 0.32))
+        raise
 
 def start_enabled():
     all_off()

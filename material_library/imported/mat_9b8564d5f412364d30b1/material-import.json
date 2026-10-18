@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_9b8564d5f412364d30b1",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Extruded Mobius/Extruded Mobius.fs",
+  "source_sha256": "e4903d26b077b800ddc7c372d806975d48c0de912656b2fd8e907da3f28cfd16",
+  "imported_file": "Extruded Mobius.fs",
+  "imported_files": {
+    ".info": "04557a518449c4bd05d6b33b1e5523f51a8dc9e73a6c7188bb35bd064bf698ca",
+    "Extruded Mobius.fs": "e4903d26b077b800ddc7c372d806975d48c0de912656b2fd8e907da3f28cfd16",
+    "thumbnail.jpg": "9676696dfefae5ae914728abb49890f31c6add83a9e54181a4647fc57ad82b10"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

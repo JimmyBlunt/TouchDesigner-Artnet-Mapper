@@ -1,0 +1,106 @@
+{
+  "crumpled-2": {
+    "material_id": "mat_3de7fe0ae226a8eb5028",
+    "label": "Crumpled",
+    "values": {
+      "resolution": 8.023359288097886,
+      "detail": 0.1,
+      "red": 0.1,
+      "green": 0.3,
+      "blue": 0.95,
+      "brightness": 1.0,
+      "movement": 0.95
+    }
+  },
+  "smoothvoronicontours-3": {
+    "material_id": "mat_f5afcd38b0f7ff071973",
+    "label": "Smoothvoronicontours",
+    "values": {
+      "mat_zoom": 0.7,
+      "mat_morph": [
+        0.0,
+        0.0
+      ],
+      "mat_glossy": false,
+      "mat_speed": 0.02224694104560623,
+      "mat_bpm_sync": false,
+      "mat_reverse": false,
+      "mat_offset": 0.0,
+      "mat_strob": 0.0,
+      "mat_brightness": 0.0,
+      "mat_contrast": 1.0,
+      "mat_saturation": 0.0,
+      "mat_hue_shift": 0.0,
+      "mat_invert": false
+    }
+  },
+  "nested-cube": {
+    "material_id": "mat_b793d955caf8ad949a92",
+    "label": "Nested Cube",
+    "values": {
+      "mat_lock_aspect": false,
+      "mat_scale": 0.9165739710789766,
+      "mat_rotate": 0.0,
+      "mat_shift_amount": [
+        0.0,
+        0.0
+      ],
+      "mat_shift_scale": 1.0,
+      "mat_shift_type": 1,
+      "mat_mirror_x": false,
+      "mat_mirror_y": false,
+      "mat_fov": 1.0,
+      "mat_inner_size": 1.0,
+      "mat_outer_size": 0.6807563959955506,
+      "mat_refraction": 1.0,
+      "mat_collapse": 1.0,
+      "mat_transparency": 0.6907675194660734,
+      "mat_bounces": 5,
+      "mat_iterations": 60,
+      "mat_obj_level": 1.0,
+      "mat_sky_level": 1.0,
+      "mat_spin": 1.0,
+      "mat_roll": 1.0,
+      "mat_speed": 1.0,
+      "mat_bpm_sync": false,
+      "mat_reverse": false,
+      "mat_offset": 0.0,
+      "mat_offset_scale": 1.0,
+      "mat_strob": 0.0,
+      "mat_restart": 0,
+      "mat_brightness": 0.0,
+      "mat_contrast": 1.0,
+      "mat_saturation": 0.0,
+      "mat_hue_shift": 0.0,
+      "mat_invert": false,
+      "mat_luma_to_alpha": false,
+      "mat_luma_sensitivity": 2.0,
+      "mat_luma_threshold": 0.25,
+      "mat_luma_mode": 1
+    }
+  },
+  "plasma-02": {
+    "material_id": "mat_eb407546bc24472d11bc",
+    "label": "Plasma 02",
+    "values": {
+      "uSpeed": 0.5,
+      "uScale": 1.0,
+      "brightness": 0.1,
+      "contrast": 1.1,
+      "saturation": 0.0,
+      "hue_shift": 0.0
+    }
+  },
+  "plasma-07": {
+    "material_id": "mat_474b11beef734d093120",
+    "label": "Plasma 07",
+    "values": {
+      "uSpeed": -1.8375973303670747,
+      "uScale": 2.0,
+      "ubrightness": 0.0,
+      "ucontrast": 1.0,
+      "usaturation": 0.0,
+      "uhue_shift": 0.0
+    }
+  }
+}

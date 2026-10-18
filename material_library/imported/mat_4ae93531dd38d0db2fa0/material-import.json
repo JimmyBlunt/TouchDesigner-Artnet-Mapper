@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_4ae93531dd38d0db2fa0",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Quick sketch 3D/Quick sketch 3D.fs",
+  "source_sha256": "ab3d1a971b89b457b067fd0eeecb2012516751b7c906a8e4ef9cd59013f684ba",
+  "imported_file": "Quick sketch 3D.fs",
+  "imported_files": {
+    ".info": "065cd5ee9a8812381764d7ab50bcfa59a78f6de85d686a34efd825016af31996",
+    "Quick sketch 3D.fs": "ab3d1a971b89b457b067fd0eeecb2012516751b7c906a8e4ef9cd59013f684ba",
+    "thumbnail.jpg": "53860aa1608b585ef2b9f2eceb8d95c7badd8114d4121771e65f424ca804815b"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

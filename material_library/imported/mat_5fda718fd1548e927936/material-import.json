@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_5fda718fd1548e927936",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/CosineColours/CosineColours.fs",
+  "source_sha256": "d7735ccfcc0afa657b17fe1ae78c6fc264768b4cae51c4fca754d8452b20d353",
+  "imported_file": "CosineColours.fs",
+  "imported_files": {
+    ".info": "4acdc3ae0b952e22b8c2f108a3d906475ab068dc9ed4fd6c1f327e95855596e8",
+    "CosineColours.fs": "d7735ccfcc0afa657b17fe1ae78c6fc264768b4cae51c4fca754d8452b20d353",
+    "thumbnail.jpg": "b669c8b28bf51ff37467925d4ddcb6c5d2bbabce7bd7de956e12a272e8fa35cc"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

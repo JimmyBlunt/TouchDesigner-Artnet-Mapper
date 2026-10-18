@@ -19,6 +19,8 @@ class Manager:
         self.catalog_version = 0
         self.last = self.error = ''
         self.worker = None
+        self.windows = None
+        self.window_error = ''
         self.events = Queue(maxsize=128)
         self.catalog, self.images = [], {}
         self.last_show = None
@@ -29,6 +31,12 @@ class Manager:
         if self.path.exists():
             config = json.loads(self.path.read_text(encoding='utf-8'))
         self.controller = Controller(config)
+        if callable(getattr(self.host, 'resolve', None)):
+            try:
+                from .mk2_windows import WindowDirector
+                self.windows = WindowDirector(self.host.resolve)
+            except Exception as error:
+                self.window_error = str(error)
         self._refresh_context()
         self.update_surface()
 
@@ -97,6 +105,19 @@ class Manager:
             self.worker.snapshot = dict(cards=deepcopy(self.cards),selected=self.selected,images=dict(self.images),
                                         version=self.version,controller=view)
         self.view = view
+        self._window_action('observe', view, self.images)
+
+    def _window_action(self, method, *args):
+        if self.windows is not None:
+            try:
+                getattr(self.windows, method)(*args)
+                if method != 'observe':
+                    self.window_error = ''
+            except Exception as error:
+                # A missing desktop window must not undo a successful mode or
+                # material change, nor interrupt controller/event processing.
+                self.window_error = str(error)
+                self.controller.error = 'Fenster: '+str(error)
 
     def snapshot(self):
         # The large library stays on the dedicated catalog endpoint.
@@ -106,7 +127,8 @@ class Manager:
                     last=self.last,error=self.error or self.view.get('error',''),catalog_version=self.catalog_version,
                     frame_version=self.worker.frame_version if self.worker else 0,controller=view,
                     bank=self.controller.bank,groups=[dict(name=g['name'],count=sum(bool(p['target']) for p in g['pads'])) for g in self.controller.config['groups']],
-                    release=VERSION)
+                    release=VERSION, window_error=self.window_error,
+                    windows=self.windows.status() if self.windows is not None else None)
 
     def _write_config(self, config):
         clean = validate_config(config)
@@ -152,6 +174,10 @@ class Manager:
                 pass  # Flash deadline is part of the immutable controller snapshot.
             else:
                 self.host.execute(command)
+                if command['action'] == 'set_mode':
+                    self._window_action('show_mode', command['mode'])
+                elif command['action'] == 'load_material':
+                    self._window_action('material_loaded', command['material_id'])
 
     def dispatch(self,event):
         activity = event.get('type') != 'button' or event.get('down', True)
@@ -251,6 +277,7 @@ class Manager:
             self.worker.stop()
             self.worker = None
             self.controller.held.clear()
+        browse_moved = False
         for _ in range(32):
             try:
                 event,version,when = self.events.get_nowait()
@@ -272,7 +299,20 @@ class Manager:
             try:
                 if event.get('type') == 'wheel':
                     event = dict(event,timestamp=when)
+                    if getattr(self.controller, 'screen', None) == 'browse':
+                        # Browsing only changes selection, never the live host.
+                        # Preserve every receive timestamp/order but publish one
+                        # final frame: rebuilding 635 materials per detent used
+                        # to cost ~70+ ms and could outrun the one-second queue.
+                        self.controller.error = ''
+                        self._execute(self.controller.dispatch(event))
+                        self.error = ''
+                        browse_moved = True
+                        continue
                 self.dispatch(event)
+                browse_moved = False
             except Exception as error:
                 self.error = str(error)
+        if browse_moved:
+            self._refresh_context()
         self.update_surface()

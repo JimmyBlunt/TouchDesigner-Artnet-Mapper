@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_156111a450b19837cebe",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/PsyCard/PsyCard.fs",
+  "source_sha256": "8c34aecc4abf1c6e7517778d15a4740f044ec222e6833e436f4aa404b6e0f41d",
+  "imported_file": "PsyCard.fs",
+  "imported_files": {
+    ".info": "8f5b5f5a76213cdf983714b95927c746777f6b383cfca6db5a6ba89ed07e3049",
+    "PsyCard.fs": "8c34aecc4abf1c6e7517778d15a4740f044ec222e6833e436f4aa404b6e0f41d",
+    "thumbnail.jpg": "a31e5df45bdb7c5eae0c39ba1eab6c880ce8cd4399e150e7be8b1e5fe46c3a49"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

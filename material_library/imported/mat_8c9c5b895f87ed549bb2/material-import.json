@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_8c9c5b895f87ed549bb2",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Fluttery Circles/Fluttery Circles.fs",
+  "source_sha256": "561b3b540a515c6a4e53c3a08f97dc834fee486af4d77b8baf4b58a49600e32a",
+  "imported_file": "Fluttery Circles.fs",
+  "imported_files": {
+    ".info": "955a7c05645a8ca06ee0280e1e7d9fcd647d3c3e8e6a1ba8dd41d6291e813fb1",
+    "Fluttery Circles.fs": "561b3b540a515c6a4e53c3a08f97dc834fee486af4d77b8baf4b58a49600e32a",
+    "thumbnail.jpg": "7ee78e57f1502d9bc3d82fdf7707fa33e41dc547166631f4b78ed02b3f4c9f0c"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

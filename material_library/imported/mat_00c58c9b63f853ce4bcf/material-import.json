@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_00c58c9b63f853ce4bcf",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/FasterVoronoi/FasterVoronoi.fs",
+  "source_sha256": "eb0bf5c0ed880779a0525adce40925cd62715a0873974512bb9a69ea6e4e2b71",
+  "imported_file": "FasterVoronoi.fs",
+  "imported_files": {
+    ".info": "d890d7c2f4126668e3e3e2e135824903666d35f914aeeb8de125ad389aa59f8b",
+    "FasterVoronoi.fs": "eb0bf5c0ed880779a0525adce40925cd62715a0873974512bb9a69ea6e4e2b71",
+    "thumbnail.jpg": "08fb97cc35d71295b013da9301e0f00898d00edbd2a720f8b96eb3820ff3f944"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

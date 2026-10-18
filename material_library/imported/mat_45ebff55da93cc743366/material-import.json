@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_45ebff55da93cc743366",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/PerlinSphere/Perlinsphere.fs",
+  "source_sha256": "e53845ca0e5f5b5310948898098224b213cb99449d8c54162d4e21e37563f336",
+  "imported_file": "Perlinsphere.fs",
+  "imported_files": {
+    ".info": "410dce263ffc9ea6fb223a77c2287db6e9fc9456532aa4e47223e49dafd6b7d5",
+    "Perlinsphere.fs": "e53845ca0e5f5b5310948898098224b213cb99449d8c54162d4e21e37563f336",
+    "thumbnail.png": "9c2d8722cad45233c6f94e98711cbc75ee18c96a77ef1b3ee0e5b000061fd3a7"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

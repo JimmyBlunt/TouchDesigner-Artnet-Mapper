@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_9778ede698fe20a21fcd",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/ProceduralWarping/ProceduralWarping.fs",
+  "source_sha256": "43d61179a4f941c3f7cf815cd6d20dd51ff14e0e18e8af12c36879b93b56956b",
+  "imported_file": "ProceduralWarping.fs",
+  "imported_files": {
+    ".info": "17a32dcafe49459d75195818919214e8c131f6b7ad042ccc5e7640ab0a7a7b43",
+    "ProceduralWarping.fs": "43d61179a4f941c3f7cf815cd6d20dd51ff14e0e18e8af12c36879b93b56956b",
+    "thumbnail.jpg": "e0056446c3450d753323fe5eaad3242894304857340440c92e0dc55f22668cb4"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_cc56e0baff15e29972be",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/BlobShore/BlobShore.fs",
+  "source_sha256": "b884e2523e1408a99b53bf1652f10eef065bdc50cfeef95060f6eaaaaac02a0f",
+  "imported_file": "BlobShore.fs",
+  "imported_files": {
+    ".info": "a87fe90c30eadd7a7b79155c106adf0ad9b2d4c65f191c70b64ac7cae33f242e",
+    "BlobShore.fs": "b884e2523e1408a99b53bf1652f10eef065bdc50cfeef95060f6eaaaaac02a0f",
+    "thumbnail.jpg": "aa3c421d682574dcf04ccb3c0c8ccda81fc7788d7ab5a0ec19702f78b362af65"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

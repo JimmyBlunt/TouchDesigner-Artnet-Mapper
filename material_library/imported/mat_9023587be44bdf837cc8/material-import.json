@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_9023587be44bdf837cc8",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Organic Glass/Organic Glass.fs",
+  "source_sha256": "346241b0ec21390aa5779903e91658c1b27d1356c275022c6ed5b59c51e41a7b",
+  "imported_file": "Organic Glass.fs",
+  "imported_files": {
+    ".info": "3596287ac41649b1796e58344fd51a6a5678cb3473c6df7e3e82bf0aa49f65f9",
+    "Organic Glass.fs": "346241b0ec21390aa5779903e91658c1b27d1356c275022c6ed5b59c51e41a7b",
+    "thumbnail.jpg": "07abb54e4e98ca0aaf20d1e7ffc09317cebc4e070e31cd0464cb566465fa067d"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

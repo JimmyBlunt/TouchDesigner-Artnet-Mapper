@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_24d3e0ea915034c2d9bc",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/CubeOutlines/CubeOutlines.fs",
+  "source_sha256": "2067460b727dbb0fe7ebc79a4e1fdd081ae25f85faeb093f8b02508b044757c2",
+  "imported_file": "CubeOutlines.fs",
+  "imported_files": {
+    ".info": "bf3eb7b5c5690bd4fab5b7132b9f4312a0aacd7c811d457ffaa9766f9eabd07f",
+    "CubeOutlines.fs": "2067460b727dbb0fe7ebc79a4e1fdd081ae25f85faeb093f8b02508b044757c2",
+    "thumbnail.jpg": "dc920af3693a51fc5949762f62dd2b28c1450f6d811938077eebda816042cc1d"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_3eb478360c9f736ca64e",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Basic Lava Lamp/Basic Lava Lamp.fs",
+  "source_sha256": "7178c4d5bed788825dcc81bcbbd354b52f833b6a0a7c2a325732830ffb85a0f4",
+  "imported_file": "Basic Lava Lamp.fs",
+  "imported_files": {
+    ".info": "f5b4b78c384a42222fa59f38fd8e3ba10c04453bc983825baadd1f4cff72da10",
+    "Basic Lava Lamp.fs": "7178c4d5bed788825dcc81bcbbd354b52f833b6a0a7c2a325732830ffb85a0f4",
+    "thumbnail.jpg": "b3b8077982f162f58c1051e166332a078fb96571eeec6a5b4f640cfcbac6a70d"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

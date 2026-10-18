@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_509b8285aab05375cb95",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Apollonian Slice/Apollonian Slice.fs",
+  "source_sha256": "1a672a4d2a6eace8ed85bdf6dac4206490e377c05774063db29200829c8a9803",
+  "imported_file": "Apollonian Slice.fs",
+  "imported_files": {
+    ".info": "c88361e96db50a64b8a951fdadb500c29f4e560f9b993cf7bc7bea8a4883b5a6",
+    "Apollonian Slice.fs": "1a672a4d2a6eace8ed85bdf6dac4206490e377c05774063db29200829c8a9803",
+    "thumbnail.jpg": "8626d00760126510504cbc5c7c82986407813ac7578a9146ee06090177ab31f4"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

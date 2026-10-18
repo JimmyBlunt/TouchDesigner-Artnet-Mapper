@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_c22c5f8ea7bfabb214ef",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/FlowerOfLife/FlowerOfLife.fs",
+  "source_sha256": "19181d7b42e151cb9b2c4511290764133ab5939604dbb6b80ed0c080f8868f45",
+  "imported_file": "FlowerOfLife.fs",
+  "imported_files": {
+    ".info": "23bfb79fdc15d9d43931323c983b96f48fd66bd9f7ddd9b102feeaab1d98b17c",
+    "FlowerOfLife.fs": "19181d7b42e151cb9b2c4511290764133ab5939604dbb6b80ed0c080f8868f45",
+    "thumbnail.jpg": "74c1daa032a7d66dfd76b7c22f1ed0a49e8462faa51830e68a69cf4295c17141"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

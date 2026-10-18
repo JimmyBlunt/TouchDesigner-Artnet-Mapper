@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_ebf7cc2dfd8a16476a40",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/SatisSpiraling/SatisSpiraling.fs",
+  "source_sha256": "f786f3882a72b9f7d6de5f41a5de9cf5ffdd07530bf728591c9e63201365c1dd",
+  "imported_file": "SatisSpiraling.fs",
+  "imported_files": {
+    ".info": "77139d3eca5827966af4c3344c057cd7a60550ca15fa5cbd4fe91fd44402f2e2",
+    "SatisSpiraling.fs": "f786f3882a72b9f7d6de5f41a5de9cf5ffdd07530bf728591c9e63201365c1dd",
+    "thumbnail.png": "eb222d912d511ba19c9f6e2385111fd166aa80b8bae82e599ce9fd61730ceaeb"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

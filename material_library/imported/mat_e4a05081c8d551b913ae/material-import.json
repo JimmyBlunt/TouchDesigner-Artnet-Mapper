@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e4a05081c8d551b913ae",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/RaymarchedNoodles/RaymarchedNoodles.fs",
+  "source_sha256": "4715ca806948c6f2319f74c22f2ea4c371acd0e8ed413ef71869712f383aaa2f",
+  "imported_file": "RaymarchedNoodles.fs",
+  "imported_files": {
+    ".info": "34c6a7cd2c5474a4332304c447992aeb099c5baa6fcdfeda52cfdc6f27f4c538",
+    "RaymarchedNoodles.fs": "4715ca806948c6f2319f74c22f2ea4c371acd0e8ed413ef71869712f383aaa2f",
+    "thumbnail.jpg": "3b84065701315217c444d31b9deaedd3caef407bacde5cfe51107271e96d7bf1"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

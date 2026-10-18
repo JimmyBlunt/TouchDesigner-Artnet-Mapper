@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_6e4157a95155abaac604",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Dusk Gradient/Dusk Gradient.fs",
+  "source_sha256": "3152a4d4def4c99ad10d29be60e548e4570100ca71d8d4aaad4aaee1ac250da8",
+  "imported_file": "Dusk Gradient.fs",
+  "imported_files": {
+    ".info": "513bb745bfada3e9ed3b7115e78fdea5b9118380221c7e4819c3ef019e757434",
+    "Dusk Gradient.fs": "3152a4d4def4c99ad10d29be60e548e4570100ca71d8d4aaad4aaee1ac250da8",
+    "thumbnail.jpg": "8f7f604be22f26fbe221d1cbd5c221646a82215e4ac37a6a94a0a0b0e7891964"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

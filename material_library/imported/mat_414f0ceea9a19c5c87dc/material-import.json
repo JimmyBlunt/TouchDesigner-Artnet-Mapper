@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_414f0ceea9a19c5c87dc",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/ParallelTruchet/ParallelTruchet.fs",
+  "source_sha256": "48d2f93a08ca97dd034366f3a96d2f4dd14c9dacc0c7b967cca70320f992a6ca",
+  "imported_file": "ParallelTruchet.fs",
+  "imported_files": {
+    ".info": "da31c2563459d2d79f3f5a0047b8fa0b461aec04c57d974d2a66b8a36a5c657e",
+    "ParallelTruchet.fs": "48d2f93a08ca97dd034366f3a96d2f4dd14c9dacc0c7b967cca70320f992a6ca",
+    "thumbnail.jpg": "021e876541d8a14859a2bc7b4647ed6a3ebec070b0cd42d8ead5ae4adc14e412"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_9de444998794e0874375",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Calico/Calico.fs",
+  "source_sha256": "314b7ab9a9e713e7de8682bd2f28d0afac65efcdc6f4ad67e76b6ff5a340cdf7",
+  "imported_file": "Calico.fs",
+  "imported_files": {
+    ".info": "5d37952ecf5c2e74a88e2c1eb839b56c8bab7d2cb7bfa8f645466ed1edcc80d6",
+    "Calico.fs": "314b7ab9a9e713e7de8682bd2f28d0afac65efcdc6f4ad67e76b6ff5a340cdf7",
+    "thumbnail.png": "69e8fbaddfe6cfcafbc0d53edc970f1309acbbdc0b9113a021a87317e84aa97f"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

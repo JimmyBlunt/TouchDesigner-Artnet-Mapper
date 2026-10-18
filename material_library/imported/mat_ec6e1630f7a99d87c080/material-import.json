@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_ec6e1630f7a99d87c080",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Rain Drop Spectrum/Rain Drop Spectrum.fs",
+  "source_sha256": "6ba440a744856bc48fdd976cd37365fcc1c8d0a584542525545f48dde84468c0",
+  "imported_file": "Rain Drop Spectrum.fs",
+  "imported_files": {
+    ".info": "7ca39cda73f93820554c8b92c2a8f578316378e0497f252efc84e9db5b1a55f7",
+    "Rain Drop Spectrum.fs": "6ba440a744856bc48fdd976cd37365fcc1c8d0a584542525545f48dde84468c0",
+    "thumbnail.jpg": "d1a81d3882ccb53cfd573ae8c91f9f689cd831fafafe1ff54b66d2abc6611215"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

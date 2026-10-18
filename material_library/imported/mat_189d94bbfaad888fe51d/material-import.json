@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_189d94bbfaad888fe51d",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/HexTiling2/[C] HexTiling2.fs",
+  "source_sha256": "22d0b309c49d34bd76da5aeda69f8b4d59d7b17da7911eb6ef1b6b9de8a0be08",
+  "imported_file": "[C] HexTiling2.fs",
+  "imported_files": {
+    ".info": "54e8ce2b494e205e389b682c8368b70aea6bd36958099271083f9992f1656c9f",
+    "[C] HexTiling2.fs": "22d0b309c49d34bd76da5aeda69f8b4d59d7b17da7911eb6ef1b6b9de8a0be08",
+    "thumbnail.jpg": "b70634287bb19ce0dd58c9f24ccf9d08cd778068175e5912a91db39fb51343a8"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

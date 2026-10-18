@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_bf695b163623545f4056",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/SquareWave/SquareWave.fs",
+  "source_sha256": "923f552724e9127fff438733929821d20aad09bf6e9babff3a04f0f18d0d5df6",
+  "imported_file": "SquareWave.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "SquareWave.fs": "923f552724e9127fff438733929821d20aad09bf6e9babff3a04f0f18d0d5df6",
+    "thumbnail.png": "3bbafface12ce19c4e65645da5d71295aff131219e6a1e5f3ea2510817328eaf"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

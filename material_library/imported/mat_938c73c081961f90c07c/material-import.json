@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_938c73c081961f90c07c",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/70s Maelstrom/70s Maelstrom.fs",
+  "source_sha256": "845a80ff6bff8925271a83111e5107d4aed550559a1bc7418e0d0fa82b5fa326",
+  "imported_file": "70s Maelstrom.fs",
+  "imported_files": {
+    ".info": "150b6fc133108fb184e357160d793750bbb1774a9e0d5d8d73bc27ac64ac0662",
+    "70s Maelstrom.fs": "845a80ff6bff8925271a83111e5107d4aed550559a1bc7418e0d0fa82b5fa326",
+    "thumbnail.jpg": "32fb191c5904437ac7bbcfa5dfa6374afbc9afd704d29d4a1dfaada7083522de"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

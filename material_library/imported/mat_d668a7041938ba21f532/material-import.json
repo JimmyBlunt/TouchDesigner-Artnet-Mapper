@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_d668a7041938ba21f532",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/SinePuke/SinePuke.fs",
+  "source_sha256": "6993a5c1595aa9de9a5b3f34f23871c0a9594fbc4fee46592a220939ecd5f041",
+  "imported_file": "SinePuke.fs",
+  "imported_files": {
+    ".info": "ec2eb0e4858f8407654fb4f72f9cf8f3c4d9d7de99ca3af33b501ee752b19abc",
+    "SinePuke.fs": "6993a5c1595aa9de9a5b3f34f23871c0a9594fbc4fee46592a220939ecd5f041",
+    "thumbnail.png": "73ba3fbd173ce350143b9d4c486f0febde2d66eff91ff61464f60d9fc28b8e1e"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

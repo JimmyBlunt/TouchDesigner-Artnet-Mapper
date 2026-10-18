@@ -1,0 +1,66 @@
+<!doctype html><html lang="de"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PXLBLZ · Installation</title>
+<style>
+:root{color-scheme:dark;font-family:Segoe UI,system-ui,sans-serif;background:#0c1118;color:#dce7f3}*{box-sizing:border-box}body{margin:0}main{max-width:1280px;margin:auto;padding:32px}header{display:flex;justify-content:space-between;align-items:center;gap:18px;border-bottom:1px solid #2c3747;padding-bottom:24px}h1{font-size:28px;margin:4px 0}h2{font-size:18px;margin:0 0 14px}p{line-height:1.6;color:#a9bbce;margin:8px 0}.eyebrow{font-size:12px;letter-spacing:2px;color:#6ee7dc}.badge{padding:9px 14px;border:1px solid #537188;border-radius:24px;font-size:13px;white-space:nowrap}.on{background:#154539;color:#87f5c8}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:24px 0}.stat,.card{background:#141d28;border:1px solid #2a3a4b;border-radius:12px;padding:20px}.stat strong{display:block;font-size:30px;font-weight:600;color:#8be9df}.stat span{font-size:13px;color:#9fb0c5}.grid{display:grid;grid-template-columns:1.1fr 1fr;gap:20px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}button,a.button{padding:12px 16px;border-radius:7px;border:1px solid #365369;background:#1b3347;color:#edf8ff;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;text-align:center}button:hover,a.button:hover{background:#274c64}button.primary{background:#14635d;border-color:#338d84}button.danger{background:#532d37;border-color:#815364}button:disabled{opacity:.45;cursor:wait}.wide{grid-column:1/-1}.small{font-size:12px;color:#9db0c7}.log{white-space:pre-wrap;overflow-wrap:anywhere;max-height:300px;overflow:auto;font:13px/1.5 Consolas,monospace;color:#c6e5e2;border-top:1px solid #314253;margin-top:18px;padding-top:14px}ul{padding-left:20px;line-height:1.7;font-size:13px}a{color:#7edde4}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}table{width:100%;border-collapse:collapse;font-size:12px}td,th{text-align:left;padding:10px 8px;border-bottom:1px solid #304051}th{color:#8ba7bb}section.card{margin-top:20px}.tablewrap{overflow:auto}label{display:flex;flex-direction:column;gap:6px;font-size:12px;color:#b0c1d4}input,select{background:#0b141f;border:1px solid #3a5067;color:#eef4ff;padding:10px;border-radius:6px;min-width:0}.fields{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}#message{margin:18px 0 0;border-left:4px solid #66c9c4;padding:12px 16px;background:#12252c;white-space:pre-wrap}#changes{max-height:170px;overflow:auto}footer{font-size:12px;color:#8296ad;margin:24px 0}summary{cursor:pointer;color:#81d2d0}@media(max-width:780px){main{padding:16px}.grid{grid-template-columns:1fr}.stats,.fields{grid-template-columns:1fr 1fr}header{align-items:flex-start;flex-direction:column}}
+</style><style>
+body{font-family:Bahnschrift,Segoe UI,sans-serif;background:#101820;color:#e1e5e6;font-size:13px}
+main{padding:24px}h1{font-size:25px}h2{font-size:17px}header{gap:16px}
+.stat,.card{background:#151f25;border:0;border-radius:12px;padding:18px}
+button,a.button,input,select{font-family:inherit;background:#232a25;border-color:#354139;color:#aeb7ba;border-radius:8px;font-size:13px;padding:9px 12px}
+input,select{color:#55d6e7}h1,h2,label,th{color:#e1e5e6}
+button:hover,a.button:hover{background:#354139}.stat strong{color:#55d6e7;font-size:27px}label,th,.small,.stat span{color:#a9c5c7}
+dialog.release-help{max-width:600px;background:#151f25;color:#e1e5e6;border:1px solid #354139;border-radius:12px;padding:24px;line-height:1.6}
+dialog.release-help>button{float:right}dialog.release-help::backdrop{background:#0009}
+</style><main>
+<header><div><div class="eyebrow">TOUCHDESIGNER → PXLBLZ → ART-NET</div><h1>Installation verwalten</h1><p>Eine Map. Eine Zuordnung. Geprüfte Ausgabe.</p></div><span id="outputState" class="badge">AUSGABE AUS</span></header>
+<p id="dataScope" class="small">Noch keine Live-Prüfung. Gespeicherte Pakete sind Entwürfe.</p>
+<div class="stats"><div class="stat"><strong id="slots">–</strong><span>Adressplätze</span></div><div class="stat"><strong id="assigned">–</strong><span>Layoutpunkte</span></div><div class="stat"><strong id="masked">–</strong><span>Maskierte Ausgangsplätze</span></div><div class="stat"><strong id="routes">–</strong><span>Ausgänge</span></div></div>
+<div class="grid"><div class="card"><h2>1 · Prüfen und vorbereiten</h2><div class="actions">
+<button data-action="verify">Status prüfen</button><button data-action="export" class="primary">Exportpaket erstellen</button>
+<button data-action="fix">Automatisch reparieren</button><button data-action="test">Ausgabe testen · lokal</button>
+</div><p class="small">Repariert ableitbare Konfigurationen. LED-Indizes und Messpositionen bleiben erhalten. Der lokale Test sendet nur an einen Testempfänger auf diesem PC.</p>
+<div id="checkStatus" class="small">Noch keine Prüfung.</div><ul id="warnings"></ul><details><summary>Abweichungen zum laufenden Router</summary><ul id="changes"></ul></details></div>
+<div class="card"><h2>2 · Übernehmen und ausgeben</h2><div class="actions">
+<label class="wide">Pattern-Koordinaten<select id="projection"><option value="surface">2D-Fläche · Seiten + Rückwand (Fill)</option><option value="spatial">3D-Raum · räumliche Patterns</option></select></label>
+<button data-action="surface" class="wide">2D-Fläche + Smooth-Trail-Test anlegen</button>
+<button data-action="sync" class="primary">PXLBLZ synchronisieren</button><button data-action="apply">Routing anwenden</button>
+<button data-action="output">Ausgabe einschalten</button><button data-action="stop" class="danger">Ausgabe stoppen</button>
+<button data-action="rollback" class="wide">Letzten Stand wiederherstellen</button></div>
+<p class="small">Synchronisieren legt eine Map und eine Pattern-Kopie an. Routing anwenden beendet die TouchDesigner-Ausgabe. Die PXLBLZ-Ausgabe wird danach separat eingeschaltet.</p>
+<div class="toolbar"><a id="previewLink" target="_blank" rel="noopener">Pattern-Vorschau öffnen</a><a id="liveLink" target="_blank" rel="noopener">Pattern mit maskierter Ausgabe</a></div>
+<div id="testStatus" class="small" style="margin-top:16px">Paket noch nicht getestet.</div></div></div>
+<div id="message" role="status" aria-live="polite">Bereit. Beginne mit „Status prüfen“.</div>
+<section class="card"><h2>3 · Ausgang ändern</h2><p class="small">Änderungen werden zunächst als neues Paket gespeichert. Vor dem Anwenden erneut testen und synchronisieren.</p>
+<label>Ausgang<select id="routeSelect"></select></label><div class="fields">
+<label>Controller-IP<input id="target_ip"></label><label>Physischer Port<input type="number" id="physical_port" min="1"></label>
+<label>Quellstart<input type="number" id="pixel_start" min="0"></label><label>LED-Anzahl<input type="number" id="pixel_count" min="1"></label>
+<label>Startuniversum · ab 0<input type="number" id="universe_start" min="0"></label><label>Farbreihenfolge<select id="color_order"><option>RGB</option><option>RBG</option><option>GRB</option><option>GBR</option><option>BRG</option><option>BGR</option></select></label>
+<label>Helligkeit · 0 bis 1<input type="number" id="brightness" min="0" max="1" step="0.01"></label>
+<label>Test-LED · lokaler Index<input type="number" id="localIndex" min="0" value="0"></label></div>
+<div class="toolbar"><button id="change">Änderung als Entwurf speichern</button><button id="liveTest">Einzelne LED testen · 0,75 s</button></div>
+<details style="margin-top:20px"><summary>Alle Ausgänge</summary><div class="tablewrap"><table><thead><tr><th>Ausgang</th><th>IP</th><th>Quelle</th><th>Anzahl</th><th>Universum</th><th>Farbe</th></tr></thead><tbody id="routeRows"></tbody></table></div></details></section>
+<details class="card" style="margin-top:20px"><summary>Prüfbericht und Dateien</summary><div class="toolbar"><a href="/download/map.json" download>3D-Map</a><a href="/download/active_mask.json" download>Aktivmaske</a><a href="/download/routes.json" download>Art-Net-Routing</a><a href="/download/workspace.json" download>Layout-Sicherung</a></div><pre class="log" id="log"></pre><p id="package" class="small"></p></details>
+<footer>Automatische Statusprüfung alle 30 Sekunden. Geändertes Routing sperrt die maskierte Ausgabe. Sicherungen werden vor Änderungen angelegt.</footer>
+</main><script>
+const token='__TOKEN__';let current={},routeKey='';const $=id=>document.getElementById(id);
+async function action(name,body={}){document.querySelectorAll('button').forEach(b=>b.disabled=b.dataset.action!=='stop');$('message').textContent='Vorgang läuft: '+name;
+ try{const r=await fetch('/api/'+name,{method:'POST',headers:{'Content-Type':'application/json','X-Manager-Token':token},body:JSON.stringify(body)});const value=await r.json();if(!r.ok)throw Error(value.error);$('log').textContent=JSON.stringify(value.result,null,2);$('message').textContent='Abgeschlossen: '+name;await refresh();}
+ catch(e){$('message').textContent='Nicht ausgeführt: '+e.message;}finally{document.querySelectorAll('button').forEach(b=>b.disabled=false);}}
+function fillRoute(){const r=current.routes?.find(r=>r.name===$('routeSelect').value);if(r)for(const k of ['target_ip','physical_port','pixel_start','pixel_count','universe_start','color_order','brightness'])$(k).value=r[k];}
+async function refresh(){const r=await fetch('/api/state');current=await r.json();const fresh=Boolean(current.report&&!current.lastError);const s=fresh?current.report.summary:current.summary;
+ $('dataScope').textContent=fresh?'Live geprüft: '+new Date(current.report.checkedAt).toLocaleString('de-DE'):'Gespeichertes Exportpaket · keine aktuelle Live-Prüfung. Externe Dienste vor dem Anwenden prüfen.';
+ if(s){for(const [id,key]of [['slots','slots'],['assigned','assigned'],['masked','maskedOnOutputs'],['routes','routes']])$(id).textContent=s[key].toLocaleString('de-DE');}
+ $('outputState').textContent=current.output?'AUSGABE AKTIV':'AUSGABE AUS';$('outputState').classList.toggle('on',current.output);
+ if(current.lastError&&!current.busy)$('message').textContent='Prüfung: '+current.lastError;
+ $('previewLink').href=current.patternUrl;$('liveLink').href=current.liveUrl;
+ $('checkStatus').textContent=current.report?'Zuletzt geprüft: '+new Date(current.report.checkedAt).toLocaleTimeString('de-DE'):'Noch keine Prüfung.';
+ for(const [id,items] of [['warnings',current.report?.warnings||[]],['changes',current.report?.differences||[]]]){$(id).replaceChildren(...items.map(t=>{const li=document.createElement('li');li.textContent=t;return li;}));}
+ $('testStatus').textContent=current.testCurrent?'Lokaler Test bestanden · '+current.state.lastTest.universes+' Universen · '+new Date(current.state.lastTest.time).toLocaleTimeString('de-DE'):'Aktuelles Paket noch nicht getestet.';
+ $('package').textContent=current.state.packageDir||'';
+ const key=JSON.stringify(current.routes);if(routeKey!==key){const selected=$('routeSelect').value;routeKey=key;$('routeSelect').replaceChildren(...current.routes.map(r=>{const o=document.createElement('option');o.value=r.name;o.textContent=r.name;return o;}));if(current.routes.some(r=>r.name===selected))$('routeSelect').value=selected;fillRoute();$('routeRows').replaceChildren(...current.routes.map(r=>{const tr=document.createElement('tr');for(const k of ['name','target_ip','pixel_start','pixel_count','universe_start','color_order']){const td=document.createElement('td');td.textContent=r[k];tr.append(td);}return tr;}));}
+}
+document.querySelectorAll('[data-action]').forEach(b=>b.onclick=()=>action(b.dataset.action,b.dataset.action==='sync'?{projection:$('projection').value}:{}));$('routeSelect').onchange=fillRoute;
+$('change').onclick=()=>{const changes={};for(const k of ['target_ip','physical_port','pixel_start','pixel_count','universe_start','color_order','brightness'])changes[k]=['target_ip','color_order'].includes(k)?$(k).value:Number($(k).value);action('change',{route:$('routeSelect').value,changes});};
+$('liveTest').onclick=()=>action('live-test',{route:$('routeSelect').value,localIndex:Number($('localIndex').value)});
+refresh().catch(e=>$('message').textContent=e.message);setInterval(()=>refresh().catch(()=>{}),3000);
+</script><script src="/release-help.js"></script></html>

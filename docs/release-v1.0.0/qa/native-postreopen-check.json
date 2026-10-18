@@ -1,0 +1,112 @@
+{
+  "project": "PixelblazeMapper_v1.0.1.toe",
+  "help": {
+    "screens": 20,
+    "fields": 187,
+    "failed": []
+  },
+  "colors": [
+    {
+      "key": "launcher",
+      "fields": 0,
+      "issues": []
+    },
+    {
+      "key": "materials",
+      "fields": 1,
+      "issues": []
+    },
+    {
+      "key": "library",
+      "fields": 1,
+      "issues": []
+    },
+    {
+      "key": "player",
+      "fields": 0,
+      "issues": []
+    },
+    {
+      "key": "mapper",
+      "fields": 0,
+      "issues": []
+    },
+    {
+      "key": "router",
+      "fields": 17,
+      "issues": []
+    },
+    {
+      "key": "output",
+      "fields": 0,
+      "issues": []
+    },
+    {
+      "key": "show",
+      "fields": 5,
+      "issues": []
+    },
+    {
+      "key": "gico",
+      "fields": 26,
+      "issues": []
+    },
+    {
+      "key": "layout",
+      "fields": 23,
+      "issues": []
+    },
+    {
+      "key": "scan",
+      "fields": 10,
+      "issues": []
+    },
+    {
+      "key": "new_capture",
+      "fields": 9,
+      "issues": []
+    },
+    {
+      "key": "review",
+      "fields": 11,
+      "issues": []
+    },
+    {
+      "key": "led_search",
+      "fields": 2,
+      "issues": []
+    },
+    {
+      "key": "ports",
+      "fields": 59,
+      "issues": []
+    },
+    {
+      "key": "scan_library",
+      "fields": 2,
+      "issues": []
+    },
+    {
+      "key": "coverage",
+      "fields": 0,
+      "issues": []
+    },
+    {
+      "key": "registration",
+      "fields": 4,
+      "issues": []
+    },
+    {
+      "key": "native_params",
+      "fields": 0,
+      "issues": []
+    },
+    {
+      "key": "mk2_preview",
+      "fields": 0,
+      "issues": []
+    }
+  ],
+  "maintenance_error": null,
+  "asset_warnings": []
+}

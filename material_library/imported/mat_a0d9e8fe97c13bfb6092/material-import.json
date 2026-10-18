@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_a0d9e8fe97c13bfb6092",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Tixy Land/Tixy Land.fs",
+  "source_sha256": "fb3748cd7ad4c44df975c041f474f7840c151085ac9ae9d088f525ec7d841b82",
+  "imported_file": "Tixy Land.fs",
+  "imported_files": {
+    ".info": "7cfdf69ef62b7f4bf0e8cfc30209e67957ff0760cf52017836856461fce98e91",
+    "thumbnail.jpg": "788168729b3ff4caf0e58d7f2ba0d4aa4ca3bb2b4255d4ee2a9eb225af6ed04f",
+    "Tixy Land.fs": "fb3748cd7ad4c44df975c041f474f7840c151085ac9ae9d088f525ec7d841b82"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

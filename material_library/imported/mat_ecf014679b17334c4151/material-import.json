@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_ecf014679b17334c4151",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Abstract Veins/Abstract Veins.fs",
+  "source_sha256": "5392ec83dccfd68b88769b428813b48b99e891922673160830c24ebf1202d5bc",
+  "imported_file": "Abstract Veins.fs",
+  "imported_files": {
+    ".info": "f7f1d82668cdef03277dbaee931cdfbaecb23aff78127e1d0addcfc148bfba58",
+    "Abstract Veins.fs": "5392ec83dccfd68b88769b428813b48b99e891922673160830c24ebf1202d5bc",
+    "thumbnail.jpg": "6fd8535dcf49b8e95c863b49d47240ff399e0c4557fe283937321d0440353a62"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_f68300b60d3882455580",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/ParticlesAndNoise/ParticlesAndNoise.fs",
+  "source_sha256": "6354285f7e5455c8b1d832f2e36975ae5ee943ca8df48c3bdd9b9ab71986d04c",
+  "imported_file": "ParticlesAndNoise.fs",
+  "imported_files": {
+    ".info": "0e0031f884432c4e7a8197a64c7ae58e45df81405c38595ef05984ab4f32710e",
+    "ParticlesAndNoise.fs": "6354285f7e5455c8b1d832f2e36975ae5ee943ca8df48c3bdd9b9ab71986d04c",
+    "thumbnail.jpg": "1697c934bfeb22fb209c5e8cc46eaef6183c289b13e97d34081e63ed44f4cbb6"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

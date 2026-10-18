@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_0f815ca44a8618cd35b7",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/LineRepeat/LineRepeat.fs",
+  "source_sha256": "e0a2e982bf205257bbbbdd4a17a2416f1563144ae52adaf3a618aa574dee298a",
+  "imported_file": "LineRepeat.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "LineRepeat.fs": "e0a2e982bf205257bbbbdd4a17a2416f1563144ae52adaf3a618aa574dee298a",
+    "thumbnail.png": "f453891f3192fe1562dbb45ccfc097f7ab02a8dfaa7e0ff40117db859dabaace"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

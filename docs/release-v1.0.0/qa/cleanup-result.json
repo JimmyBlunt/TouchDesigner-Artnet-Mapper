@@ -1,0 +1,13 @@
+{
+  "removed": [
+    "effect_sample_uv_callbacks1",
+    "legacy_source_mask_callbacks1",
+    "esp_artnet_live_pack_callbacks1",
+    "esp_artnet_test_pattern_callbacks1",
+    "DMX_Universes_backup_pre_panels",
+    "dmxout1_routingtable_backup_pre_panels"
+  ],
+  "restore_verified": true,
+  "backup": "E:\\Daten\\Dokumente\\ChatGPT\\LED-Touchdesigner-Controller\\PixelblazeMapper\\docs\\release-v1.0.0\\qa\\legacy-dats-backup.json",
+  "errors": ""
+}

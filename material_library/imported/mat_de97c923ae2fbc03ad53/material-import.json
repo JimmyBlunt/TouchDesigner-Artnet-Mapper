@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_de97c923ae2fbc03ad53",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/TransparentLattice/TransparentLattice.fs",
+  "source_sha256": "cbbbaff21cf6efb39c751a57b555735381405d7e656305a71f7399c1e525fbd7",
+  "imported_file": "TransparentLattice.fs",
+  "imported_files": {
+    ".info": "779729923fd2045e7b61baea56ecdc2a12f96d62fca5a88415fc0cb2d343752a",
+    "thumbnail.jpg": "36fac2296f747914710bf438db08a8247aee137a442a2a0c8a9fbb907c8c0397",
+    "TransparentLattice.fs": "cbbbaff21cf6efb39c751a57b555735381405d7e656305a71f7399c1e525fbd7"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

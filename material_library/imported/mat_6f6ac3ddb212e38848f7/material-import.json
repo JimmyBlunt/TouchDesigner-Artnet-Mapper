@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_6f6ac3ddb212e38848f7",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/LSD Planet/LSD Planet.fs",
+  "source_sha256": "f6d50f523c7cc3089a35c531a5e8b9c139fd516e781bab53d5ab8081bacf9430",
+  "imported_file": "LSD Planet.fs",
+  "imported_files": {
+    ".info": "6910c5393b8d15a8817b5f6cf87fd02108aa1b75f7a1a41013a6b2a2199c3f51",
+    "LSD Planet.fs": "f6d50f523c7cc3089a35c531a5e8b9c139fd516e781bab53d5ab8081bacf9430",
+    "Test2.backup": "8164bfe64f9fc9db09f9c8d5c01a400ef094aebe9c067b05475a3607bf61e54f",
+    "thumbnail.jpg": "abd311754c8390ff7e6ac69e91b0349569e259e1e97a9d3fbc08b740c87e54ec"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

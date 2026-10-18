@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_2310bbd9cc5173aee367",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Warp Speed/Warp Speed.fs",
+  "source_sha256": "7f1d343aadcceedcbd3acfd32d8a25baaedd3f53d973879fafb59c0fb121d743",
+  "imported_file": "Warp Speed.fs",
+  "imported_files": {
+    ".info": "808b860ba5bdd513dbaf71861dc3f3192f54f0dfd33021de1b01bbbb620629a7",
+    "thumbnail.jpg": "c718709af835f7e4c8537f563099c3f7d4ea6c5969d002ec81a039affce00cb8",
+    "Warp Speed.fs": "7f1d343aadcceedcbd3acfd32d8a25baaedd3f53d973879fafb59c0fb121d743"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

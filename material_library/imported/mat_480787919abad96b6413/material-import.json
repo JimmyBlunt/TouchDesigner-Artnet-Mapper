@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_480787919abad96b6413",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Gum/Gum.fs",
+  "source_sha256": "f383d0fe959ab4ebaa587067a844cf321d2f590508484bdb33a289c5b39c9c91",
+  "imported_file": "Gum.fs",
+  "imported_files": {
+    ".info": "4c8d9c53e4868c2676aab91c13b1980d5ec2ee039435aa86f180e54e09e09516",
+    "Gum.fs": "f383d0fe959ab4ebaa587067a844cf321d2f590508484bdb33a289c5b39c9c91",
+    "thumbnail.jpg": "4affcda98c8a399977059c83b50b8c84c548bcde3bb9a73c3f910007115006ef"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

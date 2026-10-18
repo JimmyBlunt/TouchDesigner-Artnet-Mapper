@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_8ef741c7b1cd600b06b9",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Demos/Filters/Tuto_ADR_Filter/Tuto_ADR_Filter.fs",
+  "source_sha256": "cd6ce8811e037b483622ce9579fe90b0522e97d43b268c34917299aefe77a12a",
+  "imported_file": "Tuto_ADR_Filter.fs",
+  "imported_files": {
+    ".info": "39e1d39ea7c0767a0bf5a7a1077fcf72daf29a7494db06acf65c44c0c3e33612",
+    "thumbnail.png": "3f8cca135d615d5a15e8e70c268f5257d9dee4fa3d1e71f6c4374089f4976954",
+    "Tuto_ADR_Filter.fs": "cd6ce8811e037b483622ce9579fe90b0522e97d43b268c34917299aefe77a12a"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

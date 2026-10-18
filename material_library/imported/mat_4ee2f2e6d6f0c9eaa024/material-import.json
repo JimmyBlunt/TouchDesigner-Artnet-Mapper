@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_4ee2f2e6d6f0c9eaa024",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/Waveform/waveform.fs",
+  "source_sha256": "469bff08f812dae50630e855c4b3a751f93867b11acd91552a188d45837df1de",
+  "imported_file": "waveform.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "thumbnail.png": "956668c1ee31cd1c7c9173a789df4d8e48cb58d54039ee3f1a84459b615dfb9f",
+    "waveform.fs": "469bff08f812dae50630e855c4b3a751f93867b11acd91552a188d45837df1de"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

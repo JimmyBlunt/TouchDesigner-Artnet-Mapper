@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_0ec7681c7b93eed13d13",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/[recode]_Malevitch/[recode]_Malevitch.fs",
+  "source_sha256": "3857f5e734314c7558ec67f8617e20580946d0174de1ed5fe3534fcb6ea979b3",
+  "imported_file": "[recode]_Malevitch.fs",
+  "imported_files": {
+    ".info": "fd4a4634ebc6eeb3be506932b84df74e18b7f2f65917a05df9bdfb2b0890299e",
+    "[original]_Kasimir_Malevitch_Carre_noir_sur_fond_blanc.png": "c2ce1af499844e8663bccc0543d91e74ad74fb131e5ed5c732f8b6b3a9344f2e",
+    "[recode]_Malevitch.fs": "3857f5e734314c7558ec67f8617e20580946d0174de1ed5fe3534fcb6ea979b3",
+    "special_cracks.jpg": "56410d308571518214ac77609f2096497af8a4da8e2e3e6c79095da9c7b306c3",
+    "thumbnail.jpg": "d6fd2a665d54a107deb8d2b7a6a3862c26f98a0fb73fa331b6aae499ffda34e9"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e1dee5ea73f2306dca9e",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Circle Scan/Circle Scan.fs",
+  "source_sha256": "ae89e4567febfba81f314b9811761ccf9f6c0f87fc493057d3b7a322db2116eb",
+  "imported_file": "Circle Scan.fs",
+  "imported_files": {
+    ".info": "56982b3a364a081d7b11ee93573b7193b10096424e105da0c5c4f859c7e51a8f",
+    "Circle Scan.fs": "ae89e4567febfba81f314b9811761ccf9f6c0f87fc493057d3b7a322db2116eb",
+    "thumbnail.jpg": "7d1c80018e0094cf6c2ef2487c0ff54a697b9990d252f9eaae22d4ef9eda1615"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

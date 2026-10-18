@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_8c8705e52b9a62544470",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/KaleidoPaper/KaliedoPaper.fs",
+  "source_sha256": "ed076bcba55befb43ea7f82271fbd661c3ea4278a81b3f28aa8d790044a4a407",
+  "imported_file": "KaliedoPaper.fs",
+  "imported_files": {
+    ".info": "937c60b9ae58c7b9285dab7ca634f5f0eee7b09770e702a7170525bbfcbe64de",
+    "KaliedoPaper.fs": "ed076bcba55befb43ea7f82271fbd661c3ea4278a81b3f28aa8d790044a4a407",
+    "thumbnail.jpg": "c8f438a7cdb21d5722da35e7165955056080aebb2783337d0cd2eb7dfb76f2a7"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

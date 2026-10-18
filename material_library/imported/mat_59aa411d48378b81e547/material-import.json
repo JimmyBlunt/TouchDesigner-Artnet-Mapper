@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_59aa411d48378b81e547",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Cables/RaymarchTemplate.fs",
+  "source_sha256": "58d0469c496f681c72a220a80723f3ceecf350c341e3345494474a78df6f7000",
+  "imported_file": "RaymarchTemplate.fs",
+  "imported_files": {
+    ".info": "7f5074d41d2966c74329bc127fe8379f0e20b278427facb2c80b7d0d66f65f4d",
+    "RaymarchTemplate.fs": "58d0469c496f681c72a220a80723f3ceecf350c341e3345494474a78df6f7000",
+    "thumbnail.jpg": "44fe1f28e1c9fe43db2df6a207ae00a148709139d405037cbd577bb5029676ac"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_3cf775a6773d7865320e",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/[recode]_Stella/[recode]_Stella.fs",
+  "source_sha256": "28425e1c402c2a1e8109846e05a4139b9db7dc49564b209cfdcc41a17898410d",
+  "imported_file": "[recode]_Stella.fs",
+  "imported_files": {
+    ".info": "f0860ab408a6c6debaa41388aee7f3021f0e004a40e8960417eb1d314d45f2ca",
+    "[original]_Frank_Stella_Ifafa_II.jpg": "6eb56da4d00cbb3c26ba33ec3db5b0986f5a19138000f0d0400f55c29b83d9fa",
+    "[recode]_Stella.fs": "28425e1c402c2a1e8109846e05a4139b9db7dc49564b209cfdcc41a17898410d",
+    "thumbnail.jpg": "7cb8c69a02ad75d26f5ca94f4d2629b8ebb35c5d9541f7b3bb96134d75659d44"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

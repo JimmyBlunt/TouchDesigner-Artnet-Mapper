@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_0413ed0a06890f018ae9",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/GlowingRings/GlowingRings.fs",
+  "source_sha256": "8fbd4ab9e89de7cde429f9f8335cf4fc69030ec642e1f1bb99644db964bb268f",
+  "imported_file": "GlowingRings.fs",
+  "imported_files": {
+    ".info": "be8cab9419cf34f60bc9d563f2df6d4c39782b26a8e3e9bc11e2a8e036bdef2e",
+    "GlowingRings.fs": "8fbd4ab9e89de7cde429f9f8335cf4fc69030ec642e1f1bb99644db964bb268f",
+    "thumbnail.jpg": "6158497c0726283378df7214359d9ba8641630fcd53f67d2075a77835503a62b"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

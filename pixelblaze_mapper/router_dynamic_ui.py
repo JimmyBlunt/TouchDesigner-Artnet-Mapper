@@ -87,7 +87,7 @@ def select(owner, step=0, reload=False):
     name = row['name']
     drafts = dict(owner.fetch('router_card_drafts', {}))
     baselines = dict(owner.fetch('router_card_baselines', {}))
-    if reload or name not in baselines:
+    if reload or name not in baselines or name not in drafts:
         baselines[name] = row
         drafts[name] = {key: row[key] for key in FIELDS}
     owner.store('router_card_name', name)
@@ -96,6 +96,72 @@ def select(owner, step=0, reload=False):
     for key, value in drafts[name].items():
         owner.op('ui_panel/router_' + key + '/string').text = value
     owner.op('ui_callbacks').module.refresh_status(force=True)
+
+
+def select_name(owner, name):
+    """Pick a current controller by identity; retain unsaved drafts on both cards."""
+    names = [row['name'] for row in _entries(owner)]
+    if name not in names:
+        owner.op('ui_callbacks').module._set_status('Controller no longer available; reopen selection')
+        return False
+    current = owner.fetch('router_card_name', None)
+    previous = names.index(current) if current in names else 0
+    select(owner, names.index(name) - previous)
+    menu = owner.op('ui_panel/router_controller_menu')
+    if menu is not None:
+        menu.par.display = False
+    return True
+
+
+def install_picker(owner):
+    """Small hot-install independent of full card installation or output state."""
+    import td
+    canvas = owner.op('ui_panel')
+    def node(parent, kind, name, x, y, w, h):
+        result = parent.op(name) or parent.create(kind, name)
+        result.name = name
+        for key, value in dict(x=x,y=y,w=w,h=h,hmode='fixed',vmode='fixed',layer=230,display=True).items():
+            _set_parameter_if_present(result, key, value)
+        return result
+    def button(parent, name, label, x, y, width, action):
+        result = node(parent, td.buttonCOMP, name, x,y,width,30)
+        for key,value in dict(label=label,buttontype='momentary',fontsize=11).items():
+            _set_parameter_if_present(result,key,value)
+        callback_name='router_picker_click_'+name
+        callback=owner.op(callback_name) or owner.create(td.panelexecuteDAT,callback_name)
+        callback.name=callback_name
+        callback.par.active=False
+        callback.par.fromop=result.path
+        callback.par.panels=result.path
+        callback.par.panelvalue='lselect'
+        callback.par.offtoon=True
+        for key in ('ontooff','whileon','whileoff','valuechange'):
+            _set_parameter_if_present(callback,key,False)
+        callback.text='def onOffToOn(panelValue):\n    from pixelblaze_mapper import router_dynamic_ui as ui\n    ui.'+action+'\n'
+        callback.par.active=True
+        return result
+    title=canvas.op('router_title')
+    if title is not None: title.par.w=590
+    button(canvas,'router_btn_choose','CONTROLLER  v',630,560,216,'toggle_picker(parent())')
+    rows=_entries(owner)
+    height=min(380,max(38,38*len(rows)))
+    menu=node(canvas,td.containerCOMP,'router_controller_menu',630,554-height,524,height)
+    _set_parameter_if_present(menu,'bgalpha',1)
+    _set_parameter_if_present(menu,'vscrollbar','on')
+    for child in menu.children: child.par.display=False
+    for index,row in enumerate(rows):
+        button(menu,'controller_'+str(index),row['name']+' | '+row['target_ip'],4,height-38*(index+1)+4,516,
+               'select_name(parent(), %r)' % row['name'])
+    menu.par.display=False
+    return menu
+
+
+def toggle_picker(owner):
+    menu=owner.op('ui_panel/router_controller_menu')
+    if menu is not None and bool(menu.par.display):
+        menu.par.display=False
+    else:
+        install_picker(owner).par.display=True
 
 
 def apply_drafts(owner, rows):
@@ -150,6 +216,15 @@ def brightness_live(owner):
         return False
 
 
+def route_summary(routes, item):
+    """Two bounded lines; full segment ranges remain in Controller Ports."""
+    header = '%d routes | %d reserved universes | NIC %s | UDP %d' % (
+        len(routes), item.universe_count, item.local_interface, item.port)
+    detail = ('%d LED assignments | Full source/target ranges: Controller Ports (Ctrl+Shift+C)' %
+              sum(int(row['count']) for row in routes)) if routes else 'No pixel routes assigned'
+    return header + '\n' + detail
+
+
 def refresh(owner, summary):
     c = owner.op('ui_panel')
     if c.op('router_title') is None:
@@ -169,9 +244,7 @@ def refresh(owner, summary):
         item.target, item.universe_label, item.brightness * 100, item.rate, item.color_order)
     segments = records(table_rows(owner.op('segment_config')))
     routes = [r for r in segments if r['controller'] == selected]
-    route_text = '; '.join('%s: src %s + %s -> target %s' % (r['name'], r['source_start'], r['count'], r['destination_start']) for r in routes)
-    c.op('router_route').par.text = '%d routes | %d reserved universes | NIC %s | UDP %d\n%s' % (
-        len(routes), item.universe_count, item.local_interface, item.port, route_text or 'No pixel routes assigned')
+    c.op('router_route').par.text = route_summary(routes, item)
     from pixelblaze_mapper.router_status_source import mapping_counts_cached
     counts = mapping_counts_cached(owner, entries, segments, summary.source_pixels or 0,
                                    owner.fetch('inactive_source_ranges', []))
@@ -221,3 +294,4 @@ def install(owner, helpers):
     owner.store('router_card_drafts', {})
     owner.store('router_card_baselines', {})
     select(owner, reload=True)
+    install_picker(owner)

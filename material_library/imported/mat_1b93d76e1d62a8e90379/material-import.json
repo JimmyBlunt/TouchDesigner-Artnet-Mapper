@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_1b93d76e1d62a8e90379",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/RandomShape/Randomshape.fs",
+  "source_sha256": "4a9c4120364c236e40cb9ac19b6f52afbfaa0e1b3a1eea6a1a7b1da1c5304d02",
+  "imported_file": "Randomshape.fs",
+  "imported_files": {
+    ".info": "6aa5f57dbef18d58f39ff9e637e2563cf69c48a59bbedb672f290969d1a0ba53",
+    "Randomshape.fs": "4a9c4120364c236e40cb9ac19b6f52afbfaa0e1b3a1eea6a1a7b1da1c5304d02",
+    "thumbnail.png": "55820bd56fe5f5f01e8b0144ca55d67e78ddee91e1b476cf329087da4ce01523"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

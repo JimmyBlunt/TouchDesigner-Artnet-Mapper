@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_9f2bf585235abeaccbea",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/SpiralNoise/SpiralNoise.fs",
+  "source_sha256": "ebafbe12f9c283d41bd659c4518430183fc3a3223bc26ad0e79a01806053e51c",
+  "imported_file": "SpiralNoise.fs",
+  "imported_files": {
+    ".info": "90a034b87b77c2fd2296bcd160b9ffee25a9be0b0970e110be70ba51d3654c4d",
+    "SpiralNoise.fs": "ebafbe12f9c283d41bd659c4518430183fc3a3223bc26ad0e79a01806053e51c",
+    "thumbnail.jpg": "3bd20a7e736ba34770b52dbf0a66adffa2db8c63d37c2a56c7a317d5e92e0237"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

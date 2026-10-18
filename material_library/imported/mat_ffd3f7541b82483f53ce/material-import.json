@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_ffd3f7541b82483f53ce",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/Blobby/Blobby.fs",
+  "source_sha256": "76c9918a3386cda1dd9f84875ab5495888ea6271938a7ec062868b34aa2055a0",
+  "imported_file": "Blobby.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "Blobby.fs": "76c9918a3386cda1dd9f84875ab5495888ea6271938a7ec062868b34aa2055a0",
+    "thumbnail.png": "477b037157a84352c9144e93ddbc43d0e3f3ae758c9d22e7d7d8a8b23c52aeac"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

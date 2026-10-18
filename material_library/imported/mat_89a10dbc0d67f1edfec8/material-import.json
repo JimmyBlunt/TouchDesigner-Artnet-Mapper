@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_89a10dbc0d67f1edfec8",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/SoftFractal/SoftFractal.fs",
+  "source_sha256": "6a000e66a0edddc072de56584acab52156e38d702ddd3a4ae3030244d2d5ad9f",
+  "imported_file": "SoftFractal.fs",
+  "imported_files": {
+    ".info": "3b4d1690e09a16dfe6260d50f91514d6ca6073a3f1ed3216ad510672ca93ff89",
+    "SoftFractal.fs": "6a000e66a0edddc072de56584acab52156e38d702ddd3a4ae3030244d2d5ad9f",
+    "thumbnail.jpg": "b1ed3d1d895ea60ece16bed5493efe93df9f6b968bea46318e8ec2d3a66a1596"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

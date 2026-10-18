@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_a96ecab76cf4e11bad5f",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Abstract Circles/Abstract Circles.fs",
+  "source_sha256": "22ab5ed6290669fe561c3cbafa16bb1960d725e268c711847c46a3c9b0359d15",
+  "imported_file": "Abstract Circles.fs",
+  "imported_files": {
+    ".info": "4d050b3f46cde68c51dcf1c21a953ddb8827ce79bbcb87542a300867b10a4c27",
+    "Abstract Circles.fs": "22ab5ed6290669fe561c3cbafa16bb1960d725e268c711847c46a3c9b0359d15",
+    "thumbnail.jpg": "708c8d9d960ebc0b123c44181e6540702bca226c3389404df81824c956edca4a"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

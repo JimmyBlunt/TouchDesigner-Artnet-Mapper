@@ -90,6 +90,17 @@ class ShowStorageTests(unittest.TestCase):
             self.scope['runtime']()
         self.assert_plain_storage()
 
+    def test_empty_show_has_stopped_black_plan_without_persisting_placeholder(self):
+        document=dict(schema_version=2,name='Empty draft',loop=True,cues=[])
+        self.tables['show_json'].text=json.dumps(document)
+        sequence=self.scope['runtime']()
+        self.assertEqual(sequence.state.value,'stopped')
+        self.assertEqual(sequence.plan().brightness,0)
+        self.scope['command']('play')
+        self.assertEqual(sequence.state.value,'stopped')
+        self.assertEqual(json.loads(self.tables['show_json'].text),document)
+        self.assert_plain_storage()
+
 
 if __name__ == '__main__':
     unittest.main()

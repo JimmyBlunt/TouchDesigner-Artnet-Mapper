@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_1775f709961dd9a9b624",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/CubicCircles/CubicCircles.fs",
+  "source_sha256": "cb5e126ff790fe463e9945945f34340c86ea42d36b7ce0f60aa0b00f920edfed",
+  "imported_file": "CubicCircles.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "CubicCircles.fs": "cb5e126ff790fe463e9945945f34340c86ea42d36b7ce0f60aa0b00f920edfed",
+    "thumbnail.png": "2eae68575e63b9b2bbc49edcd03503b75b2198cbaf5a3a49ec67f0ffc405c734"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

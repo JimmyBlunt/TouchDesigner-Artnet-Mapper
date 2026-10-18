@@ -1,0 +1,44 @@
+[
+  {
+    "path": "/project1/effect_sample_uv_callbacks1",
+    "type": "textDAT",
+    "references": [],
+    "inputs": [],
+    "outputs": []
+  },
+  {
+    "path": "/project1/legacy_source_mask_callbacks1",
+    "type": "textDAT",
+    "references": [],
+    "inputs": [],
+    "outputs": []
+  },
+  {
+    "path": "/project1/esp_artnet_live_pack_callbacks1",
+    "type": "textDAT",
+    "references": [],
+    "inputs": [],
+    "outputs": []
+  },
+  {
+    "path": "/project1/esp_artnet_test_pattern_callbacks1",
+    "type": "textDAT",
+    "references": [],
+    "inputs": [],
+    "outputs": []
+  },
+  {
+    "path": "/project1/DMX_Universes_backup_pre_panels",
+    "type": "tableDAT",
+    "references": [],
+    "inputs": [],
+    "outputs": []
+  },
+  {
+    "path": "/project1/dmxout1_routingtable_backup_pre_panels",
+    "type": "tableDAT",
+    "references": [],
+    "inputs": [],
+    "outputs": []
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_c5d19fdea53a60ae6a73",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Black Hole/Black Hole.fs",
+  "source_sha256": "e6d343d32e2e6653fee9da5b50196f66e6afa52c7b492758ecb2515d2088e79f",
+  "imported_file": "Black Hole.fs",
+  "imported_files": {
+    ".info": "b771af6bd88a0fa2bd1f223e363d5a71c19040b40ce2f1a9ba8d2a429f7e1d20",
+    "Black Hole.fs": "e6d343d32e2e6653fee9da5b50196f66e6afa52c7b492758ecb2515d2088e79f",
+    "thumbnail.jpg": "bfe321113f362bc834dfd9eef30c79f05df6a6340fdb56fdd4e12afbe81b59ce"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_1c0dbe2c7125946b98a0",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Line Pulse/Line Pulse.fs",
+  "source_sha256": "31aa0fafd86ce0b0cc05a7ac3ec2f9da7128c2c01b6f1e348fedd5e95876073a",
+  "imported_file": "Line Pulse.fs",
+  "imported_files": {
+    ".info": "62748c42a274587af2d63b6d64ae90de456481c5a2ebd4f72ddc82952082e23a",
+    "Line Pulse.fs": "31aa0fafd86ce0b0cc05a7ac3ec2f9da7128c2c01b6f1e348fedd5e95876073a",
+    "thumbnail.jpg": "54028adabafde991d91aa44713ced2cd9dd26fc17ae67e5b81108dbf32962edf"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

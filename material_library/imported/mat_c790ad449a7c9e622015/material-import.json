@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_c790ad449a7c9e622015",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/[recode]_Albers/[recode]_Albers.fs",
+  "source_sha256": "b8753f5e04d379aa8c2111024749f0842c8188beeac505b62869489fb2841ee1",
+  "imported_file": "[recode]_Albers.fs",
+  "imported_files": {
+    ".info": "ad7972baa4d347083f5c4949576713c8b3079cbf5b044c93b460b259d26ba0d1",
+    "[original]_Josef_Albers_SP.jpg": "69e31e68502b45a9ef1358b327f644804aa7e797034a98a1decd28006ecee5ae",
+    "[recode]_Albers.fs": "b8753f5e04d379aa8c2111024749f0842c8188beeac505b62869489fb2841ee1",
+    "thumbnail.jpg": "dc595f063b9ad698bc0b9dc02c97aaafba76f3724cb9d0eb100c4fb3a354c17f"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

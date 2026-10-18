@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_45fd2ab9453fa776237f",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Playing Card/alpha.fs",
+  "source_sha256": "c00a49ccd70950e58814c1d9819b54d06af58c87bda0a928da4c7bd3fce455fb",
+  "imported_file": "alpha.fs",
+  "imported_files": {
+    ".info": "c95cf194b74df64b748d47c9cd720b1d1447e197a45bb34364a4a8d42000e3df",
+    "alpha.fs": "c00a49ccd70950e58814c1d9819b54d06af58c87bda0a928da4c7bd3fce455fb",
+    "Deck.png": "88196502ad8a2b4c22331bb4c2bd42fefe9c3d10eb6d4371ff02b7ca6da6c0e4",
+    "deckAlpha.png": "afcb50d22439bff4a1ee714e5877e9fbd4d115d7d269ad7935507074bbe601f4",
+    "test.png": "181d2854cc29deb455c896ce7db1bb9d11f125094352f5e3d435b16fc6962119",
+    "thumbnail.png": "a0a2b47704f47150bc7794865aa47c21cc3d37b8bf509dabcbd8780824070d0b"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

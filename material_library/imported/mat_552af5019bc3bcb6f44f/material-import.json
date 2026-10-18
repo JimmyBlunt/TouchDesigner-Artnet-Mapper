@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_552af5019bc3bcb6f44f",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Ripple Noise/Ripple Noise.fs",
+  "source_sha256": "402adee879fbb7607d6b6a6a2400f21f61f7fd89113f4299a8978e04dc046d95",
+  "imported_file": "Ripple Noise.fs",
+  "imported_files": {
+    ".info": "67904eb13b5585bab332c71197e90174e452162332a8d4f9f7713862209e1d73",
+    "Ripple Noise.fs": "402adee879fbb7607d6b6a6a2400f21f61f7fd89113f4299a8978e04dc046d95",
+    "thumbnail.jpg": "4fc5ff4537442c833ab20f516830240f22aef0f8152246e9ee3885e2f2302aa9"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

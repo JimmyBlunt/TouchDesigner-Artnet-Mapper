@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_7b27676d5ee253688995",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Trigonofun/trigonofun.fs",
+  "source_sha256": "f115858a15bbf1dfe6b710f4083b22e3d7718940afd906bea0dcd24350cbbd4c",
+  "imported_file": "trigonofun.fs",
+  "imported_files": {
+    ".info": "cb0309f3162842d8b201aa679aaf8b6f7f7267f6eff5f8f51e82573d5f4eb81f",
+    "thumbnail.png": "64a258037689695b58871d687cf3f71a7583a72405db180cd2e9987616e6d61c",
+    "trigonofun.fs": "f115858a15bbf1dfe6b710f4083b22e3d7718940afd906bea0dcd24350cbbd4c"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

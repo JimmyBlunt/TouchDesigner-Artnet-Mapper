@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_6582079f21323c5b4028",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Kicks/Patterns.fs",
+  "source_sha256": "456fd51963d2befb3d7e051cffe881ffec3b242207e72aae0a1231505a261641",
+  "imported_file": "Patterns.fs",
+  "imported_files": {
+    ".info": "196873f705ad77aa0811f9fcdd665f3ebfa72f384d6d6503a71250da133e1b4c",
+    "Patterns.fs": "456fd51963d2befb3d7e051cffe881ffec3b242207e72aae0a1231505a261641",
+    "thumbnail.jpg": "7d6f8d9bfaddaccd8ee6cf6dd51bd1184a287801fef01f95a48cfc058c20f194"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

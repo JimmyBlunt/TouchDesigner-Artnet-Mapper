@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_2626f5ab119662326c6f",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Blurry Pixel/Blurry Pixel.fs",
+  "source_sha256": "f0c7fb4510b7022265fd5e61dfea9d8753c5f9c5a2f2eabf3bfd464219324c31",
+  "imported_file": "Blurry Pixel.fs",
+  "imported_files": {
+    ".info": "cbe2828f78e1a3f6c47765bc4560c3f331f38ae09daadbdda8ae47a0491704bf",
+    "Blurry Pixel.fs": "f0c7fb4510b7022265fd5e61dfea9d8753c5f9c5a2f2eabf3bfd464219324c31",
+    "thumbnail.jpg": "6ba06af0e2fbca9fee59530901aca7cf7fc7a5cf606977e923e4437b6c3b91ae"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_549b1979e6af3e3a580a",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/ColorSlider/EmptyTemplate.fs",
+  "source_sha256": "af25f363f060930aa4f62cf01a1a9e79a7d3878967765cfeb9c2a9ab33eccd3d",
+  "imported_file": "EmptyTemplate.fs",
+  "imported_files": {
+    ".info": "9eb29bd315259fbbe071e0ff02259872e37c9e84ddea681bed0e9eb1c961c5ab",
+    "EmptyTemplate.fs": "af25f363f060930aa4f62cf01a1a9e79a7d3878967765cfeb9c2a9ab33eccd3d",
+    "thumbnail.jpg": "f1332461bd4737a07707394aa3c14fbb9ca87852738992161069eb0bdff89669"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

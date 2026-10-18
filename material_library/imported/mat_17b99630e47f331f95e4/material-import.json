@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_17b99630e47f331f95e4",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/AcidCubes/EmptyTemplate.fs",
+  "source_sha256": "2a0384ab4ee64cf57178a170b90c6c801b9a2d7fa7920c0c7336e5719181d7aa",
+  "imported_file": "EmptyTemplate.fs",
+  "imported_files": {
+    ".info": "6388446e42dfa73f68d6a0fdee3d2e6af28c02cd775c83c5df4b296d295218be",
+    "EmptyTemplate.fs": "2a0384ab4ee64cf57178a170b90c6c801b9a2d7fa7920c0c7336e5719181d7aa",
+    "thumbnail.jpg": "3e4e7323c3b966c7b80bce5bf8e9066e8c55ef2f2beb2306f86c82de601906a2"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

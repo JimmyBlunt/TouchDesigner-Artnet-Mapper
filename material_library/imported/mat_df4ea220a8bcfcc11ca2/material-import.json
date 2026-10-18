@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_df4ea220a8bcfcc11ca2",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/LavaNoise_bubbly/LavaNoise_bubbly.fs",
+  "source_sha256": "686fb066b32dd631196ada89629ae11a6d3f522cb55ce3a6d9dbc78dab27f0ff",
+  "imported_file": "LavaNoise_bubbly.fs",
+  "imported_files": {
+    ".info": "8a75d52b6f1b2b5d8b6e72c076b792345e007d4472a52f0cd1f0ea6be0b14146",
+    "LavaNoise_bubbly.fs": "686fb066b32dd631196ada89629ae11a6d3f522cb55ce3a6d9dbc78dab27f0ff",
+    "thumbnail.jpg": "c5cdb41439eec12ac21448280cd6f351d7e52fd831ee90c3af9e168aaa733b93"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

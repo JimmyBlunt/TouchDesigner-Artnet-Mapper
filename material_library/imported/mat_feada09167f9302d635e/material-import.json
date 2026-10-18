@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_feada09167f9302d635e",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Organic Cables/Organic Cables.fs",
+  "source_sha256": "3e0822438184e512389955f411997b32f39a7a38ca35b5325669641de6c207cf",
+  "imported_file": "Organic Cables.fs",
+  "imported_files": {
+    ".info": "437e5f7119189da2050bd749408097115967249b1533756c04f9082d98cb1982",
+    "Organic Cables.fs": "3e0822438184e512389955f411997b32f39a7a38ca35b5325669641de6c207cf",
+    "thumbnail.jpg": "a27db8effdc7e232daf096475ebf669886054bd2eff08ea71119a9e61e812b80"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

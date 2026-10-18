@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_657a92134f03f8e63e34",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Sum Zero Inverted/Sum Zero Inverted.fs",
+  "source_sha256": "672e94d438a1cb3e9b0f016afcf10e2fc14311c63503354d2779fa27be4e2249",
+  "imported_file": "Sum Zero Inverted.fs",
+  "imported_files": {
+    ".info": "2aea7c883b74341559a6cef7bc88150bac02e8d6252f29a1f662ffd959066886",
+    "Sum Zero Inverted.fs": "672e94d438a1cb3e9b0f016afcf10e2fc14311c63503354d2779fa27be4e2249",
+    "thumbnail.jpg": "4ea2a548beb6b3bc68bce5018190715772fe81e8c116b2b931a5dd6da193179e"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

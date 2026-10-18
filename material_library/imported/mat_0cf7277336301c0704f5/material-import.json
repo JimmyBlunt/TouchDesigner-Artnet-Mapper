@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_0cf7277336301c0704f5",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/2D Traeculum/2D Traeculum.fs",
+  "source_sha256": "35236302cfb29e8b0c5b25f38f6fc17c7ad5567b10a1705a6f087a2b5dcce678",
+  "imported_file": "2D Traeculum.fs",
+  "imported_files": {
+    ".info": "ff86f8e084675f9cd0765dc84867c894a85cda3449f361f4a991b870dddc4f2d",
+    "2D Traeculum.fs": "35236302cfb29e8b0c5b25f38f6fc17c7ad5567b10a1705a6f087a2b5dcce678",
+    "thumbnail.jpg": "5ca371570f3f751f0ba08e1fd7b426baf7bf996bce3fa8602acf45c734d18578"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

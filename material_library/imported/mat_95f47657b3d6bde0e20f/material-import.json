@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_95f47657b3d6bde0e20f",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Glass Garden/Glass Garden.fs",
+  "source_sha256": "8b14f4e1b59b87abf6013ff01a9293eb64022c052c9395b5bacd3677d163e5e7",
+  "imported_file": "Glass Garden.fs",
+  "imported_files": {
+    ".info": "8cccb081ef9bf6f2511210669ec04ec5f40a3a126528416f698e2818f5dde075",
+    "Glass Garden.fs": "8b14f4e1b59b87abf6013ff01a9293eb64022c052c9395b5bacd3677d163e5e7",
+    "thumbnail.jpg": "4a80b6f0d04918a7f052b61f7bd5935300e901b3d905953983269b77bf74a6f7"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

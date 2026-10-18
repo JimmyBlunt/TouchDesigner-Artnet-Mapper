@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_7efa2cc47e758acbdeb2",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Liquid Topo/Liquid Topo.fs",
+  "source_sha256": "7bad738ffb015b985749da566b5e8ed6040756a690c1a28ce467b060479238a4",
+  "imported_file": "Liquid Topo.fs",
+  "imported_files": {
+    ".info": "c0f8a7644e03a8b3c202eeafc902278018c20474f8f0f5c8567d613d9f384b18",
+    "Liquid Topo.fs": "7bad738ffb015b985749da566b5e8ed6040756a690c1a28ce467b060479238a4",
+    "thumbnail.jpg": "247ee5750fd376266603cef722d08c05b3c13952e7b37183392da80cbbd21463"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e0f2a2f3b5f774a9ba66",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Alien Skies/Alien Skies.fs",
+  "source_sha256": "103f45dde2b210c96a48a402783cff27be50a29068a7a80cfd174af9bc50d608",
+  "imported_file": "Alien Skies.fs",
+  "imported_files": {
+    ".info": "e7b4046529239d3354d36d60bf48aeca76c36b8d1dafc4d887e160bd915d6e0a",
+    "Alien Skies.fs": "103f45dde2b210c96a48a402783cff27be50a29068a7a80cfd174af9bc50d608",
+    "thumbnail.jpg": "85489481bc999c0e7eba19854bcd442d2a062899ac08ad9e32494d9bfe5ad864"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

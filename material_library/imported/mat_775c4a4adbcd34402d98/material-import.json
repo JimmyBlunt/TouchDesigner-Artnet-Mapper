@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_775c4a4adbcd34402d98",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Neon Dance/Neon Dance.fs",
+  "source_sha256": "b38d5827c0c23250f4d46795550c137799516ceef4291bdd702bf59e1c3a1504",
+  "imported_file": "Neon Dance.fs",
+  "imported_files": {
+    ".info": "63f9d2ddfba925eaebb6217e9e76943f5d9591162dbe772aed344abee599beff",
+    "Neon Dance.fs": "b38d5827c0c23250f4d46795550c137799516ceef4291bdd702bf59e1c3a1504",
+    "thumbnail.jpg": "13921f3b5b4b4de961b062383f56f3bef7a839d1dc180cd4c75dd3d7bdd36761"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_7177556b1d036ced358d",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/WaveShapes/WaveShapes.fs",
+  "source_sha256": "660b31ccd72ed5efead28d55a0a1adc69d6222892a1a5545eb6e87fa25c8b6a3",
+  "imported_file": "WaveShapes.fs",
+  "imported_files": {
+    ".info": "0858a64e7a03a24726bda00432fe44d47501f714a61adb5ead4448def682c841",
+    "thumbnail.jpg": "33ce5345c3ee9c9b13c35dd42475a8429757e1ad44bdadc59288472466674bc4",
+    "WaveShapes.fs": "660b31ccd72ed5efead28d55a0a1adc69d6222892a1a5545eb6e87fa25c8b6a3"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

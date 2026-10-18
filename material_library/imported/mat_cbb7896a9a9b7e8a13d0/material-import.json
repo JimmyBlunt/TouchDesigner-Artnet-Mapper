@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_cbb7896a9a9b7e8a13d0",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Burst/Burst.fs",
+  "source_sha256": "463cfa28ca1969f5810911cd4db32adbaea9800ccba393aa1678174fe3fba150",
+  "imported_file": "Burst.fs",
+  "imported_files": {
+    ".info": "ddd84acefd982f564efc64349af1ae5e775a56c12b47b0052a26deab4865f7de",
+    "Burst.fs": "463cfa28ca1969f5810911cd4db32adbaea9800ccba393aa1678174fe3fba150",
+    "thumbnail.jpg": "04dab1120fcd688e94115afa4f59868ef5ab5a98452967c5456717914b28e7bc"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

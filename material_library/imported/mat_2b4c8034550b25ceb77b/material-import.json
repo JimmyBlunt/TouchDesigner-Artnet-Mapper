@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_2b4c8034550b25ceb77b",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Weather/Weather.fs",
+  "source_sha256": "6144455b7c0cf8421f7200179c003783b8318492a29aeeb1f5161879c5b205d8",
+  "imported_file": "Weather.fs",
+  "imported_files": {
+    ".info": "bc95bf536792f4c54e7dd325cdfc4525affb27a39f288266d47026adff20487c",
+    "rayleighScattering.png": "f3aa5eec4bc6b94f171cce6d51c0513b208775574739ae343271343b2163b281",
+    "sun.png": "589e68ce1c447e5c5081fa3796559fcf5658d859572b0dd51850549592ba37ce",
+    "temperature.png": "5b14b71c9d354030d390139ea1e4ae9d2864db6ff396ee656e890be35a5fb277",
+    "thumbnail.jpg": "c903a106dfac367f4b4026a546def622e1c0a760e87186aaea9e1a6cce84bb27",
+    "visibleWavelength.png": "b7e7f58405c44194683964287bd206233bb6465593472b25a77f0cd1bd81f2f2",
+    "Weather.fs": "6144455b7c0cf8421f7200179c003783b8318492a29aeeb1f5161879c5b205d8"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

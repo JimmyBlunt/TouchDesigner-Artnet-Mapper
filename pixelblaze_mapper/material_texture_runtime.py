@@ -2,7 +2,15 @@
 import json
 
 def bind_textures(preview, adaptation):
-    textures = getattr(adaptation, 'textures', ())
+    from .material_paths import resolve_asset_path
+    textures = []
+    for original in getattr(adaptation, 'textures', ()):
+        texture = dict(original)
+        if texture.get('resolved_path'):
+            texture['resolved_path'] = resolve_asset_path(texture['resolved_path'])
+        if texture.get('resolved_paths'):
+            texture['resolved_paths'] = [resolve_asset_path(path) for path in texture['resolved_paths']]
+        textures.append(texture)
     signature = tuple((str(t.get('TYPE', '2d')).lower(),
                        tuple(t.get('resolved_paths') or [t['resolved_path']]),
                        t.get('GL_TEXTURE_WRAP'), t.get('GL_TEXTURE_MIN_FILTER'),

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_ac5e0f95b951e6865e50",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Layered Extrusion/Layered Extrusion.fs",
+  "source_sha256": "196d98c6412861da76b00338ccae5afadad5ca450dc05edf772e03541de111ad",
+  "imported_file": "Layered Extrusion.fs",
+  "imported_files": {
+    ".info": "0d0dc199fd22880fe0d8fb5822d0123333f24f772236c80bec6d85699ff2fc97",
+    "95b90082f799f48677b4f206d856ad572f1d178c676269eac6347631d4447258.jpg": "ef063b8f751db77d2ca4ef8a7f28ba60096e58cc8250b30f32923f99b067c9aa",
+    "Layered Extrusion.fs": "196d98c6412861da76b00338ccae5afadad5ca450dc05edf772e03541de111ad",
+    "thumbnail.jpg": "57a5351bd052d3007d6c42e92168d79c68aabf162beb75ca1351397012cb80ad"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

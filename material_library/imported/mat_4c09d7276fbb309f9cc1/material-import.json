@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_4c09d7276fbb309f9cc1",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/VoronoiFractal/VoronoiFractal.fs",
+  "source_sha256": "a75723af1715637a18e890154f0aff91ef10f268338f9aed2242e6638e5a2ee3",
+  "imported_file": "VoronoiFractal.fs",
+  "imported_files": {
+    ".info": "9004bddaf863cbac2f54116a0f9ea3867cb0a284475c142f0b959bb55741c58d",
+    "thumbnail.jpg": "d2f5fd5bc08335525bd65278ded2d0754b3e57ff58de0c12396a6848ece318fc",
+    "VoronoiFractal.fs": "a75723af1715637a18e890154f0aff91ef10f268338f9aed2242e6638e5a2ee3"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

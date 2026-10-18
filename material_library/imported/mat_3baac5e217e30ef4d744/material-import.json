@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_3baac5e217e30ef4d744",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/SpinningRings/SpinningRings.fs",
+  "source_sha256": "1bda77ea9b56f193c65dac5eef3c23c650a7b0129c638e50e7fba641c9d2f29b",
+  "imported_file": "SpinningRings.fs",
+  "imported_files": {
+    ".info": "b35943673a8df122bfa0ee7c33bc1b69306396645fe2b11f25722273e7d2a7b2",
+    "SpinningRings.fs": "1bda77ea9b56f193c65dac5eef3c23c650a7b0129c638e50e7fba641c9d2f29b",
+    "thumbnail.jpg": "588c448c34131b94aad31e5d4edff462a828c1c73e22284905b1c6b3e51df6ab"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

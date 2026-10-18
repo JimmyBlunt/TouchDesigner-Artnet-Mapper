@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_8aeca7b5ba99606a3b4d",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/Strob/strob.fs",
+  "source_sha256": "57bea35ba1036fed34cad3b161d615e13075e47359e2ab87b58e43d135f5f705",
+  "imported_file": "strob.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "strob.fs": "57bea35ba1036fed34cad3b161d615e13075e47359e2ab87b58e43d135f5f705",
+    "strob.vs": "f1405db2260117569e49a534fb3ea69d6c671875b6d71e65d43afba3e6187299",
+    "thumbnail.png": "c82c65ee52192239bd18ac94718df27a3e50b6d88f3c8e6e1a87736199cca8ce"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

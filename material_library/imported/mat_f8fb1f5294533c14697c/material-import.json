@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_f8fb1f5294533c14697c",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/TestCard/alpha.fs",
+  "source_sha256": "c756c71f396f1346abfb0c3d5f416f3f6ce478264e5eee437ee2089cf391c9fa",
+  "imported_file": "alpha.fs",
+  "imported_files": {
+    ".info": "0c3ae11a331641da220c9d1fa976b04950418e20ade378a6f3369a848e34cee6",
+    "alpha.fs": "c756c71f396f1346abfb0c3d5f416f3f6ce478264e5eee437ee2089cf391c9fa",
+    "thumbnail.png": "f1823da2dc8a27b41b645481bd4c29e465cd8d9c8a6d0970bcea5ba19f90037b"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

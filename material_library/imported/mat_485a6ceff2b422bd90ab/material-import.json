@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_485a6ceff2b422bd90ab",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/CameraObsession/CameraObsession.fs",
+  "source_sha256": "731436c976042de2b4fe1e89f014ae5a45b3a479f23716352a873c6eb54c206b",
+  "imported_file": "CameraObsession.fs",
+  "imported_files": {
+    ".info": "96f137303b2e1e93b5825b30dbc21292e37b01bb1fb601cd4e721982672fa658",
+    "CameraObsession.fs": "731436c976042de2b4fe1e89f014ae5a45b3a479f23716352a873c6eb54c206b",
+    "thumbnail.jpg": "91f8455e9ee3143c0d51431cfa6532fa57450cbe59899b54617c218090a81af0"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

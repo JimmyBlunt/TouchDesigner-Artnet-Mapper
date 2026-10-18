@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_17db1a7f0b8eac99dd62",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Bar Code Enhanced/Bar Code Enhanced.fs",
+  "source_sha256": "34445ead2cd497b1081821e4b1ee430603a850435f0679e81c2fef7d74f2cff4",
+  "imported_file": "Bar Code Enhanced.fs",
+  "imported_files": {
+    ".info": "d9b3aeb978c95e94b4deebffa6b30e8e1c0c992786aa5ac6a4843b72f296eef1",
+    "Bar Code Enhanced.fs": "34445ead2cd497b1081821e4b1ee430603a850435f0679e81c2fef7d74f2cff4",
+    "thumbnail.jpg": "d28e1bfe4fcb4ab4726328106f0e978e89dd2fd8a0c399eb08d6e4a667863f97"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

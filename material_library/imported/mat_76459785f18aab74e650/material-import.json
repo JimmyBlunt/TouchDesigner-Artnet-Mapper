@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_76459785f18aab74e650",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Mirror Effect/mirror.fs",
+  "source_sha256": "dea16a0544645d28b1d507bfbf0d551b5e14865d17c2161181864cedbbf35e66",
+  "imported_file": "mirror.fs",
+  "imported_files": {
+    ".info": "4142a60ce95db18252c769bb2975a8a11e31c1ee583b6a5207683792868b8f71",
+    "mirror.fs": "dea16a0544645d28b1d507bfbf0d551b5e14865d17c2161181864cedbbf35e66",
+    "thumbnail.png": "97e5788188beecc9a62f9c33cc9ebdb7a38ea63cc29889bf5fa56222cff649d4"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

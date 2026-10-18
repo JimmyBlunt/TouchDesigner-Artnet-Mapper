@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_2de3e3ea4a4e6dabc76f",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Maze Layers/Maze Layers.fs",
+  "source_sha256": "4e99784a35992e30d66fa0b6fe8b737bd5731a2edc3afa901ee17ebc67cb3207",
+  "imported_file": "Maze Layers.fs",
+  "imported_files": {
+    ".info": "988f21d353a74a1dc7c01847d9239fd5bca7ec8c916abe82355b1edc8fe319ae",
+    "Maze Layers.fs": "4e99784a35992e30d66fa0b6fe8b737bd5731a2edc3afa901ee17ebc67cb3207",
+    "thumbnail.jpg": "b0e5786ed9d453536aba171a04890c2da7b1efad433542bf9a146b86faac2d31"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

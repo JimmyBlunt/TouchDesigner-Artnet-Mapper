@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_780ab9916a5bdca8171a",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Bioluminescence/Bioluminescence.fs",
+  "source_sha256": "0c5befe00030cdc861b782ac1bcb1f3a157ec8bd9107c82cfc16417612aa5fc3",
+  "imported_file": "Bioluminescence.fs",
+  "imported_files": {
+    ".info": "8cb89659008c6169e91ce6eeab83ea2dca9a140f4dc9af6611a170fa512ceaab",
+    "Bioluminescence.fs": "0c5befe00030cdc861b782ac1bcb1f3a157ec8bd9107c82cfc16417612aa5fc3",
+    "thumbnail.jpg": "08c3362db665658df8143c36fec2b49695d71a67643a8d81d43241cb54c61d24"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

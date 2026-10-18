@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_5e371f08d4db390077b2",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/VoroCubes/voroCubes.fs",
+  "source_sha256": "b1b04503fdfdab9cfb59f882601f21664de4f3751a5f3631a1dada71ab6ad691",
+  "imported_file": "voroCubes.fs",
+  "imported_files": {
+    ".info": "a0ecb6f5dd0fd6726c7df18d8a3b105dd84526ad0d01811397188cb646a48ad5",
+    "thumbnail.png": "daca98a9fffee05a4570b64d0082141b5a03486ceb834d7af160f60fb9fc0ba8",
+    "voroCubes.fs": "b1b04503fdfdab9cfb59f882601f21664de4f3751a5f3631a1dada71ab6ad691"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

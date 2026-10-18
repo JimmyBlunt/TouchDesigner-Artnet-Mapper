@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_029fb59f7ee18ce95d0e",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Enter The Matrix/Enter The Matrix.fs",
+  "source_sha256": "35095bd0266a18eb0f98e3404c93a06403f5c765637e0895549e7681a1bac9df",
+  "imported_file": "Enter The Matrix.fs",
+  "imported_files": {
+    ".info": "54661f31e52123b17728e2160da35681227988f0362101a2ee5b9bfb9b357851",
+    "08b42b43ae9d3c0605da11d0eac86618ea888e62cdd9518ee8b9097488b31560.png": "8595ce0bb0e1250633a0e6ca78620e49a618fc7c703d1cc5f291b668cc570b93",
+    "Enter The Matrix.fs": "35095bd0266a18eb0f98e3404c93a06403f5c765637e0895549e7681a1bac9df",
+    "thumbnail.jpg": "1c79b58c62dd257abeb237caf67b24653647892646de3317e72ac33af6f600dc"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

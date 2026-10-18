@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_bc07aee6d7eaef4e7bf2",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/LinesDeluxe/LinesDeluxe.fs",
+  "source_sha256": "2e6336e49624702c4a15769e737eeb7715be3efe5615c2eea04fe6fce158906c",
+  "imported_file": "LinesDeluxe.fs",
+  "imported_files": {
+    ".info": "417e832d1df09466b17670bd33be70d3c27eb73e666a3d055c6caf575279f516",
+    "LinesDeluxe.fs": "2e6336e49624702c4a15769e737eeb7715be3efe5615c2eea04fe6fce158906c",
+    "thumbnail.jpg": "74fbf5a213f60cec8a8aa21b1db192a880e06828c464d2cc0901cb33bcb06b03"
+  },
+  "kind": "madmapper_glsl",
+  "compatibility": "unsupported"
+}

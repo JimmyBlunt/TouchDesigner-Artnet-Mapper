@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_666e3d2779c603569090",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Oriental Tile/Oriental Tile.fs",
+  "source_sha256": "39761292adf8550e4cb825ec0589692944acfe8b1e32482a27a03b6afa18dfb9",
+  "imported_file": "Oriental Tile.fs",
+  "imported_files": {
+    ".info": "0dbbfee0d479d58d5b55f4b1809a9ad0ed4e62d65958b544057c14c3e3a76628",
+    "Oriental Tile.fs": "39761292adf8550e4cb825ec0589692944acfe8b1e32482a27a03b6afa18dfb9",
+    "thumbnail.jpg": "6f48ce3156171a2fb98e76673829257628c6ee66b77d581722f51cfb5da41e21"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

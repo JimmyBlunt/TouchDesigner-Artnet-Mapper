@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_979f5c7af46778bf6ce6",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Passing Rings/Passing Rings.fs",
+  "source_sha256": "364c7c5074eaf2d1d3daede0cc398e09559eb26d8e5e1d74861c9ada93cde842",
+  "imported_file": "Passing Rings.fs",
+  "imported_files": {
+    ".info": "7d9f8a6f41beb741ffaafce526ee9fedc1a5d7e97f5269bab1b799eead9a4b99",
+    "Passing Rings.fs": "364c7c5074eaf2d1d3daede0cc398e09559eb26d8e5e1d74861c9ada93cde842",
+    "thumbnail.jpg": "7e010e8ccc806a461a8e5d752038a03a6eabb2644c1663a6326667b838c3edbe"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

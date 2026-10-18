@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_a7fc98822074ae06e07f",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Glowing Dots/Glowing Dots.fs",
+  "source_sha256": "b64fe612e1da78353315beff9a21291da1bfc8c359edecc1fb8b99e5d4a6c989",
+  "imported_file": "Glowing Dots.fs",
+  "imported_files": {
+    ".info": "98553148a2cf3492b71d99a0d744761d9b00bd24e1fbb9ddbac51596bc7ad2b4",
+    "Glowing Dots.fs": "b64fe612e1da78353315beff9a21291da1bfc8c359edecc1fb8b99e5d4a6c989",
+    "thumbnail.jpg": "5e657c50e01191cfa675f69cadad0be6dcdb8c57ecb773fa7182a489233a1b53"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

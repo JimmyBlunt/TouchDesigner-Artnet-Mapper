@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_8239363577ed334fb20f",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/SoftPatterns2/SoftPatterns2.fs",
+  "source_sha256": "6968b2489393b9db913d29e200a48c56279e48327be6be598865ed02a8b28216",
+  "imported_file": "SoftPatterns2.fs",
+  "imported_files": {
+    ".info": "54e8ce2b494e205e389b682c8368b70aea6bd36958099271083f9992f1656c9f",
+    "SoftPatterns2.fs": "6968b2489393b9db913d29e200a48c56279e48327be6be598865ed02a8b28216",
+    "thumbnail.jpg": "f98298529bde17dd5bf9facf098db178054481f1fae293da971d055d9c163732"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

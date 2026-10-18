@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_4645db9f9d620467f3ad",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Warped Hexler/Warped Hexler.fs",
+  "source_sha256": "dc32201018c6104329b00ea979e59669a0ec2a54379d80457a987c67984ecbd3",
+  "imported_file": "Warped Hexler.fs",
+  "imported_files": {
+    ".info": "8e7acea770e99f713fa14ecee98973b7199160bc30a51f803ee5b2a0d54ccb9a",
+    "thumbnail.jpg": "f916889f09080d770e8690b275b143988b5a25e157088a3a8a09fd8b88c152d4",
+    "Warped Hexler.fs": "dc32201018c6104329b00ea979e59669a0ec2a54379d80457a987c67984ecbd3"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

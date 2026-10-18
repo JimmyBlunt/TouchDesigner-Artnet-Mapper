@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_1ea375865426310fb2b7",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Noise Membrane/Noise Membrane.fs",
+  "source_sha256": "0940427caccb5b1aa6cb5460aa3cad4934e7e9242a84d65261d1b74cffd1b3a2",
+  "imported_file": "Noise Membrane.fs",
+  "imported_files": {
+    ".info": "690d3d91b49ff101d36e53a1b74449b6b23f3412cc8dd57f01007e45a0f326ea",
+    "Noise Membrane.fs": "0940427caccb5b1aa6cb5460aa3cad4934e7e9242a84d65261d1b74cffd1b3a2",
+    "thumbnail.jpg": "828febc7b08e6e1bfe697b64b740c4d7b04c40f5952b6688668df691b2df7938"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

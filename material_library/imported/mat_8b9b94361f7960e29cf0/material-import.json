@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_8b9b94361f7960e29cf0",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Rotating Arcs/Rotating Arcs.fs",
+  "source_sha256": "86e0577c0b1f3b5911a3cb95448fd24c57030e30eb3cc633a8c3bbeca2212d09",
+  "imported_file": "Rotating Arcs.fs",
+  "imported_files": {
+    ".info": "5519c2812c6430532398328b0d416341085219ed6535b1c2360cb19e07d836bf",
+    "Rotating Arcs.fs": "86e0577c0b1f3b5911a3cb95448fd24c57030e30eb3cc633a8c3bbeca2212d09",
+    "thumbnail.png": "b85b42fcad8be4cf9a4b5be9ee5e90accd5c3c3bbb77bd0e5b541705fa862c35"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_407d417ed5f94e8ae4be",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Voronoi Distances/Voronoi Distances.fs",
+  "source_sha256": "c5590495b31d1b615bd450ac67c74c10ec70027ba4e1963189c7e6e5809a7841",
+  "imported_file": "Voronoi Distances.fs",
+  "imported_files": {
+    ".info": "797043a2bf268d78cf37a74d878d6138fef3f9395359d682ed1b710cedfc6ef4",
+    "thumbnail.jpg": "22c049e81b9aa5180af99a7dbd3a86295aec6a4ea2f65ffe74087d944bdd1d10",
+    "Voronoi Distances.fs": "c5590495b31d1b615bd450ac67c74c10ec70027ba4e1963189c7e6e5809a7841"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

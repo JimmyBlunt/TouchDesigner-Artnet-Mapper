@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_ece40f9ca110ddf855df",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Retro Lines/Retro Lines.fs",
+  "source_sha256": "9d5d2b5eda2639f6dadc47747b08bb75931b9f32d7476138c5e8f818943558ed",
+  "imported_file": "Retro Lines.fs",
+  "imported_files": {
+    ".info": "6f3a8c764caba15da49a51940ae66f65df987f51edf4d15b1f5ea2403b9650d5",
+    "Retro Lines.fs": "9d5d2b5eda2639f6dadc47747b08bb75931b9f32d7476138c5e8f818943558ed",
+    "thumbnail.jpg": "7013bdc4e30fdcc26d9038e7760e7e9a968769ec20dbb723112f86e7842e5ede"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,10 @@
+{
+  "ideRoot": "E:/PXLBLZ-ArtNet/PXLBLZ-IDE",
+  "ideUrl": "http://localhost:5175",
+  "routerUrl": "http://127.0.0.1:9988",
+  "routerWs": "ws://127.0.0.1:9980/pixels",
+  "routerExe": "E:/PXLBLZ-ArtNet/artnet/pxlblz-router.exe",
+  "tdUrl": "http://127.0.0.1:9981/api/td/server/exec",
+  "port": 9990,
+  "patternId": "8cf98c96-1fd4-495b-9d2c-2e723a2e19e7"
+}

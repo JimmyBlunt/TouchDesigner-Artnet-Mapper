@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_40adbf69319d6e494582",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Microcosm/Microcosm.fs",
+  "source_sha256": "181c755d314491b9e0a85da2fd3fc9e22e1a543be0c148633f3ffab441dc1b78",
+  "imported_file": "Microcosm.fs",
+  "imported_files": {
+    ".info": "6f123ba4c0ffd68b88b7377db1c82cee0a7d37997a939754c7d6f95855283986",
+    "Microcosm.fs": "181c755d314491b9e0a85da2fd3fc9e22e1a543be0c148633f3ffab441dc1b78",
+    "thumbnail.jpg": "6b2baf19afcc1ca9fdac1790927a2d81485f9ab5245b99e99d92b042c7e62343"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

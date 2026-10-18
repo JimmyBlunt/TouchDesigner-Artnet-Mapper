@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_2888b261abf7e12912ce",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/SpiralFusion/SpiralFusion.fs",
+  "source_sha256": "f37681e33f1a25c69d6a078b36459c38e61bac6c5ea4c1fe9c94e2e2633b565a",
+  "imported_file": "SpiralFusion.fs",
+  "imported_files": {
+    ".info": "496c94596699180daa277e66a7f27344142fc5ebf5ba8cdff6d5a93575b668d9",
+    "SpiralFusion.fs": "f37681e33f1a25c69d6a078b36459c38e61bac6c5ea4c1fe9c94e2e2633b565a",
+    "thumbnail.jpg": "d6428ad68c28fafe35622671fbbb2366840016eacc6e9beb37adc6e64405361f"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_0bd099319b62a40d6853",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Demos/SDF/_SDFRadial/_SDFRadial.fs",
+  "source_sha256": "6f0c8a9417fda3777655fea4155bc76831e05d3136a21ae90e93585bec1375b8",
+  "imported_file": "_SDFRadial.fs",
+  "imported_files": {
+    "_SDFRadial.fs": "6f0c8a9417fda3777655fea4155bc76831e05d3136a21ae90e93585bec1375b8",
+    "thumbnail.png": "139e8ed6e6e07022335bc539857fd6ceb048d3a6ddd04ff4c69b3ebaf7085506"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

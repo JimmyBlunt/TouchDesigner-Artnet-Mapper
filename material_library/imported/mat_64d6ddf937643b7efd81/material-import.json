@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_64d6ddf937643b7efd81",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Qualigraphic/Qualigraphic.fs",
+  "source_sha256": "f57f458ed9bc81ed9e96c0c249746320446d0579d8806fd65a7eb08345349421",
+  "imported_file": "Qualigraphic.fs",
+  "imported_files": {
+    ".info": "4b919dcc3c5a6a8a88ca680b9cbc1bbceae566667b4db94403aa14af0157f7a0",
+    "Qualigraphic.fs": "f57f458ed9bc81ed9e96c0c249746320446d0579d8806fd65a7eb08345349421",
+    "thumbnail.jpg": "bb18820751b0c35e04c00feeabf49d64ee87df9e9a0312626b7afe037c036da9"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

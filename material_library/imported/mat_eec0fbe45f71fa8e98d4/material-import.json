@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_eec0fbe45f71fa8e98d4",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/Arcs/Arcs.fs",
+  "source_sha256": "eafbba80b38c2c82977a4b823db51bd43e4d9fdf61fc9e8613c074ca3b9ddd86",
+  "imported_file": "Arcs.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "Arcs.fs": "eafbba80b38c2c82977a4b823db51bd43e4d9fdf61fc9e8613c074ca3b9ddd86",
+    "Arcs.vs": "227f00cdb29b041d6510be64eb77faa1036a12d53312f96659040128bf8541b7",
+    "thumbnail.png": "c8aa59518d1d04784ae53147d061aff1b7f8bf20bf04f4c8a9d37a163fc20670"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

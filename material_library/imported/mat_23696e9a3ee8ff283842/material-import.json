@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_23696e9a3ee8ff283842",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/StrobeDeluxe/StrobeDeluxe.fs",
+  "source_sha256": "ea3063e77aae597f4fc3bf22ac6887071b2f3e128c834c99ee5120c127b6f564",
+  "imported_file": "StrobeDeluxe.fs",
+  "imported_files": {
+    ".info": "42399002fb5ec440d36313ceba882f7239ef73ffa61c0effb68c6c40e9649a75",
+    "StrobeDeluxe.fs": "ea3063e77aae597f4fc3bf22ac6887071b2f3e128c834c99ee5120c127b6f564",
+    "thumbnail.jpg": "57e43be34fdb2844ee86aa6d4d832fb745432f7eef81129240857072d142da0b"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

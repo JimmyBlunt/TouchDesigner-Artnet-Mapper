@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_2dd819868a05b3661030",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Jelly Boxes/Jelly Boxes.fs",
+  "source_sha256": "9f738a6c06f4ba94d15fac97ea8ef4a0eca2f57170ed8fd3fdbc41acea9fef4c",
+  "imported_file": "Jelly Boxes.fs",
+  "imported_files": {
+    ".info": "5677db1eb16a0b7253e52bc02b2d9fe338cfdcd992bd4d0e84e308bfb08b2f21",
+    "Jelly Boxes.fs": "9f738a6c06f4ba94d15fac97ea8ef4a0eca2f57170ed8fd3fdbc41acea9fef4c",
+    "thumbnail.jpg": "8df48dacf2f2ea74eaf6fc6be8082bc55eabce4ead46e8f0a898d19bffd05bd7"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

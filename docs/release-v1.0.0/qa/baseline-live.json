@@ -1,0 +1,39 @@
+{
+  "project": "PixelblazeMapper_PANEL8_299_REPLACED_20261018.2.toe",
+  "controller_config": "enabled\tname\ttarget_ip\tlocal_interface\tport\tstart_universe\tcolor_order\tbrightness\trate\tart_sync\treserved_universes\r\n1\tWS2812_NODE\t10.0.0.244\t10.0.0.125\t6454\t0\tGRB\t0.7\t60\t0\t24\r\n0\tAPA102_ESP\t10.0.0.251\t10.0.0.125\t6454\t0\tRGB\t0.8\t30\t0\t0\r\n1\tPANEL8_251\t10.0.0.251\t10.0.0.125\t6454\t156\tBGR\t0.7\t30\t0\t7\r\n1\tBACK_PANEL_249\t10.0.0.253\t10.0.0.125\t6454\t120\tRGB\t0.3\t30\t0\t37\r\n",
+  "segments": "name\tsource_start\tcount\tcontroller\tdestination_start\treverse\tcolor_override\r\nAPA102\t1187\t1167\tAPA102_ESP\t512\t0\t\r\nGICO_PORT_1_MIDDLE\t0\t517\tWS2812_NODE\t0\t0\tGRB\r\nGICO_PORT_2_UPPER\t517\t269\tWS2812_NODE\t1020\t0\tGRB\r\nGICO_PORT_3_LOWER\t786\t398\tWS2812_NODE\t2040\t0\tGRB\r\nPORT_PANEL8_251_1\t2720\t299\tPANEL8_251\t0\t0\tBGR\r\nPORT_PANEL8_251_2\t9223\t357\tPANEL8_251\t340\t0\tBGR\r\nPORT_BACK_PANEL_249_1\t1440\t203\tBACK_PANEL_249\t0\t0\tRGB\r\nPORT_BACK_PANEL_249_2\t3744\t738\tBACK_PANEL_249\t340\t0\tRGB\r\nPORT_BACK_PANEL_249_3\t4482\t880\tBACK_PANEL_249\t1190\t0\tRGB\r\nPORT_BACK_PANEL_249_4\t5362\t810\tBACK_PANEL_249\t2210\t0\tRGB\r\nPORT_BACK_PANEL_249_5\t9776\t554\tBACK_PANEL_249\t5610\t0\tRGB\r\nPORT_BACK_PANEL_249_6\t6524\t610\tBACK_PANEL_249\t3740\t0\tRGB\r\nPORT_BACK_PANEL_249_7\t7134\t512\tBACK_PANEL_249\t4420\t0\tRGB\r\nPORT_BACK_PANEL_249_8\t8195\t488\tBACK_PANEL_249\t5100\t0\tRGB\r\nPORT_PANEL8_251_3\t9580\t195\tPANEL8_251\t850\t0\tBGR\r\n",
+  "errors": "",
+  "warnings": "",
+  "source_count": 10330,
+  "output": {
+    "transport": {
+      "kind": "direct"
+    },
+    "enabled": false,
+    "error": "",
+    "mode": "live",
+    "calibration": [
+      "all",
+      "panel_id",
+      0
+    ],
+    "controllers": [],
+    "target_override": null,
+    "port_override": null,
+    "telemetry": {
+      "tick_count": 358210,
+      "rate_skips": 0,
+      "send_count": 358210,
+      "packet_count": 24240096,
+      "send_ms_last": 19.532199992681853,
+      "send_ms_average": 27.939587559537507,
+      "send_ms_max": 932.3423000023467,
+      "actual_send_fps": 5.903413593215276,
+      "pack_count": 358210,
+      "pack_ms_last": 1.336999994236976,
+      "pack_ms_average": 1.483250611378319,
+      "pack_ms_max": 17.977399998926558,
+      "plan_rebuilds": 1
+    }
+  }
+}

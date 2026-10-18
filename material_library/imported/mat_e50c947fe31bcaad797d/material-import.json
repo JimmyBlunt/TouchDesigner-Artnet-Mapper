@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e50c947fe31bcaad797d",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Inner Reflections/Inner Reflections.fs",
+  "source_sha256": "28e62647fb93171119ae888c2b25def9ead3fea7383fe52ded3ac31da99f2658",
+  "imported_file": "Inner Reflections.fs",
+  "imported_files": {
+    ".info": "1490ef8ba977fbc1927d9c27a01b4578cc3e5da950097d93ef0b5edaef69b246",
+    "Inner Reflections.fs": "28e62647fb93171119ae888c2b25def9ead3fea7383fe52ded3ac31da99f2658",
+    "thumbnail.jpg": "09231baabdadca25ac7d2c7f64265ef400ca809a6ed5ca6e1a75c8be7dcb5843"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

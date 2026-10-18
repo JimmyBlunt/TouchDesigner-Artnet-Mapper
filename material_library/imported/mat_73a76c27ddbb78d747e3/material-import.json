@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_73a76c27ddbb78d747e3",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Plasma Pink/Plasma Pink.fs",
+  "source_sha256": "9e4228b214bb03ccfe3e78390cbd2c36facfaaeae364149508878ddd6aa38fab",
+  "imported_file": "Plasma Pink.fs",
+  "imported_files": {
+    ".info": "2c3855022adf571a12867a8bb7ece44adc20331573ef4b76dc1267d3aac8e710",
+    "Plasma Pink.fs": "9e4228b214bb03ccfe3e78390cbd2c36facfaaeae364149508878ddd6aa38fab",
+    "thumbnail.jpg": "6f7bf30abbea1f66afbe7755ba558b463b40c3421685ecbb7c7e78f353fc62be"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

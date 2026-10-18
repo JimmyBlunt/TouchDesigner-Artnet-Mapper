@@ -1,0 +1,689 @@
+{
+  "schema_version": 2,
+  "hardware": true,
+  "groups": [
+    {
+      "name": "A",
+      "pads": [
+        {
+          "kind": "material",
+          "target": "mat_b793d955caf8ad949a92",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "mat_40a070ee5da985ccad90",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "mat_0e67e238b9263d57a6db",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "mat_7ec9358fed7d785b3325",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "mat_552af5019bc3bcb6f44f",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "mat_7957542a93ff1dab0ef0",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "mat_c5f0ccd5354d21cb3ec2",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "mat_eb407546bc24472d11bc",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "mat_c1676b470143756c389d",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "mat_11cdb57c36c928d45d46",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "mat_3b41027558bbb9831850",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "mat_7d38dd532092ef0dea8a",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        }
+      ]
+    },
+    {
+      "name": "B",
+      "pads": [
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "mat_883aedfcae6632ad75a1",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        }
+      ]
+    },
+    {
+      "name": "C",
+      "pads": [
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "mat_552af5019bc3bcb6f44f",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "mat_c233fbb41bd791a04dc4",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "mat_a617754b4a83b40d77d1",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        }
+      ]
+    },
+    {
+      "name": "D",
+      "pads": [
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "mat_1201e82e621903b275f1",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        }
+      ]
+    },
+    {
+      "name": "E",
+      "pads": [
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        }
+      ]
+    },
+    {
+      "name": "F",
+      "pads": [
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        }
+      ]
+    },
+    {
+      "name": "G",
+      "pads": [
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "mat_76951414ee8234e904f5",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        }
+      ]
+    },
+    {
+      "name": "H",
+      "pads": [
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        },
+        {
+          "kind": "material",
+          "target": "",
+          "values": {}
+        }
+      ]
+    }
+  ],
+  "favorites": [
+    "mat_552af5019bc3bcb6f44f"
+  ]
+}

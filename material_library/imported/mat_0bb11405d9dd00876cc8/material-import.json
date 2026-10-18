@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_0bb11405d9dd00876cc8",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Swatch/swatch.fs",
+  "source_sha256": "b4ceb75130a299682f6961a12fea6a862e2b16eb748a56e5bad3ba4be9da7b2d",
+  "imported_file": "swatch.fs",
+  "imported_files": {
+    ".info": "f63e651441fd50af27aab16fdaf788b221c9d2db9a26f5f0ab064bc29d1d75de",
+    "swatch.fs": "b4ceb75130a299682f6961a12fea6a862e2b16eb748a56e5bad3ba4be9da7b2d",
+    "thumbnail.png": "a9f287bf8231dbed63a7d6d67c17481f8f6cac9d425cfbc5fdc23d7671c6bf2b"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

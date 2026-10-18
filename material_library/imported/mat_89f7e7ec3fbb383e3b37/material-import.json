@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_89f7e7ec3fbb383e3b37",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/MexicanWaves/alpha.fs",
+  "source_sha256": "56e093ee3499bd9e930d5de92d9688a72a9d2b47d5867d741013b7a665a7a7b3",
+  "imported_file": "alpha.fs",
+  "imported_files": {
+    ".info": "cc946ce05b264cb1d7d980c9add8f614b366f6166a72f735f0e7ca2b869d3034",
+    "alpha.fs": "56e093ee3499bd9e930d5de92d9688a72a9d2b47d5867d741013b7a665a7a7b3",
+    "thumbnail.jpg": "ec539ef442a4dab9918950bfda239cac8746ea46682b38c5ddf95765a0dc2cf5"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

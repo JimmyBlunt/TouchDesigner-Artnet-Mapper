@@ -1,0 +1,14 @@
+{
+  "checks": {
+    "picker_load_empty_missing_sidecars": true,
+    "save_exact_selected_filename_and_sidecars": true,
+    "new_empty_show": true,
+    "empty_play_stays_stopped_black": true,
+    "router_choose_all_controllers": 4,
+    "port_choose_all_controllers": 4,
+    "router_tables_unchanged": true,
+    "show_json_restored": true,
+    "output_off": true
+  },
+  "errors": []
+}

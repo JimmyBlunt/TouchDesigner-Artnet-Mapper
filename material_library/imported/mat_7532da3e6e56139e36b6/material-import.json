@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_7532da3e6e56139e36b6",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Voronoi Circles/Voronoi Circles.fs",
+  "source_sha256": "1c4449d09ffee256a7f74c85457db4878f6f0d03a66effb1cec248b934593868",
+  "imported_file": "Voronoi Circles.fs",
+  "imported_files": {
+    ".info": "ef8525f8c771b5575d48e8cd62245b8c13dc90a38b922bcc88d8a6d36e09658b",
+    "thumbnail.jpg": "82de4d407c4b9d5cd6582848bf332c70d2bc9b65136ea9c0d49ec091a21451ed",
+    "Voronoi Circles.fs": "1c4449d09ffee256a7f74c85457db4878f6f0d03a66effb1cec248b934593868"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_d550d26e5e50684b1ff8",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/CloudScape/CloudScape.fs",
+  "source_sha256": "08eeea008316763c0d86d119cb11f14dc04a87841c4e3c091ea7c34a9245f745",
+  "imported_file": "CloudScape.fs",
+  "imported_files": {
+    ".info": "f747720c7119e4cdce8353fc892b566eb280512e48795efdcf011ca68e2c3514",
+    "CloudScape.fs": "08eeea008316763c0d86d119cb11f14dc04a87841c4e3c091ea7c34a9245f745",
+    "thumbnail.jpg": "fbfa3dead56656918a9ec45c70dd23edaa411e79bee6dc9e6129f28cf08539cf"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

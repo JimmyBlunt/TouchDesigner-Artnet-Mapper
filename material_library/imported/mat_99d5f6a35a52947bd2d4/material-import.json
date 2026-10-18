@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_99d5f6a35a52947bd2d4",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Moon Noise/Moon Noise.fs",
+  "source_sha256": "0c2688d36d2d20231e730452e4c615c08c50261d0957ac8d3c90410f6ee43bb4",
+  "imported_file": "Moon Noise.fs",
+  "imported_files": {
+    ".info": "74c1f87b9b0d9eecd476540c35cb5c232d5690afc71eb7d6c37e8001dc4cd156",
+    "Moon Noise.fs": "0c2688d36d2d20231e730452e4c615c08c50261d0957ac8d3c90410f6ee43bb4",
+    "thumbnail.jpg": "785cec2739afb45f683101ad761482b306cc7d353ef56cdba52c4787aa8e5ab7"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

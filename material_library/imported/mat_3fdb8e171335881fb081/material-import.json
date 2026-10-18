@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_3fdb8e171335881fb081",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Circuits/Circuits.fs",
+  "source_sha256": "80672f5c9f0e4293e2b459685b238e8050fa8d978071ba8405bf30f2cfe8f517",
+  "imported_file": "Circuits.fs",
+  "imported_files": {
+    ".info": "99ff0e50747f772aff7e9be07e5157a8d3afab26685d091cf4d9ae11c8d641d8",
+    "Circuits.fs": "80672f5c9f0e4293e2b459685b238e8050fa8d978071ba8405bf30f2cfe8f517",
+    "thumbnail.png": "b5bd285c1b5a4d701ab7ea2228ed872ebb282fd0d248f53d49f0621200fd69f2"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_f56d0885aca3f7b3b218",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Follow Spot/followspot.fs",
+  "source_sha256": "7dafc7197778bb9ba5619d7d916630e7d44f1d3c79a18378d94f5c560cca4fea",
+  "imported_file": "followspot.fs",
+  "imported_files": {
+    ".info": "ff3d045687ac9649ec8c316b6206ed22c38c7ec41468dfcb16e9e83bf8602f00",
+    "followspot.fs": "7dafc7197778bb9ba5619d7d916630e7d44f1d3c79a18378d94f5c560cca4fea",
+    "thumbnail.png": "0480cf2ddfbc0be3a9ed0e56927bbf24c54cb3b4bd029b6f0de6e44762949db9"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

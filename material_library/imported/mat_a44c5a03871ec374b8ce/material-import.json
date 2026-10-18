@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_a44c5a03871ec374b8ce",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/BallPhysics/ballphysics.fs",
+  "source_sha256": "3b8818113304d648be37c8f9c760ac293d0dd8d049daa4d2950f3633d9b4024d",
+  "imported_file": "ballphysics.fs",
+  "imported_files": {
+    ".info": "d372ae280dc72c4a3ea2c06fcd52386e4e0b593af8611044d6fd5df4ee7e952f",
+    "ballphysics.fs": "3b8818113304d648be37c8f9c760ac293d0dd8d049daa4d2950f3633d9b4024d",
+    "thumbnail.png": "2ed5c6d3b2c378047d902c55356533438d383c95a5ac04c459f7fe6d1cc8ac24"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_cb92d51e3ce1a66cf456",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/All Widgets Template/All Widgets Template.fs",
+  "source_sha256": "a11c7db89ee61d980a6b3be230e32a1ed4677052638f5e930ddda89ad66e349c",
+  "imported_file": "All Widgets Template.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "All Widgets Template.fs": "a11c7db89ee61d980a6b3be230e32a1ed4677052638f5e930ddda89ad66e349c",
+    "flare.jpg": "f8bde066749b9e8b058c86b8463f950a119fdcf21d77e2976ab04fc6528668c2",
+    "thumbnail.jpg": "33dd1786ba8b729a1d1003df191d8f576db70883549cd883ffa6bb29f8040e8c"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

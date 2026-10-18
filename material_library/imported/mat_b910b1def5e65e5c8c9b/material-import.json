@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_b910b1def5e65e5c8c9b",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Chocolate Swirl/Chocolate Swirl.fs",
+  "source_sha256": "f516888855cf2e0000d42d7876fa86f9a603f6518c66891af0f1d0eed8da51c9",
+  "imported_file": "Chocolate Swirl.fs",
+  "imported_files": {
+    ".info": "00203469e89817952aeeefd458fe3a83a8fab6e010d159d608fff6239823d879",
+    "Chocolate Swirl.fs": "f516888855cf2e0000d42d7876fa86f9a603f6518c66891af0f1d0eed8da51c9",
+    "thumbnail.jpg": "af8d0c83765be0a96fe4f2b4ca41641e7bd3fc1f1670539048e75babfa4d7c28"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

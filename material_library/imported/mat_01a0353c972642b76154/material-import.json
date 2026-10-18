@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_01a0353c972642b76154",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/CliffordTorusRotation/CliffordTorusRotation.fs",
+  "source_sha256": "b714f2aa90258202cb384918c62378d766d98a10459117f61eb0e3ad118edf69",
+  "imported_file": "CliffordTorusRotation.fs",
+  "imported_files": {
+    ".info": "467814dd805a232d7a973f7e38258a47422ec6c8bfb425d172f72ae308bba58e",
+    "CliffordTorusRotation.fs": "b714f2aa90258202cb384918c62378d766d98a10459117f61eb0e3ad118edf69",
+    "thumbnail.jpg": "20a2aabea54e245800fe84a4544fa9358b5ca8cbcd673e33d86667004310af67"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

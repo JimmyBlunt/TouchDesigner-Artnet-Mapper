@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_8c63d3f7afdd8d3e6091",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/SymbolScroller/SymbolScroller.fs",
+  "source_sha256": "67506faf46ea4850c2f7464dd99a41075a90c830d34416ca5febb432ddca3a42",
+  "imported_file": "SymbolScroller.fs",
+  "imported_files": {
+    ".info": "8f3d70e5e8a5b9ba3eba953c8d944c6f5899d5e79e34e19b77a569c274abee8f",
+    "SymbolScroller.fs": "67506faf46ea4850c2f7464dd99a41075a90c830d34416ca5febb432ddca3a42",
+    "thumbnail.jpg": "070d735beeb9b12dd7d9a54650526d80d958bfb9aa01eb98d02e83fc7d68a1b7"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

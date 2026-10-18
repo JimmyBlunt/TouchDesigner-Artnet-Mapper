@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_c57b4ab40c1a5b2168a8",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Reflective Metaballs/Reflective Metaballs.fs",
+  "source_sha256": "b25c66d24459d41fa03b50635e402b6869347b6d9f2538b16363aca7744a7382",
+  "imported_file": "Reflective Metaballs.fs",
+  "imported_files": {
+    ".info": "018c5d0feb9b26d351bd12cb84a532bd892674c2645100daf9998c9dc42b78f7",
+    "Reflective Metaballs.fs": "b25c66d24459d41fa03b50635e402b6869347b6d9f2538b16363aca7744a7382",
+    "thumbnail.jpg": "ee2adf6b331b5d66acce83def8f621f377911976c8dfd32b0facd87d3c2636a5"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

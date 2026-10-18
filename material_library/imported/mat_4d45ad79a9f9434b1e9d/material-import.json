@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_4d45ad79a9f9434b1e9d",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/[recode]_Smith/[recode]_Smith.fs",
+  "source_sha256": "4ef651753bbf5cf2ef5d8cc86adcfe1d73a0d13840188a9420aef000da036c30",
+  "imported_file": "[recode]_Smith.fs",
+  "imported_files": {
+    ".info": "2e870a6e93901b819277da26d4aa30b237082389c35d1bb0954ece05a9c03b60",
+    "[original]_Andy Smith_Ladders_Rocks_&_Lightning_Swords.jpg": "178cc7f713f189df0bb56a3506067f71dffd91e551125e119e348b06be09d9d8",
+    "[recode]_Smith.fs": "4ef651753bbf5cf2ef5d8cc86adcfe1d73a0d13840188a9420aef000da036c30",
+    "graynoisesmall.png": "89977181642088a740b4279f5a1a45d879013d2f96166ab9a7a4d46ca57ba283",
+    "thumbnail.jpg": "25fd480ce2f4257acfdf01f609dcb030150899f99961484fdcc757c4b7fa8199"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

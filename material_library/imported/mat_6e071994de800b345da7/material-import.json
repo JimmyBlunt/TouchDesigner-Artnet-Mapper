@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_6e071994de800b345da7",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Line Patterns Maxi/Line Patterns Maxi.fs",
+  "source_sha256": "85d8e5b8b6d70660fee4a7a423fe2ad8775599b2283d47fedc75c6d1f923586e",
+  "imported_file": "Line Patterns Maxi.fs",
+  "imported_files": {
+    ".info": "6d2e675dcd59e97abfb287198fda60e0da1049cba2c0eca827b7ce72cb2121f2",
+    "Line Patterns Maxi.fs": "85d8e5b8b6d70660fee4a7a423fe2ad8775599b2283d47fedc75c6d1f923586e",
+    "thumbnail.png": "78665a505aab7b17c79affa89cd5e184f1cf24d88687e65966d628c505b3ebba"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

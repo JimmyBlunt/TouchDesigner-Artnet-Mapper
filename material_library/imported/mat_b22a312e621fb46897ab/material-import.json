@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_b22a312e621fb46897ab",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/GeoCentricFlip2/GeoCentricFlip2.fs",
+  "source_sha256": "c837ccd898f1880293659a1ab755d80c32e40c4840b1ed72cfc04809d5c83662",
+  "imported_file": "GeoCentricFlip2.fs",
+  "imported_files": {
+    ".info": "54e8ce2b494e205e389b682c8368b70aea6bd36958099271083f9992f1656c9f",
+    "GeoCentricFlip2.fs": "c837ccd898f1880293659a1ab755d80c32e40c4840b1ed72cfc04809d5c83662",
+    "thumbnail.jpg": "7cc8774d12ccf54c837682887af4f1c52e03a1f8aa99a25895bd09ec5fa44527"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

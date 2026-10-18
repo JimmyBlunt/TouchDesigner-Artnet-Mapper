@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_611a946d385cabcbd13c",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Bioorganic Wall/Bioorganic Wall.fs",
+  "source_sha256": "bacf670ada4d44be20b588c0f77fb6e3cb3b4c997b3d3d79b9873c580eb449a8",
+  "imported_file": "Bioorganic Wall.fs",
+  "imported_files": {
+    ".info": "d4a63cafa65ae09ff07f9292a6cac8239850caaf3ddb3e38cb31e974cdcef1a2",
+    "ad56fba948dfba9ae698198c109e71f118a54d209c0ea50d77ea546abad89c57.png": "4d0c9886f97a362824c1e21d26ff40a16469564c4ad7e0ce73aab5b392541b04",
+    "Bioorganic Wall.fs": "bacf670ada4d44be20b588c0f77fb6e3cb3b4c997b3d3d79b9873c580eb449a8",
+    "thumbnail.jpg": "e8cbf0478d1f9ac1be86c09eb19aea1b23ba94906b0c2b7fa200a2c56f3b02d0"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

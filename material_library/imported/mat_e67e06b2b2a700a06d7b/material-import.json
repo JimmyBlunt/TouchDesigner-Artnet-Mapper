@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e67e06b2b2a700a06d7b",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Graphic Design V1/Graphic Design V1.fs",
+  "source_sha256": "a5a394829157d105096c44b23355dcdcbf635c2118c95ca608631b972bbda3be",
+  "imported_file": "Graphic Design V1.fs",
+  "imported_files": {
+    ".info": "dff02d14e08fe151da4d4acfd24027ebb89ffe5c796010dcc914a8be5d18df2d",
+    "Graphic Design V1.fs": "a5a394829157d105096c44b23355dcdcbf635c2118c95ca608631b972bbda3be",
+    "thumbnail.jpg": "7e42ab531416530205d695eb584f8ec090aed03f1bfa1d57d1a5de0c40a6aaa1"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

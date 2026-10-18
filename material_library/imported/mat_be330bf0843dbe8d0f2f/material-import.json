@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_be330bf0843dbe8d0f2f",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Wave Dance/waveform_synth.fs",
+  "source_sha256": "ccae6891e721003eda8510d37c2ad5baceb7f36866cf43c21c94ca194d787ab2",
+  "imported_file": "waveform_synth.fs",
+  "imported_files": {
+    ".info": "99ff0e50747f772aff7e9be07e5157a8d3afab26685d091cf4d9ae11c8d641d8",
+    "thumbnail.png": "4285bed8fe6e481cce922929d48182be8de372ceb204fd299550bba7de5218c9",
+    "waveform_synth.fs": "ccae6891e721003eda8510d37c2ad5baceb7f36866cf43c21c94ca194d787ab2"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

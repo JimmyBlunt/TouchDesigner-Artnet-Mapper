@@ -36,7 +36,11 @@ def test_combines_core_manifest_with_confirmed_import_manifests():
     assert "'imported', 'madmapper'" in runtime
 
 
-def test_browser_reads_the_same_configured_folder_as_import_dialog(tmp_path):
+def test_browser_reads_the_same_configured_folder_as_import_dialog(tmp_path=None):
+    if tmp_path is None:
+        from tempfile import TemporaryDirectory
+        with TemporaryDirectory() as directory:
+            return test_browser_reads_the_same_configured_folder_as_import_dialog(Path(directory))
     catalog = tmp_path / 'catalog.json'
     imports = tmp_path / 'actual-imports'
     imports.mkdir()

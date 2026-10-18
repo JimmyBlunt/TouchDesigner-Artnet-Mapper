@@ -240,6 +240,24 @@ def install_sync_source(source):
 
 def install_editor_source(source):
     """Small idempotent patches also used when upgrading the live editor DAT."""
+    # Current editors use a validated show-bundle picker. Its load path no
+    # longer contains the legacy sidecar try/except blocks patched below.
+    # Inspect the command branches so unrelated calls cannot satisfy this gate.
+    import ast
+    tree = ast.parse(source)
+    apply_function = next((node for node in tree.body
+                           if isinstance(node, ast.FunctionDef) and node.name == '_apply'), None)
+    branches = {}
+    if apply_function is not None:
+        for node in apply_function.body:
+            if (isinstance(node, ast.If) and isinstance(node.test, ast.Compare)
+                    and isinstance(node.test.left, ast.Name) and node.test.left.id == 'command'
+                    and len(node.test.ops) == 1 and isinstance(node.test.ops[0], ast.Eq)
+                    and isinstance(node.test.comparators[0], ast.Constant)):
+                branches[node.test.comparators[0].value] = ast.unparse(node)
+    bundle_new = ("_write_automation(automation.empty())" in branches.get('new_show', '')
+                  and "_write_imported({})" in branches.get('new_show', ''))
+    bundle_load = "picker_action('open')" in branches.get('load_show', '')
     replacements = (
         ("if cue_id not in (data.get('tracks') or {}):", "if cue_id not in (data.get('tracks') or {}) and cue_id not in (data.get('edits') or {}):"),
         ("        if source_id in data.get('tracks', {}):\n            _write_automation(automation.merge(data, copy_id, data['tracks'][source_id]))",
@@ -261,6 +279,10 @@ def install_editor_source(source):
     )
     for old, new in replacements:
         if new in source:
+            continue
+        if old.startswith("    if command == 'new_show':") and bundle_new:
+            continue
+        if old.startswith('                _write_') and bundle_load:
             continue
         if source.count(old) != 1:
             raise ValueError('Unbekannte Editor-Version; Timeline-Hook nicht installiert')

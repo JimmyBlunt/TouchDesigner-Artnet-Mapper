@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_de09c1bdf1f420fdd119",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/CircularNeonRings/CircularNeonRings.fs",
+  "source_sha256": "3ea3ab2dacfe9e9bf2f8ff1e9269225646d6ca70eb44f4f281a51aac313e2aab",
+  "imported_file": "CircularNeonRings.fs",
+  "imported_files": {
+    ".info": "54e8ce2b494e205e389b682c8368b70aea6bd36958099271083f9992f1656c9f",
+    "CircularNeonRings.fs": "3ea3ab2dacfe9e9bf2f8ff1e9269225646d6ca70eb44f4f281a51aac313e2aab",
+    "thumbnail.jpg": "c835c7a815d9fcb0ddb4582e7d68f59b2d4e50f042ab4484c6f46384e78d7e41"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

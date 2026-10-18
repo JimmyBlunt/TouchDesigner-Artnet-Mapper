@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_0fdfd2550a871c37102b",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Raymarched Polyhedrons/Raymarched Polyhedrons.fs",
+  "source_sha256": "4b4c0aba40ba5b6f1ae22b0f87fb0fb5dd5149e9ff9956320810fd680fbb3fe7",
+  "imported_file": "Raymarched Polyhedrons.fs",
+  "imported_files": {
+    ".info": "487bb227313f75d216ef5b9436a3c80d598b0851fcdc1cfe8d61bddb2ab9c1ab",
+    "Raymarched Polyhedrons.fs": "4b4c0aba40ba5b6f1ae22b0f87fb0fb5dd5149e9ff9956320810fd680fbb3fe7",
+    "thumbnail.jpg": "51a95d514382f945318ddf589036e0bc285cfa2461011733b072ed3700751718"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

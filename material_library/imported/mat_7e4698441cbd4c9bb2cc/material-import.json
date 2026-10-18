@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_7e4698441cbd4c9bb2cc",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Foamy Water/Foamy Water.fs",
+  "source_sha256": "69ba31fdadf172208646fd404261fc114660e990defab425e55d7e3cf889c288",
+  "imported_file": "Foamy Water.fs",
+  "imported_files": {
+    ".info": "e4ae3c5194523e725abb8d34b89d6111e5896c25dc7f2babcee355be0934ae9c",
+    "Foamy Water.fs": "69ba31fdadf172208646fd404261fc114660e990defab425e55d7e3cf889c288",
+    "thumbnail.jpg": "6feebdd9488247ef8c2341b37b7bf311261c48109922c0cfade5e83e6c90ac67"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

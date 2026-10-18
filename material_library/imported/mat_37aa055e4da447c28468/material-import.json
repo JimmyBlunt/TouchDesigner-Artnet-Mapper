@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_37aa055e4da447c28468",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Image Scroller/Template.fs",
+  "source_sha256": "3938eb73965b1fde8ff3694b41221c4283c071916ad9d821f4a07a4bbdc43e6b",
+  "imported_file": "Template.fs",
+  "imported_files": {
+    ".info": "036f3f894957f03f9ef42b3f0755f8a288047017c674d80d285a2f5272dccf3a",
+    "image1.jpg": "6075f6f8480279d3821731e252f32371495306be81801d38864a57bea69c7e12",
+    "image2.jpg": "8fb4ed69b554a524423ed599bf46ddeb9f9576697983e66da2acaacb0a567460",
+    "image3.jpg": "c397b9773e40e74cab76402739ceff437317c4864c54e373336af7ed9c2a0277",
+    "image4.jpg": "232b1188d0c1686f04c39ef389f3d769995737fbb8f407a599c84c6b5a8158f2",
+    "image5.jpg": "c6547827c121bffa327dfdf98adb643b98df5bad6d037baf83d11487f53a1aae",
+    "image6.jpg": "4416f468d841abf2cb0bea58a90051462d4d5e80a753d19b15ada0a2ecc43f75",
+    "Template.fs": "3938eb73965b1fde8ff3694b41221c4283c071916ad9d821f4a07a4bbdc43e6b",
+    "thumbnail.png": "3189b329cc08ff0c107c4092f6a5bbdcc6e3f15d880b7bb8a9152fc519931582"
+  },
+  "kind": "madmapper_glsl",
+  "compatibility": "adaptable"
+}

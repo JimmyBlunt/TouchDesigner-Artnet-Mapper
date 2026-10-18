@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_fdb48d967eded2f30720",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/[recode]_Daily_Minimal/[recode]_Daily_Minimal.fs",
+  "source_sha256": "7f59af9fbf112d1283fbc1dda3e9b64c1d08406526621b5d8e8fff84b3928edb",
+  "imported_file": "[recode]_Daily_Minimal.fs",
+  "imported_files": {
+    ".info": "4999b1e62558da06987b7d0fc7969aa70def5a748f1ff0a5b1e8e59bec8efa49",
+    "[original]_Daily_Minimal_574.jpg": "b1f512c1ca95dd2ec19a9dcd06f19f6e6bf248134d325a6b90f0f6ba51216da7",
+    "[recode]_Daily_Minimal.fs": "7f59af9fbf112d1283fbc1dda3e9b64c1d08406526621b5d8e8fff84b3928edb",
+    "thumbnail.jpg": "7cd1fa4a3c8d30d95f9bda82a71277128d642f6e143b4a1e9c5693151d99edc4"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

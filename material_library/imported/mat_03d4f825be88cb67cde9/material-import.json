@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_03d4f825be88cb67cde9",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Noise_03/Noise_03.fs",
+  "source_sha256": "b6550f45253e637ba1831bc297308a39e0fdbb1152c312eb52192a87309eaacc",
+  "imported_file": "Noise_03.fs",
+  "imported_files": {
+    ".info": "b78c5020c820874340708db2a89fcad2474eb96251369ec146354a796a0bb147",
+    "Noise_03.fs": "b6550f45253e637ba1831bc297308a39e0fdbb1152c312eb52192a87309eaacc",
+    "thumbnail.png": "ff4f4fc5ffec5707f4cea04f4d7ab7fdd0d218d07038fe9bfe9e3256c9509801"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

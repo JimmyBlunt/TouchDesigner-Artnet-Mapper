@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_3ac4713c7aa9ce58b6ab",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/EscherTiling/EscherTiling.fs",
+  "source_sha256": "ad67838287b68c3d687bef231f3d803ff7530e81ad18efad106a84cfe26b8b04",
+  "imported_file": "EscherTiling.fs",
+  "imported_files": {
+    ".info": "54e8ce2b494e205e389b682c8368b70aea6bd36958099271083f9992f1656c9f",
+    "EscherTiling.fs": "ad67838287b68c3d687bef231f3d803ff7530e81ad18efad106a84cfe26b8b04",
+    "thumbnail.jpg": "eceb8d2ea2941217cd190ef93007fe1503f202dc53b2de6eae0465dd5297606a"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

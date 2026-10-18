@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_c4615a758ddcdba5d506",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Blob Dynamics/Blob Dynamics.fs",
+  "source_sha256": "c5d4577ef88c574406ea299e74d33081c5eaa979e2bab61c165e9af0a8a7677f",
+  "imported_file": "Blob Dynamics.fs",
+  "imported_files": {
+    ".info": "e185245a4f539c6c711b96fed4d0bed8a0758383f68d9b0c388f375c0231526f",
+    "Blob Dynamics.fs": "c5d4577ef88c574406ea299e74d33081c5eaa979e2bab61c165e9af0a8a7677f",
+    "thumbnail.jpg": "898a8e8607ca2fad19937c8a4f28f924eeddf86cde9a28d87b29fcda9f91c301"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

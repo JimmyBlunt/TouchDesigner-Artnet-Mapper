@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_4c878e36b3b9fde047a0",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/SmoothNoiseContours/SmoothNoiseContours.fs",
+  "source_sha256": "52d8e1502039955fbe44533a2b613e126d3cf39b23aaab329a797d13b2116f67",
+  "imported_file": "SmoothNoiseContours.fs",
+  "imported_files": {
+    ".info": "f8fe8c9553d29617c8225a0a138401ced309b081a76eb12033fb4139ebc00f60",
+    "SmoothNoiseContours.fs": "52d8e1502039955fbe44533a2b613e126d3cf39b23aaab329a797d13b2116f67",
+    "thumbnail.jpg": "317c4b072758fd25982c2c9927cba83bfcca250ea46d615f33231f1a6a61baeb"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

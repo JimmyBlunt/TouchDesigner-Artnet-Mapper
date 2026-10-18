@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_16873ad243b464a036fc",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Truchet Kaleidoscope/Truchet Kaleidoscope.fs",
+  "source_sha256": "76db3234de86892d2593f6474a806694dc7aff0820e2f04f98cca886aeb19db4",
+  "imported_file": "Truchet Kaleidoscope.fs",
+  "imported_files": {
+    ".info": "f8a42dfa91b5765a07f71fea5bfde999939a54a07717b7f2b1d67535c1509946",
+    "thumbnail.jpg": "cfe676ee265acab752b85d4ac91d547f19b32b5de8e3e4d42fbf9ed81c7c6a61",
+    "Truchet Kaleidoscope.fs": "76db3234de86892d2593f6474a806694dc7aff0820e2f04f98cca886aeb19db4"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

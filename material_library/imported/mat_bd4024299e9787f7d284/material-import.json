@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_bd4024299e9787f7d284",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/SquareArray/SquareArray.fs",
+  "source_sha256": "6452a9d6f5b9a8bbcad5fb26277e45d4c57c08c2ada27ef079b1f6ad838090fe",
+  "imported_file": "SquareArray.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "SquareArray.fs": "6452a9d6f5b9a8bbcad5fb26277e45d4c57c08c2ada27ef079b1f6ad838090fe",
+    "thumbnail.png": "82f0daf5d7d8bb6ef4b73a69124c6e77640d32aa973c99dd6a9164d55a13cd5c"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,356 @@
+// PIXELBLAZE_MADMAPPER_ADAPTER_VERSION 6
+// Prepared from a MadMapper material for TouchDesigner GLSL TOP.
+out vec4 fragColor;
+uniform vec4 uTDMaterial0; // phase, scale, width, frame zoom
+uniform vec4 uTDMaterial1; // focus x, focus y, reserved, reserved
+uniform vec4 uTDCoordinate; // mode, panel columns, panel rows, hybrid mix
+#define uTDTime uTDMaterial0.x
+#define TIME uTDTime
+#define TIMEDELTA (1.0 / 60.0)
+#define FRAMEINDEX int(uTDTime * 60.0)
+#define RENDERSIZE uTDOutputInfo.res.zw
+#define DATE vec4(0.0)
+#define IMG_NORM_PIXEL(image, coord) texture(image, coord)
+#define isf_FragNormCoord vUV.st
+#define IMG_PIXEL(image, coord) texture(image, (coord) / vec2(textureSize(image, 0)))
+#define IMG_SIZE(image) vec2(textureSize(image, 0))
+#define texture2D texture
+
+vec2 mapMadMapperUV(vec2 uv)
+{
+    vec2 focus = clamp(uTDMaterial1.xy, vec2(0.0), vec2(1.0));
+    float zoom = clamp(uTDMaterial0.w, 0.25, 8.0);
+    float scale = max(uTDMaterial0.y, 0.01) / 4.0;
+    float width = clamp(uTDMaterial0.z, 0.01, 1.0);
+    vec2 framed = focus + (uv - vec2(0.5)) / zoom;
+    framed = focus + (framed - focus) * vec2(scale * (0.5 / width), scale);
+    // True global/panel-local/hybrid selection happens in the downstream
+    // per-LED sampler, where the physical panel ID is available.
+    return framed;
+}
+
+uniform vec4 uMMParam000; // native input: mat_speed
+float mat_speed = uMMParam000.x;
+uniform vec4 uMMParam001; // native input: mat_scale
+float mat_scale = uMMParam001.x;
+uniform vec4 uMMParam002; // native input: mat_alpha
+float mat_alpha = uMMParam002.x;
+float mat_time = uTDTime * (mat_speed);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#define FASTROTATION
+
+
+
+vec4 permute(vec4 x) {
+     vec4 xm = mod(x, 289.0);
+     return mod(((xm*34.0)+10.0)*xm, 289.0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+float psrdnoise(vec3 x, vec3 period, float alpha, out vec3 gradient)
+{
+
+#ifndef PERLINGRID
+  
+  const mat3 M = mat3(0.0, 1.0, 1.0,
+                      1.0, 0.0, 1.0,
+                      1.0, 1.0, 0.0);
+
+  const mat3 Mi = mat3(-0.5, 0.5, 0.5,
+                        0.5,-0.5, 0.5,
+                        0.5, 0.5,-0.5);
+#endif
+
+  vec3 uvw;
+
+  
+#ifndef PERLINGRID
+  
+  uvw = M * x;
+#else
+  
+  
+  uvw = x + dot(x, vec3(1.0/3.0));
+#endif
+
+  
+  vec3 i0 = floor(uvw);
+  vec3 f0 = fract(uvw); 
+
+  
+  
+  
+  
+  vec3 g_ = step(f0.xyx, f0.yzz); 
+  vec3 l_ = 1.0 - g_;             
+  vec3 g = vec3(l_.z, g_.xy);
+  vec3 l = vec3(l_.xy, g_.z);
+  vec3 o1 = min( g, l );
+  vec3 o2 = max( g, l );
+
+  
+  vec3 i1 = i0 + o1;
+  vec3 i2 = i0 + o2;
+  vec3 i3 = i0 + vec3(1.0);
+
+  vec3 v0, v1, v2, v3;
+
+  
+#ifndef PERLINGRID
+  v0 = Mi * i0;
+  v1 = Mi * i1;
+  v2 = Mi * i2;
+  v3 = Mi * i3;
+#else
+  
+  v0 = i0 - dot(i0, vec3(1.0/6.0));
+  v1 = i1 - dot(i1, vec3(1.0/6.0));
+  v2 = i2 - dot(i2, vec3(1.0/6.0));
+  v3 = i3 - dot(i3, vec3(1.0/6.0));
+#endif
+
+  
+  vec3 x0 = x - v0;
+  vec3 x1 = x - v1;
+  vec3 x2 = x - v2;
+  vec3 x3 = x - v3;
+
+  if(any(greaterThan(period, vec3(0.0)))) {
+    
+    vec4 vx = vec4(v0.x, v1.x, v2.x, v3.x);
+    vec4 vy = vec4(v0.y, v1.y, v2.y, v3.y);
+    vec4 vz = vec4(v0.z, v1.z, v2.z, v3.z);
+	
+	if(period.x > 0.0) vx = mod(vx, period.x);
+	if(period.y > 0.0) vy = mod(vy, period.y);
+	if(period.z > 0.0) vz = mod(vz, period.z);
+    
+#ifndef PERLINGRID
+    i0 = M * vec3(vx.x, vy.x, vz.x);
+    i1 = M * vec3(vx.y, vy.y, vz.y);
+    i2 = M * vec3(vx.z, vy.z, vz.z);
+    i3 = M * vec3(vx.w, vy.w, vz.w);
+#else
+    v0 = vec3(vx.x, vy.x, vz.x);
+    v1 = vec3(vx.y, vy.y, vz.y);
+    v2 = vec3(vx.z, vy.z, vz.z);
+    v3 = vec3(vx.w, vy.w, vz.w);
+    
+    i0 = v0 + dot(v0, vec3(1.0/3.0));
+    i1 = v1 + dot(v1, vec3(1.0/3.0));
+    i2 = v2 + dot(v2, vec3(1.0/3.0));
+    i3 = v3 + dot(v3, vec3(1.0/3.0));
+#endif
+	
+    i0 = floor(i0 + 0.5);
+    i1 = floor(i1 + 0.5);
+    i2 = floor(i2 + 0.5);
+    i3 = floor(i3 + 0.5);
+  }
+
+  
+  vec4 hash = permute( permute( permute( 
+              vec4(i0.z, i1.z, i2.z, i3.z ))
+            + vec4(i0.y, i1.y, i2.y, i3.y ))
+            + vec4(i0.x, i1.x, i2.x, i3.x ));
+
+  
+  vec4 theta = hash * 3.883222077;  
+  vec4 sz    = hash * -0.006920415 + 0.996539792; 
+  vec4 psi   = hash * 0.108705628 ; 
+
+  vec4 Ct = cos(theta);
+  vec4 St = sin(theta);
+  vec4 sz_prime = sqrt( 1.0 - sz*sz ); 
+
+  vec4 gx, gy, gz;
+
+  
+#ifdef FASTROTATION
+  
+  vec4 qx = St;         
+  vec4 qy = -Ct; 
+  vec4 qz = vec4(0.0);
+
+  vec4 px =  sz * qy;   
+  vec4 py = -sz * qx;
+  vec4 pz = sz_prime;
+
+  psi += alpha;         
+  vec4 Sa = sin(psi);
+  vec4 Ca = cos(psi);
+
+  gx = Ca * px + Sa * qx;
+  gy = Ca * py + Sa * qy;
+  gz = Ca * pz + Sa * qz;
+#else
+  
+  
+  if(alpha != 0.0) {
+    vec4 Sp = sin(psi);          
+    vec4 Cp = cos(psi);
+
+    vec4 px = Ct * sz_prime;     
+    vec4 py = St * sz_prime;     
+    vec4 pz = sz;
+
+    vec4 Ctp = St*Sp - Ct*Cp;    
+    vec4 qx = mix( Ctp*St, Sp, sz);
+    vec4 qy = mix(-Ctp*Ct, Cp, sz);
+    vec4 qz = -(py*Cp + px*Sp);
+
+    vec4 Sa = vec4(sin(alpha));       
+    vec4 Ca = vec4(cos(alpha));
+
+    gx = Ca * px + Sa * qx;
+    gy = Ca * py + Sa * qy;
+    gz = Ca * pz + Sa * qz;
+  }
+  else {
+    gx = Ct * sz_prime;  
+    gy = St * sz_prime;
+    gz = sz;  
+  }
+#endif
+
+  
+  vec3 g0 = vec3(gx.x, gy.x, gz.x);
+  vec3 g1 = vec3(gx.y, gy.y, gz.y);
+  vec3 g2 = vec3(gx.z, gy.z, gz.z);
+  vec3 g3 = vec3(gx.w, gy.w, gz.w);
+
+  
+  vec4 w = 0.5 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3));
+  w = max(w, 0.0);
+  vec4 w2 = w * w;
+  vec4 w3 = w2 * w;
+
+  
+  vec4 gdotx = vec4(dot(g0,x0), dot(g1,x1), dot(g2,x2), dot(g3,x3));
+
+  
+  float n = dot(w3, gdotx);
+
+  
+  vec4 dw = -6.0 * w2 * gdotx;
+  vec3 dn0 = w3.x * g0 + dw.x * x0;
+  vec3 dn1 = w3.y * g1 + dw.y * x1;
+  vec3 dn2 = w3.z * g2 + dw.z * x2;
+  vec3 dn3 = w3.w * g3 + dw.w * x3;
+  gradient = 39.5 * (dn0 + dn1 + dn2 + dn3);
+
+  
+  return 39.5 * n;
+}
+
+vec4 materialColorForPixel( vec2 texCoord )
+{
+	vec2 uv = texCoord *2. -1. ;
+	vec3 gradient;
+	float x = psrdnoise(vec3(uv*mat_scale,mat_time), vec3(mat_scale), mat_alpha,gradient);
+	return vec4(x,x,x,1.);
+}
+
+void main()
+{
+
+    fragColor = TDOutputSwizzle(materialColorForPixel(mapMadMapperUV(vUV.st)));
+}

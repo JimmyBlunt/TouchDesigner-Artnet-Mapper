@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_33eb17e2f797df45a76d",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/[recode]_Bonobo/[recode]_Bonobo.fs",
+  "source_sha256": "9b8e3277e64ba7e7d74601d91beb136d1bbf1a7a0c3fd8d099e0f68ae23f6a54",
+  "imported_file": "[recode]_Bonobo.fs",
+  "imported_files": {
+    ".info": "b0ea0efb45c0143272c33c1bb6b2146bebfc16332bfc918e39c39a90260f508e",
+    "[original]_Bonobo_Linked.jpg": "c2f8af3ed2572365f9d2aadfbd87e5b25a3326d78c6688f27b1db08555abbe3b",
+    "[recode]_Bonobo.fs": "9b8e3277e64ba7e7d74601d91beb136d1bbf1a7a0c3fd8d099e0f68ae23f6a54",
+    "moon.jpg": "d877ef29b7860fe23c0c06a0a264c64d0620b223cd674503ca05723955ea64ec",
+    "rocky.jpg": "f25103e7028fa98cbc3054e53576ff17f277fd2409b9e45912316641dbfd5d1f",
+    "thumbnail.jpg": "509a925d2a043d92116eecdd8010bb0ed55a83a1c91e9ea2f8b2dc2e2343baf9"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

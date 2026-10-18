@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_99e61cb7dd166bf2c2b7",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/[recode]_Kraftwerk/[recode]_Kraftwerk.fs",
+  "source_sha256": "a0684c6a621e91e8073a706a1e3e4d06166f8fdecf480eaa78c774286fe6af23",
+  "imported_file": "[recode]_Kraftwerk.fs",
+  "imported_files": {
+    ".info": "bee4487c09749193830601caca7081d775cd73fc8c844cdb5144e215082ed628",
+    "[original]_Kraftwerk_Vertigo.jpg": "24141b0e2d2053eda0097f521589479e33ef669b27bdde129d1f6a6f4b2c5f1b",
+    "[recode]_Kraftwerk.fs": "a0684c6a621e91e8073a706a1e3e4d06166f8fdecf480eaa78c774286fe6af23",
+    "thumbnail.jpg": "c59eb6b60c250ef087b9aecf1902d0e53e8b7ea10c413e30a838a186fa308f17"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

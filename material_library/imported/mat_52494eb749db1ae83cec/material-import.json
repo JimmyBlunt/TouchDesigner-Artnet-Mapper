@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_52494eb749db1ae83cec",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/[code]_Raytraced_Heightfield/[code]_Raytraced_Heightfield.fs",
+  "source_sha256": "00a34cd71a511e11ee14d2376aac27c5541509f1aa4a93277265b52238e81266",
+  "imported_file": "[code]_Raytraced_Heightfield.fs",
+  "imported_files": {
+    ".info": "4009d5cb0b99493d898526eaf219ca39574543be8e3a33ba11df3f4202ffed02",
+    "[code]_Raytraced_Heightfield.fs": "00a34cd71a511e11ee14d2376aac27c5541509f1aa4a93277265b52238e81266",
+    "peebles.png": "4d0c9886f97a362824c1e21d26ff40a16469564c4ad7e0ce73aab5b392541b04",
+    "thumbnail.jpg": "4d32e30264e4f1ddc3f1d38663b935678866eba6f43c4f66b62efdc97718a6de",
+    "u.jpg": "50c560c26dd63d1d4f73adf445ea6bb87abb0ba6964e0fefbe6834db1cb07a0a"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_a093ce5c0a6747ab97dc",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Demos/SDF/_SDFBasics/_SDFBasics.fs",
+  "source_sha256": "cc8d6c23480a55946329ca3ba81bb1ebbf00d23f30c3b904b96ae3eb7d0673f6",
+  "imported_file": "_SDFBasics.fs",
+  "imported_files": {
+    "_SDFBasics.fs": "cc8d6c23480a55946329ca3ba81bb1ebbf00d23f30c3b904b96ae3eb7d0673f6",
+    "_SDFBasics.vs": "703df19deba98545336a2b111cf989f51cba53c8755635f8693a7feb53967558",
+    "noiseLUT.png": "e59217a8eecc2e90bfbe7bb163dfcdd90de155bb35e4e904484ede91b8c0f36d",
+    "thumbnail.png": "139e8ed6e6e07022335bc539857fd6ceb048d3a6ddd04ff4c69b3ebaf7085506"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

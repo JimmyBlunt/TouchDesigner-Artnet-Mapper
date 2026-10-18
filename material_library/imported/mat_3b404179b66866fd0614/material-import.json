@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_3b404179b66866fd0614",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/MarineSnow/MarineSnow.fs",
+  "source_sha256": "7e4d8b8b151cc1e78901b3be55217ab882668f86055f5c891a7dec8a993fb80c",
+  "imported_file": "MarineSnow.fs",
+  "imported_files": {
+    ".info": "2b0e52a90a18d5e5d6dadd0d6914650e9659ad31bdaa4e7531556591ff18646d",
+    "MarineSnow.fs": "7e4d8b8b151cc1e78901b3be55217ab882668f86055f5c891a7dec8a993fb80c",
+    "thumbnail.jpg": "6ceaa131710a4dbb37fdc05dccc3e675000b8e378902441fb6a3fa336c442e55"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

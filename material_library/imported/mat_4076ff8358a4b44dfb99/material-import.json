@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_4076ff8358a4b44dfb99",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Hyperbolic Weave/Hyperbolic Weave.fs",
+  "source_sha256": "69feed3a8433e6debbf4f032c24e84b08ad1640ece03d1fb0e8bd25d002c8f08",
+  "imported_file": "Hyperbolic Weave.fs",
+  "imported_files": {
+    ".info": "d2972368c6c58b6822df221a0f56d19bfd7b7274fd06ad80f693ee3fb4a09ea4",
+    "Hyperbolic Weave.fs": "69feed3a8433e6debbf4f032c24e84b08ad1640ece03d1fb0e8bd25d002c8f08",
+    "thumbnail.jpg": "03b21baada1dd20d36cce42e9301f95fb0e31b4a82dbe5b1e407d391db0adc09"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

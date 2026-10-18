@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_40ddd18693b71d8eb939",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Anime_Focus/EmptyTemplate.fs",
+  "source_sha256": "f6beb314c9e05b927b302c8ebe6f26db2ac6d9714337b6a130f18a09f9959c6d",
+  "imported_file": "EmptyTemplate.fs",
+  "imported_files": {
+    ".info": "7f453d4526a6864261f1821b5c9cc2b20e9a601de234b4e187cbfc9ff904f40c",
+    "EmptyTemplate.fs": "f6beb314c9e05b927b302c8ebe6f26db2ac6d9714337b6a130f18a09f9959c6d",
+    "thumbnail.jpg": "2cc2990292d76972ebea7a110ffe5280b2abd30e8a175c86788777ebc8ea1607"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

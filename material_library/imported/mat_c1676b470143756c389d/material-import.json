@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_c1676b470143756c389d",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Astral Cord/Astral Cord.fs",
+  "source_sha256": "0e3fb66e13b65b7618737341a5ebbc488e4d478360fc70c08915482097f2c96b",
+  "imported_file": "Astral Cord.fs",
+  "imported_files": {
+    ".info": "69b5b8bef29edea4d0f9b7e4eb0e4c08c8ca6f6e8710d17a6168ed27bb0d1b98",
+    "Astral Cord.fs": "0e3fb66e13b65b7618737341a5ebbc488e4d478360fc70c08915482097f2c96b",
+    "thumbnail.jpg": "6923e54e250e9bca2862de3124fe8d0e9f6c524fa95fdab75e69fb44b19b3d8a"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

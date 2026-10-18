@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e846934f61702a7cbe7e",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/CircularPolkaDots/CircularPolkaDots.fs",
+  "source_sha256": "74cb74226b22f7c6dda6df8e01e7fed2ed6a39ab0a2f77dca625626393ca0c59",
+  "imported_file": "CircularPolkaDots.fs",
+  "imported_files": {
+    ".info": "54e8ce2b494e205e389b682c8368b70aea6bd36958099271083f9992f1656c9f",
+    "CircularPolkaDots.fs": "74cb74226b22f7c6dda6df8e01e7fed2ed6a39ab0a2f77dca625626393ca0c59",
+    "thumbnail.jpg": "aa3fda8bbec7a1465331751d59b7dcf9a785bc05f8ecd9b038fb3511f411b52f"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

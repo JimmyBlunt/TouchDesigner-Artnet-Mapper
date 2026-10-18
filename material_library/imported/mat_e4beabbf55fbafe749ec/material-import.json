@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e4beabbf55fbafe749ec",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/HyperTexture/HyperTexture.fs",
+  "source_sha256": "008b1b643dccec1abd8c075ee7316632e7f17f6844d1d9948b2c6540b50162eb",
+  "imported_file": "HyperTexture.fs",
+  "imported_files": {
+    ".info": "c58e9c16016949892df970833cb0d0a1fcb375b6b77fa287781a55da2f5a3a82",
+    "HyperTexture.fs": "008b1b643dccec1abd8c075ee7316632e7f17f6844d1d9948b2c6540b50162eb",
+    "thumbnail.jpg": "d7b1f5000160f72949d2d93446905ba178b36b4ffd6fa8c4478fccbde3025699"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

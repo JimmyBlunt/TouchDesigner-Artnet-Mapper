@@ -1,0 +1,492 @@
+{
+  "installed": [
+    {
+      "key": "launcher",
+      "target": "/project1/shortcut_hub/help_panel",
+      "fields": [],
+      "missing_fields": [],
+      "height": 912,
+      "layout": {
+        "flat_labels": 45,
+        "round_buttons": 0,
+        "round_fields": 0
+      },
+      "previews_resized": [
+        "/project1/shortcut_hub/help_preview"
+      ]
+    },
+    {
+      "key": "materials",
+      "target": "/project1/material_browser",
+      "fields": [
+        "unified_search",
+        "mb_control_zoom",
+        "mb_control_speed",
+        "mb_control_focusx",
+        "mb_control_focusy",
+        "mb_control_gradient_strength"
+      ],
+      "missing_fields": [],
+      "height": 940,
+      "layout": {
+        "flat_labels": 3,
+        "round_buttons": 76,
+        "round_fields": 1
+      },
+      "previews_resized": [
+        "/project1/material_browser_view"
+      ]
+    },
+    {
+      "key": "library",
+      "target": "/project1/madmapper_library/ui_panel",
+      "fields": [
+        "search_field"
+      ],
+      "missing_fields": [],
+      "height": 940,
+      "layout": {
+        "flat_labels": 9,
+        "round_buttons": 42,
+        "round_fields": 1
+      },
+      "previews_resized": [
+        "/project1/madmapper_library/ui_preview"
+      ]
+    },
+    {
+      "key": "player",
+      "target": "/project1/madmapper_player_controls/ui_panel",
+      "fields": [
+        "player_speed",
+        "player_scale",
+        "player_width",
+        "player_focusx",
+        "player_focusy",
+        "player_zoom",
+        "player_intensity",
+        "player_contrast"
+      ],
+      "missing_fields": [],
+      "height": 760,
+      "layout": {
+        "flat_labels": 5,
+        "round_buttons": 2,
+        "round_fields": 0
+      },
+      "previews_resized": []
+    },
+    {
+      "key": "mapper",
+      "target": "/project1/pixelblaze_mapper/ui/canvas",
+      "fields": [],
+      "missing_fields": [],
+      "height": 840,
+      "layout": {
+        "flat_labels": 22,
+        "round_buttons": 10,
+        "round_fields": 0
+      },
+      "previews_resized": [
+        "/project1/pixelblaze_mapper/ui/ui_preview"
+      ]
+    },
+    {
+      "key": "router",
+      "target": "/project1/multi_controller_output/ui_panel",
+      "fields": [
+        "router_target_ip",
+        "router_start_universe",
+        "router_brightness",
+        "router_enabled",
+        "router_rate",
+        "cal_panel",
+        "cal_pattern",
+        "cal_chase",
+        "extra_brightness",
+        "ws_ip",
+        "ws_universe",
+        "ws_brightness",
+        "ws_enabled",
+        "apa_ip",
+        "apa_universe",
+        "apa_brightness",
+        "apa_enabled"
+      ],
+      "missing_fields": [],
+      "height": 760,
+      "layout": {
+        "flat_labels": 39,
+        "round_buttons": 17,
+        "round_fields": 17
+      },
+      "previews_resized": [
+        "/project1/multi_controller_output/ui_preview"
+      ]
+    },
+    {
+      "key": "output",
+      "target": "/project1/pixelblaze_mapper/output_config/ui_panel",
+      "fields": [],
+      "missing_fields": [],
+      "height": 690,
+      "layout": {
+        "flat_labels": 13,
+        "round_buttons": 1,
+        "round_fields": 0
+      },
+      "previews_resized": [
+        "/project1/pixelblaze_mapper/output_config/ui_preview"
+      ]
+    },
+    {
+      "key": "show",
+      "target": "/project1/show_control/control_panel",
+      "fields": [
+        "ed_show_name",
+        "ed_cue_name",
+        "ed_cue_duration",
+        "ed_cue_transdur",
+        "ed_cue_brightness"
+      ],
+      "missing_fields": [],
+      "height": 1040,
+      "layout": {
+        "flat_labels": 20,
+        "round_buttons": 9,
+        "round_fields": 5,
+        "show_cells": 70
+      },
+      "previews_resized": [
+        "/project1/show_control/control_panel_preview"
+      ]
+    },
+    {
+      "key": "gico",
+      "target": "/project1/multi_controller_output/gico_port_config/ui_panel",
+      "fields": [
+        "universes_per_port",
+        "first_universe",
+        "p1_label",
+        "p1_enabled",
+        "p1_source",
+        "p1_count",
+        "p1_reverse",
+        "p1_order",
+        "p2_label",
+        "p2_enabled",
+        "p2_source",
+        "p2_count",
+        "p2_reverse",
+        "p2_order",
+        "p3_label",
+        "p3_enabled",
+        "p3_source",
+        "p3_count",
+        "p3_reverse",
+        "p3_order",
+        "p4_label",
+        "p4_enabled",
+        "p4_source",
+        "p4_count",
+        "p4_reverse",
+        "p4_order"
+      ],
+      "missing_fields": [],
+      "height": 760,
+      "layout": {
+        "flat_labels": 14,
+        "round_buttons": 3,
+        "round_fields": 26
+      },
+      "previews_resized": [
+        "/project1/multi_controller_output/gico_port_config/ui_preview"
+      ]
+    },
+    {
+      "key": "layout",
+      "target": "/project1/layout_scene_editor/ui_panel",
+      "fields": [
+        "initialfile",
+        "format",
+        "objectname",
+        "sourcestart",
+        "scanrange",
+        "localrange",
+        "expectedcount",
+        "objectno",
+        "mode",
+        "axis",
+        "step",
+        "controller",
+        "port",
+        "preserverouting",
+        "tx",
+        "ty",
+        "tz",
+        "rx",
+        "ry",
+        "rz",
+        "sx",
+        "sy",
+        "sz"
+      ],
+      "missing_fields": [],
+      "height": 1000,
+      "layout": {
+        "flat_labels": 31,
+        "round_buttons": 29,
+        "round_fields": 25
+      },
+      "previews_resized": []
+    },
+    {
+      "key": "scan",
+      "target": "/project1/guided_scan/ui_panel",
+      "fields": [
+        "camera",
+        "exposure",
+        "threshold",
+        "source_ids",
+        "anchors",
+        "views",
+        "workspace",
+        "python",
+        "packet_gap",
+        "brightness"
+      ],
+      "missing_fields": [],
+      "height": 940,
+      "layout": {
+        "flat_labels": 23,
+        "round_buttons": 0,
+        "round_fields": 10
+      },
+      "previews_resized": []
+    },
+    {
+      "key": "new_capture",
+      "target": "/project1/guided_scan/new_capture_panel",
+      "fields": [
+        "name",
+        "target",
+        "interface",
+        "universe",
+        "count",
+        "rate",
+        "order",
+        "frame_start_universe",
+        "frame_universe_count"
+      ],
+      "missing_fields": [],
+      "height": 680,
+      "layout": {
+        "flat_labels": 11,
+        "round_buttons": 0,
+        "round_fields": 9
+      },
+      "previews_resized": []
+    },
+    {
+      "key": "review",
+      "target": "/project1/guided_scan/review_panel",
+      "fields": [
+        "name",
+        "offset",
+        "tx",
+        "ty",
+        "tz",
+        "rx",
+        "ry",
+        "rz",
+        "sx",
+        "sy",
+        "sz"
+      ],
+      "missing_fields": [],
+      "height": 750,
+      "layout": {
+        "flat_labels": 15,
+        "round_buttons": 0,
+        "round_fields": 11
+      },
+      "previews_resized": []
+    },
+    {
+      "key": "led_search",
+      "target": "/project1/guided_scan/led_search_panel",
+      "fields": [
+        "controller",
+        "index"
+      ],
+      "missing_fields": [],
+      "height": 600,
+      "layout": {
+        "flat_labels": 6,
+        "round_buttons": 5,
+        "round_fields": 2
+      },
+      "previews_resized": [
+        "/project1/guided_scan/led_search_preview"
+      ]
+    },
+    {
+      "key": "ports",
+      "target": "/project1/multi_controller_output/gico_port_config/controller_ports/ui_panel",
+      "fields": [
+        "load_id",
+        "target",
+        "interface",
+        "udp_port",
+        "first_ui",
+        "brightness",
+        "rate",
+        "enabled",
+        "order",
+        "profile",
+        "remove_number",
+        "row0_label",
+        "row0_enabled",
+        "row0_source",
+        "row0_pixels",
+        "row0_reserve",
+        "row0_reverse",
+        "row0_order",
+        "row0_target",
+        "row1_label",
+        "row1_enabled",
+        "row1_source",
+        "row1_pixels",
+        "row1_reserve",
+        "row1_reverse",
+        "row1_order",
+        "row1_target",
+        "row2_label",
+        "row2_enabled",
+        "row2_source",
+        "row2_pixels",
+        "row2_reserve",
+        "row2_reverse",
+        "row2_order",
+        "row2_target",
+        "row3_label",
+        "row3_enabled",
+        "row3_source",
+        "row3_pixels",
+        "row3_reserve",
+        "row3_reverse",
+        "row3_order",
+        "row3_target",
+        "row4_label",
+        "row4_enabled",
+        "row4_source",
+        "row4_pixels",
+        "row4_reserve",
+        "row4_reverse",
+        "row4_order",
+        "row4_target",
+        "row5_label",
+        "row5_enabled",
+        "row5_source",
+        "row5_pixels",
+        "row5_reserve",
+        "row5_reverse",
+        "row5_order",
+        "row5_target"
+      ],
+      "missing_fields": [],
+      "height": 940,
+      "layout": {
+        "flat_labels": 39,
+        "round_buttons": 12,
+        "round_fields": 59
+      },
+      "previews_resized": []
+    },
+    {
+      "key": "scan_library",
+      "target": "/project1/guided_scan/library_panel",
+      "fields": [
+        "folder",
+        "query"
+      ],
+      "missing_fields": [],
+      "height": 900,
+      "layout": {
+        "flat_labels": 7,
+        "round_buttons": 8,
+        "round_fields": 2
+      },
+      "previews_resized": []
+    },
+    {
+      "key": "coverage",
+      "target": "/project1/guided_scan/coverage_visual_panel",
+      "fields": [],
+      "missing_fields": [],
+      "height": 860,
+      "layout": {
+        "flat_labels": 9,
+        "round_buttons": 1,
+        "round_fields": 0
+      },
+      "previews_resized": []
+    },
+    {
+      "key": "registration",
+      "target": "/project1/guided_scan/registration_panel",
+      "fields": [
+        "fit_ids",
+        "check_ids",
+        "accepted_ids",
+        "max_error"
+      ],
+      "missing_fields": [],
+      "height": 830,
+      "layout": {
+        "flat_labels": 8,
+        "round_buttons": 0,
+        "round_fields": 4
+      },
+      "previews_resized": []
+    },
+    {
+      "key": "native_params",
+      "target": "/project1/material_browser/native_parameter_drawer",
+      "fields": [
+        "native_param_editor_0",
+        "native_param_editor_1",
+        "native_param_editor_2",
+        "native_param_editor_3"
+      ],
+      "missing_fields": [],
+      "height": 456,
+      "layout": {
+        "flat_labels": 3,
+        "round_buttons": 22,
+        "round_fields": 0
+      },
+      "previews_resized": []
+    },
+    {
+      "key": "mk2_preview",
+      "target": "/project1/mk2_windows/preview_panel",
+      "fields": [],
+      "missing_fields": [],
+      "height": 890,
+      "layout": {
+        "flat_labels": 3,
+        "round_buttons": 0,
+        "round_fields": 0
+      },
+      "previews_resized": []
+    }
+  ],
+  "missing": [],
+  "web": [
+    "sequencer",
+    "mk2",
+    "midi",
+    "pxlblz_manager"
+  ]
+}

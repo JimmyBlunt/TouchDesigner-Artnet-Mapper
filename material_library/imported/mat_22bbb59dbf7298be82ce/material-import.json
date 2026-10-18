@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_22bbb59dbf7298be82ce",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Dunes+/NOISE_Dunes.fs",
+  "source_sha256": "7d23b580000345aeda5712d2c3f24bdaaa8b486ce9ffe9282f691d15cfd8df54",
+  "imported_file": "NOISE_Dunes.fs",
+  "imported_files": {
+    ".info": "709c7f4b2cd108a3a1d0924a81c7599c38945f358bb555ba25764d577df14493",
+    "NOISE_Dunes.fs": "7d23b580000345aeda5712d2c3f24bdaaa8b486ce9ffe9282f691d15cfd8df54",
+    "thumbnail.jpg": "19e67ecee8f62c3153a07738d348b7903dd83eadcb5aeb9ea5f532603041e616"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

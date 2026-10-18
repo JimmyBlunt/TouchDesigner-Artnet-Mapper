@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_427ab14ddbf7c6620565",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Rake/Rake.fs",
+  "source_sha256": "58dfa35d8f32e20d0218a4825f83eaebdd69ee82e8d9c8414abe03ce74e29003",
+  "imported_file": "Rake.fs",
+  "imported_files": {
+    ".info": "6e975028a7dcfb454e41f1a53aa3527fc66834792cd3e5123f1a59a7189524ef",
+    "Rake.fs": "58dfa35d8f32e20d0218a4825f83eaebdd69ee82e8d9c8414abe03ce74e29003",
+    "thumbnail.png": "f1247117f4f84c98b4f499f6653f1cac4370df715751bc297635b1383b1f78df"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

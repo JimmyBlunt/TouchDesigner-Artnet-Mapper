@@ -1,0 +1,727 @@
+{
+  "schema_version": 2,
+  "name": "Test1",
+  "loop": true,
+  "cues": [
+    {
+      "id": "nested-cube",
+      "name": "Nested Cube",
+      "effect": "madmapper:mat_b793d955caf8ad949a92",
+      "preset": "Nested Cube",
+      "parameters": {
+        "speed": 0.23746701846965698,
+        "scale": 2.8989445910290237,
+        "width": 0.20844327176781002,
+        "focus_x": 0.5,
+        "focus_y": 0.22163588390501318,
+        "zoom": 4.62598944591029,
+        "gradient": "neon_cyan_magenta",
+        "color_a": [
+          0.91,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "color_b": [
+          0.0,
+          0.72,
+          0.86,
+          1.0
+        ],
+        "intensity": 1.0343007915567282,
+        "contrast": 1.2730870712401057,
+        "trail": 0.55,
+        "direction": 0.125,
+        "rotation_degrees": 0.0,
+        "seed": 0.0,
+        "effect_transition": 0.5,
+        "panel_columns": 2.0,
+        "panel_rows": 5.0,
+        "hybrid_mix": 0.5,
+        "density": 1.0
+      },
+      "coordinate_mode": "global",
+      "duration": 37.0,
+      "transition": "crossfade",
+      "transition_duration": 3.0,
+      "brightness": 0.25,
+      "target_groups": [
+        "all"
+      ],
+      "fade_out": 3.0
+    },
+    {
+      "id": "nested-cube-2",
+      "name": "Nested Cube",
+      "effect": "madmapper:mat_b793d955caf8ad949a92",
+      "preset": "Nested Cube",
+      "parameters": {
+        "speed": 0.23746701846965698,
+        "scale": 2.8989445910290237,
+        "width": 0.20844327176781002,
+        "focus_x": 0.5,
+        "focus_y": 0.22163588390501318,
+        "zoom": 4.62598944591029,
+        "gradient": "acid_lime_blue",
+        "color_a": [
+          0.76,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "color_b": [
+          0.0,
+          0.18,
+          1.0,
+          1.0
+        ],
+        "intensity": 1.0343007915567282,
+        "contrast": 1.2730870712401057,
+        "trail": 0.55,
+        "direction": 0.125,
+        "rotation_degrees": 0.0,
+        "seed": 0.0,
+        "effect_transition": 0.5,
+        "panel_columns": 2.0,
+        "panel_rows": 5.0,
+        "hybrid_mix": 0.5,
+        "density": 1.0
+      },
+      "coordinate_mode": "global",
+      "duration": 50.0,
+      "transition": "crossfade",
+      "transition_duration": 3.0,
+      "brightness": 0.25,
+      "target_groups": [
+        "all"
+      ],
+      "fade_in": 3.0,
+      "fade_out": 3.0
+    },
+    {
+      "id": "prime-waves",
+      "name": "Prime Waves",
+      "effect": "madmapper:mat_40a070ee5da985ccad90",
+      "preset": "Prime Waves",
+      "parameters": {
+        "speed": 1.0,
+        "scale": 4.0,
+        "width": 0.5,
+        "focus_x": 0.5,
+        "focus_y": 0.5,
+        "zoom": 1.0,
+        "gradient": "neon_cyan_magenta",
+        "color_a": [
+          0.91,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "color_b": [
+          0.0,
+          0.72,
+          0.86,
+          1.0
+        ],
+        "intensity": 1.0,
+        "contrast": 1.25,
+        "trail": 0.55,
+        "direction": 0.125,
+        "rotation_degrees": 0.0,
+        "seed": 0.0,
+        "effect_transition": 0.5,
+        "panel_columns": 2.0,
+        "panel_rows": 5.0,
+        "hybrid_mix": 0.5,
+        "density": 1.0
+      },
+      "coordinate_mode": "global",
+      "duration": 25.0,
+      "transition": "crossfade",
+      "transition_duration": 13.0,
+      "brightness": 0.25,
+      "target_groups": [
+        "all"
+      ],
+      "fade_in": 3.0,
+      "fade_out": 13.0
+    },
+    {
+      "id": "prime-waves-2",
+      "name": "Prime Waves",
+      "effect": "madmapper:mat_40a070ee5da985ccad90",
+      "preset": "Prime Waves",
+      "parameters": {
+        "speed": 1.0,
+        "scale": 4.0,
+        "width": 0.5,
+        "focus_x": 0.5,
+        "focus_y": 0.5,
+        "zoom": 1.0,
+        "gradient": "neon_cyan_magenta",
+        "color_a": [
+          0.91,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "color_b": [
+          0.0,
+          0.72,
+          0.86,
+          1.0
+        ],
+        "intensity": 1.0,
+        "contrast": 1.25,
+        "trail": 0.55,
+        "direction": 0.125,
+        "rotation_degrees": 0.0,
+        "seed": 0.0,
+        "effect_transition": 0.5,
+        "panel_columns": 2.0,
+        "panel_rows": 5.0,
+        "hybrid_mix": 0.5,
+        "density": 1.0
+      },
+      "coordinate_mode": "global",
+      "duration": 58.8,
+      "transition": "iris",
+      "transition_duration": 3.0,
+      "brightness": 0.25,
+      "target_groups": [
+        "all"
+      ],
+      "fade_in": 13.0,
+      "fade_out": 3.0
+    },
+    {
+      "id": "rainbowtiles",
+      "name": "Rainbowtiles",
+      "effect": "madmapper:mat_0e67e238b9263d57a6db",
+      "preset": "Rainbowtiles",
+      "parameters": {
+        "speed": 1.0,
+        "scale": 4.0,
+        "width": 0.5,
+        "focus_x": 0.5,
+        "focus_y": 0.5,
+        "zoom": 1.0,
+        "gradient": "neon_cyan_magenta",
+        "color_a": [
+          0.91,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "color_b": [
+          0.0,
+          0.72,
+          0.86,
+          1.0
+        ],
+        "intensity": 1.0,
+        "contrast": 1.25,
+        "trail": 0.55,
+        "direction": 0.125,
+        "rotation_degrees": 0.0,
+        "seed": 0.0,
+        "effect_transition": 0.5,
+        "panel_columns": 2.0,
+        "panel_rows": 5.0,
+        "hybrid_mix": 0.5,
+        "density": 1.0
+      },
+      "coordinate_mode": "global",
+      "duration": 45.0,
+      "transition": "iris",
+      "transition_duration": 32.0,
+      "brightness": 0.25,
+      "target_groups": [
+        "all"
+      ],
+      "fade_in": 3.0,
+      "fade_out": 32.0
+    },
+    {
+      "id": "rainbowtiles-2",
+      "name": "Rainbowtiles",
+      "effect": "madmapper:mat_0e67e238b9263d57a6db",
+      "preset": "Rainbowtiles",
+      "parameters": {
+        "speed": 1.0,
+        "scale": 4.0,
+        "width": 0.5,
+        "focus_x": 0.5,
+        "focus_y": 0.5,
+        "zoom": 1.0,
+        "gradient": "neon_cyan_magenta",
+        "color_a": [
+          0.91,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "color_b": [
+          0.0,
+          0.72,
+          0.86,
+          1.0
+        ],
+        "intensity": 1.0,
+        "contrast": 1.25,
+        "trail": 0.55,
+        "direction": 0.125,
+        "rotation_degrees": 0.0,
+        "seed": 0.0,
+        "effect_transition": 0.5,
+        "panel_columns": 2.0,
+        "panel_rows": 5.0,
+        "hybrid_mix": 0.5,
+        "density": 1.0
+      },
+      "coordinate_mode": "global",
+      "duration": 133.4,
+      "transition": "crossfade",
+      "transition_duration": 3.0,
+      "brightness": 0.25,
+      "target_groups": [
+        "all"
+      ],
+      "fade_in": 32.0,
+      "fade_out": 3.0
+    },
+    {
+      "id": "plasma-09",
+      "name": "Plasma 09",
+      "effect": "madmapper:mat_7ec9358fed7d785b3325",
+      "preset": "Plasma 09",
+      "parameters": {
+        "speed": 1.0,
+        "scale": 4.0,
+        "width": 0.5,
+        "focus_x": 0.5,
+        "focus_y": 0.5,
+        "zoom": 1.0,
+        "gradient": "neon_cyan_magenta",
+        "color_a": [
+          0.91,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "color_b": [
+          0.0,
+          0.72,
+          0.86,
+          1.0
+        ],
+        "intensity": 1.0,
+        "contrast": 1.25,
+        "trail": 0.55,
+        "direction": 0.125,
+        "rotation_degrees": 0.0,
+        "seed": 0.0,
+        "effect_transition": 0.5,
+        "panel_columns": 2.0,
+        "panel_rows": 5.0,
+        "hybrid_mix": 0.5,
+        "density": 1.0
+      },
+      "coordinate_mode": "global",
+      "duration": 45.0,
+      "transition": "burn",
+      "transition_duration": 23.0,
+      "brightness": 0.25,
+      "target_groups": [
+        "all"
+      ],
+      "fade_in": 3.0,
+      "fade_out": 23.0
+    },
+    {
+      "id": "plasma-09-2",
+      "name": "Plasma 09",
+      "effect": "madmapper:mat_7ec9358fed7d785b3325",
+      "preset": "Plasma 09",
+      "parameters": {
+        "speed": 1.0,
+        "scale": 4.0,
+        "width": 0.5,
+        "focus_x": 0.5,
+        "focus_y": 0.5,
+        "zoom": 1.0,
+        "gradient": "neon_cyan_magenta",
+        "color_a": [
+          0.91,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "color_b": [
+          0.0,
+          0.72,
+          0.86,
+          1.0
+        ],
+        "intensity": 1.0,
+        "contrast": 1.25,
+        "trail": 0.55,
+        "direction": 0.125,
+        "rotation_degrees": 0.0,
+        "seed": 0.0,
+        "effect_transition": 0.5,
+        "panel_columns": 2.0,
+        "panel_rows": 5.0,
+        "hybrid_mix": 0.5,
+        "density": 1.0
+      },
+      "coordinate_mode": "global",
+      "duration": 169.2,
+      "transition": "crossfade",
+      "transition_duration": 3.0,
+      "brightness": 0.25,
+      "target_groups": [
+        "all"
+      ],
+      "fade_in": 23.0,
+      "fade_out": 3.0
+    },
+    {
+      "id": "ripple-noise",
+      "name": "Ripple Noise",
+      "effect": "madmapper:mat_552af5019bc3bcb6f44f",
+      "preset": "Ripple Noise",
+      "parameters": {
+        "speed": 0.22691292875989447,
+        "scale": 0.3366754617414248,
+        "width": 0.5,
+        "focus_x": 0.5,
+        "focus_y": 0.5,
+        "zoom": 1.0,
+        "gradient": "neon_cyan_magenta",
+        "color_a": [
+          0.91,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "color_b": [
+          0.0,
+          0.72,
+          0.86,
+          1.0
+        ],
+        "intensity": 0.10026385224274406,
+        "contrast": 1.25,
+        "trail": 0.55,
+        "direction": 0.125,
+        "rotation_degrees": 0.0,
+        "seed": 0.0,
+        "effect_transition": 0.5,
+        "panel_columns": 2.0,
+        "panel_rows": 5.0,
+        "hybrid_mix": 0.5,
+        "density": 1.0
+      },
+      "coordinate_mode": "global",
+      "duration": 55.0,
+      "transition": "spiral",
+      "transition_duration": 43.0,
+      "brightness": 0.25,
+      "target_groups": [
+        "all"
+      ],
+      "fade_in": 3.0,
+      "fade_out": 43.0
+    },
+    {
+      "id": "ripple-noise-2",
+      "name": "Ripple Noise",
+      "effect": "madmapper:mat_552af5019bc3bcb6f44f",
+      "preset": "Ripple Noise",
+      "parameters": {
+        "speed": 0.22691292875989447,
+        "scale": 0.3366754617414248,
+        "width": 0.5,
+        "focus_x": 0.5,
+        "focus_y": 0.5,
+        "zoom": 1.0,
+        "gradient": "neon_cyan_magenta",
+        "color_a": [
+          0.91,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "color_b": [
+          0.0,
+          0.72,
+          0.86,
+          1.0
+        ],
+        "intensity": 0.10026385224274406,
+        "contrast": 1.25,
+        "trail": 0.55,
+        "direction": 0.125,
+        "rotation_degrees": 0.0,
+        "seed": 0.0,
+        "effect_transition": 0.5,
+        "panel_columns": 2.0,
+        "panel_rows": 5.0,
+        "hybrid_mix": 0.5,
+        "density": 1.0
+      },
+      "coordinate_mode": "global",
+      "duration": 83.6,
+      "transition": "crossfade",
+      "transition_duration": 3.0,
+      "brightness": 0.25,
+      "target_groups": [
+        "all"
+      ],
+      "fade_in": 43.0,
+      "fade_out": 3.0
+    },
+    {
+      "id": "plasma-09-3",
+      "name": "Plasma 09",
+      "effect": "madmapper:mat_7ec9358fed7d785b3325",
+      "preset": "Plasma 09",
+      "parameters": {
+        "speed": 1.0,
+        "scale": 4.0,
+        "width": 0.5,
+        "focus_x": 0.5,
+        "focus_y": 0.5,
+        "zoom": 1.0,
+        "gradient": "neon_cyan_magenta",
+        "color_a": [
+          0.91,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "color_b": [
+          0.0,
+          0.72,
+          0.86,
+          1.0
+        ],
+        "intensity": 1.0,
+        "contrast": 1.25,
+        "trail": 0.55,
+        "direction": 0.125,
+        "rotation_degrees": 0.0,
+        "seed": 0.0,
+        "effect_transition": 0.5,
+        "panel_columns": 2.0,
+        "panel_rows": 5.0,
+        "hybrid_mix": 0.5,
+        "density": 1.0
+      },
+      "coordinate_mode": "global",
+      "duration": 45.0,
+      "transition": "spiral",
+      "transition_duration": 23.0,
+      "brightness": 0.25,
+      "target_groups": [
+        "all"
+      ],
+      "fade_in": 3.0,
+      "fade_out": 23.0
+    },
+    {
+      "id": "retro-lava",
+      "name": "Retro Lava",
+      "effect": "madmapper:mat_7957542a93ff1dab0ef0",
+      "preset": "Retro Lava",
+      "parameters": {
+        "speed": 1.0,
+        "scale": 4.0,
+        "width": 0.5,
+        "focus_x": 0.5,
+        "focus_y": 0.5,
+        "zoom": 1.0,
+        "gradient": "neon_cyan_magenta",
+        "color_a": [
+          0.91,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "color_b": [
+          0.0,
+          0.72,
+          0.86,
+          1.0
+        ],
+        "intensity": 1.0,
+        "contrast": 1.25,
+        "trail": 0.55,
+        "direction": 0.125,
+        "rotation_degrees": 0.0,
+        "seed": 0.0,
+        "effect_transition": 0.5,
+        "panel_columns": 2.0,
+        "panel_rows": 5.0,
+        "hybrid_mix": 0.5,
+        "density": 1.0
+      },
+      "coordinate_mode": "global",
+      "duration": 45.0,
+      "transition": "dissolve",
+      "transition_duration": 3.0,
+      "brightness": 0.25,
+      "target_groups": [
+        "all"
+      ],
+      "fade_in": 23.0,
+      "fade_out": 3.0
+    },
+    {
+      "id": "oil-edge",
+      "name": "Oil Edge",
+      "effect": "madmapper:mat_c5f0ccd5354d21cb3ec2",
+      "preset": "Oil Edge",
+      "parameters": {
+        "speed": 1.0,
+        "scale": 4.0,
+        "width": 0.5,
+        "focus_x": 0.5,
+        "focus_y": 0.5,
+        "zoom": 1.0,
+        "gradient": "neon_cyan_magenta",
+        "color_a": [
+          0.91,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "color_b": [
+          0.0,
+          0.72,
+          0.86,
+          1.0
+        ],
+        "intensity": 1.0,
+        "contrast": 1.25,
+        "trail": 0.55,
+        "direction": 0.125,
+        "rotation_degrees": 0.0,
+        "seed": 0.0,
+        "effect_transition": 0.5,
+        "panel_columns": 2.0,
+        "panel_rows": 5.0,
+        "hybrid_mix": 0.5,
+        "density": 1.0
+      },
+      "coordinate_mode": "global",
+      "duration": 25.0,
+      "transition": "burn",
+      "transition_duration": 23.0,
+      "brightness": 0.25,
+      "target_groups": [
+        "all"
+      ],
+      "fade_in": 3.0,
+      "fade_out": 21.999
+    },
+    {
+      "id": "oil-edge-2",
+      "name": "Oil Edge",
+      "effect": "madmapper:mat_c5f0ccd5354d21cb3ec2",
+      "preset": "Oil Edge",
+      "parameters": {
+        "speed": 1.0,
+        "scale": 4.0,
+        "width": 0.5,
+        "focus_x": 0.5,
+        "focus_y": 0.5,
+        "zoom": 1.0,
+        "gradient": "neon_cyan_magenta",
+        "color_a": [
+          0.91,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "color_b": [
+          0.0,
+          0.72,
+          0.86,
+          1.0
+        ],
+        "intensity": 1.0,
+        "contrast": 1.25,
+        "trail": 0.55,
+        "direction": 0.125,
+        "rotation_degrees": 0.0,
+        "seed": 0.0,
+        "effect_transition": 0.5,
+        "panel_columns": 2.0,
+        "panel_rows": 5.0,
+        "hybrid_mix": 0.5,
+        "density": 1.0
+      },
+      "coordinate_mode": "global",
+      "duration": 75.9,
+      "transition": "crossfade",
+      "transition_duration": 3.0,
+      "brightness": 0.25,
+      "target_groups": [
+        "all"
+      ],
+      "fade_in": 21.999,
+      "fade_out": 3.0
+    },
+    {
+      "id": "plasma-02",
+      "name": "Plasma 02",
+      "effect": "madmapper:mat_eb407546bc24472d11bc",
+      "preset": "Plasma 02",
+      "parameters": {
+        "speed": 1.0,
+        "scale": 4.0,
+        "width": 0.5,
+        "focus_x": 0.5,
+        "focus_y": 0.5,
+        "zoom": 1.0,
+        "gradient": "neon_cyan_magenta",
+        "color_a": [
+          0.91,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "color_b": [
+          0.0,
+          0.72,
+          0.86,
+          1.0
+        ],
+        "intensity": 1.0,
+        "contrast": 1.25,
+        "trail": 0.55,
+        "direction": 0.125,
+        "rotation_degrees": 0.0,
+        "seed": 0.0,
+        "effect_transition": 0.5,
+        "panel_columns": 2.0,
+        "panel_rows": 5.0,
+        "hybrid_mix": 0.5,
+        "density": 1.0
+      },
+      "coordinate_mode": "global",
+      "duration": 15.0,
+      "transition": "crossfade",
+      "transition_duration": 3.0,
+      "brightness": 0.25,
+      "target_groups": [
+        "all"
+      ],
+      "fade_in": 3.0,
+      "fade_out": 3.0
+    }
+  ],
+  "timing_mode": "overlap"
+}

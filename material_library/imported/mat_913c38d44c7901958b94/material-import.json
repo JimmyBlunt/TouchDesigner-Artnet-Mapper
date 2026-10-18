@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_913c38d44c7901958b94",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/MarchingSquares/MarchingSquares.fs",
+  "source_sha256": "fd95e9744c115c3e1a1f5832cafe5d8ee005a5a51cd71423b43f3c66362d51d0",
+  "imported_file": "MarchingSquares.fs",
+  "imported_files": {
+    ".info": "54e8ce2b494e205e389b682c8368b70aea6bd36958099271083f9992f1656c9f",
+    "MarchingSquares.fs": "fd95e9744c115c3e1a1f5832cafe5d8ee005a5a51cd71423b43f3c66362d51d0",
+    "thumbnail.jpg": "6dce20ab88897d71cff73c1787b690abe3e509bbceadd19f4502325017f9755d"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

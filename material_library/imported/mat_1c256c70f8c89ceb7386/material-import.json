@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_1c256c70f8c89ceb7386",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Hexagons/Hexagons.fs",
+  "source_sha256": "975562d8be4dd3ff545fff144ada89816ac21d2c21af9ce6653df269c008e856",
+  "imported_file": "Hexagons.fs",
+  "imported_files": {
+    ".info": "fb8791b8dd4280702a5788db0d2a65ec654b40cd8c39fec361c93282f8737429",
+    "Hexagons.fs": "975562d8be4dd3ff545fff144ada89816ac21d2c21af9ce6653df269c008e856",
+    "thumbnail.jpg": "abbea3493644d09a97cd27c071050edc4f98a3c373d3fe4599b5132e2d6b9726"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

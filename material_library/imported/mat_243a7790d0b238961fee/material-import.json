@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_243a7790d0b238961fee",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/NeonWaves/NeonWaves.fs",
+  "source_sha256": "af67874ae55ae368d5d0ccef4be1e9aa19d90ba07b9fcec9a36887f5ffdd28f2",
+  "imported_file": "NeonWaves.fs",
+  "imported_files": {
+    ".info": "c8bb9c64bee8ef6e480a522b815bc65749bfb7e429a3ae949f027b7af466b396",
+    "NeonWaves.fs": "af67874ae55ae368d5d0ccef4be1e9aa19d90ba07b9fcec9a36887f5ffdd28f2",
+    "thumbnail.jpg": "43a68ac0c934fa7041396feccb6a8d9851d04e8154f812069fbfe7377b5d86d6"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_c5d613bad5c144e05485",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Day19Kaliedoscope/Day19KaliedoScope.fs",
+  "source_sha256": "dc4978e970ac3c380851002f168efd620e1b233b90290b51f0262470a4a9b0c0",
+  "imported_file": "Day19KaliedoScope.fs",
+  "imported_files": {
+    ".info": "afd6707864e06420ac2b04070aa551afc84feb7e86cdb241c8520353eea7aa76",
+    "08b42b43ae9d3c0605da11d0eac86618ea888e62cdd9518ee8b9097488b31560.png": "8595ce0bb0e1250633a0e6ca78620e49a618fc7c703d1cc5f291b668cc570b93",
+    "8de3a3924cb95bd0e95a443fff0326c869f9d4979cd1d5b6e94e2a01f5be53e9.jpg": "40b3ec5c9dd4ccb1558c5dc27eb5ce9b3fd458dc01dff52eda5071e7d0cd528a",
+    "Day19KaliedoScope.fs": "dc4978e970ac3c380851002f168efd620e1b233b90290b51f0262470a4a9b0c0",
+    "thumbnail.jpg": "fc97382065dd5d35aecc1f3b9648d7369eff5bb9eb2e3514434eaafdbee74598"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

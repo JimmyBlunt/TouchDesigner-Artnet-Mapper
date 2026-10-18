@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_28bad2cb1aaf96b71998",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Iris/Iris.fs",
+  "source_sha256": "dd6a2e120f68a28e883977d6454247ca40d2b0be4f37e90b23fd2d5b4ac47d52",
+  "imported_file": "Iris.fs",
+  "imported_files": {
+    ".info": "e4a6d8c307640c10fc9774e6721747d894e1f515d6117900d209edaab6fa9cd2",
+    "Iris.fs": "dd6a2e120f68a28e883977d6454247ca40d2b0be4f37e90b23fd2d5b4ac47d52",
+    "thumbnail.jpg": "a244a4e6efaf73a8a5cf233aeaee2ed025e50808e62484e7680d473da2c47610"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

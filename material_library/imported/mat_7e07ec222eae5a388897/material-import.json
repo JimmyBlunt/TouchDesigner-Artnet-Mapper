@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_7e07ec222eae5a388897",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/LatticeTunnel/LatticeTunnel.fs",
+  "source_sha256": "e1aec05af02ceb2a693905aa99de28e9c61a3220d5980eeca82a6223c68b3290",
+  "imported_file": "LatticeTunnel.fs",
+  "imported_files": {
+    ".info": "4a6789f1fe86c7c25b24b40676e789697cfa621000c6e1cd0fe5493f3d0a0351",
+    "LatticeTunnel.fs": "e1aec05af02ceb2a693905aa99de28e9c61a3220d5980eeca82a6223c68b3290",
+    "thumbnail.jpg": "c4443bb15807ab9b45d309d5c6232d71ea3fb10a42ec4fc2c73027276813f086"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

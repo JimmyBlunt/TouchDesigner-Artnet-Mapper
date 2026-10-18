@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_88d527165e273086f121",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Fractured/fractured.fs",
+  "source_sha256": "aa3494ad741f5df94677b423d8b5dc4790466b5721ead47d6e1b49f7c2360706",
+  "imported_file": "fractured.fs",
+  "imported_files": {
+    ".info": "0b3fddb8ba84fe31db6ed681de4891c302bd97c10d7121b844b1a74363747578",
+    "fractured.fs": "aa3494ad741f5df94677b423d8b5dc4790466b5721ead47d6e1b49f7c2360706",
+    "thumbnail.png": "8b1fd48ea3574f1293b6ebf8b8416fc6d9091e58b72e3d242a6b14bd08ba414d"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

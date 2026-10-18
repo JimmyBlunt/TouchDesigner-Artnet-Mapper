@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_dfbff2e481198b63c9a0",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/AlternatingRings/AlternatingRings.fs",
+  "source_sha256": "7316cb43b77e731751c295572faf6ca9f80374adc183fcc8ca7b3dd83582298f",
+  "imported_file": "AlternatingRings.fs",
+  "imported_files": {
+    ".info": "6339cf3503d71f937faf2b33d0cc5cba266b5f115f0f2816e33e9fd6462fc1e2",
+    "AlternatingRings.fs": "7316cb43b77e731751c295572faf6ca9f80374adc183fcc8ca7b3dd83582298f",
+    "thumbnail.jpg": "be78c0f3ca07d2f0429540ea755c695dd8abe2f2162f623099bc63994d3835e1"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

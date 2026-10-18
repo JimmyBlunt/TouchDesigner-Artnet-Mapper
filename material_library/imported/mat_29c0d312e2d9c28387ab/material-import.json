@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_29c0d312e2d9c28387ab",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Defect/Defect.fs",
+  "source_sha256": "112f26b6b3ced6ae54a52c62c7eb676d698e439c858a13ea8a8b8b9f62755f65",
+  "imported_file": "Defect.fs",
+  "imported_files": {
+    ".info": "118e02ceb794dfe54300060c1efe398d607f83831b16fe6dca8c805520233fc1",
+    "Defect.fs": "112f26b6b3ced6ae54a52c62c7eb676d698e439c858a13ea8a8b8b9f62755f65",
+    "thumbnail.jpg": "0581f19061f524dd0d61f4bb23f23a5a234241407292eb94cd3a65947a0f55cc"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

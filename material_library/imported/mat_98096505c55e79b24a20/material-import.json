@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_98096505c55e79b24a20",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Eye/Eye.fs",
+  "source_sha256": "35abdb3f9875ee21b4543c1799ffb78f50ae25bf5a00faac339dddb46f9e8715",
+  "imported_file": "Eye.fs",
+  "imported_files": {
+    ".info": "b05b3f571535c6f109ebea16f7cc40bc33921bc5ac1400537b403a80134b02a4",
+    "Eye.fs": "35abdb3f9875ee21b4543c1799ffb78f50ae25bf5a00faac339dddb46f9e8715",
+    "thumbnail.jpg": "a5c99a07f639e895a3af53517fd9c90f4cd02ff8320f12fe2501de64eac20174"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

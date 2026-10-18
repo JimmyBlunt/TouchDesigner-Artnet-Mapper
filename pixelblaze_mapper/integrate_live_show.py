@@ -524,13 +524,14 @@ def integrate():
     sampler_b = _get_or_create(owner, toptoCHOP, "slot_b_led_sampler")
     coordinate_in = _get_or_create(owner, selectCHOP, "effect_uv_in")
     global_callback = _get_or_create(owner, textDAT, 'show_global_uv_callbacks')
-    global_callback.text = _slot_uv_source()
+    from pixelblaze_mapper.show_performance import install_uv_source, install_renderer_source
+    global_callback.text = install_uv_source(_slot_uv_source())
     global_uv = _get_or_create(owner, scriptCHOP, 'show_global_uv')
     global_uv.par.callbacks = global_callback.path
     coordinate_in.par.chop = global_uv.path
     for sampler, player, slot in ((sampler_a, player_a, 'a'), (sampler_b, player_b, 'b')):
         uv_callback = _get_or_create(owner, textDAT, 'slot_' + slot + '_uv_callbacks')
-        uv_callback.text = _slot_uv_source('slot_' + slot + '_adapter/coordinate_request')
+        uv_callback.text = install_uv_source(_slot_uv_source('slot_' + slot + '_adapter/coordinate_request'))
         slot_uv = _get_or_create(owner, scriptCHOP, 'slot_' + slot + '_uv')
         slot_uv.par.callbacks = uv_callback.path
         sampler.par.top = player.path
@@ -540,7 +541,7 @@ def integrate():
             connector.disconnect()
         _connect(slot_uv, sampler, 0)
     led_callback = _get_or_create(owner, textDAT, "show_led_renderer_callbacks")
-    led_callback.text = LED_RENDER_CALLBACK
+    led_callback.text = install_renderer_source(LED_RENDER_CALLBACK)
     from pixelblaze_mapper.show_overlap_runtime import install_led_source
     led_callback.text = install_led_source(led_callback.text)
     led_renderer = _get_or_create(owner, scriptCHOP, "show_led_renderer")

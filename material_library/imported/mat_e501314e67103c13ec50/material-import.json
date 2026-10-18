@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e501314e67103c13ec50",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/ReliefNoise/ReliefNoise.fs",
+  "source_sha256": "40c612e098562ef915c4dbb378d791123d1766e4988acf1ca7ed41f3eff6cda3",
+  "imported_file": "ReliefNoise.fs",
+  "imported_files": {
+    ".info": "90a034b87b77c2fd2296bcd160b9ffee25a9be0b0970e110be70ba51d3654c4d",
+    "ReliefNoise.fs": "40c612e098562ef915c4dbb378d791123d1766e4988acf1ca7ed41f3eff6cda3",
+    "thumbnail.jpg": "caab814cd1eed60517cbe785c3ec52197a8f7b86da9b81f57ba3b59ae65b6569"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_3f917aba98d066434443",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/LEDWall/LEDWall.fs",
+  "source_sha256": "81f98efba672c6d01d24c661f3a4614df2eadd0fdbb32df9742971a5f4bd8a0d",
+  "imported_file": "LEDWall.fs",
+  "imported_files": {
+    ".info": "54e8ce2b494e205e389b682c8368b70aea6bd36958099271083f9992f1656c9f",
+    "LEDWall.fs": "81f98efba672c6d01d24c661f3a4614df2eadd0fdbb32df9742971a5f4bd8a0d",
+    "thumbnail.jpg": "8c6f587a6b993afd4fdedd6a55c13c094bb19e7e586273e1f6551715be7bb02c"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

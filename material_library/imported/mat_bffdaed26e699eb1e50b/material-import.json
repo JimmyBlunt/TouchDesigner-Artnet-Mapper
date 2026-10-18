@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_bffdaed26e699eb1e50b",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Sandygon/sandygon.fs",
+  "source_sha256": "c93586dd9173ef9087242be085bdc8f955a09ac9561a83ad54c8724f5fbe7565",
+  "imported_file": "sandygon.fs",
+  "imported_files": {
+    ".info": "b5d3c9e8e31cadeb2a95d163d975f43dd26a98d217b1b071cfb4be9b3ac49af8",
+    "sandygon.fs": "c93586dd9173ef9087242be085bdc8f955a09ac9561a83ad54c8724f5fbe7565",
+    "thumbnail.png": "fd2543438131768d2ff9a46b8077c8564774f010b69b9d607d64d938b0aa62c1"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

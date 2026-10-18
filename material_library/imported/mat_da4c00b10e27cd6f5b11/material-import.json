@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_da4c00b10e27cd6f5b11",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/Caustics/Caustics.fs",
+  "source_sha256": "42a7d063bcce65aae3abad9e7edf95a095fa626fada7de1d79e5fcd252e40414",
+  "imported_file": "Caustics.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "Caustics.fs": "42a7d063bcce65aae3abad9e7edf95a095fa626fada7de1d79e5fcd252e40414",
+    "thumbnail.png": "651908136e96969cbc87f1b098b0de8ba07d93dfa3a8c5050b023d2cf7f4594b"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_74d16a44e21b1a46a6e7",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Goo/Goo.fs",
+  "source_sha256": "441eca1eb41a4963956dffdf13f272d538075f238017720dd918b0c9bef63aa6",
+  "imported_file": "Goo.fs",
+  "imported_files": {
+    ".info": "302752717e7a852c18cc3901a5b3cfea15eb3fc522b8b4e30871055087780a6b",
+    "Goo.fs": "441eca1eb41a4963956dffdf13f272d538075f238017720dd918b0c9bef63aa6",
+    "thumbnail.jpg": "7defba9b80acb9f5dda6f694e0c67191f088ea4d41a4208c8d4b75b609f33d2d"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_5f0a6ad8b5b768503ac3",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Swirl Segments/Swirl Segments.fs",
+  "source_sha256": "f7551c7af7f4e586071ca8930027b799c30304931efff57a69678f35d03ce29a",
+  "imported_file": "Swirl Segments.fs",
+  "imported_files": {
+    ".info": "02bd8076f402eb5f416574162eff2bbcabe6ed4ac1bc1ac9a2f5291d138af071",
+    "Swirl Segments.fs": "f7551c7af7f4e586071ca8930027b799c30304931efff57a69678f35d03ce29a",
+    "thumbnail.jpg": "72f734c206bfbebec419c20309fdab6f20b16d78c56813b3155d8b2e8170e8fd"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

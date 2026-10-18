@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_90f909c2a3bc2aa2d405",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Gradient Scale/Gradient Scale.fs",
+  "source_sha256": "91a74ec615d651aeea27be71d14055cd114791bdb54c99f90d6c6c275654a2c7",
+  "imported_file": "Gradient Scale.fs",
+  "imported_files": {
+    ".info": "803f6ac3c4d7db5e00bdcf22e1fe90d56556d2dd156ecf1d9e4a6eb2da2310cb",
+    "Gradient Scale.fs": "91a74ec615d651aeea27be71d14055cd114791bdb54c99f90d6c6c275654a2c7",
+    "thumbnail.png": "f93588940afc69d07dca43f560ba5abcaa037c3e70133a49cf522b7a7ca07592"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

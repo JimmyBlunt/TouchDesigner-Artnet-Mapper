@@ -1,0 +1,382 @@
+[
+  {
+    "key": "launcher",
+    "target": "/project1/shortcut_hub/help_panel",
+    "checks": {
+      "info_hover": true,
+      "info_leave": true,
+      "info_pin": true,
+      "info_close": true,
+      "howto_link": true,
+      "field_hovers": true,
+      "unique_help_buttons": true,
+      "font_file_resolves": true,
+      "help_inside_panel": true,
+      "help_dat_errors": true
+    },
+    "errors": [],
+    "field_count": 0,
+    "passed": true
+  },
+  {
+    "key": "materials",
+    "target": "/project1/material_browser",
+    "checks": {
+      "info_hover": true,
+      "info_leave": true,
+      "info_pin": true,
+      "info_close": true,
+      "howto_link": true,
+      "field_hovers": true,
+      "unique_help_buttons": true,
+      "font_file_resolves": true,
+      "help_inside_panel": true,
+      "help_dat_errors": true
+    },
+    "errors": [],
+    "field_count": 6,
+    "passed": true
+  },
+  {
+    "key": "library",
+    "target": "/project1/madmapper_library/ui_panel",
+    "checks": {
+      "info_hover": true,
+      "info_leave": true,
+      "info_pin": true,
+      "info_close": true,
+      "howto_link": true,
+      "field_hovers": true,
+      "unique_help_buttons": true,
+      "font_file_resolves": true,
+      "help_inside_panel": true,
+      "help_dat_errors": true
+    },
+    "errors": [],
+    "field_count": 1,
+    "passed": true
+  },
+  {
+    "key": "player",
+    "target": "/project1/madmapper_player_controls/ui_panel",
+    "checks": {
+      "info_hover": true,
+      "info_leave": true,
+      "info_pin": true,
+      "info_close": true,
+      "howto_link": true,
+      "field_hovers": true,
+      "unique_help_buttons": true,
+      "font_file_resolves": true,
+      "help_inside_panel": true,
+      "help_dat_errors": true
+    },
+    "errors": [],
+    "field_count": 8,
+    "passed": true
+  },
+  {
+    "key": "mapper",
+    "target": "/project1/pixelblaze_mapper/ui/canvas",
+    "checks": {
+      "info_hover": true,
+      "info_leave": true,
+      "info_pin": true,
+      "info_close": true,
+      "howto_link": true,
+      "field_hovers": true,
+      "unique_help_buttons": true,
+      "font_file_resolves": true,
+      "help_inside_panel": true,
+      "help_dat_errors": true
+    },
+    "errors": [],
+    "field_count": 0,
+    "passed": true
+  },
+  {
+    "key": "router",
+    "target": "/project1/multi_controller_output/ui_panel",
+    "checks": {
+      "info_hover": true,
+      "info_leave": true,
+      "info_pin": true,
+      "info_close": true,
+      "howto_link": true,
+      "field_hovers": true,
+      "unique_help_buttons": true,
+      "font_file_resolves": true,
+      "help_inside_panel": true,
+      "help_dat_errors": true
+    },
+    "errors": [],
+    "field_count": 17,
+    "passed": true
+  },
+  {
+    "key": "output",
+    "target": "/project1/pixelblaze_mapper/output_config/ui_panel",
+    "checks": {
+      "info_hover": true,
+      "info_leave": true,
+      "info_pin": true,
+      "info_close": true,
+      "howto_link": true,
+      "field_hovers": true,
+      "unique_help_buttons": true,
+      "font_file_resolves": true,
+      "help_inside_panel": true,
+      "help_dat_errors": true
+    },
+    "errors": [],
+    "field_count": 0,
+    "passed": true
+  },
+  {
+    "key": "show",
+    "target": "/project1/show_control/control_panel",
+    "checks": {
+      "info_hover": true,
+      "info_leave": true,
+      "info_pin": true,
+      "info_close": true,
+      "howto_link": true,
+      "field_hovers": true,
+      "unique_help_buttons": true,
+      "font_file_resolves": true,
+      "help_inside_panel": true,
+      "help_dat_errors": true
+    },
+    "errors": [],
+    "field_count": 5,
+    "passed": true
+  },
+  {
+    "key": "gico",
+    "target": "/project1/multi_controller_output/gico_port_config/ui_panel",
+    "checks": {
+      "info_hover": true,
+      "info_leave": true,
+      "info_pin": true,
+      "info_close": true,
+      "howto_link": true,
+      "field_hovers": true,
+      "unique_help_buttons": true,
+      "font_file_resolves": true,
+      "help_inside_panel": true,
+      "help_dat_errors": true
+    },
+    "errors": [],
+    "field_count": 26,
+    "passed": true
+  },
+  {
+    "key": "layout",
+    "target": "/project1/layout_scene_editor/ui_panel",
+    "checks": {
+      "info_hover": true,
+      "info_leave": true,
+      "info_pin": true,
+      "info_close": true,
+      "howto_link": true,
+      "field_hovers": true,
+      "unique_help_buttons": true,
+      "font_file_resolves": true,
+      "help_inside_panel": true,
+      "help_dat_errors": true
+    },
+    "errors": [],
+    "field_count": 23,
+    "passed": true
+  },
+  {
+    "key": "scan",
+    "target": "/project1/guided_scan/ui_panel",
+    "checks": {
+      "info_hover": true,
+      "info_leave": true,
+      "info_pin": true,
+      "info_close": true,
+      "howto_link": true,
+      "field_hovers": true,
+      "unique_help_buttons": true,
+      "font_file_resolves": true,
+      "help_inside_panel": true,
+      "help_dat_errors": true
+    },
+    "errors": [],
+    "field_count": 10,
+    "passed": true
+  },
+  {
+    "key": "new_capture",
+    "target": "/project1/guided_scan/new_capture_panel",
+    "checks": {
+      "info_hover": true,
+      "info_leave": true,
+      "info_pin": true,
+      "info_close": true,
+      "howto_link": true,
+      "field_hovers": true,
+      "unique_help_buttons": true,
+      "font_file_resolves": true,
+      "help_inside_panel": true,
+      "help_dat_errors": true
+    },
+    "errors": [],
+    "field_count": 9,
+    "passed": true
+  },
+  {
+    "key": "review",
+    "target": "/project1/guided_scan/review_panel",
+    "checks": {
+      "info_hover": true,
+      "info_leave": true,
+      "info_pin": true,
+      "info_close": true,
+      "howto_link": true,
+      "field_hovers": true,
+      "unique_help_buttons": true,
+      "font_file_resolves": true,
+      "help_inside_panel": true,
+      "help_dat_errors": true
+    },
+    "errors": [],
+    "field_count": 11,
+    "passed": true
+  },
+  {
+    "key": "led_search",
+    "target": "/project1/guided_scan/led_search_panel",
+    "checks": {
+      "info_hover": true,
+      "info_leave": true,
+      "info_pin": true,
+      "info_close": true,
+      "howto_link": true,
+      "field_hovers": true,
+      "unique_help_buttons": true,
+      "font_file_resolves": true,
+      "help_inside_panel": true,
+      "help_dat_errors": true
+    },
+    "errors": [],
+    "field_count": 2,
+    "passed": true
+  },
+  {
+    "key": "ports",
+    "target": "/project1/multi_controller_output/gico_port_config/controller_ports/ui_panel",
+    "checks": {
+      "info_hover": true,
+      "info_leave": true,
+      "info_pin": true,
+      "info_close": true,
+      "howto_link": true,
+      "field_hovers": true,
+      "unique_help_buttons": true,
+      "font_file_resolves": true,
+      "help_inside_panel": true,
+      "help_dat_errors": true
+    },
+    "errors": [],
+    "field_count": 59,
+    "passed": true
+  },
+  {
+    "key": "scan_library",
+    "target": "/project1/guided_scan/library_panel",
+    "checks": {
+      "info_hover": true,
+      "info_leave": true,
+      "info_pin": true,
+      "info_close": true,
+      "howto_link": true,
+      "field_hovers": true,
+      "unique_help_buttons": true,
+      "font_file_resolves": true,
+      "help_inside_panel": true,
+      "help_dat_errors": true
+    },
+    "errors": [],
+    "field_count": 2,
+    "passed": true
+  },
+  {
+    "key": "coverage",
+    "target": "/project1/guided_scan/coverage_visual_panel",
+    "checks": {
+      "info_hover": true,
+      "info_leave": true,
+      "info_pin": true,
+      "info_close": true,
+      "howto_link": true,
+      "field_hovers": true,
+      "unique_help_buttons": true,
+      "font_file_resolves": true,
+      "help_inside_panel": true,
+      "help_dat_errors": true
+    },
+    "errors": [],
+    "field_count": 0,
+    "passed": true
+  },
+  {
+    "key": "registration",
+    "target": "/project1/guided_scan/registration_panel",
+    "checks": {
+      "info_hover": true,
+      "info_leave": true,
+      "info_pin": true,
+      "info_close": true,
+      "howto_link": true,
+      "field_hovers": true,
+      "unique_help_buttons": true,
+      "font_file_resolves": true,
+      "help_inside_panel": true,
+      "help_dat_errors": true
+    },
+    "errors": [],
+    "field_count": 4,
+    "passed": true
+  },
+  {
+    "key": "native_params",
+    "target": "/project1/material_browser/native_parameter_drawer",
+    "checks": {
+      "info_hover": true,
+      "info_leave": true,
+      "info_pin": true,
+      "info_close": true,
+      "howto_link": true,
+      "field_hovers": true,
+      "unique_help_buttons": true,
+      "font_file_resolves": true,
+      "help_inside_panel": true,
+      "help_dat_errors": true
+    },
+    "errors": [],
+    "field_count": 4,
+    "passed": true
+  },
+  {
+    "key": "mk2_preview",
+    "target": "/project1/mk2_windows/preview_panel",
+    "checks": {
+      "info_hover": true,
+      "info_leave": true,
+      "info_pin": true,
+      "info_close": true,
+      "howto_link": true,
+      "field_hovers": true,
+      "unique_help_buttons": true,
+      "font_file_resolves": true,
+      "help_inside_panel": true,
+      "help_dat_errors": true
+    },
+    "errors": [],
+    "field_count": 0,
+    "passed": true
+  }
+]

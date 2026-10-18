@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_91cb7265fa3d0ffdb165",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/GlowingRingTunnel/GlowingRingTunnel.fs",
+  "source_sha256": "65c23a31191259b23165aa5986995c3899cceb819ed348198c279ed6bc75e754",
+  "imported_file": "GlowingRingTunnel.fs",
+  "imported_files": {
+    ".info": "4d5415c087be3c9db877726ef26da08cef63ebd33a2770cfe93954d3edfd1c25",
+    "GlowingRingTunnel.fs": "65c23a31191259b23165aa5986995c3899cceb819ed348198c279ed6bc75e754",
+    "thumbnail.jpg": "195efd6eb2adf49419c09f6043fbc890738d23c21e511c926fbc5dfb3aaefeaf"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

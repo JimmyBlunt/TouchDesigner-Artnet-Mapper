@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_0e67e238b9263d57a6db",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/RainbowTiles/RainbowTiles.fs",
+  "source_sha256": "e01b9ac674298d252549ae8fb0bf4389e0f186f30f034f18ac43cbcdd44c23d8",
+  "imported_file": "RainbowTiles.fs",
+  "imported_files": {
+    ".info": "d9c2b545cea7908d5f5d8c5614969321601ab8d1bcf308a0bc3eecab6c408884",
+    "RainbowTiles.fs": "e01b9ac674298d252549ae8fb0bf4389e0f186f30f034f18ac43cbcdd44c23d8",
+    "thumbnail.jpg": "9df3a30ada53a3945d892af7506769f47245c270b52384a3988cc50644d7c520"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

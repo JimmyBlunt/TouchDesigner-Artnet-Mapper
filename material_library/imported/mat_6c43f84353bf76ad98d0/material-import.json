@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_6c43f84353bf76ad98d0",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Shape Morph/Shape Morph.fs",
+  "source_sha256": "1598610c3c9f987a7d0f895fb4aadefe58585449c0ae2b22a59bb3d781052044",
+  "imported_file": "Shape Morph.fs",
+  "imported_files": {
+    ".info": "d52ad8738f642d8827f89b31b7d3754937e0304986952e6b17dbbfd713b8a09a",
+    "Shape Morph.fs": "1598610c3c9f987a7d0f895fb4aadefe58585449c0ae2b22a59bb3d781052044",
+    "thumbnail.png": "7d86180e38bce358dcfd1f7d44691c1058ec7b88c4e8701866dd127bb69b427b"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

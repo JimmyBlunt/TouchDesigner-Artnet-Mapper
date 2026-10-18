@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_6256a1b809797ccb1168",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/ShadedNoise/ShadedNoise.fs",
+  "source_sha256": "1914af1f766b37a9852ffbe21cf616d538b27a208a58410e27f631d252a6d48c",
+  "imported_file": "ShadedNoise.fs",
+  "imported_files": {
+    ".info": "ec2eb0e4858f8407654fb4f72f9cf8f3c4d9d7de99ca3af33b501ee752b19abc",
+    "ShadedNoise.fs": "1914af1f766b37a9852ffbe21cf616d538b27a208a58410e27f631d252a6d48c",
+    "thumbnail.png": "e7a4c22cf5b23ab28253a389f949802eb252741a1003b31b4c476db7dbbb45a5"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

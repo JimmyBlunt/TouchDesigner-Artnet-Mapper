@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e85f6d66b77d508a9bb3",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/DancingBlobs/DancingBlobs.fs",
+  "source_sha256": "e4a7c190f56e9aa86b52a9e886ea386a36104e62c506c932c853b3394843b4c0",
+  "imported_file": "DancingBlobs.fs",
+  "imported_files": {
+    ".info": "54e8ce2b494e205e389b682c8368b70aea6bd36958099271083f9992f1656c9f",
+    "DancingBlobs.fs": "e4a7c190f56e9aa86b52a9e886ea386a36104e62c506c932c853b3394843b4c0",
+    "thumbnail.jpg": "20800c661ba25614e971153761ecf7a0dbdb6d7a2f839335384717d52fd8a012"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

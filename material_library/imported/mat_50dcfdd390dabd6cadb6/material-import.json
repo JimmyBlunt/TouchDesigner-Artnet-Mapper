@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_50dcfdd390dabd6cadb6",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Oil Flow/Oil Flow.fs",
+  "source_sha256": "0f1c8612aa8e1e0553bc0c09b74e42b9fe78f64fb896be7a2810833370d8132a",
+  "imported_file": "Oil Flow.fs",
+  "imported_files": {
+    ".info": "39363a7762461e4db3645da4aa4b3f05b153eb28d44188d7e5df5b9a966b0093",
+    "Oil Flow.fs": "0f1c8612aa8e1e0553bc0c09b74e42b9fe78f64fb896be7a2810833370d8132a",
+    "thumbnail.jpg": "dc022318a012256fe890da580e63b5007297d7aa6a7e6ebf0d7b6b110c47bc62"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

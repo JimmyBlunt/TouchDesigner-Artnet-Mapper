@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_42c15c664d1e1b48932a",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Eiffel/Eiffel.fs",
+  "source_sha256": "e7c7ae602e22675a1bd2ac1c78db904846ef4efa4a9ded66770e9f7b1f9db5ed",
+  "imported_file": "Eiffel.fs",
+  "imported_files": {
+    ".info": "f64d262b185ba3271d8584ac5934cd7cd6a9af55e59532d5b41494e587e3a29c",
+    "Eiffel.fs": "e7c7ae602e22675a1bd2ac1c78db904846ef4efa4a9ded66770e9f7b1f9db5ed",
+    "thumbnail.jpg": "643756df043bf6dda62e727a694d91334a160447fb1fe60a624b6690021b2903"
+  },
+  "kind": "madmapper_glsl",
+  "compatibility": "unsupported"
+}

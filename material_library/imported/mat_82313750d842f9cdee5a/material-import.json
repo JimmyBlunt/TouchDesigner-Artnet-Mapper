@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_82313750d842f9cdee5a",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Radiography/Radiography.fs",
+  "source_sha256": "130a16af5593b5eb88751fef906a36e25ff6ccdd65a845f09c4bdd5f9fbe8248",
+  "imported_file": "Radiography.fs",
+  "imported_files": {
+    ".info": "8760454702fcda6616fd4bc8620468b9dbd877f898b951b85439205e28c78b39",
+    "Radiography.fs": "130a16af5593b5eb88751fef906a36e25ff6ccdd65a845f09c4bdd5f9fbe8248",
+    "thumbnail.jpg": "bab313477f2e0d80655ef15e1318682ed514e88979207a8415bd428d982c5ad1"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

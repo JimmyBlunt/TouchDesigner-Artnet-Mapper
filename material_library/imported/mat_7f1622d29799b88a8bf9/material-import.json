@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_7f1622d29799b88a8bf9",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Demos/Filters/Tuto_Damper/Tuto_Damper.fs",
+  "source_sha256": "6956816b207da4820bad91008c8bdc27852054a0738ad3ac299172ea483e1fb5",
+  "imported_file": "Tuto_Damper.fs",
+  "imported_files": {
+    ".info": "5c84175785cc71d38ef285adbc9ec450f2a02ceab293fa01cd4b7921c26bcdb6",
+    "thumbnail.png": "3f8cca135d615d5a15e8e70c268f5257d9dee4fa3d1e71f6c4374089f4976954",
+    "Tuto_Damper.fs": "6956816b207da4820bad91008c8bdc27852054a0738ad3ac299172ea483e1fb5"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

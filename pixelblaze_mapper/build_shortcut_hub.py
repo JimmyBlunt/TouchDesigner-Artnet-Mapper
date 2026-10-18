@@ -8,9 +8,10 @@ from __future__ import annotations
 
 import importlib
 import sys
+from pathlib import Path
 
 
-LOCAL_ROOT = r"C:/Users/jbhtz/TouchDesignerLocal/PixelblazeMapper"
+LOCAL_ROOT = str(Path(__file__).resolve().parents[1])
 if LOCAL_ROOT not in sys.path:
     sys.path.insert(0, LOCAL_ROOT)
 
@@ -67,6 +68,10 @@ def open_target(key):
         return False
     try:
         if key == 's':
+            import sys
+            root = str(project.folder)
+            if root not in sys.path:
+                sys.path.insert(0, root)
             from pixelblaze_mapper.led_search import act
             return act(op, 'open')
         target.openViewer()

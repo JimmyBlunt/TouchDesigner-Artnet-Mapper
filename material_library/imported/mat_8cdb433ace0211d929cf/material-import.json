@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_8cdb433ace0211d929cf",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/InterlockingSquares/InterlockingSquares.fs",
+  "source_sha256": "ba24bdb017a3e66bc017b956b5e5c78e1f74067b0dbd3de699cc4e2f9cc9410e",
+  "imported_file": "InterlockingSquares.fs",
+  "imported_files": {
+    ".info": "6eacf1080ad6becc3cc8492aacfaf9449342dbb227fa5f2a39d7ac9fb8c2643f",
+    "InterlockingSquares.fs": "ba24bdb017a3e66bc017b956b5e5c78e1f74067b0dbd3de699cc4e2f9cc9410e",
+    "thumbnail.jpg": "a8124e2a9b9e2d04a538d72f4926d0805f5463ba0a377284d0186755c1a0721c"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

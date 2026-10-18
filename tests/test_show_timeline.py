@@ -166,6 +166,12 @@ class EditingTests(unittest.TestCase):
         self.assertEqual(scope['_effective_parameters'](self.show['cues'][0], True)['zoom'], 3)
         self.assertEqual(scope['_effective_parameters'](self.show['cues'][0], False)['zoom'], 1)
 
+    def test_bundle_workflow_does_not_bypass_new_show_reset_contract(self):
+        from pixelblaze_mapper.build_show_editor import EDITOR_RUNTIME
+        broken = EDITOR_RUNTIME.replace('        _write_imported({})\n', '', 1)
+        with self.assertRaisesRegex(ValueError, 'Unbekannte Editor-Version'):
+            timeline.install_editor_source(broken)
+
     def test_imported_uniforms_reset_to_capture_when_override_is_removed(self):
         from pixelblaze_mapper.build_show_editor import EDITOR_RUNTIME
         source = timeline.install_editor_source(EDITOR_RUNTIME)

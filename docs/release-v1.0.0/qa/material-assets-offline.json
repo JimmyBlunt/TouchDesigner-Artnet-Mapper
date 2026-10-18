@@ -1,0 +1,11 @@
+{
+  "catalog_records": 638,
+  "adapter_statuses": {
+    "adaptable": 586,
+    "unsupported": 52
+  },
+  "native_texture_files": 83,
+  "missing_files": [],
+  "exceptions": [],
+  "read_only": true
+}

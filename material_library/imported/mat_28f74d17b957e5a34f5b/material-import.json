@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_28f74d17b957e5a34f5b",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Hypnosis/Hypnosis.fs",
+  "source_sha256": "42266b2e4068df28aae7478baf6c078577b47173cec600748036727b09764aa3",
+  "imported_file": "Hypnosis.fs",
+  "imported_files": {
+    ".info": "bfdd39169cb3fc86b93f0fb8c2bc2339f22ab8dc001568d1bf5a1913d3ce09f3",
+    "Hypnosis.fs": "42266b2e4068df28aae7478baf6c078577b47173cec600748036727b09764aa3",
+    "thumbnail.jpg": "5b7314ef561d971efff9ecc083cca1e88e281a8d1eaadf527ce6cffd8617b145"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

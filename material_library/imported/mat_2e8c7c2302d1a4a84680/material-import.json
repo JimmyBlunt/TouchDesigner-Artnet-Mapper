@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_2e8c7c2302d1a4a84680",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Lines Scaled/Lines Scaled.fs",
+  "source_sha256": "06647e8dd6749480bb3233ef355917a2a146650566d1a566268296cf24f153e2",
+  "imported_file": "Lines Scaled.fs",
+  "imported_files": {
+    ".info": "59b30597f82f3a17c8c9250a75d871a3a22ff8303bebab6671a99212770eb19a",
+    "Lines Scaled.fs": "06647e8dd6749480bb3233ef355917a2a146650566d1a566268296cf24f153e2",
+    "thumbnail.jpg": "4080f6cd660234fea315aa80a7f45520c33697a87c0ad42070b21c6f469dbe45"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

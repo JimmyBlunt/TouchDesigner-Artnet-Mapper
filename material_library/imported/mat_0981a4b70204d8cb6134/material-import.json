@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_0981a4b70204d8cb6134",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Breathe/Breathe.fs",
+  "source_sha256": "abbff1805611605a1d8f13ff9991c952aea402fc26429c13a8eef8e8e2984c53",
+  "imported_file": "Breathe.fs",
+  "imported_files": {
+    ".info": "925bfd668c3c3082069616d35c4cd23ff52687f8d84014a6c75dad652c0c5622",
+    "Breathe.fs": "abbff1805611605a1d8f13ff9991c952aea402fc26429c13a8eef8e8e2984c53",
+    "thumbnail.jpg": "b08aec97e40c8552225757e5c9bb4e9f482a0257a0770c5212ba678f39da99d6"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

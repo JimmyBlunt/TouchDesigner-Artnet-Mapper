@@ -249,6 +249,8 @@ def build():
         _set(preview, "resolutionw", PANEL_WIDTH)
         _set(preview, "resolutionh", PANEL_HEIGHT)
 
+    from pixelblaze_mapper.build_show_picker import build as build_picker
+    build_picker(globals())
     from pixelblaze_mapper.show_timeline_ui import install as install_timeline
     install_timeline()
     callbacks.module.repaint()
@@ -829,6 +831,13 @@ def _apply(command):
         write(editor.set_show_field(document, 'loop', not document.get('loop')))
         return
     if command == 'new_show':
+        if _state('recording', '0') == '1':
+            raise ValueError('Aufnahme zuerst stoppen, dann neue Show anlegen.')
+        OWNER.store('previous_show_bundle', dict(show=document, automation=automation_data(), materials=imported_data()))
+        OWNER.store('selected_show_path', '')
+        OWNER.store('selected_show_name', '')
+        _write_automation(automation.empty())
+        _write_imported({})
         _set_state('selected', 0)
         _set_state('page', 0)
         write(editor.empty_show())
@@ -837,6 +846,9 @@ def _apply(command):
         name = _field('ed_show_name').strip() or document.get('name', 'show')
         document = editor.set_show_field(document, 'name', name)
         path = _show_path(editor.slugify(name, fallback='show'))
+        selected_path = OWNER.fetch('selected_show_path', '')
+        if selected_path and name == OWNER.fetch('selected_show_name', ''):
+            path = selected_path
         with open(path, 'w', encoding='utf-8') as stream:
             json.dump(document, stream, indent=2)
         with open(path[:-5] + '.automation.json', 'w', encoding='utf-8') as stream:
@@ -844,27 +856,12 @@ def _apply(command):
         with open(path[:-5] + '.materials.json', 'w', encoding='utf-8') as stream:
             json.dump(imported_data(), stream, indent=2)
         _message('gespeichert: ' + path)
+        OWNER.store('selected_show_path', path)
+        OWNER.store('selected_show_name', name)
         write(document)
         return
     if command == 'load_show':
-        name = editor.slugify(_field('ed_show_name').strip() or 'show', fallback='show')
-        path = _show_path(name)
-        with open(path, encoding='utf-8') as stream:
-            loaded = json.load(stream)
-        try:
-            with open(path[:-5] + '.automation.json', encoding='utf-8') as stream:
-                _write_automation(automation.validate(json.load(stream)))
-        except OSError:
-            pass
-        try:
-            with open(path[:-5] + '.materials.json', encoding='utf-8') as stream:
-                _write_imported(json.load(stream))
-        except OSError:
-            pass
-        _set_state('selected', 0)
-        _set_state('page', 0)
-        _message('geladen: ' + path)
-        write(loaded)
+        picker_action('open')
         return
     if command == 'toggle_record':
         if _state('recording', '0') == '1':

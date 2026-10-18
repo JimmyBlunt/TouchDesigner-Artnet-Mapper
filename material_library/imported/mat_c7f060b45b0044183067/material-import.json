@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_c7f060b45b0044183067",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/[recode]_Tame_Impala/[recode]_Tame_Impala.fs",
+  "source_sha256": "1f0323472693fce08318bfbf66b80374eef00f4360874387d4e1506201386930",
+  "imported_file": "[recode]_Tame_Impala.fs",
+  "imported_files": {
+    ".info": "04c9e20fdb5231169c71daf9b6f5b09faeb7283c09a76903fc2ef72845af0160",
+    "[original]_Tame_Impala_Current.jpg": "db9150049e49a9a0cfab4a6a3447e6adb1642bdb899cbe83d17e984e3aabcbde",
+    "[recode]_Tame_Impala.fs": "1f0323472693fce08318bfbf66b80374eef00f4360874387d4e1506201386930",
+    "env.jpg": "aa7cc2509a0050fcee784616f92868a273238df6c4e9bdef6761fa1fb43253ec",
+    "env_speed.jpg": "2f5c84b0d3b89e7a42e6903c6ea7f2786ad67f1731016588a8929ba4547876e6",
+    "thumbnail.jpg": "3a26f04f558711b463a0bc99de16bb0f29c9fb9c8339c04f2a526477b0357799"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_9b450a18bb42e28e058f",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/3D LED Setup Draft/3D-LED-Shapes.fs",
+  "source_sha256": "6bb26304f9d9f0f9014b9c3ac9c9cb24cd84a54f523a074d4101ad205a5e242e",
+  "imported_file": "3D-LED-Shapes.fs",
+  "imported_files": {
+    ".info": "c33c96b4a9bb2f4562be139397b166752e9a7d75608c926fa7b8220958620bf4",
+    "3D-LED-Shapes.fs": "6bb26304f9d9f0f9014b9c3ac9c9cb24cd84a54f523a074d4101ad205a5e242e",
+    "Simplex4DNoise.glsl": "e71d059f44d77a5652a4de928f0f7e7ff805380cec15370b32b6952032a7a5e1",
+    "thumbnail.png": "87b55d677f95ef0fdc9e38a21190f6eb9a2e947534f52180382b50a5ff6ecc2a"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

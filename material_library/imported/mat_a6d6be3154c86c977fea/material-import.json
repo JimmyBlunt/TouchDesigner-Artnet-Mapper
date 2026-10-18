@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_a6d6be3154c86c977fea",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/ChakanaBalloon/ChakanaBalloon.fs",
+  "source_sha256": "10336d0943ef5547af14d78f78812b055fa4eb1a33b5a38ac3f78dcab5a047a9",
+  "imported_file": "ChakanaBalloon.fs",
+  "imported_files": {
+    ".info": "10c3f4b0497148d22312b09cc073e58e6d9d8adb861b4c42094a15725503eee0",
+    "ChakanaBalloon.fs": "10336d0943ef5547af14d78f78812b055fa4eb1a33b5a38ac3f78dcab5a047a9",
+    "thumbnail.png": "2260d29ad0bc107993e0a69dc9f495814fc14dc9181d33e6deb3eee50c6b52b1"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

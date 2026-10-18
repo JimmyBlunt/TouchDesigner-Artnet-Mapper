@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_f9ca98574a87c80a66da",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/ChromaticAbberation/ChromaticAbberation.fs",
+  "source_sha256": "6833c0e0a037ff2d92e42fe050f27c2b177bddaa4e09330f3b59b2a6066e325d",
+  "imported_file": "ChromaticAbberation.fs",
+  "imported_files": {
+    ".info": "42399002fb5ec440d36313ceba882f7239ef73ffa61c0effb68c6c40e9649a75",
+    "ChromaticAbberation.fs": "6833c0e0a037ff2d92e42fe050f27c2b177bddaa4e09330f3b59b2a6066e325d",
+    "thumbnail.jpg": "4f0f2828b4ba6e326e9a12201b0245aaf2e2d310f3d93f9a8dbcfb02290ec127"
+  },
+  "kind": "madmapper_glsl",
+  "compatibility": "unsupported"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_18554a67922dae05c95f",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/StickLight/sticklight.fs",
+  "source_sha256": "a960db45f319ce34af44e8e85885ef2ae4ea9ee829abfd38ecc03971addd4450",
+  "imported_file": "sticklight.fs",
+  "imported_files": {
+    ".info": "ec2eb0e4858f8407654fb4f72f9cf8f3c4d9d7de99ca3af33b501ee752b19abc",
+    "sticklight.fs": "a960db45f319ce34af44e8e85885ef2ae4ea9ee829abfd38ecc03971addd4450",
+    "thumbnail.png": "46111c0a02ce949a55107558ba135d87d1beda549e998754ca427a52b08f1c80"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_a65154b0c65c48bc3fb6",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Smoke Rings/Smoke Rings.fs",
+  "source_sha256": "2c764df53a1f7c04abdfd320ab54c2fd3694b2bf29836eb5ebc52713709f9132",
+  "imported_file": "Smoke Rings.fs",
+  "imported_files": {
+    ".info": "de9bffb0f8d8806afbea3fc277c71af76151742c9cf1d48ec8ee0c5af5fe35d4",
+    "Smoke Rings.fs": "2c764df53a1f7c04abdfd320ab54c2fd3694b2bf29836eb5ebc52713709f9132",
+    "thumbnail.jpg": "10faa5752126c9ba396844b9d7f16eba9ca62f9ffa43b45103b221a3280b8bb8"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

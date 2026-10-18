@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_c686d4e21093b6dee76e",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Cyclic Noise/Cyclic Noise.fs",
+  "source_sha256": "736407381db00032590cdf2b5333eae662d563f57422882341a3f47816b02167",
+  "imported_file": "Cyclic Noise.fs",
+  "imported_files": {
+    ".info": "6303213f4e56a4437b9db05de61b8340ec5b3ff97caccc64f3fb7f0d34481ffc",
+    "Cyclic Noise.fs": "736407381db00032590cdf2b5333eae662d563f57422882341a3f47816b02167",
+    "thumbnail.jpg": "a0b22e2e0185ed76d8a81443dd19425a154692cda12cd251580931f9d0efe126"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

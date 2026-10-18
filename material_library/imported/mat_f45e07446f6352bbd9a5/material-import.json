@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_f45e07446f6352bbd9a5",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Googly Eye/eye.fs",
+  "source_sha256": "25a0587c82f03cba60b71a6ec2641e88cc53895e27f31f945b5e2fb8db3b574c",
+  "imported_file": "eye.fs",
+  "imported_files": {
+    ".info": "f34cf8ec902080192906ad9119b3ac1e0cc6eacf79e34d559707e3af50500b43",
+    "eye.fs": "25a0587c82f03cba60b71a6ec2641e88cc53895e27f31f945b5e2fb8db3b574c",
+    "thumbnail.png": "01cab47661587559164aab5eec468431d0e15c63da905748d7c043459d0f72e6"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

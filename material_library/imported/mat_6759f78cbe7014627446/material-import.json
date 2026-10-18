@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_6759f78cbe7014627446",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Circle Waves/Circle Waves.fs",
+  "source_sha256": "fe58d1c03a18dc81cce04f87ec4ac40b8dd529faefdff563ad062e4b52a34c33",
+  "imported_file": "Circle Waves.fs",
+  "imported_files": {
+    ".info": "25ae33adbdf16900f4b3b12b69ecf3f56e2c92dfc529dff300dd2bcb66e13178",
+    "Circle Waves.fs": "fe58d1c03a18dc81cce04f87ec4ac40b8dd529faefdff563ad062e4b52a34c33",
+    "thumbnail.jpg": "0bf67392519c587f6345f88489bfd2996075ab90eab9f10fb8a714a8e6c738ed"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

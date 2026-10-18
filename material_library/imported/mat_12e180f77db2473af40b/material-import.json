@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_12e180f77db2473af40b",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/GlitchRGBDeluxe/GlitchRGBDeluxe.fs",
+  "source_sha256": "8624212b10a02ae5b9a91ed30e8bc85b49d688cbf4c3ac47885c0ee72d039ac7",
+  "imported_file": "GlitchRGBDeluxe.fs",
+  "imported_files": {
+    ".info": "42399002fb5ec440d36313ceba882f7239ef73ffa61c0effb68c6c40e9649a75",
+    "f735bee5b64ef98879dc618b016ecf7939a5756040c2cde21ccb15e69a6e1cfb.png": "e59217a8eecc2e90bfbe7bb163dfcdd90de155bb35e4e904484ede91b8c0f36d",
+    "GlitchRGBDeluxe.fs": "8624212b10a02ae5b9a91ed30e8bc85b49d688cbf4c3ac47885c0ee72d039ac7",
+    "thumbnail.jpg": "af99645bae2073904f399f4a3059c8bcadc66b9c98b0e93ea7a89a05a734b4de"
+  },
+  "kind": "madmapper_glsl",
+  "compatibility": "unsupported"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_43a812353d2d940c6ecf",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Alien Sunset/Alien Sunset.fs",
+  "source_sha256": "eecfebde2808953b91d11c56efc538155f3de587371f13b8a0a324ae4a417d89",
+  "imported_file": "Alien Sunset.fs",
+  "imported_files": {
+    ".info": "d8456d7f7fc6e46431b592428cb72599f417bc5c53c4d530891733bbbdc01654",
+    "79520a3d3a0f4d3caa440802ef4362e99d54e12b1392973e4ea321840970a88a.jpg": "f25103e7028fa98cbc3054e53576ff17f277fd2409b9e45912316641dbfd5d1f",
+    "Alien Sunset.fs": "eecfebde2808953b91d11c56efc538155f3de587371f13b8a0a324ae4a417d89",
+    "thumbnail.jpg": "199587f3b1975c4f8d69b0f5cb09ef456a7536313a0d7785051eab1632091c86"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_2d63a84bbe3a56d3f0e7",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Lava/Lava.fs",
+  "source_sha256": "dcf20ae25e21d74ce04b480cd2f5b5b8f659c5cdaa5c622c3fb527eb24b790c9",
+  "imported_file": "Lava.fs",
+  "imported_files": {
+    ".info": "d8260676d934825363117e4d69c73b4f3e0361aae0478d768a5cb621026b070c",
+    "Lava.fs": "dcf20ae25e21d74ce04b480cd2f5b5b8f659c5cdaa5c622c3fb527eb24b790c9",
+    "noise.jpg": "412eef4d63351d3f06801edfb7762d38a40d7b5441e7d21c51cc84e0326ec6ed",
+    "thumbnail.jpg": "e3a850b834df0184130f13b19cede29806bbb09b2a8d410a6b77265385094d99"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

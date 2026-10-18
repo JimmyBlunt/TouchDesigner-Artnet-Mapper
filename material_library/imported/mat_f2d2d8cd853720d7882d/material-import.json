@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_f2d2d8cd853720d7882d",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Glass Candy/Glass Candy.fs",
+  "source_sha256": "510cfc0cf708017cdac87dfd311d2dcd55f5166fbb3817c61b605c5c0ddbdcb8",
+  "imported_file": "Glass Candy.fs",
+  "imported_files": {
+    ".info": "c6a21f5d0787083d72ef27b1bb4b8052405dd30fada0a65f8ea342de6fe34fc8",
+    "cb49c003b454385aa9975733aff4571c62182ccdda480aaba9a8d250014f00ec.jpg": "701abcf28ace38b0731955fc86030e233de60e3337dd671c20beb00ce2acfb1e",
+    "Glass Candy.fs": "510cfc0cf708017cdac87dfd311d2dcd55f5166fbb3817c61b605c5c0ddbdcb8",
+    "thumbnail.jpg": "767824a3b8d85b94764a83de35a0b2158b648f2efeea08659719228576424a29"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

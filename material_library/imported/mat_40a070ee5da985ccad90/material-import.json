@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_40a070ee5da985ccad90",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Prime Waves/Prime Waves.fs",
+  "source_sha256": "972f48b393885f7910280b56502619b9e43006d2069fe5e81c27577bb643dd53",
+  "imported_file": "Prime Waves.fs",
+  "imported_files": {
+    ".info": "7d412a6a126590c0b49c79703a8e8f620171457c4407d1ef3376fac67ddbee7e",
+    "Prime Waves.fs": "972f48b393885f7910280b56502619b9e43006d2069fe5e81c27577bb643dd53",
+    "thumbnail.jpg": "a916feca421a92baaf34ab5ab72588fb7181326e0cac338960ca0854f1933568"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

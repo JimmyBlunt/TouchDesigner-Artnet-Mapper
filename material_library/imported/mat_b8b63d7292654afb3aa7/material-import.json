@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_b8b63d7292654afb3aa7",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Voronoi Glass Panes/Voronoi Glass Panes.fs",
+  "source_sha256": "b1a735cd2c98a798f2ddee35460361391a4cd622f3c9bbe451ce5afdc788bee1",
+  "imported_file": "Voronoi Glass Panes.fs",
+  "imported_files": {
+    ".info": "1051b91e1795ccbf0ca61a11acd7efa831742b05c8ebe6779fdad7c452928666",
+    "thumbnail.jpg": "cf8b62e1f92b8b7383285093b66c18649a11dfa566da57d8de3bfcf05ccc0c29",
+    "Voronoi Glass Panes.fs": "b1a735cd2c98a798f2ddee35460361391a4cd622f3c9bbe451ce5afdc788bee1"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

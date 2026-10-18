@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_0f4b5ced4c8c53ad94ad",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Snowfall/Snowfall.fs",
+  "source_sha256": "2e98b421a4ecf20b164e477fd1426bece8801ce958ff715a047081dc7d0a71f2",
+  "imported_file": "Snowfall.fs",
+  "imported_files": {
+    ".info": "c6798744003862ddcb7311269781d7cd2a3cee05074f0464a95c724a8a1e98bc",
+    "Snowfall.fs": "2e98b421a4ecf20b164e477fd1426bece8801ce958ff715a047081dc7d0a71f2",
+    "thumbnail.jpg": "1ee3ba6276f1efff7799d437c5086d9b0fd82e4ef0362bdacfc45757b68b3ee3"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

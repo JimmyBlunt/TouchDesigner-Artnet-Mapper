@@ -1,0 +1,380 @@
+// PIXELBLAZE_MADMAPPER_ADAPTER_VERSION 6
+// Prepared from a MadMapper material for TouchDesigner GLSL TOP.
+out vec4 fragColor;
+uniform vec4 uTDMaterial0; // phase, scale, width, frame zoom
+uniform vec4 uTDMaterial1; // focus x, focus y, reserved, reserved
+uniform vec4 uTDCoordinate; // mode, panel columns, panel rows, hybrid mix
+#define uTDTime uTDMaterial0.x
+#define TIME uTDTime
+#define TIMEDELTA (1.0 / 60.0)
+#define FRAMEINDEX int(uTDTime * 60.0)
+#define RENDERSIZE uTDOutputInfo.res.zw
+#define DATE vec4(0.0)
+#define IMG_NORM_PIXEL(image, coord) texture(image, coord)
+#define isf_FragNormCoord vUV.st
+#define IMG_PIXEL(image, coord) texture(image, (coord) / vec2(textureSize(image, 0)))
+#define IMG_SIZE(image) vec2(textureSize(image, 0))
+#define texture2D texture
+
+vec2 mapMadMapperUV(vec2 uv)
+{
+    vec2 focus = clamp(uTDMaterial1.xy, vec2(0.0), vec2(1.0));
+    float zoom = clamp(uTDMaterial0.w, 0.25, 8.0);
+    float scale = max(uTDMaterial0.y, 0.01) / 4.0;
+    float width = clamp(uTDMaterial0.z, 0.01, 1.0);
+    vec2 framed = focus + (uv - vec2(0.5)) / zoom;
+    framed = focus + (framed - focus) * vec2(scale * (0.5 / width), scale);
+    // True global/panel-local/hybrid selection happens in the downstream
+    // per-LED sampler, where the physical panel ID is available.
+    return framed;
+}
+
+uniform vec4 uMMParam000; // native input: mat_scale
+float mat_scale = uMMParam000.x;
+uniform vec4 uMMParam001; // native input: mat_dither
+float mat_dither = uMMParam001.x;
+uniform vec4 uMMParam002; // native input: mat_iterations
+int mat_iterations = int(round(uMMParam002.x));
+uniform vec4 uMMParam003; // native input: mat_bpm_sync
+bool mat_bpm_sync = uMMParam003.x > 0.5;
+uniform vec4 uMMParam004; // native input: mat_reverse
+bool mat_reverse = uMMParam004.x > 0.5;
+uniform vec4 uMMParam005; // native input: mat_speed
+float mat_speed = uMMParam005.x;
+uniform vec4 uMMParam006; // native input: mat_offset
+float mat_offset = uMMParam006.x;
+uniform vec4 uMMParam007; // native input: mat_strob
+float mat_strob = uMMParam007.x;
+float mat_time_source = uTDTime * (mat_speed);
+
+// BEGIN MadCommon.glsl
+/*
+MadCommon Glsl Library
+
+Copyright (c) 2016, Garage Cube, All rights reserved.
+Copyright (c) 2016, Simon Geilfus, All rights reserved.
+
+Portions of code from Romain Dura see corresponding licence
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that
+the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this list of conditions and
+ the following disclaimer.
+* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and
+ the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+*/
+
+//! Constants
+#define PI 3.1415926535897932384626433832795
+
+//! Returns the luminance of a RGB color
+float luma( vec3 color );
+
+//! Returns the luminance of a RGB color
+float luminance( vec3 color );
+
+//! Luminance based rgb8/linear conversion
+vec3 linearToRgb( vec3 color, vec3 range );
+
+//! Luminance based rgb8/linear conversion
+vec3 rgbToLinear( vec3 color, vec3 range );
+
+//! Contrast, saturation, brightness, For all settings: 1.0 = 100% 0.5=50% 1.5 = 150%
+vec3 applyContrastSaturationBrightness( vec3 color, float contrast, float saturation, float brightness );
+
+//! Returns HSV values for RGB input color
+vec3 rgb2hsv( vec3 color );
+
+//! Returns RGB values for HSV input color
+vec3 hsv2rgb( vec3 color );
+
+//! Returns the Hue value for RGB input color
+float rgb2hue( vec3 color );
+
+//! Usefull shortcuts
+#define saturate(x) clamp( x, 0.0, 1.0 )
+#define lerp(x,y,t) mix( x, y, t )
+
+// Implementation
+
+// Luminance
+float luma( vec3 color )
+{
+    // Rec 709 Coefficients
+    return dot( color, vec3( 0.2126729, 0.7151522, 0.0721750 ) );
+}
+float luminance( vec3 color )
+{
+    return dot( color, vec3( 0.299, 0.587, 0.114 ) );
+}
+
+// Luminance based rgb8/linear conversion
+vec3 linearToRgb( vec3 color, vec3 range )
+{
+    return ( color ) / ( vec3( 1.0 ) - vec3( luminance( color ) ) / range );
+}
+
+vec3 rgbToLinear( vec3 color, vec3 range )
+{
+    return ( color ) / ( vec3( 1.0 ) + vec3( luminance( color ) ) / range );
+}
+
+// RGB <-> HSV Conversion functions
+vec3 rgb2hsv(vec3 c) {
+    vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
+    //vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));
+    //vec4 q = mix(vec4(p.xyw, c.r), vec4(c.r, p.yzx), step(p.x, c.r));
+    vec4 p = c.g < c.b ? vec4(c.bg, K.wz) : vec4(c.gb, K.xy);
+    vec4 q = c.r < p.x ? vec4(p.xyw, c.r) : vec4(c.r, p.yzx);
+    
+    float d = q.x - min(q.w, q.y);
+    float e = 1.0e-10;
+    return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);
+}
+
+vec3 hsv2rgb(vec3 c) {
+    vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+    vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
+    return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+}
+
+float rgb2hue(vec3 c)
+{
+    vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
+    vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));
+    vec4 q = mix(vec4(p.xyw, c.r), vec4(c.r, p.yzx), step(p.x, c.r));
+
+    float d = q.x - min(q.w, q.y);
+    float e = 1.0e-10;
+    return abs(q.z + (q.w - q.y) / (6.0 * d + e));
+}
+
+/*
+** Copyright (c) 2012, Romain Dura romain@shazbits.com
+** 
+** Permission to use, copy, modify, and/or distribute this software for any 
+** purpose with or without fee is hereby granted, provided that the above 
+** copyright notice and this permission notice appear in all copies.
+** 
+** THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES 
+** WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF 
+** MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY 
+** SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES 
+** WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN 
+** ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR 
+** IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+*/
+
+
+/*
+** Contrast, saturation, brightness
+** Code of this function is from TGM's shader pack
+** http://irrlicht.sourceforge.net/phpBB2/viewtopic.php?t=21057
+*/
+
+// For all settings: 1.0 = 100% 0.5=50% 1.5 = 150%
+vec3 applyContrastSaturationBrightness( vec3 color, float contrast, float saturation, float brightness )
+{
+    // Increase or decrease theese values to adjust r, g and b color channels seperately
+    const float AvgLumR = 0.5;
+    const float AvgLumG = 0.5;
+    const float AvgLumB = 0.5;
+    
+    const vec3 LumCoeff = vec3(0.2125, 0.7154, 0.0721);
+    
+    vec3 AvgLumin = vec3(AvgLumR, AvgLumG, AvgLumB);
+    vec3 brtColor = color * brightness;
+    vec3 intensity = vec3(dot(brtColor, LumCoeff));
+    vec3 satColor = mix( intensity, brtColor, saturation );
+    vec3 conColor = mix( AvgLumin, satColor, contrast );
+    return conColor;
+}
+// END MadCommon.glsl
+
+float mat_time = mat_time_source - mat_offset;
+
+
+
+#define BPM 25./2.
+#define tempo BPM/60.
+
+vec3 palette (float t, vec3 a, vec3 b, vec3 c, vec3 d)
+{return a+b*cos(2.*PI*(c*t+d));}
+
+float random (vec2 st)
+{return fract(sin(dot(st.xy, vec2(12.2544, 35.1571)))*5418.548416);}
+
+vec2 moda (vec2 p, float per)
+{
+    float a = atan(p.y, p.x);
+    float l = length(p);
+    a = mod(a-per/2., per)-per/2.;
+    return vec2(cos(a),sin(a))*l;
+}
+
+vec2 mo(vec2 p, vec2 d)
+{
+    p = abs(p)-d;
+    if (p.y > p.x) p.xy = p.yx;
+    return p;
+}
+
+float stmin(float a, float b, float k, float n)
+{
+    float st = k/n;
+    float u = b-k;
+    return min(min(a,b), 0.5 * (u+a+abs(mod(u-a+st,2.*st)-st)));
+}
+
+float smin( float a, float b, float k )
+{
+    float h = max( k-abs(a-b), 0.0 );
+    return min( a, b ) - h*h*0.25/k;
+}
+
+mat2 rot(float a)
+{return mat2(cos(a),sin(a),-sin(a),cos(a));}
+
+vec2 path (float t)
+{
+    float a = sin(t*0.2 + 1.5), b = sin(t*0.2);
+    return vec2(a, a*b);
+}
+
+float sphe (vec3 p, float r)
+{return length(p)-r;}
+
+float od (vec3 p, float d)
+{return dot(p, normalize(sign(p)))-d;}
+
+float cyl (vec2 p, float r)
+{return length(p)-r;}
+
+float box( vec3 p, vec3 b )
+{
+    vec3 d = abs(p) - b;
+    return min(max(d.x,max(d.y,d.z)),0.0) + length(max(d,0.0));
+}
+
+float sc (vec3 p, float d)
+{
+    p = abs(p);
+    p = max(p.xyz, p.yzx);
+    return min(p.x, min(p.y,p.z)) - d;
+}
+
+float prim1 (vec3 p)
+{
+    float c = cyl(p.xz, 0.1);
+    float per = 2.;
+    p.y += mat_time*tempo;
+    p.y = mod (p.y-per/2., per)-per/2.;
+    return smin(sphe(p, 0.3), c, 0.5);
+
+}
+
+float prim2 (vec3 p)
+{
+    float s = sphe(p,1.);
+    float o = od(p,.9);
+    p.xz *= rot(p.y*0.7);
+    p.xz = moda(p.xz, 2.*PI/5.);
+    p.x -= 1.;
+    return smin(prim1(p), max(-o,s), 0.5);
+}
+
+float prim3 (vec3 p)
+{
+    p.xy = mo(p.xy, vec2(2.));
+    return prim2(p);
+}
+
+float prim4 (vec3 p)
+{
+    p.yz *= rot(p.x*0.1);
+    p.xy = moda(p.xy, 2.*PI/4.);
+    p.x -= 4.;
+    return prim3(p);
+}
+
+float prim5 (vec3 p)
+{
+    float per = 8.;
+    p.xy *= rot(p.z*0.2);
+    p.z = mod(p.z-per/2., per) -per/2.;
+    return prim4(p);
+}
+
+float prim6 (vec3 p)
+{
+    p.z -= mat_time;
+    p.xz *= rot(mat_time*tempo);
+    p.xy *= rot(mat_time*tempo);
+    p *= 1.2;
+    return stmin(od(p, 1.), sphe(p,1.), 0.5, 4.);
+}
+
+
+
+float g = 0.;
+float SDF(vec3 p)
+{
+    float d = smin(prim5(p), prim6(p), 0.5);
+    g+=0.1/(0.1+d*d);
+    return d;
+}
+
+
+vec4 materialColorForPixel(vec2 texCoord)
+{
+    vec4 out_color; 
+    vec2 uv = texCoord - vec2(0.5);
+    uv *= mat_scale;
+
+    vec3 ro = vec3(0.001,0.001,-10. + mat_time); vec3 p = ro;
+    vec3 rd = normalize(vec3(uv,1.));
+    float shad = 0.;
+    float dither = random(uv);
+    for (float i=0.; i<mat_iterations; i++)
+    {
+        float d = SDF(p);
+        if (d<0.001)
+        {
+            shad = i/mat_iterations;
+            break;
+        }
+        d *= 0.9 + dither*0.1*mat_dither;
+        p += d*rd * 0.7;
+    }
+    float t = length(ro-p);
+    vec3 pal = palette
+        (length(uv),
+         vec3(0.5),
+         vec3(0.5),
+         vec3(0.5),
+         vec3(0.,0.3,0.7));
+    vec3 c = vec3(shad) * pal;
+    c = mix(c, vec3(0.,0.,0.2), 1.-exp(-0.001 *t *t));
+    c += g* 0.04 * (1.-length(uv));
+    out_color = vec4(c,1.);
+
+
+    return out_color;
+}
+
+
+void main()
+{
+
+    fragColor = TDOutputSwizzle(materialColorForPixel(mapMadMapperUV(vUV.st)));
+}

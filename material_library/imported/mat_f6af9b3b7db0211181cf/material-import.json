@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_f6af9b3b7db0211181cf",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/LEDRings/[C] LEDRings.fs",
+  "source_sha256": "fe1c12cd6677710ae97289ffc1f33e2d458731d4196726f2c5cea87d9897982e",
+  "imported_file": "[C] LEDRings.fs",
+  "imported_files": {
+    ".info": "54e8ce2b494e205e389b682c8368b70aea6bd36958099271083f9992f1656c9f",
+    "[C] LEDRings.fs": "fe1c12cd6677710ae97289ffc1f33e2d458731d4196726f2c5cea87d9897982e",
+    "thumbnail.jpg": "1583ff74bb63f35cdf2439d00c6479bdf8bbc034802f58d500f10cc31645f777"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

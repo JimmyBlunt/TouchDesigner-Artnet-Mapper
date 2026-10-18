@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_0fb8ac89d2c2a87fa356",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/SeamlessCellularNoise/SeamlessCellularNoise.fs",
+  "source_sha256": "b85d4957a4fbf35c36a13d4e4974dad2b417252cb5255c01361d7b14fee602fa",
+  "imported_file": "SeamlessCellularNoise.fs",
+  "imported_files": {
+    ".info": "316d9533d6b66269928fcd6294ee04c028393cb676fabc70f7d612c77eed211b",
+    "SeamlessCellularNoise.fs": "b85d4957a4fbf35c36a13d4e4974dad2b417252cb5255c01361d7b14fee602fa",
+    "thumbnail.jpg": "49a9d8e85d6045e3446f8f31974302fd765b2bab8a1a3da40223da104a6da126"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

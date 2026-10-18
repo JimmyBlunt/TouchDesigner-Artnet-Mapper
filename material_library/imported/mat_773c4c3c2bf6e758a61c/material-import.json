@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_773c4c3c2bf6e758a61c",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/[recode]_Ikeda/[recode]_Ikeda.fs",
+  "source_sha256": "9cd02ce4267a3381d199aa79bc4fc0bee0bf4a9fc4353a46d75bf268be640d37",
+  "imported_file": "[recode]_Ikeda.fs",
+  "imported_files": {
+    ".info": "4f4e11367069b5ab65dfb065d5d378608c2b54e636e323152da6b226858b19e3",
+    "[original]_Ryoji_Ikeda_Dataplex.jpg": "5834eb4500695c6be4a1f73ae0bfdc279200b03f99310a304ac7f9324d97dc52",
+    "[recode]_Ikeda.fs": "9cd02ce4267a3381d199aa79bc4fc0bee0bf4a9fc4353a46d75bf268be640d37",
+    "bitmap_font.png": "512e5f1cbd1088e0484e93828c45ebc2f46ca00fe8b78a843033ae0cae22f865",
+    "thumbnail.jpg": "44fecf93acf1a0b41aedbd637b5db1c93fff346da366d2b635175a7c0bc4fdae"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

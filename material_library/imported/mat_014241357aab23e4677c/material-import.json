@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_014241357aab23e4677c",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Migrating Squares/Migrating Squares.fs",
+  "source_sha256": "bf1d1b4ed34373c8cbe0b614139434f9f75222dc9d870503d63b1f532fc0efef",
+  "imported_file": "Migrating Squares.fs",
+  "imported_files": {
+    ".info": "b9fc0efd021e2f8696690a8d8316ddc0acc43737e1ce1ae867bde5dc5e50ff42",
+    "Migrating Squares.fs": "bf1d1b4ed34373c8cbe0b614139434f9f75222dc9d870503d63b1f532fc0efef",
+    "thumbnail.jpg": "2c023b213d2fddd15a015fb4a3e145a78702052b3a256a43d4fbcd13bfbb62f7"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

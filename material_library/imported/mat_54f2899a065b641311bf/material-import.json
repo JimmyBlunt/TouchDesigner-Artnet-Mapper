@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_54f2899a065b641311bf",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Explosion/Explosion.fs",
+  "source_sha256": "7963642a6aadec91d2d0379093f6cae00ed69ca970582cae605c9b4839224cde",
+  "imported_file": "Explosion.fs",
+  "imported_files": {
+    ".info": "a05f75c729e63eb6599430afffcfaf0b80a62f48948ba1d50641af747e493330",
+    "Explosion.fs": "7963642a6aadec91d2d0379093f6cae00ed69ca970582cae605c9b4839224cde",
+    "thumbnail.jpg": "40aa7134cdb95429174b5c4056f0fb786f8e281cca0a55aa8f3ae0858313e510"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

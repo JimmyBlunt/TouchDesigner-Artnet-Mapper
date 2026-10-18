@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_a2e96229c31cb48fae42",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Circle Control/Circle Control.fs",
+  "source_sha256": "cfde3bc90ea3ac0b49dce315095066566fc2785234ee0b332689af9bafaa6817",
+  "imported_file": "Circle Control.fs",
+  "imported_files": {
+    ".info": "e50c3da94e2392fc86dd9901f16362cb08f1f17f0154ad777e8e0b548a16b362",
+    "Circle Control.fs": "cfde3bc90ea3ac0b49dce315095066566fc2785234ee0b332689af9bafaa6817",
+    "Circle Control.vs": "a463be438f60a348184bed2e2ac0599ad8362296469d948de2df94d62ac84858",
+    "thumbnail.png": "80944b1d3bc8c16b7e02ae2ec6c8c24c983a9388bdf93a286400c25f375fe65b"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

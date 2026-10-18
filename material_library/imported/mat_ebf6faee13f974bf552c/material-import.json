@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_ebf6faee13f974bf552c",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Spirocco/Spirocco.fs",
+  "source_sha256": "067cf39fd831cdded3be620a92b0cd163c4acbf46171b15bbe862a21350bff95",
+  "imported_file": "Spirocco.fs",
+  "imported_files": {
+    ".info": "e8a3639d7d958327eba6221e5921dea5ec8cbc45a0d11c9d03e36e29ebe1a840",
+    "Spirocco.fs": "067cf39fd831cdded3be620a92b0cd163c4acbf46171b15bbe862a21350bff95",
+    "thumbnail.jpg": "675b32607581e9b160f27a1960659c218722c6cc947d91f661706002c12ef472"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

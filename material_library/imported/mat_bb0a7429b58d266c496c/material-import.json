@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_bb0a7429b58d266c496c",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Dithered Lensing/Dithered Lensing.fs",
+  "source_sha256": "50cd8157dec780bac6b9171837604a83b50bb303b4fa24b8e68521aac84c379d",
+  "imported_file": "Dithered Lensing.fs",
+  "imported_files": {
+    ".info": "307a45195728697d1e4dc8852d26b36c92b622d24e145cce691d8fe2a7d082fd",
+    "Dithered Lensing.fs": "50cd8157dec780bac6b9171837604a83b50bb303b4fa24b8e68521aac84c379d",
+    "thumbnail.jpg": "02c1c6f461dca94aed6d6631c441d277abc3a77c3b00fa1fb701f96beb0e6f30"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

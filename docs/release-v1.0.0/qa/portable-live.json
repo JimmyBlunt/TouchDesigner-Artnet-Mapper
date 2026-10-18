@@ -1,0 +1,37 @@
+{
+  "project_folder": "E:/Daten/Dokumente/ChatGPT/LED-Touchdesigner-Controller/PixelblazeMapper",
+  "changed_dat_paths": [
+    "/project1/shortcut_hub/shortcut_callbacks",
+    "/project1/material_browser/mb_control_runtime"
+  ],
+  "checks": {
+    "show_and_router_tables_preserved": true,
+    "material_parameters_preserved": true,
+    "fastpath_preserved": true,
+    "timeline_preserved": true,
+    "material_module_loads": true,
+    "sender_off": true
+  },
+  "sources": {
+    "/project1/show_control/callbacks": {
+      "sha256": "ae0cdf57432d27211dbf152adeffec7988e91e9dbc6258a1c11b81966f9e0f67",
+      "project_folder_bootstrap": true,
+      "obsolete_root_absent": true
+    },
+    "/project1/show_control/editor_callbacks": {
+      "sha256": "7cacdb88b47705b474c1addd58e56660369735249ea3bf112b137e674b5adfbb",
+      "project_folder_bootstrap": true,
+      "obsolete_root_absent": true
+    },
+    "/project1/material_browser/mb_control_runtime": {
+      "sha256": "f9dd619df251c64f18a91f78024f1f4c90e467509779de6fa6e866692c65f0eb",
+      "project_folder_bootstrap": true,
+      "obsolete_root_absent": true
+    },
+    "/project1/shortcut_hub/shortcut_callbacks": {
+      "sha256": "3ce57e1248e9861351b0608cc1641f541b97c87edfb0262fa722f4adabc0ec84",
+      "project_folder_bootstrap": true,
+      "obsolete_root_absent": true
+    }
+  }
+}

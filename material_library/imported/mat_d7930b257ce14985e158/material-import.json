@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_d7930b257ce14985e158",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/DilateDeluxe/DilateDeluxe.fs",
+  "source_sha256": "083e1d32c341cbf9b30daf7732f996a780902b691fad4694043296bed42663ff",
+  "imported_file": "DilateDeluxe.fs",
+  "imported_files": {
+    ".info": "b2d22b5f7f9dafdccf397a84ce25ec2e4e5149eba46808203ba9707fa307b53b",
+    "DilateDeluxe.fs": "083e1d32c341cbf9b30daf7732f996a780902b691fad4694043296bed42663ff",
+    "thumbnail.jpg": "7b43587ae4b6b6907eb8735c1e08e4ea28d7b6420c6936e49f1b71cd2f403a63"
+  },
+  "kind": "madmapper_glsl",
+  "compatibility": "unsupported"
+}

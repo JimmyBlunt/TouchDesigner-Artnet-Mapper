@@ -1,0 +1,18 @@
+{
+  "archive_sha256": "52adfcd71b631937da1e7b1dfffc7981d3ad158b7e9ff221f5f009bb4d42b7d9",
+  "bytes": 51479311,
+  "excluded": [
+    "LaserMaterials (different rendering contract; Windows-incompatible upstream path)"
+  ],
+  "files": 2101,
+  "ref": "d7ff211281f1878feeccd8ead05ce855c0eac5ee",
+  "repository": "https://github.com/madmappersoftware/MadMapper-Materials",
+  "schema_version": 1,
+  "scope": [
+    "Materials",
+    "Libraries",
+    "README.md",
+    "MaterialsDoc.md",
+    "LICENSE"
+  ]
+}

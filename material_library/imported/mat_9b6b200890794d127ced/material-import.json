@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_9b6b200890794d127ced",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Blinking Squares/Blinking Squares.fs",
+  "source_sha256": "0f89aef0ed7ebe1055ab1f0f33c727f77df89725c1d3064c6cf754920cd91ce2",
+  "imported_file": "Blinking Squares.fs",
+  "imported_files": {
+    ".info": "c132619ec4b2c5ae2ae423fa7ebf388e22cb6b9159970d28e24202b83028d838",
+    "Blinking Squares.fs": "0f89aef0ed7ebe1055ab1f0f33c727f77df89725c1d3064c6cf754920cd91ce2",
+    "thumbnail.jpg": "c3f59adca323e77641a2e5c714a6913fe25815449a8f55058fa9e154a7f48318"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

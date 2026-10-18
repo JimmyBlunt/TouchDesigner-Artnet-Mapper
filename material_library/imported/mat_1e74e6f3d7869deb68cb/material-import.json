@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_1e74e6f3d7869deb68cb",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Halftweet Rainbow/Halftweet Rainbow.fs",
+  "source_sha256": "a5651b11597fc5d64b14405cab4b4c09526fbc4868aa67465365c5456dccf2ad",
+  "imported_file": "Halftweet Rainbow.fs",
+  "imported_files": {
+    ".info": "c2b372337eeccffc9e0d423c43e0d794d7a8e0dbea54b0f16619b6e0fffb36f9",
+    "Halftweet Rainbow.fs": "a5651b11597fc5d64b14405cab4b4c09526fbc4868aa67465365c5456dccf2ad",
+    "thumbnail.jpg": "9a40b17dae2cc3af17efd4377cea2e4fd1573d1bf687c6a30405f27ca12b910b"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

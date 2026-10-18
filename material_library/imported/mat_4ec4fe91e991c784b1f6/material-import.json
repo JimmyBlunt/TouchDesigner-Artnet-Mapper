@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_4ec4fe91e991c784b1f6",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Doctor Pimple/Doctor Pimple.fs",
+  "source_sha256": "039ce41dc06b92fcf49b0982e7e26c983b697dfb865276193d88b0e4a3d3f868",
+  "imported_file": "Doctor Pimple.fs",
+  "imported_files": {
+    ".info": "2e460330f1289638e4cdf78c4c6f67155fba2db95efc20a7562d069afa7ea7a5",
+    "Doctor Pimple.fs": "039ce41dc06b92fcf49b0982e7e26c983b697dfb865276193d88b0e4a3d3f868",
+    "thumbnail.jpg": "5db85cc03a938a9e157dbe0e85489dd9ce745ab42449d753ea4de902db089624"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

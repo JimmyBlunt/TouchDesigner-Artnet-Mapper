@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_d7d6b97d4381401f3c25",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Factory/Noisy Barcode/NoisyBarcode.fs",
+  "source_sha256": "e7249ae9d3bd9f524d38dbd14ad01be021e17493c7d94002f86444937702e382",
+  "imported_file": "NoisyBarcode.fs",
+  "imported_files": {
+    ".info": "ddc06efcd174754bd48c51fa323e5757c8d10de8b19c5923c43361f613c8fca2",
+    "NoisyBarcode.fs": "e7249ae9d3bd9f524d38dbd14ad01be021e17493c7d94002f86444937702e382",
+    "thumbnail.png": "3e1f097a72fc4d391a3b0a5675302469d27ee6d337b8e1cbbbbbfc21c815f589"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

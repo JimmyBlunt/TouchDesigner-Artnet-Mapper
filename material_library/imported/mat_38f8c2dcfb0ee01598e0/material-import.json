@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_38f8c2dcfb0ee01598e0",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Triangle Contours/Triangle Contours.fs",
+  "source_sha256": "a8be102d6d8157076bedf8abecf6207d4aad42f4262eb30329f10d209bd5942e",
+  "imported_file": "Triangle Contours.fs",
+  "imported_files": {
+    ".info": "c580858934b412d3e37c84acb47fce7917cdffb6ce6271694ad40662b813348f",
+    "thumbnail.jpg": "48b9aafa792156b02d213abbb94219e856b289f286a3f346f3e523c015cf8d4c",
+    "Triangle Contours.fs": "a8be102d6d8157076bedf8abecf6207d4aad42f4262eb30329f10d209bd5942e"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

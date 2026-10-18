@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_2c3078ddae2283ca107e",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/ShapingFunctions/ShapingFunctions.fs",
+  "source_sha256": "c99a5223e6b316df59a8569b27c0effb2173bf42aa3037cbc9a8966bfb431687",
+  "imported_file": "ShapingFunctions.fs",
+  "imported_files": {
+    ".info": "e6cc8f1166cfa5a71c540c5033c3d6b788ab1dd4f58e9b939a8a6b2fd940a0e4",
+    "ShapingFunctions.fs": "c99a5223e6b316df59a8569b27c0effb2173bf42aa3037cbc9a8966bfb431687",
+    "thumbnail.jpg": "423cb3498d8a4f0f14ed8d6b1c42ee2db03fdbebaa2015e215dc30fc72c88390"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

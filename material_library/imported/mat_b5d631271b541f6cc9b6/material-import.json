@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_b5d631271b541f6cc9b6",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/FlexiFlower/FlexiFlower.fs",
+  "source_sha256": "6fda2e6e58a72405e6528611b3c535e9f63913b5625b9a3846a32d83c9174d1e",
+  "imported_file": "FlexiFlower.fs",
+  "imported_files": {
+    ".info": "937c60b9ae58c7b9285dab7ca634f5f0eee7b09770e702a7170525bbfcbe64de",
+    "FlexiFlower.fs": "6fda2e6e58a72405e6528611b3c535e9f63913b5625b9a3846a32d83c9174d1e",
+    "thumbnail.jpg": "c98c416df14eaaed3db4e6397704cd255b90105704ee9f5128134b930803a1b8"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

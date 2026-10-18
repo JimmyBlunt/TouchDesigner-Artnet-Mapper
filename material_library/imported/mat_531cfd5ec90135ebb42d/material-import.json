@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_531cfd5ec90135ebb42d",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/solarized/solarized.fs",
+  "source_sha256": "f8049adb80e9c3d85ce0859ff1880a691a0ae721865ab0506f4e9f56069f4de4",
+  "imported_file": "solarized.fs",
+  "imported_files": {
+    ".info": "ea47fc20693921ec0ef728fddb59f978cbeda3f1e4beb3c640c212a0633bd329",
+    "solarized.fs": "f8049adb80e9c3d85ce0859ff1880a691a0ae721865ab0506f4e9f56069f4de4",
+    "thumbnail.jpg": "75e223239ef0e251b8334af5f6cd50d3f741e2f949dcd2529af6c66fe8c3de5a"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

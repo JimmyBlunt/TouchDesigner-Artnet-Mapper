@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_bbf11c73fdf8153bb202",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Rubiks Ball/Rubiks Ball.fs",
+  "source_sha256": "5ba90c9c10634a9a62d653edd17e339d6913028c21b91c62a845afe48df41eb6",
+  "imported_file": "Rubiks Ball.fs",
+  "imported_files": {
+    ".info": "955c81b335d5411b50cea614ea3904c73d74142bf7177bcd30b08043aac452c8",
+    "Rubiks Ball.fs": "5ba90c9c10634a9a62d653edd17e339d6913028c21b91c62a845afe48df41eb6",
+    "thumbnail.jpg": "ad57dbde26e4e74e504b3c9255eb61174f20fe50185d0ba23acd3c7a48ae2cb1"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

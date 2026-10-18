@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_77ab0c39dc922254cb05",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/StringNoise/StringNoise.fs",
+  "source_sha256": "56538c5e70e159b5d21b853a282662ad6b9461a45598b2a53fc42cc105cc1d8d",
+  "imported_file": "StringNoise.fs",
+  "imported_files": {
+    ".info": "54e8ce2b494e205e389b682c8368b70aea6bd36958099271083f9992f1656c9f",
+    "StringNoise.fs": "56538c5e70e159b5d21b853a282662ad6b9461a45598b2a53fc42cc105cc1d8d",
+    "thumbnail.jpg": "72d943eb98279b0a12bd8d41ca42289a7101a9aedb60b3fae9985aad372a27e0"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_412a440550bd9f162aaa",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/VideoGlitchDeluxe/VideoGlitchDeluxe.fs",
+  "source_sha256": "3f3c24417e2ed8caaaa17d195c74b66f971dc288620d96e65986ede34f23ae71",
+  "imported_file": "VideoGlitchDeluxe.fs",
+  "imported_files": {
+    ".info": "42399002fb5ec440d36313ceba882f7239ef73ffa61c0effb68c6c40e9649a75",
+    "thumbnail.jpg": "883865ae55e7a8757e65b8a8e6af1bfc9529d9a1063d39fa3327904185247210",
+    "VideoGlitchDeluxe.fs": "3f3c24417e2ed8caaaa17d195c74b66f971dc288620d96e65986ede34f23ae71"
+  },
+  "kind": "madmapper_glsl",
+  "compatibility": "unsupported"
+}

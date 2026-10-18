@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_0db0b6936f39901c6ea3",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Glowing Noisy Dots/Glowing Noisy Dots.fs",
+  "source_sha256": "0be2e1d2e0b29b42a2c08a4ac3c2ccafaee120def7858c1121dedcedd47d0e39",
+  "imported_file": "Glowing Noisy Dots.fs",
+  "imported_files": {
+    ".info": "670025a35c75161efcbb008da4e9d20f1d55e3d682e2b64962f3ecf69361e410",
+    "Glowing Noisy Dots.fs": "0be2e1d2e0b29b42a2c08a4ac3c2ccafaee120def7858c1121dedcedd47d0e39",
+    "thumbnail.jpg": "be87ee92cd972092c13cebca997445bcc1a79cb60b851e8fe9d5021b57599b49"
+  },
+  "kind": "madmapper_glsl",
+  "compatibility": "adaptable"
+}

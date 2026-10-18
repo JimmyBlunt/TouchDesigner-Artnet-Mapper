@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_ad21714bc57f5bb53913",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Gravity Wave/Gravity Wave.fs",
+  "source_sha256": "d07f6dd79191db135d8556224dc652ae8d1c8edab02120664dd50a9fc4446192",
+  "imported_file": "Gravity Wave.fs",
+  "imported_files": {
+    ".info": "5a31cf29e8c31898bce92846591f95f2012679422cf0ebfa232d444d757e48f7",
+    "Gravity Wave.fs": "d07f6dd79191db135d8556224dc652ae8d1c8edab02120664dd50a9fc4446192",
+    "thumbnail.jpg": "2c56a12b2cb27f12ccdd34953941e1ff11c3b625ea9264560b2220090d7f8e44"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_93d6333b053b34bc69d6",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Glow Stripes/Template.fs",
+  "source_sha256": "6b5c0742478784e18f040af7be34488ae61dcdbcb8c72a15dfa06b863f902050",
+  "imported_file": "Template.fs",
+  "imported_files": {
+    ".info": "7a3c6dcecaf796d0db9ffc29241aab36e337e021a01e20a6b5ca2af6804f8904",
+    "Template.fs": "6b5c0742478784e18f040af7be34488ae61dcdbcb8c72a15dfa06b863f902050",
+    "thumbnail.png": "806f057ddb5674bcb9c4a5050e294eea860f96871dd771f0f1d6d765b59bc8b3"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

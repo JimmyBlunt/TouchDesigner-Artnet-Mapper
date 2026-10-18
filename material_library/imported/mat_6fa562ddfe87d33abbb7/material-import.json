@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_6fa562ddfe87d33abbb7",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Dot Wave/Dot Wave.fs",
+  "source_sha256": "a248b9d0035a485d131f9829dc9b66f45103efaec9a1d971894b531724a9fdc2",
+  "imported_file": "Dot Wave.fs",
+  "imported_files": {
+    ".info": "acdfdac1f3c4e1ee5f0fc9945be03fdd3a8f76fe4323463cb89bf756bbee9058",
+    "Dot Wave.fs": "a248b9d0035a485d131f9829dc9b66f45103efaec9a1d971894b531724a9fdc2",
+    "thumbnail.jpg": "e89180beccdcd0a0456241c4cdba16ea3e3be8a7e47f7875988b9c92e33a2ad2"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

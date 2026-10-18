@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_7957542a93ff1dab0ef0",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Retro Lava/Retro Lava.fs",
+  "source_sha256": "c4eb43a97864e4e551975ac4a86b397d5002a7a1ecd7919c2802684e53e4f46a",
+  "imported_file": "Retro Lava.fs",
+  "imported_files": {
+    ".info": "d2e225476b1ae8439dfa696baa106dd99bd13e7c32eedd56edb2b682b9f681d6",
+    "Retro Lava.fs": "c4eb43a97864e4e551975ac4a86b397d5002a7a1ecd7919c2802684e53e4f46a",
+    "thumbnail.jpg": "815c13c499524320bd4fdba85b15af838097d87c640b6031e93ea98568110bfd"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

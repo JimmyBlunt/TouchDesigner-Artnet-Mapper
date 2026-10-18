@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_ddce87ee656a6acde007",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Curious Square/squareDistortion.fs",
+  "source_sha256": "f36aee018698eee57dd5b410ef21ab2eb65c8ffe82640261395353fda06575c8",
+  "imported_file": "squareDistortion.fs",
+  "imported_files": {
+    ".info": "465391e8ea175c0b5abcde3c3c004d9ae3f61a7ea2165404ff7bc8fc992ba3c9",
+    "squareDistortion.fs": "f36aee018698eee57dd5b410ef21ab2eb65c8ffe82640261395353fda06575c8",
+    "thumbnail.png": "c51a92123fd9e2e337395e9610d4001860990c3f20afde29f33b137af51417ab"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

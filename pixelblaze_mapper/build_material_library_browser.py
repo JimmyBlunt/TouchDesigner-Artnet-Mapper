@@ -477,7 +477,8 @@ def _normalize(raw, catalog_path):
     }
 
 def _load_direct(catalog_path):
-    data = json.loads(catalog_path.read_text(encoding='utf-8'))
+    from pixelblaze_mapper.material_paths import load_catalog_document
+    data = load_catalog_document(catalog_path)
     if isinstance(data, list):
         return data
     for key in ('materials', 'items', 'entries'):
@@ -512,6 +513,8 @@ def _approved_roots():
 def _validated_file(value, extensions=None):
     if not value:
         return None
+    from pixelblaze_mapper.material_paths import resolve_asset_path, project_root_for_catalog
+    value = resolve_asset_path(value, project_root=project_root_for_catalog(_parameter('Catalogfile')))
     candidate = Path(value).expanduser().resolve(strict=True)
     if not candidate.is_file():
         raise ValueError('Not a file: ' + str(candidate))
@@ -1600,6 +1603,9 @@ def build():
     compile_error_preview.nodeX, compile_error_preview.nodeY = 600, -80
 
     preview_image = _get_or_create(owner, moviefileinTOP, "preview_image")
+    _set_if_present(preview_image, "outputresolution", "limit")
+    _set_if_present(preview_image, "resolutionw", 512)
+    _set_if_present(preview_image, "resolutionh", 512)
     preview_image.nodeX, preview_image.nodeY = 220, -80
     preview_fallback = _get_or_create(owner, textTOP, "preview_fallback")
     _set_if_present(preview_fallback, "text", "SELECT A MATERIAL\n\nPreview stays local\nOutputs stay off")
@@ -1699,6 +1705,9 @@ def build():
         _set_if_present(fallback, "fontsize", 28)
         fallback.nodeX, fallback.nodeY = -500 + slot * 90, -250
         image = _get_or_create(owner, moviefileinTOP, "card_image_%d" % slot)
+        _set_if_present(image, "outputresolution", "limit")
+        _set_if_present(image, "resolutionw", 512)
+        _set_if_present(image, "resolutionh", 512)
         image.nodeX, image.nodeY = -500 + slot * 90, -380
         _viewer(canvas, "card_viewer_%d" % slot, fallback, x, y + 38, 112, 110)
         hit = _card_hit_area(canvas, "material_hit_%d" % slot, x, y, 112, 148)

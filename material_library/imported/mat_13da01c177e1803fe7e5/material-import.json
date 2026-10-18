@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_13da01c177e1803fe7e5",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/AudioSpectrum/AudioSpectrum.fs",
+  "source_sha256": "082a45f6c2a69fda3b479504f67b8f7047fefb43a7acf38ca5bebd36038c728c",
+  "imported_file": "AudioSpectrum.fs",
+  "imported_files": {
+    ".info": "aafa355aab5a506aa5c43e906a8ea75596dfd91fd1405cd2af1231dd53614386",
+    "AudioSpectrum.fs": "082a45f6c2a69fda3b479504f67b8f7047fefb43a7acf38ca5bebd36038c728c",
+    "thumbnail.jpg": "0ad4e5b5fc2c17ba16d63951a4d3477568ed8a7bacbe2c694afcc6436f23b601"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_4c38b255972a9c99c599",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/NeonFlickering/NeonFlickering.fs",
+  "source_sha256": "ab0002a0144c164a5a2efc7c93ab5e506b2489c05cac58e4bc1af412e1b4b5b4",
+  "imported_file": "NeonFlickering.fs",
+  "imported_files": {
+    ".info": "08bba9667265046d1088124ccfd8c53588adef5ffecb0dd0f10478d764abc435",
+    "NeonFlickering.fs": "ab0002a0144c164a5a2efc7c93ab5e506b2489c05cac58e4bc1af412e1b4b5b4",
+    "thumbnail.jpg": "8bb8b9e7da740fd209bcd45639ae94aac695d7be1856ab98be532eda3d3f8b3f"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

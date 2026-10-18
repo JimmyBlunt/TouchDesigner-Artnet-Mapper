@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_b2ccecf6e2d36b33ed39",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/RollingNoise/RollingNoise.fs",
+  "source_sha256": "07652e8891f94fce79bcfeb633448c85f4a7d1a210cee899cd3ccd85da1826e8",
+  "imported_file": "RollingNoise.fs",
+  "imported_files": {
+    ".info": "54e8ce2b494e205e389b682c8368b70aea6bd36958099271083f9992f1656c9f",
+    "RollingNoise.fs": "07652e8891f94fce79bcfeb633448c85f4a7d1a210cee899cd3ccd85da1826e8",
+    "thumbnail.jpg": "90d950afc31d6915565db9ee4397e481016485ddfe212c456798a2dd04af7408"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,1713 @@
+{
+  "schema": 1,
+  "version": "1.0.0",
+  "locale": "de-DE",
+  "screens": [
+    {
+      "key": "launcher",
+      "target": "/project1/shortcut_hub/help_panel",
+      "native": true,
+      "title": "Übersicht & Shortcuts",
+      "summary": "Der Einstieg in Material, Scan, Layout, Routing und Show. OPEN öffnet den jeweiligen Dialog.",
+      "steps": [
+        "Arbeitsbereich mit OPEN oder Ctrl+Shift+Taste öffnen.",
+        "Im Dialog oben i für die Kurzinfo oder HOW-TO für den vollständigen Ablauf wählen.",
+        "Vor einer echten Ausgabe im Router Ziel, Helligkeit und Status prüfen."
+      ],
+      "fields": {},
+      "howto": "launcher.html",
+      "source": [
+        "pixelblaze_mapper/shortcut_hub.py",
+        "pixelblaze_mapper/build_shortcut_hub.py"
+      ],
+      "details": [
+        [
+          "Direkte Wege",
+          "Ctrl+Shift+1 LED-Vorschau · 2 Materialien · 3 Bibliothek · 4 Player · 5 Pixel Mapper · 6 Art-Net Router · 7 Output-Status · 8 Show · 9 Übersicht · 0 GICO-Ports · L Layout · G Scan · S LED-Suche · C Controller/Ports. Tastenkürzel greifen in TouchDesigner; ein fokussiertes Eingabefeld kann Tasten abfangen. Einmal in eine freie Fläche klicken."
+        ],
+        [
+          "Beispielablauf",
+          "Material mit Ctrl+Shift+2 auswählen, mit Ctrl+Shift+1 auf den Schrank prüfen, über Ctrl+Shift+8 eine Cue erstellen und speichern. Router und Controller-Ports öffnen eigene Ansichten; Navigation startet keine LED-Ausgabe."
+        ]
+      ]
+    },
+    {
+      "key": "materials",
+      "target": "/project1/material_browser",
+      "native": true,
+      "title": "Material Browser",
+      "summary": "Core-Effekte und importierte Materialien suchen, vorprüfen und aktivieren.",
+      "steps": [
+        "Suchbegriff und SOURCE/GROUP wählen, SEARCH / APPLY drücken.",
+        "Eine Materialkarte auswählen und Vorschau prüfen.",
+        "APPLY SELECTED aktiviert die Auswahl; Player und NATIVE PARAMS bearbeiten die Parameter.",
+        "Für eine Show im Show Editor + AKTUELLES MATERIAL verwenden."
+      ],
+      "fields": {
+        "unified_search": {
+          "description": "Name oder Teil eines Materialnamens. Leeren zeigt wieder alle Ergebnisse.",
+          "example": "Plasma"
+        },
+        "mb_control_zoom": {
+          "description": "Ausschnitt des Materials; größer zoomt in das Bild.",
+          "example": "1.0"
+        },
+        "mb_control_speed": {
+          "description": "Animationsgeschwindigkeit.",
+          "example": "1.0"
+        },
+        "mb_control_focusx": {
+          "description": "Horizontaler Bildfokus.",
+          "example": "0.5"
+        },
+        "mb_control_focusy": {
+          "description": "Vertikaler Bildfokus.",
+          "example": "0.5"
+        },
+        "mb_control_gradient_strength": {
+          "description": "Anteil des ausgewählten Farbverlaufs.",
+          "example": "0.5"
+        }
+      },
+      "howto": "materials.html",
+      "source": [
+        "pixelblaze_mapper/build_unified_material_browser.py"
+      ],
+      "details": [
+        [
+          "Material oder Show?",
+          "Der Quellschalter im Player entscheidet, was im LED-Pfad anliegt. Eine Show kann im Hintergrund laufen, obwohl Material als Quelle gewählt ist. Im Show-Modus ist eine Materialvorschau nicht automatisch die aktive LED-Quelle."
+        ],
+        [
+          "Beispiel",
+          "Plasma suchen, eine verfügbare Karte auswählen und APPLY SELECTED drücken. Vorschau und Status kontrollieren, MASTER SPEED auf 1 und Fokus auf 0.5 setzen. Anschließend eine Cue im Show Editor anlegen. Fehlende oder nicht unterstützte Imports erst in der Bibliothek klären."
+        ]
+      ]
+    },
+    {
+      "key": "library",
+      "target": "/project1/madmapper_library/ui_panel",
+      "native": true,
+      "title": "MadMapper-Bibliothek",
+      "summary": "Katalog durchsuchen, GLSL-Kompatibilität prüfen und Materialien in das Projekt importieren.",
+      "steps": [
+        "Material suchen und Karte auswählen.",
+        "Vorschau und Kompatibilitätsstatus lesen.",
+        "Import über die angebotene Bestätigung ausführen.",
+        "Das importierte Material im Material Browser auswählen und aktivieren."
+      ],
+      "fields": {
+        "search_field": {
+          "description": "Suche im Materialkatalog.",
+          "example": "Noise"
+        }
+      },
+      "howto": "library.html",
+      "source": [
+        "pixelblaze_mapper/build_material_library_browser.py",
+        "pixelblaze_mapper/build_unified_material_browser.py"
+      ],
+      "details": [
+        [
+          "Prüfen statt raten",
+          "Eine Katalogkarte bedeutet noch keinen erfolgreichen GLSL-Import. Unsupported, Compile-Fehler oder fehlende Assets sind Abbrüche. Erst ein erfolgreicher Import mit gültiger Vorschau ist als Material nutzbar. Bei schwarzem Bild auch die Parameter und Quelle prüfen."
+        ],
+        [
+          "Beispiel",
+          "Noise suchen, ein unterstütztes Material vorprüfen, Import bestätigen und anschließend im vereinheitlichten Browser unter IMPORTED finden. Dort aktivieren und eine Cue erstellen. Der vollständige Katalog und die Zahl importierter Materialien sind unterschiedliche Zählungen."
+        ]
+      ]
+    },
+    {
+      "key": "player",
+      "target": "/project1/madmapper_player_controls/ui_panel",
+      "native": true,
+      "title": "Material Player",
+      "summary": "Aktive Quelle und Materialbild mit gemeinsamen Reglern kontrollieren.",
+      "steps": [
+        "Quelle Material oder Show bewusst wählen.",
+        "Material im Browser aktivieren und Player-Vorschau prüfen.",
+        "Gemeinsame Regler schrittweise verändern; RESET VIEW setzt den Bildausschnitt zurück.",
+        "Parameter für die Show als Cue übernehmen oder über Aufnahme aufzeichnen."
+      ],
+      "fields": {
+        "player_speed": {
+          "description": "Master-Geschwindigkeit 0–2; 0 hält die Materialzeit an.",
+          "example": "1"
+        },
+        "player_scale": {
+          "description": "Materialskalierung 0.1–4.",
+          "example": "1"
+        },
+        "player_width": {
+          "description": "Breitenparameter 0–1.",
+          "example": "0.5"
+        },
+        "player_focusx": {
+          "description": "Fokus X 0–1.",
+          "example": "0.5"
+        },
+        "player_focusy": {
+          "description": "Fokus Y 0–1.",
+          "example": "0.5"
+        },
+        "player_zoom": {
+          "description": "Bildzoom 0.25–8.",
+          "example": "1"
+        },
+        "player_intensity": {
+          "description": "Intensität 0–2.",
+          "example": "0.5"
+        },
+        "player_contrast": {
+          "description": "Kontrast 0.1–4.",
+          "example": "1"
+        }
+      },
+      "howto": "player.html",
+      "source": [
+        "pixelblaze_mapper/build_unified_material_browser.py",
+        "pixelblaze_mapper/build_player_source_switch.py"
+      ],
+      "details": [
+        [
+          "Status lesen",
+          "SOURCE benennt die aktive Quelle. Die große Vorschau zeigt das Material vor dem geometrischen LED-Mapping. Die tatsächliche Position auf dem Schrank prüfst du in LED PREVIEW. Die angeforderte Ausgaberate im Router ist kein Beleg für tatsächlich erreichte FPS."
+        ],
+        [
+          "Beispiel",
+          "Material aktivieren; Speed 1, Scale 1, Fokus X/Y 0.5 und Zoom 1 einstellen. Intensity vorsichtig auf 0.5 setzen. Soll die Show die Ausgabe steuern, anschließend explizit Show als Quelle wählen."
+        ]
+      ]
+    },
+    {
+      "key": "mapper",
+      "target": "/project1/pixelblaze_mapper/ui/canvas",
+      "native": true,
+      "title": "Pixel Mapper",
+      "summary": "Bestehende Mapping-Ansicht zum Prüfen der LED-Koordinaten. Neue Panel-Geometrie wird über Scan und Layout integriert.",
+      "steps": [
+        "Koordinaten und LED-Vorschau ansehen.",
+        "Für einen Panel-Scan Layout öffnen und das konkrete Objekt auswählen.",
+        "Änderungen im Layout validieren, dann in der Schrankansicht gegenprüfen."
+      ],
+      "fields": {},
+      "howto": "mapper.html",
+      "source": [
+        "pixelblaze_mapper/build_led_preview_contract.py",
+        "pixelblaze_mapper/build_layout_scene_ui.py"
+      ],
+      "details": [
+        [
+          "Panel 8",
+          "Die Installation behält 299 adressierbare Plätze für Panel 8. 296 davon besitzen neue Messpositionen; lokale IDs 1, 61 und 93 bleiben ohne Messposition und schwarz. Diese Lücken dürfen weder aufgefüllt noch durch Umnummerieren verschoben werden."
+        ],
+        [
+          "Koordinaten",
+          "Im aktuellen Layout gilt X = Höhe, Y = rechts und Z = Tiefe. Für das ersetzte Panel zeigt das Dreieck nach unten; seine kürzere Seite zeigt zur Schrankmitte. Die Bildschirmprojektion ist keine neue Messung."
+        ]
+      ]
+    },
+    {
+      "key": "router",
+      "target": "/project1/multi_controller_output/ui_panel",
+      "native": true,
+      "title": "Art-Net Router",
+      "summary": "Controller auswählen, Routen und Status prüfen, Änderungen sicher anwenden und Ausgabe bewusst starten.",
+      "steps": [
+        "Controller aus der Auswahl wählen; LIVE CONFIG und Route lesen.",
+        "IP, Startuniversum, Helligkeit, Rate und Freigabe prüfen.",
+        "APPLY SAFE DRAFT übernimmt gültige Einstellungen bei ausgeschalteter Ausgabe.",
+        "Erst nach Kontrolle START wählen. ALL OFF beendet die Ausgabe.",
+        "Portdetails über CONTROLLER / PORTS öffnen."
+      ],
+      "fields": {
+        "router_target_ip": {
+          "description": "IPv4-Ziel des ausgewählten Controllers.",
+          "example": "10.0.0.251"
+        },
+        "router_start_universe": {
+          "description": "Art-Net-Paketadresse ab 0, nicht eine um eins erhöhte Anzeige.",
+          "example": "156"
+        },
+        "router_brightness": {
+          "description": "Helligkeitsfaktor 0–1. 0.02 entspricht 2 Prozent.",
+          "example": "0.02"
+        },
+        "router_enabled": {
+          "description": "0 = deaktiviert; 1 = freigegeben. SAFE APPLY startet den Sender nicht.",
+          "example": "0"
+        },
+        "router_rate": {
+          "description": "Angeforderte Rate 1–120 FPS; tatsächlichen Durchsatz separat prüfen.",
+          "example": "30"
+        },
+        "cal_panel": {
+          "description": "Kalibrierziel aus der angebotenen Auswahl.",
+          "example": "all"
+        },
+        "cal_pattern": {
+          "description": "Kalibriermuster: panel_id, rows, columns oder chase.",
+          "example": "panel_id"
+        },
+        "cal_chase": {
+          "description": "Index für das gezielte Kalibriermuster, ab 0.",
+          "example": "0"
+        },
+        "extra_brightness": {
+          "description": "Helligkeit eines zusätzlichen Controllers, 0–1.",
+          "example": "0.02"
+        },
+        "ws_ip": {
+          "description": "IPv4-Ziel des Controllers; veraltete Karten sind ausgeblendet.",
+          "example": "10.0.0.244"
+        },
+        "ws_universe": {
+          "description": "Startuniversum des Controllers. Aktuelle dynamische Karte verwenden.",
+          "example": "0"
+        },
+        "ws_brightness": {
+          "description": "Helligkeitsfaktor 0–1.",
+          "example": "0.02"
+        },
+        "ws_enabled": {
+          "description": "Freigabe 0/1; startet allein keine Ausgabe.",
+          "example": "0"
+        },
+        "apa_ip": {
+          "description": "IPv4-Ziel des Controllers; veraltete Karten sind ausgeblendet.",
+          "example": "10.0.0.244"
+        },
+        "apa_universe": {
+          "description": "Startuniversum des Controllers. Aktuelle dynamische Karte verwenden.",
+          "example": "0"
+        },
+        "apa_brightness": {
+          "description": "Helligkeitsfaktor 0–1.",
+          "example": "0.02"
+        },
+        "apa_enabled": {
+          "description": "Freigabe 0/1; startet allein keine Ausgabe.",
+          "example": "0"
+        }
+      },
+      "howto": "router.html",
+      "source": [
+        "pixelblaze_mapper/router_dynamic_ui.py",
+        "pixelblaze_mapper/build_multi_controller_output.py"
+      ],
+      "details": [
+        [
+          "Beispiel ohne Lichtausgabe",
+          "PANEL8_251 auswählen, 299 Plätze und zwei benötigte Universen am passenden Port kontrollieren. Helligkeit 0.02 und Freigabe 0 sind ein sicherer Entwurf. SAFE APPLY prüfen, anschließend Status erneut lesen. Kein START für einen reinen Konfigurationstest."
+        ],
+        [
+          "Status richtig verstehen",
+          "Configured, enabled, running, disabled-only und unassigned sind verschiedene Zustände. Zugeordnete Quellplätze sind nicht automatisch sichtbare Messpunkte. Ausdrücklich schwarze Lücken bleiben erhalten. LIVE BRIGHTNESS wirkt auf den laufenden Sender; es übernimmt keine anderen Entwurfsfelder."
+        ],
+        [
+          "Konflikte",
+          "Wenn eine andere Ansicht die Konfiguration geändert hat, zuerst RELOAD verwenden und den Entwurf erneut prüfen. Der Router blockiert veraltete Ausgangsdaten. Neue Controller und Portkapazitäten werden in Controller/Ports angelegt."
+        ]
+      ]
+    },
+    {
+      "key": "output",
+      "target": "/project1/pixelblaze_mapper/output_config/ui_panel",
+      "native": true,
+      "title": "Output-Status",
+      "summary": "Schreibgeschützte Zusammenfassung der aktuellen Art-Net-Ausgabe.",
+      "steps": [
+        "Controller-, Quell- und Ausgabestatus lesen.",
+        "Für Änderungen ART-NET ROUTER öffnen.",
+        "Nach einer Änderung hier die Zusammenfassung erneut prüfen."
+      ],
+      "fields": {},
+      "howto": "output.html",
+      "source": [
+        "pixelblaze_mapper/build_phase2_output_ui.py",
+        "pixelblaze_mapper/router_status_source.py"
+      ],
+      "details": [
+        [
+          "Ein Status, eine Konfiguration",
+          "Diese Ansicht ist keine zweite Senderkonfiguration. Änderungen erfolgen im Art-Net Router. Damit verhindern sich widersprechende alte und neue Ausgangseinstellungen keine konsistente Anzeige."
+        ],
+        [
+          "Beispiel",
+          "Bei einer schwarzen Schrankvorschau zunächst Quelle und Mapping prüfen. Bei gültiger Vorschau, aber dunkler Hardware Router-Freigabe, Senderstatus und Controllerziel prüfen. Die Statusanzeige allein belegt keine physische Lichtausgabe."
+        ]
+      ]
+    },
+    {
+      "key": "show",
+      "target": "/project1/show_control/control_panel",
+      "native": true,
+      "title": "Show laden, erstellen & spielen",
+      "summary": "Shows bestehen aus geordneten Cues mit Material, Dauer, Übergang und optionaler Automation.",
+      "steps": [
+        "Vor einem Showwechsel die aktuelle Show unter ihrem Namen speichern.",
+        "SHOW AUSWAEHLEN öffnen und eine gespeicherte Show wählen, oder NEUE SHOW beginnen.",
+        "Material aktivieren und + AKTUELLES MATERIAL drücken.",
+        "Cue auswählen, Name/Dauer/Übergang/Helligkeit eintragen und UEBERNEHMEN drücken.",
+        "Quelle Show wählen, Vorschau und Transport prüfen; dann SPEICHERN."
+      ],
+      "fields": {
+        "ed_show_name": {
+          "description": "Bestehende Auswahl wird unter ihrem Dateipfad aktualisiert; ein geänderter Name erzeugt eine Variante unter shows/.",
+          "example": "Schrank Abend v1"
+        },
+        "ed_cue_name": {
+          "description": "Lesbarer Name der ausgewählten Cue.",
+          "example": "Intro Blau"
+        },
+        "ed_cue_duration": {
+          "description": "Cue-Dauer in Sekunden; positive Zahl.",
+          "example": "12"
+        },
+        "ed_cue_transdur": {
+          "description": "Übergangsdauer in Sekunden, innerhalb der zulässigen Cue-Dauer.",
+          "example": "2"
+        },
+        "ed_cue_brightness": {
+          "description": "Cue-Helligkeit 0–1; multipliziert sich mit weiterer Ausgangshelligkeit.",
+          "example": "0.5"
+        }
+      },
+      "howto": "show.html",
+      "source": [
+        "pixelblaze_mapper/build_show_editor.py",
+        "pixelblaze_mapper/build_show_picker.py",
+        "pixelblaze_mapper/show_catalog.py",
+        "pixelblaze_mapper/build_show_sequencer.py"
+      ],
+      "details": [
+        [
+          "Vorhandene Show auswählen",
+          "SHOW AUSWAEHLEN und LADEN öffnen dieselbe Auswahlliste validierter Show-JSONs mit Namen, Cue-Anzahl und Dateinamen. Mit Weiter/Zurück durch die Seiten gehen; die Auswahl lädt die Show mitsamt ihren verfügbaren Begleitdateien. Vor NEUE SHOW oder Laden zuerst speichern: ein Showwechsel ersetzt den aktuellen Editorinhalt. Während einer Aufnahme ist Laden/Neu gesperrt. NEUE SHOW leert Cues, Automation und Materialzustände; der vorherige Datensatz bleibt zusätzlich als Sitzungssicherung erhalten."
+        ],
+        [
+          "Eine Variante anlegen",
+          "Show laden, den Namen beispielsweise auf Schrank Abend v2 ändern und SPEICHERN drücken. Ohne Namensänderung wird die exakt ausgewählte Datei aktualisiert. Mit geändertem Namen entsteht ein neuer, aus dem Namen abgeleiteter Dateipfad. Unterschiedliche Schreibweisen können auf denselben Dateinamen fallen. Der Status zeigt den tatsächlich verwendeten Pfad."
+        ],
+        [
+          "Cues bearbeiten",
+          "Eine Zeile wählt die Cue zur Bearbeitung. + AKTUELLES MATERIAL übernimmt die aktuelle Materialauswahl. DUPLIZIEREN erstellt eine weitere Cue; LOESCHEN entfernt die ausgewählte Cue. NACH OBEN/NACH UNTEN ordnen sie um. Die Pfeile bei Übergang, Koordinaten und Verlauf wählen die verfügbaren Werte. Eingabefelder werden mit UEBERNEHMEN übernommen. Bei nicht auflösbaren Material-IDs zuerst Import oder Zuordnung reparieren."
+        ],
+        [
+          "Transport und Quelle",
+          "PLAY startet, PAUSE hält die aktuelle Position, STOP stoppt und setzt den Showtransport zurück. PREV/NEXT wechseln Cues; GO springt wie NEXT an den Anfang der nächsten Cue. Automatische Überblendungen entstehen aus der konfigurierten Showzeit. LOOP wiederholt die Show. BLACKOUT schaltet das Showbild schwarz; ALL OFF im Router beendet die Netzwerkausgabe. Quelle Show ist separat erforderlich, damit das Showbild im LED-Pfad liegt."
+        ],
+        [
+          "Automation aufnehmen",
+          "Zuerst das Material der gewünschten Cue im Player bereitstellen. AUFNAHME startet eine Aufnahme in die ausgewählte Cue; AUFNAHME → NEUE CUE erzeugt dafür eine neue Cue. Währenddessen gemeinsame beziehungsweise unterstützte native Parameter verändern. Aufnahme erneut drücken zum Beenden. Den Hinweistext auf leere oder blockierte Aufnahmen prüfen, dann Timeline öffnen und Kurven sowie Wiedergabe kontrollieren. AUFNAHME LOESCHEN entfernt die Aufnahme der ausgewählten Cue."
+        ],
+        [
+          "Vollständiges Beispiel",
+          "NEUE SHOW → Name Schrank Abend v1. Material Plasma wählen → + AKTUELLES MATERIAL → Name Intro Blau, Dauer 12, Übergang 2, Helligkeit 0.5 → UEBERNEHMEN. Zweites Material aktivieren und als zweite Cue ergänzen, Dauer 8 und Übergang 2 setzen. Crossfade wählen. Show als Quelle wählen, PLAY und beide Cue-Wechsel in der Vorschau prüfen. STOP → SPEICHERN. Danach über SHOW AUSWAEHLEN erneut laden und Namen, zwei Cues sowie Werte kontrollieren."
+        ],
+        [
+          "Welche Dateien gehören zusammen?",
+          "shows/<name>.json enthält Cues; <name>.automation.json die Aufnahmen/Bearbeitungen; <name>.materials.json die importierten Materialzustände. Zum Übertragen alle drei Dateien zusammen sichern. Zusätzlich das TouchDesigner-Projekt speichern: Show speichern ist nicht dasselbe wie die gesamte .toe-Datei speichern."
+        ],
+        [
+          "Weiterführend",
+          "Die separate Anleitung sequencer.html erklärt Timeline, Überlappungen und Kurven. mk2.html erklärt direkte MK2-Bedienung und die beiden Aufnahmegesten. midi.html beschreibt die alternative MIDI-Zuordnung."
+        ]
+      ]
+    },
+    {
+      "key": "gico",
+      "target": "/project1/multi_controller_output/gico_port_config/ui_panel",
+      "native": true,
+      "title": "GICO-Portkonfiguration",
+      "summary": "GICO verwendet feste gleich große Universenblöcke pro physischem Port.",
+      "steps": [
+        "Reservierte Universen und Startuniversum gegen Hardwarekonfiguration prüfen.",
+        "Pro Port Name, Quelle, Anzahl, Freigabe und Farbfolge eintragen.",
+        "Entwurf validieren und sichere Übernahme ausführen.",
+        "Router-Status und LED-Vorschau erneut prüfen."
+      ],
+      "fields": {
+        "universes_per_port": {
+          "description": "Fester Reservierungsblock pro Hardwareport; nicht nur aktueller Bedarf.",
+          "example": "4"
+        },
+        "first_universe": {
+          "description": "Erstes Art-Net-Universum ab 0.",
+          "example": "0"
+        },
+        "p1_label": {
+          "description": "Lesbarer Name dieses physischen Ports.",
+          "example": "Front links"
+        },
+        "p1_enabled": {
+          "description": "Portfreigabe 0/1.",
+          "example": "0"
+        },
+        "p1_source": {
+          "description": "Erste globale Quell-LED; leer = unzugeordnet.",
+          "example": "0"
+        },
+        "p1_count": {
+          "description": "Anzahl der LED-Plätze auf diesem Port.",
+          "example": "299"
+        },
+        "p1_reverse": {
+          "description": "Quellreihenfolge umkehren: 0/1.",
+          "example": "0"
+        },
+        "p1_order": {
+          "description": "Netzwerk-Farbfolge des Ports.",
+          "example": "RGB"
+        },
+        "p2_label": {
+          "description": "Lesbarer Name dieses physischen Ports.",
+          "example": "Front links"
+        },
+        "p2_enabled": {
+          "description": "Portfreigabe 0/1.",
+          "example": "0"
+        },
+        "p2_source": {
+          "description": "Erste globale Quell-LED; leer = unzugeordnet.",
+          "example": "0"
+        },
+        "p2_count": {
+          "description": "Anzahl der LED-Plätze auf diesem Port.",
+          "example": "299"
+        },
+        "p2_reverse": {
+          "description": "Quellreihenfolge umkehren: 0/1.",
+          "example": "0"
+        },
+        "p2_order": {
+          "description": "Netzwerk-Farbfolge des Ports.",
+          "example": "RGB"
+        },
+        "p3_label": {
+          "description": "Lesbarer Name dieses physischen Ports.",
+          "example": "Front links"
+        },
+        "p3_enabled": {
+          "description": "Portfreigabe 0/1.",
+          "example": "0"
+        },
+        "p3_source": {
+          "description": "Erste globale Quell-LED; leer = unzugeordnet.",
+          "example": "0"
+        },
+        "p3_count": {
+          "description": "Anzahl der LED-Plätze auf diesem Port.",
+          "example": "299"
+        },
+        "p3_reverse": {
+          "description": "Quellreihenfolge umkehren: 0/1.",
+          "example": "0"
+        },
+        "p3_order": {
+          "description": "Netzwerk-Farbfolge des Ports.",
+          "example": "RGB"
+        },
+        "p4_label": {
+          "description": "Lesbarer Name dieses physischen Ports.",
+          "example": "Front links"
+        },
+        "p4_enabled": {
+          "description": "Portfreigabe 0/1.",
+          "example": "0"
+        },
+        "p4_source": {
+          "description": "Erste globale Quell-LED; leer = unzugeordnet.",
+          "example": "0"
+        },
+        "p4_count": {
+          "description": "Anzahl der LED-Plätze auf diesem Port.",
+          "example": "299"
+        },
+        "p4_reverse": {
+          "description": "Quellreihenfolge umkehren: 0/1.",
+          "example": "0"
+        },
+        "p4_order": {
+          "description": "Netzwerk-Farbfolge des Ports.",
+          "example": "RGB"
+        }
+      },
+      "howto": "gico.html",
+      "source": [
+        "pixelblaze_mapper/build_gico_port_config_ui.py",
+        "pixelblaze_mapper/build_port_topology_ui.py"
+      ],
+      "details": [
+        [
+          "Reserve ist nicht Bedarf",
+          "Ein RGB-Universum transportiert 170 vollständige LEDs mit 510 Kanälen. 299 LEDs benötigen zwei Universen. Wenn die Hardware vier pro Port reserviert, bleibt der nächste Port trotzdem vier Universen weiter. Nicht belegte Reserve bedeutet keinen Fehler."
+        ],
+        [
+          "Beispiel",
+          "Für einen neuen Entwurf erst die tatsächliche GICO-Portreserve ablesen. Dann zum Beispiel Quelle 0, Anzahl 299, reverse 0, RGB eintragen. Erst prüfen und anwenden; Controller/Ports ermöglicht die alternative unabhängige Portstruktur, wenn die Hardware sie unterstützt."
+        ]
+      ]
+    },
+    {
+      "key": "layout",
+      "target": "/project1/layout_scene_editor/ui_panel",
+      "native": true,
+      "title": "Layout & Panel-Ausrichtung",
+      "summary": "Objekte importieren, ausrichten und als Entwurf prüfen, bevor das aktive LED-Mapping ersetzt wird.",
+      "steps": [
+        "Aktuellen Workspace exportieren und konkretes Objekt auswählen.",
+        "Scan importieren oder Ergebnis prüfen; Original-IDs und fehlende LEDs erhalten.",
+        "Position, Rotation und Skalierung im Entwurf einstellen.",
+        "VALIDATE / PREPARE prüfen und nur den geprüften Entwurf übernehmen.",
+        "Aktive Vorschau, Routen und Quellenzahlen nach der Übernahme vergleichen."
+      ],
+      "fields": {
+        "initialfile": {
+          "description": "Geladene Layoutdatei; Anzeige, nicht direkt bearbeiten.",
+          "example": "mappings/<gespeicherte-layoutdatei>.json"
+        },
+        "format": {
+          "description": "Importformat; auto erkennt unterstützte Dateien.",
+          "example": "auto"
+        },
+        "objectname": {
+          "description": "Name für neues Objekt oder Scan.",
+          "example": "Panel 8"
+        },
+        "sourcestart": {
+          "description": "Expliziter globaler Quellstart; erst Routen prüfen.",
+          "example": "0"
+        },
+        "scanrange": {
+          "description": "Originale Scan-IDs für den Import; leer = alle.",
+          "example": "0-298"
+        },
+        "localrange": {
+          "description": "Lokale IDs des gewählten Objekts für Scan/Ersetzen/Entfernen.",
+          "example": "0-298"
+        },
+        "expectedcount": {
+          "description": "Erwartete adressierbare Gesamtzahl, nicht Zahl erfolgreicher Messungen.",
+          "example": "299"
+        },
+        "objectno": {
+          "description": "Objektnummer aus der angezeigten Liste.",
+          "example": "8"
+        },
+        "mode": {
+          "description": "Maus-/Tastenaktion für das ausgewählte Objekt.",
+          "example": "move"
+        },
+        "axis": {
+          "description": "Achse für Rotation oder Skalierung.",
+          "example": "z"
+        },
+        "step": {
+          "description": "Schrittweite in Einheiten beziehungsweise Grad.",
+          "example": "0.01"
+        },
+        "controller": {
+          "description": "Controlleridentität aus der Live-Konfiguration, nicht IP.",
+          "example": "PANEL8_251"
+        },
+        "port": {
+          "description": "Physischer Port, ab 1.",
+          "example": "1"
+        },
+        "preserverouting": {
+          "description": "Routen bei Übernahme bewusst erhalten; aktuellen Dialoghinweis beachten.",
+          "example": "1"
+        },
+        "tx": {
+          "description": "Translation: X Höhe, Y rechts, Z Tiefe.",
+          "example": "0"
+        },
+        "ty": {
+          "description": "Translation: X Höhe, Y rechts, Z Tiefe.",
+          "example": "0"
+        },
+        "tz": {
+          "description": "Translation: X Höhe, Y rechts, Z Tiefe.",
+          "example": "0"
+        },
+        "rx": {
+          "description": "Rotation in Grad um die genannte Achse.",
+          "example": "90"
+        },
+        "ry": {
+          "description": "Rotation in Grad um die genannte Achse.",
+          "example": "90"
+        },
+        "rz": {
+          "description": "Rotation in Grad um die genannte Achse.",
+          "example": "90"
+        },
+        "sx": {
+          "description": "Skalierung; 1 erhält die Größe.",
+          "example": "1"
+        },
+        "sy": {
+          "description": "Skalierung; 1 erhält die Größe.",
+          "example": "1"
+        },
+        "sz": {
+          "description": "Skalierung; 1 erhält die Größe.",
+          "example": "1"
+        }
+      },
+      "howto": "layout.html",
+      "source": [
+        "pixelblaze_mapper/build_layout_scene_ui.py",
+        "pixelblaze_mapper/layout_scene_adapter.py",
+        "pixelblaze_mapper/build_layout_apply.py"
+      ],
+      "details": [
+        [
+          "Beispiel Panel 8",
+          "Lokaler Bereich 0–298, erwartete Zahl 299; gemessen sind 296 Punkte. Die IDs 1, 61, 93 bleiben Lücken. Das Dreieck zeigt nach unten, seine kürzere Seite zur Schrankmitte. Objektnummer nicht aus der räumlichen Position erraten: die Objektliste mit Namen und Provenienz prüfen."
+        ],
+        [
+          "Ausrichten",
+          "X entspricht Höhe, Y rechts und Z Tiefe. Translation bewegt, Rotation dreht in Grad, Skalierung ändert die Größe. Erst eine Änderung setzen, Vorschau ansehen und gegebenenfalls Undo verwenden. SET TRANSFORM übernimmt die Transformationsfelder; eine Routenbindung ist ein eigener Entwurfsschritt."
+        ],
+        [
+          "Rollback",
+          "Vorher exportierten Workspace und .toe-Sicherung aufbewahren. Undo betrifft den Entwurf; nach einer dauerhaften Integration den gesicherten Projekt-/Workspace-Stand nutzen. IDs, Zieloffsets und Controllerbindungen gehören zur Wiederherstellung, nicht nur sichtbare Punkte."
+        ]
+      ]
+    },
+    {
+      "key": "scan",
+      "target": "/project1/guided_scan/ui_panel",
+      "native": true,
+      "title": "3D-Scan: Aufnahme bis Ergebnis",
+      "summary": "Jeder Scanlauf nimmt genau einen Kamerablick auf. Mehrere Ansichten ergeben die neue 3D-Geometrie.",
+      "steps": [
+        "Objekt im Layout wählen oder NEW ACQUISITION vorbereiten; Routing prüfen.",
+        "CHECK CAMERA: ganzes Panel sichtbar, Belichtung und Schwelle einstellen; CLOSE CAMERA.",
+        "CHECK SCAN PLAN prüfen, START SCAN / NEXT VIEW für eine Ansicht.",
+        "Erst nach Ende Kamera versetzen; weitere Ansichten aufnehmen.",
+        "Mindestens zwei unterschiedliche CSV-Ansichten wählen; PREPARE 3D → START 3D → REVIEW RESULT."
+      ],
+      "fields": {
+        "camera": {
+          "description": "OpenCV-Gerätenummer; mit CHECK CAMERA prüfen.",
+          "example": "0"
+        },
+        "exposure": {
+          "description": "Kameraabhängige Belichtung; Vorschau entscheidet über brauchbare Werte.",
+          "example": "-10"
+        },
+        "threshold": {
+          "description": "Detektionsschwelle 0–254; helle LED klar vom Hintergrund trennen.",
+          "example": "160"
+        },
+        "source_ids": {
+          "description": "Quell-IDs der vorbereiteten Aufnahme; global bei bestehendem Objekt, lokal bei neuer Aufnahme.",
+          "example": "0-298"
+        },
+        "anchors": {
+          "description": "Optionale Verifikationsanker; werden aufgenommen, aber nicht ersetzt.",
+          "example": "0,20,40"
+        },
+        "views": {
+          "description": "Pfade vorhandener 2D-CSV-Ansichten, getrennt durch |.",
+          "example": "C:/Scans/view1.csv | C:/Scans/view2.csv"
+        },
+        "workspace": {
+          "description": "Vorhandener Arbeitsordner für Aufnahmen und Rekonstruktion.",
+          "example": "C:/Scans/panel8"
+        },
+        "python": {
+          "description": "Installierter Python-Interpreter für die Offline-Rekonstruktion.",
+          "example": "C:/path/to/python.exe"
+        },
+        "packet_gap": {
+          "description": "Abstand zwischen Netzwerkpaketen in ms, 0–2.",
+          "example": "1"
+        },
+        "brightness": {
+          "description": "Scanhelligkeit in Prozent, 1–10; nicht Faktor 0–1.",
+          "example": "5"
+        }
+      },
+      "howto": "scan.html",
+      "source": [
+        "pixelblaze_mapper/build_scan_session_ui.py",
+        "pixelblaze_mapper/guided_scan_live.py",
+        "pixelblaze_mapper/scan_result_review.py"
+      ],
+      "details": [
+        [
+          "Vorbereitung",
+          "Ein bestehendes Panel aus Layout heraus scannen, damit Quell-IDs und Routing konsistent bleiben. Neue Aufnahme erst mit korrektem Controller, Portbereich und Anzahl vorbereiten. Andere Live-Ausgaben müssen aus sein. CHECK SCAN PLAN zeigt Ziel, Universen und Umfang; nach jeder relevanten Änderung erneut prüfen."
+        ],
+        [
+          "Kamera und Aufnahme",
+          "CHECK CAMERA öffnen. Das ganze Panel muss scharf und die einzelne LED eindeutig erkennbar sein. Belichtung ist kamerabhängig; -10 ist ein Beispiel, keine Garantie. CLOSE CAMERA gibt das Gerät frei. START SCAN nimmt einen Blick auf; während des Laufs nichts bewegen. STOP SCAN beendet einen fehlerhaften Lauf. Erst bei Abschluss Kamera zum nächsten Blick versetzen."
+        ],
+        [
+          "Rekonstruktion",
+          "In BUILD 3D / SAVED SCANS mindestens zwei tatsächlich verschiedene Ansichten auswählen. FIND MATCHING VIEWS hilft bei vorhandenen Aufnahmen; ADD VIEW CSV ergänzt gezielt. PREPARE 3D erstellt den geprüften Job, START 3D startet die Berechnung. REVIEW RESULT zeigt Abdeckung, fehlende IDs und Ergebnis. Kein automatischer Ersatz des aktiven Layouts."
+        ],
+        [
+          "Beispiel mit 299 LEDs",
+          "Neue Aufnahme mit Count 299 erzeugt lokale IDs 0–298. Drei Ansichten mit überlappender Sicht aufnehmen, ihre CSV-Dateien auswählen und rekonstruieren. Werden 296 Punkte erkannt, bleiben 3 IDs ungemessen. Fehlende IDs nachscannen oder schwarz lassen; die Adressierung bleibt 299 Plätze breit."
+        ],
+        [
+          "Wenn es nicht weitergeht",
+          "Kamera belegt: Vorschau oder andere Kamera-App schließen. Plan veraltet: CHECK SCAN PLAN erneut ausführen. Keine Punkte: Belichtung, Schwelle und Route prüfen. 3D-Jobfehler: Status und Arbeitsordner prüfen, vorhandene CSV-Dateien erhalten. Eine alte Ergebnisansicht ist kein Beleg für den zuletzt aufgenommenen Scan."
+        ]
+      ]
+    },
+    {
+      "key": "new_capture",
+      "target": "/project1/guided_scan/new_capture_panel",
+      "native": true,
+      "title": "Neue Aufnahme",
+      "summary": "Eine Aufnahme mit originalen lokalen IDs und Routing vorbereiten; das Layout bleibt zunächst unverändert.",
+      "steps": [
+        "Controllerkonfiguration und Netzwerkkarte ablesen.",
+        "Name, Ziel, Startuniversum, LED-Anzahl und Farbfolge eintragen.",
+        "Optional beide Controllerframe-Felder ausfüllen.",
+        "CREATE ACQUISITION (OUTPUT OFF) wählen und im Scan-Dialog den Plan prüfen."
+      ],
+      "fields": {
+        "name": {
+          "description": "Eindeutiger Name der Aufnahme.",
+          "example": "Panel8_299"
+        },
+        "target": {
+          "description": "IPv4 des Controllers.",
+          "example": "10.0.0.251"
+        },
+        "interface": {
+          "description": "Lokale Netzwerkkarte für Art-Net.",
+          "example": "10.0.0.125"
+        },
+        "universe": {
+          "description": "Startuniversum des Panels, ab 0.",
+          "example": "156"
+        },
+        "count": {
+          "description": "Adressierbare LED-Anzahl, lokale IDs 0 bis count−1.",
+          "example": "299"
+        },
+        "rate": {
+          "description": "Angeforderte Rate in FPS.",
+          "example": "30"
+        },
+        "order": {
+          "description": "Netzwerk-Farbfolge, nicht automatisch die physische LED-Verdrahtung.",
+          "example": "RGB"
+        },
+        "frame_start_universe": {
+          "description": "Optionaler Start des ganzen Controllerframes; zusammen mit Anzahl ausfüllen.",
+          "example": "156"
+        },
+        "frame_universe_count": {
+          "description": "Optional: gesamte Universenanzahl des Controllers; andere Ports werden schwarz gesendet.",
+          "example": "7"
+        }
+      },
+      "howto": "new_capture.html",
+      "source": [
+        "pixelblaze_mapper/build_scan_session_ui.py"
+      ],
+      "details": [
+        [
+          "Beispiel",
+          "Panel8_299, Anzahl 299. Die Zahlen 156 und 7 im Beispiel sind nur mit der dazu passenden Controllerkonfiguration gültig. Keine Universen aus anderen Panels übernehmen. Die Funktion erstellt die Aufnahmedefinition, startet weder Kamera noch Lichtausgabe und bindet noch kein Layoutobjekt."
+        ]
+      ]
+    },
+    {
+      "key": "review",
+      "target": "/project1/guided_scan/review_panel",
+      "native": true,
+      "title": "3D-Ergebnis prüfen",
+      "summary": "Messpunkte, IDs und Ausrichtung prüfen und das Ergebnis als neuen Layoutentwurf übernehmen.",
+      "steps": [
+        "Ergebnispfad und Messzahl mit dem gerade beendeten Job vergleichen.",
+        "Fehlende IDs und globalen Offset kontrollieren.",
+        "Optionale Translation/Rotation/Skalierung einstellen.",
+        "ADD AS NEW DRAFT OBJECT wählen; im Layout ausrichten und validieren."
+      ],
+      "fields": {
+        "name": {
+          "description": "Name für das neue Entwurfsobjekt.",
+          "example": "Panel 8 neuer Scan"
+        },
+        "offset": {
+          "description": "Wird jeder originalen Scan-ID hinzugefügt; gegen freie globale Quellplätze prüfen.",
+          "example": "0"
+        },
+        "tx": {
+          "description": "Translation: X Höhe, Y rechts, Z Tiefe.",
+          "example": "0"
+        },
+        "ty": {
+          "description": "Translation: X Höhe, Y rechts, Z Tiefe.",
+          "example": "0"
+        },
+        "tz": {
+          "description": "Translation: X Höhe, Y rechts, Z Tiefe.",
+          "example": "0"
+        },
+        "rx": {
+          "description": "Rotation in Grad um die genannte Achse.",
+          "example": "90"
+        },
+        "ry": {
+          "description": "Rotation in Grad um die genannte Achse.",
+          "example": "90"
+        },
+        "rz": {
+          "description": "Rotation in Grad um die genannte Achse.",
+          "example": "90"
+        },
+        "sx": {
+          "description": "Skalierung; 1 erhält die Größe.",
+          "example": "1"
+        },
+        "sy": {
+          "description": "Skalierung; 1 erhält die Größe.",
+          "example": "1"
+        },
+        "sz": {
+          "description": "Skalierung; 1 erhält die Größe.",
+          "example": "1"
+        }
+      },
+      "howto": "review.html",
+      "source": [
+        "pixelblaze_mapper/build_scan_session_ui.py",
+        "pixelblaze_mapper/scan_result_review.py"
+      ],
+      "details": [
+        [
+          "Keine stillen Ergänzungen",
+          "Der Offset wird zu originalen IDs addiert. Fehlende IDs bleiben fehlend; das Werkzeug erfindet keine Koordinaten. Die Übernahme erzeugt ein neues Entwurfsobjekt, kein automatisches Überschreiben eines bestehenden Panels."
+        ],
+        [
+          "Beispiel",
+          "Für Panel 8 Ergebnis mit 296 gemessenen Punkten und lokalem Bereich 0–298 prüfen. Erst dann im Layout den Ersatz vorbereiten. Ein im Dialog gespeicherter alter Scan mit anderer Punktzahl muss zuerst durch das richtige Ergebnis ersetzt werden."
+        ]
+      ]
+    },
+    {
+      "key": "led_search",
+      "target": "/project1/guided_scan/led_search_panel",
+      "native": true,
+      "title": "LED-Suche",
+      "summary": "Eine konkrete LED beziehungsweise ihre Nachbarn sichtbar machen und die Portlänge überprüfen.",
+      "steps": [
+        "Controller-IP wählen und AUSGAENGE LADEN ausführen.",
+        "Gewünschten OUT mit aktuell gemeldeter Anzahl auswählen.",
+        "Lokalen Index eingeben und SHOW oder Lauﬂicht bewusst starten.",
+        "STOP beendet den Test; letzten Index und Status prüfen."
+      ],
+      "fields": {
+        "controller": {
+          "description": "IPv4 des Controllers; die Ausgangsliste wird live geladen.",
+          "example": "10.0.0.251"
+        },
+        "index": {
+          "description": "Lokaler Index ab 0; bei 299 LEDs sind 0–298 zulässig.",
+          "example": "298"
+        }
+      },
+      "howto": "led_search.html",
+      "source": [
+        "pixelblaze_mapper/led_search.py",
+        "pixelblaze_mapper/led_search_ui.py"
+      ],
+      "details": [
+        [
+          "Beispiel Panel 8",
+          "Controller und OUT 1 mit 299 LEDs wählen. Index 298 entspricht der 299. LED. SHOW markiert die ausgewählte LED weiß und benachbarte LEDs farbig. Das ist eine echte Lichtausgabe und kein reiner UI-Test. Der Einzeltest endet spätestens nach 30 Sekunden; STOP kann ihn früher beenden."
+        ],
+        [
+          "Lauflicht",
+          "Das Lauflicht schreitet alle zwei Sekunden weiter. Bei der letzten tatsächlich sichtbaren LED STOP drücken und Index beziehungsweise Nummer festhalten. Der aktuelle Controllerframe wird vor dem Test neu geladen; andere Ports im gemeinsamen Frame bleiben schwarz."
+        ]
+      ]
+    },
+    {
+      "key": "ports",
+      "target": "/project1/multi_controller_output/gico_port_config/controller_ports/ui_panel",
+      "native": true,
+      "title": "Controller & Ports",
+      "summary": "Gespeicherte Controller auswählen und ihre Portstruktur als geprüften Entwurf bearbeiten.",
+      "steps": [
+        "Controller in der Auswahlliste wählen und LOAD / REVERT verwenden.",
+        "Ziel, Schnittstelle, Profil und Portzeilen prüfen.",
+        "VALIDATE DRAFT zeigt Bedarf, Reserve und Paketadressen.",
+        "SAFE APPLY (OUTPUT OFF) übernimmt; danach Router und Zuordnungen gegenprüfen."
+      ],
+      "fields": {
+        "load_id": {
+          "description": "Vorhandenen Controller aus der Auswahl laden; neue ID nur für NEW DRAFT.",
+          "example": "PANEL8_251"
+        },
+        "target": {
+          "description": "Ziel-IPv4 des Controllers.",
+          "example": "10.0.0.251"
+        },
+        "interface": {
+          "description": "Lokale IPv4 aus Schnittstellenauswahl.",
+          "example": "10.0.0.125"
+        },
+        "udp_port": {
+          "description": "UDP-Zielport für Art-Net.",
+          "example": "6454"
+        },
+        "first_ui": {
+          "description": "Art-Net-Startuniversum ab 0.",
+          "example": "156"
+        },
+        "brightness": {
+          "description": "Helligkeitsfaktor 0–1.",
+          "example": "0.02"
+        },
+        "rate": {
+          "description": "Angeforderte Rate FPS.",
+          "example": "30"
+        },
+        "enabled": {
+          "description": "Controllerfreigabe 0/1; sichere Übernahme startet nicht.",
+          "example": "0"
+        },
+        "order": {
+          "description": "Standard-Netzwerkfarbfolge.",
+          "example": "RGB"
+        },
+        "profile": {
+          "description": "gico_equal für gleiche feste Portblöcke; independent nur bei geeigneter Hardware.",
+          "example": "independent"
+        },
+        "remove_number": {
+          "description": "Physische Portnummer, deren Entfernung als Entwurf vorbereitet wird.",
+          "example": "3"
+        },
+        "row0_label": {
+          "description": "Lesbarer Portname.",
+          "example": "Panel 8"
+        },
+        "row0_enabled": {
+          "description": "Portfreigabe 0/1.",
+          "example": "1"
+        },
+        "row0_source": {
+          "description": "Erste globale Quell-LED; leer = unzugeordnet.",
+          "example": "0"
+        },
+        "row0_pixels": {
+          "description": "Adressierbare LED-Plätze.",
+          "example": "299"
+        },
+        "row0_reserve": {
+          "description": "Reservierte Universen; mindestens benötigter Bedarf.",
+          "example": "2"
+        },
+        "row0_reverse": {
+          "description": "Reihenfolge umkehren: 0/1.",
+          "example": "0"
+        },
+        "row0_order": {
+          "description": "Netzwerk-Farbfolge.",
+          "example": "RGB"
+        },
+        "row0_target": {
+          "description": "Zielpixel-Offset; leer = automatisch nach Portstruktur.",
+          "example": "0"
+        },
+        "row1_label": {
+          "description": "Lesbarer Portname.",
+          "example": "Panel 8"
+        },
+        "row1_enabled": {
+          "description": "Portfreigabe 0/1.",
+          "example": "1"
+        },
+        "row1_source": {
+          "description": "Erste globale Quell-LED; leer = unzugeordnet.",
+          "example": "0"
+        },
+        "row1_pixels": {
+          "description": "Adressierbare LED-Plätze.",
+          "example": "299"
+        },
+        "row1_reserve": {
+          "description": "Reservierte Universen; mindestens benötigter Bedarf.",
+          "example": "2"
+        },
+        "row1_reverse": {
+          "description": "Reihenfolge umkehren: 0/1.",
+          "example": "0"
+        },
+        "row1_order": {
+          "description": "Netzwerk-Farbfolge.",
+          "example": "RGB"
+        },
+        "row1_target": {
+          "description": "Zielpixel-Offset; leer = automatisch nach Portstruktur.",
+          "example": "0"
+        },
+        "row2_label": {
+          "description": "Lesbarer Portname.",
+          "example": "Panel 8"
+        },
+        "row2_enabled": {
+          "description": "Portfreigabe 0/1.",
+          "example": "1"
+        },
+        "row2_source": {
+          "description": "Erste globale Quell-LED; leer = unzugeordnet.",
+          "example": "0"
+        },
+        "row2_pixels": {
+          "description": "Adressierbare LED-Plätze.",
+          "example": "299"
+        },
+        "row2_reserve": {
+          "description": "Reservierte Universen; mindestens benötigter Bedarf.",
+          "example": "2"
+        },
+        "row2_reverse": {
+          "description": "Reihenfolge umkehren: 0/1.",
+          "example": "0"
+        },
+        "row2_order": {
+          "description": "Netzwerk-Farbfolge.",
+          "example": "RGB"
+        },
+        "row2_target": {
+          "description": "Zielpixel-Offset; leer = automatisch nach Portstruktur.",
+          "example": "0"
+        },
+        "row3_label": {
+          "description": "Lesbarer Portname.",
+          "example": "Panel 8"
+        },
+        "row3_enabled": {
+          "description": "Portfreigabe 0/1.",
+          "example": "1"
+        },
+        "row3_source": {
+          "description": "Erste globale Quell-LED; leer = unzugeordnet.",
+          "example": "0"
+        },
+        "row3_pixels": {
+          "description": "Adressierbare LED-Plätze.",
+          "example": "299"
+        },
+        "row3_reserve": {
+          "description": "Reservierte Universen; mindestens benötigter Bedarf.",
+          "example": "2"
+        },
+        "row3_reverse": {
+          "description": "Reihenfolge umkehren: 0/1.",
+          "example": "0"
+        },
+        "row3_order": {
+          "description": "Netzwerk-Farbfolge.",
+          "example": "RGB"
+        },
+        "row3_target": {
+          "description": "Zielpixel-Offset; leer = automatisch nach Portstruktur.",
+          "example": "0"
+        },
+        "row4_label": {
+          "description": "Lesbarer Portname.",
+          "example": "Panel 8"
+        },
+        "row4_enabled": {
+          "description": "Portfreigabe 0/1.",
+          "example": "1"
+        },
+        "row4_source": {
+          "description": "Erste globale Quell-LED; leer = unzugeordnet.",
+          "example": "0"
+        },
+        "row4_pixels": {
+          "description": "Adressierbare LED-Plätze.",
+          "example": "299"
+        },
+        "row4_reserve": {
+          "description": "Reservierte Universen; mindestens benötigter Bedarf.",
+          "example": "2"
+        },
+        "row4_reverse": {
+          "description": "Reihenfolge umkehren: 0/1.",
+          "example": "0"
+        },
+        "row4_order": {
+          "description": "Netzwerk-Farbfolge.",
+          "example": "RGB"
+        },
+        "row4_target": {
+          "description": "Zielpixel-Offset; leer = automatisch nach Portstruktur.",
+          "example": "0"
+        },
+        "row5_label": {
+          "description": "Lesbarer Portname.",
+          "example": "Panel 8"
+        },
+        "row5_enabled": {
+          "description": "Portfreigabe 0/1.",
+          "example": "1"
+        },
+        "row5_source": {
+          "description": "Erste globale Quell-LED; leer = unzugeordnet.",
+          "example": "0"
+        },
+        "row5_pixels": {
+          "description": "Adressierbare LED-Plätze.",
+          "example": "299"
+        },
+        "row5_reserve": {
+          "description": "Reservierte Universen; mindestens benötigter Bedarf.",
+          "example": "2"
+        },
+        "row5_reverse": {
+          "description": "Reihenfolge umkehren: 0/1.",
+          "example": "0"
+        },
+        "row5_order": {
+          "description": "Netzwerk-Farbfolge.",
+          "example": "RGB"
+        },
+        "row5_target": {
+          "description": "Zielpixel-Offset; leer = automatisch nach Portstruktur.",
+          "example": "0"
+        }
+      },
+      "howto": "ports.html",
+      "source": [
+        "pixelblaze_mapper/build_port_topology_ui.py"
+      ],
+      "details": [
+        [
+          "Entwurf und Livezustand",
+          "Die Liste wird aus den konfigurierten Controlleridentitäten erzeugt. LOAD / REVERT verwirft den aktuellen Entwurf und lädt dessen aktuellen Zustand. NEW DRAFT ist für einen wirklich neuen Controller. ADD PORT und REMOVE PORT ändern zunächst den Entwurf. STAGE DELETE bereitet eine Löschung vor; nicht für einen gewöhnlichen Wechsel verwenden."
+        ],
+        [
+          "Beispiel",
+          "PANEL8_251 laden. OUT 1 soll 299 LED-Plätze und mindestens zwei RGB-Universen besitzen. Quelle und Zieloffset müssen zur bestehenden Installation passen; sie dürfen nicht aus diesem Beispiel übernommen werden. VALIDATE DRAFT kontrolliert Kapazität und Überlappungen. SAFE APPLY hält die Ausgabe ausgeschaltet."
+        ],
+        [
+          "Portzeilen",
+          "Benötigte Universen ergeben sich aus LED-Anzahl und Zieloffset. Reservierte Universen sind Hardwarekapazität. Quelle leer bedeutet unzugeordnet. Auf Folgeseiten weitere Ports prüfen. GICO behält vier feste Hardwareplätze; unbenutzte Ports deaktivieren, statt die Hardwarestruktur umzunummerieren."
+        ]
+      ]
+    },
+    {
+      "key": "sequencer",
+      "target": "",
+      "native": false,
+      "title": "Sequencer & Timeline",
+      "summary": "Cues auf einer Zeitachse bearbeiten, Übergänge und Automationskurven prüfen und die Show speichern.",
+      "steps": [
+        "Im Show Editor TIMELINE öffnen und Verbindungsstatus abwarten.",
+        "Clip auswählen; Dauer, Übergang und optional Überlappungen einstellen.",
+        "Spur aufklappen, Automationspunkte bearbeiten und Vorschau spielen.",
+        "Loopbereich und Transport prüfen; SPEICHERN und gespeicherte Show erneut laden."
+      ],
+      "fields": {
+        "duration": {
+          "description": "Clip-Dauer in Sekunden, mindestens 0.1.",
+          "example": "12"
+        },
+        "fadeDuration": {
+          "description": "Übergangs-/Überlappungsdauer in Sekunden.",
+          "example": "2"
+        },
+        "clipFadeIn": {
+          "description": "Eigene Einblendung dieses Clips in Sekunden.",
+          "example": "1"
+        },
+        "clipFadeOut": {
+          "description": "Eigene Ausblendung dieses Clips in Sekunden.",
+          "example": "1"
+        },
+        "loopStart": {
+          "description": "Beginn des Loopbereichs in Show-Sekunden.",
+          "example": "0"
+        },
+        "loopEnd": {
+          "description": "Ende des Loopbereichs, größer als Start.",
+          "example": "20"
+        },
+        "pointTime": {
+          "description": "Zeitpunkt relativ zum Clip, in Sekunden.",
+          "example": "3.5"
+        },
+        "pointValue": {
+          "description": "Wert im zulässigen Bereich des gewählten Parameters.",
+          "example": "0.5"
+        },
+        "snap": {
+          "description": "Rasterweite für Ziehen; Aus erlaubt freie Positionierung.",
+          "example": "0.5"
+        },
+        "zoom": {
+          "description": "Zeitmaßstab der Timeline.",
+          "example": "10"
+        }
+      },
+      "howto": "sequencer.html",
+      "source": [
+        "pixelblaze_mapper/timeline_assets/index.html",
+        "pixelblaze_mapper/timeline_assets/timeline.js",
+        "pixelblaze_mapper/show_timeline_ui.py",
+        "pixelblaze_mapper/show_timeline.py"
+      ],
+      "details": [
+        [
+          "Orientierung",
+          "Oben stehen Showname, Verbindung, Play/Pause/Stopp und Speichern. Das Raster bestimmt die Einrastschritte, Zoom die Darstellung. Gesamte Show passt die Ansicht an; Playhead folgen scrollt mit. Rechts bearbeitet der Inspector die ausgewählte Cue oder den ausgewählten Automationspunkt."
+        ],
+        [
+          "Clips und Übergänge",
+          "Clip anklicken zum Auswählen. Clip ziehen ändert Reihenfolge beziehungsweise Anordnung im jeweiligen Zeitmodus; rechten Rand ziehen ändert die Länge. Dauer übernehmen setzt den Zahlenwert. Übergangsart und Überblendung werden mit Übergang übernehmen bestätigt. Die Grenze des Übergangs kann direkt gezogen werden. Zurück/Vor macht Bearbeitungen rückgängig beziehungsweise wiederholt sie."
+        ],
+        [
+          "Echte Überlappungen",
+          "Echte Überlappungen aktivieren stellt das Show-Zeitmodell um. Benachbarte Clips laufen während der Überlappung gleichzeitig. Die im Inspector angezeigte tatsächliche Überlappung prüfen. Eigene Ein-/Ausblendungen betreffen die Deckkraft des einzelnen Clips; sie sind unabhängig vom Übergang zwischen zwei Clips. Grüne/gelbe Griffe und Kurven wählen lineare, glatte oder beschleunigte Verläufe."
+        ],
+        [
+          "Automation",
+          "Spur öffnen, um aufgezeichnete Parameter zu sehen. Doppelklick auf eine Kurve setzt einen Punkt; Ziehen verändert Zeit und Wert. Rechts die Werte genau eingeben und Punkt übernehmen drücken. Entf oder Punkt löschen entfernt den gewählten Punkt. Bearbeitung aktiv schaltet die Edit-Ebene; gestrichelte Kurven zeigen die Originalaufnahme. Original wiederherstellen entfernt die Bearbeitung dieser Spur zugunsten der Aufnahme."
+        ],
+        [
+          "Loop und Navigation",
+          "Loop aktivieren, Start und Ende in Show-Sekunden setzen und Bereich übernehmen wählen. Ganze Show markieren spannt den Bereich über die Show. Zeitleiste anklicken setzt den Abspielkopf. Leertaste bedient Wiedergabe, Strg+Z Undo und Strg+Umschalt+Z Redo; ein Eingabefeld kann Tastendrücke selbst verwenden."
+        ],
+        [
+          "Vollständiges Beispiel",
+          "Eine gespeicherte Show mit zwei Cues laden und TIMELINE öffnen. Erste Cue wählen, Dauer 12 übernehmen, crossfade und 2 Sekunden Übergang setzen. Zweite Cue auf 8 Sekunden setzen. Falls gewünscht echte Überlappungen aktivieren und die neue Gesamtzeit kontrollieren. Auf einer vorhandenen automatisierten Spur bei 3.5 Sekunden einen zulässigen Wert, etwa 0.5, setzen. Show spielen, Übergang visuell kontrollieren, stoppen und speichern. Show erneut auswählen und die Kurve sowie Timingwerte gegenprüfen."
+        ],
+        [
+          "Weitere Dialoge",
+          "Material-Pads · MK2 öffnet Padzuweisung, Bankwahl und direkte Hardwareverbindung. MIDI · Controller öffnet Gerätewahl und Learn-Mapping. Diese beiden Anbindungen sind unterschiedliche Wege; die Display-/Tastenbedienung der direkten MK2-Anbindung wird in mk2.html erklärt."
+        ]
+      ]
+    },
+    {
+      "key": "mk2",
+      "target": "",
+      "native": false,
+      "title": "MASCHINE MK2 · Kurzanleitung",
+      "summary": "Direkte HID-Steuerung mit acht Pad-Bänken, Materialparametern, Showtransport und Aufnahme.",
+      "steps": [
+        "In der Timeline Material-Pads · MK2 öffnen; direkte Verbindung und Status prüfen.",
+        "STEP wählt Material Mode oder Show Mode.",
+        "Material Mode: BROWSE und Rad wählen Material; SELECT weist es einem Pad zu.",
+        "Show Mode: Transport und Cuewerte bedienen; REC oder REC+ERASE nimmt Parameter auf.",
+        "Aufnahme beenden und Show samt Begleitdateien speichern."
+      ],
+      "fields": {
+        "padSearch": {
+          "description": "Material oder Cue in der browserbasierten Zuweisung suchen.",
+          "example": "Plasma"
+        },
+        "padBank": {
+          "description": "Eine von acht Bänken mit je 16 Pads.",
+          "example": "A"
+        },
+        "padKind": {
+          "description": "Materialpreset oder Show-Cue als Pad-Aktion.",
+          "example": "material"
+        },
+        "padTarget": {
+          "description": "Ziel aus dem tatsächlich verfügbaren Katalog auswählen.",
+          "example": "Plasma"
+        }
+      },
+      "howto": "mk2.html",
+      "source": [
+        "pixelblaze_mapper/mk2_workflow.py",
+        "pixelblaze_mapper/mk2_td.py",
+        "pixelblaze_mapper/maschine_mk2.py",
+        "pixelblaze_mapper/timeline_assets/pads.js"
+      ],
+      "details": [
+        [
+          "STEP / BROWSE / SCENE / SELECT",
+          "STEP wechselt Material/Show. BROWSE öffnet im Material Mode den Katalog, SCENE die Pad-Bank. Rad drehen wählt Einträge, Rad drücken bestätigt. In BROWSE aktiviert SELECT die direkte Padzuweisung: Bank A–H und Pad wählen; bei belegtem Pad das Überschreiben ausdrücklich bestätigen. BROWSE beziehungsweise SELECT im Zuweisungsbild bricht ab."
+        ],
+        [
+          "Acht obere Tasten und acht Regler",
+          "Im Hauptbild wählen die oberen Tasten die angezeigten TD-/MM-Parameterseiten. Die acht Regler bearbeiten die sichtbaren Parameter dieser Seite. Im Browser sind Taste 1 ALL, Taste 2 FAV, Taste 3 CAT und Taste 8 der Favoritenumschalter. Nicht belegte Tasten sind in diesem Kontext ohne Aktion. CAT öffnet Kategorien; Rad wählen und drücken."
+        ],
+        [
+          "Gruppen A–H und Pads 1–16",
+          "Im Material Mode wechseln A–H acht Presetbänke. Ein Pad lädt sein Material mit gespeicherten Werten. Im Show Mode ohne Aufnahme wählen A–H Parameterblöcke und Pads 1–8 den Parameter zur Anzeige; Pads 9–16 lösen dort keine Materialwechsel aus. Die physische Zählung beginnt unten links mit 1–4 und endet oben mit 13–16."
+        ],
+        [
+          "Rad und Presetbearbeitung",
+          "Im Pad-Raster wählt das Rad einen Platz, Druck öffnet dessen Kontextmenü. Belegte Materialpads bieten select, edit, browse, delete; leere Pads browse. Bei edit verändern Regler zunächst den Presetentwurf. Rad drücken beziehungsweise der Bestätigungsdialog erlaubt Speichern oder Abbrechen. Während eines ungespeicherten Entwurfs verhindert die Steuerung unbemerkten Datenverlust."
+        ],
+        [
+          "Transport",
+          "PLAY startet die Show; die links/rechts-Transporttasten wählen vorherige/nächste Cue. RESTART geht an den Showanfang und startet. Die direkte Belegung implementiert PLAY nicht als Pause-Umschalter. Pause und Stop sind in der Timeline beziehungsweise Show Control verfügbar. Die übrigen nicht in der Grafik belegten Hardwaretasten haben in diesem Projekt keine zugewiesene Aktion."
+        ],
+        [
+          "Aufnahme: zwei verschiedene Gesten",
+          "Im Show Mode REC drücken und loslassen startet eine neue Cue-Aufnahme. REC zusammen mit ERASE startet Automation in der laufenden Cue. Dabei werden nur die während dieser Aufnahme berührten Parameterkurven ersetzt; andere bleiben bestehen. REC während einer Aufnahme beendet sie. ERASE allein löscht keine Automation. Außerhalb einer Aufnahme bleiben Encoder im Show Mode gegen unbeabsichtigtes Überschreiben gesperrt. Clipwechsel/Transport/Moduswechsel während Aufnahme sind blockiert; zuerst REC beenden."
+        ],
+        [
+          "Showwerte mit dem Rad",
+          "Im Show-Hauptbild wählt das Rad Länge, Übergangsart oder Übergangsdauer. Drücken schaltet die Bearbeitung um; Drehen ändert den ausgewählten Wert, erneutes Drücken beendet die Bearbeitung. Die Unterstreichung zeigt den Fokus, die invertierte Darstellung den Bearbeitungszustand."
+        ],
+        [
+          "Linkes und rechtes Display",
+          "Material Mode zeigt Materialbild und Name, Modus sowie Parameterseiten. Das sind monochrome Vorschaubilder, keine laufenden Farbanimationen. Show Mode zeigt Material, Playing/Paused/Stopped, vergangene und verbleibende Sekunden, Fortschrittsbalken und Übergangssymbol. Unten stehen Länge, Übergangsart und Dauer. Rechts stehen Parameterwerte beziehungsweise der gezielt gewählte Parameter. BROWSE zeigt Liste, Favoriten/Kategorien und Materialzuweisungen; Padansicht zeigt Bank und Belegung."
+        ],
+        [
+          "Leuchten verstehen",
+          "Materialpads: belegte Plätze dunkelblau/türkis, Auswahl hell, Tastendruck kurz rot. Im Show-Parameterbetrieb markiert Gelb die Auswahl und Blau geänderte/automatisierte Parameter. Aktive Gruppe ist gelb; Gruppen mit Inhalt beziehungsweise Parameteraktivität sind schwächer blau. REC blinkt während Aufnahme; ERASE blinkt zusätzlich bei Automation. Obere und Transporttasten haben feste Hardwarefarben; nur Pads und Gruppen sind RGB."
+        ],
+        [
+          "Beispiel ohne Überschreiben",
+          "STEP → Material. BROWSE → ALL → Material mit Rad wählen. SELECT → freie Bank B → leeres Pad 1. Dann SCENE → B → Pad 1 zum Laden. In der Timeline die Bank und Zuordnung überprüfen. Für eine Show zuerst eine eigene Variante speichern; STEP → Show → REC loslassen → Regler bewegen → REC stoppen → Timeline-Kurven ansehen → SPEICHERN."
+        ],
+        [
+          "Konfiguration und Prüfgrenze",
+          "config/material_pads.json speichert Bänke, Favoriten und Presetwerte; config/mk2_windows.json die Fensteranordnung. Softwaretests und ein erfolgreicher USB-Status belegen nicht automatisch jede physische Taste, Displaylesbarkeit oder Lichtfarbe. Eine neue vollständige Hardwareabnahme muss als eigener Gerätetest dokumentiert werden."
+        ]
+      ]
+    },
+    {
+      "key": "midi",
+      "target": "",
+      "native": false,
+      "title": "MIDI-Zuordnung",
+      "summary": "Alternative MIDI-Eingabe mit bewusst erlernten Adressen und gespeicherten Zuordnungen.",
+      "steps": [
+        "Timeline → MIDI · Controller öffnen und Eingabegerät wählen.",
+        "MIDI aktivieren, beim gewünschten Ziel Lernen drücken und Regler/Pad bewegen.",
+        "Ziel, Min/Max und relativen/absoluten Modus prüfen.",
+        "Mapping speichern; Live-Werte freigeben beendet temporäre Overrides."
+      ],
+      "fields": {
+        "midiDevice": {
+          "description": "Tatsächlich angeschlossenes MIDI-Eingabegerät wählen.",
+          "example": "MASCHINE MK2"
+        },
+        "midiEnabled": {
+          "description": "MIDI-Eingabe aktivieren oder abschalten.",
+          "example": "aktiv"
+        }
+      },
+      "howto": "midi.html",
+      "source": [
+        "pixelblaze_mapper/timeline_assets/index.html",
+        "pixelblaze_mapper/show_midi.py"
+      ],
+      "details": [
+        [
+          "Direktes MK2 oder MIDI",
+          "Die direkte MK2-Anbindung verwendet HID für Displays und Tastenlogik. Der MIDI-Dialog arbeitet dagegen mit MIDI-Nachrichten und gelernten Adressen aus dem Controller-Template. Dieselbe Handbewegung darf nicht unbeabsichtigt über beide Wege wirken; den gewünschten Betriebsweg bewusst wählen."
+        ],
+        [
+          "Beispiel",
+          "Für einen Regler das Ziel Speed wählen, passenden Bereich und CC-Modus setzen, Lernen drücken und den Regler einmal bewegen. Angezeigte Adresse und Werte prüfen, Mapping speichern. Live-Werte gelten bis zum Clipwechsel oder Freigeben; eine Aufnahme macht ihre Bewegung dauerhaft."
+        ]
+      ]
+    },
+    {
+      "key": "scan_library",
+      "target": "/project1/guided_scan/library_panel",
+      "native": true,
+      "title": "Scan-Bibliothek",
+      "summary": "Gespeicherte Kameraansichten und 3D-Ergebnisse auswählen, zuordnen und für weitere Messungen wiederverwenden.",
+      "steps": [
+        "CHOOSE FOLDER wählen und REFRESH FILES ausführen.",
+        "Nach 2D VIEWS oder 3D RESULTS filtern, Einträge und Vorschau prüfen.",
+        "ADD SELECTED VIEWS ergänzt 2D-Dateien; REVIEW 3D öffnet ein Ergebnis.",
+        "RESUME ORIGINAL setzt eine gespeicherte Sitzung fort; MISSING oder WEAK bereitet einen neuen Teilumfang vor."
+      ],
+      "fields": {
+        "folder": {
+          "description": "Scanordner; der Index berücksichtigt zwei Unterordnerebenen.",
+          "example": "C:/Scans"
+        },
+        "query": {
+          "description": "Suchtext in Datei- und Ordnernamen.",
+          "example": "Panel8"
+        }
+      },
+      "howto": "scan_library.html",
+      "source": [
+        "pixelblaze_mapper/scan_library_ui.py"
+      ],
+      "details": [
+        [
+          "Gezielt auswählen",
+          "Die Bibliothek zeigt Dateien mit Kontext und einer Punktvorschau. Mehrere 2D-Ansichten können gemeinsam ausgewählt werden. CLEAR SELECTION leert nur die Auswahl, nicht die Dateien. PREVIOUS/NEXT blättert durch Treffer. ORBIT verändert nur den Blick auf die Vorschau."
+        ],
+        [
+          "Beispiel",
+          "Den bisherigen Panel-8-Ordner öffnen, 2D VIEWS filtern und passende Ansichten auswählen. ADD SELECTED VIEWS ergänzt den Scan-Dialog. Einen zugehörigen 3D-Datensatz auswählen und REVIEW 3D öffnen. NEW SCOPE: MISSING beziehungsweise WEAK bereitet Nachmessungen vor, startet aber nicht selbst die Kamera."
+        ],
+        [
+          "Originalkontext",
+          "RESUME ORIGINAL benötigt genau eine originale 2D-Ansicht mit gespeicherten Metadaten. REVIEW 3D benötigt genau ein candidate_3d.csv mit quality_pending.json. Andere 3D-Dateien lassen sich vorprüfen und über Layout importieren. MISSING bedeutet in den ausgewählten Ansichten nie erkannt; WEAK bedeutet weniger als dreimal erkannt. Beide Aktionen beginnen einen neuen Teilumfang mit leerer Ansichtsliste, behalten die Dateien aber auf der Festplatte. Eine gleich klingende Datei allein beweist weder dasselbe Panel noch dieselbe Quelle."
+        ]
+      ]
+    },
+    {
+      "key": "coverage",
+      "target": "/project1/guided_scan/coverage_visual_panel",
+      "native": true,
+      "title": "Fehlende Bereiche",
+      "summary": "Messabdeckung in gespeicherten Kameraansichten prüfen und einen gezielten nächsten Kamerablick planen.",
+      "steps": [
+        "FEHLENDE BEREICHE ANZEIGEN im Scan oder Ergebnis öffnen.",
+        "Legende und Zahl ungemessener IDs lesen.",
+        "VORHERIGE/NAECHSTE ANSICHT oder MEISTE HINWEISE wählen.",
+        "Nach einer weiteren Aufnahme REFRESH drücken; dann Ergebnis erneut prüfen."
+      ],
+      "fields": {},
+      "howto": "coverage.html",
+      "source": [
+        "pixelblaze_mapper/scan_coverage_visual_ui.py",
+        "pixelblaze_mapper/scan_coverage_visual.py"
+      ],
+      "details": [
+        [
+          "Legende",
+          "Türkis: 3D-Punkt mit mindestens drei Ansichten. Gelb: 3D-Punkt mit weniger als drei Ansichten. Orange: in 2D erkannt, aber noch kein 3D-Ergebnis. Violett: Nachbarstellen als Orientierung für Lücken. Diese Kategorien beschreiben die vorhandenen Messdaten, keine erfundenen Ersatzpositionen."
+        ],
+        [
+          "Beispiel",
+          "Bei drei fehlenden Panel-8-IDs die Ansicht mit den meisten Hinweisen öffnen. Sichtbare Nachbarstellen helfen beim nächsten Blickwinkel. Nie erkannte LEDs können in keiner Kameraansicht lokalisiert werden. Zusätzliche Aufnahme aus neuer Perspektive machen, danach REFRESH und neue Rekonstruktion prüfen."
+        ]
+      ]
+    },
+    {
+      "key": "registration",
+      "target": "/project1/guided_scan/registration_panel",
+      "native": true,
+      "title": "Teilscan ausrichten & ersetzen",
+      "summary": "Neue Messpunkte anhand fester Anker ausrichten und ausschließlich ausdrücklich akzeptierte IDs im Entwurf ersetzen.",
+      "steps": [
+        "Layoutobjekt und seinen abgeschlossenen 3D-Scan bereitstellen.",
+        "Mindestens drei Fit-Anker und einen unabhängigen Prüfanker wählen.",
+        "Ersatz-IDs und maximale Abweichung eintragen; CALCULATE drücken.",
+        "RMS, Einzelabweichungen, COMPARE POINTS und EVIDENCE prüfen.",
+        "Nur bei bestandener Prüfung REPLACE IN DRAFT bestätigen; Layout validieren."
+      ],
+      "fields": {
+        "fit_ids": {
+          "description": "Mindestens drei feste, räumlich verteilte Quell-IDs außerhalb des Ersatzbereichs.",
+          "example": "0,20,40"
+        },
+        "check_ids": {
+          "description": "Separater fester Prüfanker, nicht beim Fit verwendet.",
+          "example": "60"
+        },
+        "accepted_ids": {
+          "description": "Nur rekonstruierte ausgewählte IDs, deren Position ersetzt werden soll.",
+          "example": "80-90"
+        },
+        "max_error": {
+          "description": "Zulässige Abweichung in den Koordinateneinheiten des Zielobjekts; begründet wählen.",
+          "example": "0.01"
+        }
+      },
+      "howto": "registration.html",
+      "source": [
+        "pixelblaze_mapper/scan_registration_ui.py",
+        "pixelblaze_mapper/scan_registration.py"
+      ],
+      "details": [
+        [
+          "Voraussetzungen",
+          "Mindestens vier bereits vermessene feste LEDs außerhalb des Ersatzbereichs dienen als Anker: drei für die Anpassung und mindestens eine für eine unabhängige Kontrolle. Die Zahlenbeispiele sind kein gültiger Satz für jedes Panel. Anker müssen tatsächlich in alter Geometrie und neuem Scan vorhanden sein."
+        ],
+        [
+          "Ergebnis lesen",
+          "PASS bedeutet, dass Fit- und Prüfabweichung die eingestellte Grenze einhalten. RMS fasst Abweichungen zusammen, worst zeigt den schlechtesten Punkt. COMPARE POINTS zeigt alte/neue Koordinaten und Verschiebung pro Ersatz-ID. EVIDENCE zeigt den Vorschlag im Detail. Ein zu großzügiger Grenzwert macht schlechte Messungen nicht gut."
+        ],
+        [
+          "Ersetzen und zurücknehmen",
+          "REPLACE IN DRAFT fordert eine ausdrückliche Bestätigung der gelisteten IDs. Anker und übrige LEDs behalten Position und Identität. Bei veränderten Eingaben erneut CALCULATE verwenden. Die Änderung ist im Layout mit Undo rücknehmbar; die Originalscans bleiben erhalten. Die aktive Ausgabe wird dadurch nicht automatisch umgeschaltet."
+        ]
+      ]
+    },
+    {
+      "key": "native_params",
+      "target": "/project1/material_browser/native_parameter_drawer",
+      "native": true,
+      "title": "Native Materialparameter",
+      "summary": "Materialeigene GLSL-Parameter getrennt von den gemeinsamen Player-Reglern bearbeiten.",
+      "steps": [
+        "Im Material Browser ein verfügbares Material aktivieren und NATIVE PARAMS öffnen.",
+        "Parameterzeile wählen; Typ, Bereich und aktuellen Wert prüfen.",
+        "Sichtbare Komponentenregler oder typabhängige Aktion verwenden.",
+        "Vorschau prüfen und ZURUECK ZU MATERIALIEN wählen."
+      ],
+      "fields": {
+        "native_param_editor_0": {
+          "description": "Komponente des gewählten Parameters; Bereich und Bedeutung hängen vom Material ab.",
+          "example": "0.5"
+        },
+        "native_param_editor_1": {
+          "description": "Komponente des gewählten Parameters; Bereich und Bedeutung hängen vom Material ab.",
+          "example": "0.5"
+        },
+        "native_param_editor_2": {
+          "description": "Komponente des gewählten Parameters; Bereich und Bedeutung hängen vom Material ab.",
+          "example": "0.5"
+        },
+        "native_param_editor_3": {
+          "description": "Komponente des gewählten Parameters; Bereich und Bedeutung hängen vom Material ab.",
+          "example": "0.5"
+        }
+      },
+      "howto": "native_params.html",
+      "source": [
+        "pixelblaze_mapper/build_unified_material_browser.py"
+      ],
+      "details": [
+        [
+          "Typgerechte Bedienung",
+          "Eine Zahl verwendet einen Regler, Vektor/Farbe mehrere Komponenten, diskrete Typen eine passende Aktion. Nicht jedes Material besitzt dieselben Felder. Ereignisse und Compile-Time-Parameter sind nicht beliebig als kontinuierliche Showautomation aufnehmbar; Meldungen und den angebotenen Typ beachten."
+        ],
+        [
+          "Beispiel",
+          "Ein importiertes Material aktivieren, NATIVE PARAMS öffnen und einen kontinuierlichen Helligkeits-/Geschwindigkeitsparameter wählen. Wert im angezeigten zulässigen Bereich verändern und Vorschau vergleichen. Für dauerhaft reproduzierbare Bedienung ein Preset speichern oder eine unterstützte Showaufnahme erstellen."
+        ]
+      ],
+      "embedded": true
+    },
+    {
+      "key": "mk2_preview",
+      "target": "/project1/mk2_windows/preview_panel",
+      "native": true,
+      "title": "MK2 Materialauswahl",
+      "summary": "Große, ruhige Standbildvorschau der MK2-Browse-Auswahl mit Materialname und Verfügbarkeitsstatus.",
+      "steps": [
+        "Am MK2 BROWSE öffnen und das Auswahlrad zu einem Material drehen.",
+        "Nach der Auswahl Materialname, Status und Standbild im Fenster prüfen.",
+        "Bei verfügbarer Auswahl das Rad drücken, um das Material zu laden.",
+        "Bei nicht verfügbarer Vorschau ein anderes Material wählen oder den Bibliotheksstatus prüfen."
+      ],
+      "fields": {},
+      "howto": "mk2_preview.html",
+      "source": [
+        "pixelblaze_mapper/mk2_material_preview.py",
+        "pixelblaze_mapper/mk2_windows.py"
+      ],
+      "details": [
+        [
+          "Was zeigt das Fenster?",
+          "Oben stehen Materialname und Status, darunter ein eingefrorenes Vorschaubild. Eine neu gewählte verfügbare Bibliotheksvorschau wird isoliert erzeugt und als Standbild festgehalten. Dies aktiviert das Material noch nicht und ändert weder Player noch LED-Ausgabe. Wiederholte Aktualisierungen derselben Auswahl erzeugen nicht laufend neue Bilder."
+        ],
+        [
+          "Status richtig lesen",
+          "Vorschau (Standbild) bedeutet eine erzeugte Materialvorschau. Gespeichertes Vorschaubild bedeutet einen Thumbnail-Fallback; die Statuszeile kann zusätzlich den Grund nennen. Vorschau nicht verfügbar bedeutet, dass weder eine verwendbare Materialvorschau noch ein passendes gespeichertes Bild bereitsteht. Ein Thumbnail allein bestätigt keine Shader-Kompatibilität."
+        ],
+        [
+          "Bedienung und Beispiel",
+          "Dieses Fenster hat keine Material-Eingabefelder. BROWSE und das Auswahlrad am MK2 steuern die Auswahl. Beispiel: BROWSE → ALL → ein verfügbares Material wählen → Namen und Bild prüfen → Rad drücken. Erst die Ladeaktion aktiviert die Auswahl. Das Bild ist keine laufende Vorschau der gemappten Schrank-LEDs; dafür LED PREVIEW öffnen."
+        ]
+      ]
+    },
+    {
+      "key": "pxlblz_manager",
+      "target": "",
+      "native": false,
+      "title": "PXLBLZ / Art-Net Installation",
+      "summary": "Die TouchDesigner-Anlage als geprüftes Paket an das separate lokale PXLBLZ Studio und seinen Art-Net-Router übergeben.",
+      "steps": [
+        "Im Layout oder Pixel Mapper PXLBLZ / ART-NET öffnen; Status prüfen.",
+        "Exportpaket erstellen; Werte und maskierte Plätze prüfen.",
+        "Ausgabe testen · lokal ausführen; anschließend die Pattern-Koordinaten wählen und PXLBLZ synchronisieren.",
+        "Routing anwenden; die TouchDesigner-Ausgabe wird zuvor gestoppt.",
+        "Pattern-Vorschau prüfen; erst danach Ausgabe einschalten. Ausgabe stoppen beendet die Ausgabe."
+      ],
+      "fields": {
+        "projection": {
+          "description": "Pattern-Koordinaten: entfaltete 2D-Fläche oder räumliche 3D-Positionen.",
+          "example": "surface"
+        },
+        "routeSelect": {
+          "description": "Vorhandenen Ausgang für einen Änderungsentwurf wählen.",
+          "example": "Tatsächlichen Routennamen aus der Liste wählen"
+        },
+        "target_ip": {
+          "description": "Ziel-IP des ausgewählten realen Controllers.",
+          "example": "10.0.0.251"
+        },
+        "physical_port": {
+          "description": "Physischer Port des ausgewählten Controllers, ab 1.",
+          "example": "1"
+        },
+        "pixel_start": {
+          "description": "Erster globaler Quellplatz, ab 0; aus der vorhandenen Route übernehmen.",
+          "example": "0"
+        },
+        "pixel_count": {
+          "description": "Adressierbare LED-Plätze dieser Route einschließlich maskierter IDs.",
+          "example": "299"
+        },
+        "universe_start": {
+          "description": "Erstes Art-Net-Universum, nullbasiert; mit dem Controller abgleichen.",
+          "example": "156"
+        },
+        "color_order": {
+          "description": "Physische Kanalreihenfolge des gewählten Ausgangs.",
+          "example": "BGR"
+        },
+        "brightness": {
+          "description": "Helligkeitsfaktor von 0 bis 1.",
+          "example": "0.1"
+        },
+        "localIndex": {
+          "description": "Lokaler LED-Index im gewählten Ausgang, ab 0. Der Leuchttest sendet real.",
+          "example": "0"
+        }
+      },
+      "howto": "pxlblz_manager.html",
+      "source": [
+        "tools/pxlblz_manager/ui.html",
+        "tools/pxlblz_manager/manager.mjs",
+        "tools/pxlblz_manager/service.mjs",
+        "pixelblaze_mapper/pxlblz_manager_ui.py"
+      ],
+      "details": [
+        [
+          "Voraussetzungen und Einstieg",
+          "Der Manager läuft unter http://127.0.0.1:9990. Seine Oberfläche ist im Repository enthalten; er benötigt außerdem Node.js, das separat installierte PXLBLZ Studio mit lokalen Entwicklungsabhängigkeiten und den PXLBLZ-Router. Die Pfade und lokalen Dienste stehen in tools/pxlblz_manager/settings.json. Auf einem anderen Rechner diese Installation zuerst bereitstellen und Pfade anpassen. Der native Button startet den Manager und öffnet die Seite. Ctrl+Shift+S bleibt LED SEARCH."
+        ],
+        [
+          "Prüfung und Export",
+          "Status prüfen liest TouchDesigner und die Router-Konfiguration und zeigt Unterschiede. Exportpaket erstellen schreibt Map, Aktivmaske, Routing, Layout-Sicherung und Prüfsummen in einen neuen Paketordner. Automatisch reparieren erstellt ableitbare Konfigurationen erneut; es vermisst keine LEDs und vergibt keine neuen IDs. Ausgabe testen · lokal nutzt ausschließlich einen Testempfänger auf diesem PC und bestätigt keine physische LED-Ausgabe."
+        ],
+        [
+          "Statuszahlen und Verbindungsfehler",
+          "Die Zahlen und Ausgangsliste können aus dem zuletzt gespeicherten Exportpaket stammen. Bei Noch keine Prüfung oder fetch failed sind sie kein aktueller Live-Nachweis. Zuerst lokale TouchDesigner-, Studio- und Router-Dienste prüfen, dann Status prüfen und bei geänderter Anlage ein neues Exportpaket erstellen. Die Paketkapazität, die Zahl zugeordneter Layoutpunkte und die maskierten Ausgangsplätze sind unterschiedliche Größen."
+        ],
+        [
+          "Synchronisieren und Anwenden",
+          "PXLBLZ synchronisieren verlangt einen bestandenen Test des aktuellen Pakets und unveränderte TouchDesigner-Quelldaten. Es erzeugt eine neue Map und eine Pattern-Kopie; das Originalpattern bleibt erhalten. 2D-Fläche ist für Flächenpatterns, 3D-Raum für räumliche Patterns. Die Aktion 2D-Fläche + Smooth-Trail-Test anlegen erzeugt das entsprechende Diagnosepattern. Routing anwenden verlangt das getestete und synchronisierte Paket, stoppt den TouchDesigner-Sender und liest die angewandte Router-Konfiguration zurück. Ausgabe einschalten ist ein zusätzlicher Schritt."
+        ],
+        [
+          "Ausgang bearbeiten: vollständiges Beispiel",
+          "Status prüfen → Exportpaket erstellen → Ausgang in der Liste wählen → dessen aktuelle Werte ablesen. Bei einem Panel mit 299 Adressplätzen zählt pixel_count auch absichtlich maskierte Stellen; niemals nur die gemessenen 296 eintragen. Eine erforderliche Korrektur eingeben → Änderung als Entwurf speichern → Ausgabe testen · lokal → PXLBLZ synchronisieren → Routing anwenden → Vorschau prüfen. Diese Reihenfolge gilt nach jeder Paketänderung erneut. Die Beispielwerte in der Tabelle sind unabhängig und bilden keine direkt anwendbare komplette Route."
+        ],
+        [
+          "Einzelne LED und Wiederherstellung",
+          "Einzelne LED testen · 0,75 s ist ein echter Hardwaretest am gewählten Ausgang. Vorher Ausgang, Index und Helligkeit prüfen. Letzten Stand wiederherstellen spielt die zuletzt gesicherte Router-Konfiguration und den Managerzustand zurück. Importierte Map-/Pattern-Kopien bleiben als wiederverwendbare Einträge erhalten. Prüfbericht und Dateien bietet Downloads für Map, Aktivmaske, Routing und Layout-Sicherung. Der Paketordner und Status zeigen, welche Version gerade gilt."
+        ]
+      ],
+      "web_source": "tools/pxlblz_manager/ui.html"
+    }
+  ]
+}

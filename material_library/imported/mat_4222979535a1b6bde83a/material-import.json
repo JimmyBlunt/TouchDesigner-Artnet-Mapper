@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_4222979535a1b6bde83a",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/NoisyGrad/noisygrad.fs",
+  "source_sha256": "1f3454f7ef726605abc8d53de2c8120cb27bfa3e672b80ea4a001f552618a2fa",
+  "imported_file": "noisygrad.fs",
+  "imported_files": {
+    ".info": "0b3fddb8ba84fe31db6ed681de4891c302bd97c10d7121b844b1a74363747578",
+    "noisygrad.fs": "1f3454f7ef726605abc8d53de2c8120cb27bfa3e672b80ea4a001f552618a2fa",
+    "thumbnail.png": "1f5b76208bc911f17a57b438ab13835bfda44f8aed66280752049cc5d8463402"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

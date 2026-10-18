@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_b3d8058a1df93f2941f6",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Shutter scale/Shutter scale.fs",
+  "source_sha256": "7f11b1e9f7423fd859c654b82814243c5542577756ffa709ce0bb2fc31775d46",
+  "imported_file": "Shutter scale.fs",
+  "imported_files": {
+    ".info": "be2e20f0eeccf9e3d1dd1dfe93a57b3d56bd8f1b584738cd1afb035d555f5f3e",
+    "Shutter scale.fs": "7f11b1e9f7423fd859c654b82814243c5542577756ffa709ce0bb2fc31775d46",
+    "Shutter scale.vs": "5779e0a8342fcea7b2c60bac1097bc6aa6cee1676127f0985851ff54de93f621",
+    "thumbnail.png": "d4efbe74b10b98c2233473b582db7fe2d0758fb0a3beac6fa0d0926155f51013"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

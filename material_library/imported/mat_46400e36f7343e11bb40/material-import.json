@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_46400e36f7343e11bb40",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Spectral Aim/Spectral Aim.fs",
+  "source_sha256": "c3d1c702da2a4581272aea26999f63ed52e1aa2afe5b09bdec71d0aee41bb0f4",
+  "imported_file": "Spectral Aim.fs",
+  "imported_files": {
+    ".info": "c0af0717a86082dd13c478f000d5f0ac71b41f49d90643a7030d23387d8bcdae",
+    "Spectral Aim.fs": "c3d1c702da2a4581272aea26999f63ed52e1aa2afe5b09bdec71d0aee41bb0f4",
+    "thumbnail.jpg": "4305790918dd3fdc38c2fe10e31945bce2ff88d4372be6c48059d745031eb3dc"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

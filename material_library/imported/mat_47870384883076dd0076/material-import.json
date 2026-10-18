@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_47870384883076dd0076",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/[recode]_Orbital_Wonky/[recode]_Orbital_Wonky.fs",
+  "source_sha256": "ddef4283698f6a20d6df313b116a15ddeaac38155b650fbd755f0fab348156df",
+  "imported_file": "[recode]_Orbital_Wonky.fs",
+  "imported_files": {
+    ".info": "434bd7149e190a2d56b90b81024a490c497238a6eb8d3546a088ef0368e74d19",
+    "[original]_Orbital_Wonky.jpg": "b02de341b5f1b1c6a8fc7e1fc1d54c77ecc9b095b0fc5bd56fc3b334d059e82c",
+    "[recode]_Orbital_Wonky.fs": "ddef4283698f6a20d6df313b116a15ddeaac38155b650fbd755f0fab348156df",
+    "thumbnail.jpg": "ab860044028cb8c3aae3d1df3141e27dcddad4c0ea3d5fd46c53487065ab2373"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

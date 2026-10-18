@@ -1,0 +1,544 @@
+{
+  "crumpled": {
+    "material_id": "mat_3de7fe0ae226a8eb5028",
+    "label": "Crumpled",
+    "values": {
+      "resolution": 8.0,
+      "detail": 0.1,
+      "red": 0.1,
+      "green": 0.3,
+      "blue": 0.95,
+      "brightness": 1.0,
+      "movement": 0.95,
+      "mat_zoom": 0.6,
+      "mat_speed": 0.02224694104560623,
+      "mat_offset": 0.0,
+      "mat_strob": 0.3,
+      "mat_brightness": 0.0,
+      "mat_contrast": 1.0,
+      "mat_saturation": 0.8,
+      "mat_hue_shift": 0.0
+    }
+  },
+  "crumpled-2": {
+    "material_id": "mat_3de7fe0ae226a8eb5028",
+    "label": "Crumpled",
+    "values": {
+      "resolution": 8.023359288097886,
+      "detail": 0.1,
+      "red": 0.1,
+      "green": 0.3,
+      "blue": 0.95,
+      "brightness": 1.0,
+      "movement": 0.95
+    }
+  },
+  "smoothvoronicontours-3": {
+    "material_id": "mat_f5afcd38b0f7ff071973",
+    "label": "Smoothvoronicontours",
+    "values": {
+      "mat_zoom": 0.7,
+      "mat_morph": [
+        0.0,
+        0.0
+      ],
+      "mat_glossy": false,
+      "mat_speed": 0.02224694104560623,
+      "mat_bpm_sync": false,
+      "mat_reverse": false,
+      "mat_offset": 0.0,
+      "mat_strob": 0.0,
+      "mat_brightness": 0.0,
+      "mat_contrast": 1.0,
+      "mat_saturation": 0.0,
+      "mat_hue_shift": 0.0,
+      "mat_invert": false
+    }
+  },
+  "sinepuke": {
+    "material_id": "mat_d668a7041938ba21f532",
+    "label": "Sinepuke",
+    "values": {
+      "uSpeed": 0.09343715239154626,
+      "uScale": 2.0
+    }
+  },
+  "nested-cube": {
+    "material_id": "mat_b793d955caf8ad949a92",
+    "label": "Nested Cube",
+    "values": {
+      "mat_lock_aspect": false,
+      "mat_scale": 1.0,
+      "mat_rotate": 0.0,
+      "mat_shift_amount": [
+        0.0,
+        0.0
+      ],
+      "mat_shift_scale": 1.0,
+      "mat_shift_type": 1.0,
+      "mat_mirror_x": false,
+      "mat_mirror_y": false,
+      "mat_fov": 1.0,
+      "mat_inner_size": 0.6807563959955506,
+      "mat_outer_size": 1.0,
+      "mat_refraction": 1.0,
+      "mat_collapse": 1.0,
+      "mat_transparency": 1.0,
+      "mat_bounces": 5.0,
+      "mat_iterations": 60.0,
+      "mat_obj_level": 1.0,
+      "mat_sky_level": 1.0,
+      "mat_spin": 1.0,
+      "mat_roll": 1.0,
+      "mat_speed": 1.0,
+      "mat_bpm_sync": false,
+      "mat_reverse": false,
+      "mat_offset": 0.0,
+      "mat_offset_scale": 1.0,
+      "mat_strob": 0.0,
+      "mat_restart": 0.0,
+      "mat_brightness": 0.0,
+      "mat_contrast": 1.0,
+      "mat_saturation": 0.0,
+      "mat_hue_shift": 0.0,
+      "mat_invert": false,
+      "mat_luma_to_alpha": false,
+      "mat_luma_sensitivity": 2.0,
+      "mat_luma_threshold": 0.25,
+      "mat_luma_mode": 1.0
+    }
+  },
+  "nested-cube-2": {
+    "material_id": "mat_b793d955caf8ad949a92",
+    "label": "Nested Cube",
+    "values": {
+      "mat_lock_aspect": false,
+      "mat_scale": 1.0,
+      "mat_rotate": 0.0,
+      "mat_shift_amount": [
+        0.0,
+        0.0
+      ],
+      "mat_shift_scale": 1.0,
+      "mat_shift_type": 1.0,
+      "mat_mirror_x": false,
+      "mat_mirror_y": false,
+      "mat_fov": 1.0,
+      "mat_inner_size": 0.008898776418242492,
+      "mat_outer_size": 1.0,
+      "mat_refraction": 1.0,
+      "mat_collapse": 1.0,
+      "mat_transparency": 1.0,
+      "mat_bounces": 5.0,
+      "mat_iterations": 75.0,
+      "mat_obj_level": 1.0,
+      "mat_sky_level": 1.0,
+      "mat_spin": 1.0,
+      "mat_roll": 1.0,
+      "mat_speed": 1.0,
+      "mat_bpm_sync": false,
+      "mat_reverse": false,
+      "mat_offset": 0.0,
+      "mat_offset_scale": 1.0,
+      "mat_strob": 0.0,
+      "mat_restart": 0.0,
+      "mat_brightness": 0.0,
+      "mat_contrast": 1.0,
+      "mat_saturation": 0.0,
+      "mat_hue_shift": 0.0,
+      "mat_invert": false,
+      "mat_luma_to_alpha": false,
+      "mat_luma_sensitivity": 2.0,
+      "mat_luma_threshold": 0.25,
+      "mat_luma_mode": 1.0
+    }
+  },
+  "prime-waves": {
+    "material_id": "mat_40a070ee5da985ccad90",
+    "label": "Prime Waves",
+    "values": {
+      "mat_lock_aspect": false,
+      "mat_scale": 1.0,
+      "mat_rotate": 0.0,
+      "mat_shift_amount": [
+        0.0,
+        0.0
+      ],
+      "mat_shift_scale": 1.0,
+      "mat_shift_type": 1,
+      "mat_mirror_x": false,
+      "mat_mirror_y": false,
+      "mat_noise_level": 1.0,
+      "mat_depth": 1.0,
+      "mat_distort": 1.0,
+      "mat_xy": 1.0,
+      "mat_xz": 1.0,
+      "mat_speed": 1.0,
+      "mat_bpm_sync": false,
+      "mat_reverse": false,
+      "mat_offset": 0.0,
+      "mat_offset_scale": 1.0,
+      "mat_strob": 0.0,
+      "mat_restart": 0,
+      "mat_brightness": 0.0,
+      "mat_contrast": 1.0,
+      "mat_saturation": 0.0,
+      "mat_hue_shift": 0.0,
+      "mat_invert": false,
+      "mat_luma_to_alpha": false,
+      "mat_luma_sensitivity": 2.0,
+      "mat_luma_threshold": 0.25,
+      "mat_luma_mode": 1
+    }
+  },
+  "prime-waves-2": {
+    "material_id": "mat_40a070ee5da985ccad90",
+    "label": "Prime Waves",
+    "values": {
+      "mat_lock_aspect": false,
+      "mat_scale": 1.0,
+      "mat_rotate": 0.0,
+      "mat_shift_amount": [
+        0.0,
+        0.0
+      ],
+      "mat_shift_scale": 1.0,
+      "mat_shift_type": 1.0,
+      "mat_mirror_x": false,
+      "mat_mirror_y": false,
+      "mat_noise_level": 1.0,
+      "mat_depth": 0.5873192436040044,
+      "mat_distort": 1.0,
+      "mat_xy": 1.0,
+      "mat_xz": 1.0,
+      "mat_speed": 0.3781979977753059,
+      "mat_bpm_sync": false,
+      "mat_reverse": false,
+      "mat_offset": 0.0,
+      "mat_offset_scale": 1.0,
+      "mat_strob": 0.0,
+      "mat_restart": 0.0,
+      "mat_brightness": 0.0,
+      "mat_contrast": 1.0,
+      "mat_saturation": 0.0,
+      "mat_hue_shift": 0.0,
+      "mat_invert": false,
+      "mat_luma_to_alpha": false,
+      "mat_luma_sensitivity": 2.0,
+      "mat_luma_threshold": 0.25,
+      "mat_luma_mode": 1.0
+    }
+  },
+  "rainbowtiles": {
+    "material_id": "mat_0e67e238b9263d57a6db",
+    "label": "Rainbowtiles",
+    "values": {
+      "mat_zoom": 1.0956618464961068,
+      "mat_bpm_sync": false,
+      "mat_reverse": false,
+      "mat_speed": 0.14238042269187987,
+      "mat_offset": 0.0,
+      "mat_strob": 0.0
+    }
+  },
+  "rainbowtiles-2": {
+    "material_id": "mat_0e67e238b9263d57a6db",
+    "label": "Rainbowtiles",
+    "values": {
+      "mat_zoom": 1.0956618464961068,
+      "mat_bpm_sync": false,
+      "mat_reverse": false,
+      "mat_speed": 0.14238042269187987,
+      "mat_offset": 0.0,
+      "mat_strob": 0.0
+    }
+  },
+  "plasma-09": {
+    "material_id": "mat_7ec9358fed7d785b3325",
+    "label": "Plasma 09",
+    "values": {
+      "uSpeed": 0.11123470522803114,
+      "uScale": 6.874304783092324,
+      "brightness": 0.0,
+      "contrast": 1.1,
+      "saturation": 0.0,
+      "hue_shift": 0.0,
+      "uColorA": [
+        0.0,
+        0.6,
+        0.9,
+        1.0
+      ],
+      "uColorB": [
+        0.1,
+        0.2,
+        0.7,
+        1.0
+      ],
+      "uColorC": [
+        0.3,
+        0.2,
+        0.0,
+        1.0
+      ]
+    }
+  },
+  "plasma-09-2": {
+    "material_id": "mat_7ec9358fed7d785b3325",
+    "label": "Plasma 09",
+    "values": {
+      "uSpeed": 0.11123470522803114,
+      "uScale": 6.874304783092324,
+      "brightness": 0.0,
+      "contrast": 1.1,
+      "saturation": 0.0,
+      "hue_shift": 0.0,
+      "uColorA": [
+        0.0,
+        0.6,
+        0.9,
+        1.0
+      ],
+      "uColorB": [
+        0.1,
+        0.2,
+        0.7,
+        1.0
+      ],
+      "uColorC": [
+        0.3,
+        0.2,
+        0.0,
+        1.0
+      ]
+    }
+  },
+  "ripple-noise": {
+    "material_id": "mat_552af5019bc3bcb6f44f",
+    "label": "Ripple Noise",
+    "values": {
+      "mat_scale": 3.71523915461624,
+      "mat_rotate": 0.0,
+      "mat_shift_amount": [
+        0.0,
+        0.0
+      ],
+      "mat_shift_scale": 1.0,
+      "mat_shift_type": 1,
+      "mat_mirror_x": false,
+      "mat_mirror_y": false,
+      "mat_freq": 1.0,
+      "mat_cycle1": 1.0,
+      "mat_cycle2": 1.0,
+      "mat_cycle3": 1.0,
+      "mat_speed": 0.20467185761957732,
+      "mat_bpm_sync": false,
+      "mat_reverse": false,
+      "mat_offset": 0.0,
+      "mat_offset_scale": 1.0,
+      "mat_strob": 0.0,
+      "mat_restart": 0,
+      "mat_luma_to_alpha": false,
+      "mat_luma_sensitivity": 2.0,
+      "mat_luma_threshold": 0.25,
+      "mat_luma_mode": 0,
+      "mat_brightness": 0.0,
+      "mat_contrast": 1.0,
+      "mat_saturation": 0.0,
+      "mat_hue_shift": 0.0,
+      "mat_invert": false,
+      "mat_lock_aspect": false
+    }
+  },
+  "ripple-noise-2": {
+    "material_id": "mat_552af5019bc3bcb6f44f",
+    "label": "Ripple Noise",
+    "values": {
+      "mat_scale": 3.71523915461624,
+      "mat_rotate": 0.0,
+      "mat_shift_amount": [
+        0.0,
+        0.0
+      ],
+      "mat_shift_scale": 1.0,
+      "mat_shift_type": 1.0,
+      "mat_mirror_x": false,
+      "mat_mirror_y": false,
+      "mat_freq": 1.0,
+      "mat_cycle1": 1.0,
+      "mat_cycle2": 1.0,
+      "mat_cycle3": 1.0,
+      "mat_speed": 0.20467185761957732,
+      "mat_bpm_sync": false,
+      "mat_reverse": false,
+      "mat_offset": 0.0,
+      "mat_offset_scale": 1.0,
+      "mat_strob": 0.0,
+      "mat_restart": 0.0,
+      "mat_luma_to_alpha": false,
+      "mat_luma_sensitivity": 2.0,
+      "mat_luma_threshold": 0.25,
+      "mat_luma_mode": 0.0,
+      "mat_brightness": 0.0,
+      "mat_contrast": 1.0,
+      "mat_saturation": 0.0,
+      "mat_hue_shift": 0.0,
+      "mat_invert": false,
+      "mat_lock_aspect": false
+    }
+  },
+  "plasma-09-3": {
+    "material_id": "mat_7ec9358fed7d785b3325",
+    "label": "Plasma 09",
+    "values": {
+      "uSpeed": -0.05784204671857607,
+      "uScale": 3.2703003337041157,
+      "brightness": 0.0,
+      "contrast": 2.135706340378198,
+      "saturation": 0.0,
+      "hue_shift": 0.5016685205784205,
+      "uColorA": [
+        0.273972602739726,
+        0.2511415525114155,
+        0.3607305936073059,
+        0.3607305936073059
+      ],
+      "uColorB": [
+        0.6301369863013698,
+        0.1278538812785388,
+        0.3242009132420091,
+        1.0
+      ],
+      "uColorC": [
+        0.3,
+        0.6940639269406392,
+        0.0,
+        1.0
+      ]
+    }
+  },
+  "retro-lava": {
+    "material_id": "mat_7957542a93ff1dab0ef0",
+    "label": "Retro Lava",
+    "values": {
+      "mat_scale": 1.0,
+      "mat_rotate": 0.0,
+      "mat_shift_amount": [
+        0.0,
+        0.0
+      ],
+      "mat_speed": 0.08453837597330367,
+      "mat_bpm_sync": false,
+      "mat_reverse": false,
+      "mat_offset": 0.0,
+      "mat_strob": 0.0,
+      "mat_brightness": 0.0,
+      "mat_contrast": 1.0,
+      "mat_saturation": 0.0,
+      "mat_hue_shift": 0.0,
+      "mat_invert": false,
+      "mat_back_color": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    }
+  },
+  "oil-edge": {
+    "material_id": "mat_c5f0ccd5354d21cb3ec2",
+    "label": "Oil Edge",
+    "values": {
+      "mat_lock_aspect": false,
+      "mat_scale": 1.0,
+      "mat_rotate": 0.0,
+      "mat_shift_amount": [
+        0.0,
+        0.0
+      ],
+      "mat_shift_scale": 1.0,
+      "mat_shift_type": 1,
+      "mat_flip_x": false,
+      "mat_flip_y": false,
+      "mat_mirror_x": false,
+      "mat_mirror_y": false,
+      "mat_morph1": 1.0,
+      "mat_morph2": 1.0,
+      "mat_morph3": 1.0,
+      "mat_morph4": 1.0,
+      "mat_morph5": 1.0,
+      "mat_speed": 0.3203559510567297,
+      "mat_bpm_sync": false,
+      "mat_reverse": false,
+      "mat_offset": 0.0,
+      "mat_offset_scale": 1.0,
+      "mat_strob": 0.0,
+      "mat_restart": 0,
+      "mat_color_mod1": 1.0,
+      "mat_color_mod2": 1.0,
+      "mat_brightness": 0.0,
+      "mat_contrast": 1.0,
+      "mat_saturation": 0.0,
+      "mat_hue_shift": 0.0,
+      "mat_invert": false,
+      "mat_luma_to_alpha": false,
+      "mat_luma_sensitivity": 2.0,
+      "mat_luma_threshold": 0.25,
+      "mat_luma_mode": 1
+    }
+  },
+  "oil-edge-2": {
+    "material_id": "mat_c5f0ccd5354d21cb3ec2",
+    "label": "Oil Edge",
+    "values": {
+      "mat_lock_aspect": false,
+      "mat_scale": 1.0,
+      "mat_rotate": 0.0,
+      "mat_shift_amount": [
+        0.0,
+        0.0
+      ],
+      "mat_shift_scale": 2.304783092324805,
+      "mat_shift_type": 1.0,
+      "mat_flip_x": false,
+      "mat_flip_y": false,
+      "mat_mirror_x": false,
+      "mat_mirror_y": false,
+      "mat_morph1": 0.7385984427141268,
+      "mat_morph2": 1.0,
+      "mat_morph3": 1.0,
+      "mat_morph4": 1.0,
+      "mat_morph5": 1.0,
+      "mat_speed": 0.3203559510567297,
+      "mat_bpm_sync": false,
+      "mat_reverse": false,
+      "mat_offset": 0.0,
+      "mat_offset_scale": 1.0,
+      "mat_strob": 0.0,
+      "mat_restart": 0.0,
+      "mat_color_mod1": 1.0,
+      "mat_color_mod2": 1.0,
+      "mat_brightness": 0.0,
+      "mat_contrast": 1.0,
+      "mat_saturation": 0.0,
+      "mat_hue_shift": 0.0,
+      "mat_invert": false,
+      "mat_luma_to_alpha": false,
+      "mat_luma_sensitivity": 2.0,
+      "mat_luma_threshold": 0.25,
+      "mat_luma_mode": 1.0
+    }
+  },
+  "plasma-02": {
+    "material_id": "mat_eb407546bc24472d11bc",
+    "label": "Plasma 02",
+    "values": {
+      "uSpeed": -0.04894327030033363,
+      "uScale": 1.5706340378197998,
+      "brightness": -0.6551724137931034,
+      "contrast": 1.1,
+      "saturation": 0.0,
+      "hue_shift": 0.42157953281423804
+    }
+  }
+}

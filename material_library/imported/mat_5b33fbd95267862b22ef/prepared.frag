@@ -1,0 +1,542 @@
+// PIXELBLAZE_MADMAPPER_ADAPTER_VERSION 6
+// Prepared from a MadMapper material for TouchDesigner GLSL TOP.
+out vec4 fragColor;
+uniform vec4 uTDMaterial0; // phase, scale, width, frame zoom
+uniform vec4 uTDMaterial1; // focus x, focus y, reserved, reserved
+uniform vec4 uTDCoordinate; // mode, panel columns, panel rows, hybrid mix
+#define uTDTime uTDMaterial0.x
+#define TIME uTDTime
+#define TIMEDELTA (1.0 / 60.0)
+#define FRAMEINDEX int(uTDTime * 60.0)
+#define RENDERSIZE uTDOutputInfo.res.zw
+#define DATE vec4(0.0)
+#define IMG_NORM_PIXEL(image, coord) texture(image, coord)
+#define isf_FragNormCoord vUV.st
+#define IMG_PIXEL(image, coord) texture(image, (coord) / vec2(textureSize(image, 0)))
+#define IMG_SIZE(image) vec2(textureSize(image, 0))
+#define texture2D texture
+
+vec2 mapMadMapperUV(vec2 uv)
+{
+    vec2 focus = clamp(uTDMaterial1.xy, vec2(0.0), vec2(1.0));
+    float zoom = clamp(uTDMaterial0.w, 0.25, 8.0);
+    float scale = max(uTDMaterial0.y, 0.01) / 4.0;
+    float width = clamp(uTDMaterial0.z, 0.01, 1.0);
+    vec2 framed = focus + (uv - vec2(0.5)) / zoom;
+    framed = focus + (framed - focus) * vec2(scale * (0.5 / width), scale);
+    // True global/panel-local/hybrid selection happens in the downstream
+    // per-LED sampler, where the physical panel ID is available.
+    return framed;
+}
+
+uniform vec4 uMMParam000; // native input: mat_lock_aspect
+bool mat_lock_aspect = uMMParam000.x > 0.5;
+uniform vec4 uMMParam001; // native input: mat_scale
+float mat_scale = uMMParam001.x;
+uniform vec4 uMMParam002; // native input: mat_rotate
+float mat_rotate = uMMParam002.x;
+uniform vec4 uMMParam003; // native input: mat_shift_amount
+vec2 mat_shift_amount = uMMParam003.xy;
+uniform vec4 uMMParam004; // native input: mat_shift_scale
+float mat_shift_scale = uMMParam004.x;
+uniform vec4 uMMParam005; // native input: mat_shift_type
+int mat_shift_type = int(round(uMMParam005.x));
+uniform vec4 uMMParam006; // native input: mat_mirror_x
+bool mat_mirror_x = uMMParam006.x > 0.5;
+uniform vec4 uMMParam007; // native input: mat_mirror_y
+bool mat_mirror_y = uMMParam007.x > 0.5;
+uniform vec4 uMMParam008; // native input: mat_tunnel_offset
+float mat_tunnel_offset = uMMParam008.x;
+uniform vec4 uMMParam009; // native input: mat_radius
+float mat_radius = uMMParam009.x;
+uniform vec4 uMMParam010; // native input: mat_star_size
+float mat_star_size = uMMParam010.x;
+uniform vec4 uMMParam011; // native input: mat_star_thick
+float mat_star_thick = uMMParam011.x;
+uniform vec4 uMMParam012; // native input: mat_mod1
+float mat_mod1 = uMMParam012.x;
+uniform vec4 uMMParam013; // native input: mat_edge
+float mat_edge = uMMParam013.x;
+uniform vec4 uMMParam014; // native input: mat_inner_glow
+float mat_inner_glow = uMMParam014.x;
+uniform vec4 uMMParam015; // native input: mat_fill
+float mat_fill = uMMParam015.x;
+uniform vec4 uMMParam016; // native input: mat_speed
+float mat_speed = uMMParam016.x;
+uniform vec4 uMMParam017; // native input: mat_bpm_sync
+bool mat_bpm_sync = uMMParam017.x > 0.5;
+uniform vec4 uMMParam018; // native input: mat_reverse
+bool mat_reverse = uMMParam018.x > 0.5;
+uniform vec4 uMMParam019; // native input: mat_offset
+float mat_offset = uMMParam019.x;
+uniform vec4 uMMParam020; // native input: mat_offset_scale
+float mat_offset_scale = uMMParam020.x;
+uniform vec4 uMMParam021; // native input: mat_strob
+float mat_strob = uMMParam021.x;
+uniform vec4 uMMParam022; // native input: mat_restart
+int mat_restart = int(round(uMMParam022.x));
+uniform vec4 uMMParam023; // native input: mat_brightness
+float mat_brightness = uMMParam023.x;
+uniform vec4 uMMParam024; // native input: mat_contrast
+float mat_contrast = uMMParam024.x;
+uniform vec4 uMMParam025; // native input: mat_saturation
+float mat_saturation = uMMParam025.x;
+uniform vec4 uMMParam026; // native input: mat_hue_shift
+float mat_hue_shift = uMMParam026.x;
+uniform vec4 uMMParam027; // native input: mat_invert
+bool mat_invert = uMMParam027.x > 0.5;
+uniform vec4 uMMParam028; // native input: mat_luma_to_alpha
+bool mat_luma_to_alpha = uMMParam028.x > 0.5;
+uniform vec4 uMMParam029; // native input: mat_luma_sensitivity
+float mat_luma_sensitivity = uMMParam029.x;
+uniform vec4 uMMParam030; // native input: mat_luma_threshold
+float mat_luma_threshold = uMMParam030.x;
+const int mat_luma_mode = 1;
+#define mat_luma_mode_IS_After_Color_Controls
+float mat_time_source = uTDTime * (mat_speed);
+
+// BEGIN MadCommon.glsl
+/*
+MadCommon Glsl Library
+
+Copyright (c) 2016, Garage Cube, All rights reserved.
+Copyright (c) 2016, Simon Geilfus, All rights reserved.
+
+Portions of code from Romain Dura see corresponding licence
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that
+the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this list of conditions and
+ the following disclaimer.
+* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and
+ the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+*/
+
+//! Constants
+#define PI 3.1415926535897932384626433832795
+
+//! Returns the luminance of a RGB color
+float luma( vec3 color );
+
+//! Returns the luminance of a RGB color
+float luminance( vec3 color );
+
+//! Luminance based rgb8/linear conversion
+vec3 linearToRgb( vec3 color, vec3 range );
+
+//! Luminance based rgb8/linear conversion
+vec3 rgbToLinear( vec3 color, vec3 range );
+
+//! Contrast, saturation, brightness, For all settings: 1.0 = 100% 0.5=50% 1.5 = 150%
+vec3 applyContrastSaturationBrightness( vec3 color, float contrast, float saturation, float brightness );
+
+//! Returns HSV values for RGB input color
+vec3 rgb2hsv( vec3 color );
+
+//! Returns RGB values for HSV input color
+vec3 hsv2rgb( vec3 color );
+
+//! Returns the Hue value for RGB input color
+float rgb2hue( vec3 color );
+
+//! Usefull shortcuts
+#define saturate(x) clamp( x, 0.0, 1.0 )
+#define lerp(x,y,t) mix( x, y, t )
+
+// Implementation
+
+// Luminance
+float luma( vec3 color )
+{
+    // Rec 709 Coefficients
+    return dot( color, vec3( 0.2126729, 0.7151522, 0.0721750 ) );
+}
+float luminance( vec3 color )
+{
+    return dot( color, vec3( 0.299, 0.587, 0.114 ) );
+}
+
+// Luminance based rgb8/linear conversion
+vec3 linearToRgb( vec3 color, vec3 range )
+{
+    return ( color ) / ( vec3( 1.0 ) - vec3( luminance( color ) ) / range );
+}
+
+vec3 rgbToLinear( vec3 color, vec3 range )
+{
+    return ( color ) / ( vec3( 1.0 ) + vec3( luminance( color ) ) / range );
+}
+
+// RGB <-> HSV Conversion functions
+vec3 rgb2hsv(vec3 c) {
+    vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
+    //vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));
+    //vec4 q = mix(vec4(p.xyw, c.r), vec4(c.r, p.yzx), step(p.x, c.r));
+    vec4 p = c.g < c.b ? vec4(c.bg, K.wz) : vec4(c.gb, K.xy);
+    vec4 q = c.r < p.x ? vec4(p.xyw, c.r) : vec4(c.r, p.yzx);
+    
+    float d = q.x - min(q.w, q.y);
+    float e = 1.0e-10;
+    return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);
+}
+
+vec3 hsv2rgb(vec3 c) {
+    vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+    vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
+    return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+}
+
+float rgb2hue(vec3 c)
+{
+    vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
+    vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));
+    vec4 q = mix(vec4(p.xyw, c.r), vec4(c.r, p.yzx), step(p.x, c.r));
+
+    float d = q.x - min(q.w, q.y);
+    float e = 1.0e-10;
+    return abs(q.z + (q.w - q.y) / (6.0 * d + e));
+}
+
+/*
+** Copyright (c) 2012, Romain Dura romain@shazbits.com
+** 
+** Permission to use, copy, modify, and/or distribute this software for any 
+** purpose with or without fee is hereby granted, provided that the above 
+** copyright notice and this permission notice appear in all copies.
+** 
+** THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES 
+** WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF 
+** MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY 
+** SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES 
+** WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN 
+** ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR 
+** IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+*/
+
+
+/*
+** Contrast, saturation, brightness
+** Code of this function is from TGM's shader pack
+** http://irrlicht.sourceforge.net/phpBB2/viewtopic.php?t=21057
+*/
+
+// For all settings: 1.0 = 100% 0.5=50% 1.5 = 150%
+vec3 applyContrastSaturationBrightness( vec3 color, float contrast, float saturation, float brightness )
+{
+    // Increase or decrease theese values to adjust r, g and b color channels seperately
+    const float AvgLumR = 0.5;
+    const float AvgLumG = 0.5;
+    const float AvgLumB = 0.5;
+    
+    const vec3 LumCoeff = vec3(0.2125, 0.7154, 0.0721);
+    
+    vec3 AvgLumin = vec3(AvgLumR, AvgLumG, AvgLumB);
+    vec3 brtColor = color * brightness;
+    vec3 intensity = vec3(dot(brtColor, LumCoeff));
+    vec3 satColor = mix( intensity, brtColor, saturation );
+    vec3 conColor = mix( AvgLumin, satColor, contrast );
+    return conColor;
+}
+// END MadCommon.glsl
+
+float mat_time = mat_time_source - mat_offset * 8. * mat_offset_scale;
+
+float mat_luma(vec3 color) {
+  return dot(color, vec3(0.299, 0.587, 0.114));
+}
+
+float mat_luma(vec4 color) {
+  return dot(color.rgb, vec3(0.299, 0.587, 0.114));
+}
+
+vec2 flipX(vec2 coord, float multiplier) {
+    
+    
+    vec2 new_coord = coord * multiplier;
+    new_coord += vec2(0.5);
+    new_coord.x = 1.-new_coord.x;
+    new_coord -= vec2(0.5);
+    return new_coord;
+}
+
+vec2 flipY(vec2 coord, float multiplier) {
+    
+    
+    vec2 new_coord = coord * multiplier;
+    new_coord += vec2(0.5);
+    new_coord.y = 1.-new_coord.y;
+    new_coord -= vec2(0.5);
+    return new_coord;
+}
+
+vec2 matRot2D(vec2 _st, float _angle){
+    _st -= 0.5;
+    _st =  mat2(cos(_angle),-sin(_angle),
+                sin(_angle),cos(_angle)) * _st;
+    _st += 0.5;
+    return _st;
+}
+
+vec2 mirrorUV(vec2 uv) {
+    uv += vec2(0.5);
+    if (mat_mirror_x) {
+        if (uv.x > 0.5)   {
+            uv.x = 1.0-uv.x;
+        }
+    }
+    if (mat_mirror_y) {
+        if (uv.y > 0.5) {
+            uv.y = 1.0-uv.y;
+        }
+    }
+    uv -= vec2(0.5);
+    return uv;
+}
+
+vec2 transformUV(vec2 uv) {
+
+    if (mat_lock_aspect) {
+        uv.x *= RENDERSIZE.x / RENDERSIZE.y;
+    }
+    uv *= mat_scale * 2.;
+
+    uv = mirrorUV(uv);
+
+    vec2 uv_shift = mat_shift_amount * mat_shift_scale;
+    uv_shift += vec2(0.5);
+    uv_shift.x = 1.-uv_shift.x;
+    uv_shift -= vec2(0.5);
+
+    
+    if (mat_shift_type == 0) {
+
+        
+        uv_shift += vec2(0.5);
+        uv_shift = matRot2D(uv_shift, -1. * 2*PI*(mat_rotate) / 360);
+        uv_shift -= vec2(0.5);
+        uv += uv_shift;
+    }
+
+    uv += vec2(0.5);
+    uv = matRot2D(uv, 2*PI*mat_rotate / 360);
+    uv -= vec2(0.5);
+
+    
+    if (mat_shift_type == 1) {
+
+        
+        uv_shift += vec2(0.5);
+        uv_shift = matRot2D(uv_shift, 2*PI*(mat_rotate) / 360);
+        uv_shift -= vec2(0.5);
+        uv += uv_shift;
+    }
+
+    return uv;
+}
+
+
+
+
+
+
+
+
+#define TAU             (2.0*PI)
+
+float mod1(inout float p, float size) {
+  float halfsize = size*0.5;
+  float c = floor((p + halfsize)/size);
+  p = mod(p + halfsize, size) - halfsize;
+  return c;
+}
+
+vec2 offset(float time, float z) {
+  z *= 0.1*sqrt(0.5);
+  vec2 o = vec2(0.0);
+  vec2 r = vec2(2.0);
+  o += r*vec2(cos(z), sin((sqrt(0.5))*z + pow(0.5 + 0.5*sin(sqrt(0.25)*z),5.0)));
+  return o * pow(mat_tunnel_offset,1.5);
+}
+
+void rot(inout vec2 p, float a) {
+  float c = cos(a);
+  float s = sin(a);
+  p = vec2(c*p.x + s*p.y, -s*p.x + c*p.y) / pow(mat_fill,2.);
+}
+
+vec2 toPolar(vec2 p) {
+  return vec2(length(p), atan(p.y, p.x));
+}
+
+vec2 toRect(vec2 p) {
+  return vec2(p.x*cos(p.y), p.x*sin(p.y));
+}
+
+float smallRadii = pow(0.5, 6.0) * pow(mat_star_size, 3.);
+float largeRadii = 1.0 * mat_radius + 2.0*smallRadii;
+float reps = float(int(largeRadii*TAU/(2.0*smallRadii)));
+float degree = TAU/reps;
+
+float circle(vec2 p, float r) {
+  return length(p) - r;
+}
+
+float star5(vec2 p, float r, float rf) {
+  vec2 k1 = vec2(0.809016994375, -0.587785252292) * mat_mod1;
+  vec2 k2 = vec2(-k1.x,k1.y);
+  p.x = abs(p.x);
+  p -= 2.0*max(dot(k1,p),0.0)*k1;
+  p -= 2.0*max(dot(k2,p),0.0)*k2;
+  p.x = abs(p.x);
+  p.y -= r;
+  vec2 ba = rf*vec2(-k1.y,k1.x) - vec2(0,1);
+  float h = clamp( dot(p,ba)/dot(ba,ba), 0.0, r );
+  return length(p-ba*h) * sign(p.y*ba.x-p.x*ba.y);
+}
+
+vec3 df(vec2 p, int gi) {
+  float divend = 2.0*smallRadii + 0.5*pow(1.0 - cos(0.0), 2.0);
+  float dx = largeRadii - 0.5*divend;
+  vec2 op = p;
+  vec2 pp = toPolar(p);
+  float ny = pp.y;
+  pp.y +=-0.33*smallRadii*float(gi);
+  pp.x -= dx;
+  float nx = pp.x/divend;
+  pp.x = mod(pp.x, divend);
+  pp.x += dx;
+  float nny = mod1(pp.y, degree);
+  pp.y += PI/2.0;
+  p = toRect(pp);
+
+  p -= vec2(0.0, largeRadii);
+
+  float ymul = mod(nny, 2.0) > 0.0 ? 1.0 : -1.0;
+  float xmul = mod(float(int(nx)), 2.0) > 0.0 ? 1.0 : -1.0;
+
+  rot(p, ymul*xmul*mat_time*TAU/5.0);
+
+  float d = star5(p, smallRadii, 0.25 * mat_star_thick);
+  float id = circle(op, largeRadii - smallRadii);
+  d = max(d, -id);
+
+  return vec3(d, nx, ny);
+}
+
+vec3 tunnelEffect(vec2 p) {
+  vec3 col = vec3(0.0);
+
+  
+  float smoothPixel = 5.0/1000.;
+
+  const vec3 baseCol = vec3(1.0);
+  const float zbase  = 10.0;
+  const float zdtime = 0.25;
+  const float zspeed = 10.0;
+  float gtime   = mat_time*0.5;
+  float gz      = zspeed*gtime;
+  vec2 outerOff = offset(gtime, gz);
+  float fgtime  = mod(gtime, zdtime);
+  for (int i = 22; i >= -2; --i) {
+    int   gi      = i + int(gtime/zdtime);
+    float lz      = zspeed*(zdtime*float(i) - fgtime);
+    float zscale  = zbase/(zbase + lz);
+
+    float iz      = gz + lz;
+    vec2 innerOff = offset(gtime, iz);
+
+    vec2 ip       = p + 0.5*zscale*(-innerOff + outerOff);
+    float ld      = length(ip)/zscale;
+
+    vec3 ddd      = df(ip/zscale, gi)*zscale;
+    float d       = ddd.x;
+    vec3 scol = baseCol*vec3(0.6 + 0.4*sin(TAU*ddd.y*0.005 - 0.2*iz), pow(0.6 + 0.4*cos(-2.0*abs(ddd.z)-0.4*iz-0.5*gtime), 1.0), 0.8);
+
+    float diff = exp(-0.0125*lz)*(1.0 - 1.0*tanh(pow(0.4*max(ld - largeRadii, 0.0), 2.0) + 3.0*smallRadii*max(ddd.y, 0.0)));
+
+    vec4 icol = diff*vec4(scol, smoothstep(0.0, -smoothPixel, d));
+
+    icol.w += diff*diff*diff*0.75*clamp(1.0 - 30.0*d * pow(mat_edge,4.), 0.0, 1.0);
+    icol.w += tanh(0.125*0.125*lz * pow(mat_inner_glow,2.))*0.5*ld*clamp(1.5 - ld, 0.0, 1.0);
+
+    col = mix(col, icol.xyz, clamp(icol.w, 0.0, 1.0));
+  }
+
+
+  return col;
+}
+
+vec3 postProcess(vec3 col, vec2 q) {
+  col=pow(clamp(col,0.0,1.0),vec3(0.75));
+  col=col*0.6+0.4*col*col*(3.0-2.0*col);  
+  col=mix(col, vec3(dot(col, vec3(0.33))), -0.4);  
+  col*=0.5+0.5*pow(19.0*q.x*q.y*(1.0-q.x)*(1.0-q.y),0.7);  
+  return col;
+}
+
+
+
+vec4 materialColorForPixel(vec2 texCoord)
+{
+    vec4 out_color; 
+    vec2 uv = texCoord - vec2(0.5);
+
+    uv = transformUV(uv);
+
+    vec2 q = texCoord;
+
+    vec3 col = tunnelEffect(uv);
+
+    col = postProcess(col, q);
+
+    out_color = vec4(col.xyz, 1.0);
+
+    
+    if (mat_luma_to_alpha && mat_luma_mode == 0) {
+        out_color.a = mat_luma(out_color * mat_luma_sensitivity * 4.) - mat_luma_threshold * 4.;
+    }
+
+    
+    if (mat_invert) out_color.rgb=1-out_color.rgb;
+
+    
+    if (mat_hue_shift > 0.01 || mat_saturation != 0) {
+        vec3 hsv = rgb2hsv(out_color.rgb);
+        hsv.x = fract(0.9999999*(hsv.x+mat_hue_shift));
+        hsv.y = max(hsv.y + mat_saturation, 0);
+        out_color.rgb = hsv2rgb(hsv);
+    }
+
+    
+    const vec3 LumCoeff = vec3(0.2125, 0.7154, 0.0721);
+    const vec3 AvgLumin = vec3(0.5, 0.5, 0.5);
+    vec3 intensity = vec3(dot(out_color.rgb, LumCoeff));
+    out_color.rgb = mix(AvgLumin, out_color.rgb, mat_contrast);
+
+    
+    out_color.rgb += mat_brightness;
+
+    
+    if (mat_luma_to_alpha && mat_luma_mode == 1) {
+        out_color.a = mat_luma(out_color * mat_luma_sensitivity * 4.) - mat_luma_threshold * 4.;
+    }
+
+    return out_color;
+}
+
+
+void main()
+{
+
+    fragColor = TDOutputSwizzle(materialColorForPixel(mapMadMapperUV(vUV.st)));
+}

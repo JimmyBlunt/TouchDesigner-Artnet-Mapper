@@ -2,6 +2,8 @@
 import ast
 from pathlib import Path
 from types import SimpleNamespace
+from unittest.mock import patch
+import sys
 import unittest
 
 from pixelblaze_mapper.shortcut_hub import SHORTCUTS, ShortcutSpec, validate_shortcuts
@@ -41,6 +43,14 @@ class ShortcutNavigationRuntimeTests(unittest.TestCase):
         self.assertEqual(self.opened, [])
         event(key='L')
         self.assertEqual(self.opened, ['/project1/layout_scene_editor/ui_panel'])
+
+    def test_led_search_import_bootstraps_current_project_folder(self):
+        self.runtime['project'] = SimpleNamespace(folder='D:/Moved Project')
+        with patch('pixelblaze_mapper.led_search.act', return_value=True) as action:
+            with patch.object(sys, 'path', list(sys.path)):
+                self.assertTrue(self.runtime['open_target']('s'))
+                self.assertEqual(sys.path[0], 'D:/Moved Project')
+            action.assert_called_once_with(self.nodes.get, 'open')
 
     def test_viewer_failure_is_feedback_not_unhandled_exception(self):
         def fail():

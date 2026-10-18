@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_d2ef8977bad08338c438",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Texture Transform/Texture Transform.fs",
+  "source_sha256": "b7f9fb08a8787769a2448e61a1b326a784dfbc84d080e808217f8aadb4d93d75",
+  "imported_file": "Texture Transform.fs",
+  "imported_files": {
+    ".info": "7edbf2b628cb54d7e0fad00b84f30fc5f4b822a941c2c01d2dfd056ee82d921b",
+    "Texture Transform.fs": "b7f9fb08a8787769a2448e61a1b326a784dfbc84d080e808217f8aadb4d93d75",
+    "thumbnail.jpg": "9280f8b2c4c2917a20360c8b49b87742eab6c1f9136196e40a1fa19be9298e3c"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

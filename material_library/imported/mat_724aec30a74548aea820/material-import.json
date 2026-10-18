@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_724aec30a74548aea820",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Splotch Theory/Splotch Theory.fs",
+  "source_sha256": "ce71059b78568a54ba7e037b7a57bbe100a8fd7f4308baceb68cde0ddd48c5b1",
+  "imported_file": "Splotch Theory.fs",
+  "imported_files": {
+    ".info": "e1cd939f92843bfb8e0e9d2e5922ee056876820f3f9d6181fe76b49a9466893c",
+    "Splotch Theory.fs": "ce71059b78568a54ba7e037b7a57bbe100a8fd7f4308baceb68cde0ddd48c5b1",
+    "thumbnail.jpg": "35e9e58f0966ed3fe5ceaa0bd7ee486510888190843da41ea49fe1a00a7350e7"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

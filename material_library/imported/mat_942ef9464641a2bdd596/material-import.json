@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_942ef9464641a2bdd596",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Hypnotic Gears/Hypnotic Gears.fs",
+  "source_sha256": "aeb3696743091bb4334080bc51f39a00d144730ea344056e5da84f2a266ff71b",
+  "imported_file": "Hypnotic Gears.fs",
+  "imported_files": {
+    ".info": "f10fc032c6fed1c2367abc0ebaa62fa108c8d8ba6872e894cdecf053b596cd6d",
+    "Hypnotic Gears.fs": "aeb3696743091bb4334080bc51f39a00d144730ea344056e5da84f2a266ff71b",
+    "thumbnail.jpg": "5540415a1624333824c9866d2e7a051d99ae9c6194d89ef3c967935fd63ca0f8"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

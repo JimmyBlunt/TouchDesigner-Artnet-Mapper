@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_fb1c4505d99e03616ef9",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Iteration Stripes/Iteration Stripes.fs",
+  "source_sha256": "4cfcba0c750f29ac3ec9cfed1f5100902547cf9314fbbf6ea5b4cba8fde6dabe",
+  "imported_file": "Iteration Stripes.fs",
+  "imported_files": {
+    ".info": "6bb0e125f5d2cfa9d23431caab43b36925499ef6dc0bb5fbd88384d613be0b65",
+    "Iteration Stripes.fs": "4cfcba0c750f29ac3ec9cfed1f5100902547cf9314fbbf6ea5b4cba8fde6dabe",
+    "thumbnail.jpg": "7cc3323056ade944b3d8610792f76e3c9811c708d0dddbc30480b04d76f0be57"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

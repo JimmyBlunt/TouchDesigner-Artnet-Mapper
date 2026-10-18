@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_1f0c8c328b3c9ce7dbbd",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Zebra Torus/Zebra Torus.fs",
+  "source_sha256": "958731bdbc879eb46456611745963f6148b8fff93d03b072e6b8f27651605e88",
+  "imported_file": "Zebra Torus.fs",
+  "imported_files": {
+    ".info": "bb9ef51865ae6225fdb725a457b8f65109ce02bb6137fe2a347d22efee2085fa",
+    "thumbnail.jpg": "0779215b6051c71c48c22ed77d6973daf7b550d347cc81b80cec2d48d04a902b",
+    "Zebra Torus.fs": "958731bdbc879eb46456611745963f6148b8fff93d03b072e6b8f27651605e88"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

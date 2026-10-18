@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_d33cf549edc5d9c50630",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Oscilloscope/Oscilloscope.fs",
+  "source_sha256": "8301515b90fc8bef2fdf49a4adb07b57d6c131df732311aa36d5335d7e7939f1",
+  "imported_file": "Oscilloscope.fs",
+  "imported_files": {
+    ".info": "03ffb9e86fca878155d684d95d5d830caa1a6a150d1465c961aa5cad784ecfb7",
+    "Oscilloscope.fs": "8301515b90fc8bef2fdf49a4adb07b57d6c131df732311aa36d5335d7e7939f1",
+    "thumbnail.jpg": "fc99564d25d13ba11c66006cfc430aeac852b5b77d386f7b5b413ea9ee18f8a5"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

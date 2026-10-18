@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_ebce8fcd1e7c43d727f1",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Glyphs/Glyphs.fs",
+  "source_sha256": "c19583176f2430d364932babbe85ee197b6b21d57cd219ace03acb578c8eb12e",
+  "imported_file": "Glyphs.fs",
+  "imported_files": {
+    ".info": "4cdec567a56b68cd8ef284f421c7ee29dae7cba9e306504d9264f1ac809913c9",
+    "Glyphs.fs": "c19583176f2430d364932babbe85ee197b6b21d57cd219ace03acb578c8eb12e",
+    "thumbnail.jpg": "460aade213a5324fff3a7b2e4f9c5069f546dd80fba38c5116a87c27ab6b3f6a"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

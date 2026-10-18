@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_9c5f7b486ab5fc771d5b",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Chanel/Chanel.fs",
+  "source_sha256": "e3fd44fb3bffa4a350a6133e86f3e63c44ddddf54b20cc59841c7db3eca211f4",
+  "imported_file": "Chanel.fs",
+  "imported_files": {
+    ".info": "1ea0286b05c894af24ae913338db50bf6178a6c8285f6ed3ff1eab638cba0c05",
+    "Chanel.fs": "e3fd44fb3bffa4a350a6133e86f3e63c44ddddf54b20cc59841c7db3eca211f4",
+    "thumbnail.jpg": "44adbb9b825594772812bdadce653def63b60c410b56e0c2a9d91b3adce4fc62"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

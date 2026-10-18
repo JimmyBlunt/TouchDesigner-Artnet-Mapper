@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_d1a9d81c45f188b112c6",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Colorful Interference/Colorful Interference.fs",
+  "source_sha256": "cb0678b950e1b2781a21e7be08f256a2370797c1ebd52654618a4b15b9d088c5",
+  "imported_file": "Colorful Interference.fs",
+  "imported_files": {
+    ".info": "457ba5d45d5c88e90e28343c6eff83d1d9f0a4f8680068016a1dbb34378efb92",
+    "Colorful Interference.fs": "cb0678b950e1b2781a21e7be08f256a2370797c1ebd52654618a4b15b9d088c5",
+    "thumbnail.jpg": "0544846b2ce7979a3317ded497e40f4b8027dbf5a88c56249603003f70917c69"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

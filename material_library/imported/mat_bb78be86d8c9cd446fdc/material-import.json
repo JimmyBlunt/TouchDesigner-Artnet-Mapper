@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_bb78be86d8c9cd446fdc",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Munching Squares/Munching Squares.fs",
+  "source_sha256": "1be144696d82117d9b6d76a65a578f943cf242623f2a74dd41262dd3c29ea9e9",
+  "imported_file": "Munching Squares.fs",
+  "imported_files": {
+    ".info": "b982fa86da98e234be1aeceb0e5c7680b9beba0a9e2a67aea4edb2b239a0a20c",
+    "Munching Squares.fs": "1be144696d82117d9b6d76a65a578f943cf242623f2a74dd41262dd3c29ea9e9",
+    "thumbnail.jpg": "829d6a648d0762a13cf6c40df40a47d635c4655c04c1fc1cd567258ff8071809"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

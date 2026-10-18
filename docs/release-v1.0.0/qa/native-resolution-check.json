@@ -1,0 +1,49 @@
+{
+  "fixed": [
+    {
+      "path": "/project1/release_ui_assets/shape_1420_300_141c23_8",
+      "resolution": [
+        1280,
+        270
+      ],
+      "warnings": "",
+      "errors": ""
+    },
+    {
+      "path": "/project1/release_ui_assets/shape_1420_450_141c23_8",
+      "resolution": [
+        1280,
+        406
+      ],
+      "warnings": "",
+      "errors": ""
+    },
+    {
+      "path": "/project1/release_ui_assets/shape_1420_730_141c23_8",
+      "resolution": [
+        1280,
+        658
+      ],
+      "warnings": "",
+      "errors": ""
+    }
+  ],
+  "remaining_warnings": [],
+  "roles": {
+    "heading": [
+      0.8823529411764706,
+      0.8980392156862745,
+      0.9019607843137255
+    ],
+    "button": [
+      0.6823529411764706,
+      0.7176470588235294,
+      0.7294117647058823
+    ],
+    "value": [
+      0.3333333333333333,
+      0.8392156862745098,
+      0.9058823529411765
+    ]
+  }
+}

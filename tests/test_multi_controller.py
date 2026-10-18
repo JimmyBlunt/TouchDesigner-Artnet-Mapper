@@ -222,7 +222,7 @@ class BuilderContractTests(unittest.TestCase):
         text = (Path(__file__).parents[1] / "pixelblaze_mapper" / "build_multi_controller_output.py").read_text(encoding="utf-8")
         self.assertIn("def _replace_dat_text(node, source):", text)
         self.assertIn("node.write(source)", text)
-        self.assertIn("_replace_dat_text(sender_callbacks, install_pacing(install_slot_mask(_artnet_510_sender_source())))", text)
+        self.assertIn("_replace_dat_text(sender_callbacks, install_numpy_sender(guard_sender_source(install_external_sender(install_packet_gap(install_pacing(install_slot_mask(_artnet_510_sender_source())))))))", text)
         self.assertIn("_replace_dat_text(sender_execute, _artnet_510_execute_source())", text)
         self.assertNotIn("sender_callbacks.text =", text)
         self.assertNotIn("sender_execute.text =", text)
@@ -311,7 +311,8 @@ class BuilderContractTests(unittest.TestCase):
         text = (Path(__file__).parents[1] / "pixelblaze_mapper" / "build_multi_controller_output.py").read_text(encoding="utf-8")
         self.assertIn("ipaddress.ip_address(address)", text)
         self.assertIn("if not apply_safe():", text)
-        self.assertIn("stop_outputs(op('/project1/multi_controller_output'))", text)
+        self.assertIn("from pixelblaze_mapper.router_blackout import all_off as blackout", text)
+        self.assertIn("blackout(op('/project1/multi_controller_output'))", text)
         start = text[text.index("def start_enabled"):text.index("def start_calibration")]
         self.assertIn("all_off()", start)
         self.assertIn("sender.module.set_live()", start)

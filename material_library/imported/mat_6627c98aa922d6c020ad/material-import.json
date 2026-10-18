@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_6627c98aa922d6c020ad",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Rainbow Lensing/Rainbow Lensing.fs",
+  "source_sha256": "50c44b9217f6f4ebceca80d317fdc9b541ef7b485d647ebccc57608d3d9b776e",
+  "imported_file": "Rainbow Lensing.fs",
+  "imported_files": {
+    ".info": "56f9fd7417484ca06097d96558dfbdd185c849a1997db0d8f0697b9c8541106d",
+    "Rainbow Lensing.fs": "50c44b9217f6f4ebceca80d317fdc9b541ef7b485d647ebccc57608d3d9b776e",
+    "thumbnail.jpg": "56e0e0241d9d9d8c62664d1c8584e39ce3355064284d2eac33dacefef3a6157f"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

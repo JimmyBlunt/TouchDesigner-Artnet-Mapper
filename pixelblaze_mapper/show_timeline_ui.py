@@ -159,6 +159,8 @@ class Bridge:
                 if not self.allowed():
                     return self.respond(403, dict(error='Host nicht erlaubt'))
                 path = self.path.split('?')[0]
+                if path == '/favicon.ico':
+                    return self.respond(204, b'', 'image/x-icon')
                 if path == '/api/state':
                     state = bridge.state
                     if self.path.partition('?revision=')[2] == state.get('revision'):
@@ -183,9 +185,18 @@ class Bridge:
                     if side in ('0', '1') and len(frames) == 2:
                         return self.respond(200, frames[int(side)], 'image/png')
                     return self.respond(404, dict(error='Display noch nicht übertragen'))
+                if path.startswith('/release-help/'):
+                    from .release_web_help import approved_help_asset
+                    asset = approved_help_asset(path)
+                    if asset is None:
+                        return self.respond(404, dict(error='Hilfe nicht gefunden'))
+                    file, mime = asset
+                    return self.respond(200, file.read_bytes(), mime)
                 files = {'/': ('index.html', 'text/html; charset=utf-8'),
                          '/timeline.js': ('timeline.js', 'text/javascript; charset=utf-8'),
                          '/pads.js': ('pads.js', 'text/javascript; charset=utf-8'),
+                         '/release-help.js': ('release-help.js', 'text/javascript; charset=utf-8'),
+                         '/release.css': ('release.css', 'text/css; charset=utf-8'),
                          '/timeline.css': ('timeline.css', 'text/css; charset=utf-8')}
                 if path not in files:
                     return self.respond(404, dict(error='Nicht gefunden'))

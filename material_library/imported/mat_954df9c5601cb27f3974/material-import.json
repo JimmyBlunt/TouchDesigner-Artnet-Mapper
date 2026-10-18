@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_954df9c5601cb27f3974",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Kirby/Kirby.fs",
+  "source_sha256": "7b030546fbe20c5c9c8eaf6eb3be09eea0fd08344836b252b1dc484f9ebf9b8f",
+  "imported_file": "Kirby.fs",
+  "imported_files": {
+    ".info": "08beb3eb57606cbccca10586c0edc687db7d6f1bc5a11394121ada9f08b3dcba",
+    "Kirby.fs": "7b030546fbe20c5c9c8eaf6eb3be09eea0fd08344836b252b1dc484f9ebf9b8f",
+    "thumbnail.jpg": "aee828801ce9b58dd3cbaf9dae323cdd9d4b25cb46e947dce41eb7e924fa6949"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_260d02ce00e14cdf394f",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Acid Jelly/Acid Jelly.fs",
+  "source_sha256": "3c02c1dc963796a626080a34275fc88f71d4c405e890af10ffc43f68965775e3",
+  "imported_file": "Acid Jelly.fs",
+  "imported_files": {
+    ".info": "88aa32d77c8394176ebf0798030653bef3a832f80202d6f5c05e79d786158152",
+    "Acid Jelly.fs": "3c02c1dc963796a626080a34275fc88f71d4c405e890af10ffc43f68965775e3",
+    "thumbnail.jpg": "f4693bef7169f64c1d36666013f307c20f87eab8ce1f49516e2fd0fb01019301"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

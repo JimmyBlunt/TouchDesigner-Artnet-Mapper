@@ -1,0 +1,9 @@
+Downloading opencv-python-headless (41.8MiB)
+ Downloaded opencv-python-headless
+Installed 10 packages in 9.16s
+test_automatic_marker_calibration_and_optical_rates (tests.test_gico_camera_video.VideoRoundtrip.test_automatic_marker_calibration_and_optical_rates) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 11.566s
+
+OK

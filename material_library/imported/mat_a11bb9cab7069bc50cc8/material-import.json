@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_a11bb9cab7069bc50cc8",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Magma/magma.fs",
+  "source_sha256": "4cd837ca9eee1ae7ef5e806c39603782e3508faa4e9720008b4a9fa85034b2f6",
+  "imported_file": "magma.fs",
+  "imported_files": {
+    ".info": "a0ecb6f5dd0fd6726c7df18d8a3b105dd84526ad0d01811397188cb646a48ad5",
+    "flare.jpg": "f8bde066749b9e8b058c86b8463f950a119fdcf21d77e2976ab04fc6528668c2",
+    "magma.fs": "4cd837ca9eee1ae7ef5e806c39603782e3508faa4e9720008b4a9fa85034b2f6",
+    "thumbnail.png": "48f01ab0d68430ce5bd68f2c2de8f0bf93f9846b48408393a3ca0b2d929d1488"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

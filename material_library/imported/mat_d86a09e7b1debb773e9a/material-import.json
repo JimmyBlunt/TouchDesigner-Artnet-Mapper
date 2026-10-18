@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_d86a09e7b1debb773e9a",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/GlitchShifterDeluxe/GlitchShifterDeluxe.fs",
+  "source_sha256": "65eb4baa75f5ddbe93eaaa7c538099a846519ec5649b571a354ca07f25305899",
+  "imported_file": "GlitchShifterDeluxe.fs",
+  "imported_files": {
+    ".info": "42399002fb5ec440d36313ceba882f7239ef73ffa61c0effb68c6c40e9649a75",
+    "GlitchShifterDeluxe.fs": "65eb4baa75f5ddbe93eaaa7c538099a846519ec5649b571a354ca07f25305899",
+    "thumbnail.jpg": "bd8d44a39bcb3e31d23c5379ff9814e9b0c9f5a34e2afb977b93370edac1600a"
+  },
+  "kind": "madmapper_glsl",
+  "compatibility": "unsupported"
+}

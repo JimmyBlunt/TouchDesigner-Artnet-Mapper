@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_d08059ad64ff73828e65",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/strobeFlip/strobeFlip.fs",
+  "source_sha256": "4d682dcec76572ad740ab1d63caea3ce8024a1fd2cc06cbb1a68af198267d856",
+  "imported_file": "strobeFlip.fs",
+  "imported_files": {
+    ".info": "2db7ce6f3dbe2e29edfc06f46d8a210084c98ea52dc11c1c2b8fed6c5fe561f1",
+    "strobeFlip.fs": "4d682dcec76572ad740ab1d63caea3ce8024a1fd2cc06cbb1a68af198267d856",
+    "thumbnail.jpg": "d28e1bfe4fcb4ab4726328106f0e978e89dd2fd8a0c399eb08d6e4a667863f97"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

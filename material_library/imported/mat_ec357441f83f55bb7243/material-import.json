@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_ec357441f83f55bb7243",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/CascadingSquares/CascadingSquares.fs",
+  "source_sha256": "1bc951d92c1926567fd1147dd749ae93447735fd259d445a3adfac37d9063ed9",
+  "imported_file": "CascadingSquares.fs",
+  "imported_files": {
+    ".info": "4a284b8fbbf55b373cc671a3e1d3cc0bd6c540cceaaac33a7d0c5018f5211048",
+    "CascadingSquares.fs": "1bc951d92c1926567fd1147dd749ae93447735fd259d445a3adfac37d9063ed9",
+    "thumbnail.jpg": "1267d95092309cfbfb26f4461cdb7f6d1437604bfa5e4cf23c69f83d28d66c9d"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

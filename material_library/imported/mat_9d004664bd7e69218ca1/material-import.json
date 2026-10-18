@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_9d004664bd7e69218ca1",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Electron/Electron.fs",
+  "source_sha256": "9139d8773852aeb354f1584f974c59e1eba5288526ff485203008e671e912657",
+  "imported_file": "Electron.fs",
+  "imported_files": {
+    ".info": "724778f874319ab48f7ba0737debf939e60325d4ed3454a9f3265d311d02f4e7",
+    "Electron.fs": "9139d8773852aeb354f1584f974c59e1eba5288526ff485203008e671e912657",
+    "thumbnail.jpg": "ab33072922db5af6ce53c4c4402718f2f77364c01476422a7119ab3a822e09e8"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_e1b065ec411fa2d17132",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Tuto Filters/Tuto Filters.fs",
+  "source_sha256": "59c659700a88566276726d9095080aae689e2eca9474925ed47ee9ba2ce1cfaa",
+  "imported_file": "Tuto Filters.fs",
+  "imported_files": {
+    ".info": "0a65fdc286c962398ff9eddc4e51df283a64b138d88dce4ce415624bf43f8bec",
+    "thumbnail.png": "f9a007670158b2909813e396b20f13f0f51589de252014fcfedaf0fdbb52a86d",
+    "Tuto Filters.fs": "59c659700a88566276726d9095080aae689e2eca9474925ed47ee9ba2ce1cfaa"
+  },
+  "kind": "isf",
+  "compatibility": "unsupported"
+}

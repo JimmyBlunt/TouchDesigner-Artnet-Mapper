@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_af3ffc42ac9a7d63b00a",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Time Travel/Time Travel.fs",
+  "source_sha256": "20111f27d40725317cff786a6a530044b3bf2c6cd97daf1217c5e35e7ee2dab4",
+  "imported_file": "Time Travel.fs",
+  "imported_files": {
+    ".info": "13a2d0a9677b96f964e132f68678824d0eddcaad42a69e1dd582e97145d1c4b5",
+    "thumbnail.jpg": "5470920b18bd294274b6797cf5e838a42719b91adffc0ceefe8e494d9b6519fa",
+    "Time Travel.fs": "20111f27d40725317cff786a6a530044b3bf2c6cd97daf1217c5e35e7ee2dab4"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}

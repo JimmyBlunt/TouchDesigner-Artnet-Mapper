@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "material_id": "mat_fc801d0768b9e51d7011",
+  "source_id": "madmapper-official",
+  "source_relative_path": "Online Library/Phantom Star/Phantom Star.fs",
+  "source_sha256": "aa02b3988243001ed25901bd482ce9cd47d4cfd1d866d6727d82152c74d8bf22",
+  "imported_file": "Phantom Star.fs",
+  "imported_files": {
+    ".info": "5963689ef7970f3e3f552127a008311281f03239d81b2aef6d114a85181f4b29",
+    "Phantom Star.fs": "aa02b3988243001ed25901bd482ce9cd47d4cfd1d866d6727d82152c74d8bf22",
+    "thumbnail.jpg": "aec49b29abfd8fd867fe27d6b50241e6d6c33ae2bb97c69ab6adffe82ff5c9bb"
+  },
+  "kind": "isf",
+  "compatibility": "adaptable"
+}
