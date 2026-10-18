@@ -1,0 +1,45 @@
+{
+  "sender": {
+    "transport": {
+      "kind": "direct"
+    },
+    "enabled": false,
+    "error": "",
+    "mode": "live",
+    "calibration": [
+      "all",
+      "panel_id",
+      0
+    ],
+    "controllers": [],
+    "target_override": null,
+    "port_override": null,
+    "telemetry": {
+      "tick_count": 2804,
+      "rate_skips": 200,
+      "send_count": 2604,
+      "packet_count": 124434,
+      "send_ms_last": 8.407100016484037,
+      "send_ms_average": 7.120283409970017,
+      "send_ms_max": 30.978099995991215,
+      "actual_send_fps": 33.978367697652516,
+      "pack_count": 2604,
+      "pack_ms_last": 1.8862000142689794,
+      "pack_ms_average": 1.110475614491064,
+      "pack_ms_max": 24.40949997981079,
+      "plan_rebuilds": 14
+    }
+  },
+  "errors": [],
+  "warnings": [],
+  "config": "enabled\tname\ttarget_ip\tlocal_interface\tport\tstart_universe\tcolor_order\tbrightness\trate\tart_sync\treserved_universes\r\n1\tWS2812_NODE\t10.0.0.244\t10.0.0.125\t6454\t0\tGRB\t0.7\t60\t0\t24\r\n0\tAPA102_ESP\t10.0.0.251\t10.0.0.125\t6454\t0\tRGB\t0.8\t30\t0\t0\r\n0\tPANEL8_251\t10.0.0.251\t10.0.0.125\t6454\t156\tBGR\t0.7\t30\t0\t7\r\n1\tBACK_PANEL_249\t10.0.0.253\t10.0.0.125\t6454\t120\tRGB\t0.3\t30\t0\t37\r\n",
+  "hashes": {
+    "/project1/show_control/show_json": "4d061c5fabd9b4802a4c3b603bac37b8933267ca7cf8996442a9b2effda6943b",
+    "/project1/show_control/automation_json": "5db0abd233354fef4cc9110b7a24a74f16f882362ae9da6484779fb3cbd4c519",
+    "/project1/multi_controller_output/segment_config": "e9eff66ce0252e11d0bd097ad30ab9fc35fa2892a9d08fe169e72198e90ce3f1"
+  },
+  "mk2_status": "MK2 verbunden \u00b7 Displays \u00fcbertragen",
+  "owned_material_open": false,
+  "perform": true,
+  "perform_open": true
+}

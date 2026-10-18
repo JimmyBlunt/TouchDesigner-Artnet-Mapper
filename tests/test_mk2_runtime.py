@@ -21,7 +21,7 @@ class FakeHost:
                                                     parameters=deepcopy(self.materials['m0']['parameters'])))
         self.commands = []
 
-    def context(self, target=None, *, metadata_only=False):
+    def context(self, target=None, *, metadata_only=False, include_catalog=True):
         result = deepcopy(self.state)
         result['materials'] = {target: deepcopy(self.materials[target])} if target in self.materials else {}
         return result

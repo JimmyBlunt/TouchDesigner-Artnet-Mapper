@@ -1,0 +1,152 @@
+{
+  "refs": [
+    "7d4df1c",
+    "f79b83b",
+    "25c7448",
+    "997be6e"
+  ],
+  "read_only": true,
+  "normalized_file_hashes": {
+    "build_multi_controller_output.py": {
+      "7d4df1c": "e88a5e09e4c6072d08fb1f1da3684d1040c20870c4a15419b498e1fc4485a82c",
+      "f79b83b": "e88a5e09e4c6072d08fb1f1da3684d1040c20870c4a15419b498e1fc4485a82c",
+      "25c7448": "f1eba0d1acfba5e8f3cefbdec4783cbf9747aacd619a4d561883f7b650122601",
+      "997be6e": "f1eba0d1acfba5e8f3cefbdec4783cbf9747aacd619a4d561883f7b650122601"
+    },
+    "multi_controller.py": {
+      "7d4df1c": "578ba5edbbc97056d6471e073d75b0dabd6582dd0b85963a029ed5f0a60d16f5",
+      "f79b83b": "578ba5edbbc97056d6471e073d75b0dabd6582dd0b85963a029ed5f0a60d16f5",
+      "25c7448": "578ba5edbbc97056d6471e073d75b0dabd6582dd0b85963a029ed5f0a60d16f5",
+      "997be6e": "578ba5edbbc97056d6471e073d75b0dabd6582dd0b85963a029ed5f0a60d16f5"
+    },
+    "realtime_packer.py": {
+      "7d4df1c": "197c3825b65ea87d2d05aa784557f13fb14eb45cc499c0a1f4d12b01c7839961",
+      "f79b83b": "197c3825b65ea87d2d05aa784557f13fb14eb45cc499c0a1f4d12b01c7839961",
+      "25c7448": "197c3825b65ea87d2d05aa784557f13fb14eb45cc499c0a1f4d12b01c7839961",
+      "997be6e": "197c3825b65ea87d2d05aa784557f13fb14eb45cc499c0a1f4d12b01c7839961"
+    },
+    "sender_packet_gap.py": {
+      "7d4df1c": "06cc26517a7e2f5027733aa1cae92a9affeaf4bb8b3f2b2feeea5b536ffcb0fb",
+      "f79b83b": "06cc26517a7e2f5027733aa1cae92a9affeaf4bb8b3f2b2feeea5b536ffcb0fb",
+      "25c7448": "06cc26517a7e2f5027733aa1cae92a9affeaf4bb8b3f2b2feeea5b536ffcb0fb",
+      "997be6e": "06cc26517a7e2f5027733aa1cae92a9affeaf4bb8b3f2b2feeea5b536ffcb0fb"
+    },
+    "sender_pacing.py": {
+      "7d4df1c": "154773408cd5793769945a194ad15947498ca67f0b967d79b524ea3283c59c4a",
+      "f79b83b": "154773408cd5793769945a194ad15947498ca67f0b967d79b524ea3283c59c4a",
+      "25c7448": "154773408cd5793769945a194ad15947498ca67f0b967d79b524ea3283c59c4a",
+      "997be6e": "154773408cd5793769945a194ad15947498ca67f0b967d79b524ea3283c59c4a"
+    },
+    "sender_external_source.py": {
+      "7d4df1c": "1b981ee05259202ca2cde470fef03779214db36ca0569d78d3b03bb1e11f2097",
+      "f79b83b": "1b981ee05259202ca2cde470fef03779214db36ca0569d78d3b03bb1e11f2097",
+      "25c7448": "1b981ee05259202ca2cde470fef03779214db36ca0569d78d3b03bb1e11f2097",
+      "997be6e": "1b981ee05259202ca2cde470fef03779214db36ca0569d78d3b03bb1e11f2097"
+    },
+    "external_packet_sender.py": {
+      "7d4df1c": "28de7a1a63b398d1913cf845f18cb14de445bf03cca93c0a72e7003e646d0e36",
+      "f79b83b": "28de7a1a63b398d1913cf845f18cb14de445bf03cca93c0a72e7003e646d0e36",
+      "25c7448": "28de7a1a63b398d1913cf845f18cb14de445bf03cca93c0a72e7003e646d0e36",
+      "997be6e": "28de7a1a63b398d1913cf845f18cb14de445bf03cca93c0a72e7003e646d0e36"
+    },
+    "numpy_realtime.py": {
+      "7d4df1c": "b5490aceec5dc46588615f8b43492fc87bba0f6bb857270b02ddf70bacc91641",
+      "f79b83b": "b5490aceec5dc46588615f8b43492fc87bba0f6bb857270b02ddf70bacc91641",
+      "25c7448": "b5490aceec5dc46588615f8b43492fc87bba0f6bb857270b02ddf70bacc91641",
+      "997be6e": "b5490aceec5dc46588615f8b43492fc87bba0f6bb857270b02ddf70bacc91641"
+    },
+    "output_slot_mask.py": {
+      "7d4df1c": "4bba803e8aadc4b60f9641dbe9f8a5ab0cad401370e5a4d8e3801af4824dfa9f",
+      "f79b83b": "4bba803e8aadc4b60f9641dbe9f8a5ab0cad401370e5a4d8e3801af4824dfa9f",
+      "25c7448": "4bba803e8aadc4b60f9641dbe9f8a5ab0cad401370e5a4d8e3801af4824dfa9f",
+      "997be6e": "4bba803e8aadc4b60f9641dbe9f8a5ab0cad401370e5a4d8e3801af4824dfa9f"
+    },
+    "routing_transaction.py": {
+      "7d4df1c": "4076879197dd58fb9bacc1ce8dd9c0c3fa4a0d50588366e5cd97518f43bbf823",
+      "f79b83b": "4076879197dd58fb9bacc1ce8dd9c0c3fa4a0d50588366e5cd97518f43bbf823",
+      "25c7448": "4076879197dd58fb9bacc1ce8dd9c0c3fa4a0d50588366e5cd97518f43bbf823",
+      "997be6e": "4076879197dd58fb9bacc1ce8dd9c0c3fa4a0d50588366e5cd97518f43bbf823"
+    },
+    "native_dmx_gate.py": {
+      "7d4df1c": "b483b47b4fa7316611eb95ddfbefb1e8167089bfd7b14e3e5eccb6fedaa6ae29",
+      "f79b83b": "b483b47b4fa7316611eb95ddfbefb1e8167089bfd7b14e3e5eccb6fedaa6ae29",
+      "25c7448": "b483b47b4fa7316611eb95ddfbefb1e8167089bfd7b14e3e5eccb6fedaa6ae29",
+      "997be6e": "b483b47b4fa7316611eb95ddfbefb1e8167089bfd7b14e3e5eccb6fedaa6ae29"
+    },
+    "guided_scan_live.py": {
+      "7d4df1c": "1a9fd9ef640d0050d0fc241bab39ff23af54db3227c0b4d99716649fabc1ebf1",
+      "f79b83b": "1a9fd9ef640d0050d0fc241bab39ff23af54db3227c0b4d99716649fabc1ebf1",
+      "25c7448": "1a9fd9ef640d0050d0fc241bab39ff23af54db3227c0b4d99716649fabc1ebf1",
+      "997be6e": "1a9fd9ef640d0050d0fc241bab39ff23af54db3227c0b4d99716649fabc1ebf1"
+    }
+  },
+  "sender_factory_ast_hashes": {
+    "7d4df1c": "afe2a3f2d03b8808112de48264916d30286a674b4cc7420c8060f07778f8c4cd",
+    "f79b83b": "afe2a3f2d03b8808112de48264916d30286a674b4cc7420c8060f07778f8c4cd",
+    "25c7448": "afe2a3f2d03b8808112de48264916d30286a674b4cc7420c8060f07778f8c4cd",
+    "997be6e": "afe2a3f2d03b8808112de48264916d30286a674b4cc7420c8060f07778f8c4cd"
+  },
+  "execute_factory_ast_hashes": {
+    "7d4df1c": "ae398c982ab4d3c957597a056b567c5db921abb12209987baf9e9b72c41d56b5",
+    "f79b83b": "ae398c982ab4d3c957597a056b567c5db921abb12209987baf9e9b72c41d56b5",
+    "25c7448": "ae398c982ab4d3c957597a056b567c5db921abb12209987baf9e9b72c41d56b5",
+    "997be6e": "ae398c982ab4d3c957597a056b567c5db921abb12209987baf9e9b72c41d56b5"
+  },
+  "unchanged_transport_files": [
+    "multi_controller.py",
+    "realtime_packer.py",
+    "sender_packet_gap.py",
+    "sender_pacing.py",
+    "sender_external_source.py",
+    "external_packet_sender.py",
+    "numpy_realtime.py",
+    "output_slot_mask.py",
+    "routing_transaction.py",
+    "native_dmx_gate.py",
+    "guided_scan_live.py"
+  ],
+  "controller_table_equal_to_release_baseline": true,
+  "segment_table_equal_to_release_baseline": true,
+  "hardware_config_exactly_equal_to_f79b83b": true,
+  "blackout_present_before_release_and_unchanged": true,
+  "live_sender_recent": {
+    "transport": {
+      "kind": "direct"
+    },
+    "enabled": true,
+    "error": "",
+    "mode": "live",
+    "calibration": [
+      "all",
+      "panel_id",
+      0
+    ],
+    "controllers": [
+      "WS2812_NODE",
+      "PANEL8_251",
+      "BACK_PANEL_249"
+    ],
+    "target_override": null,
+    "port_override": null,
+    "telemetry": {
+      "tick_count": 4304,
+      "rate_skips": 0,
+      "send_count": 4304,
+      "packet_count": 289714,
+      "send_ms_last": 21.335600002203137,
+      "send_ms_average": 28.37248278345444,
+      "send_ms_max": 169.15939998580143,
+      "actual_send_fps": 7.2631593039326034,
+      "pack_count": 4304,
+      "pack_ms_last": 1.4448000001721084,
+      "pack_ms_average": 1.6221319007912096,
+      "pack_ms_max": 15.710699997725897,
+      "plan_rebuilds": 1
+    }
+  },
+  "notes": [
+    "Git adds blackout module in25c7448 but same module and all_off integration already existed in pre-release dirty-source backup.",
+    "No evidence of changed continuous sender packet serialization,pacing,brightness,rate or routing tables.",
+    "This source/config audit does not establish hardware failure cause or exclude performance scheduling/content changes."
+  ]
+}

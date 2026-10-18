@@ -241,7 +241,7 @@ class Host:
         base['parameters'] = descriptors
         return base
 
-    def context(self, material_id=None, *, metadata_only=False):
+    def context(self, material_id=None, *, metadata_only=False, include_catalog=True):
         e = self.editor
         kind, identifier = self.material_identity(*e.current_material())
         active_id = 'core:'+identifier if kind == 'core' else identifier
@@ -253,9 +253,12 @@ class Host:
         metadata_only = metadata_only and mode == 'material' and not recording
         active = self.material(active_id,metadata_only=metadata_only) if active_id else dict(id='',label='Kein Material',image=None,parameters=[])
         if metadata_only:
-            return dict(mode=mode,active_material=active,catalog=deepcopy(self._catalog_items()),
+            result = dict(mode=mode,active_material=active,
                         materials={active_id:active},show={},recording=False,
                         transitions=list(show_editor.TRANSITION_ORDER),allow_automation_recording=True)
+            if include_catalog:
+                result['catalog'] = deepcopy(self._catalog_items())
+            return result
         document, data = e.show(), e.automation_data()
         show = {}
         if document['cues']:
@@ -301,8 +304,11 @@ class Host:
         materials = {active_id:active}
         if material_id and material_id not in materials:
             materials[material_id] = self.material(material_id)
-        return dict(mode=mode, active_material=active, catalog=deepcopy(self._catalog_items()), materials=materials,
+        result = dict(mode=mode, active_material=active, materials=materials,
                     show=show, recording=recording, transitions=list(show_editor.TRANSITION_ORDER), allow_automation_recording=True)
+        if include_catalog:
+            result['catalog'] = deepcopy(self._catalog_items())
+        return result
 
     def _set_parameter(self, material_id, parameter_id, value, *, explicit_load=False):
         context = self.context()

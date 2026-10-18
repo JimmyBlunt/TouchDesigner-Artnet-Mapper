@@ -7,6 +7,7 @@ See docs/MK2_WORKFLOW_API.md for the adapter contract.
 from copy import deepcopy
 import math
 from time import monotonic
+from types import MappingProxyType
 
 VERSION = '0.2.5'
 SCHEMA_VERSION = 2
@@ -21,6 +22,15 @@ def _finite(value):
 
 def _empty_pad():
     return dict(kind='material', target='', values={})
+
+
+def _readonly_metadata(value):
+    """A published USB view cannot mutate cached catalog rows or nested lists."""
+    if isinstance(value, dict):
+        return MappingProxyType({key:_readonly_metadata(item) for key,item in value.items()})
+    if isinstance(value, (list, tuple)):
+        return tuple(_readonly_metadata(item) for item in value)
+    return value
 
 
 def material_categories(item):
@@ -146,7 +156,8 @@ class Controller:
         if not isinstance(context, dict):
             raise ValueError('Controller-Kontext muss ein Objekt sein.')
         incoming = deepcopy(context)
-        selected = self.browse_selected_id()
+        catalog_changed = 'catalog' in incoming or 'config' in incoming
+        selected = self.browse_selected_id() if catalog_changed else None
         if 'config' in incoming:
             self.config = validate_config(incoming.pop('config'))
             self._pending_config = None
@@ -171,30 +182,54 @@ class Controller:
         parameters = self._parameters()
         self.parameter_group = min(self.parameter_group, max(0, (len(parameters)-1)//8), 7)
         self.parameter_index = min(self.parameter_index, max(0, len(parameters)-1))
-        self._restore_browse_selection(selected)
-        self.category_index = min(self.category_index, max(0, len(self.category_items())-1))
+        if catalog_changed:
+            self._restore_browse_selection(selected)
+            self.category_index = min(self.category_index, max(0, len(self.category_items())-1))
 
     def export_config(self):
         return deepcopy(self.config)
 
     def _catalog(self):
-        return [item for item in self.context.get('catalog', []) if isinstance(item, dict)]
+        self._ensure_catalog()
+        return list(self._catalog_rows)
+
+    def _ensure_catalog(self):
+        source = self.context.get('catalog', [])
+        if getattr(self, '_catalog_source', None) is source:
+            return
+        self._catalog_source = source
+        self._catalog_rows = tuple(item for item in source if isinstance(item, dict))
+        self._catalog_by_id = {}
+        for item in self._catalog_rows:
+            self._catalog_by_id.setdefault(item.get('id'),item)
+        categories = {}
+        self._catalog_categories = {}
+        for item in self._catalog_rows:
+            labels = material_categories(item)
+            self._catalog_categories[item.get('id')] = tuple(label.casefold() for label in labels)
+            for label in labels:
+                entry = categories.setdefault(label.casefold(), dict(label=label, count=0))
+                entry['count'] += 1
+        self._category_rows = sorted(categories.values(), key=lambda item:item['label'].casefold())
+        self._browse_cache_key = None
 
     def browse_catalog(self):
+        self._ensure_catalog()
+        key = (id(self._catalog_source), self.browse_filter, self.browse_category.casefold(), tuple(self.config['favorites']))
+        if getattr(self, '_browse_cache_key', None) == key:
+            return list(self._browse_cache_rows)
         favorites = set(self.config['favorites'])
-        return [item for item in self._catalog()
+        self._browse_cache_rows = tuple(item for item in self._catalog_rows
                 if self.browse_filter == 'all'
                 or self.browse_filter == 'favorites' and item.get('id') in favorites
                 or self.browse_filter == 'category' and self.browse_category.casefold()
-                in [name.casefold() for name in material_categories(item)]]
+                in self._catalog_categories[item.get('id')])
+        self._browse_cache_key = key
+        return list(self._browse_cache_rows)
 
     def category_items(self):
-        categories = {}
-        for item in self._catalog():
-            for label in material_categories(item):
-                entry = categories.setdefault(label.casefold(), dict(label=label, count=0))
-                entry['count'] += 1
-        return sorted(categories.values(), key=lambda item: item['label'].casefold())
+        self._ensure_catalog()
+        return deepcopy(self._category_rows)
 
     def reset_browse_motion(self):
         self._wheel_time = None
@@ -286,7 +321,8 @@ class Controller:
         self.assign_target = self._draft_base = None
 
     def _lookup(self, target):
-        item = next((item for item in self._catalog() if item.get('id') == target), None)
+        self._ensure_catalog()
+        item = self._catalog_by_id.get(target)
         if item is None:
             return None
         result = deepcopy(item)
@@ -738,7 +774,7 @@ class Controller:
                 self._discard_edit()
         return []
 
-    def snapshot(self):
+    def snapshot(self, *, readonly_catalog=False):
         catalog = self.browse_catalog()
         cards = []
         assignments = {}
@@ -751,12 +787,18 @@ class Controller:
             available = bool(item) and item.get('available', True) is not False and item.get('compatibility') != 'unsupported'
             cards.append(dict(number=i+1, label=item.get('label', item.get('name', pad['target'])) if item else 'Nicht verfügbar' if pad['target'] else 'Leer',
                               image=item.get('image') if item else None, available=available, **deepcopy(pad)))
-        browse = []
-        for i, item in enumerate(catalog):
-            entry = deepcopy(item)
-            entry.update(number=i+1, assignments=assignments.get(item.get('id'), []),
-                         favorite=item.get('id') in self.config['favorites'])
-            browse.append(entry)
+        assignment_key = tuple((target,tuple((p['group'],p['pad']) for p in pads)) for target,pads in assignments.items())
+        browse_key = (self._browse_cache_key, assignment_key)
+        if getattr(self, '_published_browse_key', None) != browse_key:
+            browse = []
+            for i, item in enumerate(catalog):
+                entry = deepcopy(item)
+                entry.update(number=i+1, assignments=assignments.get(item.get('id'), []),
+                             favorite=item.get('id') in self.config['favorites'])
+                browse.append(entry)
+            self._published_browse = browse
+            self._published_readonly_browse = tuple(_readonly_metadata(item) for item in browse)
+            self._published_browse_key = browse_key
         parameters = self._parameters()
         focused = parameters[self.parameter_index] if self.parameter_focused and self.parameter_index < len(parameters) else None
         show = deepcopy(self.context.get('show', {}))
@@ -776,7 +818,7 @@ class Controller:
             group_activity.append(any(p['automated'] or p['modified'] for p in parameters[i*8:i*8+8]))
         result = dict(version=VERSION, mode=self.mode, screen=self.screen, material=deepcopy(self._material()),
                       parameter_pages=self._pages(), page=self.page, bank=self.bank, pad_index=self.pad_index,
-                      cards=cards, browse_items=browse, browse_index=self.browse_index, browse_purpose=self.browse_purpose,
+                      cards=cards, browse_index=self.browse_index, browse_purpose=self.browse_purpose,
                       browse_filter=self.browse_filter, favorites_count=len(self.config['favorites']),
                       browse_category=self.browse_category, category_items=self.category_items(), category_index=self.category_index,
                       direct_material=deepcopy(self._lookup(self.direct_target)) if self.direct_target else None,
@@ -788,4 +830,6 @@ class Controller:
                       group_has_content=[any(p['target'] for p in group['pads']) for group in self.config['groups']],
                       pad_flash=[self.flash_until.get((self.bank, i), 0) > self.clock() for i in range(16)],
                       dirty=self._dirty(), saving=self._pending_config is not None, error=self.error)
-        return deepcopy(result)
+        result = deepcopy(result)
+        result['browse_items'] = self._published_readonly_browse if readonly_catalog else deepcopy(self._published_browse)
+        return result

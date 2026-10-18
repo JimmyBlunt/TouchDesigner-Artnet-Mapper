@@ -79,20 +79,22 @@ class Manager:
 
     def _refresh_context(self):
         controller = self.controller
-        controller.set_context(dict(catalog=self.catalog))
         target = controller.edit_material.get('id') if controller.edit_material else None
         # Browse cards already have label/image/category in the catalog. Merely
         # turning the wheel must not adapt the selected shader for parameters.
         # Explicit loading and pad editing still request their full descriptors.
         if not target and controller.screen in ('pad_menu','confirm_assign'):
             target = controller.assign_target or controller.config['groups'][controller.bank]['pads'][controller.pad_index]['target']
-        context = self.host.context(target, metadata_only=controller.screen in ('browse','categories') and not controller.edit_material)
-        context['catalog'] = self.catalog
+        context = self.host.context(target, metadata_only=controller.screen in ('browse','categories') and not controller.edit_material,
+                                    include_catalog=False)
+        if getattr(self, '_context_catalog', None) is not self.catalog:
+            context['catalog'] = self.catalog
         context['allow_automation_recording'] = True
         controller.set_context(context)
+        self._context_catalog = self.catalog
 
     def update_surface(self):
-        view = self.controller.snapshot()
+        view = self.controller.snapshot(readonly_catalog=True)
         bank = self.controller.config['groups'][self.controller.bank]
         self.config = dict(hardware=self.controller.config['hardware'],pads=deepcopy(bank['pads']))
         self.selected = self.controller.pad_index
@@ -278,7 +280,6 @@ class Manager:
             self.worker.stop()
             self.worker = None
             self.controller.held.clear()
-        browse_moved = False
         for _ in range(32):
             try:
                 event,version,when = self.events.get_nowait()
@@ -308,12 +309,10 @@ class Manager:
                         self.controller.error = ''
                         self._execute(self.controller.dispatch(event))
                         self.error = ''
-                        browse_moved = True
                         continue
                 self.dispatch(event)
-                browse_moved = False
             except Exception as error:
                 self.error = str(error)
-        if browse_moved:
-            self._refresh_context()
+        # Browse wheel events only move a metadata selection; the context read
+        # at tick start already contains all live values needed by this frame.
         self.update_surface()

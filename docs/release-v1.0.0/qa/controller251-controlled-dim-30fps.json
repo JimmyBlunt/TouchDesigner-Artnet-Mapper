@@ -1,0 +1,203 @@
+{
+  "rate": 30,
+  "brightness": 0.02,
+  "samples": [
+    {
+      "elapsed": 5.046130200003972,
+      "status": {
+        "pixelCount": 852,
+        "universeCount": 7,
+        "packets": 1596,
+        "rxPackets": 1596,
+        "rxQueueDrops": 0,
+        "rxOversizedPackets": 0,
+        "rxSocketErrors": 0,
+        "framesComplete": 228,
+        "framesIncomplete": 0,
+        "fps": 0,
+        "packetsPerSecond": 0,
+        "heapFree": 157876,
+        "heapMinFree": 150312,
+        "frameTimeUs": 13659,
+        "outputTimeUs": 13659,
+        "lastFrameLatencyMs": null,
+        "startUniverse": 0,
+        "outputFrames": 228,
+        "timeouts": 0,
+        "droppedPackets": 0,
+        "sequenceErrors": 0
+      }
+    },
+    {
+      "elapsed": 10.08812040000339,
+      "status": {
+        "pixelCount": 852,
+        "universeCount": 7,
+        "packets": 2079,
+        "rxPackets": 2079,
+        "rxQueueDrops": 0,
+        "rxOversizedPackets": 0,
+        "rxSocketErrors": 0,
+        "framesComplete": 297,
+        "framesIncomplete": 0,
+        "fps": 30,
+        "packetsPerSecond": 209,
+        "heapFree": 155968,
+        "heapMinFree": 150312,
+        "frameTimeUs": 12942,
+        "outputTimeUs": 12942,
+        "lastFrameLatencyMs": null,
+        "startUniverse": 0,
+        "outputFrames": 297,
+        "timeouts": 0,
+        "droppedPackets": 0,
+        "sequenceErrors": 0
+      }
+    },
+    {
+      "elapsed": 15.138773199985735,
+      "status": {
+        "pixelCount": 852,
+        "universeCount": 7,
+        "packets": 3141,
+        "rxPackets": 3141,
+        "rxQueueDrops": 0,
+        "rxOversizedPackets": 0,
+        "rxSocketErrors": 0,
+        "framesComplete": 448,
+        "framesIncomplete": 0,
+        "fps": 29,
+        "packetsPerSecond": 207,
+        "heapFree": 155820,
+        "heapMinFree": 150312,
+        "frameTimeUs": 12980,
+        "outputTimeUs": 12980,
+        "lastFrameLatencyMs": null,
+        "startUniverse": 0,
+        "outputFrames": 448,
+        "timeouts": 0,
+        "droppedPackets": 0,
+        "sequenceErrors": 0
+      }
+    },
+    {
+      "elapsed": 20.164707799995085,
+      "status": {
+        "pixelCount": 852,
+        "universeCount": 7,
+        "packets": 4179,
+        "rxPackets": 4179,
+        "rxQueueDrops": 0,
+        "rxOversizedPackets": 0,
+        "rxSocketErrors": 0,
+        "framesComplete": 596,
+        "framesIncomplete": 1,
+        "fps": 29,
+        "packetsPerSecond": 203,
+        "heapFree": 153200,
+        "heapMinFree": 146276,
+        "frameTimeUs": 12944,
+        "outputTimeUs": 12944,
+        "lastFrameLatencyMs": null,
+        "startUniverse": 0,
+        "outputFrames": 596,
+        "timeouts": 0,
+        "droppedPackets": 0,
+        "sequenceErrors": 0
+      }
+    }
+  ],
+  "before": {
+    "pixelCount": 852,
+    "universeCount": 7,
+    "packets": 1589,
+    "rxPackets": 1589,
+    "rxQueueDrops": 0,
+    "rxOversizedPackets": 0,
+    "rxSocketErrors": 0,
+    "framesComplete": 227,
+    "framesIncomplete": 0,
+    "fps": 0,
+    "packetsPerSecond": 0,
+    "heapFree": 158224,
+    "heapMinFree": 150312,
+    "frameTimeUs": 13025,
+    "outputTimeUs": 13025,
+    "lastFrameLatencyMs": null,
+    "startUniverse": 0,
+    "outputFrames": 227,
+    "timeouts": 0,
+    "droppedPackets": 0,
+    "sequenceErrors": 0
+  },
+  "start": {
+    "transport": {
+      "kind": "direct"
+    },
+    "enabled": true,
+    "error": "",
+    "mode": "live",
+    "calibration": [
+      "all",
+      "panel_id",
+      0
+    ],
+    "controllers": [
+      "WS2812_NODE",
+      "PANEL8_251",
+      "BACK_PANEL_249"
+    ],
+    "target_override": null,
+    "port_override": null,
+    "telemetry": {
+      "tick_count": 0,
+      "rate_skips": 0,
+      "send_count": 0,
+      "packet_count": 0,
+      "send_ms_last": 0.0,
+      "send_ms_average": 0.0,
+      "send_ms_max": 0.0,
+      "actual_send_fps": 0.0,
+      "pack_count": 0,
+      "pack_ms_last": 0.0,
+      "pack_ms_average": 0.0,
+      "pack_ms_max": 0.0,
+      "plan_rebuilds": 12
+    }
+  },
+  "error": "Counter increased: framesIncomplete",
+  "stopped": {
+    "transport": {
+      "kind": "direct"
+    },
+    "enabled": true,
+    "error": "",
+    "mode": "live",
+    "calibration": [
+      "all",
+      "panel_id",
+      0
+    ],
+    "controllers": [
+      "WS2812_NODE",
+      "BACK_PANEL_249"
+    ],
+    "target_override": null,
+    "port_override": null,
+    "telemetry": {
+      "tick_count": 0,
+      "rate_skips": 0,
+      "send_count": 0,
+      "packet_count": 0,
+      "send_ms_last": 0.0,
+      "send_ms_average": 0.0,
+      "send_ms_max": 0.0,
+      "actual_send_fps": 0.0,
+      "pack_count": 0,
+      "pack_ms_last": 0.0,
+      "pack_ms_average": 0.0,
+      "pack_ms_max": 0.0,
+      "plan_rebuilds": 13
+    }
+  }
+}

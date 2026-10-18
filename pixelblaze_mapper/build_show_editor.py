@@ -1537,7 +1537,7 @@ def _imported_overrides(slot, cue_id):
     if _state('recording', '0') == '1' and _state('record_cue', '') == cue_id:
         return live_imported_values()
     moment = float(transport._get('elapsed', '0') or 0)
-    recorded = automation.values_at(automation_data(), cue_id, moment)
+    recorded = automation.values_at(_cached_automation(), cue_id, moment)
     return {name: value for name, value in recorded.items()
             if name.startswith(automation.IMPORT_PARAMETER_PREFIX)}
 
@@ -1695,7 +1695,7 @@ def _live_monitor(parameters):
 
 
 def playback_values(cue_id, elapsed):
-    return automation.values_at(automation_data(), cue_id, elapsed)
+    return automation.values_at(_cached_automation(), cue_id, elapsed)
 
 
 # The flag and the take live in the same COMP, so a reload cannot separate

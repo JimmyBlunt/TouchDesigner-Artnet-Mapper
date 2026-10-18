@@ -64,7 +64,7 @@ class BrowserBurstRuntimeTests(unittest.TestCase):
         m.host.requests.clear()
         return m
 
-    def test_twelve_received_events_publish_one_final_frame_with_two_host_reads(self):
+    def test_twelve_received_events_publish_one_final_frame_with_one_host_read(self):
         m = self.prepare()
         for i in range(12):
             m.events.put((dict(type='wheel',delta=1),m.version,99.1+i*.07))
@@ -73,8 +73,7 @@ class BrowserBurstRuntimeTests(unittest.TestCase):
             m.tick()
         self.assertEqual(m.events.qsize(),0)
         self.assertEqual(publish.call_count,1)
-        self.assertEqual(len(m.host.requests),2)
-        self.assertEqual(m.host.requests,[None,None])
+        self.assertEqual(m.host.requests,[None])
         self.assertEqual(m.worker.snapshot['controller']['browse_index'],m.controller.browse_index)
         selected=m.worker.snapshot['controller']['browse_items'][m.controller.browse_index]
         self.assertEqual(selected['id'],m.controller.browse_selected_id())

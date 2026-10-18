@@ -1,0 +1,58 @@
+[
+  {
+    "universe": 156,
+    "max_original": 179,
+    "max_dimmed": 3,
+    "sum_original": 46412,
+    "sum_dimmed": 697,
+    "bytes": 528
+  },
+  {
+    "universe": 157,
+    "max_original": 179,
+    "max_dimmed": 3,
+    "sum_original": 32292,
+    "sum_dimmed": 478,
+    "bytes": 528
+  },
+  {
+    "universe": 158,
+    "max_original": 179,
+    "max_dimmed": 3,
+    "sum_original": 46251,
+    "sum_dimmed": 684,
+    "bytes": 528
+  },
+  {
+    "universe": 159,
+    "max_original": 179,
+    "max_dimmed": 3,
+    "sum_original": 41809,
+    "sum_dimmed": 626,
+    "bytes": 528
+  },
+  {
+    "universe": 160,
+    "max_original": 179,
+    "max_dimmed": 3,
+    "sum_original": 4819,
+    "sum_dimmed": 75,
+    "bytes": 528
+  },
+  {
+    "universe": 161,
+    "max_original": 179,
+    "max_dimmed": 3,
+    "sum_original": 48391,
+    "sum_dimmed": 733,
+    "bytes": 528
+  },
+  {
+    "universe": 162,
+    "max_original": 179,
+    "max_dimmed": 3,
+    "sum_original": 7467,
+    "sum_dimmed": 115,
+    "bytes": 528
+  }
+]

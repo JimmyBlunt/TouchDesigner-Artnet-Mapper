@@ -1,0 +1,254 @@
+{
+  "rate": 10,
+  "brightness": 0.02,
+  "samples": [
+    {
+      "elapsed": 5.0225687000202015,
+      "status": {
+        "pixelCount": 852,
+        "universeCount": 7,
+        "packets": 21,
+        "rxPackets": 21,
+        "rxQueueDrops": 0,
+        "rxOversizedPackets": 0,
+        "rxSocketErrors": 0,
+        "framesComplete": 3,
+        "framesIncomplete": 0,
+        "fps": 0,
+        "packetsPerSecond": 0,
+        "heapFree": 158412,
+        "heapMinFree": 152068,
+        "frameTimeUs": 13654,
+        "outputTimeUs": 13654,
+        "lastFrameLatencyMs": null,
+        "startUniverse": 0,
+        "outputFrames": 3,
+        "timeouts": 0,
+        "droppedPackets": 0,
+        "sequenceErrors": 0
+      }
+    },
+    {
+      "elapsed": 10.064307499997085,
+      "status": {
+        "pixelCount": 852,
+        "universeCount": 7,
+        "packets": 182,
+        "rxPackets": 182,
+        "rxQueueDrops": 0,
+        "rxOversizedPackets": 0,
+        "rxSocketErrors": 0,
+        "framesComplete": 26,
+        "framesIncomplete": 0,
+        "fps": 10,
+        "packetsPerSecond": 70,
+        "heapFree": 158524,
+        "heapMinFree": 152068,
+        "frameTimeUs": 12995,
+        "outputTimeUs": 12995,
+        "lastFrameLatencyMs": null,
+        "startUniverse": 0,
+        "outputFrames": 26,
+        "timeouts": 0,
+        "droppedPackets": 0,
+        "sequenceErrors": 0
+      }
+    },
+    {
+      "elapsed": 15.105419700004859,
+      "status": {
+        "pixelCount": 852,
+        "universeCount": 7,
+        "packets": 532,
+        "rxPackets": 532,
+        "rxQueueDrops": 0,
+        "rxOversizedPackets": 0,
+        "rxSocketErrors": 0,
+        "framesComplete": 76,
+        "framesIncomplete": 0,
+        "fps": 10,
+        "packetsPerSecond": 70,
+        "heapFree": 158300,
+        "heapMinFree": 152068,
+        "frameTimeUs": 12954,
+        "outputTimeUs": 12954,
+        "lastFrameLatencyMs": null,
+        "startUniverse": 0,
+        "outputFrames": 76,
+        "timeouts": 0,
+        "droppedPackets": 0,
+        "sequenceErrors": 0
+      }
+    },
+    {
+      "elapsed": 20.147188200004166,
+      "status": {
+        "pixelCount": 852,
+        "universeCount": 7,
+        "packets": 882,
+        "rxPackets": 882,
+        "rxQueueDrops": 0,
+        "rxOversizedPackets": 0,
+        "rxSocketErrors": 0,
+        "framesComplete": 126,
+        "framesIncomplete": 0,
+        "fps": 10,
+        "packetsPerSecond": 70,
+        "heapFree": 158076,
+        "heapMinFree": 152068,
+        "frameTimeUs": 12951,
+        "outputTimeUs": 12951,
+        "lastFrameLatencyMs": null,
+        "startUniverse": 0,
+        "outputFrames": 126,
+        "timeouts": 0,
+        "droppedPackets": 0,
+        "sequenceErrors": 0
+      }
+    },
+    {
+      "elapsed": 25.1711648000055,
+      "status": {
+        "pixelCount": 852,
+        "universeCount": 7,
+        "packets": 1239,
+        "rxPackets": 1239,
+        "rxQueueDrops": 0,
+        "rxOversizedPackets": 0,
+        "rxSocketErrors": 0,
+        "framesComplete": 177,
+        "framesIncomplete": 0,
+        "fps": 10,
+        "packetsPerSecond": 70,
+        "heapFree": 158000,
+        "heapMinFree": 150312,
+        "frameTimeUs": 13176,
+        "outputTimeUs": 13176,
+        "lastFrameLatencyMs": null,
+        "startUniverse": 0,
+        "outputFrames": 177,
+        "timeouts": 0,
+        "droppedPackets": 0,
+        "sequenceErrors": 0
+      }
+    },
+    {
+      "elapsed": 30.196276300004683,
+      "status": {
+        "pixelCount": 852,
+        "universeCount": 7,
+        "packets": 1589,
+        "rxPackets": 1589,
+        "rxQueueDrops": 0,
+        "rxOversizedPackets": 0,
+        "rxSocketErrors": 0,
+        "framesComplete": 227,
+        "framesIncomplete": 0,
+        "fps": 10,
+        "packetsPerSecond": 70,
+        "heapFree": 157292,
+        "heapMinFree": 150312,
+        "frameTimeUs": 13025,
+        "outputTimeUs": 13025,
+        "lastFrameLatencyMs": null,
+        "startUniverse": 0,
+        "outputFrames": 227,
+        "timeouts": 0,
+        "droppedPackets": 0,
+        "sequenceErrors": 0
+      }
+    }
+  ],
+  "before": {
+    "pixelCount": 852,
+    "universeCount": 7,
+    "packets": 14,
+    "rxPackets": 14,
+    "rxQueueDrops": 0,
+    "rxOversizedPackets": 0,
+    "rxSocketErrors": 0,
+    "framesComplete": 2,
+    "framesIncomplete": 0,
+    "fps": 0,
+    "packetsPerSecond": 0,
+    "heapFree": 158972,
+    "heapMinFree": 152068,
+    "frameTimeUs": 13560,
+    "outputTimeUs": 13560,
+    "lastFrameLatencyMs": null,
+    "startUniverse": 0,
+    "outputFrames": 2,
+    "timeouts": 0,
+    "droppedPackets": 0,
+    "sequenceErrors": 0
+  },
+  "start": {
+    "transport": {
+      "kind": "direct"
+    },
+    "enabled": true,
+    "error": "",
+    "mode": "live",
+    "calibration": [
+      "all",
+      "panel_id",
+      0
+    ],
+    "controllers": [
+      "WS2812_NODE",
+      "PANEL8_251",
+      "BACK_PANEL_249"
+    ],
+    "target_override": null,
+    "port_override": null,
+    "telemetry": {
+      "tick_count": 0,
+      "rate_skips": 0,
+      "send_count": 0,
+      "packet_count": 0,
+      "send_ms_last": 0.0,
+      "send_ms_average": 0.0,
+      "send_ms_max": 0.0,
+      "actual_send_fps": 0.0,
+      "pack_count": 0,
+      "pack_ms_last": 0.0,
+      "pack_ms_average": 0.0,
+      "pack_ms_max": 0.0,
+      "plan_rebuilds": 10
+    }
+  },
+  "stopped": {
+    "transport": {
+      "kind": "direct"
+    },
+    "enabled": true,
+    "error": "",
+    "mode": "live",
+    "calibration": [
+      "all",
+      "panel_id",
+      0
+    ],
+    "controllers": [
+      "WS2812_NODE",
+      "BACK_PANEL_249"
+    ],
+    "target_override": null,
+    "port_override": null,
+    "telemetry": {
+      "tick_count": 0,
+      "rate_skips": 0,
+      "send_count": 0,
+      "packet_count": 0,
+      "send_ms_last": 0.0,
+      "send_ms_average": 0.0,
+      "send_ms_max": 0.0,
+      "actual_send_fps": 0.0,
+      "pack_count": 0,
+      "pack_ms_last": 0.0,
+      "pack_ms_average": 0.0,
+      "pack_ms_max": 0.0,
+      "plan_rebuilds": 11
+    }
+  }
+}

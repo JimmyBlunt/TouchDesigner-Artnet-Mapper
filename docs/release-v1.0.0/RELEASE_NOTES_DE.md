@@ -57,6 +57,20 @@ Siehe [Einzelbewertung aller Screens](SCREEN_ASSESSMENT_DE.md),
 
 ## Offene Hardware-/Integrationsprüfung
 
+Der folgende Ausfallbericht beschreibt den damaligen Diagnosezustand. Den
+anschließenden Neustart von `.251`, die behobenen UI-/MK2-/Show-Leistungspfade
+und die neueste begrenzte `.253`-Messung nach tatsächlichem Kaltstart mit
+28,96 vollständigen Frames/s (rund 29 FPS; zuvor 22,78 FPS)
+dokumentiert die [Performance-Nachprüfung](CONTROLLER_PERFORMANCE_FIX_DE.md).
+Der gedimmte `.251`-Test bei 10 FPS bestand das 30-Sekunden-Fenster; der
+30-FPS-Test wurde wegen eines unvollständigen Frames abgebrochen. `.251` bleibt
+deaktiviert, die Ursache seines vollständigen Hängers ungeklärt. Das korrigierte
+Projekt wurde mit allen Ausgaben aus gespeichert; Hash und Wiederherstellungswege
+stehen im Nachtrag. Die Kaltstartprüfung bestätigt identische Show-, Automations-
+und Segmenthashes, ausgeschalteten Sender sowie keine Fehler oder Warnungen.
+Eine dauerhafte 30-FPS- oder vollständige Hardwareabnahme
+wird daraus nicht abgeleitet.
+
 Bei der abschließenden Diagnose antwortet Controller `10.0.0.251` weder auf
 Ping noch auf seine HTTP-API. Der Ethernet-Nachbareintrag bleibt unvollständig;
 `10.0.0.253` antwortet. Der gemeinsame Sender läuft ohne gemeldeten Fehler,

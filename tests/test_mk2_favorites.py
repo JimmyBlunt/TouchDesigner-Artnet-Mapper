@@ -221,7 +221,7 @@ class HydrationHost(FakeHost):
         self.materials['m2'] = material(2)
         self.materials['core:gradient'] = dict(material(3), id='core:gradient', label='Core Gradient')
 
-    def context(self, target=None, *, metadata_only=False):
+    def context(self, target=None, *, metadata_only=False, include_catalog=True):
         self.requests.append(target)
         return super().context(target)
 

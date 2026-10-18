@@ -1,0 +1,44 @@
+{
+  "repeat_refresh_ms": 0.6184800004120916,
+  "worker": "MK2 verbunden \u00b7 Displays \u00fcbertragen",
+  "queue": 0,
+  "error": "",
+  "python_profile_active": false,
+  "maintenance_enabled": true,
+  "sender": {
+    "transport": {
+      "kind": "direct"
+    },
+    "enabled": true,
+    "error": "",
+    "mode": "live",
+    "calibration": [
+      "all",
+      "panel_id",
+      0
+    ],
+    "controllers": [
+      "WS2812_NODE",
+      "BACK_PANEL_249"
+    ],
+    "target_override": null,
+    "port_override": null,
+    "telemetry": {
+      "tick_count": 215,
+      "rate_skips": 1,
+      "send_count": 214,
+      "packet_count": 11574,
+      "send_ms_last": 6.187399994814768,
+      "send_ms_average": 7.008684111599131,
+      "send_ms_max": 17.82660000026226,
+      "actual_send_fps": 37.80904628148552,
+      "pack_count": 214,
+      "pack_ms_last": 1.2541000032797456,
+      "pack_ms_average": 1.1177514033733702,
+      "pack_ms_max": 4.244400013703853,
+      "plan_rebuilds": 4
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

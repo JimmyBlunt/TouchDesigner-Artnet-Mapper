@@ -149,7 +149,7 @@ class WindowTests(unittest.TestCase):
         self.assertNotIn(ROOT+'/material', self.nodes)
         self.assertIsNone(d.pending)
 
-    def test_disabled_preview_closes_legacy_window_but_preserves_player(self):
+    def test_disabled_preview_closes_legacy_and_loaded_player_while_browsing(self):
         d=self.director
         d.config['desktop_browse_preview']=True
         d.observe(self.view(), {})
@@ -160,10 +160,54 @@ class WindowTests(unittest.TestCase):
         self.assertFalse(window.isOpen)
         self.assertEqual(self.preview.select.call_count, 1)
         d.material_loaded('b')
-        d.observe(self.view('c'), {})
         self.assertTrue(window.isOpen)
+        d.observe(self.view('c'), {})
+        self.assertFalse(window.isOpen)
         self.assertEqual(window.par.winop.eval(), MATERIAL)
         self.assertEqual(self.preview.select.call_count, 1)
+
+    def test_default_browse_and_categories_close_only_owned_window_for_any_target(self):
+        d = self.director
+        user_window = Node('/project1/user_material_window', self.nodes)
+        user_window.par.winop.val = MATERIAL
+        user_window.par.winopen.pulse()
+        for screen in ('browse', 'categories'):
+            for target in (MATERIAL, ROOT+'/preview_panel', SHOW_PREVIEW):
+                with self.subTest(screen=screen, target=target):
+                    d.show_mode('material')
+                    window = self.nodes[ROOT+'/material']
+                    window.par.winop.val = target
+                    # winopen is a pulse parameter, not the window's open state.
+                    self.assertIsNone(window.par.winopen.eval())
+                    closes = window.par.winclose.pulses
+                    d.observe(self.view(screen=screen), {})
+                    self.assertFalse(window.isOpen)
+                    self.assertEqual(window.par.winclose.pulses, closes + 1)
+                    d.observe(self.view(screen=screen), {})
+                    self.assertEqual(window.par.winclose.pulses, closes + 1)
+                    self.assertTrue(user_window.isOpen)
+        self.preview.select.assert_not_called()
+
+    def test_default_observation_preserves_player_on_home_edit_and_show_mode(self):
+        d = self.director
+        for mode, screen in (('material', 'home'), ('material', 'edit'),
+                             ('show', 'browse'), ('show', 'categories')):
+            with self.subTest(mode=mode, screen=screen):
+                d.show_mode('material')
+                window = self.nodes[ROOT+'/material']
+                closes = window.par.winclose.pulses
+                d.observe(self.view(mode=mode, screen=screen), {})
+                self.assertTrue(window.isOpen)
+                self.assertEqual(window.par.winclose.pulses, closes)
+
+    def test_disabled_legacy_preview_cleanup_still_applies_outside_browse(self):
+        d = self.director
+        d.config['desktop_browse_preview'] = True
+        d.observe(self.view(), {})
+        window = self.nodes[ROOT+'/material']
+        d.config['desktop_browse_preview'] = False
+        d.observe(self.view(screen='home'), {})
+        self.assertFalse(window.isOpen)
 
 
 class RuntimeWindowTests(unittest.TestCase):

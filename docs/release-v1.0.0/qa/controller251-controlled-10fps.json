@@ -1,0 +1,124 @@
+{
+  "rate": 10,
+  "samples": [
+    {
+      "elapsed": 5.146730699983891,
+      "status": {
+        "pixelCount": 852,
+        "universeCount": 7,
+        "packets": 0,
+        "rxPackets": 0,
+        "rxQueueDrops": 0,
+        "rxOversizedPackets": 0,
+        "rxSocketErrors": 0,
+        "framesComplete": 0,
+        "framesIncomplete": 0,
+        "fps": 0,
+        "packetsPerSecond": 0,
+        "heapFree": 160100,
+        "heapMinFree": 156636,
+        "frameTimeUs": 0,
+        "outputTimeUs": 0,
+        "lastFrameLatencyMs": null,
+        "startUniverse": 0,
+        "outputFrames": 0,
+        "timeouts": 0,
+        "droppedPackets": 0,
+        "sequenceErrors": 0
+      }
+    }
+  ],
+  "before": {
+    "pixelCount": 852,
+    "universeCount": 7,
+    "packets": 0,
+    "rxPackets": 0,
+    "rxQueueDrops": 0,
+    "rxOversizedPackets": 0,
+    "rxSocketErrors": 0,
+    "framesComplete": 0,
+    "framesIncomplete": 0,
+    "fps": 0,
+    "packetsPerSecond": 0,
+    "heapFree": 159236,
+    "heapMinFree": 153376,
+    "frameTimeUs": 0,
+    "outputTimeUs": 0,
+    "lastFrameLatencyMs": null,
+    "startUniverse": 0,
+    "outputFrames": 0,
+    "timeouts": 0,
+    "droppedPackets": 0,
+    "sequenceErrors": 0
+  },
+  "start": {
+    "transport": {
+      "kind": "direct"
+    },
+    "enabled": true,
+    "error": "",
+    "mode": "live",
+    "calibration": [
+      "all",
+      "panel_id",
+      0
+    ],
+    "controllers": [
+      "WS2812_NODE",
+      "PANEL8_251",
+      "BACK_PANEL_249"
+    ],
+    "target_override": null,
+    "port_override": null,
+    "telemetry": {
+      "tick_count": 0,
+      "rate_skips": 0,
+      "send_count": 0,
+      "packet_count": 0,
+      "send_ms_last": 0.0,
+      "send_ms_average": 0.0,
+      "send_ms_max": 0.0,
+      "actual_send_fps": 0.0,
+      "pack_count": 0,
+      "pack_ms_last": 0.0,
+      "pack_ms_average": 0.0,
+      "pack_ms_max": 0.0,
+      "plan_rebuilds": 6
+    }
+  },
+  "error": "[WinError 10054] Eine vorhandene Verbindung wurde vom Remotehost geschlossen",
+  "stopped": {
+    "transport": {
+      "kind": "direct"
+    },
+    "enabled": true,
+    "error": "",
+    "mode": "live",
+    "calibration": [
+      "all",
+      "panel_id",
+      0
+    ],
+    "controllers": [
+      "WS2812_NODE",
+      "BACK_PANEL_249"
+    ],
+    "target_override": null,
+    "port_override": null,
+    "telemetry": {
+      "tick_count": 0,
+      "rate_skips": 0,
+      "send_count": 0,
+      "packet_count": 0,
+      "send_ms_last": 0.0,
+      "send_ms_average": 0.0,
+      "send_ms_max": 0.0,
+      "actual_send_fps": 0.0,
+      "pack_count": 0,
+      "pack_ms_last": 0.0,
+      "pack_ms_average": 0.0,
+      "pack_ms_max": 0.0,
+      "plan_rebuilds": 7
+    }
+  }
+}

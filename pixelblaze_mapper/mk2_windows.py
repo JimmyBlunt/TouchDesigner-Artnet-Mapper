@@ -139,10 +139,13 @@ class WindowDirector:
         previous, self.screen = self.screen, view['screen']
         if self.config.get('desktop_browse_preview') is not True:
             self.pending = self.shown_id = None
-            # Also retire a preview left open by an older running director.
-            # Do not close the material player or any user-owned window.
+            # Browsing is hardware-only by default, including a player window
+            # opened before entering browse. Only our owned window is touched;
+            # home/edit keep their player, and legacy previews retire anywhere.
             window = self.resolve(ROOT+'/material')
-            if window is not None and window.isOpen and str(window.par.winop.eval()) == ROOT+'/preview_panel':
+            browsing = self.mode == 'material' and self.screen in ('browse', 'categories')
+            if window is not None and window.isOpen and (
+                    browsing or str(window.par.winop.eval()) == ROOT+'/preview_panel'):
                 self._close('material')
             return
         if self.mode != 'material':

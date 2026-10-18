@@ -1,0 +1,16 @@
+{
+  "scenario": "Offline Manager refresh+surface,635 metadata records,41 wheel frames,one warmup; excludes TD/native shader work and USB rendering",
+  "results": {
+    "997be6e": {
+      "seconds": 0.9647668999969028,
+      "final_index": 41,
+      "rows": 635
+    },
+    "optimized": {
+      "seconds": 0.024279899982502684,
+      "final_index": 41,
+      "rows": 635
+    }
+  },
+  "speedup": 39.73520898735836
+}

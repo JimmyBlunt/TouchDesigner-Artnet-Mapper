@@ -177,7 +177,7 @@ class EditingTests(unittest.TestCase):
         source = timeline.install_editor_source(EDITOR_RUNTIME)
         function = next(n for n in ast.parse(source).body if isinstance(n, ast.FunctionDef) and n.name == '_imported_overrides')
         _, data = self.edit(action='lane', parameter='mat__uSpeed', curve=dict(points=[[0, 7]]))
-        scope = dict(automation=auto, automation_data=lambda:data, _state=lambda *args:'0',
+        scope = dict(automation=auto, _cached_automation=lambda:data, _state=lambda *args:'0',
                      imported_data=lambda:{self.cue:{'values':{'uSpeed':2,'mat_scale':3}}},
                      OWNER=SimpleNamespace(op=lambda _:SimpleNamespace(module=SimpleNamespace(_get=lambda key,*args:'A' if key=='outgoing_slot' else 0))))
         exec(compile(ast.Module(body=[function], type_ignores=[]), '<import test>', 'exec'), scope)

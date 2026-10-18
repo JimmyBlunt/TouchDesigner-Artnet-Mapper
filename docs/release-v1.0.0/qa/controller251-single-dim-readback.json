@@ -1,0 +1,23 @@
+{
+  "pixelCount": 852,
+  "universeCount": 7,
+  "packets": 14,
+  "rxPackets": 14,
+  "rxQueueDrops": 0,
+  "rxOversizedPackets": 0,
+  "rxSocketErrors": 0,
+  "framesComplete": 2,
+  "framesIncomplete": 0,
+  "fps": 1,
+  "packetsPerSecond": 7,
+  "heapFree": 158468,
+  "heapMinFree": 152116,
+  "frameTimeUs": 13560,
+  "outputTimeUs": 13560,
+  "lastFrameLatencyMs": null,
+  "startUniverse": 0,
+  "outputFrames": 2,
+  "timeouts": 0,
+  "droppedPackets": 0,
+  "sequenceErrors": 0
+}

@@ -256,7 +256,9 @@ def maintenance_tick():
         if panel is None:continue
         missing=panel.op(PREFIX+'info') is None or panel.op(PREFIX+'info_click') is None
         if not missing:
-            missing=any(node.type in ('button','field','text') and not node.name.startswith(PREFIX)
+            # TextDAT callbacks also report type='text', but have no UI style.
+            # Including them makes every panel reinstall on every audit.
+            missing=any(node.isCOMP and node.type in ('button','field','text') and not node.name.startswith(PREFIX)
                         and node.fetch('release_v1_original_style',None,search=False) is None for node in panel.children)
         if missing:install_screen(panel,screen)
 
