@@ -24,6 +24,12 @@ wegen fehlender Systemberechtigung übersprungen. Nach der abschließenden
 Begrenzung der Vorschaubild- und Flächentexturauflösungen bestanden zusätzlich
 39 gezielte Tests. Die Manager-Suite umfasst 10 bestandene Node-Tests.
 
+Auch der vollständige Git-Export des Release-Commits `25c7448` wurde unabhängig
+von lokalen, nicht versionierten Dateien getestet: **1.783 Tests bestanden,
+1 übersprungen, 5.117 Untertests bestanden** in 105,37 Sekunden. Der zusätzliche
+Test deckt die abschließende Texturauflösungsbegrenzung ab.
+[Clean-Checkout-Ergebnis](qa/tests-clean-checkout.txt).
+
 20 native Dialoge und 187 native Feldhinweise wurden auch nach dem Neustart
 geprüft. Vier Webdialoge bestanden die Browserprüfung ohne Konsolen- oder
 HTTP-Fehler. 181 Dokumentationsverweise wurden geprüft.
@@ -53,6 +59,9 @@ mit U156–162 für `.251`, 299/357/195 LEDs und 1 ms Paketabstand. Es wurde
 deshalb keine unbegründete Routingänderung vorgenommen. Stromversorgung,
 Netzwerkverbindung und Geräteerreichbarkeit müssen vor der Hardwareabnahme
 wiederhergestellt werden. [Diagnose](qa/controller-251-network.json).
+Der Benutzer bestätigt Stromversorgung und leuchtende Netzwerk-LEDs sowie die
+Funktion der anderen Controller. Ein gezielter Neustart von `.251` wurde
+angefragt; seine erfolgreiche Wiedererreichbarkeit ist noch nicht bestätigt.
 
 Der optionale externe PXLBLZ-Routerdienst unter Port 9988 ist ebenfalls nicht
 erreichbar. Seine Manager-Oberfläche funktioniert und kennzeichnet gespeicherte
