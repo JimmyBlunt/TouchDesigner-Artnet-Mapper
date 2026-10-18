@@ -94,6 +94,58 @@ class TDAdapterTests(unittest.TestCase):
     def setUp(self):self.f=Fixture();self.h=self.f.host
     def tearDown(self):mk2._host=None
 
+    def test_browse_wheel_uses_metadata_until_explicit_load_or_edit(self):
+        from pixelblaze_mapper.mk2_runtime import Manager
+        from pixelblaze_mapper.mk2_workflow import Controller
+        manager=Manager.__new__(Manager)
+        manager.host=self.h
+        manager.catalog=[dict(id=key,label=key.title(),image=key,category='Test') for key in ('one','two')]
+        manager.controller=Controller()
+        manager._refresh_context()
+        manager.controller.screen='browse'
+        original=self.f.library._parameter_context
+        with patch.object(self.f.library,'_parameter_context',wraps=original) as parameters:
+            manager.controller.dispatch(dict(type='wheel',delta=1))
+            manager._refresh_context()
+            snapshot=manager.controller.snapshot()
+            selected=snapshot['browse_items'][snapshot['browse_index']]
+            self.assertEqual((selected['id'],selected['label'],selected['image'],selected['category']),
+                             ('two','Two','two','Test'))
+            parameters.assert_not_called()
+            self.f.library.activate_selected.assert_not_called()
+            command,=manager.controller.dispatch(dict(type='wheel_press'))
+            self.assertEqual(command['material_id'],'two')
+            self.h.execute(command)
+            self.assertEqual(self.f.active,'two')
+            self.assertIn('two',[call.args[0]['id'] for call in parameters.call_args_list])
+        manager.controller.screen='pad_edit'
+        manager.controller.edit_material=dict(id='one')
+        with patch.object(self.f.library,'_parameter_context',wraps=original) as parameters:
+            manager._refresh_context()
+            self.assertIn('one',[call.args[0]['id'] for call in parameters.call_args_list])
+            self.assertTrue(manager.controller.snapshot()['material']['parameters'])
+
+    def test_metadata_context_skips_show_parsing_but_external_show_or_recording_stays_full(self):
+        with patch.object(self.f.library,'_parameter_context',wraps=self.f.library._parameter_context) as parameters, \
+             patch.object(self.f.editor,'show',wraps=self.f.editor.show) as show:
+            context=self.h.context(metadata_only=True)
+            self.assertEqual(context['active_material']['id'],'one')
+            self.assertEqual(context['active_material']['parameters'],[])
+            parameters.assert_not_called()
+            show.assert_not_called()
+            self.f.controls.par.Source.val='show'
+            context=self.h.context(metadata_only=True)
+            self.assertEqual(context['mode'],'show')
+            self.assertTrue(context['show']['parameters'])
+            self.assertTrue(parameters.called)
+            parameters.reset_mock()
+            self.f.controls.par.Source.val='imported'
+            self.f.state['recording']='1'
+            context=self.h.context(metadata_only=True)
+            self.assertTrue(context['recording'])
+            self.assertTrue(context['active_material']['parameters'])
+            self.assertTrue(parameters.called)
+
     def test_first_eight_bind_real_master_not_material_speed(self):
         descriptors=self.h.context()['active_material']['parameters']
         self.assertEqual([p['id'] for p in descriptors[:8]],['global_master_speed','scale','width','focus_x','focus_y','zoom','intensity','contrast'])

@@ -81,11 +81,12 @@ class Manager:
         controller = self.controller
         controller.set_context(dict(catalog=self.catalog))
         target = controller.edit_material.get('id') if controller.edit_material else None
-        if not target and controller.screen == 'browse':
-            target = controller.browse_selected_id()
+        # Browse cards already have label/image/category in the catalog. Merely
+        # turning the wheel must not adapt the selected shader for parameters.
+        # Explicit loading and pad editing still request their full descriptors.
         if not target and controller.screen in ('pad_menu','confirm_assign'):
             target = controller.assign_target or controller.config['groups'][controller.bank]['pads'][controller.pad_index]['target']
-        context = self.host.context(target)
+        context = self.host.context(target, metadata_only=controller.screen in ('browse','categories') and not controller.edit_material)
         context['catalog'] = self.catalog
         context['allow_automation_recording'] = True
         controller.set_context(context)

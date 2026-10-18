@@ -1,0 +1,13 @@
+{
+  "checks": {
+    "no_desktop_preview_calls": true,
+    "legacy_preview_closed": true,
+    "controller_unchanged": true,
+    "show_unchanged": true,
+    "sender_unchanged": true,
+    "mk2_worker_preserved": true
+  },
+  "observe_100_ms": 2164.185000001453,
+  "errors": "",
+  "warnings": ""
+}

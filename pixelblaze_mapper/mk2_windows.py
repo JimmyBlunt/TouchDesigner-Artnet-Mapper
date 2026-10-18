@@ -134,9 +134,17 @@ class WindowDirector:
         self.pending = None
 
     def observe(self, view, images):
-        """Debounce selection previews; never compile for every wheel detent."""
+        """Keep MK2 browsing free of desktop rendering unless explicitly enabled."""
         self.mode = view['mode']
         previous, self.screen = self.screen, view['screen']
+        if self.config.get('desktop_browse_preview') is not True:
+            self.pending = self.shown_id = None
+            # Also retire a preview left open by an older running director.
+            # Do not close the material player or any user-owned window.
+            window = self.resolve(ROOT+'/material')
+            if window is not None and window.isOpen and str(window.par.winop.eval()) == ROOT+'/preview_panel':
+                self._close('material')
+            return
         if self.mode != 'material':
             self.pending = None
             return

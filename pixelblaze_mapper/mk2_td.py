@@ -196,13 +196,15 @@ class Host:
             return 'core',core
         return '', ''
 
-    def material(self, identifier):
+    def material(self, identifier, *, metadata_only=False):
         base = next((dict(p) for p in self._catalog_items() if p['id'] == identifier), None)
         if base is None:
             if identifier.startswith('core:'):
                 base = dict(id=identifier, label=self.editor._effect_label(identifier[5:]), image=None, category='TouchDesigner')
             else:
                 raise ValueError('Material nicht verfügbar: ' + str(identifier))
+        if metadata_only:
+            return dict(base, parameters=[])
         player = self.editor.player_values()
         kind, active = self.material_identity(*self.editor.current_material())
         active = 'core:'+active if kind == 'core' else active
@@ -239,14 +241,21 @@ class Host:
         base['parameters'] = descriptors
         return base
 
-    def context(self, material_id=None):
+    def context(self, material_id=None, *, metadata_only=False):
         e = self.editor
         kind, identifier = self.material_identity(*e.current_material())
         active_id = 'core:'+identifier if kind == 'core' else identifier
-        active = self.material(active_id) if active_id else dict(id='',label='Kein Material',image=None,parameters=[])
         source = str(self.controls.par.Source.eval())
         mode = 'show' if source == 'show' else 'material'
         recording = ('new_cue' if e._state('recording_new','0') == '1' else 'automation') if self.recording else False
+        # Browsing displays existing catalog metadata, not native controls.
+        # External Show/recording changes always retain the full live context.
+        metadata_only = metadata_only and mode == 'material' and not recording
+        active = self.material(active_id,metadata_only=metadata_only) if active_id else dict(id='',label='Kein Material',image=None,parameters=[])
+        if metadata_only:
+            return dict(mode=mode,active_material=active,catalog=deepcopy(self._catalog_items()),
+                        materials={active_id:active},show={},recording=False,
+                        transitions=list(show_editor.TRANSITION_ORDER),allow_automation_recording=True)
         document, data = e.show(), e.automation_data()
         show = {}
         if document['cues']:

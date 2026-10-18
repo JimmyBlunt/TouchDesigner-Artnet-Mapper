@@ -221,7 +221,7 @@ class HydrationHost(FakeHost):
         self.materials['m2'] = material(2)
         self.materials['core:gradient'] = dict(material(3), id='core:gradient', label='Core Gradient')
 
-    def context(self, target=None):
+    def context(self, target=None, *, metadata_only=False):
         self.requests.append(target)
         return super().context(target)
 
@@ -249,11 +249,11 @@ class FavoritesManagerTests(unittest.TestCase):
         self.manager.controller.set_context(dict(config=config))
         self.manager.update_surface()
 
-    def test_filtered_hydration_and_load_use_selected_id_not_unfiltered_index(self):
+    def test_filtered_metadata_and_load_use_selected_id_not_unfiltered_index(self):
         self.favorites(['m2'])
         button(self.manager, 'browse')
         button(self.manager, 'top', 1)
-        self.assertEqual(self.manager.host.requests[-1], 'm2')
+        self.assertIsNone(self.manager.host.requests[-1])
         self.assertEqual(self.manager.controller.browse_index, 0)
         self.assertEqual(self.manager.controller.snapshot()['browse_items'][0]['id'], 'm2')
         self.assertFalse(self.manager.host.commands)
@@ -293,7 +293,7 @@ class FavoritesManagerTests(unittest.TestCase):
         self.assertEqual(self.manager.version, version+1)
         self.assertEqual(json.loads(self.manager.path.read_text())['favorites'], ['m0'])
 
-    def test_catalog_tick_reorder_retains_filtered_selection_and_hydrates_same_id(self):
+    def test_catalog_tick_reorder_retains_filtered_selection_without_hydration(self):
         self.favorites(['m1', 'm2'])
         button(self.manager, 'browse')
         button(self.manager, 'top', 1)
@@ -302,7 +302,7 @@ class FavoritesManagerTests(unittest.TestCase):
         self.manager.tick()
         self.assertEqual(self.manager.controller.browse_selected_id(), 'm2')
         self.assertEqual(self.manager.controller.browse_index, 0)
-        self.assertEqual(self.manager.host.requests[-1], 'm2')
+        self.assertIsNone(self.manager.host.requests[-1])
         press(self.manager)
         self.assertEqual(self.manager.host.commands[-1]['material_id'], 'm2')
 

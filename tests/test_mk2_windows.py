@@ -99,6 +99,7 @@ class WindowTests(unittest.TestCase):
 
     def test_browse_opens_selected_preview_but_debounces_fast_selection(self):
         d=self.director
+        d.config['desktop_browse_preview']=True
         d.observe(self.view(screen='home'), {})
         self.assertFalse(self.preview.select.called)
         d.observe(self.view('a'), {'a':'a.png'})
@@ -115,6 +116,7 @@ class WindowTests(unittest.TestCase):
 
     def test_loading_opens_player_until_browse_selection_changes(self):
         d=self.director
+        d.config['desktop_browse_preview']=True
         d.observe(self.view(), {})
         d.material_loaded('a')
         self.assertEqual(self.nodes[ROOT+'/material'].par.winop.eval(), MATERIAL)
@@ -128,10 +130,39 @@ class WindowTests(unittest.TestCase):
 
     def test_browse_exit_restores_player_and_show_prevents_preview(self):
         d=self.director
+        d.config['desktop_browse_preview']=True
         d.observe(self.view(), {})
         d.observe(self.view(screen='home'), {})
         self.assertEqual(self.nodes[ROOT+'/material'].par.winop.eval(), MATERIAL)
         d.observe(self.view('b', mode='show'), {})
+        self.assertEqual(self.preview.select.call_count, 1)
+
+    def test_default_browse_never_loads_desktop_preview_or_opens_window(self):
+        d=self.director
+        # Entry, rapid turning, settled selection and exit all stay on MK2.
+        for i in range(100):
+            self.now += 1
+            d.observe(self.view('m%d'%i), {})
+        d.observe(self.view(screen='categories'), {})
+        d.observe(self.view(screen='home'), {})
+        self.preview.select.assert_not_called()
+        self.assertNotIn(ROOT+'/material', self.nodes)
+        self.assertIsNone(d.pending)
+
+    def test_disabled_preview_closes_legacy_window_but_preserves_player(self):
+        d=self.director
+        d.config['desktop_browse_preview']=True
+        d.observe(self.view(), {})
+        window=self.nodes[ROOT+'/material']
+        self.assertTrue(window.isOpen)
+        d.config['desktop_browse_preview']=False
+        d.observe(self.view('b'), {})
+        self.assertFalse(window.isOpen)
+        self.assertEqual(self.preview.select.call_count, 1)
+        d.material_loaded('b')
+        d.observe(self.view('c'), {})
+        self.assertTrue(window.isOpen)
+        self.assertEqual(window.par.winop.eval(), MATERIAL)
         self.assertEqual(self.preview.select.call_count, 1)
 
 

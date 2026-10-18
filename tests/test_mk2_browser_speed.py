@@ -74,8 +74,11 @@ class BrowserBurstRuntimeTests(unittest.TestCase):
         self.assertEqual(m.events.qsize(),0)
         self.assertEqual(publish.call_count,1)
         self.assertEqual(len(m.host.requests),2)
-        self.assertEqual(m.host.requests[-1],m.controller.browse_selected_id())
+        self.assertEqual(m.host.requests,[None,None])
         self.assertEqual(m.worker.snapshot['controller']['browse_index'],m.controller.browse_index)
+        selected=m.worker.snapshot['controller']['browse_items'][m.controller.browse_index]
+        self.assertEqual(selected['id'],m.controller.browse_selected_id())
+        self.assertTrue(selected['label'])
         self.assertGreaterEqual(m.controller.browse_index,70)
         self.assertFalse(m.host.commands)
 

@@ -1,0 +1,41 @@
+{
+  "address": "10.0.0.251",
+  "read_only": true,
+  "scenario": "After metadata-only MK2 browse hotreload",
+  "physical_interaction": "not yet confirmed by user",
+  "td_calls_during_interval": 0,
+  "start": "2026-10-18T15:27:55.3739844+11:00",
+  "before": {
+    "pixelCount": 852,
+    "universeCount": 7,
+    "packets": 17616,
+    "rxPackets": 17616,
+    "rxQueueDrops": 0,
+    "rxOversizedPackets": 0,
+    "rxSocketErrors": 0,
+    "framesComplete": 2363,
+    "framesIncomplete": 40,
+    "fps": 4,
+    "packetsPerSecond": 34,
+    "heapFree": 156664,
+    "heapMinFree": 89668,
+    "frameTimeUs": 12872,
+    "outputTimeUs": 12872,
+    "lastFrameLatencyMs": null,
+    "startUniverse": 0,
+    "outputFrames": 2755,
+    "timeouts": 11,
+    "droppedPackets": 0,
+    "sequenceErrors": 0
+  },
+  "before_received": "2026-10-18T15:27:55.4969799+11:00",
+  "after_requested": "2026-10-18T15:28:25.5054802+11:00",
+  "error": "The request was canceled due to the configured HttpClient.Timeout of 5 seconds elapsing.",
+  "end": "2026-10-18T15:28:30.5315958+11:00",
+  "user_observation": "User confirmed MK2 responds again; exact physical rotation during entire measurement window remains unknown",
+  "retry": {
+    "requested": "2026-10-18T15:28:46.3365159+11:00",
+    "error": "The request was canceled due to the configured HttpClient.Timeout of 5 seconds elapsing.",
+    "end": "2026-10-18T15:28:51.3702148+11:00"
+  }
+}

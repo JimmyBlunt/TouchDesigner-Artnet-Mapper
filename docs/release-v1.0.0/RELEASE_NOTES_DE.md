@@ -1,5 +1,10 @@
 # Version 1.0.0 · 18. Oktober 2026
 
+Nachtrag auf dem Arbeitsbranch: [MK2-Browse-Korrektur und aktuelle
+Controllerdiagnose](MK2_BROWSE_FIX_DE.md). Die automatische Desktopvorschau ist
+deaktiviert, Browsen verwendet Metadaten, und der Benutzer bestätigt wieder
+reagierende MK2-Bedienung. Der Tag v1.0.0 bleibt der ursprüngliche Release-Stand.
+
 Die Bedienoberflächen verbinden die vorhandenen Scan-, Layout-, Material-,
 Routing- und Show-Funktionen in einer kompakten Gestaltung mit Bahnschrift.
 Zusammengehörige Aktionen stehen in dezent getrennten Bereichen; Eingaben und

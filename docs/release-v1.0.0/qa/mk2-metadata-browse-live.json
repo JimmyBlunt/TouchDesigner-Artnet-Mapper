@@ -1,0 +1,15 @@
+{
+  "checks": {
+    "screen_preserved": true,
+    "selection_preserved": true,
+    "config_preserved": true,
+    "worker_preserved": true,
+    "show_preserved": true,
+    "sender_preserved": true,
+    "no_shader_parameter_load": true
+  },
+  "refresh_and_publish_ms": 63.49499999487307,
+  "usb": "MK2 verbunden \u00b7 Displays \u00fcbertragen",
+  "errors": "",
+  "warnings": ""
+}

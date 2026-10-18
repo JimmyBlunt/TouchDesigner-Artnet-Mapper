@@ -1337,7 +1337,7 @@
       "details": [
         [
           "STEP / BROWSE / SCENE / SELECT",
-          "STEP wechselt Material/Show. BROWSE öffnet im Material Mode den Katalog, SCENE die Pad-Bank. Rad drehen wählt Einträge, Rad drücken bestätigt. In BROWSE aktiviert SELECT die direkte Padzuweisung: Bank A–H und Pad wählen; bei belegtem Pad das Überschreiben ausdrücklich bestätigen. BROWSE beziehungsweise SELECT im Zuweisungsbild bricht ab."
+          "STEP wechselt Material/Show. BROWSE öffnet im Material Mode den Katalog auf dem MK2, SCENE die Pad-Bank. Rad drehen wählt Einträge, Rad drücken bestätigt. Die zusätzliche Desktop-Materialvorschau ist standardmäßig abgeschaltet; die Bilder auf den MK2-Displays bleiben erhalten. Auswahl, Laden und Player funktionieren weiterhin. In BROWSE aktiviert SELECT die direkte Padzuweisung: Bank A–H und Pad wählen; bei belegtem Pad das Überschreiben ausdrücklich bestätigen. BROWSE beziehungsweise SELECT im Zuweisungsbild bricht ab."
         ],
         [
           "Acht obere Tasten und acht Regler",
@@ -1591,12 +1591,12 @@
       "target": "/project1/mk2_windows/preview_panel",
       "native": true,
       "title": "MK2 Materialauswahl",
-      "summary": "Große, ruhige Standbildvorschau der MK2-Browse-Auswahl mit Materialname und Verfügbarkeitsstatus.",
+      "summary": "Optionale Desktop-Standbildvorschau; standardmäßig abgeschaltet. Die normale Materialauswahl erfolgt auf dem MK2.",
       "steps": [
-        "Am MK2 BROWSE öffnen und das Auswahlrad zu einem Material drehen.",
-        "Nach der Auswahl Materialname, Status und Standbild im Fenster prüfen.",
-        "Bei verfügbarer Auswahl das Rad drücken, um das Material zu laden.",
-        "Bei nicht verfügbarer Vorschau ein anderes Material wählen oder den Bibliotheksstatus prüfen."
+        "Am MK2 BROWSE öffnen und mit dem Auswahlrad ein Material wählen.",
+        "Materialname und Vorschau auf den MK2-Displays prüfen; es öffnet automatisch kein zusätzliches Desktopfenster.",
+        "Das Rad drücken, um die gewählte Auswahl zu laden.",
+        "Das geladene Material bei Bedarf im Player oder in LED PREVIEW prüfen."
       ],
       "fields": {},
       "howto": "mk2_preview.html",
@@ -1606,16 +1606,20 @@
       ],
       "details": [
         [
-          "Was zeigt das Fenster?",
-          "Oben stehen Materialname und Status, darunter ein eingefrorenes Vorschaubild. Eine neu gewählte verfügbare Bibliotheksvorschau wird isoliert erzeugt und als Standbild festgehalten. Dies aktiviert das Material noch nicht und ändert weder Player noch LED-Ausgabe. Wiederholte Aktualisierungen derselben Auswahl erzeugen nicht laufend neue Bilder."
+          "Standardverhalten",
+          "Die Desktop-Vorschau ist deaktiviert, damit das Durchblättern keine zusätzliche große Vorschau erzeugt. BROWSE und das Auswahlrad arbeiten auf dem MK2; die Displaybilder, das Laden per Rad und der Player bleiben erhalten. Daraus folgt keine gemessene Aussage über die physische Drehgeschwindigkeit oder Latenz."
         ],
         [
-          "Status richtig lesen",
-          "Vorschau (Standbild) bedeutet eine erzeugte Materialvorschau. Gespeichertes Vorschaubild bedeutet einen Thumbnail-Fallback; die Statuszeile kann zusätzlich den Grund nennen. Vorschau nicht verfügbar bedeutet, dass weder eine verwendbare Materialvorschau noch ein passendes gespeichertes Bild bereitsteht. Ein Thumbnail allein bestätigt keine Shader-Kompatibilität."
+          "Erhaltener optionaler Dialog",
+          "Der vorhandene Desktopdialog bleibt aus Kompatibilitätsgründen im Projekt und in der Hilfe dokumentiert. Er wird nur bei ausdrücklich gesetztem desktop_browse_preview: true in config/mk2_windows.json automatisch verwendet; der Release-Standard ist false. Diese Option ist für die normale MK2-Auswahl nicht nötig."
+        ],
+        [
+          "Anzeige bei ausdrücklich aktivierter Vorschau",
+          "Oben stehen Materialname und Status, darunter ein eingefrorenes Bild. Vorschau (Standbild) bedeutet eine erzeugte Materialvorschau. Gespeichertes Vorschaubild bezeichnet einen Thumbnail-Fallback, Vorschau nicht verfügbar eine fehlende verwendbare Vorschau. Ein Thumbnail bestätigt keine Shader-Kompatibilität. Das Standbild aktiviert selbst kein Material und ist keine laufende Schrank-LED-Vorschau."
         ],
         [
           "Bedienung und Beispiel",
-          "Dieses Fenster hat keine Material-Eingabefelder. BROWSE und das Auswahlrad am MK2 steuern die Auswahl. Beispiel: BROWSE → ALL → ein verfügbares Material wählen → Namen und Bild prüfen → Rad drücken. Erst die Ladeaktion aktiviert die Auswahl. Das Bild ist keine laufende Vorschau der gemappten Schrank-LEDs; dafür LED PREVIEW öffnen."
+          "BROWSE → ALL → Material auf dem MK2 wählen → Namen und Displaybild prüfen → Rad drücken. Erst die Ladeaktion aktiviert die Auswahl. Das zusätzliche Desktopfenster muss dazu weder geöffnet noch bedient werden."
         ]
       ]
     },

@@ -56,7 +56,7 @@ Bedienelemente abgerundet.
 | [Fehlende Bereiche](coverage.html) | UI geprüft; Ansichtswahl und Farblegende dokumentiert, echte Erfassung vorhanden. | Nie erkannte LEDs bekommen keine erfundenen Positionen. |
 | [Teilscan ausrichten](registration.html) | UI geprüft; Anker, Prüfanker, Grenze und Ersatz-IDs mit Beispielen erläutert. | Kein neuer physischer Registrierungs-/Ersatzvorgang im UI-Test. |
 | [Native Materialparameter](native_params.html) | UI und vier Komponentenhinweise geprüft; native Materialparameter nach Portabilitätsänderung erhalten. | Materialabhängige Events/Compile-Time-Eingaben sind nicht pauschal aufnehmbare kontinuierliche Automation. |
-| [MK2-Materialauswahl](mk2_preview.html) | UI geprüft; tatsächliches Wire-Tubes-Standbild, Materialname, Status und Ladehinweis erfasst; keine Eingabefelder. | Standbildvorschau ist weder laufende Animation noch gemappte LED-Ausgabe. |
+| [MK2-Materialauswahl](mk2_preview.html) | Erhaltener optionaler Dialog: UI/Hilfe zuvor geprüft und Standbild erfasst. Die automatische Desktopvorschau ist anschließend standardmäßig abgeschaltet (`desktop_browse_preview: false`); normale Auswahl erfolgt auf dem MK2, dessen Displaybilder erhalten bleiben. | Der Screenshot dokumentiert die optionale Ansicht, nicht das aktuelle automatische Verhalten. Keine physische Messung der Radgeschwindigkeit oder Latenz. |
 | [PXLBLZ-Manager](pxlblz_manager.html) | Sichere Web-UI geprüft: Info öffnet/schließt, Ausgabe aus, verständliche Abhängigkeitsmeldung. | Externer lokaler Router unter `http://127.0.0.1:9988` nicht erreichbar. Synchronisieren/Anwenden/physische Ausgabe deshalb nicht als erfolgreich abgenommen. |
 
 ## Belege und praktische Grenzen
